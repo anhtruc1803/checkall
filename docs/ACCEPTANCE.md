@@ -26,7 +26,7 @@ Các vấn đề có bằng chứng: HTTP trên Windows bị phần mềm bảo 
 
 ## Performance
 
-Đã đo ít nhất ba lượt/trang trước và sau trên origin HTTPS sạch. Kết quả hiện hành và số liệu từng lượt ở PERFORMANCE.md và qa/performance.json; không dùng điểm đã giả định loại antivirus. PPI đạt median trên 90; homepage và Keyboard vẫn có TBT/hydration cao trong các lượt đã đo, cần tiếp tục đánh giá trên staging có CPU ổn định. Việc đạt a11y/SEO 100 trên ba trang lab không phải chứng nhận toàn website hoặc WCAG thủ công.
+Đã đo ba lượt/trang trước và sau trên origin HTTPS sạch. Median trước → cuối: homepage 78 → 84; PPI 94 → 87; Keyboard 83 → 75. Cả ba trang cuối chưa đạt 90. JS giảm khoảng 21 KiB/trang, nhưng TBT còn 640 / 500 / 1289 ms và benchmark CPU dao động 318,5–1437. Không chọn bộ trung gian có điểm tốt hơn thay kết quả cuối; cần đo tiếp trên CPU ổn định. Kết quả từng lượt ở PERFORMANCE.md và qa/performance.json. Việc đạt a11y/SEO 100 trên ba trang lab không phải chứng nhận toàn website hoặc WCAG thủ công.
 
 ## Docker
 

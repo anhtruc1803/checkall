@@ -26,7 +26,7 @@ Các mô-đun tương lai được ghi trong roadmap, không công bố route ha
 ## Rà soát Phase 1 bổ sung
 
 - `getToolSearchIndex` sinh chỉ mục gọn từ registry duy nhất. Client tìm kiếm cả VI/EN nhưng chỉ nhận tên hiển thị và chuỗi tìm kiếm, không cần tải hướng dẫn/phương pháp/giới hạn của cả 21 công cụ. Nội dung SEO đầy đủ vẫn render tại server.
-- Client chỉ nhận `id`, `engine`, `requiredCapabilities` cho ToolRunner. Các engine vẫn dynamic import theo công cụ; HTML giao diện ban đầu được prerender ở trạng thái `inert` và `aria-busy` cho đến khi capability detection chạy. Không có RAF, sự kiện đầu vào hoặc số đo phần cứng được tạo ở server.
+- Client chỉ nhận `id`, `engine`, `requiredCapabilities` cho ToolRunner. Các engine vẫn dynamic import theo công cụ; HTML giao diện ban đầu được prerender ở trạng thái `inert`. EngineSurface dùng native fieldset disabled/inert và aria-busy cho đến hydration của chính engine; capability detection ở ToolRunner quyết định fallback. Không có RAF, sự kiện đầu vào hoặc số đo phần cứng được tạo ở server.
 - Validation chuyển sang API `zod/mini` cùng phiên bản Zod; giới hạn dữ liệu không thay đổi. Hộp tìm kiếm chỉ dựng kết quả khi mở; catalog không prefetch hàng loạt các công cụ chưa được chọn. Không loại nội dung hoặc chức năng để tăng điểm.
 - Catalog khóa thao tác trước hydration để không làm mất truy vấn nhập sớm trên WebKit. Capability của Device Overview được kiểm tra một lần cho mỗi lần mount; các giá trị Screen/Viewport/DPR vẫn được đọc cập nhật và dọn listener/timer khi unmount.
 - Bộ kiểm thử lifecycle kiểm tra RAF, ResizeObserver, keyboard hold timer, mouse/CPS/pointer timers và wheel listener; dữ liệu high-frequency tiếp tục có bộ đệm giới hạn.

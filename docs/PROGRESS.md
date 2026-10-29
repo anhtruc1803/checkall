@@ -137,11 +137,11 @@ HTTPS loopback QA không có request ngoài origin và CSP không bị can thi�
 
 | Trang               | Median trước | Median cuối | JS trước → sau (byte) | TBT trước → sau (ms) |
 | ------------------- | -----------: | ----------: | --------------------: | -------------------: |
-| /vi                 |           78 |          81 |       215453 → 194278 |            994 → 768 |
-| /en/screen/ppi      |           94 |          95 |       224239 → 203189 |            280 → 267 |
-| /vi/keyboard/tester |           83 |          83 |       226554 → 205505 |            695 → 667 |
+| /vi                 |           78 |          84 |       215453 → 194299 |            994 → 640 |
+| /en/screen/ppi      |           94 |          87 |       224239 → 203384 |            280 → 500 |
+| /vi/keyboard/tester |           83 |          75 |       226554 → 205709 |           695 → 1289 |
 
-Keyboard sau đợt tối ưu giữa có LCP median 3515 ms; trace tìm thấy capture hint render muộn. Prerender inert đưa LCP cuối về median 1081 ms. Homepage và Keyboard vẫn chưa đạt 90: TBT còn cao, có biến thiên CPU; không quy hết cho antivirus vì trace sạch vẫn ghi nhận chi phí framework/hydration/layout. Accessibility/Best Practices/SEO cuối đều 100; CLS median tối đa 0,00081, không tuyên bố mọi lượt CLS bằng 0.
+Keyboard sau đợt tối ưu giữa có LCP median 3515 ms; trace tìm thấy capture hint render muộn. Prerender inert đưa LCP cuối về median 1073 ms. Cả ba trang trong bộ clean-release chưa đạt 90: TBT còn cao, benchmark CPU dao động 318,5–1437; không quy hết cho antivirus vì trace sạch vẫn ghi nhận chi phí framework/hydration/layout. Điểm giảm ở PPI/Keyboard được giữ nguyên, không thay bằng bộ trung gian tốt hơn. Accessibility/Best Practices/SEO cuối đều 100; CLS median tối đa 0,00081, không tuyên bố mọi lượt CLS bằng 0.
 
 ### Đang xác minh trước initial commit
 
@@ -150,3 +150,9 @@ Keyboard sau đợt tối ưu giữa có LCP median 3515 ms; trace tìm thấy c
 Máy hiện không có Docker Engine. Đã chuẩn bị `scripts/docker-smoke.sh` trên Linux và CI: image build, healthcheck, Nginx/VI/EN, Node port riêng, restart, exit code shutdown và logs. Compose config kiểm tra lại đạt; chưa coi smoke script/CI YAML là bằng chứng container đã chạy. Chưa kết nối VPS.
 
 **Xác minh cục bộ cuối trước initial commit:** 88/88 E2E đạt (Chromium 22/22, Firefox 22/22, WebKit 22/22, Chromium mobile 22/22), gồm axe hai theme và mount đủ 21 engine. Native EngineSurface fieldset disabled/inert cho đến hydration riêng của engine đã sửa các lượt nhập liệu sớm. Build/typecheck/lint đạt; 29/29 unit/integration tests, secret scan và dependency audit đạt. Docker Linux chờ kết quả CI sau push; phép đo Performance được kiểm tra lại trên revision này trước khi chốt báo cáo cuối.
+
+### Git và phép đo phát hành
+
+Đã xác minh staged secret scan trên 120 file, git diff --cached --check đạt; không có .env, chứng chỉ/key, cache hay artifacts. Initial commit c82cd20 đã push lên main tại [anhtruc1803/checkall](https://github.com/anhtruc1803/checkall). Không tạo commit chứa credential hoặc thực hiện triển khai VPS. Bộ Lighthouse clean-release gồm đủ chín lượt trên source commit này; số liệu từng lượt/median ở PERFORMANCE.md và qa/performance.json. CI [40815715479](https://github.com/anhtruc1803/checkall/actions/runs/40815715479) đang xác minh độc lập trên Linux; kết quả cuối sẽ ghi bên dưới.
+
+CI đầu tiên đạt 87/88 E2E, riêng axe WebKit phát hiện color-contrast ở một số nút khi chuyển theme; Docker bị bỏ qua vì E2E fail. CSS đổi foreground tức thì nhưng background nút transition 160 ms, tạo trạng thái tương phản trung gian. Đã bỏ background transition của nút, giữ transform và toàn bộ kiểm tra contrast; test xác nhận data-theme đích và ghi rõ failureSummary nếu còn lỗi. Không vô hiệu hóa rule axe. Lần build sau thay đổi ban đầu gặp EBUSY vì production server đang giữ thư mục standalone trên Windows; dừng server QA rồi build lại, không xóa dữ liệu người dùng.

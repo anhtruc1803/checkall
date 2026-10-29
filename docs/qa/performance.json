@@ -97,7 +97,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 980
       },
       {
         "path": "/en/screen/ppi",
@@ -130,7 +131,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 1114.5
       },
       {
         "path": "/vi/keyboard/tester",
@@ -163,7 +165,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 1121
       },
       {
         "path": "/vi",
@@ -196,7 +199,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 764
       },
       {
         "path": "/en/screen/ppi",
@@ -229,7 +233,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 747
       },
       {
         "path": "/vi/keyboard/tester",
@@ -262,7 +267,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 1302.5
       },
       {
         "path": "/vi",
@@ -295,7 +301,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 1152.5
       },
       {
         "path": "/en/screen/ppi",
@@ -328,7 +335,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 812
       },
       {
         "path": "/vi/keyboard/tester",
@@ -361,7 +369,8 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 467
       }
     ]
   },
@@ -374,17 +383,17 @@
         "runs": 3,
         "clean": true,
         "scores": {
-          "performance": 81,
+          "performance": 84,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
         "metrics": {
-          "fcpMs": 1077.1292,
-          "lcpMs": 1077.1292,
-          "tbtMs": 768,
-          "cls": 0.000808564264301754,
-          "jsBytes": 194278,
+          "fcpMs": 1074.0464,
+          "lcpMs": 1074.0464,
+          "tbtMs": 639.5178999999998,
+          "cls": 0.0008076353630982015,
+          "jsBytes": 194299,
           "fontBytes": 95379,
           "imageBytes": 0
         }
@@ -394,17 +403,17 @@
         "runs": 3,
         "clean": true,
         "scores": {
-          "performance": 95,
+          "performance": 87,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
         "metrics": {
-          "fcpMs": 921.0432000000001,
-          "lcpMs": 921.0432000000001,
-          "tbtMs": 267,
-          "cls": 0.000450114951809497,
-          "jsBytes": 203189,
+          "fcpMs": 1069.0743,
+          "lcpMs": 1069.0743,
+          "tbtMs": 500.4999999999998,
+          "cls": 0,
+          "jsBytes": 203384,
           "fontBytes": 53984,
           "imageBytes": 0
         }
@@ -414,17 +423,17 @@
         "runs": 3,
         "clean": true,
         "scores": {
-          "performance": 83,
+          "performance": 75,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
         "metrics": {
-          "fcpMs": 1080.583,
-          "lcpMs": 1080.583,
-          "tbtMs": 667.1016,
+          "fcpMs": 1073.2402,
+          "lcpMs": 1073.2402,
+          "tbtMs": 1288.5000000000005,
           "cls": 0,
-          "jsBytes": 205505,
+          "jsBytes": 205709,
           "fontBytes": 79955,
           "imageBytes": 0
         }
@@ -437,215 +446,17 @@
         "clean": true,
         "externalScripts": [],
         "scores": {
-          "performance": 59,
-          "accessibility": 100,
-          "best-practices": 100,
-          "seo": 100
-        },
-        "metrics": {
-          "fcpMs": 4323.3862,
-          "lcpMs": 4323.3862,
-          "tbtMs": 570.4999999999991,
-          "cls": 0.005141477232307421,
-          "jsBytes": 194278,
-          "fontBytes": 95379,
-          "imageBytes": 0
-        },
-        "settings": {
-          "formFactor": "mobile",
-          "throttlingMethod": "simulate",
-          "throttling": {
-            "rttMs": 150,
-            "throughputKbps": 1638.4,
-            "requestLatencyMs": 562.5,
-            "downloadThroughputKbps": 1474.5600000000002,
-            "uploadThroughputKbps": 675,
-            "cpuSlowdownMultiplier": 4
-          }
-        }
-      },
-      {
-        "path": "/en/screen/ppi",
-        "run": 1,
-        "clean": true,
-        "externalScripts": [],
-        "scores": {
-          "performance": 95,
-          "accessibility": 100,
-          "best-practices": 100,
-          "seo": 100
-        },
-        "metrics": {
-          "fcpMs": 924.5976,
-          "lcpMs": 924.5976,
-          "tbtMs": 247.70119999999997,
-          "cls": 0.000450114951809497,
-          "jsBytes": 203189,
-          "fontBytes": 53984,
-          "imageBytes": 0
-        },
-        "settings": {
-          "formFactor": "mobile",
-          "throttlingMethod": "simulate",
-          "throttling": {
-            "rttMs": 150,
-            "throughputKbps": 1638.4,
-            "requestLatencyMs": 562.5,
-            "downloadThroughputKbps": 1474.5600000000002,
-            "uploadThroughputKbps": 675,
-            "cpuSlowdownMultiplier": 4
-          }
-        }
-      },
-      {
-        "path": "/vi/keyboard/tester",
-        "run": 1,
-        "clean": true,
-        "externalScripts": [],
-        "scores": {
-          "performance": 73,
-          "accessibility": 100,
-          "best-practices": 100,
-          "seo": 100
-        },
-        "metrics": {
-          "fcpMs": 1080.583,
-          "lcpMs": 1080.583,
-          "tbtMs": 1703.5000000000002,
-          "cls": 0,
-          "jsBytes": 205505,
-          "fontBytes": 79955,
-          "imageBytes": 0
-        },
-        "settings": {
-          "formFactor": "mobile",
-          "throttlingMethod": "simulate",
-          "throttling": {
-            "rttMs": 150,
-            "throughputKbps": 1638.4,
-            "requestLatencyMs": 562.5,
-            "downloadThroughputKbps": 1474.5600000000002,
-            "uploadThroughputKbps": 675,
-            "cpuSlowdownMultiplier": 4
-          }
-        }
-      },
-      {
-        "path": "/vi",
-        "run": 2,
-        "clean": true,
-        "externalScripts": [],
-        "scores": {
-          "performance": 81,
-          "accessibility": 100,
-          "best-practices": 100,
-          "seo": 100
-        },
-        "metrics": {
-          "fcpMs": 1077.1292,
-          "lcpMs": 1077.1292,
-          "tbtMs": 794.7176999999999,
-          "cls": 0,
-          "jsBytes": 194278,
-          "fontBytes": 95379,
-          "imageBytes": 0
-        },
-        "settings": {
-          "formFactor": "mobile",
-          "throttlingMethod": "simulate",
-          "throttling": {
-            "rttMs": 150,
-            "throughputKbps": 1638.4,
-            "requestLatencyMs": 562.5,
-            "downloadThroughputKbps": 1474.5600000000002,
-            "uploadThroughputKbps": 675,
-            "cpuSlowdownMultiplier": 4
-          }
-        }
-      },
-      {
-        "path": "/en/screen/ppi",
-        "run": 2,
-        "clean": true,
-        "externalScripts": [],
-        "scores": {
-          "performance": 95,
-          "accessibility": 100,
-          "best-practices": 100,
-          "seo": 100
-        },
-        "metrics": {
-          "fcpMs": 920.7811999999999,
-          "lcpMs": 920.7811999999999,
-          "tbtMs": 267,
-          "cls": 0.000450114951809497,
-          "jsBytes": 203189,
-          "fontBytes": 53984,
-          "imageBytes": 0
-        },
-        "settings": {
-          "formFactor": "mobile",
-          "throttlingMethod": "simulate",
-          "throttling": {
-            "rttMs": 150,
-            "throughputKbps": 1638.4,
-            "requestLatencyMs": 562.5,
-            "downloadThroughputKbps": 1474.5600000000002,
-            "uploadThroughputKbps": 675,
-            "cpuSlowdownMultiplier": 4
-          }
-        }
-      },
-      {
-        "path": "/vi/keyboard/tester",
-        "run": 2,
-        "clean": true,
-        "externalScripts": [],
-        "scores": {
           "performance": 83,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
         "metrics": {
-          "fcpMs": 1077.7968,
-          "lcpMs": 1077.7968,
-          "tbtMs": 667.1016,
+          "fcpMs": 1074.0464,
+          "lcpMs": 1074.0464,
+          "tbtMs": 702.0000000000002,
           "cls": 0,
-          "jsBytes": 205505,
-          "fontBytes": 79955,
-          "imageBytes": 0
-        },
-        "settings": {
-          "formFactor": "mobile",
-          "throttlingMethod": "simulate",
-          "throttling": {
-            "rttMs": 150,
-            "throughputKbps": 1638.4,
-            "requestLatencyMs": 562.5,
-            "downloadThroughputKbps": 1474.5600000000002,
-            "uploadThroughputKbps": 675,
-            "cpuSlowdownMultiplier": 4
-          }
-        }
-      },
-      {
-        "path": "/vi",
-        "run": 3,
-        "clean": true,
-        "externalScripts": [],
-        "scores": {
-          "performance": 81,
-          "accessibility": 100,
-          "best-practices": 100,
-          "seo": 100
-        },
-        "metrics": {
-          "fcpMs": 1075.403,
-          "lcpMs": 1075.403,
-          "tbtMs": 768,
-          "cls": 0.000808564264301754,
-          "jsBytes": 194278,
+          "jsBytes": 194299,
           "fontBytes": 95379,
           "imageBytes": 0
         },
@@ -660,25 +471,26 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 1397
       },
       {
         "path": "/en/screen/ppi",
-        "run": 3,
+        "run": 1,
         "clean": true,
         "externalScripts": [],
         "scores": {
-          "performance": 91,
+          "performance": 87,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
         "metrics": {
-          "fcpMs": 921.0432000000001,
-          "lcpMs": 921.0432000000001,
-          "tbtMs": 371.47839999999997,
-          "cls": 0.000450114951809497,
-          "jsBytes": 203189,
+          "fcpMs": 1069.0743,
+          "lcpMs": 1069.0743,
+          "tbtMs": 500.4999999999998,
+          "cls": 0,
+          "jsBytes": 203384,
           "fontBytes": 53984,
           "imageBytes": 0
         },
@@ -693,25 +505,26 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 967
       },
       {
         "path": "/vi/keyboard/tester",
-        "run": 3,
+        "run": 1,
         "clean": true,
         "externalScripts": [],
         "scores": {
-          "performance": 95,
+          "performance": 72,
           "accessibility": 100,
           "best-practices": 100,
           "seo": 100
         },
         "metrics": {
-          "fcpMs": 1314.5732,
-          "lcpMs": 1314.5732,
-          "tbtMs": 254.5,
+          "fcpMs": 1082.6134,
+          "lcpMs": 1082.6134,
+          "tbtMs": 1911.6933000000008,
           "cls": 0,
-          "jsBytes": 205505,
+          "jsBytes": 205709,
           "fontBytes": 79955,
           "imageBytes": 0
         },
@@ -726,7 +539,212 @@
             "uploadThroughputKbps": 675,
             "cpuSlowdownMultiplier": 4
           }
-        }
+        },
+        "benchmarkIndex": 719.5
+      },
+      {
+        "path": "/vi",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 89,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1191.4533999999999,
+          "lcpMs": 1191.4533999999999,
+          "tbtMs": 428.4999999999998,
+          "cls": 0.0008076353630982015,
+          "jsBytes": 194299,
+          "fontBytes": 95379,
+          "imageBytes": 0
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1039.5
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.5272,
+          "lcpMs": 912.5272,
+          "tbtMs": 228.73639999999978,
+          "cls": 0.000450114951809497,
+          "jsBytes": 203384,
+          "fontBytes": 53984,
+          "imageBytes": 0
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1437
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 84,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1073.2402,
+          "lcpMs": 1073.2402,
+          "tbtMs": 620.0000000000002,
+          "cls": 0,
+          "jsBytes": 205709,
+          "fontBytes": 79955,
+          "imageBytes": 0
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 745
+      },
+      {
+        "path": "/vi",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 84,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1066.9642,
+          "lcpMs": 1066.9642,
+          "tbtMs": 639.5178999999998,
+          "cls": 0.000808564264301754,
+          "jsBytes": 194299,
+          "fontBytes": 95379,
+          "imageBytes": 0
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1058.5
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 76,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1260.0183,
+          "lcpMs": 1260.0183,
+          "tbtMs": 1234.999999999999,
+          "cls": 0,
+          "jsBytes": 203384,
+          "fontBytes": 53984,
+          "imageBytes": 0
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 318.5
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 75,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1071.6534,
+          "lcpMs": 1071.6534,
+          "tbtMs": 1288.5000000000005,
+          "cls": 0,
+          "jsBytes": 205709,
+          "fontBytes": 79955,
+          "imageBytes": 0
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 899.5
       }
     ]
   }

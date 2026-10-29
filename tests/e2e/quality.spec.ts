@@ -17,6 +17,7 @@ test('representative pages pass automated WCAG AA checks in both themes', async 
           .locator('.header-actions button')
           .filter({ has: page.locator('svg.lucide-sun,svg.lucide-moon') })
           .click();
+      await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
         .analyze();
@@ -24,8 +25,12 @@ test('representative pages pass automated WCAG AA checks in both themes', async 
         results.violations.map((item) => ({
           id: item.id,
           impact: item.impact,
-          nodes: item.nodes.map((node) => node.target),
+          nodes: item.nodes.map((node) => ({
+            target: node.target,
+            failureSummary: node.failureSummary,
+          })),
         })),
+        `${path} / ${theme}`,
       ).toEqual([]);
     }
   }

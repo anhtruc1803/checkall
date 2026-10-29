@@ -175,9 +175,7 @@ input[type='checkbox'] {
   padding: 9px 16px;
   font-size: 0.875rem;
   font-weight: 550;
-  transition:
-    background var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 .button:hover {
   transform: translateY(-1px);

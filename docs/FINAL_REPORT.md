@@ -1,5 +1,7 @@
 # Báo cáo bàn giao Device Lab — 29/10/2026
 
+> Đây là báo cáo bàn giao lịch sử trước đợt rà soát bổ sung, không phải trạng thái release hiện hành. Báo cáo nghiệm thu mới ở [ACCEPTANCE.md](ACCEPTANCE.md); kết quả Git/CI ở [PROGRESS.md](PROGRESS.md), dữ liệu đo sạch ở [PERFORMANCE.md](PERFORMANCE.md). Các con số và trạng thái chưa commit/browser/Docker bên dưới chỉ áp dụng checkpoint lịch sử này.
+
 ## 1. Kiến trúc
 
 Next.js 16 App Router + React + TypeScript strict, Tailwind v4, UI shadcn/ui, Lucide, next-intl và Zod. Modular monolith, không database/tài khoản. Registry duy nhất điều khiển navigation, search, category, nội dung công cụ, SEO và related tools. Engine client tải riêng; thuật toán đo tách khỏi React; dữ liệu thô chỉ ở bộ nhớ browser.
