@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-29",
+  "local": {
+    "build": "passed",
+    "typecheck": "passed",
+    "lint": { "errors": 0, "warnings": 0 },
+    "unit": { "passed": 29, "files": 11 },
+    "e2e": {
+      "passed": 88,
+      "projects": { "chromium": 22, "firefox": 22, "webkit": 22, "mobile": 22 }
+    },
+    "secretScan": { "findings": 0 },
+    "dependencyAudit": {
+      "production": "no-known-vulnerabilities",
+      "all": "no-known-vulnerabilities"
+    }
+  },
+  "dockerLinuxCI": "pending",
+  "physicalHardware": "not-tested",
+  "realSafari": "not-tested",
+  "finalAcceptance": "open"
+}

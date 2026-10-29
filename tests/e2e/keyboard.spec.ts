@@ -1,0 +1,43 @@
+import { test, expect } from '@playwright/test';
+test('keyboard captures physical codes, releases keys and exits safely', async ({ page }) => {
+  await page.goto('/en/keyboard/tester');
+  await page.getByRole('button', { name: 'Activate test area', exact: true }).click();
+  await page.keyboard.down('a');
+  await expect(page.locator('[data-code=KeyA]')).toHaveAttribute('data-held', 'true');
+  await page.keyboard.down('s');
+  await expect(page.locator('.key-list')).toContainText('KeyA');
+  await expect(page.locator('.key-list')).toContainText('KeyS');
+  await page.keyboard.up('a');
+  await page.keyboard.up('s');
+  await expect(page.locator('[data-code=KeyA]')).toHaveAttribute('data-held', 'false');
+  await expect(page.locator('[data-code=KeyA]')).toHaveAttribute('data-tested', 'true');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.keyboard-capture')).toHaveAttribute('data-active', 'false');
+  await expect(page.locator('[data-code=Escape]')).toHaveAttribute('data-tested', 'true');
+  await page.getByLabel('Layout', { exact: true }).selectOption('60%');
+  await expect(page.locator('[data-code=Numpad0]')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Reset', exact: true }).click();
+  await expect(page.locator('[data-code=KeyA]')).toHaveAttribute('data-tested', 'false');
+});
+test('key hold is measured and focus loss clears held keys', async ({ page }) => {
+  await page.goto('/en/keyboard/hold');
+  await page.getByRole('button', { name: 'Activate test area', exact: true }).click();
+  await page.keyboard.down('b');
+  await page.waitForTimeout(120);
+  await page.getByRole('button', { name: 'Exit test area', exact: true }).click();
+  await expect(page.locator('[data-code=KeyB]')).toHaveAttribute('data-held', 'false');
+  await expect(page.locator('tbody')).toContainText('Interrupted by focus loss');
+  await page.keyboard.up('b');
+});
+test('event inspector exposes repeat and location with bounded logs', async ({ page }) => {
+  await page.goto('/en/keyboard/events');
+  await page.getByRole('button', { name: 'Activate test area', exact: true }).click();
+  await page.keyboard.down('a');
+  await page.keyboard.down('a');
+  await page.keyboard.up('a');
+  await expect(page.locator('tbody')).toContainText('KeyA');
+  await expect(page.locator('tbody')).toContainText('true');
+  await page.keyboard.press('Tab');
+  await expect(page.locator('.keyboard-capture')).toHaveAttribute('data-active', 'false');
+  await expect(page.locator('[data-code=Tab]')).toHaveAttribute('data-tested', 'true');
+});

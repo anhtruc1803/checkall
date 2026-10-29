@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.env*
+test-results
+playwright-report
+coverage
+artifacts
+lint-results.json
+.hallmark
+*.log
+*.pem
+*.key
+*.p12
+*.pfx

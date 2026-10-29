@@ -1,0 +1,152 @@
+# Tiến độ Phase 1
+
+Ngày bắt đầu: 29/10/2026. Workspace ban đầu trống; Node.js 24.11.1, pnpm có sẵn; chưa có Docker CLI.
+
+## Kế hoạch
+
+1. Nền tảng, registry, thuật toán, bộ kiểm thử và cấu hình triển khai.
+2. Giao diện ứng dụng, tìm kiếm, song ngữ, theme và tổng quan thiết bị.
+3. 11 công cụ màn hình.
+4. 5 công cụ bàn phím.
+5. 5 công cụ chuột.
+6. SEO, dữ liệu cục bộ, accessibility và chất lượng.
+7. Kiểm thử cuối, production build và tài liệu vận hành.
+
+## Milestone 1 — Đã xác nhận nền tảng
+
+Đã tạo cấu hình Next.js standalone, TypeScript strict, Tailwind v4, next-intl, ESLint, Vitest, RTL, Playwright và thành phần Button theo shadcn/ui. Registry đủ 21 mục, thuật toán thuần, Docker multi-stage, Compose, Nginx và health endpoint. Package đã khóa phiên bản chính xác và có lockfile.
+
+Lệnh: `pnpm install`, `pnpm typecheck`, `pnpm test`, `pnpm lint`, `pnpm build`, `pnpm dev`.
+
+Kết quả: typecheck đạt, 7 unit tests đạt, production build đạt; lint không lỗi (một cảnh báo export PostCSS đã sửa). Development server khởi động thành công. Docker chưa xác minh vì thiếu CLI.
+
+Đã xử lý: ESLint 10 và TypeScript 7 chưa tương thích peer ranges của lint plugins; dùng ESLint 9.39.1 và TypeScript 5.9.3. pnpm 11 cần khai báo allowBuilds cho native dependencies.
+
+Tiếp theo: milestone 2 — application shell, theme, tìm kiếm và tổng quan thiết bị; sau đó các engine kiểm thử thực tế.
+
+## Milestone 2 — Đã xác nhận giao diện nền
+
+Đã tạo header, command search, menu di động, homepage, category, trang quyền riêng tư và shell cho 21 công cụ; VI/EN, theme, dữ liệu thiết bị thực. File chính: `src/components/layout`, `src/components/navigation`, `src/components/tools`, `src/messages`, `src/app/[locale]`, `tokens.css`.
+
+Lệnh: `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm exec playwright test tests/e2e/shell.spec.ts --project=chromium`.
+
+Kết quả: typecheck/lint đạt, 9 unit tests đạt, 3 E2E đạt. E2E xác nhận 42 route có nội dung và canonical; tìm PPI; chuyển VI/EN giữ route; theme tồn tại sau reload; không tràn ngang ở 320/375/414/768 px. Development preview phải dùng localhost trong môi trường này do HMR qua 127.0.0.1 bị reset.
+
+Giới hạn tại checkpoint: shell đã hoạt động, engine tương tác được bổ sung tại milestone 3–5, chưa tuyên bố 21 phép thử đã hoàn tất. Docker chưa chạy. Tiếp theo: 11 phép thử màn hình.
+
+## Milestone 3 — Đã triển khai và kiểm tra 11 chức năng màn hình
+
+File chính: `src/features/screen/*`, `src/lib/measurements/frame-sampler.ts`, `src/hooks/use-device.ts`, `src/hooks/use-fullscreen.ts`, `src/components/tools/measurement-ui.tsx`, `tests/e2e/screen.spec.ts`.
+
+Hoàn tất: A01–A11 gồm live Screen/Viewport/DPR, aspect ratio, PPI validation/copy, RAF sampling có warm-up và thống kê, pixel/hở sáng/màu Canvas, Ghosting có cấu hình và frame timing, multi-touch/pen trails. Fullscreen có nút thoát và Esc. Các engine tải riêng theo nhu cầu.
+
+Kiểm tra: typecheck đạt; 11 unit/integration tests đạt; 4 E2E Chromium đạt. Lint đã sửa cảnh báo cleanup ref. E2E kiểm tra tính toán, resize, RAF Start/Reset, chuyển mẫu, Fullscreen exit, Ghosting Start/Stop và touch fallback.
+
+Các lỗi selector trong E2E đã sửa theo DOM thực: Next.js có route announcer role alert; số đo có đơn vị trong cùng definition. Không thay đổi thuật toán để làm test qua.
+
+Chưa kiểm chứng: phần cứng màn hình 60/120/144 Hz, cảm ứng thực, độ chính xác màu/hở sáng do người quan sát. Tiếp theo: 5 công cụ bàn phím.
+
+## Milestone 4 — Đã triển khai và kiểm tra 5 chức năng bàn phím
+
+File chính: `src/features/keyboard/layouts.ts`, `use-keyboard.ts`, `keyboard.tsx`, `tests/keyboard.test.tsx`, `tests/e2e/keyboard.spec.ts`.
+
+Hoàn tất B01–B05: ANSI Full-size, TKL, 75%, 65%, 60%, ISO; held/tested/counter; Rollover max; Chatter theo release→press và repeat riêng; Hold live/release/interruption; Inspector đầy đủ fields, copy và log giới hạn 200. Capture phải kích hoạt, Tab/Esc thoát, blur/hidden xóa held.
+
+Kiểm tra: typecheck/lint đạt; 12 unit/integration tests đạt; 3 E2E bàn phím đạt. Đã xác nhận held/release, nhiều phím, layout/reset, focus loss, event.repeat và thoát Tab.
+
+Đã sửa: label select cần aria-label rõ; React refs được tách khỏi dữ liệu render, không tắt luật lint. Chưa kiểm tra bàn phím vật lý hoặc chứng nhận NKRO; những giới hạn đó có trong UI. Tiếp theo: 5 công cụ chuột.
+
+## Milestone 5 — Đã triển khai và kiểm tra 5 chức năng chuột
+
+File chính: `src/features/mouse/use-mouse.ts`, `mouse.tsx`, `src/lib/measurements/pointer-sampler.ts`, `tests/pointer-sampler.test.ts`, `tests/mouse.test.tsx`, `tests/e2e/mouse.spec.ts`.
+
+Hoàn tất C01–C05: nút trái/phải/giữa/phụ; Double Click với ngưỡng, lịch sử và thống kê; CPS có cửa sổ thời gian/countdown/best/retest; wheel delta/hướng/mode/count; pointermove/coalesced sampling có thống kê, graph, lịch sử lượt và cảnh báo USB polling rate.
+
+Kiểm tra: typecheck/lint đạt; 15 unit/integration tests đạt; 5 E2E chuột đạt. Integration xác nhận wheel preventDefault chỉ trong vùng thử, Reset xóa bộ đệm và unmount dọn listener/timer. E2E xác nhận click ngoài cửa sổ CPS không được tính.
+
+Đã sửa: bộ đệm wheel từng phục hồi giá trị cũ sau Reset; giờ xóa cả ref và state. Test double click dùng ngưỡng điều tra được đặt rõ vì automation delay gồm cả down/up, không được giả định interval phần cứng. Chưa kiểm tra chuột vật lý/USB polling thực. Tiếp theo: SEO, privacy, accessibility và rà soát chất lượng.
+
+## Milestone 6 — Đã xác nhận chất lượng ứng dụng
+
+File chính: `src/app/sitemap.ts`, `robots.ts`, `src/lib/seo`, `src/lib/storage`, `src/messages`, `tests/e2e/quality.spec.ts`, `tokens.css` và CSS responsive.
+
+Hoàn tất: 52 URL công bố có VI/EN alternates; metadata/canonical/Open Graph/Breadcrumb JSON-LD; nội dung/hướng dẫn/giới hạn/FAQ theo từng công cụ; storage có Zod validation; chỉ lưu tóm tắt sau opt-in; xóa dữ liệu riêng ứng dụng; fallback API thực; kiểm tra tab ẩn; giao diện responsive và chế độ sáng/tối. Tổng quan hiển thị ước tính Refresh Rate chỉ sau lượt hoàn tất hợp lệ trong phiên. Các file source đã được format.
+
+Kiểm tra: typecheck/lint đạt; 20 unit/integration tests đạt; 5 E2E chất lượng đạt. Axe không phát hiện vi phạm WCAG A/AA tự động trên 5 trang đại diện ở cả hai theme. Kiểm tra controls tại 320/375/414/768 px đạt. Ảnh desktop/mobile/keyboard đã được xem để kiểm tra bố cục.
+
+Đã sửa: checkbox opt-in trước đây đọc event.target.checked sau dynamic import làm mất trạng thái; dùng handler đồng bộ, bổ sung regression test. Canvas/PointerEvent phải thực sự khả dụng; dữ liệu JSON sai kiểu không làm hỏng lưu lịch sử; click interval dài không bị loại theo ngưỡng frame.
+
+Chưa tuyên bố đạt WCAG đầy đủ hay Lighthouse khi chưa đo production. Docker runtime và ma trận phần cứng thực vẫn cần xác minh. Tiếp theo: production build, toàn bộ E2E desktop/mobile, Lighthouse và tài liệu triển khai.
+
+## Milestone 7 — Bản ứng dụng đã kiểm tra; chưa đóng nghiệm thu production
+
+File chính: `scripts/start.mjs`, `scripts/lighthouse.mjs`, `scripts/check-compose.ps1`, `Dockerfile`, `compose.yaml`, `deploy/nginx.conf`, `deploy/nginx.https.conf.template`, `.github/workflows/ci.yml`, `README.md`, `docs/DEPLOYMENT.md`, `docs/PERFORMANCE.md`, `docs/RELEASE_CHECKLIST.md`.
+
+Đã hoàn tất:
+
+- Production build standalone thành công; 52 URL nội dung công bố (42 URL công cụ), robots, sitemap, icon và health endpoint.
+- 40/40 E2E trên production standalone, gồm 20 bài trên Chromium desktop và 20 bài mobile giả lập. Axe kiểm tra trang đại diện ở hai theme đều không phát hiện vi phạm trong tập quy tắc tự động.
+- Compose 5.6.1 `config --quiet` đạt. Binary chính thức được đối chiếu SHA-256 từ GitHub release.
+- Nginx 1.30.6 `-t` đạt với config kiểm tra Windows, chỉ thay `app:3000` thành loopback và đường dẫn MIME. Đây là kiểm tra cú pháp, chưa thay thế kiểm tra Nginx Linux trong mạng Compose.
+- `pnpm install --frozen-lockfile` đạt; `pnpm audit --prod --audit-level high` không ghi nhận lỗ hổng đã biết ở lần chạy.
+- Tài liệu phát triển, build, HTTPS lần đầu/gia hạn, upgrade, rollback, log và checklist đầy đủ bằng tiếng Việt. Đã chuẩn bị CI, chưa chạy trên GitHub.
+- Git đã khởi tạo cục bộ; chưa commit, push hoặc triển khai lên hạ tầng ngoài.
+
+Hiệu năng thực (Lighthouse mobile simulated, Chrome 156, CPU ×4, RTT 150 ms):
+
+| Trang               | Performance | Accessibility | Best Practices | SEO | CLS |
+| ------------------- | ----------: | ------------: | -------------: | --: | --: |
+| /vi                 |          78 |           100 |             77 | 100 |   0 |
+| /en/screen/ppi      |          75 |           100 |             77 | 100 |   0 |
+| /vi/keyboard/tester |          81 |           100 |             77 | 100 |   0 |
+
+Đã sửa layout shift PPI từ 0,202 về 0, nhãn ngôn ngữ, tìm kiếm chữ Đ không dấu và bộ đếm repeat độc lập log 200. CSP áp dụng tài nguyên cùng origin; browser trên máy vẫn nhận script do Kaspersky chèn ngoài source. Performance 90+ chưa đạt, không được đánh dấu đạt. Xem PERFORMANCE.md và báo cáo gốc trong `artifacts/`.
+
+Lỗi E2E mobile con lăn đã được sửa đúng phương pháp: so sánh UI với deltaY của wheel event thực, vì Chromium mobile giả lập chuyển yêu cầu 120 thành event 40. Không sửa dữ liệu hoặc hạ yêu cầu thuật toán để làm test qua.
+
+Rà soát cuối bổ sung: Tab/Esc được ghi nhận vào log và tested counter trước khi thoát capture an toàn. Unit regression và E2E bàn phím được chạy lại sau thay đổi này; kết quả cuối ghi ngay bên dưới.
+
+**Kết quả cuối sau thay đổi Tab/Esc:** `pnpm typecheck` đạt; ESLint 0 lỗi/0 cảnh báo; 21/21 unit/integration tests đạt; production build đạt; 6/6 E2E bàn phím bổ sung (desktop + mobile) đạt. Các phần không đổi đã có lượt 40/40 E2E production trước đó. Health trả `{"status":"ok"}`, robots và sitemap trả HTTP 200. Ảnh production được tạo lại trong `artifacts/`; server QA cục bộ được dừng sau kiểm tra. Chạy `pnpm dev` hoặc `pnpm start` để mở lại.
+
+### Các phần chưa thể nghiệm thu
+
+1. Chưa build/chạy Docker image Linux: không có Docker Engine; WSL báo dịch vụ bị tắt hoặc không có thiết bị khả dụng. Không tự bật dịch vụ hệ thống hoặc triển khai máy chủ ngoài.
+2. Performance ≥90 chưa đạt trong môi trường hiện tại. Cần đo staging HTTPS với môi trường browser kiểm soát được và tiếp tục đánh giá bundle/main-thread thực.
+3. Chưa kiểm tra Firefox/Safari/WebKit và phần cứng thực 60/120/144 Hz, bàn phím, chuột, cảm ứng và đa màn hình theo ma trận.
+4. Chưa có domain, DNS, chứng chỉ HTTPS hoặc VPS được triển khai; các bước đó phải được cho phép rõ ràng trước khi thực hiện.
+
+Trạng thái bàn giao: 21 khả năng đã có implementation thực và kiểm thử tự động; milestone 1–6 hoàn thành. Milestone 7 còn các điều kiện môi trường/vận hành ở trên, vì vậy **chưa tuyên bố Phase 1 đạt toàn bộ final acceptance hoặc sẵn sàng production vô điều kiện**.
+
+## Rà soát Phase 1 bổ sung — 29/10/2026
+
+Phần này cập nhật trạng thái sau bàn giao ở trên, không xóa kết quả lịch sử.
+
+### Đã triển khai và kiểm tra cục bộ
+
+- Đọc lại toàn bộ tài liệu, registry và tám nhóm loader; 21 chức năng vẫn thuộc Phase 1, không thêm Phase 2/3. Bổ sung E2E mount đủ 21 engine/fallback và kiểm tra HTML inert trước capability detection.
+- GitHub repository anhtruc1803/checkall ban đầu trống; Git cục bộ chưa có commit hoặc remote. Đã xác nhận tài khoản GitHub CLI phù hợp; không đọc/in token.
+- Chuyển validation sang zod/mini, truyền search index gọn và runtime props tối thiểu, dựng kết quả command search khi mở, tránh prefetch hàng loạt. Giảm khoảng 21 KiB JS truyền tải/trang. Không đổi kiến trúc modular monolith, không loại SEO/a11y hoặc chức năng.
+- Sửa mất query trước hydration trên WebKit bằng khóa input/filter đến khi hydrate. Bài pointer sampling đặt cửa sổ 20 giây để không phụ thuộc tốc độ mouse automation; không bỏ điều kiện mẫu hợp lệ/Stop/Reset.
+- Prerender giao diện công cụ inert để tránh tải engine nối tiếp sau capability check; phép đo vẫn chỉ chạy ở client. Khắc phục LCP capture hint xuất hiện trễ, giữ min-height chống layout shift.
+- 29 unit/integration tests đạt, gồm bảy bài cleanup RAF/ResizeObserver/timer/listener và kiểm tra search index. Typecheck/lint/build đã chạy đạt sau thay đổi.
+- Dependency audit toàn bộ và production không ghi nhận lỗ hổng đã biết. Secret scan theo rule trên hơn 110 file không có finding; `.env`, key/cert QA, node_modules, cache, artifacts đều bị loại khỏi Git. Không có fetch/sendBeacon/XMLHttpRequest gửi log phím/chuột trong source sản phẩm.
+
+### Performance sạch
+
+HTTPS loopback QA không có request ngoài origin và CSP không bị can thiệp; Chromium profile mới, extension tắt, pin đúng SPKI chứng chỉ tự ký QA, không sửa phần mềm bảo vệ hoặc chặn request. Ba lượt/trang trước và sau, cùng cấu hình mobile RTT 150 ms/CPU ×4. Kết quả từng lượt và median ở PERFORMANCE.md và docs/qa/performance.json.
+
+| Trang               | Median trước | Median cuối | JS trước → sau (byte) | TBT trước → sau (ms) |
+| ------------------- | -----------: | ----------: | --------------------: | -------------------: |
+| /vi                 |           78 |          81 |       215453 → 194278 |            994 → 768 |
+| /en/screen/ppi      |           94 |          95 |       224239 → 203189 |            280 → 267 |
+| /vi/keyboard/tester |           83 |          83 |       226554 → 205505 |            695 → 667 |
+
+Keyboard sau đợt tối ưu giữa có LCP median 3515 ms; trace tìm thấy capture hint render muộn. Prerender inert đưa LCP cuối về median 1081 ms. Homepage và Keyboard vẫn chưa đạt 90: TBT còn cao, có biến thiên CPU; không quy hết cho antivirus vì trace sạch vẫn ghi nhận chi phí framework/hydration/layout. Accessibility/Best Practices/SEO cuối đều 100; CLS median tối đa 0,00081, không tuyên bố mọi lượt CLS bằng 0.
+
+### Đang xác minh trước initial commit
+
+Đã cài và thực chạy Firefox 157 và WebKit 27.2 (automation, không phải Safari thật). Lượt baseline đạt 20/20 Firefox, WebKit 18/20; hai lỗi hydration/đồng bộ pointer test đã được sửa. Đang chạy lại toàn bộ 88 E2E trên Chromium, Firefox, WebKit và Chromium mobile.
+
+Máy hiện không có Docker Engine. Đã chuẩn bị `scripts/docker-smoke.sh` trên Linux và CI: image build, healthcheck, Nginx/VI/EN, Node port riêng, restart, exit code shutdown và logs. Compose config kiểm tra lại đạt; chưa coi smoke script/CI YAML là bằng chứng container đã chạy. Chưa kết nối VPS.
+
+**Xác minh cục bộ cuối trước initial commit:** 88/88 E2E đạt (Chromium 22/22, Firefox 22/22, WebKit 22/22, Chromium mobile 22/22), gồm axe hai theme và mount đủ 21 engine. Native EngineSurface fieldset disabled/inert cho đến hydration riêng của engine đã sửa các lượt nhập liệu sớm. Build/typecheck/lint đạt; 29/29 unit/integration tests, secret scan và dependency audit đạt. Docker Linux chờ kết quả CI sau push; phép đo Performance được kiểm tra lại trên revision này trước khi chốt báo cáo cuối.
