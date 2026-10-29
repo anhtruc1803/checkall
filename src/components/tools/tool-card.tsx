@@ -1,9 +1,13 @@
 import Link from 'next/link';
 import { ArrowUpRight, Monitor, Keyboard, Mouse } from 'lucide-react';
-import type { Tool } from '@/lib/tools/registry';
+import type { Tool, Category } from '@/lib/tools/registry';
 import { toolHref } from '@/lib/tools/registry';
 import type { Locale } from '@/lib/i18n/routing';
-const icons = { screen: Monitor, keyboard: Keyboard, mouse: Mouse };
+const icons: Partial<Record<Category, typeof Monitor>> = {
+  screen: Monitor,
+  keyboard: Keyboard,
+  mouse: Mouse,
+};
 export function ToolCard({
   tool,
   locale,
@@ -15,7 +19,7 @@ export function ToolCard({
   categoryLabel: string;
   classLabel: string;
 }) {
-  const Icon = icons[tool.icon];
+  const Icon = icons[tool.icon] ?? Monitor;
   return (
     <article className="tool-card">
       <div className="card-top">

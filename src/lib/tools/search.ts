@@ -1,6 +1,9 @@
-import type { Category, Tool } from './registry';
+import type { Category, Tool } from './types';
 import type { Locale } from '@/lib/i18n/routing';
-export const categories: Category[] = ['screen', 'keyboard', 'mouse'];
+import { categoryOrder } from './types';
+export function getSearchCategories(index: readonly ToolSearchEntry[]): Category[] {
+  return categoryOrder.filter((category) => index.some((tool) => tool.category === category));
+}
 export type ToolSearchEntry = Pick<Tool, 'id' | 'slug' | 'category' | 'icon' | 'classification'> & {
   name: string;
   searchText: string;

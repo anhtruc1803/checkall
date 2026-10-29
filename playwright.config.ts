@@ -3,6 +3,7 @@ export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
   workers: 2,
+  reporter: [['list'], ['json', { outputFile: 'artifacts/playwright/results.json' }]],
   use: { baseURL: process.env.E2E_BASE_URL ?? 'http://localhost:3000', trace: 'retain-on-failure' },
   webServer: {
     command: 'pnpm start',

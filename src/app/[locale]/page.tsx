@@ -4,7 +4,7 @@ import { ShieldCheck, ArrowRight, Check } from 'lucide-react';
 import { DeviceOverview } from '@/components/tools/device-overview';
 import { ToolCard } from '@/components/tools/tool-card';
 import { Catalog } from '@/components/tools/catalog';
-import { tools, getToolSearchIndex } from '@/lib/tools/registry';
+import { publishedTools as tools, getToolSearchIndex } from '@/lib/tools/registry';
 import type { Locale } from '@/lib/i18n/routing';
 import { pageMetadata } from '@/lib/seo/metadata';
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {

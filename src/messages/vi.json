@@ -1,4 +1,31 @@
 {
+  "audio": "Âm thanh",
+  "camera": "Camera",
+  "gamepad": "Tay cầm",
+  "device": "Thiết bị",
+  "permissionRequired": "Truy cập thiết bị cần bạn cấp quyền",
+  "engineUnavailable": "Engine kiểm tra này chưa khả dụng.",
+  "permissionState": {
+    "unknown": "Chưa xác định được trạng thái quyền. Khi bắt đầu, trình duyệt có thể yêu cầu cấp quyền.",
+    "prompt": "Trình duyệt có thể hỏi cấp quyền khi bạn bắt đầu.",
+    "granted": "Đã có quyền; truy cập thiết bị vẫn có thể thất bại.",
+    "denied": "Truy cập bị từ chối bởi cài đặt trình duyệt hoặc hệ thống.",
+    "unsupported": "API truy cập media không khả dụng.",
+    "insecure-context": "Truy cập thiết bị cần secure context.",
+    "policy-blocked": "Policy của trang đang chặn truy cập thiết bị."
+  },
+  "mediaFailure": {
+    "unsupported": "API truy cập media không khả dụng.",
+    "insecure-context": "Truy cập thiết bị cần secure context.",
+    "policy-blocked": "Policy của trang đang chặn truy cập thiết bị.",
+    "permission-denied": "Trình duyệt, cài đặt quyền hoặc hệ thống từ chối truy cập thiết bị.",
+    "device-not-found": "Không tìm thấy thiết bị sử dụng được.",
+    "device-busy": "Không đọc được thiết bị hoặc thiết bị đang được sử dụng.",
+    "constraints-unavailable": "Thiết bị không đáp ứng cấu hình được yêu cầu.",
+    "aborted": "Yêu cầu truy cập thiết bị bị gián đoạn.",
+    "unknown": "Truy cập thiết bị thất bại, chưa xác định được nguyên nhân.",
+    "interaction-required": "Hãy bấm nút bắt đầu khi trang đang hiển thị."
+  },
   "testControls": "Vùng điều khiển kiểm tra",
   "appName": "Device Lab",
   "tagline": "Hiểu rõ thiết bị của bạn.",

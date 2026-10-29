@@ -3,7 +3,7 @@
 Ứng dụng modular monolith dùng Next.js App Router, React, TypeScript strict, Tailwind CSS, các thành phần shadcn/ui, Lucide và next-intl. Không có tài khoản, database hay upload log thiết bị.
 
 - `src/app/[locale]`: trang server và metadata song ngữ.
-- `src/lib/tools`: registry duy nhất cho 21 chức năng, phân loại phép đo, nội dung và khả năng trình duyệt.
+- `src/lib/tools`: registry duy nhất cho 21 chức năng published và 19 mục Phase 2 draft, phân loại phép đo, nội dung và khả năng trình duyệt.
 - `src/lib/measurements`: thuật toán thuần, không phụ thuộc React.
 - `src/features`: các engine client tải theo nhóm, quản lý vòng đời sự kiện và tài nguyên.
 - `src/lib/storage`: tùy chọn và bản tóm tắt opt-in, giới hạn kích thước.
@@ -31,7 +31,13 @@ Các mô-đun tương lai được ghi trong roadmap, không công bố route ha
 - Catalog khóa thao tác trước hydration để không làm mất truy vấn nhập sớm trên WebKit. Capability của Device Overview được kiểm tra một lần cho mỗi lần mount; các giá trị Screen/Viewport/DPR vẫn được đọc cập nhật và dọn listener/timer khi unmount.
 - Bộ kiểm thử lifecycle kiểm tra RAF, ResizeObserver, keyboard hold timer, mouse/CPS/pointer timers và wheel listener; dữ liệu high-frequency tiếp tục có bộ đệm giới hạn.
 
-## Giới hạn thiết kế được công khai
+## Nền tảng Phase 2
+
+Theo yêu cầu tiếp tục của người dùng, milestone nền tảng Phase 2 đã mở. `types.ts` tách contract khỏi metadata; `catalog.ts` xác minh publication boundary, ID/route/translation/related/engine và sinh category published. Chỉ mục client tiếp tục chỉ chứa metadata của 21 công cụ công bố, không mang theo 19 draft. Renderer map bắt buộc bao phủ toàn bộ ImplementedEngine ở thời điểm typecheck.
+
+`inspectCapabilities` là probe theo yêu cầu, tách khỏi `observePermission`/`usePermission` đọc quyền thụ động. `createMediaSession` quản lý yêu cầu media chủ động và cleanup/lần trả kết quả muộn; chưa được gắn vào route public. Header Phase 1 vẫn chặn camera/microphone. Chi tiết contract, trạng thái, giới hạn và nghiệm thu ở [PHASE2-FOUNDATION.md](PHASE2-FOUNDATION.md).
+
+## Giới hạn thiết kế tiếp tục áp dụng
 
 Các màu RGB thuần và thang xám trong Canvas là dữ liệu phép thử, không phải màu trang trí UI. Các số liệu mẫu mặc định 1920×1080/24 inch chỉ là đầu vào calculator có thể sửa, không phải thông số thiết bị được phát hiện. UI dark/light dùng semantic tokens riêng.
 

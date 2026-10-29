@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { tools, categories } from '@/lib/tools/registry';
+import { publishedTools as tools, categories } from '@/lib/tools/registry';
 import { routing } from '@/lib/i18n/routing';
 export default function sitemap(): MetadataRoute.Sitemap {
   const site = (process.env.SITE_URL ?? 'http://localhost:3000').replace(/\/$/, '');

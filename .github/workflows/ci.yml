@@ -26,8 +26,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: phase1-browser-qa
+          name: browser-qa
           path: |
+            artifacts/playwright/
             playwright-report/
             test-results/
   docker-smoke:

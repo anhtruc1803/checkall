@@ -113,4 +113,6 @@ CI chạy cùng script và upload bằng chứng khi thành công hoặc lỗi. 
 
 ### Kết quả thực chạy
 
+Milestone nền tảng Phase 2 giữ nguyên policy camera=()/microphone=() trên các route công bố, không mở API media chỉ vì đã có helper permission/session. Khi một công cụ media thực sự được công bố mới thiết kế policy theo route và kiểm thử HTTPS/quyền tương ứng; không cấu hình camera/microphone=(\*) toàn website. Kết quả Docker của revision Phase 2 phải dẫn CI mới ở cuối PROGRESS.md, không mặc định kế thừa run Phase 1 dưới đây.
+
 Job docker-smoke của [run 40816709418](https://github.com/anhtruc1803/checkall/actions/runs/40816709418) trên commit d82120b đạt trong 1 phút 23 giây. Image ID cục bộ runner: sha256:e5c59bd5abf564c3bdb24ed7b9e0a97022580f3748f6bb0c47b9f07e690df9a8 (không phải digest image đã push registry). Nginx syntax, health và tám route VI/EN qua proxy đạt trước/sau restart và sau stop/start. Port app không publish, trạng thái sau start healthy, shutdown chủ động exited 143/OOMKilled false/Error rỗng. Đã tải và đọc log: không có lỗi ứng dụng hay HTTP 4xx/5xx trong luồng smoke. Artifact CI giữ logs.txt, containers.json và shutdown.json; đây là QA runner, chưa phải kiểm thử VPS hoặc HTTPS production.

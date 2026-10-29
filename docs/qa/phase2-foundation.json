@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-29",
+  "milestone": "phase2-foundation",
+  "registry": { "total": 40, "publishedPhase1": 21, "draftPhase2": 19, "publishedPhase2": 0 },
+  "publicContentUrls": 52,
+  "local": {
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "unit": { "passed": 86, "files": 16 },
+    "e2e": {
+      "passed": 96,
+      "skipped": 0,
+      "flaky": 0,
+      "durationMs": 462134.645,
+      "projects": { "chromium": 24, "firefox": 24, "webkit": 24, "mobile": 24 }
+    },
+    "productionDependencyAudit": "no-known-vulnerabilities"
+  },
+  "ci": "pending",
+  "mediaOnPublishedPages": "blocked-by-policy-and-not-requested",
+  "physicalHardware": "not-tested",
+  "realSafari": "not-tested",
+  "lighthouseRemeasured": false,
+  "phase1FinalAcceptance": "open",
+  "phase2FinalAcceptance": "open"
+}

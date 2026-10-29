@@ -3,11 +3,20 @@ import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { ArrowUpRight, Monitor, Keyboard, Mouse, Search } from 'lucide-react';
-import { categories, searchToolIndex, toolHref, type ToolSearchEntry } from '@/lib/tools/search';
+import {
+  getSearchCategories,
+  searchToolIndex,
+  toolHref,
+  type ToolSearchEntry,
+} from '@/lib/tools/search';
 import type { Category } from '@/lib/tools/registry';
 import { useHydrated } from '@/hooks/use-hydrated';
 import type { Locale } from '@/lib/i18n/routing';
-const icons = { screen: Monitor, keyboard: Keyboard, mouse: Mouse };
+const icons: Partial<Record<Category, typeof Monitor>> = {
+  screen: Monitor,
+  keyboard: Keyboard,
+  mouse: Mouse,
+};
 export function Catalog({
   initialCategory,
   heroSearch = false,
@@ -22,6 +31,7 @@ export function Catalog({
   const [query, setQuery] = useState(''),
     [category, setCategory] = useState<Category | undefined>(initialCategory);
   const hydrated = useHydrated();
+  const categories = getSearchCategories(index);
   const found = searchToolIndex(index, query, category);
   return (
     <>
@@ -54,7 +64,7 @@ export function Catalog({
       </p>
       <div className="catalog-grid">
         {found.map((tool) => {
-          const Icon = icons[tool.icon];
+          const Icon = icons[tool.icon] ?? Monitor;
           return (
             <Link
               href={toolHref(tool, locale)}

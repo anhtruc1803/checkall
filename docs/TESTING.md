@@ -75,3 +75,15 @@ Kết quả chạy thực tế từng milestone và lần xác minh cuối nằm
 - `node scripts/scan-secrets.mjs` rà file Git theo rule token/private key và file nhạy cảm; `--staged` kiểm tra đúng blob sắp commit, không in giá trị secret. Đây là kiểm tra theo mẫu, không bảo đảm phát hiện mọi loại secret.
 
 Kết quả Lighthouse tại máy phát triển có ảnh hưởng từ JavaScript do phần mềm bảo vệ của máy chèn vào HTTP. Xem PERFORMANCE.md để đọc số liệu thật và phần còn chưa đạt, không suy ra điểm khi đã loại bỏ yếu tố môi trường.
+
+## Phase 2 — Milestone nền tảng
+
+Bộ unit bổ sung registry draft/publication guard, capability/SSR, permission observer và media session. Các lỗi DOMException dùng dữ liệu giả xác định; kiểm tra late grant/rejection sau dispose, start trùng, retry, stream rỗng/ended, Stop/pagehide/hidden/track ended và cleanup listener. Đây không phải kiểm thử camera/microphone thật.
+
+Bộ E2E tăng từ 22 lên 24 bài cho mỗi cấu hình, tổng 96 bài dự kiến. Giữ toàn bộ hồi quy Phase 1; thêm bài kiểm tra 19 draft × VI/EN trả 404 và không xuất hiện ở search/navigation/sitemap, cùng bài xác nhận public pages không gọi media/permission và header chặn vẫn nguyên. Kết quả thực chạy ở cuối PROGRESS.md, không lấy số bài dự kiến làm số đã đạt.
+
+Kết quả cục bộ milestone: **86/86 unit/integration tests (16 file), 96/96 E2E (24/24 mỗi browser), typecheck/lint đạt**. E2E 7,7 phút; WebKit không được tính là Safari thật. JSON raw có đủ project/results/statistics. Bằng chứng CI sẽ được ghi theo revision/run riêng, không dùng lại kết quả Phase 1.
+
+Playwright lưu artifacts/playwright/results.json cho cả lượt thành công. CI upload artifact browser-qa chứa JSON cùng trace/test-results khi có; không còn phụ thuộc vào việc phải có failure mới có bằng chứng browser. Không commit JSON raw/artifacts vào Git.
+
+Trước khi công bố công cụ media ở milestone sau, bổ sung E2E phù hợp cho cấp/từ chối quyền trong secure context, route policy thực và thiết bị giả của browser; đồng thời manual QA microphone/webcam/loa/gamepad và Safari thật. Không nới header toàn website để làm bài kiểm thử dễ đạt.

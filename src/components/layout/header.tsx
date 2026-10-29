@@ -9,8 +9,9 @@ import { writePreference } from '@/lib/storage/preferences';
 import { usePreference } from '@/hooks/use-preference';
 import type { Locale } from '@/lib/i18n/routing';
 import { CommandSearch } from '@/components/navigation/command-search';
-import type { ToolSearchEntry } from '@/lib/tools/search';
+import { getSearchCategories, type ToolSearchEntry } from '@/lib/tools/search';
 export function Header({ index }: { index: ToolSearchEntry[] }) {
+  const categories = getSearchCategories(index);
   const t = useTranslations(),
     locale = useLocale() as Locale,
     path = usePathname();
@@ -40,7 +41,7 @@ export function Header({ index }: { index: ToolSearchEntry[] }) {
           Device Lab<span className="small">/</span>
         </Link>
         <nav className="desktop-nav" aria-label={t('allTools')}>
-          {(['screen', 'keyboard', 'mouse'] as const).map((category) => (
+          {categories.map((category) => (
             <Link key={category} href={`/${locale}/${category}`}>
               {t(category)}
             </Link>
@@ -79,7 +80,7 @@ export function Header({ index }: { index: ToolSearchEntry[] }) {
       </header>
       {open && (
         <nav id="mobile-nav" className="mobile-nav" aria-label={t('menu')}>
-          {(['screen', 'keyboard', 'mouse'] as const).map((category) => (
+          {categories.map((category) => (
             <Link key={category} href={`/${locale}/${category}`} onClick={() => setOpen(false)}>
               {t(category)}
             </Link>

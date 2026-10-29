@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ChevronRight, ShieldCheck, ArrowRight } from 'lucide-react';
-import { tools, findTool, toolHref } from '@/lib/tools/registry';
+import { publishedTools as tools, findTool, toolHref } from '@/lib/tools/registry';
 import type { Locale } from '@/lib/i18n/routing';
 import { pageMetadata } from '@/lib/seo/metadata';
 type Params = { locale: Locale; category: string; slug: string };
@@ -72,7 +72,9 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
             <ShieldCheck size={13} />
             {t('localOnly')}
           </span>
-          <span className="badge muted">{t('noPermissions')}</span>
+          <span className="badge muted">
+            {tool.permissions.length ? t('permissionRequired') : t('noPermissions')}
+          </span>
         </div>
       </header>
       <section className="tool-workspace" data-engine={tool.engine} aria-label={copy.name}>

@@ -1,5 +1,7 @@
 # Nghiệm thu rà soát Phase 1 — 29/10/2026
 
+> Báo cáo này ghi checkpoint nghiệm thu Phase 1. Người dùng sau đó đã cho phép milestone nền tảng Phase 2; trạng thái mới ở [PHASE2-FOUNDATION.md](PHASE2-FOUNDATION.md) và cuối PROGRESS.md. Điều đó không đóng các điều kiện Final Acceptance Phase 1 còn mở bên dưới.
+
 ## Phạm vi và vấn đề phát hiện
 
 Chỉ rà soát 21 khả năng Phase 1. Không có công cụ hoặc endpoint Phase 2/3 mới. Registry vẫn là nguồn metadata duy nhất, tám nhóm engine đều được đọc lại và có kiểm thử mount từng capability.

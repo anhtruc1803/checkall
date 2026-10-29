@@ -174,3 +174,37 @@ File chính của đợt rà soát: registry/search và props ToolRunner, Engine
 Tài liệu cập nhật cuối: PROGRESS.md, PERFORMANCE.md, TESTING.md, DEPLOYMENT.md, ARCHITECTURE.md, ACCEPTANCE.md, RELEASE_CHECKLIST.md và qa/\*.json. FINAL_REPORT.md giữ làm báo cáo lịch sử có liên kết sang bản nghiệm thu mới. Commit tài liệu cuối không thay đổi source đã được CI xác minh; không chạy lại toàn bộ suite chỉ vì sửa tài liệu. Secret scan toàn repository 121 file không finding, staged scan và diff whitespace phải đạt trước commit. Server QA/proxy cục bộ đã dừng.
 
 **Kết luận milestone rà soát:** đủ điều kiện kỹ thuật đưa lên staging để QA có kiểm soát; chưa triển khai staging/VPS. Final Acceptance **chưa hoàn tất**, không có ngoại lệ cho Performance được tự chấp nhận. Còn mở: median mobile 84/87/75, manual QA phần cứng/Safari và HTTPS/hạ tầng thật. Tiếp theo đo trên CPU ổn định, phân tích main-thread và thực hiện ma trận manual; chỉ triển khai VPS khi có yêu cầu rõ ràng.
+
+## Phase 2 — Milestone 1: nền tảng registry/capability/permission
+
+Người dùng đã yêu cầu bắt đầu Phase 2 theo từng milestone, làm nền tảng trước và giữ Phase 1. Yêu cầu mới thay thế giới hạn không mở Phase 2 ở checkpoint trước, nhưng không cho phép triển khai VPS hoặc công bố công cụ chưa hoạt động.
+
+### Công việc đã triển khai
+
+- Tách contract Tool/Category/Engine/Capability/ToolPermission; registry có 21 published Phase 1 và 19 draft Phase 2. Draft không được index hoặc truy cập như công cụ thật; chưa thêm engine Phase 2 hoặc Phase 3.
+- Publication validation chặn trùng ID/route, draft index, related từ published sang draft, bản dịch rỗng và published thiếu engine. Renderer map có typecheck đầy đủ theo ImplementedEngine.
+- Public lookup/search/navigation desktop-mobile/category/homepage/sitemap/related dùng published; category chỉ draft không tạo trang rỗng. Chỉ mục client không mang metadata 19 draft.
+- Capability probe theo yêu cầu, SSR trả unknown; giữ đúng tám key adapter Phase 1. Không mở media, tạo AudioContext/WebGL context hay enumerate thiết bị khi dò API.
+- Permission observer/hook tách unknown/prompt/granted/denied/unsupported/insecure-context/policy-blocked; query không hỗ trợ giữ unknown, có cleanup và bỏ qua query đến muộn.
+- Media session dùng chung: start chủ động, chống yêu cầu trùng, phân loại lỗi không lưu thông tin thiết bị, stop/dispose/hidden/pagehide/track ended và giải phóng late grant. Không thể đóng prompt của browser bằng Stop; không tự suy ra permission denied khi promise chưa trả.
+- Bổ sung namespace VI/EN cho quyền/lỗi; mở rộng bài kiểm tra i18n để đối chiếu mọi key lồng nhau, không bỏ yêu cầu nội dung không rỗng.
+- Giữ nguyên header chặn camera/microphone trên route public và privacy/localStorage Phase 1. Không thêm dependency, server endpoint, database hoặc route debug.
+- CI có JSON E2E kể cả lượt toàn bộ đạt; raw artifacts tiếp tục bị Git bỏ qua.
+
+### File chính
+
+src/lib/tools/{types,catalog,phase2,registry,search}.ts; src/lib/browser/{capability-types,capabilities,permissions,media-session}.ts; src/hooks/use-permission.ts; ToolRunner/Header/Catalog/ToolCard và server route/sitemap; src/messages/{vi,en}.json; unit/SSR/media/permission/registry/E2E tests; Playwright config và CI. Tài liệu chi tiết: [PHASE2-FOUNDATION.md](PHASE2-FOUNDATION.md).
+
+### Kiểm tra hiện tại
+
+Production build đạt, chỉ sinh route Phase 1 (42 route công cụ VI/EN). Typecheck/lint và lượt unit đầu 81/81 đạt; sau bổ sung edge cases đang chạy lại unit và đầy đủ 96 E2E trên Chromium, Firefox, WebKit, Chromium mobile. E2E mới kiểm tra 19 draft × hai locale trả 404, category chỉ draft không public, public pages không gọi getUserMedia/permissions.query và giữ header cũ. Chưa ghi các bài đang chạy là đạt.
+
+Dependency audit production không ghi nhận lỗ hổng đã biết; secret scan 135 file không finding tại checkpoint trước cập nhật tài liệu. Kết quả cuối và CI sẽ bổ sung bên dưới. Docker Windows vẫn không có Engine; kết quả Linux của Phase 1 chỉ là bằng chứng revision cũ, không tự chuyển sang milestone này.
+
+**Kết quả cục bộ:** 86/86 unit/integration tests trên 16 file đạt sau bổ sung edge cases. Typecheck/lint và production build source cuối đạt; toàn bộ **96/96 E2E đạt** trong 7,7 phút: Chromium, Firefox, WebKit và Chromium mobile đều 24/24, không skip/flaky test. Bao gồm axe năm trang × hai theme, đủ 21 engine, 42 route VI/EN và ranh giới 19 draft. JSON raw tại artifacts/playwright/results.json. Header media vẫn nguyên; không có getUserMedia hoặc query quyền từ Phase 1. Secret scan 136 file không finding sau thêm tài liệu. ESLint loại artifacts/\*\* khỏi duyệt output QA, không loại source/tests. Chờ CI Linux độc lập sau push; không lấy kết quả CI cũ làm bằng chứng source mới.
+
+### Phần còn mở và tiếp theo
+
+19 công cụ Phase 2 vẫn draft, chưa có engine hoặc kiểm thử phần cứng. Media lifecycle ở milestone này được kiểm tra bằng stream/track giả trong unit, không tuyên bố đã thử microphone/camera thật. Chưa đo lại Lighthouse; các median Phase 1 không phải điểm của revision mới và mục tiêu ≥90 còn mở. Safari thật/thiết bị vật lý/HTTPS production/VPS chưa xác minh.
+
+Tiếp theo chốt unit/E2E/CI, rồi milestone nhóm thông tin thiết bị/browser, touch/pointer, storage/fullscreen, mouse movement/accuracy và GPU theo phạm vi đã đề xuất. Final Acceptance Phase 1 và Phase 2 đều chưa được tự đóng.

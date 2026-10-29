@@ -1,9 +1,10 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
-import { detectCapabilities } from '@/lib/browser/capabilities';
+import { inspectCapabilities } from '@/lib/browser/capabilities';
 import type { Tool } from '@/lib/tools/registry';
+import { isImplementedEngine, type ImplementedEngine } from '@/lib/tools/types';
 const ScreenInfo = dynamic(() => import('@/features/screen/screen-info'));
 const Calculator = dynamic(() => import('@/features/screen/calculator'));
 const Refresh = dynamic(() => import('@/features/screen/refresh'));
@@ -12,6 +13,16 @@ const Motion = dynamic(() => import('@/features/screen/motion'));
 const Touch = dynamic(() => import('@/features/screen/touch'));
 const KeyboardTool = dynamic(() => import('@/features/keyboard/keyboard'));
 const MouseTool = dynamic(() => import('@/features/mouse/mouse'));
+const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
+  'screen-info': () => <ScreenInfo />,
+  calculator: (id) => <Calculator toolId={id} />,
+  refresh: () => <Refresh />,
+  patterns: (id) => <Patterns toolId={id} />,
+  motion: () => <Motion />,
+  touch: () => <Touch />,
+  keyboard: (id) => <KeyboardTool toolId={id} />,
+  mouse: (id) => <MouseTool toolId={id} />,
+};
 export function ToolRunner({
   tool,
 }: {
@@ -21,8 +32,10 @@ export function ToolRunner({
   const [support, setSupport] = useState<boolean | null>(null);
   useEffect(() => {
     const check = () => {
-      const capabilities = detectCapabilities();
-      setSupport(tool.requiredCapabilities.every((capability) => capabilities[capability]));
+      const capabilities = inspectCapabilities(tool.requiredCapabilities);
+      setSupport(
+        tool.requiredCapabilities.every((capability) => capabilities[capability] === 'available'),
+      );
     };
     check();
   }, [tool]);
@@ -44,22 +57,17 @@ export function ToolRunner({
   );
 }
 function ToolEngine({ tool }: { tool: Pick<Tool, 'id' | 'engine'> }) {
-  switch (tool.engine) {
-    case 'screen-info':
-      return <ScreenInfo />;
-    case 'calculator':
-      return <Calculator toolId={tool.id} />;
-    case 'refresh':
-      return <Refresh />;
-    case 'patterns':
-      return <Patterns toolId={tool.id} />;
-    case 'motion':
-      return <Motion />;
-    case 'touch':
-      return <Touch />;
-    case 'keyboard':
-      return <KeyboardTool toolId={tool.id} />;
-    case 'mouse':
-      return <MouseTool toolId={tool.id} />;
-  }
+  return isImplementedEngine(tool.engine) ? (
+    engineRenderers[tool.engine](tool.id)
+  ) : (
+    <UnavailableEngine />
+  );
+}
+function UnavailableEngine() {
+  const t = useTranslations();
+  return (
+    <p className="notice" role="status">
+      {t('engineUnavailable')}
+    </p>
+  );
 }

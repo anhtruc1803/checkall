@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { tools } from '../../src/lib/tools/registry';
+import { publishedTools as tools } from '../../src/lib/tools/registry';
 test('all 21 Phase 1 registry entries mount real engines or an honest capability fallback', async ({
   page,
 }) => {

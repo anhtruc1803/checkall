@@ -55,10 +55,11 @@ describe('timing', () => {
 });
 describe('registry', () => {
   it('publishes exactly 21 unique bilingual capabilities', () => {
-    expect(tools).toHaveLength(21);
-    expect(new Set(tools.map((t) => t.id)).size).toBe(21);
-    expect(tools.filter((t) => t.category === 'screen')).toHaveLength(11);
-    for (const t of tools) {
+    const published = tools.filter((tool) => tool.status === 'published');
+    expect(published).toHaveLength(21);
+    expect(new Set(published.map((t) => t.id)).size).toBe(21);
+    expect(published.filter((t) => t.category === 'screen')).toHaveLength(11);
+    for (const t of published) {
       expect(t.copy.en.limitations.length).toBeGreaterThan(30);
       expect(t.copy.vi.instructions.length).toBeGreaterThan(30);
       expect(t.relatedTools.every((id) => tools.some((tool) => tool.id === id))).toBe(true);

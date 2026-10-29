@@ -1,4 +1,31 @@
 {
+  "audio": "Audio",
+  "camera": "Camera",
+  "gamepad": "Gamepad",
+  "device": "Device",
+  "permissionRequired": "Device access requires your permission",
+  "engineUnavailable": "This testing engine is not available yet.",
+  "permissionState": {
+    "unknown": "Permission status could not be determined. Starting the test may request access.",
+    "prompt": "Your browser may ask for permission when you start.",
+    "granted": "Permission is granted; device access can still fail.",
+    "denied": "Access is denied by browser or system settings.",
+    "unsupported": "The media capture API is unavailable.",
+    "insecure-context": "Device access requires a secure context.",
+    "policy-blocked": "Device access is blocked by this page's policy."
+  },
+  "mediaFailure": {
+    "unsupported": "The media capture API is unavailable.",
+    "insecure-context": "Device access requires a secure context.",
+    "policy-blocked": "Device access is blocked by this page's policy.",
+    "permission-denied": "Device access was refused by the browser, permission settings or system.",
+    "device-not-found": "No usable device was found.",
+    "device-busy": "The device cannot be read or may be in use.",
+    "constraints-unavailable": "The device cannot provide the requested configuration.",
+    "aborted": "The device request was interrupted.",
+    "unknown": "Device access failed for an unknown reason.",
+    "interaction-required": "Start the test using its button while this page is visible."
+  },
   "testControls": "Test controls",
   "appName": "Device Lab",
   "tagline": "Know your device.",

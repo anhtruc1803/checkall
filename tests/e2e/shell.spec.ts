@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { tools } from '../../src/lib/tools/registry';
+import { publishedTools as tools } from '../../src/lib/tools/registry';
 test('homepage, discovery and locale-preserving navigation', async ({ page }) => {
   await page.goto('/vi');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Kiểm tra thiết bị');

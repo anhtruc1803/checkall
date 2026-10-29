@@ -34,6 +34,8 @@ Vòng đời chung: idle → preparing → running → completed; có stopped, w
 
 Phase 2: 19 khả năng audio, microphone, webcam, gamepad, device/browser/GPU information, storage, fullscreen, mouse movement/accuracy.
 
+Milestone nền tảng Phase 2 đã bắt đầu theo yêu cầu người dùng. 19 mục có metadata draft trong src/lib/tools/phase2.ts, không có route public hoặc engine được công bố; 21 công cụ Phase 1 vẫn published. Không coi draft là chức năng đã triển khai. Publication guard và quyền riêng tư được mô tả trong [PHASE2-FOUNDATION.md](PHASE2-FOUNDATION.md).
+
 Phase 3: 15 khả năng network và tiện ích: tốc độ download/upload, HTTP latency, jitter, packet loss estimate, public IP, DNS, TLS, headers, color picker, unit converter, benchmark, quick test, export, share.
 
 Tổng kiến trúc dự kiến: 21 + 19 + 15 = 55 khả năng. Endpoint network tương lai phải có rate limit, chống SSRF và kiểm soát tài nguyên trước khi được công bố.

@@ -1,50 +1,14 @@
 import type { Locale } from '@/lib/i18n/routing';
 import type { MeasurementClass } from '@/lib/measurements/types';
 import { normalizeSearch, searchToolIndex, type ToolSearchEntry } from './search';
-export { categories, toolHref } from './search';
-export type Category = 'screen' | 'keyboard' | 'mouse';
-export type Capability =
-  | 'screen'
-  | 'animationFrame'
-  | 'canvas'
-  | 'pointer'
-  | 'touch'
-  | 'keyboard'
-  | 'fullscreen'
-  | 'visualViewport';
-export type Engine =
-  | 'screen-info'
-  | 'calculator'
-  | 'refresh'
-  | 'patterns'
-  | 'motion'
-  | 'touch'
-  | 'keyboard'
-  | 'mouse';
-export interface ToolCopy {
-  name: string;
-  description: string;
-  instructions: string;
-  limitations: string;
-  method: string;
-}
-export interface Tool {
-  id: string;
-  slug: string;
-  category: Category;
-  phase: 1 | 2 | 3;
-  status: 'published' | 'draft';
-  icon: Category;
-  engine: Engine;
-  requiredCapabilities: Capability[];
-  optionalCapabilities: Capability[];
-  permissions: readonly string[];
-  classification: MeasurementClass;
-  environments: readonly string[];
-  seo: { index: boolean };
-  relatedTools: string[];
-  copy: Record<Locale, ToolCopy>;
-}
+import type { Capability } from '@/lib/browser/capability-types';
+import type { Category, Engine, Tool, ToolCopy } from './types';
+import { getPublishedTools, getPublishedCategories, validateToolRegistry } from './catalog';
+import { phase2Tools } from './phase2';
+export { toolHref } from './search';
+export { getPublishedTools, getPublishedCategories } from './catalog';
+export type { Category, Engine, Tool, ToolCopy } from './types';
+export type { Capability } from '@/lib/browser/capability-types';
 type Entry = [
   string,
   string,
@@ -519,7 +483,7 @@ const entries: Entry[] = [
     ],
   ],
 ];
-export const tools: Tool[] = entries.map(
+const phase1Tools: Tool[] = entries.map(
   ([id, slug, category, engine, classification, requiredCapabilities, vi, en]) => {
     const make = ([name, description, instructions, limitations, method]: Entry[6]): ToolCopy => ({
       name,
@@ -550,27 +514,29 @@ export const tools: Tool[] = entries.map(
     };
   },
 );
+export const tools: Tool[] = [...phase1Tools, ...phase2Tools];
+validateToolRegistry(tools);
+export const publishedTools = getPublishedTools(tools);
+export const categories = getPublishedCategories(tools);
 export function getToolSearchIndex(locale: Locale): ToolSearchEntry[] {
-  return tools
-    .filter((tool) => tool.status === 'published')
-    .map((tool) => ({
-      id: tool.id,
-      slug: tool.slug,
-      category: tool.category,
-      icon: tool.icon,
-      classification: tool.classification,
-      name: tool.copy[locale].name,
-      searchText: normalizeSearch(
-        `${tool.copy.vi.name} ${tool.copy.en.name} ${tool.copy.vi.description} ${tool.copy.en.description} ${tool.id}`,
-      ),
-    }));
+  return publishedTools.map((tool) => ({
+    id: tool.id,
+    slug: tool.slug,
+    category: tool.category,
+    icon: tool.icon,
+    classification: tool.classification,
+    name: tool.copy[locale].name,
+    searchText: normalizeSearch(
+      `${tool.copy.vi.name} ${tool.copy.en.name} ${tool.copy.vi.description} ${tool.copy.en.description} ${tool.id}`,
+    ),
+  }));
 }
 export function findTool(category: string, slug: string) {
-  return tools.find((t) => t.category === category && t.slug === slug && t.status === 'published');
+  return publishedTools.find((t) => t.category === category && t.slug === slug);
 }
 export function searchTools(query: string, category?: Category) {
   const ids = new Set(
     searchToolIndex(getToolSearchIndex('vi'), query, category).map((tool) => tool.id),
   );
-  return tools.filter((tool) => ids.has(tool.id));
+  return publishedTools.filter((tool) => ids.has(tool.id));
 }

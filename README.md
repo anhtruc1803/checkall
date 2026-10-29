@@ -2,6 +2,8 @@
 
 Nền tảng kiểm tra thiết bị cục bộ trên trình duyệt, song ngữ Việt/Anh. Phase 1 có 21 công cụ: 11 màn hình, 5 bàn phím và 5 chuột. Không tài khoản, database hoặc upload sự kiện thiết bị.
 
+Đã bắt đầu nền tảng Phase 2: registry có thêm 19 mục draft, capability và permission handling dùng chung. Chưa công bố công cụ Phase 2; xem [tài liệu milestone](docs/PHASE2-FOUNDATION.md).
+
 ## Chạy phát triển
 
 Yêu cầu Node.js 24 LTS và pnpm 11.25.0.

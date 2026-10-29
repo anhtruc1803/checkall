@@ -1,23 +1,85 @@
-import type { Capability } from '@/lib/tools/registry';
-export function detectCapabilities(): Record<Capability, boolean> {
-  let canvas = false;
-  if (typeof document !== 'undefined') {
+import {
+  phase1Capabilities,
+  type Capability,
+  type CapabilityState,
+  type Phase1Capability,
+} from './capability-types';
+
+// API presence only; never requests access, creates an AudioContext or probes GPU identity.
+export function inspectCapabilities(
+  requested: readonly Capability[],
+): Partial<Record<Capability, CapabilityState>> {
+  const result: Partial<Record<Capability, CapabilityState>> = {};
+  for (const capability of requested) {
+    if (
+      typeof window === 'undefined' ||
+      typeof document === 'undefined' ||
+      typeof navigator === 'undefined'
+    ) {
+      result[capability] = 'unknown';
+      continue;
+    }
     try {
-      canvas = Boolean(document.createElement('canvas').getContext('2d'));
+      let available: boolean;
+      switch (capability) {
+        case 'screen':
+          available = 'screen' in window;
+          break;
+        case 'animationFrame':
+          available = typeof window.requestAnimationFrame === 'function';
+          break;
+        case 'canvas':
+          available = Boolean(document.createElement('canvas').getContext('2d'));
+          break;
+        case 'pointer':
+          available = typeof window.PointerEvent === 'function';
+          break;
+        case 'touch':
+          available = navigator.maxTouchPoints > 0;
+          break;
+        case 'keyboard':
+          available = typeof window.KeyboardEvent === 'function';
+          break;
+        case 'fullscreen':
+          available = Boolean(document.fullscreenEnabled);
+          break;
+        case 'visualViewport':
+          available = Boolean(window.visualViewport);
+          break;
+        case 'secureContext':
+          available = window.isSecureContext === true;
+          break;
+        case 'mediaDevices':
+          available = typeof navigator.mediaDevices?.getUserMedia === 'function';
+          break;
+        case 'audioContext':
+          available = typeof window.AudioContext === 'function';
+          break;
+        case 'gamepad':
+          available = typeof navigator.getGamepads === 'function';
+          break;
+        case 'webgl':
+          available = typeof window.WebGLRenderingContext === 'function';
+          break;
+        case 'storage':
+          available = typeof navigator.storage?.estimate === 'function';
+          break;
+        case 'permissions':
+          available = typeof navigator.permissions?.query === 'function';
+          break;
+      }
+      result[capability] = available ? 'available' : 'unavailable';
     } catch {
-      canvas = false;
+      result[capability] = 'unavailable';
     }
   }
-  return {
-    screen: typeof window !== 'undefined' && 'screen' in window,
-    animationFrame: typeof requestAnimationFrame === 'function',
-    canvas,
-    pointer: typeof window !== 'undefined' && typeof window.PointerEvent === 'function',
-    touch: typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0,
-    keyboard: typeof window !== 'undefined' && typeof window.KeyboardEvent === 'function',
-    fullscreen: typeof document !== 'undefined' && Boolean(document.fullscreenEnabled),
-    visualViewport: typeof window !== 'undefined' && Boolean(window.visualViewport),
-  };
+  return result;
+}
+export function detectCapabilities(): Record<Phase1Capability, boolean> {
+  const inspected = inspectCapabilities(phase1Capabilities);
+  return Object.fromEntries(
+    phase1Capabilities.map((capability) => [capability, inspected[capability] === 'available']),
+  ) as Record<Phase1Capability, boolean>;
 }
 export function browserInfo(ua: string) {
   const browser = /Edg\//.test(ua)
