@@ -67,7 +67,11 @@ Trước khi công bố một công cụ media phải thiết kế policy phù h
 
 Kết quả chạy thực tế ghi tại PROGRESS.md. Bộ kiểm tra gồm:
 
-Kết quả cục bộ cuối: typecheck/lint/production build source cuối đạt, 86/86 unit/integration tests và 96/96 E2E trên bốn cấu hình (24/24 mỗi cấu hình), không skip/flaky. Kết quả CI của revision mới phải đối chiếu riêng trong PROGRESS.md; không thay bằng pipeline Phase 1 cũ.
+Kết quả cục bộ cuối: typecheck/lint/production build source cuối đạt, 86/86 unit/integration tests và 96/96 E2E trên bốn cấu hình (24/24 mỗi cấu hình), không skip/flaky.
+
+**CI Linux của source 5ef7ae1 đã success:** [run 40836651018](https://github.com/anhtruc1803/checkall/actions/runs/40836651018), cả verify và docker-smoke. Typecheck/lint/secret scan/build, 86 unit trên 16 file và 96 E2E đều đạt. Đã tải JSON browser-qa để đối chiếu: mỗi browser 24/24, skipped/unexpected/flaky đều 0, thời gian E2E 140343,642 ms. Docker smoke đạt trong 74 giây; đã đọc logs và snapshot shutdown, không có lỗi trong luồng smoke. Bằng chứng gọn ở [qa/phase2-foundation.json](qa/phase2-foundation.json), không dùng CI Phase 1 thay cho lần này.
+
+**Milestone 1 hoàn thành trong phạm vi nền tảng.** Điều này không xác nhận 19 engine Phase 2 hoặc hardware/media permission flow thật đã hoạt động. Các phần đó tiếp tục là draft/chưa kiểm chứng theo mục giới hạn bên dưới.
 
 - Unit registry: 21 published + 19 draft, metadata VI/EN, loại draft khỏi search/lookup/sitemap, category mới chỉ draft và publication guard.
 - Unit capability/SSR: không dò thiết bị hoặc khởi tạo context ngầm, key Phase 1 giữ nguyên, probe lỗi không làm hỏng probe khác.

@@ -84,6 +84,8 @@ Bộ E2E tăng từ 22 lên 24 bài cho mỗi cấu hình, tổng 96 bài dự k
 
 Kết quả cục bộ milestone: **86/86 unit/integration tests (16 file), 96/96 E2E (24/24 mỗi browser), typecheck/lint đạt**. E2E 7,7 phút; WebKit không được tính là Safari thật. JSON raw có đủ project/results/statistics. Bằng chứng CI sẽ được ghi theo revision/run riêng, không dùng lại kết quả Phase 1.
 
+CI Linux cuối của source 5ef7ae1: [run 40836651018](https://github.com/anhtruc1803/checkall/actions/runs/40836651018) success, cả verify và docker-smoke. 86 unit, 96 E2E, typecheck/lint/secret scan/production build đạt. Đã đọc artifact JSON: Chromium/Firefox/WebKit/mobile mỗi cấu hình 24 passed/0 failed/0 skipped; flaky 0, E2E 140343,642 ms (khoảng 2,3 phút). Browser artifact [12880917721](https://github.com/anhtruc1803/checkall/actions/runs/40836651018/artifacts/12880917721) đã được upload kể cả khi không có failure. Docker smoke source này đạt trong 74 giây; không cần lấy pipeline cũ làm bằng chứng.
+
 Playwright lưu artifacts/playwright/results.json cho cả lượt thành công. CI upload artifact browser-qa chứa JSON cùng trace/test-results khi có; không còn phụ thuộc vào việc phải có failure mới có bằng chứng browser. Không commit JSON raw/artifacts vào Git.
 
 Trước khi công bố công cụ media ở milestone sau, bổ sung E2E phù hợp cho cấp/từ chối quyền trong secure context, route policy thực và thiết bị giả của browser; đồng thời manual QA microphone/webcam/loa/gamepad và Safari thật. Không nới header toàn website để làm bài kiểm thử dễ đạt.

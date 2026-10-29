@@ -205,6 +205,18 @@ Dependency audit production không ghi nhận lỗ hổng đã biết; secret sc
 
 ### Phần còn mở và tiếp theo
 
+Đã commit/push source và tài liệu milestone: `5ef7ae1` trên main. Staged secret scan 42 file không finding; diff whitespace đạt, không có .env/key/cache/artifacts trong commit. CI mới [40836651018](https://github.com/anhtruc1803/checkall/actions/runs/40836651018) đang xác minh độc lập. Server production QA do Playwright quản lý đã dừng; không có listener QA ở 3000/3443 sau lượt kiểm tra.
+
+Docker smoke của source 5ef7ae1 trên run 40836651018 đã đạt trong 1 phút 14 giây: build production image, Compose healthy, nginx -t, health + tám route VI/EN ba thời điểm (ban đầu, sau restart, sau stop/start), Node port không publish, SIGTERM exit 143/OOMKilled false. Đã tải và đọc artifact mới; không có lỗi ứng dụng hoặc HTTP 4xx/5xx trong smoke. Image ID cục bộ runner sha256:1a5d67e33dcc64ee9c984b7b0060b6001e1494efb0c8702115ece42b40d242f3, không push image registry hoặc triển khai VPS. Browser job đang hoàn tất E2E; chưa ghi cả run là thành công.
+
 19 công cụ Phase 2 vẫn draft, chưa có engine hoặc kiểm thử phần cứng. Media lifecycle ở milestone này được kiểm tra bằng stream/track giả trong unit, không tuyên bố đã thử microphone/camera thật. Chưa đo lại Lighthouse; các median Phase 1 không phải điểm của revision mới và mục tiêu ≥90 còn mở. Safari thật/thiết bị vật lý/HTTPS production/VPS chưa xác minh.
 
 Tiếp theo chốt unit/E2E/CI, rồi milestone nhóm thông tin thiết bị/browser, touch/pointer, storage/fullscreen, mouse movement/accuracy và GPU theo phạm vi đã đề xuất. Final Acceptance Phase 1 và Phase 2 đều chưa được tự đóng.
+
+### Nghiệm thu milestone nền tảng
+
+**CI mới 40836651018 đã success cho source 5ef7ae1**, cả verify và docker-smoke. Job verify 4 phút 50 giây: typecheck/lint/secret scan/build đạt, 86/86 unit (16 file), **96/96 E2E**. Đã tải browser-qa JSON và đối chiếu Chromium/Firefox/WebKit/mobile đều 24/24; skipped/unexpected/flaky bằng 0; E2E 140343,642 ms. Artifact browser được upload thành công, không còn cảnh báo thiếu browser artifact ở lượt toàn bộ đạt. Docker smoke và việc đọc logs/snapshot source mới đã được xác minh ở trên. Không có camera/microphone hoặc tay cầm vật lý nào được kiểm thử bởi kết quả này.
+
+**Hoàn thành Phase 2 Milestone 1 trong phạm vi đã yêu cầu:** registry draft/publication boundary, capability, permission observer/hook và media session nền tảng, giữ chức năng Phase 1. Tài liệu tiếng Việt và dữ liệu gọn ở PHASE2-FOUNDATION.md, ARCHITECTURE.md, TOOL_SPECIFICATIONS.md, TESTING.md, DEPLOYMENT.md và qa/phase2-foundation.json. Source đã push main; commit tiếp theo chỉ chốt tài liệu/bằng chứng, không thay đổi source đã kiểm thử.
+
+Còn mở: 19 công cụ vẫn draft; chưa có engine Phase 2, chưa xác minh thiết bị/Safari thật, chưa đo Lighthouse revision mới và chưa triển khai HTTPS/VPS. Không đổi trạng thái Final Acceptance Phase 1/2. Công việc tiếp theo là milestone công cụ thông tin/capability và mouse/fullscreen theo lộ trình, với kiểm thử riêng trước khi công bố từng công cụ.

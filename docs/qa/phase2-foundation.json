@@ -1,6 +1,7 @@
 {
   "date": "2026-10-29",
   "milestone": "phase2-foundation",
+  "milestoneStatus": "complete",
   "registry": { "total": 40, "publishedPhase1": 21, "draftPhase2": 19, "publishedPhase2": 0 },
   "publicContentUrls": 52,
   "local": {
@@ -17,7 +18,39 @@
     },
     "productionDependencyAudit": "no-known-vulnerabilities"
   },
-  "ci": "pending",
+  "ci": {
+    "run": "https://github.com/anhtruc1803/checkall/actions/runs/40836651018",
+    "sourceCommit": "5ef7ae14964ca267800e093bd72c6ff68129ae87",
+    "result": "passed",
+    "verify": "passed",
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "secretScan": "passed",
+    "unitPassed": 86,
+    "unitFiles": 16,
+    "e2e": {
+      "passed": 96,
+      "skipped": 0,
+      "flaky": 0,
+      "durationMs": 140343.642,
+      "projects": { "chromium": 24, "firefox": 24, "webkit": 24, "mobile": 24 },
+      "artifact": "https://github.com/anhtruc1803/checkall/actions/runs/40836651018/artifacts/12880917721"
+    },
+    "dockerSmoke": "passed",
+    "dockerDurationSeconds": 74,
+    "dockerImageId": "sha256:1a5d67e33dcc64ee9c984b7b0060b6001e1494efb0c8702115ece42b40d242f3",
+    "dockerChecks": {
+      "build": "passed",
+      "healthcheck": "passed",
+      "nginx": "passed",
+      "healthAndEightLocaleRoutesInitialAfterRestartAfterStart": "passed",
+      "nodePortPublished": false,
+      "shutdownExitCode": 143,
+      "oomKilled": false,
+      "reviewedLogErrors": 0
+    }
+  },
   "mediaOnPublishedPages": "blocked-by-policy-and-not-requested",
   "physicalHardware": "not-tested",
   "realSafari": "not-tested",
