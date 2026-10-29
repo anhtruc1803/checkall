@@ -32,8 +32,19 @@ node scripts/smoke-http.mjs http://127.0.0.1:8080
 wait_healthy "$app_id"
 node scripts/smoke-http.mjs http://127.0.0.1:8080
 "${compose[@]}" stop --timeout 15 app
-[[ "$(docker inspect --format '{{.State.Status}}' "$app_id")" == exited ]]
-[[ "$(docker inspect --format '{{.State.ExitCode}}' "$app_id")" == 0 ]] || { echo 'Application did not shut down cleanly.' >&2; exit 1; }
+docker inspect --format '{{json .State}}' "$app_id" > artifacts/docker/shutdown.json
+node --input-type=module <<'NODE'
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+const state = JSON.parse(readFileSync('artifacts/docker/shutdown.json', 'utf8'));
+assert.equal(state.Status, 'exited');
+assert.equal(state.Running, false);
+assert.equal(state.OOMKilled, false);
+assert.equal(state.Error, '');
+// Next.js 16.4.3 performs cleanup, then exits with 128 + SIGTERM (15).
+assert.equal(state.ExitCode, 143);
+console.log('Shutdown verified: SIGTERM exit 143, not OOM or forced SIGKILL.');
+NODE
 "${compose[@]}" start app
 wait_healthy "$app_id"
 node scripts/smoke-http.mjs http://127.0.0.1:8080

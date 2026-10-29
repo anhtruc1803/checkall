@@ -103,7 +103,9 @@ Không cần kết nối VPS để kiểm tra image. Trên máy Linux/runner t�
 bash scripts/docker-smoke.sh
 ```
 
-Script dùng project Compose riêng `device-lab-qa-*`, bind Nginx vào loopback cổng 8080 và đặt SITE_URL đúng origin QA. Các bước bắt buộc: build image; chờ healthcheck healthy; `nginx -t`; health và tám route VI/EN qua proxy; xác nhận app không có published port; restart app rồi kiểm tra lại; SIGTERM shutdown phải có exit code 0; start và chờ healthy lần nữa. Cuối lượt luôn thu log/trạng thái vào `artifacts/docker/` rồi dọn đúng project QA. Script không dùng volume database và không kết nối hạ tầng production.
+Script dùng project Compose riêng `device-lab-qa-*`, bind Nginx vào loopback cổng 8080 và đặt SITE_URL đúng origin QA. Các bước bắt buộc: build image; chờ healthcheck healthy; `nginx -t`; health và tám route VI/EN qua proxy; xác nhận app không có published port; restart app rồi kiểm tra lại; SIGTERM shutdown phải có exit code 143 theo Next.js 16.4.3, không OOM hoặc SIGKILL 137; start và chờ healthy lần nữa. Lưu trạng thái shutdown vào artifacts/docker/shutdown.json. Cuối lượt luôn thu log/trạng thái vào `artifacts/docker/` rồi dọn đúng project QA. Script không dùng volume database và không kết nối hạ tầng production.
+
+Đã đối chiếu tài liệu self-hosting và source Next.js cài trong node_modules: start-server đóng HTTP/Next server và cleanup listeners trước khi gọi process.exit(143) cho SIGTERM. Vì vậy exit 143 trong lượt stop chủ động này không được coi là crash chỉ vì khác 0. Kiểm thử smoke hiện không chứng minh drain một request dài đang xử lý, vì Phase 1 chưa có endpoint tác vụ dài.
 
 `HTTP_BIND` và `HTTP_PORT` có thể cấu hình ở Compose; mặc định triển khai vẫn là Nginx `0.0.0.0:80`, Node 3000 chỉ được expose trong network nội bộ. Không dùng giá trị loopback QA làm cấu hình Internet nếu muốn phục vụ người dùng ngoài VPS.
 

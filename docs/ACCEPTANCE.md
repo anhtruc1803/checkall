@@ -13,6 +13,7 @@ Các vấn đề có bằng chứng: HTTP trên Windows bị phần mềm bảo 
 - Giao diện engine prerender inert; native fieldset khóa controls cho đến khi **chính engine** hydrate, đồng thời capability detection vẫn quyết định fallback. Không tạo số đo phần cứng tại server.
 - Đồng bộ E2E theo trạng thái sẵn sàng, dùng cửa sổ pointer 20 giây và đối chiếu wheel event nhận được. Giữ nguyên yêu cầu đủ mẫu, kết quả, Stop/Reset và ngưỡng điều tra.
 - Bổ sung cleanup tests cho RAF, ResizeObserver, timers, listeners; secret scan trước commit; Linux Docker smoke và CI thu logs.
+- Sau CI Linux đầu tiên phát hiện tương phản trung gian khi đổi theme: bỏ background transition của nút, giữ toàn bộ rule axe, xác nhận theme đích trước audit; ba lượt lặp WebKit cục bộ đều đạt.
 
 ## Kết quả cục bộ đã xác minh
 
