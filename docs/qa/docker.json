@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-29",
+  "commit": "d82120bd7b1fa6eb59658e70b1d4e3cb59a559ac",
+  "run": "https://github.com/anhtruc1803/checkall/actions/runs/40816709418",
+  "job": "docker-smoke",
+  "result": "passed",
+  "durationSeconds": 83,
+  "imageId": "sha256:e5c59bd5abf564c3bdb24ed7b9e0a97022580f3748f6bb0c47b9f07e690df9a8",
+  "imagePushedToRegistry": false,
+  "composeVersion": "2.38.2",
+  "checks": {
+    "productionImageBuild": "passed",
+    "composeHealth": "passed",
+    "nginxConfig": "passed",
+    "httpHealthAndEightLocaleRoutes": {
+      "initial": "passed",
+      "afterRestart": "passed",
+      "afterStopStart": "passed"
+    },
+    "nodePortPublished": false,
+    "nginxPublishedAddress": "127.0.0.1:8080",
+    "stateAfterStart": "healthy",
+    "shutdown": {
+      "status": "exited",
+      "exitCode": 143,
+      "oomKilled": false,
+      "error": ""
+    },
+    "reviewedLogs": {
+      "applicationErrors": 0,
+      "http4xxOr5xxInSmoke": 0
+    }
+  },
+  "notVerified": ["long-running-request-drain", "public-https", "vps"]
+}

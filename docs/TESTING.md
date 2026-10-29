@@ -15,6 +15,16 @@ Playwright hiện có bốn cấu hình: `chromium`, `firefox`, `webkit` và `mo
 
 Ngoài các luồng tương tác, `registry.spec.ts` lần lượt mount đủ 21 engine/capability fallback và kiểm tra HTML ban đầu có giao diện inert trước hydration. `lifecycle.test.tsx` kiểm tra cleanup các RAF, ResizeObserver, timers và listeners. Bài Polling Rate dùng cửa sổ 20 giây để chuỗi mouse automation không chạy hết thời gian trên WebKit chậm; vẫn yêu cầu mẫu thực, kết quả hợp lệ, Stop và Reset.
 
+## Kết quả rà soát ngày 29/10/2026
+
+- Windows production standalone: 29/29 unit/integration tests, 88/88 E2E (22 bài cho mỗi cấu hình), typecheck/lint/build đạt.
+- Sau sửa background transition của nút, lặp riêng axe WebKit ba lần: 3/3 đạt trên năm trang × hai theme. Không tắt color-contrast hoặc bỏ phần tử khỏi audit.
+- Job verify Linux của [run 40816398723](https://github.com/anhtruc1803/checkall/actions/runs/40816398723) đạt 29 unit và 88 E2E, gồm axe hai theme, trong 1,7 phút E2E. Toàn run này vẫn fail do assertion Docker exit 0 sai với Next.js; không gán nhãn toàn pipeline đạt.
+- CI cuối [40816709418](https://github.com/anhtruc1803/checkall/actions/runs/40816709418), commit d82120b: **cả verify và docker-smoke success**; 29 unit, 88 E2E (22/22 mỗi cấu hình, 2,2 phút E2E), typecheck/lint/secret scan/build đạt. Docker smoke đầy đủ đạt; bằng chứng ở qa/docker.json và artifact Docker. E2E thành công được lưu trong job logs; trace chỉ giữ khi fail nên bước upload browser có cảnh báo không có file trong lượt toàn bộ đạt.
+- Bộ Lighthouse sạch cuối có ba lượt cho mỗi trang; Performance chưa đạt 90. Dữ liệu trước/sau và revision đo ở PERFORMANCE.md.
+
+Fullscreen chỉ được thử nhánh vào/thoát khi API khả dụng. Refresh dùng RAF thật của browser; input tests dùng event automation thật mà browser nhận, không suy ra tần số panel hoặc USB. Safari thật, giao diện màn hình thử màu, cảm ứng nhiều ngón, tổ hợp phím hệ thống và screen reader vẫn cần manual QA.
+
 Playwright chạy production server nếu chưa có server tại `http://localhost:3000`. Khi development server đang chạy, cấu hình sẽ dùng lại server đó; dừng dev trước khi đo production. `localhost` cần thiết trong môi trường Windows hiện tại vì HMR qua 127.0.0.1 bị reset. Bản release phải chạy E2E trên production build.
 
 Vitest dùng dữ liệu tổng hợp xác định cho aspect ratio, PPI, frame intervals, pointer rate, chatter, double click và CPS. Kiểm thử tích hợp kiểm tra validation và vòng đời tài nguyên. E2E không chứng minh phần cứng thực.

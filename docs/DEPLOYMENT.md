@@ -110,3 +110,7 @@ Script dùng project Compose riêng `device-lab-qa-*`, bind Nginx vào loopback 
 `HTTP_BIND` và `HTTP_PORT` có thể cấu hình ở Compose; mặc định triển khai vẫn là Nginx `0.0.0.0:80`, Node 3000 chỉ được expose trong network nội bộ. Không dùng giá trị loopback QA làm cấu hình Internet nếu muốn phục vụ người dùng ngoài VPS.
 
 CI chạy cùng script và upload bằng chứng khi thành công hoặc lỗi. Chỉ ghi Docker đã xác minh sau khi job thực sự hoàn tất; kiểm tra config bằng Compose CLI trên Windows không tương đương build/chạy container Linux. HTTPS công khai, DNS, chứng chỉ và gia hạn vẫn cần kiểm tra trong môi trường staging được cho phép.
+
+### Kết quả thực chạy
+
+Job docker-smoke của [run 40816709418](https://github.com/anhtruc1803/checkall/actions/runs/40816709418) trên commit d82120b đạt trong 1 phút 23 giây. Image ID cục bộ runner: sha256:e5c59bd5abf564c3bdb24ed7b9e0a97022580f3748f6bb0c47b9f07e690df9a8 (không phải digest image đã push registry). Nginx syntax, health và tám route VI/EN qua proxy đạt trước/sau restart và sau stop/start. Port app không publish, trạng thái sau start healthy, shutdown chủ động exited 143/OOMKilled false/Error rỗng. Đã tải và đọc log: không có lỗi ứng dụng hay HTTP 4xx/5xx trong luồng smoke. Artifact CI giữ logs.txt, containers.json và shutdown.json; đây là QA runner, chưa phải kiểm thử VPS hoặc HTTPS production.

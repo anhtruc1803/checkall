@@ -15,7 +15,25 @@
       "all": "no-known-vulnerabilities"
     }
   },
-  "dockerLinuxCI": "pending",
+  "dockerLinuxCI": {
+    "result": "passed",
+    "run": "https://github.com/anhtruc1803/checkall/actions/runs/40816709418",
+    "evidence": "docker.json"
+  },
+  "ci": {
+    "result": "passed",
+    "commit": "d82120bd7b1fa6eb59658e70b1d4e3cb59a559ac",
+    "run": "https://github.com/anhtruc1803/checkall/actions/runs/40816709418",
+    "typecheck": "passed",
+    "lint": "passed",
+    "build": "passed",
+    "secretScan": "passed",
+    "unitPassed": 29,
+    "e2ePassed": 88,
+    "e2eProjects": { "chromium": 22, "firefox": 22, "webkit": 22, "mobile": 22 },
+    "e2eDurationMinutesRounded": 2.2
+  },
+  "staging": "technically-ready-for-controlled-qa-not-deployed",
   "physicalHardware": "not-tested",
   "realSafari": "not-tested",
   "finalAcceptance": "open"

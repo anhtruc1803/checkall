@@ -23,6 +23,8 @@ Các vấn đề có bằng chứng: HTTP trên Windows bị phần mềm bảo 
 - Source sản phẩm không có fetch/sendBeacon/XMLHttpRequest upload log phím/chuột. Log có giới hạn; storage được validate, tóm tắt chỉ lưu sau opt-in và hành động lưu.
 - E2E cuối đạt **88/88**, gồm 22/22 trên từng cấu hình Chromium, Firefox, WebKit và Chromium mobile. Mỗi cấu hình kiểm tra axe hai theme, 21 engine/capability fallback, SSR inert và các luồng tương tác.
 
+Xác minh độc lập trên Linux: toàn [CI run 40816709418](https://github.com/anhtruc1803/checkall/actions/runs/40816709418) của commit d82120b **success**, cả verify và docker-smoke. Verify đạt typecheck/lint/secret scan/build, 29 unit và 88 E2E (2,2 phút E2E). Những commit tiếp theo chỉ cập nhật tài liệu/bằng chứng, không được mô tả như một lần đo Lighthouse mới.
+
 **WebKit automation không phải Safari thật.** Fullscreen được thử khi browser hỗ trợ; nhánh không hỗ trợ phải hiện fallback rõ ràng, còn Safari/iOS và thiết bị vật lý nằm trong manual QA.
 
 ## Performance
@@ -31,20 +33,22 @@ Các vấn đề có bằng chứng: HTTP trên Windows bị phần mềm bảo 
 
 ## Docker
 
-Máy Windows hiện tại không có Docker Engine, WSL không hoạt động. Compose CLI config đạt; Nginx Windows syntax test trước đó không tương đương container Linux. `scripts/docker-smoke.sh` và GitHub Actions đã được chuẩn bị; trạng thái chạy CI thực tế phải được dẫn bằng run URL/kết quả trong PROGRESS.md. Không có kết nối hoặc triển khai VPS.
+Máy Windows hiện tại không có Docker Engine, WSL không hoạt động. Docker được xác minh thực tế trên runner Linux tại [run 40816709418](https://github.com/anhtruc1803/checkall/actions/runs/40816709418), job docker-smoke đạt trong 1 phút 23 giây. Production image build đạt; Compose/healthcheck, Nginx và tám route VI/EN qua proxy đạt ba lần: ban đầu, sau restart, sau stop/start. Node 3000 không có published port; chỉ Nginx bind 127.0.0.1:8080 trong QA. SIGTERM exit 143 đúng Next.js 16.4.3, OOMKilled false, Error rỗng. Logs không có lỗi ứng dụng hoặc HTTP 4xx/5xx trong lượt smoke. Artifact logs/containers/shutdown được upload trước khi dọn project QA. Chưa thử drain request dài hoặc HTTPS công khai; không có kết nối hoặc triển khai VPS.
 
 ## Phân loại nghiệm thu
 
-| Nhóm                                                               | Trạng thái tại checkpoint trước push                         |
+| Nhóm                                                               | Trạng thái rà soát hiện hành                                 |
 | ------------------------------------------------------------------ | ------------------------------------------------------------ |
 | 21 công cụ, VI/EN, theme, registry, validation, privacy            | Đã triển khai, kiểm thử tự động và rà source                 |
-| Build, typecheck, lint, unit, secret/dependency scan               | Đã hoàn thành và xác minh cục bộ                             |
+| Build, typecheck, lint, unit, secret/dependency scan               | Đã xác minh cục bộ; CI xác minh lại trừ dependency audit     |
 | Cross-browser E2E trên bản sửa cuối                                | Đã hoàn thành và xác minh: 88/88                             |
-| Docker Linux và vòng đời container                                 | Đã triển khai quy trình QA, chưa xác minh tại checkpoint này |
+| Docker Linux và vòng đời container                                 | Đã hoàn thành và xác minh trên CI Linux                      |
 | Lighthouse mobile ≥90 cho mọi trang đại diện                       | Chưa hoàn thành                                              |
 | Safari thật, màn hình 60/120/144 Hz, bàn phím/chuột/cảm ứng vật lý | Không thể kiểm chứng bằng môi trường automation hiện tại     |
-| HTTPS công khai, DNS, gia hạn, rollback VPS                        | Chưa xác minh; không triển khai khi chưa được yêu cầu        |
+| Template/quy trình HTTPS, DNS, gia hạn, rollback VPS               | Đã triển khai tài liệu nhưng chưa xác minh trên hạ tầng thật |
 
 ## Kết luận staging
 
-Chỉ chốt khả năng staging sau khi toàn bộ E2E cuối và Docker smoke trên runner Linux đạt. Staging dùng để kiểm tra browser/phần cứng thật và hiệu năng còn mở; không đồng nghĩa production hoặc Final Acceptance. Các điều kiện chưa xác minh phải còn trên RELEASE_CHECKLIST.md, không tự chuyển sang hoàn tất.
+**Đủ điều kiện kỹ thuật để đưa lên staging phục vụ QA có kiểm soát:** toàn E2E và Docker smoke Linux đã đạt. Đây chưa phải staging đã được triển khai, không phải nghiệm thu đầy đủ hoặc cho phép production. Không có kết nối VPS.
+
+**Final Acceptance vẫn mở.** Mục tiêu Performance ≥90 chưa đạt, Safari/phần cứng thật và hạ tầng HTTPS còn chưa xác minh. Không có ngoại lệ Performance nào được chủ sở hữu chấp nhận. Tiếp theo: đo trên CPU ổn định và điều tra main-thread, thực hiện manual QA trong TESTING.md, chỉ cấu hình hạ tầng thật sau khi được yêu cầu. Không mở Phase 2/3.
