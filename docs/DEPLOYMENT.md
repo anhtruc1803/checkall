@@ -2,6 +2,8 @@
 
 Milestone hiện hành: Phase 2 Milestone 2, ngày 30/10/2026. Tám công cụ bổ sung chỉ chạy browser-local; không thêm backend endpoint, quyền camera/microphone hoặc thay đổi kiến trúc Docker/Nginx. Policy camera=()/microphone=()/geolocation=() giữ nguyên. Docker smoke cần xác minh lại image/source mới trên CI Linux; kết quả run/commit được ghi ở cuối PROGRESS.md, không tự kế thừa kết quả milestone trước.
 
+Source 097404e đã đạt Docker smoke ở [run 41007493526](https://github.com/anhtruc1803/checkall/actions/runs/41007493526) trong 72 giây, cùng job verify thành công. Đã kiểm tra image build, healthy, Nginx, health + tám route VI/EN đại diện ba thời điểm, private Node port, restart và SIGTERM stop/start; đọc artifact logs/containers/shutdown không có lỗi trong smoke. Image ID cục bộ runner sha256:04000eaac12e8cdb4a7ab2d6a8608dcc3a79207a89d9cfaf9a6716fe89f2eb5b, không phải image digest đã push registry. Các route công cụ đủ 58 URL được E2E trên standalone app; smoke qua proxy không bao phủ toàn bộ 58. Chưa triển khai VPS/HTTPS production.
+
 ## Điều kiện
 
 VPS Linux có Docker Engine và Docker Compose plugin; DNS A/AAAA trỏ về VPS; tường lửa chỉ mở cổng web cần thiết, SSH theo chính sách của quản trị viên. Không mở cổng Node 3000 công khai. Chưa có máy chủ production nào được cấu hình trong tác vụ này.

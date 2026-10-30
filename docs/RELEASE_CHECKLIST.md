@@ -6,7 +6,7 @@
 - [x] 21 chức năng Phase 1 giữ nguyên, 11 draft còn lại không có route/search/sitemap công bố.
 - [x] GPU opt-in, Web Storage isolated cleanup, pointer buffers/time limit, Fullscreen ownership/late request có kiểm thử.
 - [x] Typecheck/lint/build và 118 unit/integration tests đạt cục bộ.
-- [ ] Chốt ma trận 136 E2E trên source cuối và CI Linux/Docker; xem kết quả thực ở cuối PROGRESS.md.
+- [x] Local và CI source 097404e đạt 136/136 E2E (34/34 mỗi browser), 118 unit, build/typecheck/lint/secret scan và Docker smoke; run 41007493526.
 - [ ] Manual QA Safari thật, GPU/driver, cảm ứng/bút và chuột vật lý theo PHASE2-MILESTONE2.md.
 - [ ] Đo lại Performance source mới trong môi trường sạch/CPU ổn định; không dùng điểm Phase 1 cũ thay thế.
 

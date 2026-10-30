@@ -35,7 +35,7 @@ Mouse Accuracy là tác vụ người dùng, không chẩn đoán chuột. Chỉ
 
 ## Vòng đời, giới hạn và quyền riêng tư
 
-- Snapshot chỉ đọc khi người dùng yêu cầu. Reset/rời route vô hiệu hóa kết quả promise đến muộn; chưa có số liệu thì hiển thị —.
+- Snapshot G01/G02/G03/G05 chỉ đọc khi người dùng yêu cầu. Reset/rời route vô hiệu hóa kết quả promise đến muộn; chưa có số liệu thì hiển thị —. Riêng G06 theo dõi kích thước vùng render bằng observer trong trang/Fullscreen, không lấy thông số panel vật lý.
 - Tác vụ pointer giới hạn 60 giây, UI cập nhật bốn lần/giây, dừng khi mất focus, tab ẩn hoặc resize. Movement giữ tối đa 120 điểm vẽ/100.000 mẫu tổng; Accuracy tối đa 1.000 lần nhấn hoặc mười hit.
 - Timer/listener/pointer capture được dọn khi dừng hoặc unmount. Không đưa từng mousemove qua React state, không có animation loop nền vô hạn.
 - Fullscreen chỉ thoát element do công cụ sở hữu, kể cả request hoàn tất muộn sau unmount. ResizeObserver và fullscreenchange listener có cleanup. Esc/cử chỉ thoát vẫn do browser quản lý.
@@ -51,6 +51,12 @@ Giữ font Geist/Geist Mono và token màu/spacing của Device Lab. Dùng Engin
 ## Kiểm thử tự động
 
 Kết quả thực chạy cuối cùng nằm ở PROGRESS.md và qa/phase2-milestone2.json, không suy ra đã đạt chỉ từ danh sách bài thử.
+
+**Đã triển khai và xác minh tự động trên source 097404e.** Local đạt build/typecheck/lint, 118 unit/integration tests trên 21 file và 136/136 E2E trong 340325,84 ms. CI Linux độc lập [41007493526](https://github.com/anhtruc1803/checkall/actions/runs/41007493526) success cả verify và docker-smoke: 118 unit, 136 E2E trong 224967,275 ms, typecheck/lint/build/secret scan đạt. Đã tải JSON để đối chiếu mỗi cấu hình Chromium/Firefox/WebKit/mobile 34/34; skipped/unexpected/flaky đều 0.
+
+Docker smoke source mới đạt trong 72 giây: build image, healthy, Nginx, health và tám route VI/EN đại diện qua proxy trước/sau restart và sau stop/start; Node port không publish. Shutdown exit 143 đúng SIGTERM của Next.js, không OOM, Error rỗng. Artifact logs/containers/shutdown đã được đọc, không có lỗi ứng dụng/HTTP 4xx/5xx trong smoke. Không coi đây là kiểm thử VPS/HTTPS production hoặc mọi route qua Docker.
+
+Milestone 2 hoàn thành về implementation và automated QA trong phạm vi tám công cụ. Manual QA/Performance và Final Acceptance toàn Phase 1/2 vẫn mở theo phần giới hạn bên dưới. Commit sau source đã kiểm thử chỉ cập nhật tài liệu/bằng chứng.
 
 - Unit readers: dữ liệu thiếu, API bị chặn, context fallback/lost/error, opt-in renderer, context release, probe collision/cleanup failure, quota thực bằng 0 và số liệu không hợp lệ.
 - Unit thuật toán: quãng đường, path break, bộ đệm, hit/miss và sai lệch tâm, giới hạn mẫu/lần nhấn.

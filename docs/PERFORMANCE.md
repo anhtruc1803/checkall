@@ -1,5 +1,7 @@
 # Performance Phase 1 — phép đo sạch ngày 29/10/2026
 
+> Đây là dữ liệu checkpoint Phase 1 được đo theo revision ghi bên dưới. Phase 2 Milestone 2 (source 097404e, 30/10/2026) chưa đo lại Lighthouse; không gán các điểm/median cũ cho source mới hoặc coi Performance ≥90 đã đạt. Cần đo tiếp trong môi trường sạch/CPU ổn định; trạng thái này vẫn mở trong RELEASE_CHECKLIST.md.
+
 ## Phương pháp và tính hợp lệ
 
 Lighthouse 13.6.0, Chromium 156, mobile simulated, RTT 150 ms, throughput 1638,4 Kbps, CPU slowdown ×4. Mỗi lượt dùng một profile Chrome tạm mới, tắt extension; không chạy đồng thời E2E, build hoặc unit tests. Mỗi trang được đo ba lần, theo thứ tự luân phiên; không bỏ lượt xấu.

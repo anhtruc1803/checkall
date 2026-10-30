@@ -10,6 +10,8 @@ E2E vẫn giữ 21 engine Phase 1 và 42 route cũ, kiểm tra tổng 58 route c
 
 Axe chạy tám trang mới ở Dark/Light; responsive kiểm tra 320/375/414/768/1024 px và language switch giữ route. Fullscreen chỉ thử vào/thoát khi browser hỗ trợ, nếu không phải có fallback. Không coi WebKit automation hoặc Chromium iPhone emulation là Safari/thiết bị cảm ứng thật. Ma trận manual chi tiết ở [PHASE2-MILESTONE2.md](PHASE2-MILESTONE2.md).
 
+**Kết quả cuối source 097404e:** local 118/118 unit trên 21 file và 136/136 E2E (340325,84 ms); CI [41007493526](https://github.com/anhtruc1803/checkall/actions/runs/41007493526) success cả verify và docker-smoke, cùng 118 unit/136 E2E (224967,275 ms). Mỗi cấu hình 34/34, không skip/flaky. Đã tải [browser-qa JSON](https://github.com/anhtruc1803/checkall/actions/runs/41007493526/artifacts/12956800342) và đối chiếu thống kê. Lượt đầu local 135/136 do tọa độ mobile nằm ngoài viewport, được sửa bằng scrollIntoView và assertion viewport, không giảm số mẫu/quãng đường cần nhận. Sau sửa, toàn bộ source cuối đã chạy lại đạt.
+
 ## Tự động
 
 ```bash
