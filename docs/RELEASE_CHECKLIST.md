@@ -4,7 +4,7 @@
 
 - [x] Ba công cụ Speaker/Stereo/Frequency Generator có graph thật, registry/VI-EN/SEO và lifecycle; giữ 29 công cụ đã công bố trước đó.
 - [x] Thêm unit/lifecycle và E2E đa browser, axe hai theme, responsive; Docker smoke bao phủ 18 route VI/EN gồm audio.
-- [ ] Chốt toàn bộ E2E/CI của source mới; kết quả thực chạy ở PROGRESS.md/qa/phase2-milestone3.json.
+- [x] Source 1066568: CI 41027637979 success, 146 unit/172 E2E (43/cấu hình, không skip/flaky), native audio smoke ba browser và Docker smoke 18 route VI/EN; artifacts đã đọc.
 - [ ] Nghe loa/tai nghe thật, stereo vật lý, mute/output routing và Safari thật.
 - [ ] Screen reader/zoom/reduced motion thủ công và Lighthouse source mới.
 - [ ] Final Acceptance toàn Phase 1/2: vẫn mở, không tự đánh dấu hoàn tất.

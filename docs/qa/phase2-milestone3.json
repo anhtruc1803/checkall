@@ -1,7 +1,7 @@
 {
   "date": "2026-10-30",
   "milestone": "phase2-milestone3",
-  "status": "implemented-verification-in-progress",
+  "status": "implemented-and-automatically-verified",
   "registry": {
     "total": 40,
     "publishedPhase1": 21,
@@ -12,41 +12,119 @@
   "publicContentUrls": 80,
   "local": {
     "build": "passed",
+    "buildSourceCommit": "2bd1020",
     "typecheck": "passed",
-    "finalUnit": "28-audio-tests-passed-after-deadline-change",
-    "finalE2E": {
-      "scope": "audio-regression",
+    "lint": "passed",
+    "unit": {
+      "passed": 146,
+      "files": 23,
+      "sourceCommit": "10665683fc23adcca48a2f597cc5804a8f6004fc"
+    },
+    "audioRegression": {
       "sourceCommit": "2bd1020",
       "passed": 29,
       "skipped": 7,
       "unexpected": 0,
-      "flaky": 0
+      "flaky": 0,
+      "durationMs": 123606.34300000001,
+      "projects": {
+        "chromium": {
+          "passed": 9
+        },
+        "firefox": {
+          "passed": 9
+        },
+        "webkit": {
+          "passed": 2,
+          "skipped": 7
+        },
+        "mobile": {
+          "passed": 9
+        }
+      }
     },
-    "productionDependencyAudit": "no-known-vulnerabilities",
-    "secretScan": "no-findings",
-    "lint": "passed",
-    "audioRegression": {
-      "passed": 28,
-      "files": 2,
-      "sourceCommit": "2bd1020"
-    },
-    "webKitNativeWebAudio": "unavailable",
     "priorFullE2E": {
       "sourceCommit": "eea659e",
       "passed": 165,
       "skipped": 7,
       "unexpected": 0,
       "flaky": 0,
-      "durationMs": 403283.617
-    }
+      "durationMs": 403283.617,
+      "projects": {
+        "chromium": {
+          "passed": 43
+        },
+        "firefox": {
+          "passed": 43
+        },
+        "webkit": {
+          "passed": 36,
+          "skipped": 7
+        },
+        "mobile": {
+          "passed": 43
+        }
+      }
+    },
+    "webKitNativeWebAudio": "unavailable-in-Windows-build",
+    "productionDependencyAudit": "no-known-vulnerabilities",
+    "secretScan": "no-findings"
   },
   "ci": {
-    "run": "https://github.com/anhtruc1803/checkall/actions/runs/41026457800",
-    "sourceCommit": "2bd1020c4399a0cd50c0ab229c161c374079a275",
-    "status": "failed-firefox-resume-pending",
+    "run": "https://github.com/anhtruc1803/checkall/actions/runs/41027637979",
+    "sourceCommit": "10665683fc23adcca48a2f597cc5804a8f6004fc",
+    "result": "passed",
+    "verify": "passed",
+    "build": "passed",
+    "typecheck": "passed",
+    "lint": "passed",
+    "secretScan": "passed",
+    "unit": {
+      "passed": 146,
+      "files": 23
+    },
+    "e2e": {
+      "passed": 172,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "durationMs": 333755.564,
+      "projects": {
+        "chromium": 43,
+        "firefox": 43,
+        "webkit": 43,
+        "mobile": 43
+      },
+      "artifact": "https://github.com/anhtruc1803/checkall/actions/runs/41027637979/artifacts/12964761587"
+    },
+    "nativeAudioSmoke": {
+      "physicalHardwareVerified": false,
+      "results": [
+        {
+          "browser": "chromium",
+          "state": "passed",
+          "sampleRate": 44100,
+          "contextState": "closed"
+        },
+        {
+          "browser": "firefox",
+          "state": "passed",
+          "sampleRate": 48000,
+          "contextState": "closed"
+        },
+        {
+          "browser": "webkit",
+          "state": "passed",
+          "sampleRate": 44100,
+          "contextState": "closed"
+        }
+      ],
+      "backend": "PulseAudio null sink, 2 channels, virtual output"
+    },
     "docker": {
       "result": "passed",
-      "jobId": 123965622361,
+      "jobId": 123969443957,
+      "durationSeconds": 70,
       "platform": "Linux CI",
       "proxyToolAndHomeRoutes": 18,
       "smokeCheckpoints": 3,
@@ -60,34 +138,9 @@
         "error": ""
       },
       "logsReviewed": true,
-      "imageId": "sha256:c4b62747dafd35eec46c2d1f97d11e7a978f754d7c23501c884269f164b7158e",
+      "artifact": "https://github.com/anhtruc1803/checkall/actions/runs/41027637979/artifacts/12964093859",
+      "imageId": "sha256:76b56e0d8a916deddaa5a50cd7449ed3e73817c5f5b084cb6848fd0fe9b08cdd",
       "imageRegistryPushed": false
-    },
-    "e2e": {
-      "passed": 166,
-      "failed": 6,
-      "skipped": 0,
-      "flaky": 0,
-      "durationMs": 281639.392,
-      "projects": {
-        "chromium": {
-          "passed": 43
-        },
-        "firefox": {
-          "passed": 37,
-          "failed": 6
-        },
-        "webkit": {
-          "passed": 43
-        },
-        "mobile": {
-          "passed": 43
-        }
-      }
-    },
-    "unit": {
-      "passed": 146,
-      "files": 23
     }
   },
   "audioAutomation": {
@@ -99,5 +152,58 @@
   "physicalHardwareVerified": false,
   "lighthouseCurrentSource": "not-measured",
   "vpsDeployed": false,
-  "finalAcceptance": "open"
+  "finalAcceptance": "open",
+  "previousCiAttempts": [
+    {
+      "run": "https://github.com/anhtruc1803/checkall/actions/runs/41026457800",
+      "sourceCommit": "2bd1020c4399a0cd50c0ab229c161c374079a275",
+      "status": "failed-firefox-resume-pending",
+      "docker": {
+        "result": "passed",
+        "jobId": 123965622361,
+        "platform": "Linux CI",
+        "proxyToolAndHomeRoutes": 18,
+        "smokeCheckpoints": 3,
+        "healthcheck": "passed",
+        "nginx": "passed",
+        "nodePortPublished": false,
+        "restart": "passed",
+        "shutdown": {
+          "exitCode": 143,
+          "oomKilled": false,
+          "error": ""
+        },
+        "logsReviewed": true,
+        "imageId": "sha256:c4b62747dafd35eec46c2d1f97d11e7a978f754d7c23501c884269f164b7158e",
+        "imageRegistryPushed": false
+      },
+      "e2e": {
+        "passed": 166,
+        "failed": 6,
+        "skipped": 0,
+        "flaky": 0,
+        "durationMs": 281639.392,
+        "projects": {
+          "chromium": {
+            "passed": 43
+          },
+          "firefox": {
+            "passed": 37,
+            "failed": 6
+          },
+          "webkit": {
+            "passed": 43
+          },
+          "mobile": {
+            "passed": 43
+          }
+        }
+      },
+      "unit": {
+        "passed": 146,
+        "files": 23
+      }
+    }
+  ],
+  "nextWork": "manual-speaker-stereo-output-routing-and-real-Safari-QA"
 }

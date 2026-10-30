@@ -48,8 +48,8 @@ Docker smoke được mở rộng thành health + 18 route VI/EN qua Nginx ở b
 
 ## Phân loại nghiệm thu
 
-- Đã triển khai: ba engine public dùng graph thật, VI/EN, registry/SEO, lifecycle và bài kiểm thử mới.
-- Đang xác minh tại checkpoint tạo tài liệu: hồi quy E2E toàn bộ và CI source mới; xem bản chốt PROGRESS/JSON để biết kết quả thực tế.
+- Đã hoàn thành và xác minh: ba engine public dùng graph thật, VI/EN, registry/SEO/lifecycle, 146 unit/172 E2E và Docker CI source 1066568.
+- Đã triển khai nhưng chưa xác minh bằng phần cứng: nghe Speaker/Stereo/Generator, mute/output routing và gián đoạn trên thiết bị thật.
 - Chưa hoàn thành: tám draft còn lại; Final Acceptance toàn Phase 1/2 vẫn mở.
 - Không thể kiểm chứng bằng automation hiện tại: âm thanh nghe được, stereo vật lý, chất lượng loa/DAC, Safari/thiết bị thật. Lighthouse source mới chưa đo; không tái sử dụng điểm cũ như kết quả mới.
 
@@ -57,4 +57,14 @@ Nguồn phương pháp: [Web Audio API W3C](https://www.w3.org/TR/webaudio/) cho
 
 ## Backend audio của Linux CI
 
-CI đầu source 2bd1020 đạt 166/172 E2E; sáu bài Firefox không vượt qua resume/Preparing, trong khi Chromium/WebKit Linux/mobile đều 43/43. Workflow bổ sung PulseAudio với module-null-sink hai kênh và native audio smoke ba browser, lưu JSON kết quả rồi mới chạy E2E. Không thay browser API bằng mock và không tăng timeout để che lỗi. Cần run mới xác minh backend và đủ 172 bài không skip. Null sink là output ảo; các số sample rate trong QA không phải thông số phần cứng. Tham khảo [mã nguồn module-null-sink của PulseAudio](https://github.com/pulseaudio/pulseaudio/blob/master/src/modules/module-null-sink.c).
+CI đầu source 2bd1020 đạt 166/172 E2E; sáu bài Firefox không vượt qua resume/Preparing, trong khi Chromium/WebKit Linux/mobile đều 43/43. Workflow bổ sung PulseAudio với module-null-sink hai kênh và native audio smoke ba browser, lưu JSON kết quả rồi mới chạy E2E. Không thay browser API bằng mock và không tăng timeout để che lỗi. Run cuối 41027637979 source 1066568 đã xác minh backend và đủ 172 bài không skip. Null sink là output ảo; các số sample rate trong QA không phải thông số phần cứng. Tham khảo [mã nguồn module-null-sink của PulseAudio](https://github.com/pulseaudio/pulseaudio/blob/master/src/modules/module-null-sink.c).
+
+## Kết quả chốt
+
+**Nghiệm thu automated QA source 1066568:** CI [41027637979](https://github.com/anhtruc1803/checkall/actions/runs/41027637979) success cả verify và Docker. Typecheck/lint/build/secret scan đạt; 146/146 unit trên 23 file và 172/172 E2E, Chromium/Firefox/WebKit/mobile đều 43/43, không skip/unexpected/flaky. Đã tải và đọc [browser-qa JSON](https://github.com/anhtruc1803/checkall/actions/runs/41027637979/artifacts/12964761587), E2E 333755,564 ms (khoảng 5,6 phút). Native audio smoke ba browser đều resume/graph/close thành công với output ảo; sample rate context thực là Chromium 44.100, Firefox 48.000, WebKit 44.100 Hz, không phải thông số DAC/loa.
+
+Docker source 1066568 đạt trong 70 giây: image build, healthy, Nginx, health + 18 route VI/EN ở ba checkpoint, Node không publish port, restart/stop-start và SIGTERM exit 143, OOMKilled false/Error rỗng. Đã đọc logs/containers/shutdown của [artifact Docker](https://github.com/anhtruc1803/checkall/actions/runs/41027637979/artifacts/12964093859), không có lỗi ứng dụng hoặc HTTP 4xx/5xx trong smoke. Image ID runner sha256:76b56e0d8a916deddaa5a50cd7449ed3e73817c5f5b084cb6848fd0fe9b08cdd; không push registry/VPS.
+
+Local: unit cuối source 1066568 đạt 146/146; build/typecheck/lint đạt. Hồi quy toàn bộ build eea659e: 165 đạt, bảy skip WebKit Windows, 403283,617 ms. Sau deadline theo audio clock, build lại 2bd1020 và nhóm audio đạt 29, bảy skip WebKit Windows; không failure/flaky. Bảy skip không tính là đã kiểm chứng playback trên Windows WebKit; CI Linux cuối đã chạy đủ các bài này bằng native API. Không dùng kết quả build cũ làm bằng chứng deadline mới.
+
+Lỗi CI Firefox Linux chờ resume ở run 41026457800 (166/172) được xử lý bằng PulseAudio null sink và native audio smoke, không sửa kỳ vọng E2E hoặc dùng mock thay API thật. Profile CI vẫn chạy đủ 172 bài. Null sink chỉ xác minh browser/graph, không xác nhận âm thanh nghe được.
