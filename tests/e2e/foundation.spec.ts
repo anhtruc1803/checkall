@@ -7,19 +7,19 @@ test('all Phase 2 drafts stay out of VI/EN routes, navigation, search and sitema
 }) => {
   test.setTimeout(120000);
   const drafts = tools.filter((tool) => tool.status === 'draft');
-  expect(drafts).toHaveLength(11);
+  expect(drafts).toHaveLength(8);
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
-    await expect(page.locator('.catalog-item')).toHaveCount(29);
-    await expect(page.locator('.desktop-nav a')).toHaveCount(5);
+    await expect(page.locator('.catalog-item')).toHaveCount(32);
+    await expect(page.locator('.desktop-nav a')).toHaveCount(6);
     for (const tool of drafts) {
       const route = `/${locale}/${tool.category}/${tool.slug}`;
       expect((await request.get(route)).status(), route).toBe(404);
       expect(sitemap).not.toContain(route);
       await expect(page.locator(`a[href="${route}"]`)).toHaveCount(0);
     }
-    for (const category of ['audio', 'camera', 'gamepad'])
+    for (const category of ['camera', 'gamepad'])
       expect((await request.get(`/${locale}/${category}`)).status()).toBe(404);
     await page
       .getByRole('textbox', { name: locale === 'vi' ? 'Tìm kiếm công cụ' : 'Search testing tools' })
@@ -65,11 +65,21 @@ test('published non-media tools never request media or permission status and ret
     '/en/browser/fullscreen',
     '/en/mouse/movement',
     '/en/mouse/accuracy',
+    '/en/audio/speaker',
+    '/en/audio/stereo',
+    '/en/audio/frequency-generator',
   ]) {
     await page.goto(path);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     const workspace = page.locator('.tool-workspace [aria-busy]');
-    if (await workspace.count()) await expect(workspace).toHaveAttribute('aria-busy', 'false');
+    if (
+      path.includes('/audio/') &&
+      !(await page.evaluate(() => typeof AudioContext === 'function'))
+    )
+      await expect(page.locator('.tool-workspace')).toContainText(
+        'Not supported by this browser or device.',
+      );
+    else if (await workspace.count()) await expect(workspace).toHaveAttribute('aria-busy', 'false');
     const read = page.getByRole('button', { name: 'Read data', exact: true });
     if (await read.count()) {
       await read.click();

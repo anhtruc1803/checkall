@@ -2,7 +2,7 @@
 
 Nền tảng kiểm tra thiết bị cục bộ trên trình duyệt, song ngữ Việt/Anh. Phase 1 có 21 công cụ: 11 màn hình, 5 bàn phím và 5 chuột. Không tài khoản, database hoặc upload sự kiện thiết bị.
 
-Phase 2 có nền tảng registry/capability/permission và tám công cụ Milestone 2: thiết bị/browser/GPU, touch/pointer, storage, fullscreen và mouse movement/accuracy. Tổng cộng 29 công cụ công bố; 11 mục audio/camera/gamepad còn draft. Xem [nền tảng](docs/PHASE2-FOUNDATION.md) và [Milestone 2](docs/PHASE2-MILESTONE2.md).
+Phase 2 có nền tảng registry/capability/permission và tám công cụ Milestone 2: thiết bị/browser/GPU, touch/pointer, storage, fullscreen và mouse movement/accuracy. Milestone 3 bổ sung Speaker Test, Stereo Channel Test và Frequency Generator. Tổng cộng 32 công cụ công bố; tám mục microphone/spectrum/camera/gamepad còn draft. Xem [nền tảng](docs/PHASE2-FOUNDATION.md) và [Milestone 2](docs/PHASE2-MILESTONE2.md) và [Milestone 3](docs/PHASE2-MILESTONE3.md).
 
 ## Chạy phát triển
 

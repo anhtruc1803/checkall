@@ -30,18 +30,13 @@ export const implementedEngines = [
   'fullscreen',
   'mouse-movement',
   'mouse-accuracy',
+  'audio-output',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {
   return implementedEngines.some((available) => available === engine);
 }
-export type Engine =
-  | ImplementedEngine
-  | 'audio-output'
-  | 'microphone'
-  | 'audio-spectrum'
-  | 'camera'
-  | 'gamepad';
+export type Engine = ImplementedEngine | 'microphone' | 'audio-spectrum' | 'camera' | 'gamepad';
 export interface ToolCopy {
   name: string;
   description: string;

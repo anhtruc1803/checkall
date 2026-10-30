@@ -349,5 +349,28 @@
     "renderedWidth": "Rendered region width",
     "renderedHeight": "Rendered region height",
     "exitHint": "Use the exit button or Esc. Your browser may provide another exit gesture."
+  },
+  "audioTools": {
+    "consent": "Lower system volume first. Start plays a signal for up to 10 seconds. Begin at a low level; stop if uncomfortable. Focus loss or leaving this tab stops playback.",
+    "volume": "Signal level: {value}%",
+    "channel": "Output channel",
+    "both": "Both channels",
+    "left": "Left only",
+    "right": "Right only",
+    "frequency": "Frequency (Hz)",
+    "wave": "Waveform",
+    "sine": "Sine",
+    "triangle": "Triangle",
+    "square": "Square",
+    "sawtooth": "Sawtooth",
+    "range": "20–20,000 Hz, below the actual context Nyquist frequency. Levels describe digital amplitude, not acoustic loudness.",
+    "invalid": "Enter a valid frequency within the supported range. Playback is stopped for invalid settings.",
+    "blocked": "Playback was not allowed or did not start. Check browser audio settings, then select Start again.",
+    "failed": "The audio session could not run. Check the output device and browser settings, then try again.",
+    "interrupted": "Playback stopped because focus, visibility or audio context state changed. Select Start to play again.",
+    "configuredFrequency": "Configured signal frequency",
+    "sampleRate": "AudioContext sample rate",
+    "interpretation": "Playing signal means the Web Audio graph is active. Completed means the signal ended. Neither confirms audible output or working hardware. No microphone, recording, upload or saved history.",
+    "playing": "Playing signal"
   }
 }

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { ArrowUpRight, Monitor, Keyboard, Mouse, Search, Cpu, Globe } from 'lucide-react';
+import { ArrowUpRight, Monitor, Keyboard, Mouse, Volume2, Search, Cpu, Globe } from 'lucide-react';
 import {
   getSearchCategories,
   searchToolIndex,
@@ -16,6 +16,7 @@ const icons: Partial<Record<Category, typeof Monitor>> = {
   screen: Monitor,
   keyboard: Keyboard,
   mouse: Mouse,
+  audio: Volume2,
   device: Cpu,
   browser: Globe,
 };

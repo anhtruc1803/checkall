@@ -1,5 +1,7 @@
 # Kiến trúc Device Lab
 
+Milestone hiện hành: Phase 2 Milestone 3. Registry có 32 published (21 Phase 1 + 11 Phase 2), tám draft; engine audio-output được dynamic import riêng cho D01/D02/D04. OutputSession trong src/lib/audio chỉ tạo AudioContext sau Start, quản lý gain/stereo/oscillator, giới hạn phiên và cleanup; UI trong src/features/audio dùng snapshot qua useSyncExternalStore. Không thêm dependency, quyền capture, server endpoint, database hoặc lưu audio/history. Kiến trúc các engine cũ giữ nguyên. Chi tiết ở [PHASE2-MILESTONE3.md](PHASE2-MILESTONE3.md); mô tả M2/nền tảng bên dưới giữ làm lịch sử.
+
 Milestone hiện hành: Phase 2 Milestone 2, ngày 30/10/2026. Registry có 29 published (21 Phase 1 + 8 Phase 2) và 11 draft. Các đoạn mô tả checkpoint nền tảng bên dưới giữ lại để đối chiếu; chi tiết triển khai mới ở [PHASE2-MILESTONE2.md](PHASE2-MILESTONE2.md).
 
 Engine mới vẫn dynamic import theo công cụ. Phần đọc device/GPU/storage tách trong src/lib/browser; thuật toán pointer tách trong src/lib/measurements. useInspection quản lý promise/lifetime cho snapshot, useTimedTask quản lý bộ đo trong ref và snapshot UI bốn lần/giây. Các phép ghi storage/context GPU chỉ chạy sau thao tác chủ động; không mở capability nhạy cảm khi dựng UI. useFullscreen bổ sung ownership và xử lý request đến muộn sau unmount, có regression test cho Phase 1.

@@ -1,5 +1,11 @@
 # Kiểm thử
 
+## Phase 2 Milestone 3 — 30/10/2026
+
+Ba công cụ Speaker/Stereo/Frequency Generator dùng Web Audio thật. Bộ unit/lifecycle mở rộng thêm validation/Nyquist, stereo graph, timer/late resume/cleanup và StrictMode; E2E thêm chín bài mỗi cấu hình, dự kiến tổng 172 (43 × Chromium/Firefox/WebKit/Chromium mobile). Automation phát ở mức 0, xác minh API/graph/lifecycle, không xác nhận nghe được hoặc stereo vật lý. Axe chạy ba công cụ ở Dark/Light; responsive VI/EN ở 320/375/414/768/1024/1150/1280 px. Toàn bộ hồi quy Phase 1/M2 được giữ. Chi tiết và manual QA ở [PHASE2-MILESTONE3.md](PHASE2-MILESTONE3.md); số đạt/source/CI cuối ở PROGRESS.md và qa/phase2-milestone3.json. Các kết quả M2 bên dưới là checkpoint lịch sử.
+
+WebKit Windows hiện không expose AudioContext hoặc webkitAudioContext (probe trực tiếp); bảy bài cần playback thật ghi skip có lý do, không giả API để báo đạt. Có bài fallback riêng cho cả ba công cụ ở VI/EN, hai theme và responsive. Trên CI, thiếu native AudioContext làm test fail trước khi có thể skip; cần đủ 172 bài không skip để xác nhận graph thật đa browser. WebKit automation vẫn không tương đương Safari thật.
+
 ## Phase 2 Milestone 2 — 30/10/2026
 
 Tám công cụ mới có readers/thuật toán tách khỏi UI. Bộ unit/lifecycle hiện 118 bài trên 21 file; E2E mở rộng từ 24 lên 34 bài mỗi cấu hình, tổng 136 bài dự kiến. Số đạt thực và run/commit cuối nằm ở cuối PROGRESS.md, không suy ra đã đạt chỉ từ số bài dự kiến.

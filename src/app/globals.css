@@ -1435,3 +1435,24 @@ th {
     text-align: left;
   }
 }
+
+/* Hallmark · component-scope: audio controls · tone: existing minimal · anchor hue: existing accent
+ * Critique: consistency 4/5; clarity 4/5; states 4/5; responsiveness 4/5. */
+.audio-controls {
+  margin-block: 24px;
+}
+.audio-controls .field {
+  min-width: 0;
+  max-width: 100%;
+}
+.audio-controls input {
+  max-width: 100%;
+}
+.audio-controls [aria-invalid='true'] {
+  border-color: var(--color-danger);
+}
+.audio-help {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  margin-block: 16px;
+}

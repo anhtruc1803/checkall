@@ -24,12 +24,12 @@ export function Metric({
     </div>
   );
 }
-export function Status({ state }: { state: MeasurementState }) {
+export function Status({ state, label }: { state: MeasurementState; label?: string }) {
   const t = useTranslations();
   return (
     <span className="status" role="status" data-state={state}>
       <span className="status-dot" />
-      {t(state === 'reset' ? 'idle' : state)}
+      {label ?? t(state === 'reset' ? 'idle' : state)}
     </span>
   );
 }

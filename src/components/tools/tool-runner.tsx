@@ -21,6 +21,7 @@ const StorageCapabilities = dynamic(() => import('@/features/browser/storage'));
 const FullscreenTest = dynamic(() => import('@/features/browser/fullscreen'));
 const MouseMovement = dynamic(() => import('@/features/mouse/movement'));
 const MouseAccuracy = dynamic(() => import('@/features/mouse/accuracy'));
+const AudioOutput = dynamic(() => import('@/features/audio/output'));
 const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   'screen-info': () => <ScreenInfo />,
   calculator: (id) => <Calculator toolId={id} />,
@@ -38,6 +39,7 @@ const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   fullscreen: () => <FullscreenTest />,
   'mouse-movement': () => <MouseMovement />,
   'mouse-accuracy': () => <MouseAccuracy />,
+  'audio-output': (id) => <AudioOutput toolId={id} />,
 };
 export function ToolRunner({
   tool,

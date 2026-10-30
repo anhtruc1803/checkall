@@ -1,5 +1,14 @@
 # Checklist phát hành
 
+## Phase 2 Milestone 3
+
+- [x] Ba công cụ Speaker/Stereo/Frequency Generator có graph thật, registry/VI-EN/SEO và lifecycle; giữ 29 công cụ đã công bố trước đó.
+- [x] Thêm unit/lifecycle và E2E đa browser, axe hai theme, responsive; Docker smoke bao phủ 18 route VI/EN gồm audio.
+- [ ] Chốt toàn bộ E2E/CI của source mới; kết quả thực chạy ở PROGRESS.md/qa/phase2-milestone3.json.
+- [ ] Nghe loa/tai nghe thật, stereo vật lý, mute/output routing và Safari thật.
+- [ ] Screen reader/zoom/reduced motion thủ công và Lighthouse source mới.
+- [ ] Final Acceptance toàn Phase 1/2: vẫn mở, không tự đánh dấu hoàn tất.
+
 ## Phase 2 Milestone 2
 
 - [x] Tám engine G01–G06/C06–C07 có logic và phương pháp/giới hạn VI/EN, không có số đo giả.

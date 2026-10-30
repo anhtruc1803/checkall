@@ -1,6 +1,7 @@
 import type { Capability, ToolPermission } from '@/lib/browser/capability-types';
 import type { Category, Engine, Tool } from './types';
 import { publishMilestone2 } from './phase2-milestone2';
+import { publishMilestone3 } from './phase2-milestone3';
 
 type PlannedTool = [
   string,
@@ -230,4 +231,5 @@ export const phase2Tools: Tool[] = plans
       },
     },
   }))
-  .map(publishMilestone2);
+  .map(publishMilestone2)
+  .map(publishMilestone3);

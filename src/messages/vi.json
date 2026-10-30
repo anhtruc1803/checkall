@@ -349,5 +349,28 @@
     "renderedWidth": "Chiều rộng vùng hiển thị",
     "renderedHeight": "Chiều cao vùng hiển thị",
     "exitHint": "Dùng nút thoát hoặc Esc. Browser có thể có cử chỉ thoát riêng."
+  },
+  "audioTools": {
+    "consent": "Giảm âm lượng hệ thống trước. Bắt đầu phát tín hiệu tối đa 10 giây. Thử ở mức thấp; dừng nếu khó chịu. Mất focus hoặc rời tab sẽ dừng phát.",
+    "volume": "Mức tín hiệu: {value}%",
+    "channel": "Kênh đầu ra",
+    "both": "Cả hai kênh",
+    "left": "Chỉ trái",
+    "right": "Chỉ phải",
+    "frequency": "Tần số (Hz)",
+    "wave": "Dạng sóng",
+    "sine": "Sine",
+    "triangle": "Triangle",
+    "square": "Square",
+    "sawtooth": "Sawtooth",
+    "range": "20–20.000 Hz, dưới tần số Nyquist của context thực tế. Mức tín hiệu là biên độ số, không phải độ lớn âm thanh vật lý.",
+    "invalid": "Nhập tần số hợp lệ trong phạm vi hỗ trợ. Cấu hình không hợp lệ sẽ dừng phát.",
+    "blocked": "Browser không cho phép hoặc chưa bắt đầu phát. Kiểm tra cài đặt âm thanh rồi bấm Bắt đầu lại.",
+    "failed": "Không thể chạy phiên audio. Kiểm tra thiết bị đầu ra và cài đặt browser rồi thử lại.",
+    "interrupted": "Đã dừng do thay đổi focus, trạng thái hiển thị hoặc AudioContext. Bấm Bắt đầu để phát lại.",
+    "configuredFrequency": "Tần số tín hiệu đã cấu hình",
+    "sampleRate": "Sample rate của AudioContext",
+    "interpretation": "Đang phát tín hiệu chỉ cho biết Web Audio graph đang hoạt động. Hoàn thành nghĩa là tín hiệu đã kết thúc. Hai trạng thái này không xác nhận nghe được hoặc phần cứng hoạt động. Không microphone, thu âm, upload hay lưu lịch sử.",
+    "playing": "Đang phát tín hiệu"
   }
 }
