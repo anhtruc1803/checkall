@@ -13,13 +13,82 @@
   "local": {
     "build": "passed",
     "typecheck": "passed",
-    "finalUnit": "pending",
-    "finalE2E": "pending",
+    "finalUnit": "28-audio-tests-passed-after-deadline-change",
+    "finalE2E": {
+      "scope": "audio-regression",
+      "sourceCommit": "2bd1020",
+      "passed": 29,
+      "skipped": 7,
+      "unexpected": 0,
+      "flaky": 0
+    },
     "productionDependencyAudit": "no-known-vulnerabilities",
-    "secretScan": "no-findings"
+    "secretScan": "no-findings",
+    "lint": "passed",
+    "audioRegression": {
+      "passed": 28,
+      "files": 2,
+      "sourceCommit": "2bd1020"
+    },
+    "webKitNativeWebAudio": "unavailable",
+    "priorFullE2E": {
+      "sourceCommit": "eea659e",
+      "passed": 165,
+      "skipped": 7,
+      "unexpected": 0,
+      "flaky": 0,
+      "durationMs": 403283.617
+    }
   },
   "ci": {
-    "status": "pending-new-source"
+    "run": "https://github.com/anhtruc1803/checkall/actions/runs/41026457800",
+    "sourceCommit": "2bd1020c4399a0cd50c0ab229c161c374079a275",
+    "status": "failed-firefox-resume-pending",
+    "docker": {
+      "result": "passed",
+      "jobId": 123965622361,
+      "platform": "Linux CI",
+      "proxyToolAndHomeRoutes": 18,
+      "smokeCheckpoints": 3,
+      "healthcheck": "passed",
+      "nginx": "passed",
+      "nodePortPublished": false,
+      "restart": "passed",
+      "shutdown": {
+        "exitCode": 143,
+        "oomKilled": false,
+        "error": ""
+      },
+      "logsReviewed": true,
+      "imageId": "sha256:c4b62747dafd35eec46c2d1f97d11e7a978f754d7c23501c884269f164b7158e",
+      "imageRegistryPushed": false
+    },
+    "e2e": {
+      "passed": 166,
+      "failed": 6,
+      "skipped": 0,
+      "flaky": 0,
+      "durationMs": 281639.392,
+      "projects": {
+        "chromium": {
+          "passed": 43
+        },
+        "firefox": {
+          "passed": 37,
+          "failed": 6
+        },
+        "webkit": {
+          "passed": 43
+        },
+        "mobile": {
+          "passed": 43
+        }
+      }
+    },
+    "unit": {
+      "passed": 146,
+      "files": 23
+    }
   },
   "audioAutomation": {
     "realWebAudio": "volume-zero",

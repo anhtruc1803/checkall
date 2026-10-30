@@ -14,7 +14,7 @@ Registry có 40 định nghĩa, 32 published (21 Phase 1 + 11 Phase 2), tám dra
 
 Chỉ tạo AudioContext và gọi resume sau Bắt đầu. Không gọi getUserMedia, permissions.query hoặc enumerateDevices. Không tải file audio, thu microphone, gửi dữ liệu, lưu localStorage/history hay tạo server endpoint. Header camera=()/microphone=()/geolocation=() giữ nguyên. Mức mặc định 3%, giới hạn 0–20% **biên độ số**, không phải phần trăm độ lớn cảm nhận hoặc dB SPL; cần giảm âm lượng hệ thống trước khi thử.
 
-Oscillator nối hai GainNode vào input 0/1 của ChannelMergerNode, qua master GainNode rồi tới output browser chọn. Gain/tần số chuyển bằng setTargetAtTime; dừng giảm gain ngắn rồi stop/disconnect/close. Không tự chọn thiết bị hoặc hứa định tuyến vật lý chính xác: mono, spatial audio, driver và output mute có thể làm khác trải nghiệm.
+Deadline oscillator.stop được đặt theo audio clock để không phụ thuộc độ trễ timer UI. Oscillator nối hai GainNode vào input 0/1 của ChannelMergerNode, qua master GainNode rồi tới output browser chọn. Gain/tần số chuyển bằng setTargetAtTime; dừng giảm gain ngắn rồi stop/disconnect/close. Không tự chọn thiết bị hoặc hứa định tuyến vật lý chính xác: mono, spatial audio, driver và output mute có thể làm khác trải nghiệm.
 
 Mỗi phiên tối đa 10 giây. Preparing chờ resume tối đa 10 giây rồi báo bị chặn, không tự phát lại. Stop, Reset, blur, hidden, pagehide và unmount vô hiệu hóa phiên cũ; resume resolve/reject đến muộn không thể khởi tạo oscillator hoặc ghi đè phiên mới. Reset/unmount dọn cả timer đóng context đang chờ. Lỗi cấp phát một phần và context bị suspended/interrupted được xử lý rõ. Các thay đổi cấu hình khi preparing bị khóa để tránh ghi đè lựa chọn trong lúc resume chờ.
 
@@ -54,3 +54,7 @@ Docker smoke được mở rộng thành health + 18 route VI/EN qua Nginx ở b
 - Không thể kiểm chứng bằng automation hiện tại: âm thanh nghe được, stereo vật lý, chất lượng loa/DAC, Safari/thiết bị thật. Lighthouse source mới chưa đo; không tái sử dụng điểm cũ như kết quả mới.
 
 Nguồn phương pháp: [Web Audio API W3C](https://www.w3.org/TR/webaudio/) cho OscillatorNode/GainNode/ChannelMergerNode, AudioContext resume/close và giới hạn sample rate; [Autoplay Policy Detection W3C](https://www.w3.org/TR/autoplay-detection/) nêu policy phụ thuộc user agent. Ứng dụng xử lý resume/state thực tế, không phụ thuộc API autoplay detection đang ở dạng dự thảo.
+
+## Backend audio của Linux CI
+
+CI đầu source 2bd1020 đạt 166/172 E2E; sáu bài Firefox không vượt qua resume/Preparing, trong khi Chromium/WebKit Linux/mobile đều 43/43. Workflow bổ sung PulseAudio với module-null-sink hai kênh và native audio smoke ba browser, lưu JSON kết quả rồi mới chạy E2E. Không thay browser API bằng mock và không tăng timeout để che lỗi. Cần run mới xác minh backend và đủ 172 bài không skip. Null sink là output ảo; các số sample rate trong QA không phải thông số phần cứng. Tham khảo [mã nguồn module-null-sink của PulseAudio](https://github.com/pulseaudio/pulseaudio/blob/master/src/modules/module-null-sink.c).

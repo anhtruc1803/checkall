@@ -20,6 +20,16 @@ jobs:
       - run: node scripts/scan-secrets.mjs
       - run: pnpm test
       - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: Chuẩn bị audio backend ảo cho browser Linux
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y pulseaudio pulseaudio-utils
+          pulseaudio --start --exit-idle-time=-1
+          pactl load-module module-null-sink sink_name=device_lab_qa rate=48000 channels=2 channel_map=front-left,front-right
+          pactl set-default-sink device_lab_qa
+          pactl info
+          pactl list short sinks
+          node scripts/smoke-audio.mjs
       - run: pnpm build
       - run: pnpm test:e2e
       - name: Lưu bằng chứng QA
@@ -29,6 +39,7 @@ jobs:
           name: browser-qa
           path: |
             artifacts/playwright/
+            artifacts/audio-smoke/
             playwright-report/
             test-results/
   docker-smoke:

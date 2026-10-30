@@ -6,6 +6,8 @@ Ba công cụ Speaker/Stereo/Frequency Generator dùng Web Audio thật. Bộ un
 
 WebKit Windows hiện không expose AudioContext hoặc webkitAudioContext (probe trực tiếp); bảy bài cần playback thật ghi skip có lý do, không giả API để báo đạt. Có bài fallback riêng cho cả ba công cụ ở VI/EN, hai theme và responsive. Trên CI, thiếu native AudioContext làm test fail trước khi có thể skip; cần đủ 172 bài không skip để xác nhận graph thật đa browser. WebKit automation vẫn không tương đương Safari thật.
 
+CI Linux audio cần backend output: workflow cài/chạy PulseAudio và tạo null sink hai kênh, không cần thiết bị thật. scripts/smoke-audio.mjs kiểm tra resume, graph mức 0 và close bằng native API của ba browser trước E2E; nếu backend không hoạt động, gate thất bại và lưu artifacts/audio-smoke/results.json. Không thay bằng mock hoặc bỏ bài phát âm. CI 41026457800 trước cấu hình backend đạt 166/172, sáu lỗi Firefox resume pending; kết quả sau cấu hình được ghi ở PROGRESS/JSON.
+
 ## Phase 2 Milestone 2 — 30/10/2026
 
 Tám công cụ mới có readers/thuật toán tách khỏi UI. Bộ unit/lifecycle hiện 118 bài trên 21 file; E2E mở rộng từ 24 lên 34 bài mỗi cấu hình, tổng 136 bài dự kiến. Số đạt thực và run/commit cuối nằm ở cuối PROGRESS.md, không suy ra đã đạt chỉ từ số bài dự kiến.
