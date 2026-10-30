@@ -92,6 +92,7 @@ it('bounds playback and releases all nodes, context and timers', async () => {
   const audio = fakeAudio(),
     session = new OutputSession(audio.factory);
   await session.start(defaultOutput);
+  expect(audio.oscillator.stop).toHaveBeenCalledWith(1 + outputDuration / 1000);
   vi.advanceTimersByTime(outputDuration);
   expect(session.getSnapshot().state).toBe('completed');
   expect(audio.gains[2].gain.setTargetAtTime).toHaveBeenLastCalledWith(0, 1, 0.003);

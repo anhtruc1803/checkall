@@ -189,6 +189,8 @@ export class OutputSession {
       oscillator.frequency.value = settings.frequency;
       oscillator.type = settings.wave;
       oscillator.start();
+      // Bound sound on the audio clock even if the main thread delays the UI timer.
+      oscillator.stop(context.currentTime + outputDuration / 1000);
       master.gain.setTargetAtTime(settings.volume, context.currentTime, 0.01);
       context.onstatechange = () => {
         if (this.current === pending && context.state !== 'running') this.interrupt();
