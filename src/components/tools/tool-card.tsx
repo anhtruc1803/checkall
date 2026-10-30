@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowUpRight, Monitor, Keyboard, Mouse } from 'lucide-react';
+import { ArrowUpRight, Monitor, Keyboard, Mouse, Cpu, Globe } from 'lucide-react';
 import type { Tool, Category } from '@/lib/tools/registry';
 import { toolHref } from '@/lib/tools/registry';
 import type { Locale } from '@/lib/i18n/routing';
@@ -7,6 +7,8 @@ const icons: Partial<Record<Category, typeof Monitor>> = {
   screen: Monitor,
   keyboard: Keyboard,
   mouse: Mouse,
+  device: Cpu,
+  browser: Globe,
 };
 export function ToolCard({
   tool,

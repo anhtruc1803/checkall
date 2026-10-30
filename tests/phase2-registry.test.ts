@@ -16,15 +16,20 @@ import type { Tool } from '@/lib/tools/types';
 import sitemap from '@/app/sitemap';
 
 describe('Phase 2 publication boundary', () => {
-  it('keeps 21 real Phase 1 tools and 19 explicitly unindexed drafts', () => {
+  it('keeps 21 Phase 1 tools, publishes exactly eight Milestone 2 tools and leaves 11 drafts', () => {
     expect(tools).toHaveLength(40);
     expect(new Set(tools.map((tool) => tool.id)).size).toBe(40);
-    expect(publishedTools).toHaveLength(21);
-    expect(publishedTools.every((tool) => tool.phase === 1 && tool.permissions.length === 0)).toBe(
-      true,
-    );
-    const drafts = tools.filter((tool) => tool.phase === 2);
-    expect(drafts).toHaveLength(19);
+    expect(publishedTools).toHaveLength(29);
+    expect(publishedTools.filter((tool) => tool.phase === 1)).toHaveLength(21);
+    expect(
+      publishedTools
+        .filter((tool) => tool.phase === 2)
+        .map((tool) => tool.id)
+        .sort(),
+    ).toEqual(['C06', 'C07', 'G01', 'G02', 'G03', 'G04', 'G05', 'G06']);
+    expect(publishedTools.every((tool) => tool.permissions.length === 0)).toBe(true);
+    const drafts = tools.filter((tool) => tool.status === 'draft');
+    expect(drafts).toHaveLength(11);
     for (const draft of drafts) {
       expect(draft.status).toBe('draft');
       expect(draft.seo.index).toBe(false);
@@ -38,10 +43,10 @@ describe('Phase 2 publication boundary', () => {
     }
   });
   it('derives navigation from published tools, even when a new category has only drafts', () => {
-    expect(categories).toEqual(['screen', 'keyboard', 'mouse']);
+    expect(categories).toEqual(['screen', 'keyboard', 'mouse', 'device', 'browser']);
     expect(getSearchCategories(getToolSearchIndex('en'))).toEqual(categories);
-    expect(getPublishedTools(tools.filter((tool) => tool.phase === 2))).toEqual([]);
-    expect(getPublishedCategories(tools.filter((tool) => tool.phase === 2))).toEqual([]);
+    expect(getPublishedTools(tools.filter((tool) => tool.status === 'draft'))).toEqual([]);
+    expect(getPublishedCategories(tools.filter((tool) => tool.status === 'draft'))).toEqual([]);
     const audio = { ...tools.find((tool) => tool.id === 'D01')!, status: 'published' as const };
     expect(getPublishedCategories([audio])).toEqual(['audio']);
   });

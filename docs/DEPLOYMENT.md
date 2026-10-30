@@ -1,5 +1,7 @@
 # Triển khai và vận hành
 
+Milestone hiện hành: Phase 2 Milestone 2, ngày 30/10/2026. Tám công cụ bổ sung chỉ chạy browser-local; không thêm backend endpoint, quyền camera/microphone hoặc thay đổi kiến trúc Docker/Nginx. Policy camera=()/microphone=()/geolocation=() giữ nguyên. Docker smoke cần xác minh lại image/source mới trên CI Linux; kết quả run/commit được ghi ở cuối PROGRESS.md, không tự kế thừa kết quả milestone trước.
+
 ## Điều kiện
 
 VPS Linux có Docker Engine và Docker Compose plugin; DNS A/AAAA trỏ về VPS; tường lửa chỉ mở cổng web cần thiết, SSH theo chính sách của quản trị viên. Không mở cổng Node 3000 công khai. Chưa có máy chủ production nào được cấu hình trong tác vụ này.

@@ -1,5 +1,9 @@
 # Kiến trúc Device Lab
 
+Milestone hiện hành: Phase 2 Milestone 2, ngày 30/10/2026. Registry có 29 published (21 Phase 1 + 8 Phase 2) và 11 draft. Các đoạn mô tả checkpoint nền tảng bên dưới giữ lại để đối chiếu; chi tiết triển khai mới ở [PHASE2-MILESTONE2.md](PHASE2-MILESTONE2.md).
+
+Engine mới vẫn dynamic import theo công cụ. Phần đọc device/GPU/storage tách trong src/lib/browser; thuật toán pointer tách trong src/lib/measurements. useInspection quản lý promise/lifetime cho snapshot, useTimedTask quản lý bộ đo trong ref và snapshot UI bốn lần/giây. Các phép ghi storage/context GPU chỉ chạy sau thao tác chủ động; không mở capability nhạy cảm khi dựng UI. useFullscreen bổ sung ownership và xử lý request đến muộn sau unmount, có regression test cho Phase 1.
+
 Ứng dụng modular monolith dùng Next.js App Router, React, TypeScript strict, Tailwind CSS, các thành phần shadcn/ui, Lucide và next-intl. Không có tài khoản, database hay upload log thiết bị.
 
 - `src/app/[locale]`: trang server và metadata song ngữ.

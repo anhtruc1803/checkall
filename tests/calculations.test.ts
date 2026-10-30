@@ -55,7 +55,7 @@ describe('timing', () => {
 });
 describe('registry', () => {
   it('publishes exactly 21 unique bilingual capabilities', () => {
-    const published = tools.filter((tool) => tool.status === 'published');
+    const published = tools.filter((tool) => tool.status === 'published' && tool.phase === 1);
     expect(published).toHaveLength(21);
     expect(new Set(published.map((t) => t.id)).size).toBe(21);
     expect(published.filter((t) => t.category === 'screen')).toHaveLength(11);

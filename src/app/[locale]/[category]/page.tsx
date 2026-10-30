@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { categories, getToolSearchIndex, type Category } from '@/lib/tools/registry';
+import { categories, publishedTools, getToolSearchIndex, type Category } from '@/lib/tools/registry';
 import { Catalog } from '@/components/tools/catalog';
 import type { Locale } from '@/lib/i18n/routing';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -19,7 +19,7 @@ export async function generateMetadata({
     locale,
     `/${category}`,
     t(category),
-    `${t(category)} — ${t('heroDescription')}`,
+    `${t(category)} — ${t('heroDescription', { count: publishedTools.length })}`,
   );
 }
 export default async function CategoryPage({

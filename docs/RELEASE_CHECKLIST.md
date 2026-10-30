@@ -1,5 +1,17 @@
 # Checklist phát hành
 
+## Phase 2 Milestone 2
+
+- [x] Tám engine G01–G06/C06–C07 có logic và phương pháp/giới hạn VI/EN, không có số đo giả.
+- [x] 21 chức năng Phase 1 giữ nguyên, 11 draft còn lại không có route/search/sitemap công bố.
+- [x] GPU opt-in, Web Storage isolated cleanup, pointer buffers/time limit, Fullscreen ownership/late request có kiểm thử.
+- [x] Typecheck/lint/build và 118 unit/integration tests đạt cục bộ.
+- [ ] Chốt ma trận 136 E2E trên source cuối và CI Linux/Docker; xem kết quả thực ở cuối PROGRESS.md.
+- [ ] Manual QA Safari thật, GPU/driver, cảm ứng/bút và chuột vật lý theo PHASE2-MILESTONE2.md.
+- [ ] Đo lại Performance source mới trong môi trường sạch/CPU ổn định; không dùng điểm Phase 1 cũ thay thế.
+
+## Checkpoint Phase 1
+
 - [x] 21 khả năng Phase 1 có engine thật và route VI/EN.
 - [x] TypeScript strict, ESLint và unit/integration tests chạy đạt ở các checkpoint.
 - [x] Nội dung SEO, canonical, alternates, sitemap, robots và Breadcrumb JSON-LD.

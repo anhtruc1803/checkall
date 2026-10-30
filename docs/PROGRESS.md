@@ -220,3 +220,26 @@ Tiếp theo chốt unit/E2E/CI, rồi milestone nhóm thông tin thiết bị/br
 **Hoàn thành Phase 2 Milestone 1 trong phạm vi đã yêu cầu:** registry draft/publication boundary, capability, permission observer/hook và media session nền tảng, giữ chức năng Phase 1. Tài liệu tiếng Việt và dữ liệu gọn ở PHASE2-FOUNDATION.md, ARCHITECTURE.md, TOOL_SPECIFICATIONS.md, TESTING.md, DEPLOYMENT.md và qa/phase2-foundation.json. Source đã push main; commit tiếp theo chỉ chốt tài liệu/bằng chứng, không thay đổi source đã kiểm thử.
 
 Còn mở: 19 công cụ vẫn draft; chưa có engine Phase 2, chưa xác minh thiết bị/Safari thật, chưa đo Lighthouse revision mới và chưa triển khai HTTPS/VPS. Không đổi trạng thái Final Acceptance Phase 1/2. Công việc tiếp theo là milestone công cụ thông tin/capability và mouse/fullscreen theo lộ trình, với kiểm thử riêng trước khi công bố từng công cụ.
+
+## Phase 2 — Milestone 2, ngày 30/10/2026
+
+Người dùng yêu cầu triển khai thông tin thiết bị/browser/GPU, touch/pointer, storage, fullscreen và mouse movement/accuracy; giữ Phase 1, kiểm thử, tài liệu tiếng Việt và push GitHub.
+
+### Đã triển khai
+
+- Tám engine thật G01–G06, C06–C07; snapshot đọc chủ động, dữ liệu thiếu/không hỗ trợ không có giá trị mẫu thay thế.
+- GPU context tạm, WebGL 2/1 fallback, opt-in renderer chi tiết và cleanup. Storage round-trip khóa tạm riêng, kiểm tra cleanup, estimate/persisted đọc độc lập và không gọi persist.
+- Pointer/touch nhận event trong vùng, mouse movement tính đoạn CSS và bộ đệm 120 điểm, accuracy chấm mười mục tiêu theo hình học thật. Chỉ primary mouse được chấm, keyboard/touch/pen không tạo điểm giả.
+- useTimedTask dừng theo lifecycle/focus/visibility/resize và giới hạn phiên; useInspection bỏ kết quả đến muộn. useFullscreen xử lý late request/ownership, có regression cleanup cho Phase 1.
+- Registry 29 published/11 draft, năm category, 58 route công cụ VI/EN, 72 URL nội dung. Đếm homepage động, nội dung SEO/FAQ/phương pháp/giới hạn riêng và bản dịch đầy đủ. Header quyền media không thay đổi.
+- UI dùng token/font hiện có, controls trước hydration vẫn inert, menu thích ứng thêm category, không đổi stack hoặc thêm dependency.
+
+### File chính và kiểm tra ban đầu
+
+src/features/{device,browser,mouse}; readers src/lib/browser/{device-details,gpu-details,storage-details}.ts; src/lib/measurements/{pointer-tasks,pointer-observation}.ts; hooks useInspection/useTimedTask/useFullscreen; registry/metadata/VI-EN/CSS, unit/lifecycle/E2E tests và tài liệu milestone.
+
+Typecheck/lint/production build đạt; 118/118 unit/integration tests trên 21 file đã đạt. Mười E2E mới trên Chromium đạt 10/10, gồm axe tám trang × hai theme và responsive năm độ rộng. Bộ hồi quy toàn bộ 136 bài trên Chromium/Firefox/WebKit/mobile đang chạy; chưa coi các bài đang chạy là đạt. Dependency audit production không ghi nhận lỗ hổng đã biết; secret scan 160 file không finding tại checkpoint này.
+
+Ảnh QA và demo tám trạng thái UI ở artifacts/milestone2, không commit. Đọc lại giới hạn đo theo Storage/Fullscreen WHATWG, WebGL Khronos và Pointer Events W3C. Không có kiểm thử thiết bị/Safari thật, không đo lại Lighthouse source này và không triển khai VPS. Chi tiết/ma trận manual ở PHASE2-MILESTONE2.md. Kết quả cuối/CI sẽ cập nhật sau khi thực chạy.
+
+Lượt E2E toàn bộ đầu đạt 135/136; riêng Mouse Movement mobile không nhận mẫu. Probe thực tế xác nhận vùng bắt đầu ở y=624,84 px trong viewport cao 664 px; ba tọa độ automation ở y+50/y+100 nằm ngoài viewport nên browser không gửi PointerEvent. Sau scrollIntoView, vùng ở y=343,84 và nhận đủ ba sự kiện mouse, đúng thuật toán. Đã sửa thao tác test cuộn vùng vào viewport và thêm assertion tọa độ nhìn thấy; giữ nguyên yêu cầu ít nhất ba mẫu/quãng đường 120 CSS px và không sửa dữ liệu engine. Qua ảnh QA còn sửa CSS riêng bảng thông tin thành grid thật, bỏ max-width cũ để mobile chuyển một cột; cần build/QA lại source cuối.

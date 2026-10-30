@@ -1330,3 +1330,108 @@ th {
   min-width: 0;
   max-width: 100%;
 }
+
+/* Hallmark · component: device-testing regions · genre: modern-minimal · theme: existing Device Lab
+ * pre-emit critique: P4 H4 E4 S5 R5 V4 · states inherit existing buttons/status/fieldset.
+ */
+.inspection-list {
+  margin-top: 20px;
+}
+.inspection-list .device-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  align-items: start;
+  gap: 16px;
+}
+.inspection-list dd {
+  min-width: 0;
+  max-width: none;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+.pointer-task-region {
+  position: relative;
+  min-height: 320px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  overflow: clip;
+  user-select: none;
+}
+.pointer-task-region > p {
+  padding: 24px;
+  pointer-events: none;
+}
+.pointer-trail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.accuracy-target {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-accent-bg);
+  color: var(--color-ink);
+  font: 600 1rem var(--font-mono);
+}
+.accuracy-target:hover {
+  border-color: var(--color-focus);
+}
+.accuracy-target:active {
+  border-width: 4px;
+}
+.fullscreen-test-stage {
+  min-width: 0;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+.fullscreen-test-stage:fullscreen {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow: auto;
+}
+.fullscreen-test-stage:fullscreen .fullscreen-grid {
+  flex: 1;
+}
+.fullscreen-grid {
+  display: grid;
+  place-items: center;
+  min-height: 140px;
+  border: 1px dashed var(--color-muted);
+  font: 4rem var(--font-mono);
+  color: var(--color-accent);
+}
+@media (max-width: 1050px) {
+  .desktop-nav {
+    display: none;
+  }
+  .menu-toggle {
+    display: inline-flex;
+  }
+  .mobile-nav {
+    display: grid;
+    padding: 12px 0;
+    gap: 12px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+}
+@media (max-width: 680px) {
+  .inspection-list .device-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+  .inspection-list dd {
+    text-align: left;
+  }
+}

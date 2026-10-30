@@ -13,6 +13,14 @@ const Motion = dynamic(() => import('@/features/screen/motion'));
 const Touch = dynamic(() => import('@/features/screen/touch'));
 const KeyboardTool = dynamic(() => import('@/features/keyboard/keyboard'));
 const MouseTool = dynamic(() => import('@/features/mouse/mouse'));
+const DeviceInformation = dynamic(() => import('@/features/device/information'));
+const BrowserCompatibility = dynamic(() => import('@/features/browser/compatibility'));
+const GpuInformation = dynamic(() => import('@/features/device/gpu'));
+const PointerCapabilities = dynamic(() => import('@/features/device/pointer'));
+const StorageCapabilities = dynamic(() => import('@/features/browser/storage'));
+const FullscreenTest = dynamic(() => import('@/features/browser/fullscreen'));
+const MouseMovement = dynamic(() => import('@/features/mouse/movement'));
+const MouseAccuracy = dynamic(() => import('@/features/mouse/accuracy'));
 const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   'screen-info': () => <ScreenInfo />,
   calculator: (id) => <Calculator toolId={id} />,
@@ -22,6 +30,14 @@ const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   touch: () => <Touch />,
   keyboard: (id) => <KeyboardTool toolId={id} />,
   mouse: (id) => <MouseTool toolId={id} />,
+  'device-info': () => <DeviceInformation />,
+  'browser-info': () => <BrowserCompatibility />,
+  'gpu-info': () => <GpuInformation />,
+  'pointer-info': () => <PointerCapabilities />,
+  storage: () => <StorageCapabilities />,
+  fullscreen: () => <FullscreenTest />,
+  'mouse-movement': () => <MouseMovement />,
+  'mouse-accuracy': () => <MouseAccuracy />,
 };
 export function ToolRunner({
   tool,

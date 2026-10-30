@@ -30,7 +30,22 @@ Không phép thử nào chứng nhận native panel resolution, GTG/MPRT, NKRO, 
 
 Vòng đời chung: idle → preparing → running → completed; có stopped, warning, error, unsupported và reset. Calculator cập nhật sau dữ liệu hợp lệ; visual test cần thao tác chủ động. Tab ẩn/mất focus dừng phép đo theo thời gian và xóa trạng thái phím/nút đang giữ.
 
-## Roadmap chưa công bố
+## Phase 2 — Milestone 2
+
+| ID  | Route sau locale            | Phân loại                                       |
+| --- | --------------------------- | ----------------------------------------------- |
+| G01 | device/information          | Quan sát browser, một số trường ước tính ghi rõ |
+| G02 | browser/compatibility       | Feature detection, không xác nhận phần cứng     |
+| G03 | device/gpu                  | Quan sát WebGL, không chứng nhận GPU vật lý     |
+| G04 | device/pointer-capabilities | Quan sát PointerEvent/media queries             |
+| G05 | browser/storage             | Ước tính storage + Web Storage round-trip       |
+| G06 | browser/fullscreen          | Quan sát Fullscreen/kích thước CSS              |
+| C06 | mouse/movement              | Quan sát chuyển động con trỏ CSS                |
+| C07 | mouse/accuracy              | Tác vụ trúng mục tiêu của người dùng            |
+
+Mỗi công cụ có engine, phương pháp/giới hạn và nội dung VI/EN riêng trong phase2-milestone2.ts. Tổng 29 công cụ published; 11 công cụ audio/camera/gamepad còn draft. Chi tiết nghiệm thu và giới hạn ở [PHASE2-MILESTONE2.md](PHASE2-MILESTONE2.md).
+
+## Roadmap và checkpoint trước
 
 Phase 2: 19 khả năng audio, microphone, webcam, gamepad, device/browser/GPU information, storage, fullscreen, mouse movement/accuracy.
 

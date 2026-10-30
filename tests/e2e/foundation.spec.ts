@@ -6,20 +6,20 @@ test('all Phase 2 drafts stay out of VI/EN routes, navigation, search and sitema
   request,
 }) => {
   test.setTimeout(120000);
-  const drafts = tools.filter((tool) => tool.phase === 2);
-  expect(drafts).toHaveLength(19);
+  const drafts = tools.filter((tool) => tool.status === 'draft');
+  expect(drafts).toHaveLength(11);
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
-    await expect(page.locator('.catalog-item')).toHaveCount(21);
-    await expect(page.locator('.desktop-nav a')).toHaveCount(3);
+    await expect(page.locator('.catalog-item')).toHaveCount(29);
+    await expect(page.locator('.desktop-nav a')).toHaveCount(5);
     for (const tool of drafts) {
       const route = `/${locale}/${tool.category}/${tool.slug}`;
       expect((await request.get(route)).status(), route).toBe(404);
       expect(sitemap).not.toContain(route);
       await expect(page.locator(`a[href="${route}"]`)).toHaveCount(0);
     }
-    for (const category of ['audio', 'camera', 'gamepad', 'device', 'browser'])
+    for (const category of ['audio', 'camera', 'gamepad'])
       expect((await request.get(`/${locale}/${category}`)).status()).toBe(404);
     await page
       .getByRole('textbox', { name: locale === 'vi' ? 'Tìm kiếm công cụ' : 'Search testing tools' })
@@ -28,7 +28,7 @@ test('all Phase 2 drafts stay out of VI/EN routes, navigation, search and sitema
   }
 });
 
-test('Phase 1 never requests media or permission status and retains restrictive headers', async ({
+test('published non-media tools never request media or permission status and retain restrictive headers', async ({
   page,
   request,
 }) => {
@@ -57,11 +57,24 @@ test('Phase 1 never requests media or permission status and retains restrictive 
     '/en/screen/refresh-rate',
     '/vi/keyboard/tester',
     '/en/mouse/buttons',
+    '/en/device/information',
+    '/en/browser/compatibility',
+    '/en/device/gpu',
+    '/en/device/pointer-capabilities',
+    '/en/browser/storage',
+    '/en/browser/fullscreen',
+    '/en/mouse/movement',
+    '/en/mouse/accuracy',
   ]) {
     await page.goto(path);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     const workspace = page.locator('.tool-workspace [aria-busy]');
     if (await workspace.count()) await expect(workspace).toHaveAttribute('aria-busy', 'false');
+    const read = page.getByRole('button', { name: 'Read data', exact: true });
+    if (await read.count()) {
+      await read.click();
+      await expect(page.locator('.status')).toContainText(/Completed|Error/);
+    }
     expect(
       await page.evaluate(() => (window as Window & { __mediaCalls?: unknown }).__mediaCalls),
     ).toEqual({ capture: 0, query: 0 });

@@ -1,5 +1,15 @@
 # Kiểm thử
 
+## Phase 2 Milestone 2 — 30/10/2026
+
+Tám công cụ mới có readers/thuật toán tách khỏi UI. Bộ unit/lifecycle hiện 118 bài trên 21 file; E2E mở rộng từ 24 lên 34 bài mỗi cấu hình, tổng 136 bài dự kiến. Số đạt thực và run/commit cuối nằm ở cuối PROGRESS.md, không suy ra đã đạt chỉ từ số bài dự kiến.
+
+Kiểm tra mới: device/browser đọc chủ động và Reset; GPU không tự tạo context, opt-in driver details, WebGL 2/1/lost/blocked và cleanup; Web Storage ghi/đọc/xóa đúng khóa riêng, collision/cleanup failure, estimate/persisted thiếu hoặc lỗi; pointer thật, path break/buffer cap, hit/miss và giới hạn tác vụ; timer/blur/hidden/unmount/Fullscreen late request/ownership/ResizeObserver/pointer capture cleanup. Failure fixtures dùng dữ liệu kiểm thử xác định, không phải số đo phần cứng.
+
+E2E vẫn giữ 21 engine Phase 1 và 42 route cũ, kiểm tra tổng 58 route công cụ/72 URL nội dung, 11 draft còn lại không public. Bổ sung tám engine, thao tác click/move/touch mà browser automation nhận thực, primary mouse scoring, keyboard không tạo điểm giả, storage không xóa dữ liệu khác, GPU/storage fallback. Published non-media pages được theo dõi getUserMedia/permissions.query và header, kể cả sau thao tác đọc snapshot.
+
+Axe chạy tám trang mới ở Dark/Light; responsive kiểm tra 320/375/414/768/1024 px và language switch giữ route. Fullscreen chỉ thử vào/thoát khi browser hỗ trợ, nếu không phải có fallback. Không coi WebKit automation hoặc Chromium iPhone emulation là Safari/thiết bị cảm ứng thật. Ma trận manual chi tiết ở [PHASE2-MILESTONE2.md](PHASE2-MILESTONE2.md).
+
 ## Tự động
 
 ```bash

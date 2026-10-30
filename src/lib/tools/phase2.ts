@@ -1,5 +1,6 @@
 import type { Capability, ToolPermission } from '@/lib/browser/capability-types';
 import type { Category, Engine, Tool } from './types';
+import { publishMilestone2 } from './phase2-milestone2';
 
 type PlannedTool = [
   string,
@@ -195,9 +196,9 @@ const plans: PlannedTool[] = [
   ],
 ];
 
-// Roadmap metadata only. No routes, capture or placeholder readings are published.
-export const phase2Tools: Tool[] = plans.map(
-  ([id, category, slug, engine, requiredCapabilities, permissions, vi, en]) => ({
+// Remaining drafts stay private; Milestone 2 tools have real engines and localized specifications.
+export const phase2Tools: Tool[] = plans
+  .map<Tool>(([id, category, slug, engine, requiredCapabilities, permissions, vi, en]) => ({
     id,
     category,
     slug,
@@ -228,5 +229,5 @@ export const phase2Tools: Tool[] = plans.map(
         method: 'The measurement method will be verified before publication.',
       },
     },
-  }),
-);
+  }))
+  .map(publishMilestone2);

@@ -22,6 +22,14 @@ export const implementedEngines = [
   'touch',
   'keyboard',
   'mouse',
+  'device-info',
+  'browser-info',
+  'gpu-info',
+  'pointer-info',
+  'storage',
+  'fullscreen',
+  'mouse-movement',
+  'mouse-accuracy',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {
@@ -33,14 +41,7 @@ export type Engine =
   | 'microphone'
   | 'audio-spectrum'
   | 'camera'
-  | 'gamepad'
-  | 'device-info'
-  | 'browser-info'
-  | 'gpu-info'
-  | 'storage'
-  | 'fullscreen'
-  | 'mouse-movement'
-  | 'mouse-accuracy';
+  | 'gamepad';
 export interface ToolCopy {
   name: string;
   description: string;

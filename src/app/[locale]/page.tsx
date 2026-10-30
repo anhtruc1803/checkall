@@ -10,7 +10,7 @@ import { pageMetadata } from '@/lib/seo/metadata';
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale });
-  return pageMetadata(locale, '', t('tagline'), t('heroDescription'));
+  return pageMetadata(locale, '', t('tagline'), t('heroDescription', { count: tools.length }));
 }
 export default async function Home({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -21,7 +21,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       <section className="hero">
         <div>
           <h1>{t('heroTitle')}</h1>
-          <p>{t('heroDescription')}</p>
+          <p>{t('heroDescription', { count: tools.length })}</p>
           <div className="hero-trust">
             <span>
               <ShieldCheck size={15} />

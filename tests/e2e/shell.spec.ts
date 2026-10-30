@@ -25,7 +25,11 @@ test('theme persists and mobile layout fits', async ({ page }) => {
     );
   }
 });
-test('all 42 published tool routes have localized content', async ({ request }) => {
+test('all 58 published tool routes have localized content, including the original 42', async ({
+  request,
+}) => {
+  expect(tools.filter((tool) => tool.phase === 1)).toHaveLength(21);
+  expect(tools).toHaveLength(29);
   test.setTimeout(180000);
   for (const locale of ['vi', 'en'] as const) {
     for (const tool of tools) {

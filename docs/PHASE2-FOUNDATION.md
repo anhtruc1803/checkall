@@ -1,5 +1,7 @@
 # Phase 2 — Milestone 1: registry, capability và permission
 
+> Đây là checkpoint nền tảng ngày 29/10/2026. Người dùng đã yêu cầu triển khai tám công cụ tiếp theo ngày 30/10; trạng thái hiện hành ở [PHASE2-MILESTONE2.md](PHASE2-MILESTONE2.md). Kết quả kiểm thử bên dưới chỉ áp dụng revision nền tảng được dẫn, không tự xác minh source mới.
+
 Ngày thực hiện: 29/10/2026. Phạm vi được người dùng cho phép là nền tảng trước khi triển khai từng nhóm công cụ. Tài liệu này không đóng Final Acceptance Phase 1 hoặc công bố 19 công cụ mới.
 
 ## Kết quả triển khai

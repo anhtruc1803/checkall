@@ -5,7 +5,7 @@ test('all 21 Phase 1 registry entries mount real engines or an honest capability
 }) => {
   test.setTimeout(120000);
   expect(tools.filter((tool) => tool.status === 'published' && tool.phase === 1)).toHaveLength(21);
-  for (const tool of tools) {
+  for (const tool of tools.filter((tool) => tool.phase === 1)) {
     await page.goto(`/en/${tool.category}/${tool.slug}`);
     const workspace = page.locator('.tool-workspace');
     await expect(workspace).toHaveAttribute('data-engine', tool.engine);
