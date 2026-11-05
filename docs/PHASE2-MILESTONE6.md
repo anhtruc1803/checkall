@@ -62,3 +62,26 @@ Dependency audit production không finding; audit toàn bộ vẫn có hai advis
 Final Acceptance Phase 1/2 tiếp tục mở. Không tự triển khai Phase 3 sau khi 19 công cụ Phase 2 có engine.
 
 Nguồn: [W3C Gamepad](https://w3c.github.io/gamepad/), [getGamepads](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getGamepads), [gamepad policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Permissions-Policy/gamepad), [Playwright Clock](https://playwright.dev/docs/clock).
+
+## Kết quả nghiệm thu phần mềm
+
+Source 76a71ce: [CI 41984091737](https://github.com/anhtruc1803/checkall/actions/runs/41984091737) success cả verify và Docker. **Build/typecheck/lint, 275 unit/integration trên 33 file và secret scan đạt; 306 E2E đạt, 6 skip, không failure/flaky**. E2E 612200.268 ms. Đã tải/đọc [browser-qa JSON](https://github.com/anhtruc1803/checkall/actions/runs/41984091737/artifacts/13395508825), native audio smoke và ảnh fixture gamepad; giữ toàn bộ hồi quy 37 công cụ cũ/80 route công cụ VI/EN. Không dùng kết quả M5 thay thế.
+
+| Cấu hình CI     | Đạt | Skip |
+| --------------- | --: | ---: |
+| Chromium        |  78 |    0 |
+| Firefox         |  75 |    3 |
+| WebKit          |  75 |    3 |
+| Chromium mobile |  78 |    0 |
+
+Các skip là native policy camera/microphone/gamepad trên runtime Firefox/WebKit không expose policy API hoặc không quảng bá directive gamepad; không tính enforcement đã xác minh. Direct native getGamepads dưới header deny trả SecurityError được kiểm tra trên các runtime quảng bá directive (chromium, mobile). Native API discovery hoặc fallback thật được kiểm tra cả bốn cấu hình, **không** xác nhận thao tác nút/stick vật lý. Các bài nút/trục/drift/lifecycle dùng fixture rõ ràng; clock mô phỏng chỉ phục vụ QA. Native audio smoke ba browser vẫn đạt/context đóng.
+
+Docker Linux CI source này đạt trong 81 giây: production image/Compose healthy/Nginx, health + 34 route VI/EN và policy ba checkpoint, cổng Node không publish, restart/stop-start. SIGTERM exit 143, OOMKilled false/Error rỗng. Đã đọc [logs/containers/shutdown](https://github.com/anhtruc1803/checkall/actions/runs/41984091737/artifacts/13395536270), không có lỗi ứng dụng hoặc HTTP 4xx/5xx. Image ID runner sha256:69b281c7583dc29617d017e0e89d6372c8c4e66c4a5757986b47433965b61e9f; không push registry/VPS. Máy Windows không có Docker CLI nên không tuyên bố đã kiểm tra Docker cục bộ hoàn chỉnh.
+
+Local nhóm M6: **43 đạt/hai skip/ba lỗi**, không flaky, 216147.357 ms trên 48 bài. Ba lỗi là assertion mọi POST/PUT/PATCH bằng rỗng bắt request Kaspersky chèn (Chromium/Firefox/mobile), giữ nguyên assertion và không báo local là môi trường sạch. Hai skip native gamepad policy Firefox/WebKit. Chromium/mobile mỗi cấu hình 11 đạt + một lỗi môi trường; Firefox 10 đạt + một skip + một lỗi môi trường; WebKit 11 đạt + một skip. Native discovery/fallback, dữ liệu fixture, drift/zero, lifecycle và a11y/responsive đã chạy; CI sạch cung cấp bằng chứng privacy và hồi quy đầy đủ. Lượt Chromium đầu 8 đạt/bốn lỗi đã giữ riêng, không thay lịch sử bằng kết quả sau sửa.
+
+**Đã hoàn thành và xác minh:** ba công cụ/registry/VI-EN/SEO, capability/policy handling, Start gating, cặp trục/mapping rõ ràng, dữ liệu thô và cửa sổ drift có điều kiện, RAF/timer/listener/StrictMode/SSR cleanup, navigation theo document policy, build/unit/E2E khả dụng/a11y tự động/responsive/keyboard, secret scan và Docker CI. Registry hiện 40 published (21 Phase 1 + 19 Phase 2), tám danh mục, không draft Phase 2; 100 URL nội dung/106 trang build gồm hạ tầng. File chính và phương pháp ở PHASE2-MILESTONE6.md; không commit .env/secrets/cache/raw artifacts.
+
+**Đã triển khai nhưng chưa xác minh bằng phần cứng:** Gamepad Tester/Analog Stick/Stick Drift trên tay cầm USB/Bluetooth/driver/mapping thực, exposure theo tương tác, neutral position và unplug/reconnect cùng slot/model. **Không thể kiểm chứng trong môi trường hiện tại:** tay cầm/thiết bị/Safari thật, native policy ở runtime không expose hỗ trợ, privacy sạch trên Windows bị Kaspersky chèn script. **Chưa hoàn thành:** manual screen reader/zoom/reduced motion/sleep/BFCache, Lighthouse M6 và nâng tooling cho hai dev advisory moderate glob/minimatch. Audit production không finding; audit toàn bộ không sạch. Final Acceptance Phase 1/2 tiếp tục mở.
+
+Tiếp theo: thực hiện ma trận phần cứng/browser/OS ở PHASE2-MILESTONE6.md, đối chiếu native policy và xử lý các mục performance/tooling còn mở. Đã hoàn thành danh sách triển khai phần mềm 19 công cụ Phase 2; không tự bắt đầu Phase 3 hoặc triển khai hạ tầng.

@@ -5,7 +5,7 @@
 - [x] Gamepad Tester/Analog Stick/Stick Drift có engine, VI/EN/SEO; giữ 37 công cụ cũ, 40 published, không triển khai Phase 3.
 - [x] Capability/policy/Start gating, mapping/cặp trục, dữ liệu thô/cửa sổ drift có điều kiện, RAF/timer/listener cleanup và SSR/StrictMode.
 - [x] Build/typecheck/lint và 275 unit/integration trên 33 file tại checkpoint cục bộ; production audit không finding.
-- [ ] Chốt đầy đủ 312 E2E và Docker Linux CI source M6, đọc artifacts; không kế thừa M5.
+- [x] CI source 76a71ce (41984091737): 306 E2E đạt/6 skip native policy, không failure/flaky; Docker 34 route ba checkpoint; artifacts đã đọc.
 - [ ] Gamepad USB/Bluetooth/mapping/trigger/stick/drift/driver, unplug/reconnect/sleep/BFCache và Safari thật.
 - [ ] Native policy enforcement khi runtime không expose directive, manual accessibility, Lighthouse M6 và hai dev advisory tooling.
 - [ ] Final Acceptance Phase 1/2.

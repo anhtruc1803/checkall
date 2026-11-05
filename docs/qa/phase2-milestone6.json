@@ -1,7 +1,7 @@
 {
   "milestone": "Phase 2 — Milestone 6",
   "date": "2026-11-05",
-  "status": "implemented-verification-in-progress",
+  "status": "implemented-and-automatically-verified-with-browser-limitations",
   "publishedTools": 40,
   "phase1PublishedTools": 21,
   "phase2PublishedTools": 19,
@@ -18,12 +18,101 @@
   "typecheck": "passed",
   "e2e": {
     "scheduled": 312,
-    "status": "pending-ci"
+    "passed": 306,
+    "skipped": 6,
+    "failed": 0,
+    "flaky": 0,
+    "durationMs": 612200.2679999999,
+    "projects": {
+      "chromium": {
+        "passed": 78,
+        "skipped": 0,
+        "failed": 0
+      },
+      "firefox": {
+        "passed": 75,
+        "skipped": 3,
+        "failed": 0
+      },
+      "webkit": {
+        "passed": 75,
+        "skipped": 3,
+        "failed": 0
+      },
+      "mobile": {
+        "passed": 78,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "skipDetails": [
+      {
+        "project": "firefox",
+        "test": "native browser policy blocks microphone access when policy introspection is supported",
+        "reasons": [
+          "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+        ]
+      },
+      {
+        "project": "webkit",
+        "test": "native browser policy blocks microphone access when policy introspection is supported",
+        "reasons": [
+          "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+        ]
+      },
+      {
+        "project": "firefox",
+        "test": "native camera policy denial is enforced when the runtime exposes policy support",
+        "reasons": [
+          "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+        ]
+      },
+      {
+        "project": "webkit",
+        "test": "native camera policy denial is enforced when the runtime exposes policy support",
+        "reasons": [
+          "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+        ]
+      },
+      {
+        "project": "firefox",
+        "test": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "reasons": [
+          "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+        ]
+      },
+      {
+        "project": "webkit",
+        "test": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "reasons": [
+          "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+        ]
+      }
+    ],
+    "nativeApiOrFallbackCheckedOn": ["chromium", "firefox", "webkit", "mobile"],
+    "nativeGamepadEnforcementVerifiedOn": ["chromium", "mobile"],
+    "fixtureDataIsNotHardware": true
   },
   "docker": {
-    "local": "CLI unavailable",
-    "ci": "pending",
-    "smokeLocalizedRoutes": 34
+    "local": "CLI unavailable; not fully tested locally",
+    "ci": "passed",
+    "durationSeconds": 81.0,
+    "smokeLocalizedRoutes": 34,
+    "checkpoints": 3,
+    "appHealthy": true,
+    "nodePortPublished": false,
+    "nginxVerified": true,
+    "restartVerified": true,
+    "shutdown": {
+      "Status": "exited",
+      "Running": false,
+      "OOMKilled": false,
+      "ExitCode": 143,
+      "Error": ""
+    },
+    "imageId": "sha256:69b281c7583dc29617d017e0e89d6372c8c4e66c4a5757986b47433965b61e9f",
+    "logsReviewed": true,
+    "http4xx5xx": 0
   },
   "productionAudit": {
     "vulnerabilities": 0
@@ -65,5 +154,15 @@
     },
     "failures": "Ba assertion không upload bắt request Kaspersky chèn trong Chromium/Firefox/mobile; không lọc để báo local sạch.",
     "skips": "Native gamepad policy không được runtime Firefox/WebKit quảng bá; enforcement chưa xác minh."
-  }
+  },
+  "testedSourceCommit": "76a71cefb9b8c38780a7641e81f7fcab6f9f8bc9",
+  "ci": {
+    "runId": 41984091737,
+    "url": "https://github.com/anhtruc1803/checkall/actions/runs/41984091737",
+    "conclusion": "success",
+    "browserArtifact": "https://github.com/anhtruc1803/checkall/actions/runs/41984091737/artifacts/13395508825",
+    "dockerArtifact": "https://github.com/anhtruc1803/checkall/actions/runs/41984091737/artifacts/13395536270"
+  },
+  "nativePolicyLimitation": "Các skip policy do runtime không expose API hoặc không quảng bá gamepad directive; không tính là enforcement đã xác minh. Header HTTP/Nginx và app guard kiểm tra riêng.",
+  "phase2Implementation": "19/19 công cụ có engine và automated QA khả dụng; Final Acceptance/phần cứng còn mở."
 }
