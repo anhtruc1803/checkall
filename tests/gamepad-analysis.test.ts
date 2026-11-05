@@ -1,0 +1,48 @@
+import { expect, it } from 'vitest';
+import { axisValue, DriftAccumulator, readPad, padLimits } from '@/lib/gamepad/analysis';
+import { fakePad } from './helpers/gamepad';
+it('retains raw valid axes/buttons and bounds data without fabricating invalid values', () => {
+  const pad = fakePad();
+  pad.axes = [-1, 0, 1, 1.01, NaN, Infinity];
+  pad.buttons[0] = { value: 0.42, pressed: true, touched: true };
+  pad.buttons[1].value = -1;
+  const reading = readPad(pad as unknown as Gamepad);
+  expect(reading.axes).toEqual([-1, 0, 1, null, null, null]);
+  expect(reading.buttons[0]).toEqual({ value: 0.42, pressed: true, touched: true });
+  expect(reading.buttons[1].value).toBeNull();
+  pad.axes = Array(10000).fill(0.3);
+  pad.buttons = Array(10000).fill({ value: 1, pressed: true, touched: true });
+  expect(readPad(pad as unknown as Gamepad)).toMatchObject({ truncated: true });
+  expect(readPad(pad as unknown as Gamepad).axes).toHaveLength(padLimits.axes);
+  expect(readPad(pad as unknown as Gamepad).buttons).toHaveLength(padLimits.buttons);
+  expect(axisValue(-0.05)).toBe(-0.05);
+});
+it('computes neutral offsets and radii from raw observations without deadzone correction', () => {
+  const drift = new DriftAccumulator(0.1);
+  for (let i = 0; i < 100; i++) drift.add(0.12, -0.05, i * 50);
+  const result = drift.result()!;
+  expect(result.count).toBe(100);
+  expect(result.duration).toBe(4950);
+  expect(result.meanX).toBeCloseTo(0.12);
+  expect(result.meanY).toBeCloseTo(-0.05);
+  expect(result.meanRadius).toBeCloseTo(0.13);
+  expect(result.rmsRadius).toBeCloseTo(0.13);
+  expect(result.maxRadius).toBeCloseTo(0.13);
+  expect(result.outsideFraction).toBe(1);
+});
+it('keeps genuine zero, corners and mixed samples, but rejects invalid or insufficient observations', () => {
+  const zero = new DriftAccumulator(0.1);
+  for (let i = 0; i < 40; i++) zero.add(0, 0, i * 125);
+  expect(zero.result()?.meanRadius).toBe(0);
+  const corners = new DriftAccumulator(0.5);
+  for (let i = 0; i < 40; i++) corners.add(i % 2 ? 1 : -1, 1, i * 125);
+  expect(corners.result()?.rmsRadius).toBeCloseTo(Math.SQRT2);
+  expect(corners.result()?.meanX).toBe(0);
+  const drift = new DriftAccumulator(0.1);
+  expect(drift.result()).toBeNull();
+  expect(drift.add(NaN, 0, 0)).toBe(false);
+  expect(drift.add(2, 0, 0)).toBe(false);
+  expect(drift.add(0, 0, 0)).toBe(true);
+  expect(drift.add(0, 0, 0)).toBe(false);
+  expect(drift.result()).toBeNull();
+});

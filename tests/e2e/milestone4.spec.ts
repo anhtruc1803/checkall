@@ -56,16 +56,18 @@ test('only the four microphone/spectrum VI/EN routes allow self microphone acces
       const response = await request.get(`/${locale}/audio/${path}`);
       expect(response.status()).toBe(200);
       expect(response.headers()['permissions-policy']).toBe(
-        'camera=(), microphone=(self), geolocation=()',
+        'camera=(), microphone=(self), geolocation=(), gamepad=()',
       );
     }
   for (const locale of ['vi', 'en'])
-    for (const tool of publishedTools.filter((tool) => !tool.permissions.length))
+    for (const tool of publishedTools.filter(
+      (tool) => !tool.permissions.length && tool.engine !== 'gamepad',
+    ))
       expect(
         (await request.get(`/${locale}/${tool.category}/${tool.slug}`)).headers()[
           'permissions-policy'
         ],
-      ).toBe('camera=(), microphone=(), geolocation=()');
+      ).toBe('camera=(), microphone=(), geolocation=(), gamepad=()');
   for (const path of [
     '/vi',
     '/en/privacy',
@@ -77,7 +79,7 @@ test('only the four microphone/spectrum VI/EN routes allow self microphone acces
     '/api/health',
   ])
     expect((await request.get(path)).headers()['permissions-policy'], path).toBe(
-      'camera=(), microphone=(), geolocation=()',
+      'camera=(), microphone=(), geolocation=(), gamepad=()',
     );
 });
 test('native getUserMedia captures virtual test devices from homepage and releases all tracks', async ({
@@ -146,7 +148,7 @@ test('native browser policy blocks microphone access when policy introspection i
       response,
       headers: {
         ...response.headers(),
-        'permissions-policy': 'camera=(), microphone=(), geolocation=()',
+        'permissions-policy': 'camera=(), microphone=(), geolocation=(), gamepad=()',
       },
     });
   });
@@ -300,8 +302,8 @@ test('catalog, related links and command search apply microphone policy through 
     await action();
     expect((await response).headers()['permissions-policy']).toBe(
       mic
-        ? 'camera=(), microphone=(self), geolocation=()'
-        : 'camera=(), microphone=(), geolocation=()',
+        ? 'camera=(), microphone=(self), geolocation=(), gamepad=()'
+        : 'camera=(), microphone=(), geolocation=(), gamepad=()',
     );
     await expect(page).toHaveURL(new RegExp(`${path}$`));
   };

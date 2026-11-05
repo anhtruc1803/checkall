@@ -1,29 +1,31 @@
 import { test, expect } from '@playwright/test';
 import { tools } from '../../src/lib/tools/registry';
 
-test('all Phase 2 drafts stay out of VI/EN routes, navigation, search and sitemap', async ({
+test('all 40 published tools are discoverable while unknown future routes stay private', async ({
   page,
   request,
 }) => {
   test.setTimeout(120000);
   const drafts = tools.filter((tool) => tool.status === 'draft');
-  expect(drafts).toHaveLength(3);
+  expect(drafts).toHaveLength(0);
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
-    await expect(page.locator('.catalog-item')).toHaveCount(37);
-    await expect(page.locator('.desktop-nav a')).toHaveCount(7);
+    await expect(page.locator('.catalog-item')).toHaveCount(40);
+    await expect(page.locator('.desktop-nav a')).toHaveCount(8);
     for (const tool of drafts) {
       const route = `/${locale}/${tool.category}/${tool.slug}`;
       expect((await request.get(route)).status(), route).toBe(404);
       expect(sitemap).not.toContain(route);
       await expect(page.locator(`a[href="${route}"]`)).toHaveCount(0);
     }
-    for (const category of ['gamepad'])
+    for (const category of ['planned-category'])
       expect((await request.get(`/${locale}/${category}`)).status()).toBe(404);
+    expect((await request.get(`/${locale}/gamepad/future-tool`)).status()).toBe(404);
+    expect(sitemap).not.toContain(`/${locale}/gamepad/future-tool`);
     await page
       .getByRole('textbox', { name: locale === 'vi' ? 'Tìm kiếm công cụ' : 'Search testing tools' })
-      .fill('gamepad');
+      .fill('__unpublished_future_tool__');
     await expect(page.locator('.catalog-item')).toHaveCount(0);
   }
 });
@@ -90,7 +92,7 @@ test('published non-media tools never request media or permission status and ret
     ).toEqual({ capture: 0, query: 0 });
     const response = await request.get(path);
     expect(response.headers()['permissions-policy']).toBe(
-      'camera=(), microphone=(), geolocation=()',
+      'camera=(), microphone=(), geolocation=(), gamepad=()',
     );
   }
 });

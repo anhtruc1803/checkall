@@ -19,21 +19,26 @@ for (const locale of ['vi', 'en'])
     '/camera/preview',
     '/camera/resolution',
     '/camera/fps',
+    '/gamepad/tester',
+    '/gamepad/analog-stick',
+    '/gamepad/stick-drift',
   ]) {
     const response = await fetch(`${origin}/${locale}${path}`);
     assert.equal(response.status, 200);
     assert.equal(
       response.headers.get('permissions-policy'),
       ['/audio/microphone', '/audio/spectrum'].includes(path)
-        ? 'camera=(), microphone=(self), geolocation=()'
+        ? 'camera=(), microphone=(self), geolocation=(), gamepad=()'
         : ['/camera/preview', '/camera/resolution', '/camera/fps'].includes(path)
-          ? 'camera=(self), microphone=(), geolocation=()'
-          : 'camera=(), microphone=(), geolocation=()',
+          ? 'camera=(self), microphone=(), geolocation=(), gamepad=()'
+          : ['/gamepad/tester', '/gamepad/analog-stick', '/gamepad/stick-drift'].includes(path)
+            ? 'camera=(), microphone=(), geolocation=(), gamepad=(self)'
+            : 'camera=(), microphone=(), geolocation=(), gamepad=()',
     );
     const html = await response.text();
     assert.match(html, new RegExp(`<html[^>]*lang="${locale}"`));
     assert.match(html, /<main/);
   }
 console.log(
-  'HTTP smoke passed: health + 28 VI/EN routes, including scoped camera/microphone policy.',
+  'HTTP smoke passed: health + 34 VI/EN routes, including scoped camera/microphone/gamepad policy.',
 );

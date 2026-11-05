@@ -1,5 +1,7 @@
 # Performance Phase 1 — phép đo sạch ngày 29/10/2026
 
+Checkpoint Phase 2 Milestone 6 (05/11/2026): chưa đo Lighthouse M6, không nhận ≥90 hoặc dùng điểm revision cũ làm điểm M6. Engine gamepad tải động, idle không getGamepads, UI tối đa 8 Hz, tối đa 16 slot/64 trục/128 nút/120 điểm; drift tích lũy thống kê với bộ nhớ hằng số. Không haptics, thêm ảnh/font/dependency hoặc upload. Các đặc tính này không phải benchmark; cần Lighthouse sạch ba lần/trang đại diện và profiling trên tay cầm/browser thật trước nghiệm thu performance.
+
 Checkpoint Phase 2 Milestone 5 (05/11/2026): chưa đo lại Lighthouse revision mới, chưa có median M5 và không nhận Performance mobile ≥90. Camera engine tải động, idle không capture; UI 4 Hz, FPS từ rVFC, bộ nhớ hằng số và không đọc pixel hoặc thêm ảnh/font/dependency. Đây là đặc tính triển khai, không phải kết quả benchmark. Điểm các revision lịch sử bên dưới không đại diện M5. Lighthouse sạch ít nhất ba lần/trang đại diện, main-thread/memory trên camera thật và tải khi capture vẫn cần đo trước Final Acceptance.
 
 Checkpoint lịch sử: Phase 2 Milestone 4. Input engine chỉ chạy sau thao tác chủ động, đọc 2048/1024 float mỗi 125 ms, đồ thị 64 điểm/dải và bộ đệm cố định. PolicyLink thêm document navigation ở ranh giới microphone để áp dụng đúng policy. Chưa đo lại Lighthouse source M4; build/E2E đạt không chứng minh Performance ≥90. Không gán các median lịch sử bên dưới cho source này.

@@ -41,6 +41,7 @@ jobs:
             artifacts/playwright/
             artifacts/audio-smoke/
             artifacts/camera-qa/
+            artifacts/gamepad-qa/
             playwright-report/
             test-results/
   docker-smoke:

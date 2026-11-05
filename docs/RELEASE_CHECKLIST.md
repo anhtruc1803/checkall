@@ -1,5 +1,15 @@
 # Checklist phát hành
 
+## Phase 2 Milestone 6
+
+- [x] Gamepad Tester/Analog Stick/Stick Drift có engine, VI/EN/SEO; giữ 37 công cụ cũ, 40 published, không triển khai Phase 3.
+- [x] Capability/policy/Start gating, mapping/cặp trục, dữ liệu thô/cửa sổ drift có điều kiện, RAF/timer/listener cleanup và SSR/StrictMode.
+- [x] Build/typecheck/lint và 275 unit/integration trên 33 file tại checkpoint cục bộ; production audit không finding.
+- [ ] Chốt đầy đủ 312 E2E và Docker Linux CI source M6, đọc artifacts; không kế thừa M5.
+- [ ] Gamepad USB/Bluetooth/mapping/trigger/stick/drift/driver, unplug/reconnect/sleep/BFCache và Safari thật.
+- [ ] Native policy enforcement khi runtime không expose directive, manual accessibility, Lighthouse M6 và hai dev advisory tooling.
+- [ ] Final Acceptance Phase 1/2.
+
 ## Phase 2 Milestone 5
 
 - [x] Ba engine camera/registry/VI-EN/SEO; 37 published, giữ 34 công cụ cũ; gamepad vẫn draft.

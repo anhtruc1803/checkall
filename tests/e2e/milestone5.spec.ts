@@ -65,7 +65,7 @@ test('camera policy is confined to six VI/EN tool URLs, with microphone still bl
       const response = await request.get(`/${locale}/camera/${slug}`);
       expect(response.status()).toBe(200);
       expect(response.headers()['permissions-policy']).toBe(
-        'camera=(self), microphone=(), geolocation=()',
+        'camera=(self), microphone=(), geolocation=(), gamepad=()',
       );
     }
   for (const path of [
@@ -76,10 +76,10 @@ test('camera policy is confined to six VI/EN tool URLs, with microphone still bl
     '/api/health',
   ])
     expect((await request.get(path)).headers()['permissions-policy']).toBe(
-      'camera=(), microphone=(), geolocation=()',
+      'camera=(), microphone=(), geolocation=(), gamepad=()',
     );
   expect((await request.get('/en/audio/microphone')).headers()['permissions-policy']).toBe(
-    'camera=(), microphone=(self), geolocation=()',
+    'camera=(), microphone=(self), geolocation=(), gamepad=()',
   );
 });
 test('native virtual camera renders all tools and measures compositor FPS without storage or upload', async ({
@@ -185,7 +185,7 @@ test('native camera policy denial is enforced when the runtime exposes policy su
       response,
       headers: {
         ...response.headers(),
-        'permissions-policy': 'camera=(), microphone=(), geolocation=()',
+        'permissions-policy': 'camera=(), microphone=(), geolocation=(), gamepad=()',
       },
     });
   });
@@ -207,7 +207,7 @@ test('document navigation updates camera, locale, microphone and restrictive pol
     expect((await response).headers()['permissions-policy']).toBe(policy);
     await expect(page).toHaveURL(new RegExp(`${path}$`));
   };
-  const camera = 'camera=(self), microphone=(), geolocation=()';
+  const camera = 'camera=(self), microphone=(), geolocation=(), gamepad=()';
   const category = async (href: string) => {
     const desktop = page.locator(`.desktop-nav a[href="${href}"]`);
     if (await desktop.isVisible()) await desktop.click();
@@ -235,17 +235,17 @@ test('document navigation updates camera, locale, microphone and restrictive pol
   await navigate(
     () => category('/vi/audio'),
     '/vi/audio',
-    'camera=(), microphone=(), geolocation=()',
+    'camera=(), microphone=(), geolocation=(), gamepad=()',
   );
   await navigate(
     () => page.locator('.catalog-item[href="/vi/audio/microphone"]').click(),
     '/vi/audio/microphone',
-    'camera=(), microphone=(self), geolocation=()',
+    'camera=(), microphone=(self), geolocation=(), gamepad=()',
   );
   await navigate(
     () => category('/vi/camera'),
     '/vi/camera',
-    'camera=(), microphone=(), geolocation=()',
+    'camera=(), microphone=(), geolocation=(), gamepad=()',
   );
 });
 test('pending permission cannot recapture after Stop and a late stream is released', async ({

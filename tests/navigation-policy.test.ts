@@ -1,6 +1,12 @@
 import { expect, it } from 'vitest';
 import { requiresDocumentNavigation } from '@/lib/browser/navigation-policy';
 it.each([
+  ['/en', '/en/gamepad/tester', true],
+  ['/vi/gamepad/stick-drift', '/en/gamepad/analog-stick', true],
+  ['/en/camera/preview', '/vi/gamepad/tester', true],
+  ['/en/gamepad/tester', '/en/audio/microphone', true],
+  ['/en/gamepad/analog-stick?x=1', '/en/keyboard/tester', true],
+  ['/en/gamepad/tester-extra', '/vi/gamepad/tester/extra', false],
   ['/en', '/en/camera/preview', true],
   ['/vi/camera/resolution', '/en/camera/fps', true],
   ['/en/camera/fps?x=1', '/en/audio/microphone', true],

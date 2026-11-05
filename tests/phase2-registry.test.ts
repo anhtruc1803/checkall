@@ -12,14 +12,14 @@ import {
   validateToolRegistry,
 } from '@/lib/tools/catalog';
 import { getSearchCategories } from '@/lib/tools/search';
-import type { Tool } from '@/lib/tools/types';
+import type { Tool, Engine } from '@/lib/tools/types';
 import sitemap from '@/app/sitemap';
 
 describe('Phase 2 publication boundary', () => {
-  it('keeps 21 Phase 1 tools, publishes 16 Phase 2 tools including camera, with three drafts', () => {
+  it('keeps 21 Phase 1 tools and publishes all 19 Phase 2 tools with implemented engines', () => {
     expect(tools).toHaveLength(40);
     expect(new Set(tools.map((tool) => tool.id)).size).toBe(40);
-    expect(publishedTools).toHaveLength(37);
+    expect(publishedTools).toHaveLength(40);
     expect(publishedTools.filter((tool) => tool.phase === 1)).toHaveLength(21);
     expect(
       publishedTools
@@ -37,6 +37,9 @@ describe('Phase 2 publication boundary', () => {
       'E01',
       'E02',
       'E03',
+      'F01',
+      'F02',
+      'F03',
       'G01',
       'G02',
       'G03',
@@ -48,7 +51,7 @@ describe('Phase 2 publication boundary', () => {
       ['D03', 'D05', 'E01', 'E02', 'E03'],
     );
     const drafts = tools.filter((tool) => tool.status === 'draft');
-    expect(drafts).toHaveLength(3);
+    expect(drafts).toHaveLength(0);
     for (const draft of drafts) {
       expect(draft.status).toBe('draft');
       expect(draft.seo.index).toBe(false);
@@ -68,6 +71,7 @@ describe('Phase 2 publication boundary', () => {
       'mouse',
       'audio',
       'camera',
+      'gamepad',
       'device',
       'browser',
     ]);
@@ -84,12 +88,17 @@ describe('Phase 2 publication boundary', () => {
       'indexable draft',
       (tool: Tool): Tool[] => [{ ...tool, status: 'draft', seo: { index: true } }],
     ],
-    ['missing engine', (tool: Tool): Tool[] => [{ ...tool, engine: 'gamepad' }]],
+    ['missing engine', (tool: Tool): Tool[] => [{ ...tool, engine: 'future-engine' as Engine }]],
     [
       'draft related link',
       (tool: Tool): Tool[] => [
         { ...tool, relatedTools: ['F01'] },
-        tools.find((item) => item.id === 'F01')!,
+        {
+          ...tools.find((item) => item.id === 'F01')!,
+          status: 'draft',
+          seo: { index: false },
+          relatedTools: [],
+        },
       ],
     ],
     [
@@ -103,9 +112,16 @@ describe('Phase 2 publication boundary', () => {
     expect(() => validateToolRegistry(makeRegistry(fixture))).toThrow();
   });
   it('accepts a future implemented engine only when explicitly registered', () => {
-    const draft = tools.find((tool) => tool.id === 'F01')!;
+    const draft = {
+      ...tools.find((tool) => tool.id === 'F01')!,
+      engine: 'future-engine' as Engine,
+      relatedTools: [],
+    };
     expect(() =>
-      validateToolRegistry([{ ...draft, status: 'published', seo: { index: true } }], ['gamepad']),
+      validateToolRegistry(
+        [{ ...draft, status: 'published', seo: { index: true } }],
+        ['future-engine' as Engine],
+      ),
     ).not.toThrow();
   });
 });

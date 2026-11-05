@@ -1,6 +1,8 @@
 # Kiến trúc Device Lab
 
-Milestone hiện hành: Phase 2 Milestone 5 (05/11/2026), 37 published (21 Phase 1 + 16 Phase 2), ba draft gamepad. CameraSession tái sử dụng media session/permission; FrameWindow đo delta presentedFrames/thời gian callback, không dùng rAF hoặc FPS được báo làm số đo. UI camera tải động; chỉ video sau Start, không audio/pixel/record/history/upload/device identifier. Policy camera=self chỉ sáu URL, microphone=self vẫn bốn URL riêng. PolicyLink đổi document khi qua cả hai ranh giới quyền. Không viết lại kiến trúc hoặc thêm dependency. Chi tiết [PHASE2-MILESTONE5.md](PHASE2-MILESTONE5.md); kết quả thật ở PROGRESS.md và qa/phase2-milestone5.json.
+Milestone hiện hành: Phase 2 Milestone 6 (05/11/2026), 40 published (21 Phase 1 + 19 Phase 2), không còn draft Phase 2. GamepadSession/DriftAccumulator và UI gamepad tải động riêng; chỉ đọc sau Start, poll RAF/UI 8 Hz, dữ liệu/trail có giới hạn, không haptics/storage/upload. Mapping chưa chuẩn yêu cầu cặp trục rõ ràng; drift là thống kê browser có cửa sổ nghỉ và điều kiện dữ liệu, không chẩn đoán phần cứng. Gamepad policy=self chỉ sáu URL và PolicyLink document navigation qua ranh giới này; camera/microphone giữ phạm vi riêng. Không viết lại engine cũ hoặc thêm dependency. Chi tiết PHASE2-MILESTONE6.md và QA JSON.
+
+Checkpoint lịch sử: Phase 2 Milestone 5 (05/11/2026), 37 published (21 Phase 1 + 16 Phase 2), ba draft gamepad. CameraSession tái sử dụng media session/permission; FrameWindow đo delta presentedFrames/thời gian callback, không dùng rAF hoặc FPS được báo làm số đo. UI camera tải động; chỉ video sau Start, không audio/pixel/record/history/upload/device identifier. Policy camera=self chỉ sáu URL, microphone=self vẫn bốn URL riêng. PolicyLink đổi document khi qua cả hai ranh giới quyền. Không viết lại kiến trúc hoặc thêm dependency. Chi tiết [PHASE2-MILESTONE5.md](PHASE2-MILESTONE5.md); kết quả thật ở PROGRESS.md và qa/phase2-milestone5.json.
 
 Checkpoint lịch sử: Phase 2 Milestone 4 (05/11/2026), 34 published (21 Phase 1 + 13 Phase 2), sáu draft. InputSession tái sử dụng media session/permission nền tảng; input-analysis tính RMS/peak/dBFS/FFT từ mẫu thật, UI AudioInput tải động riêng cho D03/D05. Capture chỉ audio sau Start, không nối loa hoặc lưu/upload PCM. Policy microphone=self chỉ bốn URL VI/EN của hai công cụ. PolicyLink tạo document navigation khi vào/rời microphone vì soft navigation không đổi document policy; các navigation khác giữ NextLink. Đây là thay đổi có lý do kỹ thuật, không viết lại kiến trúc. Chi tiết ở [PHASE2-MILESTONE4.md](PHASE2-MILESTONE4.md).
 
@@ -13,7 +15,7 @@ Engine mới vẫn dynamic import theo công cụ. Phần đọc device/GPU/stor
 Ứng dụng modular monolith dùng Next.js App Router, React, TypeScript strict, Tailwind CSS, các thành phần shadcn/ui, Lucide và next-intl. Không có tài khoản, database hay upload log thiết bị.
 
 - `src/app/[locale]`: trang server và metadata song ngữ.
-- `src/lib/tools`: registry duy nhất cho 37 chức năng published và ba mục gamepad Phase 2 draft, phân loại phép đo, nội dung và khả năng trình duyệt.
+- `src/lib/tools`: registry duy nhất cho 40 chức năng published, phân loại phép đo, nội dung và khả năng trình duyệt.
 - `src/lib/measurements`: thuật toán thuần, không phụ thuộc React.
 - `src/features`: các engine client tải theo nhóm, quản lý vòng đời sự kiện và tài nguyên.
 - `src/lib/storage`: tùy chọn và bản tóm tắt opt-in, giới hạn kích thước.
@@ -35,7 +37,7 @@ Các mô-đun tương lai được ghi trong roadmap, không công bố route ha
 
 ## Rà soát Phase 1 bổ sung
 
-- `getToolSearchIndex` sinh chỉ mục gọn từ registry duy nhất. Client tìm kiếm cả VI/EN nhưng chỉ nhận tên hiển thị và chuỗi tìm kiếm, không cần tải hướng dẫn/phương pháp/giới hạn của cả 37 công cụ. Nội dung SEO đầy đủ vẫn render tại server.
+- `getToolSearchIndex` sinh chỉ mục gọn từ registry duy nhất. Client tìm kiếm cả VI/EN nhưng chỉ nhận tên hiển thị và chuỗi tìm kiếm, không cần tải hướng dẫn/phương pháp/giới hạn của cả 40 công cụ. Nội dung SEO đầy đủ vẫn render tại server.
 - Client chỉ nhận `id`, `engine`, `requiredCapabilities` cho ToolRunner. Các engine vẫn dynamic import theo công cụ; HTML giao diện ban đầu được prerender ở trạng thái `inert`. EngineSurface dùng native fieldset disabled/inert và aria-busy cho đến hydration của chính engine; capability detection ở ToolRunner quyết định fallback. Không có RAF, sự kiện đầu vào hoặc số đo phần cứng được tạo ở server.
 - Validation chuyển sang API `zod/mini` cùng phiên bản Zod; giới hạn dữ liệu không thay đổi. Hộp tìm kiếm chỉ dựng kết quả khi mở; catalog không prefetch hàng loạt các công cụ chưa được chọn. Không loại nội dung hoặc chức năng để tăng điểm.
 - Catalog khóa thao tác trước hydration để không làm mất truy vấn nhập sớm trên WebKit. Capability của Device Overview được kiểm tra một lần cho mỗi lần mount; các giá trị Screen/Viewport/DPR vẫn được đọc cập nhật và dọn listener/timer khi unmount.

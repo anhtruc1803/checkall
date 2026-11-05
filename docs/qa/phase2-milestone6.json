@@ -1,0 +1,69 @@
+{
+  "milestone": "Phase 2 — Milestone 6",
+  "date": "2026-11-05",
+  "status": "implemented-verification-in-progress",
+  "publishedTools": 40,
+  "phase1PublishedTools": 21,
+  "phase2PublishedTools": 19,
+  "draftTools": 0,
+  "categories": 8,
+  "localizedToolRoutes": 80,
+  "contentUrls": 100,
+  "unit": {
+    "passed": 275,
+    "files": 33
+  },
+  "build": "passed",
+  "lint": "passed",
+  "typecheck": "passed",
+  "e2e": {
+    "scheduled": 312,
+    "status": "pending-ci"
+  },
+  "docker": {
+    "local": "CLI unavailable",
+    "ci": "pending",
+    "smokeLocalizedRoutes": 34
+  },
+  "productionAudit": {
+    "vulnerabilities": 0
+  },
+  "allDependencyAudit": {
+    "moderate": 2,
+    "scope": "Existing dev dependencies glob/minimatch"
+  },
+  "physicalGamepadVerified": false,
+  "realSafariVerified": false,
+  "lighthouseMeasured": false,
+  "finalAcceptance": "open",
+  "manualQa": "docs/PHASE2-MILESTONE6.md",
+  "localFocusedM6": {
+    "scheduled": 48,
+    "passed": 43,
+    "skipped": 2,
+    "failed": 3,
+    "flaky": 0,
+    "durationMs": 216147.35700000002,
+    "projects": {
+      "chromium": {
+        "expected": 11,
+        "unexpected": 1
+      },
+      "firefox": {
+        "expected": 10,
+        "skipped": 1,
+        "unexpected": 1
+      },
+      "webkit": {
+        "expected": 11,
+        "skipped": 1
+      },
+      "mobile": {
+        "expected": 11,
+        "unexpected": 1
+      }
+    },
+    "failures": "Ba assertion không upload bắt request Kaspersky chèn trong Chromium/Firefox/mobile; không lọc để báo local sạch.",
+    "skips": "Native gamepad policy không được runtime Firefox/WebKit quảng bá; enforcement chưa xác minh."
+  }
+}

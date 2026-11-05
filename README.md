@@ -2,7 +2,7 @@
 
 Nền tảng kiểm tra thiết bị cục bộ trên trình duyệt, song ngữ Việt/Anh. Phase 1 có 21 công cụ: 11 màn hình, 5 bàn phím và 5 chuột. Không tài khoản, database hoặc upload sự kiện thiết bị.
 
-Phase 2 có nền tảng registry/capability/permission và tám công cụ Milestone 2: thiết bị/browser/GPU, touch/pointer, storage, fullscreen và mouse movement/accuracy. Milestone 3 bổ sung Speaker Test, Stereo Channel Test và Frequency Generator. Milestone 4 bổ sung Microphone Test và Audio Spectrum với quyền và cleanup riêng. Milestone 5 bổ sung Webcam Preview, Camera Resolution và Camera FPS, chỉ capture video sau Start. Tổng cộng 37 công cụ công bố; ba mục gamepad còn draft. Xem [nền tảng](docs/PHASE2-FOUNDATION.md) và [Milestone 2](docs/PHASE2-MILESTONE2.md) và [Milestone 3](docs/PHASE2-MILESTONE3.md), [Milestone 4](docs/PHASE2-MILESTONE4.md), [Milestone 5](docs/PHASE2-MILESTONE5.md).
+Phase 2 có nền tảng registry/capability/permission và tám công cụ Milestone 2: thiết bị/browser/GPU, touch/pointer, storage, fullscreen và mouse movement/accuracy. Milestone 3 bổ sung Speaker Test, Stereo Channel Test và Frequency Generator. Milestone 4 bổ sung Microphone Test và Audio Spectrum với quyền và cleanup riêng. Milestone 5 bổ sung Webcam Preview, Camera Resolution và Camera FPS, chỉ capture video sau Start. Milestone 6 bổ sung Gamepad Tester, Analog Stick Test và Stick Drift Test với dữ liệu browser thật, mapping rõ ràng và cleanup. Tổng cộng 40 công cụ công bố (21 Phase 1 + 19 Phase 2). Xem [nền tảng](docs/PHASE2-FOUNDATION.md) và [Milestone 2](docs/PHASE2-MILESTONE2.md) và [Milestone 3](docs/PHASE2-MILESTONE3.md), [Milestone 4](docs/PHASE2-MILESTONE4.md), [Milestone 5](docs/PHASE2-MILESTONE5.md), [Milestone 6](docs/PHASE2-MILESTONE6.md).
 
 ## Chạy phát triển
 
@@ -45,7 +45,7 @@ Trước khi triển khai, đặt `SITE_URL` bằng origin thực trong `.env`, 
 src/app/[locale]/       Trang server, nội dung SEO và route VI/EN
 src/components/        Layout, UI shadcn/ui và khung công cụ
 src/features/          Engine các nhóm công cụ tải động
-src/lib/tools/         Registry 37 công cụ published, 3 gamepad draft
+src/lib/tools/         Registry 40 công cụ published
 src/lib/measurements/  Thuật toán thuần và sample buffers
 src/lib/browser/       Feature detection và thông tin browser
 src/lib/storage/       Preferences, tóm tắt opt-in và dữ liệu phiên

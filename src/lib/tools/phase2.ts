@@ -4,6 +4,7 @@ import { publishMilestone2 } from './phase2-milestone2';
 import { publishMilestone3 } from './phase2-milestone3';
 import { publishMilestone4 } from './phase2-milestone4';
 import { publishMilestone5 } from './phase2-milestone5';
+import { publishMilestone6 } from './phase2-milestone6';
 
 type PlannedTool = [
   string,
@@ -236,4 +237,5 @@ export const phase2Tools: Tool[] = plans
   .map(publishMilestone2)
   .map(publishMilestone3)
   .map(publishMilestone4)
-  .map(publishMilestone5);
+  .map(publishMilestone5)
+  .map(publishMilestone6);

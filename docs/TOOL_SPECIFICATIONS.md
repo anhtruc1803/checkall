@@ -83,3 +83,13 @@ Tổng kiến trúc dự kiến: 21 + 19 + 15 = 55 khả năng. Endpoint network
 | E03 | camera/fps        | ΔpresentedFrames / Δthời gian callback, cửa sổ ≥2 giây; tách FPS được báo |
 
 Hiện hành 37 published/ba draft gamepad, 74 route công cụ VI/EN. Không suy ra cảm biến/độ phân giải tối đa/FPS phần cứng. Quyền theo route và document navigation, session 60 giây; thiếu dữ liệu dùng —. Chi tiết [PHASE2-MILESTONE5.md](PHASE2-MILESTONE5.md).
+
+## Phase 2 — Milestone 6
+
+| ID  | Route sau locale     | Phương pháp                                                                            |
+| --- | -------------------- | -------------------------------------------------------------------------------------- |
+| F01 | gamepad/tester       | getGamepads sau Start; nút pressed/touched/value và trục thô                           |
+| F02 | gamepad/analog-stick | Cặp trục có mapping rõ ràng, tọa độ/quỹ đạo 120 điểm, deadzone chỉ tham chiếu          |
+| F03 | gamepad/stick-drift  | Chờ 1 giây, quan sát 5 giây; mean X/Y và mean/RMS/max bán kính, tỷ lệ ngoài tham chiếu |
+
+Hiện hành 40 published (21 Phase 1 + 19 Phase 2), không draft Phase 2, tám danh mục/80 route công cụ VI/EN. Không suy ra drift phần cứng, calibration, USB Polling Rate hoặc latency. Cửa sổ cần ≥30 quan sát/≥4,5 giây và liên tục, không bù offset. Scope policy/Start/Stop/lifecycle và giới hạn automation ở PHASE2-MILESTONE6.md. Final Acceptance vẫn mở.

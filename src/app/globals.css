@@ -1509,3 +1509,63 @@ th {
   border: 1px solid var(--color-rule);
   border-radius: 12px;
 }
+.gamepad-controls {
+  margin-block: 20px;
+  align-items: end;
+}
+.gamepad-controls .field {
+  min-width: 0;
+  max-width: 100%;
+}
+.gamepad-controls select {
+  width: 100%;
+  max-width: 350px;
+}
+.gamepad-controls input {
+  width: 140px;
+  max-width: 100%;
+}
+.gamepad-plot {
+  margin-block: 24px;
+}
+.gamepad-plot svg {
+  display: block;
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  margin-block: 12px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-rule);
+  border-radius: 12px;
+}
+.gamepad-guide {
+  fill: none;
+  stroke: var(--color-muted);
+  stroke-width: 1;
+}
+.gamepad-deadzone {
+  fill: var(--color-accent-bg);
+  stroke: var(--color-accent);
+}
+.gamepad-trail {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+.gamepad-point {
+  fill: var(--color-ink);
+}
+.gamepad-drift,
+.gamepad-heading {
+  margin-block: 24px 12px;
+}
+.gamepad-drift progress {
+  width: min(100%, 340px);
+}
+.gamepad-pressed {
+  border-color: var(--color-accent);
+  background: var(--color-accent-bg);
+}
+.gamepad-buttons dd small {
+  display: block;
+  white-space: normal;
+}
