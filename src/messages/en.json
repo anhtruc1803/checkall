@@ -224,7 +224,7 @@
   "savedResults": "Saved summaries",
   "deleteData": "Delete local data",
   "dataDeleted": "Local data deleted",
-  "privacyDetails": "Theme, language and preferences are stored on this device. Summaries are saved only when enabled and explicitly saved; they exclude keyboard and mouse logs. Deleting data does not affect other websites. Microphone audio is analysed in memory only after Start and permission. No recording, playback, audio history or upload; Stop releases tracks and the audio context.",
+  "privacyDetails": "Theme, language and preferences are stored on this device. Summaries are saved only when enabled and explicitly saved; they exclude keyboard and mouse logs. Deleting data does not affect other websites. Microphone audio is analysed in memory only after Start and permission. No recording, playback, audio history or upload; Stop releases tracks and the audio context. Camera requests video only after Start and permission; images are not recorded, read as pixels, stored or uploaded. Stop clears the video and releases tracks; device IDs and labels are not retained.",
   "noSaved": "No summaries saved yet.",
   "notFound": "Page not found",
   "notFoundText": "This address does not exist or the tool has not been published.",
@@ -401,5 +401,29 @@
     "interrupted": "The session stopped after focus, page visibility or audio context state changed. Select Start to try again.",
     "input-ended": "The input stream ended or device access was revoked. The session has stopped.",
     "timeout": "The 60-second session limit was reached. Resources were released; a pending browser prompt may still remain."
+  },
+  "cameraTools": {
+    "previewing": "Previewing",
+    "requesting": "Waiting for camera / video",
+    "consent": "Start requests camera access for up to 60 seconds. Local preview only; no microphone, recording, history or upload. Stop or leaving this tab releases the camera.",
+    "latePrompt": "The browser permission request is still pending. Stop cannot dismiss its prompt. Any late stream will be released; wait for the request to settle before starting again.",
+    "preview": "Local camera video",
+    "noData": "No video. Select Start and allow camera access to preview.",
+    "videoSize": "Current video dimensions",
+    "trackSize": "Reported stream resolution",
+    "reportedFps": "Reported stream FPS",
+    "observedFps": "Observed compositor FPS",
+    "frames": "Frames in measurement window",
+    "window": "Measurement window duration",
+    "elapsed": "Active preview time",
+    "muted": "The browser reports a muted camera track. FPS readings are cleared until valid frames return.",
+    "fpsUnavailable": "This browser does not expose requestVideoFrameCallback. FPS cannot be measured; video and stream settings remain available when supported.",
+    "fpsMethod": "Observed FPS = change in presentedFrames / callback time, over at least 2 seconds. Insufficient samples or no new frame for over 2 seconds: —.",
+    "interpretation": "Reported resolution/FPS describe the current stream settings. Observed FPS describes compositor submissions and may be limited by display refresh rate or system load; it does not certify sensor specifications or hardware FPS. Stop/Reset clears all readings.",
+    "playback-blocked": "Video could not play within 10 seconds. The camera was released. Check browser settings and select Start again.",
+    "camera-ended": "The camera stream ended or access was revoked. The session has stopped.",
+    "interrupted": "The session stopped after focus loss, a hidden page or paused video. Select Start to try again.",
+    "timeout": "The 60-second session limit was reached. Resources were released; a browser permission prompt may still remain.",
+    "preview-failed": "Video could not be read or displayed. The session stopped and released the camera."
   }
 }

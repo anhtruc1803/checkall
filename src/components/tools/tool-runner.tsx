@@ -23,6 +23,7 @@ const MouseMovement = dynamic(() => import('@/features/mouse/movement'));
 const MouseAccuracy = dynamic(() => import('@/features/mouse/accuracy'));
 const AudioOutput = dynamic(() => import('@/features/audio/output'));
 const AudioInput = dynamic(() => import('@/features/audio/input'));
+const Camera = dynamic(() => import('@/features/camera/camera'));
 const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   'screen-info': () => <ScreenInfo />,
   calculator: (id) => <Calculator toolId={id} />,
@@ -43,6 +44,7 @@ const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   'audio-output': (id) => <AudioOutput toolId={id} />,
   microphone: (id) => <AudioInput toolId={id} />,
   'audio-spectrum': (id) => <AudioInput toolId={id} />,
+  camera: (id) => <Camera toolId={id} />,
 };
 export function ToolRunner({
   tool,

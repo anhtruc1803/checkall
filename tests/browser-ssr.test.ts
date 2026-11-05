@@ -3,6 +3,7 @@ import { it, expect } from 'vitest';
 import { inspectCapabilities } from '@/lib/browser/capabilities';
 import { inspectPermissionEnvironment, observePermission } from '@/lib/browser/permissions';
 import { createMediaSession } from '@/lib/browser/media-session';
+import { CameraSession } from '@/lib/camera/camera-session';
 it('does not infer unsupported hardware or permission denial while rendering on the server', async () => {
   expect(inspectCapabilities(['screen', 'mediaDevices', 'secureContext'])).toEqual({
     screen: 'unknown',
@@ -18,4 +19,8 @@ it('does not infer unsupported hardware or permission denial while rendering on 
   expect(session.getSnapshot().status).toBe('idle');
   expect((await session.start()).failure).toBe('unsupported');
   session.dispose();
+  const camera = new CameraSession();
+  expect(camera.getSnapshot()).toMatchObject({ state: 'idle', reading: null });
+  await camera.start({} as HTMLVideoElement);
+  expect(camera.getSnapshot()).toMatchObject({ state: 'unsupported', failure: 'unsupported' });
 });

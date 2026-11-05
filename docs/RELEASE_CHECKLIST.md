@@ -1,5 +1,15 @@
 # Checklist phát hành
 
+## Phase 2 Milestone 5
+
+- [x] Ba engine camera/registry/VI-EN/SEO; 37 published, giữ 34 công cụ cũ; gamepad vẫn draft.
+- [x] Video-only sau Start, whitelist settings/FPS quan sát riêng, pending/late cleanup, video/frame/timer/listener và SSR/StrictMode.
+- [x] Build/typecheck/lint, 234 unit/integration đạt tại checkpoint cục bộ; audit production không finding.
+- [ ] Chốt hồi quy 264 E2E và Docker Linux CI source M5, đọc artifacts trước đánh dấu đạt.
+- [ ] Native header enforcement trên Firefox/WebKit/browser mục tiêu.
+- [ ] Webcam vật lý/đèn privacy/USB/OS prompt, Safari/điện thoại thật, BFCache/sleep/wake.
+- [ ] Manual screen reader/zoom/reduced motion và Lighthouse source mới; Final Acceptance tiếp tục mở.
+
 ## Phase 2 Milestone 4
 
 - [x] Microphone Test/Audio Spectrum có engine thực, VI/EN/SEO, permission và lifecycle; giữ 32 công cụ cũ.

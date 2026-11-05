@@ -224,7 +224,7 @@
   "savedResults": "Bản tóm tắt đã lưu",
   "deleteData": "Xóa dữ liệu trên thiết bị",
   "dataDeleted": "Đã xóa dữ liệu cục bộ",
-  "privacyDetails": "Theme, ngôn ngữ và tùy chọn được lưu trên thiết bị. Bản tóm tắt chỉ lưu khi bạn bật tùy chọn và bấm lưu; không bao gồm log phím hoặc chuột. Xóa dữ liệu không xóa dữ liệu của website khác. Audio microphone chỉ được phân tích trong bộ nhớ sau Bắt đầu và cho phép quyền. Không ghi âm, phát lại, lưu lịch sử audio hoặc upload; Dừng giải phóng track và AudioContext.",
+  "privacyDetails": "Theme, ngôn ngữ và tùy chọn được lưu trên thiết bị. Bản tóm tắt chỉ lưu khi bạn bật tùy chọn và bấm lưu; không bao gồm log phím hoặc chuột. Xóa dữ liệu không xóa dữ liệu của website khác. Audio microphone chỉ được phân tích trong bộ nhớ sau Bắt đầu và cho phép quyền. Không ghi âm, phát lại, lưu lịch sử audio hoặc upload; Dừng giải phóng track và AudioContext. Camera chỉ yêu cầu video sau Bắt đầu và cho phép quyền; hình ảnh không được ghi, đọc pixel, lưu hoặc upload. Dừng xóa video và giải phóng track; không lưu deviceId hoặc nhãn thiết bị.",
   "noSaved": "Chưa có bản tóm tắt được lưu.",
   "notFound": "Không tìm thấy trang",
   "notFoundText": "Địa chỉ không tồn tại hoặc công cụ chưa được công bố.",
@@ -401,5 +401,29 @@
     "interrupted": "Phiên đã dừng do thay đổi focus, hiển thị trang hoặc trạng thái AudioContext. Bấm Bắt đầu để thử lại.",
     "input-ended": "Luồng đầu vào đã kết thúc hoặc quyền thiết bị bị thu hồi. Phiên đã dừng.",
     "timeout": "Đã đạt giới hạn phiên 60 giây và giải phóng tài nguyên; hộp hỏi quyền đang chờ của browser vẫn có thể còn mở."
+  },
+  "cameraTools": {
+    "previewing": "Đang xem trước",
+    "requesting": "Đang chờ camera / video",
+    "consent": "Bắt đầu sẽ yêu cầu camera tối đa 60 giây. Chỉ xem trước cục bộ; không microphone, ghi hình, lưu lịch sử hoặc upload. Dừng hoặc rời tab sẽ giải phóng camera.",
+    "latePrompt": "Yêu cầu quyền vẫn đang chờ browser. Dừng không đóng được hộp hỏi quyền. Luồng cấp muộn sẽ được giải phóng; hãy chờ yêu cầu kết thúc trước khi bắt đầu lại.",
+    "preview": "Video camera cục bộ",
+    "noData": "Chưa có video. Bấm Bắt đầu và cho phép camera để xem trước.",
+    "videoSize": "Kích thước video hiện tại",
+    "trackSize": "Độ phân giải luồng được báo",
+    "reportedFps": "FPS luồng được báo",
+    "observedFps": "FPS quan sát tại compositor",
+    "frames": "Số khung trong cửa sổ đo",
+    "window": "Thời gian cửa sổ đo",
+    "elapsed": "Thời gian xem trước",
+    "muted": "Browser báo camera đang muted. Kết quả FPS được xóa tới khi nhận lại khung hình hợp lệ.",
+    "fpsUnavailable": "Browser không cung cấp requestVideoFrameCallback. Không thể đo FPS; video và cấu hình luồng vẫn được hiển thị nếu có.",
+    "fpsMethod": "FPS quan sát = chênh lệch presentedFrames / thời gian callback, cửa sổ ít nhất 2 giây. Chưa đủ mẫu hoặc không có khung mới trên 2 giây: —.",
+    "interpretation": "Độ phân giải/FPS được báo là cấu hình luồng hiện tại. FPS quan sát mô tả khung gửi tới compositor và có thể bị giới hạn bởi Refresh Rate hoặc tải máy; không chứng nhận thông số cảm biến hay FPS phần cứng. Dừng/Reset xóa mọi số đọc.",
+    "playback-blocked": "Không phát được video trong 10 giây. Camera đã được giải phóng. Kiểm tra thiết lập browser rồi bấm Bắt đầu lại.",
+    "camera-ended": "Luồng camera đã kết thúc hoặc quyền bị thu hồi. Phiên đã dừng.",
+    "interrupted": "Phiên đã dừng do mất focus, ẩn trang hoặc video bị tạm dừng. Bấm Bắt đầu để thử lại.",
+    "timeout": "Đã hết thời hạn phiên 60 giây; tài nguyên đã được giải phóng. Hộp hỏi quyền browser có thể vẫn còn mở.",
+    "preview-failed": "Không thể đọc hoặc hiển thị video. Phiên đã dừng và giải phóng camera."
   }
 }

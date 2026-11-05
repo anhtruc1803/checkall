@@ -73,3 +73,13 @@ Milestone nền tảng Phase 2 đã bắt đầu theo yêu cầu người dùng.
 Phase 3: 15 khả năng network và tiện ích: tốc độ download/upload, HTTP latency, jitter, packet loss estimate, public IP, DNS, TLS, headers, color picker, unit converter, benchmark, quick test, export, share.
 
 Tổng kiến trúc dự kiến: 21 + 19 + 15 = 55 khả năng. Endpoint network tương lai phải có rate limit, chống SSRF và kiểm soát tài nguyên trước khi được công bố.
+
+## Phase 2 — Milestone 5
+
+| ID  | Route sau locale  | Phương pháp                                                               |
+| --- | ----------------- | ------------------------------------------------------------------------- |
+| E01 | camera/preview    | Video cục bộ từ getUserMedia, không audio/record/upload                   |
+| E02 | camera/resolution | videoWidth/videoHeight và getSettings width/height của luồng hiện tại     |
+| E03 | camera/fps        | ΔpresentedFrames / Δthời gian callback, cửa sổ ≥2 giây; tách FPS được báo |
+
+Hiện hành 37 published/ba draft gamepad, 74 route công cụ VI/EN. Không suy ra cảm biến/độ phân giải tối đa/FPS phần cứng. Quyền theo route và document navigation, session 60 giây; thiếu dữ liệu dùng —. Chi tiết [PHASE2-MILESTONE5.md](PHASE2-MILESTONE5.md).

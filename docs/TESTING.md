@@ -1,5 +1,7 @@
 # Kiểm thử
 
+Milestone hiện hành: Phase 2 Milestone 5 (05/11/2026). Bộ hiện tại 234 unit/integration trên 30 file; 264 E2E dự kiến (66/cấu hình), không suy ra dự kiến là đã đạt. Giữ hồi quy 34 công cụ cũ, thêm 11 bài camera/cấu hình. Native getUserMedia dùng camera ảo, video/getSettings/rVFC thật; fixture riêng kiểm tra lỗi/pending/playback/lifecycle, không thay native capture. Axe toàn trang VI/EN hai theme, idle/running/error, responsive và keyboard. Windows WebKit thiếu mediaDevices ghi skip riêng; CI yêu cầu native API. Native header enforcement thiếu hỗ trợ ghi skip riêng, không coi là đạt. Chi tiết phương pháp/manual QA ở [PHASE2-MILESTONE5.md](PHASE2-MILESTONE5.md). Kết quả cuối từng lượt/source/CI ở PROGRESS.md và qa/phase2-milestone5.json.
+
 ## Phase 2 Milestone 4 — 05/11/2026
 
 Cập nhật sau checkpoint: bộ mở rộng 220 E2E (55/cấu hình), native capture và native header enforcement là hai bài độc lập. Firefox không expose policy API và probe vẫn capture khi header khai báo microphone=(); đối chiếu [Mozilla bug 1694922](https://bugzilla.mozilla.org/show_bug.cgi?id=1694922). Capture/Stop và analyser vẫn bắt buộc chạy. Bài native header enforcement ghi skip theo capability khi browser chưa triển khai; không tính skip là tiêu chí bảo mật đã đạt. Header scope HTTP/Nginx và nhánh policy của ứng dụng vẫn được kiểm tra. Yêu cầu native Web Audio trên CI giữ nguyên. InputSession bổ sung kiểm tra readyState khi track ended nhưng không có event; kết quả cuối ở PROGRESS/JSON.

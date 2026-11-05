@@ -7,23 +7,23 @@ test('all Phase 2 drafts stay out of VI/EN routes, navigation, search and sitema
 }) => {
   test.setTimeout(120000);
   const drafts = tools.filter((tool) => tool.status === 'draft');
-  expect(drafts).toHaveLength(6);
+  expect(drafts).toHaveLength(3);
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
-    await expect(page.locator('.catalog-item')).toHaveCount(34);
-    await expect(page.locator('.desktop-nav a')).toHaveCount(6);
+    await expect(page.locator('.catalog-item')).toHaveCount(37);
+    await expect(page.locator('.desktop-nav a')).toHaveCount(7);
     for (const tool of drafts) {
       const route = `/${locale}/${tool.category}/${tool.slug}`;
       expect((await request.get(route)).status(), route).toBe(404);
       expect(sitemap).not.toContain(route);
       await expect(page.locator(`a[href="${route}"]`)).toHaveCount(0);
     }
-    for (const category of ['camera', 'gamepad'])
+    for (const category of ['gamepad'])
       expect((await request.get(`/${locale}/${category}`)).status()).toBe(404);
     await page
       .getByRole('textbox', { name: locale === 'vi' ? 'Tìm kiếm công cụ' : 'Search testing tools' })
-      .fill('webcam');
+      .fill('gamepad');
     await expect(page.locator('.catalog-item')).toHaveCount(0);
   }
 });

@@ -315,14 +315,14 @@ test('catalog, related links and command search apply microphone policy through 
     '/en/audio/spectrum',
     true,
   );
-  await page.getByRole('button', { name: 'Search testing tools', exact: true }).click();
+  await page.getByRole('button', { name: 'Search testing tools ⌘K', exact: true }).click();
   await page.getByRole('dialog').getByRole('textbox').fill('keyboard');
   await navigate(
     () => page.getByRole('dialog').locator('a[href="/en/keyboard/tester"]').click(),
     '/en/keyboard/tester',
     false,
   );
-  await page.getByRole('button', { name: 'Search testing tools', exact: true }).click();
+  await page.getByRole('button', { name: 'Search testing tools ⌘K', exact: true }).click();
   await page.getByRole('dialog').getByRole('textbox').fill('microphone');
   await navigate(
     () => page.getByRole('dialog').locator('a[href="/en/audio/microphone"]').click(),

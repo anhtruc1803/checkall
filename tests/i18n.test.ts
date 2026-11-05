@@ -2,6 +2,14 @@ import { it, expect } from 'vitest';
 import vi from '@/messages/vi.json';
 import en from '@/messages/en.json';
 import sitemap from '@/app/sitemap';
+import { categoryOrder } from '@/lib/tools/types';
+it('keeps all category labels as plain translated text, separate from engine namespaces', () => {
+  for (const messages of [vi, en])
+    for (const category of categoryOrder) {
+      expect(typeof messages[category]).toBe('string');
+      expect(messages[category].trim().length).toBeGreaterThan(0);
+    }
+});
 it('keeps complete translation key parity', () => {
   const flatten = (messages: Record<string, unknown>, prefix = ''): Record<string, string> =>
     Object.assign(
@@ -20,9 +28,9 @@ it('keeps complete translation key parity', () => {
   for (const value of [...Object.values(vietnamese), ...Object.values(english)])
     expect(value.trim().length).toBeGreaterThan(0);
 });
-it('publishes only the 84 real localized routes in sitemap with alternates', () => {
+it('publishes only the 92 real localized routes in sitemap with alternates', () => {
   const entries = sitemap();
-  expect(entries).toHaveLength(84);
+  expect(entries).toHaveLength(92);
   expect(
     entries.every((entry) => entry.alternates?.languages?.vi && entry.alternates?.languages?.en),
   ).toBe(true);

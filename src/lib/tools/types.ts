@@ -33,12 +33,13 @@ export const implementedEngines = [
   'audio-output',
   'microphone',
   'audio-spectrum',
+  'camera',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {
   return implementedEngines.some((available) => available === engine);
 }
-export type Engine = ImplementedEngine | 'camera' | 'gamepad';
+export type Engine = ImplementedEngine | 'gamepad';
 export interface ToolCopy {
   name: string;
   description: string;

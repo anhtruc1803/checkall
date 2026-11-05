@@ -1,6 +1,8 @@
 # Performance Phase 1 — phép đo sạch ngày 29/10/2026
 
-Milestone hiện hành: Phase 2 Milestone 4. Input engine chỉ chạy sau thao tác chủ động, đọc 2048/1024 float mỗi 125 ms, đồ thị 64 điểm/dải và bộ đệm cố định. PolicyLink thêm document navigation ở ranh giới microphone để áp dụng đúng policy. Chưa đo lại Lighthouse source M4; build/E2E đạt không chứng minh Performance ≥90. Không gán các median lịch sử bên dưới cho source này.
+Checkpoint Phase 2 Milestone 5 (05/11/2026): chưa đo lại Lighthouse revision mới, chưa có median M5 và không nhận Performance mobile ≥90. Camera engine tải động, idle không capture; UI 4 Hz, FPS từ rVFC, bộ nhớ hằng số và không đọc pixel hoặc thêm ảnh/font/dependency. Đây là đặc tính triển khai, không phải kết quả benchmark. Điểm các revision lịch sử bên dưới không đại diện M5. Lighthouse sạch ít nhất ba lần/trang đại diện, main-thread/memory trên camera thật và tải khi capture vẫn cần đo trước Final Acceptance.
+
+Checkpoint lịch sử: Phase 2 Milestone 4. Input engine chỉ chạy sau thao tác chủ động, đọc 2048/1024 float mỗi 125 ms, đồ thị 64 điểm/dải và bộ đệm cố định. PolicyLink thêm document navigation ở ranh giới microphone để áp dụng đúng policy. Chưa đo lại Lighthouse source M4; build/E2E đạt không chứng minh Performance ≥90. Không gán các median lịch sử bên dưới cho source này.
 
 Milestone hiện hành là Phase 2 Milestone 3: audio-output tải qua dynamic import, không tạo context hay tải file âm thanh khi mount. CI cuối source 1066568 đạt kiểm thử chức năng nhưng chưa đo Lighthouse source M3; không coi đó là bằng chứng Performance ≥90 hoặc gán các median Phase 1 bên dưới cho revision này. Kiểm thử API/audio/E2E và build không thay thế Lighthouse.
 

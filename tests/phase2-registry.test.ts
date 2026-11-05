@@ -16,10 +16,10 @@ import type { Tool } from '@/lib/tools/types';
 import sitemap from '@/app/sitemap';
 
 describe('Phase 2 publication boundary', () => {
-  it('keeps 21 Phase 1 tools, publishes 13 Phase 2 tools including microphone/spectrum, with six drafts', () => {
+  it('keeps 21 Phase 1 tools, publishes 16 Phase 2 tools including camera, with three drafts', () => {
     expect(tools).toHaveLength(40);
     expect(new Set(tools.map((tool) => tool.id)).size).toBe(40);
-    expect(publishedTools).toHaveLength(34);
+    expect(publishedTools).toHaveLength(37);
     expect(publishedTools.filter((tool) => tool.phase === 1)).toHaveLength(21);
     expect(
       publishedTools
@@ -34,6 +34,9 @@ describe('Phase 2 publication boundary', () => {
       'D03',
       'D04',
       'D05',
+      'E01',
+      'E02',
+      'E03',
       'G01',
       'G02',
       'G03',
@@ -42,10 +45,10 @@ describe('Phase 2 publication boundary', () => {
       'G06',
     ]);
     expect(publishedTools.filter((tool) => tool.permissions.length).map((tool) => tool.id)).toEqual(
-      ['D03', 'D05'],
+      ['D03', 'D05', 'E01', 'E02', 'E03'],
     );
     const drafts = tools.filter((tool) => tool.status === 'draft');
-    expect(drafts).toHaveLength(6);
+    expect(drafts).toHaveLength(3);
     for (const draft of drafts) {
       expect(draft.status).toBe('draft');
       expect(draft.seo.index).toBe(false);
@@ -59,7 +62,15 @@ describe('Phase 2 publication boundary', () => {
     }
   });
   it('derives navigation from published tools, even when a new category has only drafts', () => {
-    expect(categories).toEqual(['screen', 'keyboard', 'mouse', 'audio', 'device', 'browser']);
+    expect(categories).toEqual([
+      'screen',
+      'keyboard',
+      'mouse',
+      'audio',
+      'camera',
+      'device',
+      'browser',
+    ]);
     expect(getSearchCategories(getToolSearchIndex('en'))).toEqual(categories);
     expect(getPublishedTools(tools.filter((tool) => tool.status === 'draft'))).toEqual([]);
     expect(getPublishedCategories(tools.filter((tool) => tool.status === 'draft'))).toEqual([]);
@@ -73,12 +84,12 @@ describe('Phase 2 publication boundary', () => {
       'indexable draft',
       (tool: Tool): Tool[] => [{ ...tool, status: 'draft', seo: { index: true } }],
     ],
-    ['missing engine', (tool: Tool): Tool[] => [{ ...tool, engine: 'camera' }]],
+    ['missing engine', (tool: Tool): Tool[] => [{ ...tool, engine: 'gamepad' }]],
     [
       'draft related link',
       (tool: Tool): Tool[] => [
-        { ...tool, relatedTools: ['E01'] },
-        tools.find((item) => item.id === 'E01')!,
+        { ...tool, relatedTools: ['F01'] },
+        tools.find((item) => item.id === 'F01')!,
       ],
     ],
     [
@@ -92,9 +103,9 @@ describe('Phase 2 publication boundary', () => {
     expect(() => validateToolRegistry(makeRegistry(fixture))).toThrow();
   });
   it('accepts a future implemented engine only when explicitly registered', () => {
-    const draft = tools.find((tool) => tool.id === 'E01')!;
+    const draft = tools.find((tool) => tool.id === 'F01')!;
     expect(() =>
-      validateToolRegistry([{ ...draft, status: 'published', seo: { index: true } }], ['camera']),
+      validateToolRegistry([{ ...draft, status: 'published', seo: { index: true } }], ['gamepad']),
     ).not.toThrow();
   });
 });

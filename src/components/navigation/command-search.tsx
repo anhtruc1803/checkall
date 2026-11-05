@@ -39,12 +39,13 @@ export function CommandSearch({ index }: { index: ToolSearchEntry[] }) {
       <Button
         variant="outline"
         className="command-trigger"
-        aria-label={t('searchLabel')}
+        aria-label={`${t('searchLabel')} ⌘K`}
+        aria-keyshortcuts="Control+K Meta+K"
         onClick={open}
       >
         <Search size={15} />
-        <span>{t('search')}</span>
-        <kbd>⌘K</kbd>
+        <span>{t('searchLabel')}</span>
+        <kbd aria-hidden="true">⌘K</kbd>
       </Button>
       <dialog
         ref={dialog}

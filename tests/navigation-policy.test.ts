@@ -1,6 +1,13 @@
 import { expect, it } from 'vitest';
 import { requiresDocumentNavigation } from '@/lib/browser/navigation-policy';
 it.each([
+  ['/en', '/en/camera/preview', true],
+  ['/vi/camera/resolution', '/en/camera/fps', true],
+  ['/en/camera/fps?x=1', '/en/audio/microphone', true],
+  ['/en/audio/spectrum', '/vi/camera/preview#main', true],
+  ['/en/camera/preview', '/vi/keyboard/tester', true],
+  ['/en/camera', '/en/camera/preview-extra', false],
+  ['/en/camera/fps/extra', '/en', false],
   ['/en', '/en/audio/microphone', true],
   ['/vi/audio/spectrum', '/en/audio/spectrum', true],
   ['/en/audio/microphone', '/en/screen/ppi', true],
