@@ -209,3 +209,14 @@ it('stops after permission revocation and detaches permission observation', asyn
   detach();
   expect(remove).toHaveBeenCalled();
 });
+it('detects a natively stopped track even when no ended event is emitted', async () => {
+  vi.useFakeTimers();
+  const audio = setup();
+  await audio.session.start();
+  audio.track.readyState = 'ended';
+  vi.advanceTimersByTime(125);
+  expect(audio.session.getSnapshot().failure).toBe('input-ended');
+  expect(audio.session.getSnapshot().reading).toBeNull();
+  expect(audio.context.close).toHaveBeenCalledTimes(1);
+  expect(vi.getTimerCount()).toBe(0);
+});

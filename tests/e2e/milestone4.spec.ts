@@ -80,7 +80,7 @@ test('only the four microphone/spectrum VI/EN routes allow self microphone acces
       'camera=(), microphone=(), geolocation=()',
     );
 });
-test('native getUserMedia uses virtual test devices and obeys real page policy', async ({
+test('native getUserMedia captures virtual test devices from homepage and releases all tracks', async ({
   page,
   context,
   browserName,
@@ -122,6 +122,24 @@ test('native getUserMedia uses virtual test devices and obeys real page policy',
       window.__inputProbe.tracks.every((track) => track.readyState === 'ended'),
     ),
   ).toBe(true);
+});
+test('native browser policy blocks microphone access when policy introspection is supported', async ({
+  page,
+  context,
+  browserName,
+}) => {
+  await nativeAudio(page);
+  await page.goto('/en/audio/microphone');
+  await ready(page);
+  const policyApi = await page.evaluate(() => {
+    const doc = document as Document & { permissionsPolicy?: unknown; featurePolicy?: unknown };
+    return Boolean(doc.permissionsPolicy || doc.featurePolicy);
+  });
+  test.skip(
+    !policyApi,
+    'Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately.',
+  );
+  if (browserName !== 'firefox') await context.grantPermissions(['microphone']);
   await page.route('**/en/audio/microphone', async (route) => {
     const response = await route.fetch();
     await route.fulfill({
@@ -187,6 +205,7 @@ test('permission denial, no device, busy input and capture abort are localized h
     ['NotAllowedError', 'refused'],
     ['NotFoundError', 'No usable device'],
     ['NotReadableError', 'cannot be read'],
+    ['OverconstrainedError', 'requested configuration'],
     ['AbortError', 'interrupted'],
   ]) {
     // One initialization dispatches on query string, avoiding ambiguous script ordering.
@@ -204,9 +223,21 @@ test('permission denial, no device, busy input and capture abort are localized h
           }
         }
         Object.defineProperty(window, 'AudioContext', { configurable: true, value: Context });
-        Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        const capture = () =>
+          Promise.reject(new DOMException('private microphone identifier', name));
+        Object.defineProperty(navigator, 'mediaDevices', {
           configurable: true,
-          value: () => Promise.reject(new DOMException('private microphone identifier', name)),
+          value: { getUserMedia: capture },
+        });
+        Object.defineProperty(navigator, 'permissions', {
+          configurable: true,
+          value: {
+            query: () => Promise.resolve(Object.assign(new EventTarget(), { state: 'prompt' })),
+          },
+        });
+        Object.defineProperty(document, 'permissionsPolicy', {
+          configurable: true,
+          value: { allowsFeature: () => true },
         });
       },
       { name },

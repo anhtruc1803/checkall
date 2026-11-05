@@ -67,14 +67,15 @@ export async function inputFixture(
           value: mode === 'missing-audio' ? undefined : PassiveContext,
         });
       const status = Object.assign(new EventTarget(), { state: 'prompt' });
-      if (navigator.permissions)
-        Object.defineProperty(navigator.permissions, 'query', {
-          configurable: true,
-          value: () =>
+      Object.defineProperty(navigator, 'permissions', {
+        configurable: true,
+        value: {
+          query: () =>
             queryUnknown
               ? Promise.reject(new TypeError('descriptor unsupported'))
               : Promise.resolve(status),
-        });
+        },
+      });
       probe.revoke = () => {
         status.state = 'denied';
         status.dispatchEvent(new Event('change'));
@@ -136,15 +137,20 @@ export async function inputFixture(
           track.dispatchEvent(new Event(value ? 'mute' : 'unmute'));
         };
         probe.end = () => {
-          track.stop();
+          // Gecko removes ended-track listeners on stop(); dispatch the simulated source event first.
           track.dispatchEvent(new Event('ended'));
+          track.stop();
         };
         return Promise.resolve(stream);
       };
-      if (navigator.mediaDevices)
-        Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+      Object.defineProperty(navigator, 'mediaDevices', {
+        configurable: true,
+        value: { getUserMedia: capture },
+      });
+      if (mode !== 'tone')
+        Object.defineProperty(document, 'permissionsPolicy', {
           configurable: true,
-          value: capture,
+          value: { allowsFeature: () => true },
         });
     },
     { mode, errorName, queryUnknown },

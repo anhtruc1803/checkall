@@ -260,6 +260,10 @@ export class InputSession {
             this.stop('completed');
             return;
           }
+          if (tracks.some((track) => track.readyState === 'ended')) {
+            this.stop('warning', 'input-ended');
+            return;
+          }
           const isMuted = tracks.some((track) => track.muted);
           let reading: InputReading | null = null;
           if (!isMuted) {

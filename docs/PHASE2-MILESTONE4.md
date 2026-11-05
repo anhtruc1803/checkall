@@ -43,11 +43,13 @@ Timer giới hạn phiên 60 giây kể từ Start (gồm thời gian chờ quy�
 
 ## Kiểm thử và bằng chứng
 
+Cập nhật sau checkpoint ban đầu: 12 E2E mới/cấu hình, tổng 220 (55/cấu hình). Bài native capture tách khỏi native header enforcement. Firefox hiện không có API policy và không chặn capture theo header trong probe; bài enforcement ghi skip có lý do, không tính là đã đạt. Tham khảo [Mozilla bug 1694922](https://bugzilla.mozilla.org/show_bug.cgi?id=1694922). Native capture, analyser và cleanup vẫn bắt buộc. InputSession kiểm tra readyState trong vòng đọc để dọn track đã kết thúc cả khi không có event ended; giới hạn browser này vẫn cần được ghi trong nghiệm thu.
+
 Các lệnh: pnpm typecheck, pnpm lint, pnpm test, pnpm build, pnpm test:e2e, pnpm audit --prod, node scripts/scan-secrets.mjs. Số chạy thật/source/CI cuối được chốt trong PROGRESS.md và qa/phase2-milestone4.json. Không dùng kết quả Milestone 3 làm bằng chứng source này.
 
-Unit mới kiểm tra thuật toán với dữ liệu đầu vào xác định, silence/NaN/Nyquist/empty bands; quyền, lỗi và cleanup, duplicate requests, late grant/denial/resume, context suspended, graph cấp phát một phần, mute/ended, timer 60 giây, StrictMode và thay tool. Bộ hiện tại 193 bài trên 27 file đã đạt tại checkpoint trước hồi quy browser cuối.
+Unit mới kiểm tra thuật toán với dữ liệu đầu vào xác định, silence/NaN/Nyquist/empty bands; quyền, lỗi và cleanup, duplicate requests, late grant/denial/resume, context suspended, graph cấp phát một phần, mute/ended, timer 60 giây, StrictMode và thay tool. Bộ hiện tại 194 bài trên 27 file đã đạt tại checkpoint trước hồi quy browser cuối.
 
-E2E bổ sung 11 bài/cấu hình; tổng hiện tại 216 bài (54 × Chromium/Firefox/WebKit/Chromium mobile). Capture native dùng thiết bị kiểm thử ảo, không mở microphone vật lý: Chromium fake-media device, Firefox fake stream/permission preferences, WebKit runner dùng môi trường kiểm thử của Playwright. Phân tích tín hiệu 1 kHz dùng getUserMedia fixture trả **MediaStream tổng hợp**, còn AudioContext/source/analyser/FFT chạy native; kết quả fixture không phải phép đo microphone thật. Failure/pending fixtures riêng không được tính thành capture phần cứng.
+E2E bổ sung 12 bài/cấu hình; tổng hiện tại 220 bài (55 × Chromium/Firefox/WebKit/Chromium mobile). Capture native dùng thiết bị kiểm thử ảo, không mở microphone vật lý: Chromium fake-media device, Firefox fake stream/permission preferences, WebKit runner dùng môi trường kiểm thử của Playwright. Phân tích tín hiệu 1 kHz dùng getUserMedia fixture trả **MediaStream tổng hợp**, còn AudioContext/source/analyser/FFT chạy native; kết quả fixture không phải phép đo microphone thật. Failure/pending fixtures riêng không được tính thành capture phần cứng.
 
 Kiểm tra mới gồm capture native từ homepage, policy chặn thật, policy tất cả route công cụ cũ, reset/stop/late grant, pagehide, revocation, mute/ended, blur, deadline với clock automation, no storage/upload, axe hai theme ở trạng thái chạy/lỗi/fallback, responsive VI/EN 320/375/414/768/1024/1280 px. Browser thiếu native Web Audio ngoài CI ghi skip có lý do; CI bắt buộc native API, không được skip phần này. WebKit automation không tương đương Safari thật; Chromium mobile là emulation.
 
@@ -64,8 +66,10 @@ Kiểm tra mới gồm capture native từ homepage, policy chặn thật, polic
 ## Trạng thái nghiệm thu
 
 - Đã triển khai: hai công cụ, permission/lifecycle, policy document navigation, VI/EN và các bài kiểm thử mới.
-- Đang xác minh tại checkpoint: hồi quy cuối 216 E2E và CI source mới; kết quả cuối nằm ở PROGRESS/JSON.
+- Đang xác minh tại checkpoint: hồi quy cuối 220 E2E và CI source mới; kết quả cuối nằm ở PROGRESS/JSON.
 - Chưa xác minh bằng phần cứng: microphone/driver/OS/native prompt thực tế và Safari thật; xem ma trận manual.
 - Chưa hoàn thành ở cấp dự án: sáu draft Phase 2, Lighthouse revision mới và Final Acceptance Phase 1/2. Không tự đánh dấu Final Acceptance hoàn tất.
 
 Nguồn phương pháp: [Media Capture and Streams W3C](https://www.w3.org/TR/mediacapture-streams/), [Web Audio API W3C](https://www.w3.org/TR/webaudio/), [Permissions Policy W3C](https://www.w3.org/TR/permissions-policy/). Hướng dẫn Next.js lazy-loading/headers được đọc từ đúng node_modules/next/dist/docs của repository.
+
+Giới hạn native policy ghi riêng: Firefox và runtime WebKit Linux ở CI đầu vẫn capture với header deny trong bài automation. Không khẳng định Safari thật có cùng hành vi. Native header enforcement chưa xác nhận ở runtime thiếu API introspection; bài tương ứng ghi skip, không coi tiêu chí này đã đạt. Ứng dụng chỉ gọi capture từ hai engine sau Start; header được kiểm tra độc lập và bài native capture/analyser vẫn bắt buộc.

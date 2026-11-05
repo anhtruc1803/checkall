@@ -15,7 +15,7 @@
     "typecheck": "passed",
     "lint": "passed",
     "unit": {
-      "passed": 193,
+      "passed": 194,
       "files": 27
     },
     "initialChromiumMilestoneE2E": {
@@ -23,7 +23,13 @@
     },
     "finalE2E": "pending",
     "productionDependencyAudit": "no-known-vulnerabilities",
-    "secretScan": "no-findings"
+    "secretScan": "no-findings",
+    "initialFullE2E": {
+      "sourceCommit": "40837d0",
+      "passed": 199,
+      "skipped": 12,
+      "failed": 5
+    }
   },
   "ci": {
     "status": "pending-new-source"
@@ -49,5 +55,19 @@
   "physicalHardwareVerified": false,
   "lighthouseCurrentSource": "not-measured",
   "vpsDeployed": false,
-  "finalAcceptance": "open"
+  "finalAcceptance": "open",
+  "initialCI": {
+    "run": "https://github.com/anhtruc1803/checkall/actions/runs/41948060055",
+    "sourceCommit": "40837d0",
+    "passed": 207,
+    "failed": 9,
+    "skipped": 0,
+    "docker": "passed"
+  },
+  "nativePolicyLimitation": {
+    "firefox": "policy-api-unavailable-and-header-block-not-enforced-in-probe",
+    "webkit": "native-header-enforcement-not-confirmed-in-automation-runtime",
+    "verified": false,
+    "reference": "https://bugzilla.mozilla.org/show_bug.cgi?id=1694922"
+  }
 }
