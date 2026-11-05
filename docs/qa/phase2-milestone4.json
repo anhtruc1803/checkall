@@ -1,7 +1,7 @@
 {
   "date": "2026-11-05",
   "milestone": "phase2-milestone4",
-  "status": "implemented-verification-in-progress",
+  "status": "implemented-and-automatically-verified-with-browser-limitations",
   "registry": {
     "total": 40,
     "publishedPhase1": 21,
@@ -21,18 +21,155 @@
     "initialChromiumMilestoneE2E": {
       "passed": 11
     },
-    "finalE2E": "pending",
+    "finalE2E": {
+      "scope": "milestone4-only",
+      "sourceCommit": "8f6e773d6fdfacfb565a3415a798e1ca079c649a",
+      "passed": 41,
+      "skipped": 7,
+      "unexpected": 0,
+      "flaky": 0,
+      "durationMs": 132218.51299999998,
+      "projects": {
+        "chromium": {
+          "passed": 12
+        },
+        "firefox": {
+          "passed": 11,
+          "skipped": 1
+        },
+        "webkit": {
+          "passed": 6,
+          "skipped": 6
+        },
+        "mobile": {
+          "passed": 12
+        }
+      }
+    },
     "productionDependencyAudit": "no-known-vulnerabilities",
     "secretScan": "no-findings",
     "initialFullE2E": {
       "sourceCommit": "40837d0",
-      "passed": 199,
+      "startTime": "2026-11-05T01:16:38.311Z",
+      "duration": 690219.359,
+      "expected": 199,
       "skipped": 12,
-      "failed": 5
+      "unexpected": 5,
+      "flaky": 0
     }
   },
   "ci": {
-    "status": "pending-new-source"
+    "run": "https://github.com/anhtruc1803/checkall/actions/runs/41949819465",
+    "sourceCommit": "8f6e773d6fdfacfb565a3415a798e1ca079c649a",
+    "result": "passed",
+    "verify": "passed",
+    "build": "passed",
+    "typecheck": "passed",
+    "lint": "passed",
+    "secretScan": "passed",
+    "unit": {
+      "passed": 194,
+      "files": 27
+    },
+    "e2e": {
+      "passed": 218,
+      "skipped": 2,
+      "unexpected": 0,
+      "flaky": 0,
+      "durationMs": 416482.686,
+      "projects": {
+        "chromium": {
+          "passed": 55
+        },
+        "firefox": {
+          "passed": 54,
+          "skipped": 1
+        },
+        "webkit": {
+          "passed": 54,
+          "skipped": 1
+        },
+        "mobile": {
+          "passed": 55
+        }
+      },
+      "skippedTests": [
+        {
+          "project": "firefox",
+          "title": "native browser policy blocks microphone access when policy introspection is supported",
+          "reason": "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+        },
+        {
+          "project": "webkit",
+          "title": "native browser policy blocks microphone access when policy introspection is supported",
+          "reason": "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+        }
+      ],
+      "nativeCapture": [
+        {
+          "project": "chromium",
+          "status": "passed"
+        },
+        {
+          "project": "firefox",
+          "status": "passed"
+        },
+        {
+          "project": "webkit",
+          "status": "passed"
+        },
+        {
+          "project": "mobile",
+          "status": "passed"
+        }
+      ],
+      "artifact": "https://github.com/anhtruc1803/checkall/actions/runs/41949819465/artifacts/13381076436"
+    },
+    "nativeAudioSmoke": {
+      "physicalHardwareVerified": false,
+      "results": [
+        {
+          "browser": "chromium",
+          "state": "passed",
+          "sampleRate": 44100,
+          "contextState": "closed"
+        },
+        {
+          "browser": "firefox",
+          "state": "passed",
+          "sampleRate": 48000,
+          "contextState": "closed"
+        },
+        {
+          "browser": "webkit",
+          "state": "passed",
+          "sampleRate": 44100,
+          "contextState": "closed"
+        }
+      ]
+    },
+    "docker": {
+      "result": "passed",
+      "platform": "Linux CI",
+      "jobId": 126990845508,
+      "durationSeconds": 78,
+      "routesViaNginx": 22,
+      "checkpoints": 3,
+      "policyHeadersVerified": true,
+      "healthcheck": "passed",
+      "nginx": "passed",
+      "nodePortPublished": false,
+      "restart": "passed",
+      "shutdown": {
+        "exitCode": 143,
+        "oomKilled": false,
+        "error": ""
+      },
+      "logsReviewed": true,
+      "artifact": "https://github.com/anhtruc1803/checkall/actions/runs/41949819465/artifacts/13379809854",
+      "imageId": "sha256:5dc19a2adc01b1b6fa93b6ab370ff22258784c732e55af479875f9a4f020e9bf",
+      "imageRegistryPushed": false
+    }
   },
   "audioAutomation": {
     "nativeCapture": "virtual-test-devices",
@@ -59,15 +196,34 @@
   "initialCI": {
     "run": "https://github.com/anhtruc1803/checkall/actions/runs/41948060055",
     "sourceCommit": "40837d0",
-    "passed": 207,
-    "failed": 9,
-    "skipped": 0,
+    "result": "failed",
+    "e2e": {
+      "startTime": "2026-11-05T01:24:52.012Z",
+      "duration": 423099.04199999996,
+      "expected": 207,
+      "skipped": 0,
+      "unexpected": 9,
+      "flaky": 0
+    },
     "docker": "passed"
   },
   "nativePolicyLimitation": {
     "firefox": "policy-api-unavailable-and-header-block-not-enforced-in-probe",
     "webkit": "native-header-enforcement-not-confirmed-in-automation-runtime",
     "verified": false,
-    "reference": "https://bugzilla.mozilla.org/show_bug.cgi?id=1694922"
-  }
+    "reference": "https://bugzilla.mozilla.org/show_bug.cgi?id=1694922",
+    "skippedTests": [
+      {
+        "project": "firefox",
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "reason": "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+      },
+      {
+        "project": "webkit",
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "reason": "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+      }
+    ]
+  },
+  "nextWork": "manual-microphone-permission-OS-Safari-and-native-policy-QA"
 }

@@ -66,10 +66,27 @@ Kiểm tra mới gồm capture native từ homepage, policy chặn thật, polic
 ## Trạng thái nghiệm thu
 
 - Đã triển khai: hai công cụ, permission/lifecycle, policy document navigation, VI/EN và các bài kiểm thử mới.
-- Đang xác minh tại checkpoint: hồi quy cuối 220 E2E và CI source mới; kết quả cuối nằm ở PROGRESS/JSON.
+- Đã xác minh automated QA khả dụng trên CI source 8f6e773: 194 unit, 218 E2E đạt/hai skip policy, Docker và artifacts đã đọc. Hai skip không được tính là tiêu chí native policy đã đạt.
 - Chưa xác minh bằng phần cứng: microphone/driver/OS/native prompt thực tế và Safari thật; xem ma trận manual.
 - Chưa hoàn thành ở cấp dự án: sáu draft Phase 2, Lighthouse revision mới và Final Acceptance Phase 1/2. Không tự đánh dấu Final Acceptance hoàn tất.
 
 Nguồn phương pháp: [Media Capture and Streams W3C](https://www.w3.org/TR/mediacapture-streams/), [Web Audio API W3C](https://www.w3.org/TR/webaudio/), [Permissions Policy W3C](https://www.w3.org/TR/permissions-policy/). Hướng dẫn Next.js lazy-loading/headers được đọc từ đúng node_modules/next/dist/docs của repository.
 
 Giới hạn native policy ghi riêng: Firefox và runtime WebKit Linux ở CI đầu vẫn capture với header deny trong bài automation. Không khẳng định Safari thật có cùng hành vi. Native header enforcement chưa xác nhận ở runtime thiếu API introspection; bài tương ứng ghi skip, không coi tiêu chí này đã đạt. Ứng dụng chỉ gọi capture từ hai engine sau Start; header được kiểm tra độc lập và bài native capture/analyser vẫn bắt buộc.
+
+## Kết quả chốt
+
+**Kết quả source 8f6e773:** [CI 41949819465](https://github.com/anhtruc1803/checkall/actions/runs/41949819465) success cả verify và Docker. Typecheck/lint/build/secret scan đạt; **194/194 unit (27 file), 218 E2E đạt, hai skip, không failure/flaky**. Đã tải và đọc [browser-qa JSON](https://github.com/anhtruc1803/checkall/actions/runs/41949819465/artifacts/13381076436); E2E 416482.686 ms (khoảng 6,9 phút).
+
+| Cấu hình CI     | Đạt | Skip |
+| --------------- | --: | ---: |
+| Chromium        |  55 |    0 |
+| Firefox         |  54 |    1 |
+| WebKit          |  54 |    1 |
+| Chromium mobile |  55 |    0 |
+
+Hai skip chỉ là bài native header enforcement khi runtime không expose policy API. Không coi tiêu chí này đã đạt, không khẳng định Safari thật có cùng hành vi. Native getUserMedia từ input ảo, analyser từ MediaStream tổng hợp, lifecycle, a11y/responsive và hồi quy chức năng cũ đều chạy trên cả bốn cấu hình. Native AudioContext smoke ba browser cũng đạt với context đóng sau kiểm tra. Header HTTP đúng phạm vi bốn URL và qua Nginx đã kiểm tra độc lập; nhánh policy của app có unit coverage.
+
+Docker Linux CI của source này đạt trong 78 giây: production image, Compose healthy, Nginx syntax/proxy, health + 22 route VI/EN và policy ba checkpoint (ban đầu/restart/stop-start), Node port không publish. SIGTERM exit 143, OOMKilled false/Error rỗng. Đã đọc [logs/containers/shutdown](https://github.com/anhtruc1803/checkall/actions/runs/41949819465/artifacts/13379809854), không có lỗi ứng dụng hoặc HTTP 4xx/5xx trong smoke. Image ID runner sha256:5dc19a2adc01b1b6fa93b6ab370ff22258784c732e55af479875f9a4f020e9bf; không push image registry hoặc triển khai VPS.
+
+Local source cuối: build/typecheck/lint và 194 unit đạt. Nhóm M4 cuối 41 đạt/bảy skip, không failure/flaky, 132218.513 ms: Chromium 12, Firefox 11 + một skip policy, WebKit Windows sáu + sáu skip native audio, mobile 12. Đây là lượt M4 riêng, không báo toàn bộ 220 E2E đã đạt cục bộ. Lượt toàn bộ trước sửa source 40837d0 là 199 đạt/12 skip/năm lỗi; CI đầu 207 đạt/chín lỗi. Các lỗi và hướng xử lý đã ghi trong PROGRESS, không bị thay bằng số đạt của source khác.

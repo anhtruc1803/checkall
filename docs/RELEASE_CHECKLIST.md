@@ -3,9 +3,10 @@
 ## Phase 2 Milestone 4
 
 - [x] Microphone Test/Audio Spectrum có engine thực, VI/EN/SEO, permission và lifecycle; giữ 32 công cụ cũ.
-- [x] Chỉ bốn route công cụ VI/EN mở microphone=self; navigation vào/rời dùng document mới, các route khác giữ chặn.
+- [x] Chỉ bốn route công cụ VI/EN khai báo microphone=self; navigation vào/rời dùng document mới, các route khác khai báo chặn trong header.
 - [x] Unit/lifecycle/StrictMode, bài E2E native input ảo và analyser từ tín hiệu tổng hợp, a11y/responsive; HTTP smoke policy 22 route.
-- [ ] Chốt hồi quy toàn bộ và CI source mới; xem kết quả thật PROGRESS/QA JSON.
+- [x] CI source 8f6e773 success: 194 unit, 218 E2E đạt/hai skip native policy, không failure/flaky; Docker 22 route và artifacts đã đọc.
+- [ ] Xác minh native header enforcement ở browser mục tiêu; Firefox/WebKit runtime hiện tại chưa đạt tiêu chí này.
 - [ ] Native permission prompt, microphone/OS/driver/mute/USB/Bluetooth và Safari thật.
 - [ ] Screen reader/zoom/reduced motion, Lighthouse source mới và Final Acceptance Phase 1/2.
 

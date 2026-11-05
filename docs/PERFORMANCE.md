@@ -81,3 +81,5 @@ Trên Linux sạch có thể dùng --base-url http://127.0.0.1:3000 và SITE_URL
 ## Báo cáo lịch sử
 
 Các điểm 75–81 trong bàn giao trước là một lượt đo HTTP bị chèn script, không phải median sạch. Chúng còn ở artifacts/lighthouse-baseline và báo cáo cũ, chỉ dùng để giải thích lịch sử. Các bộ trung gian clean-after và clean-final vẫn giữ nguyên trong artifacts/performance; kết quả phát hành dùng clean-release, kể cả điểm thấp hơn.
+
+Source M4 cuối 8f6e773 đã đạt kiểm thử chức năng/CI trong phạm vi capability hiện có; Lighthouse vẫn chưa đo. Không dùng kết quả unit/E2E, native audio smoke hoặc các median Phase 1 để chứng minh Performance của source này.

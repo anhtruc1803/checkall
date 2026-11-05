@@ -315,3 +315,26 @@ Source 40837d0 đã push main, CI 41948060055 xác minh source mới. Hồi quy 
 Bổ sung kiểm tra readyState tại mỗi lần đọc để đóng phiên khi track ended mà không có event; có unit riêng. Chuẩn hóa failure/pending fixtures để chỉ mô phỏng API cần thiết, không coi đó là capture native. Tách capture khỏi bài native header enforcement; bài enforcement ghi skip theo capability thực, không báo Firefox đã chặn header. Các tiêu chí capture/track cleanup và native analyser vẫn bắt buộc. Bộ hiện tại 220 bài (55/cấu hình), cần CI source mới; native policy Firefox tiếp tục là giới hạn mở theo Mozilla bug 1694922.
 
 Unit sau bổ sung readyState đạt 194/194 (27 file), typecheck/lint/build đạt. Nhóm M4 Firefox/WebKit sau sửa đạt 17 bài/bảy skip, không failure; skip gồm native Web Audio thiếu trên WebKit Windows và native policy Firefox không có API. CI source 40837d0 kết thúc failure: 207/216 E2E đạt, chín lỗi (hai Firefox, bảy WebKit Linux); Docker job đạt. Các case synthetic/failure WebKit được chuẩn hóa facade permissions/mediaDevices để trạng thái quyền native không mâu thuẫn với stream fixture. Native capture được kiểm tra riêng, không dùng facade này. Cần CI source sửa cuối; chưa ghi milestone đã nghiệm thu.
+
+### Nghiệm thu Milestone 4 trong phạm vi phần mềm
+
+**Kết quả source 8f6e773:** [CI 41949819465](https://github.com/anhtruc1803/checkall/actions/runs/41949819465) success cả verify và Docker. Typecheck/lint/build/secret scan đạt; **194/194 unit (27 file), 218 E2E đạt, hai skip, không failure/flaky**. Đã tải và đọc [browser-qa JSON](https://github.com/anhtruc1803/checkall/actions/runs/41949819465/artifacts/13381076436); E2E 416482.686 ms (khoảng 6,9 phút).
+
+| Cấu hình CI     | Đạt | Skip |
+| --------------- | --: | ---: |
+| Chromium        |  55 |    0 |
+| Firefox         |  54 |    1 |
+| WebKit          |  54 |    1 |
+| Chromium mobile |  55 |    0 |
+
+Hai skip chỉ là bài native header enforcement khi runtime không expose policy API. Không coi tiêu chí này đã đạt, không khẳng định Safari thật có cùng hành vi. Native getUserMedia từ input ảo, analyser từ MediaStream tổng hợp, lifecycle, a11y/responsive và hồi quy chức năng cũ đều chạy trên cả bốn cấu hình. Native AudioContext smoke ba browser cũng đạt với context đóng sau kiểm tra. Header HTTP đúng phạm vi bốn URL và qua Nginx đã kiểm tra độc lập; nhánh policy của app có unit coverage.
+
+Docker Linux CI của source này đạt trong 78 giây: production image, Compose healthy, Nginx syntax/proxy, health + 22 route VI/EN và policy ba checkpoint (ban đầu/restart/stop-start), Node port không publish. SIGTERM exit 143, OOMKilled false/Error rỗng. Đã đọc [logs/containers/shutdown](https://github.com/anhtruc1803/checkall/actions/runs/41949819465/artifacts/13379809854), không có lỗi ứng dụng hoặc HTTP 4xx/5xx trong smoke. Image ID runner sha256:5dc19a2adc01b1b6fa93b6ab370ff22258784c732e55af479875f9a4f020e9bf; không push image registry hoặc triển khai VPS.
+
+Local source cuối: build/typecheck/lint và 194 unit đạt. Nhóm M4 cuối 41 đạt/bảy skip, không failure/flaky, 132218.513 ms: Chromium 12, Firefox 11 + một skip policy, WebKit Windows sáu + sáu skip native audio, mobile 12. Đây là lượt M4 riêng, không báo toàn bộ 220 E2E đã đạt cục bộ. Lượt toàn bộ trước sửa source 40837d0 là 199 đạt/12 skip/năm lỗi; CI đầu 207 đạt/chín lỗi. Các lỗi và hướng xử lý đã ghi trong PROGRESS, không bị thay bằng số đạt của source khác.
+
+Đã hoàn thành và xác minh: hai engine/registry/VI-EN/SEO, số đọc digital thật từ luồng, quyền và lifecycle, document navigation qua policy boundary, bảo toàn 32 công cụ cũ, unit/E2E khả dụng, a11y tự động/responsive, audit/secret scan và Docker CI. File chính và phương pháp ở PHASE2-MILESTONE4.md; raw artifacts/cache/.env/key không commit. Server QA thuộc tác vụ đã dừng.
+
+Đã triển khai nhưng chưa xác minh bằng phần cứng: microphone tích hợp/USB/Bluetooth, mute/đổi/rút input và native prompt/OS permission. Không thể xác minh native header enforcement trong runtime Firefox/WebKit hiện tại; giữ hai skip rõ lý do, cần kiểm tra các browser mục tiêu/Safari thật. Chưa hoàn thành: manual screen reader/zoom/reduced motion/BFCache, Lighthouse source mới và sáu draft Phase 2. Final Acceptance Phase 1/2 tiếp tục mở; không đánh dấu nghiệm thu tổng thể hoàn tất. Không triển khai Phase 3 hoặc VPS.
+
+Tiếp theo: thực hiện ma trận manual QA microphone/permission/OS/Safari và đối chiếu hỗ trợ native policy. Các công cụ camera/gamepad chỉ bắt đầu theo yêu cầu milestone tiếp theo.
