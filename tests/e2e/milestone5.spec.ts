@@ -208,6 +208,15 @@ test('document navigation updates camera, locale, microphone and restrictive pol
     await expect(page).toHaveURL(new RegExp(`${path}$`));
   };
   const camera = 'camera=(self), microphone=(), geolocation=()';
+  const category = async (href: string) => {
+    const desktop = page.locator(`.desktop-nav a[href="${href}"]`);
+    if (await desktop.isVisible()) await desktop.click();
+    else {
+      await page.locator('.menu-toggle').click();
+      await expect(page.locator('#mobile-nav')).toBeVisible();
+      await page.locator(`#mobile-nav a[href="${href}"]`).click();
+    }
+  };
   await navigate(
     () => page.locator('.catalog-item[href="/en/camera/preview"]').click(),
     '/en/camera/preview',
@@ -224,7 +233,7 @@ test('document navigation updates camera, locale, microphone and restrictive pol
     camera,
   );
   await navigate(
-    () => page.locator('a[href="/vi/audio"]').first().click(),
+    () => category('/vi/audio'),
     '/vi/audio',
     'camera=(), microphone=(), geolocation=()',
   );
@@ -234,7 +243,7 @@ test('document navigation updates camera, locale, microphone and restrictive pol
     'camera=(), microphone=(self), geolocation=()',
   );
   await navigate(
-    () => page.locator('a[href="/vi/camera"]').first().click(),
+    () => category('/vi/camera'),
     '/vi/camera',
     'camera=(), microphone=(), geolocation=()',
   );

@@ -60,3 +60,16 @@ Build/typecheck/lint và unit đã chạy cục bộ; số cuối, E2E, Docker v
 | Chính sách        | Native enforcement trên Firefox/WebKit/browser mục tiêu; iframe/policy OS và HTTPS staging sau khi được phép                                                            |
 
 Chưa đo Lighthouse revision này; không nhận ≥90 và không sử dụng điểm Phase 1 làm điểm M5. Không đánh dấu Final Acceptance Phase 1 hoặc toàn Phase 2 hoàn tất. Ba mục gamepad vẫn draft; chỉ tiếp tục milestone sau khi có yêu cầu.
+
+## Dependency audit và môi trường cục bộ
+
+`pnpm audit --prod --json` không có finding. `pnpm audit --json` ngày 05/11/2026 báo hai advisory moderate ở dependency phát triển có sẵn, không phải dependency được thêm bởi camera:
+
+| Package   | Đường dẫn trong audit                               | Bản đang dùng / bản vá theo advisory |
+| --------- | --------------------------------------------------- | ------------------------------------ |
+| glob      | lighthouse → @sentry/node → @sentry/bundler-plugins | 13.0.6 / ≥14.0.2                     |
+| minimatch | ESLint/TypeScript parser và Lighthouse → glob       | 10.2.6 / ≥11.0.1                     |
+
+Nguồn: [glob GHSA-3g3m-2fjr-6pw4](https://github.com/advisories/GHSA-3g3m-2fjr-6pw4), [minimatch GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249). Vấn đề liên quan tiêu thụ tài nguyên khi duyệt filesystem bị abort hoặc xử lý pattern glob do bên tấn công kiểm soát. Cây production được audit riêng không chứa hai finding này. Không kết luận toàn repository không có lỗ hổng. Chưa thay major transitive ngoài phạm vi M5; cần cập nhật đồng bộ công cụ lint/Lighthouse và kiểm chứng tương thích, không dùng override major chưa kiểm tra chỉ để xóa cảnh báo audit. Không chạy các công cụ phát triển này với pattern/đường dẫn không tin cậy.
+
+Browser Windows có script Kaspersky chèn vào và phát POST tới domain của phần mềm đó. Bài native camera theo dõi **mọi** POST/PUT/PATCH, không lọc bỏ domain này để báo đạt. Kết quả privacy của lượt cục bộ có request chèn không được tính là môi trường sạch; CI Linux xác minh riêng. Không tắt hoặc chỉnh phần mềm bảo mật của người dùng.
