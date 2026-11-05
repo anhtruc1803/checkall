@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/navigation/policy-link';
 import { ArrowUpRight, Monitor, Keyboard, Mouse, Volume2, Cpu, Globe } from 'lucide-react';
 import type { Tool, Category } from '@/lib/tools/registry';
 import { toolHref } from '@/lib/tools/registry';

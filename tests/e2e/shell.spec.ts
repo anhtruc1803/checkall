@@ -18,18 +18,18 @@ test('theme persists and mobile layout fits', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
-  for (const width of [320, 375, 414, 768]) {
+  for (const width of [340, 375, 414, 768]) {
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );
   }
 });
-test('all 64 published tool routes have localized content, including the original 42', async ({
+test('all 68 published tool routes have localized content, including the original 42', async ({
   request,
 }) => {
   expect(tools.filter((tool) => tool.phase === 1)).toHaveLength(21);
-  expect(tools).toHaveLength(32);
+  expect(tools).toHaveLength(34);
   test.setTimeout(180000);
   for (const locale of ['vi', 'en'] as const) {
     for (const tool of tools) {

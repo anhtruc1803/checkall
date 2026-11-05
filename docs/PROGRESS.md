@@ -295,3 +295,17 @@ Hoàn thành implementation và automated QA ba công cụ trong phạm vi M3; g
 Đã hoàn thành và xác minh: registry/VI-EN/SEO, engine Web Audio, deadline/lifecycle, hồi quy/a11y tự động/responsive, build/audit/secret scan và Docker CI. Đã triển khai nhưng chưa xác minh bằng phần cứng: trải nghiệm nghe Speaker/Stereo/Generator, mute/output routing/driver/Bluetooth. Không thể kiểm chứng trong môi trường hiện tại: âm thanh vật lý/Safari/thiết bị thật; screen reader và manual QA còn mở. Chưa hoàn thành ở cấp dự án: tám draft Phase 2 còn lại, Lighthouse revision mới và các điều kiện Final Acceptance. Không đánh dấu Final Acceptance Phase 1 hoặc toàn Phase 2 hoàn tất.
 
 Công việc tiếp theo: thực hiện ma trận manual QA trong PHASE2-MILESTONE3.md trước nghiệm thu âm thanh vật lý; milestone microphone/spectrum chỉ bắt đầu theo yêu cầu tiếp theo và cần kiểm thử quyền/capture/phần cứng riêng. Không triển khai Phase 3.
+
+## Phase 2 — Milestone 4, ngày 05/11/2026
+
+Người dùng yêu cầu Microphone Test và Audio Spectrum, đầy đủ permission/lifecycle, giữ chức năng hiện có, kiểm thử, tài liệu tiếng Việt và push GitHub. Working tree ban đầu sạch tại 096268f, remote đồng bộ; không triển khai VPS hoặc Phase 3.
+
+Đã triển khai D03/D05: InputSession dùng media session/permission nền tảng, audio-only capture sau Start; resume trong click ban đầu, kiểm tra context state sau grant, chống duplicate/late result. Stop/Reset/blur/hidden/pagehide/unmount/đổi tool/ended/revoked/context interruption dọn track/node/context/timer/listener; late grant được stop, pending không bị giả thành Denied. Phân tích RMS/peak/dBFS/tỷ lệ mẫu gần full scale và FFT 2048; UI 8 Hz, 64 điểm/dải, không fake sample/PCM/history/upload/monitoring.
+
+Registry 34 published (21 Phase 1 + 13 Phase 2), sáu draft, 68 route công cụ VI/EN, 84 URL nội dung. Policy microphone=self chỉ bốn URL D03/D05; toàn bộ route khác chặn. Thêm PolicyLink tạo document navigation qua ranh giới microphone, vì App Router soft navigation giữ document policy cũ. Không viết lại kiến trúc; thay đổi navigation có lý do kỹ thuật và regression browser cụ thể.
+
+File chính: src/lib/audio/{input-session,input-analysis}.ts, src/features/audio/input.tsx, src/lib/tools/phase2-milestone4.ts, src/components/navigation/policy-link.tsx và src/lib/browser/navigation-policy.ts; registry/ToolRunner/metadata/messages/privacy/CSS/Next headers, tests unit/lifecycle/navigation/E2E và scripts/smoke-http.mjs. HTTP smoke mở rộng 22 route VI/EN kèm assertion policy qua Nginx.
+
+Đã sửa lỗi phân loại sự kiện stopped trung gian của media session che lỗi capture (permission-denied/not-found/busy/abort), thêm hủy chờ resume khi Stop, kiểm tra context suspended sau grant và cleanup khi đổi tool. Unit hiện 193/193 trên 27 file đạt; typecheck/lint/production build đạt (90 trang gồm hạ tầng). Audit production không có lỗ hổng đã biết; secret scan 182 file không finding tại checkpoint trước cập nhật tài liệu.
+
+E2E mới Chromium đạt 11/11, gồm native getUserMedia dùng thiết bị ảo từ homepage, policy chặn thật, analyser native từ tín hiệu tổng hợp 1 kHz và document navigation catalog/related/search. Lượt hồi quy 212 bài trước sửa policy navigation được dừng để bổ sung regression, không báo là hoàn tất. Bộ cuối 216 bài đang chạy; chưa ghi đang chạy là đạt. Thiết bị kiểm thử/fixture được phân biệt với microphone vật lý; chưa nghiệm thu Safari hoặc microphone thật, chưa đo Lighthouse M4, chưa đóng Final Acceptance.

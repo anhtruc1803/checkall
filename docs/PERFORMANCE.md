@@ -1,5 +1,7 @@
 # Performance Phase 1 — phép đo sạch ngày 29/10/2026
 
+Milestone hiện hành: Phase 2 Milestone 4. Input engine chỉ chạy sau thao tác chủ động, đọc 2048/1024 float mỗi 125 ms, đồ thị 64 điểm/dải và bộ đệm cố định. PolicyLink thêm document navigation ở ranh giới microphone để áp dụng đúng policy. Chưa đo lại Lighthouse source M4; build/E2E đạt không chứng minh Performance ≥90. Không gán các median lịch sử bên dưới cho source này.
+
 Milestone hiện hành là Phase 2 Milestone 3: audio-output tải qua dynamic import, không tạo context hay tải file âm thanh khi mount. CI cuối source 1066568 đạt kiểm thử chức năng nhưng chưa đo Lighthouse source M3; không coi đó là bằng chứng Performance ≥90 hoặc gán các median Phase 1 bên dưới cho revision này. Kiểm thử API/audio/E2E và build không thay thế Lighthouse.
 
 > Đây là dữ liệu checkpoint Phase 1 được đo theo revision ghi bên dưới. Phase 2 Milestone 2 (source 097404e, 30/10/2026) chưa đo lại Lighthouse; không gán các điểm/median cũ cho source mới hoặc coi Performance ≥90 đã đạt. Cần đo tiếp trong môi trường sạch/CPU ổn định; trạng thái này vẫn mở trong RELEASE_CHECKLIST.md.

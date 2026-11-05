@@ -1,5 +1,5 @@
 import { ToolRunner } from '@/components/tools/tool-runner';
-import Link from 'next/link';
+import Link from '@/components/navigation/policy-link';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ChevronRight, ShieldCheck, ArrowRight } from 'lucide-react';

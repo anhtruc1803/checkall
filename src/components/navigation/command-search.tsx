@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
+import Link from '@/components/navigation/policy-link';
 import { Search, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { searchToolIndex, toolHref, type ToolSearchEntry } from '@/lib/tools/search';

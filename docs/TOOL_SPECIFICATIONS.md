@@ -55,6 +55,15 @@ Mỗi công cụ có engine, phương pháp/giới hạn và nội dung VI/EN ri
 
 Tổng hiện hành 32 published, tám draft. Mức 0–20% là biên độ số; sample rate lấy từ AudioContext, tần số là cấu hình tín hiệu, không phải kết quả đo đầu ra. Không capture hoặc lưu audio/history. Chi tiết ở [PHASE2-MILESTONE3.md](PHASE2-MILESTONE3.md). Số M2 phía trên là checkpoint trước.
 
+## Phase 2 — Milestone 4
+
+| ID  | Route sau locale | Phân loại                                                     |
+| --- | ---------------- | ------------------------------------------------------------- |
+| D03 | audio/microphone | Quan sát luồng microphone số: RMS, peak, dBFS, waveform       |
+| D05 | audio/spectrum   | Quan sát FFT, bin mạnh nhất ước tính và giới hạn độ phân giải |
+
+Hiện hành 34 published/sáu draft. Capture sau Start và cho phép quyền, không ghi file, nối loa, lưu audio/history hoặc upload. Policy microphone=self chỉ hai route ở VI/EN; vào/rời dùng document navigation để policy thật được áp dụng. Tần số FFT không phải fundamental/pitch, dBFS không phải dB SPL. Chi tiết [PHASE2-MILESTONE4.md](PHASE2-MILESTONE4.md).
+
 ## Roadmap và checkpoint trước
 
 Phase 2: 19 khả năng audio, microphone, webcam, gamepad, device/browser/GPU information, storage, fullscreen, mouse movement/accuracy.

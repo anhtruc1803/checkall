@@ -14,11 +14,19 @@ for (const locale of ['vi', 'en'])
     '/audio/speaker',
     '/audio/stereo',
     '/audio/frequency-generator',
+    '/audio/microphone',
+    '/audio/spectrum',
   ]) {
     const response = await fetch(`${origin}/${locale}${path}`);
     assert.equal(response.status, 200);
+    assert.equal(
+      response.headers.get('permissions-policy'),
+      ['/audio/microphone', '/audio/spectrum'].includes(path)
+        ? 'camera=(), microphone=(self), geolocation=()'
+        : 'camera=(), microphone=(), geolocation=()',
+    );
     const html = await response.text();
     assert.match(html, new RegExp(`<html[^>]*lang="${locale}"`));
     assert.match(html, /<main/);
   }
-console.log('HTTP smoke passed: health + 18 VI/EN routes.');
+console.log('HTTP smoke passed: health + 22 VI/EN routes, including scoped microphone policy.');

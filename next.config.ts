@@ -29,6 +29,12 @@ const config: NextConfig = {
           },
         ],
       },
+      {
+        source: '/:locale(vi|en)/audio/:tool(microphone|spectrum)',
+        headers: [
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(self), geolocation=()' },
+        ],
+      },
     ];
   },
 };

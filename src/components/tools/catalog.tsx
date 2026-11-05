@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import Link from 'next/link';
+import Link from '@/components/navigation/policy-link';
 import { ArrowUpRight, Monitor, Keyboard, Mouse, Volume2, Search, Cpu, Globe } from 'lucide-react';
 import {
   getSearchCategories,

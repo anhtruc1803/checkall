@@ -1,5 +1,14 @@
 # Checklist phát hành
 
+## Phase 2 Milestone 4
+
+- [x] Microphone Test/Audio Spectrum có engine thực, VI/EN/SEO, permission và lifecycle; giữ 32 công cụ cũ.
+- [x] Chỉ bốn route công cụ VI/EN mở microphone=self; navigation vào/rời dùng document mới, các route khác giữ chặn.
+- [x] Unit/lifecycle/StrictMode, bài E2E native input ảo và analyser từ tín hiệu tổng hợp, a11y/responsive; HTTP smoke policy 22 route.
+- [ ] Chốt hồi quy toàn bộ và CI source mới; xem kết quả thật PROGRESS/QA JSON.
+- [ ] Native permission prompt, microphone/OS/driver/mute/USB/Bluetooth và Safari thật.
+- [ ] Screen reader/zoom/reduced motion, Lighthouse source mới và Final Acceptance Phase 1/2.
+
 ## Phase 2 Milestone 3
 
 - [x] Ba công cụ Speaker/Stereo/Frequency Generator có graph thật, registry/VI-EN/SEO và lifecycle; giữ 29 công cụ đã công bố trước đó.

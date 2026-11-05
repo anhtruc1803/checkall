@@ -1,5 +1,11 @@
 # Kiểm thử
 
+## Phase 2 Milestone 4 — 05/11/2026
+
+Bộ unit hiện 193 bài trên 27 file; kiểm tra InputSession, thuật toán RMS/FFT, permission/media failures, late grant/denial/resume, lifecycle/StrictMode và policy navigation. Mười một E2E mới mỗi cấu hình, tổng 216 (54/cấu hình), giữ hồi quy 32 công cụ cũ. Kiểm tra policy tất cả non-media tool routes, capture native với input ảo, analyser native từ MediaStream tổng hợp 1 kHz, Stop/Reset/revocation/mute/ended/late cleanup và chuyển document qua catalog/related/search. Không gán tín hiệu QA thành số đo phần cứng.
+
+Axe hai theme cho chạy/lỗi/fallback; responsive VI/EN 320/375/414/768/1024/1280 px. WebKit Windows thiếu Web Audio phải ghi skip native riêng, không giả API để báo capture đạt; CI bắt buộc native API. WebKit automation và Chromium mobile emulation không thay Safari/thiết bị thật. Manual QA và nguồn phương pháp ở [PHASE2-MILESTONE4.md](PHASE2-MILESTONE4.md). Kết quả/source/CI cuối ở PROGRESS.md và qa/phase2-milestone4.json; các đoạn M3 bên dưới là lịch sử.
+
 ## Phase 2 Milestone 3 — 30/10/2026
 
 Ba công cụ Speaker/Stereo/Frequency Generator dùng Web Audio thật. Bộ unit/lifecycle mở rộng thêm validation/Nyquist, stereo graph, timer/late resume/cleanup và StrictMode; E2E thêm chín bài mỗi cấu hình, tổng 172 (43 × Chromium/Firefox/WebKit/Chromium mobile). Automation phát ở mức 0, xác minh API/graph/lifecycle, không xác nhận nghe được hoặc stereo vật lý. Axe chạy ba công cụ ở Dark/Light; responsive VI/EN ở 320/375/414/768/1024/1150/1280 px. Toàn bộ hồi quy Phase 1/M2 được giữ. Chi tiết và manual QA ở [PHASE2-MILESTONE3.md](PHASE2-MILESTONE3.md); số đạt/source/CI cuối ở PROGRESS.md và qa/phase2-milestone3.json. Các kết quả M2 bên dưới là checkpoint lịch sử.

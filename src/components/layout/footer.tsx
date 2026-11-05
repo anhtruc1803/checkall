@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/navigation/policy-link';
 import { getTranslations, getLocale } from 'next-intl/server';
 export async function Footer() {
   const t = await getTranslations(),

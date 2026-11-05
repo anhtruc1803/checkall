@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-05",
+  "milestone": "phase2-milestone4",
+  "status": "implemented-verification-in-progress",
+  "registry": {
+    "total": 40,
+    "publishedPhase1": 21,
+    "publishedPhase2": 13,
+    "draftPhase2": 6
+  },
+  "publishedToolRoutes": 68,
+  "publicContentUrls": 84,
+  "local": {
+    "build": "passed",
+    "typecheck": "passed",
+    "lint": "passed",
+    "unit": {
+      "passed": 193,
+      "files": 27
+    },
+    "initialChromiumMilestoneE2E": {
+      "passed": 11
+    },
+    "finalE2E": "pending",
+    "productionDependencyAudit": "no-known-vulnerabilities",
+    "secretScan": "no-findings"
+  },
+  "ci": {
+    "status": "pending-new-source"
+  },
+  "audioAutomation": {
+    "nativeCapture": "virtual-test-devices",
+    "analysis": "native-Web-Audio-from-synthetic-1kHz-MediaStream",
+    "physicalMicrophoneVerified": false
+  },
+  "microphonePolicy": {
+    "allowedPaths": [
+      "/vi/audio/microphone",
+      "/en/audio/microphone",
+      "/vi/audio/spectrum",
+      "/en/audio/spectrum"
+    ],
+    "allowed": "camera=(), microphone=(self), geolocation=()",
+    "default": "camera=(), microphone=(), geolocation=()",
+    "boundaryNavigation": "document"
+  },
+  "manualQA": "PHASE2-MILESTONE4.md",
+  "realSafariVerified": false,
+  "physicalHardwareVerified": false,
+  "lighthouseCurrentSource": "not-measured",
+  "vpsDeployed": false,
+  "finalAcceptance": "open"
+}

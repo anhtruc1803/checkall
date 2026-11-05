@@ -7,11 +7,11 @@ test('all Phase 2 drafts stay out of VI/EN routes, navigation, search and sitema
 }) => {
   test.setTimeout(120000);
   const drafts = tools.filter((tool) => tool.status === 'draft');
-  expect(drafts).toHaveLength(8);
+  expect(drafts).toHaveLength(6);
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
-    await expect(page.locator('.catalog-item')).toHaveCount(32);
+    await expect(page.locator('.catalog-item')).toHaveCount(34);
     await expect(page.locator('.desktop-nav a')).toHaveCount(6);
     for (const tool of drafts) {
       const route = `/${locale}/${tool.category}/${tool.slug}`;

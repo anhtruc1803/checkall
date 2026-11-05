@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import Link from 'next/link';
+import Link from '@/components/navigation/policy-link';
 import { Activity, Sun, Moon, Menu, X, Languages } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { writePreference } from '@/lib/storage/preferences';

@@ -16,20 +16,36 @@ import type { Tool } from '@/lib/tools/types';
 import sitemap from '@/app/sitemap';
 
 describe('Phase 2 publication boundary', () => {
-  it('keeps 21 Phase 1 tools, publishes eight Milestone 2 and three Milestone 3 tools, with eight drafts', () => {
+  it('keeps 21 Phase 1 tools, publishes 13 Phase 2 tools including microphone/spectrum, with six drafts', () => {
     expect(tools).toHaveLength(40);
     expect(new Set(tools.map((tool) => tool.id)).size).toBe(40);
-    expect(publishedTools).toHaveLength(32);
+    expect(publishedTools).toHaveLength(34);
     expect(publishedTools.filter((tool) => tool.phase === 1)).toHaveLength(21);
     expect(
       publishedTools
         .filter((tool) => tool.phase === 2)
         .map((tool) => tool.id)
         .sort(),
-    ).toEqual(['C06', 'C07', 'D01', 'D02', 'D04', 'G01', 'G02', 'G03', 'G04', 'G05', 'G06']);
-    expect(publishedTools.every((tool) => tool.permissions.length === 0)).toBe(true);
+    ).toEqual([
+      'C06',
+      'C07',
+      'D01',
+      'D02',
+      'D03',
+      'D04',
+      'D05',
+      'G01',
+      'G02',
+      'G03',
+      'G04',
+      'G05',
+      'G06',
+    ]);
+    expect(publishedTools.filter((tool) => tool.permissions.length).map((tool) => tool.id)).toEqual(
+      ['D03', 'D05'],
+    );
     const drafts = tools.filter((tool) => tool.status === 'draft');
-    expect(drafts).toHaveLength(8);
+    expect(drafts).toHaveLength(6);
     for (const draft of drafts) {
       expect(draft.status).toBe('draft');
       expect(draft.seo.index).toBe(false);
@@ -61,8 +77,8 @@ describe('Phase 2 publication boundary', () => {
     [
       'draft related link',
       (tool: Tool): Tool[] => [
-        { ...tool, relatedTools: ['D03'] },
-        tools.find((item) => item.id === 'D03')!,
+        { ...tool, relatedTools: ['E01'] },
+        tools.find((item) => item.id === 'E01')!,
       ],
     ],
     [
