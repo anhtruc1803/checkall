@@ -44,8 +44,8 @@ Trước khi triển khai, đặt `SITE_URL` bằng origin thực trong `.env`, 
 ```text
 src/app/[locale]/       Trang server, nội dung SEO và route VI/EN
 src/components/        Layout, UI shadcn/ui và khung công cụ
-src/features/          Engine screen / keyboard / mouse tải riêng
-src/lib/tools/         Registry duy nhất cho 21 công cụ
+src/features/          Engine các nhóm công cụ tải động
+src/lib/tools/         Registry 37 công cụ published, 3 gamepad draft
 src/lib/measurements/  Thuật toán thuần và sample buffers
 src/lib/browser/       Feature detection và thông tin browser
 src/lib/storage/       Preferences, tóm tắt opt-in và dữ liệu phiên

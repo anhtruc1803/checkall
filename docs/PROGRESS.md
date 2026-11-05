@@ -360,3 +360,26 @@ Lượt hồi quy mở rộng phát hiện request POST ngoài origin do Kaspers
 Docker CI source 4037478 đạt trong 87 giây: production image, Compose healthy, Nginx syntax/proxy, health + 28 route/policy ba checkpoint, Node không publish cổng, restart và stop-start. SIGTERM exit 143/OOMKilled false/Error rỗng; artifacts logs/containers/shutdown đã đọc, không có lỗi ứng dụng hoặc HTTP 4xx/5xx. Image ID sha256:9b7650b59f3e2ea06dfeeeead910eb8167c8158810836e4efb1b62607ca9facb. Không triển khai VPS/registry.
 
 Audit đầy đủ phát hiện hai advisory moderate ở glob/minimatch của dev dependencies hiện có (ESLint/Lighthouse), trong khi audit production không finding. Chi tiết đường dẫn/phiên bản/nguồn và công việc cập nhật major có kiểm chứng được ghi trong PHASE2-MILESTONE5.md; không tuyên bố toàn bộ dependency sạch.
+
+### Nghiệm thu Milestone 5 trong phạm vi phần mềm
+
+Source f260bfd: [CI 41956011535](https://github.com/anhtruc1803/checkall/actions/runs/41956011535) success cả verify và Docker. Build/typecheck/lint/secret scan, **234 unit/integration trên 30 file** đạt; **260 E2E đạt, 4 skip, không failure/flaky** trong 374144.780 ms. Đã tải/đọc [browser-qa JSON](https://github.com/anhtruc1803/checkall/actions/runs/41956011535/artifacts/13383417308) và ảnh camera ảo; native getUserMedia/video/getSettings/rVFC/không upload chạy trên cả bốn cấu hình. Giữ toàn bộ hồi quy 34 công cụ cũ và 74 route công cụ VI/EN.
+
+| Cấu hình CI | Đạt | Skip |
+| ----------- | --: | ---: |
+| chromium    |  66 |    0 |
+| firefox     |  64 |    2 |
+| webkit      |  64 |    2 |
+| mobile      |  66 |    0 |
+
+Bốn skip là bài native policy camera/microphone: runtime Firefox/WebKit không expose policy API nên chưa xác minh được enforcement; không coi đã đạt enforcement hoặc Safari thật. HTTP header scope, navigation qua document và nhánh app guard được kiểm tra riêng. Các bài native camera không dùng facade; failure/pending/playback fixture có nhãn riêng. Native audio smoke ba browser vẫn đạt/context đóng, không xác minh thiết bị âm thanh vật lý.
+
+Docker Linux CI source f260bfd đạt trong 70 giây: build production image/Compose healthy/Nginx, health + 28 route VI/EN và policy ở ba checkpoint, cổng Node không publish, restart/stop-start. SIGTERM exit 143, OOMKilled false/Error rỗng. Đã đọc [logs/containers/shutdown](https://github.com/anhtruc1803/checkall/actions/runs/41956011535/artifacts/13382903012), không thấy lỗi ứng dụng hoặc HTTP 4xx/5xx. Image ID runner sha256:4506b859f7205258f51d88e5b4027dc2e4dc4548380dcf39d4a86039655ab9c4; không push image registry hoặc triển khai VPS. Máy Windows không có Docker CLI, không tuyên bố đã kiểm tra Docker cục bộ hoàn chỉnh.
+
+Local nhóm M5 cuối: **38 đạt/ba skip/ba lỗi**, không flaky, 159704.490 ms trên 44 bài. Ba lỗi đều tại assertion mọi POST/PUT/PATCH bằng rỗng do Kaspersky chèn request ngoài ứng dụng (Chromium/Firefox/mobile); giữ nguyên assertion và không tính lượt này đạt privacy sạch. Video/getSettings/rVFC và Stop đã chạy trước assertion cuối. Ba skip gồm native policy Firefox và hai bài native mediaDevices WebKit Windows. Chromium/mobile mỗi cấu hình 10 đạt + một lỗi môi trường; Firefox chín đạt + một skip + một lỗi môi trường; WebKit chín đạt + hai skip. Bài mobile navigation sửa riêng đạt 1/1 trước khi push. Hai lượt full Windows đã dừng để xử lý lỗi, không được báo là full regression đạt; bằng chứng hồi quy đầy đủ là CI source cuối.
+
+**Đã hoàn thành và xác minh:** ba công cụ/registry/VI-EN/SEO, capture video-only sau Start, số đọc browser thật/phân loại FPS, quyền và lifecycle, navigation theo policy, hồi quy/a11y tự động/responsive/keyboard, build/unit/E2E khả dụng, secret scan và Docker CI. File chính và phương pháp trong PHASE2-MILESTONE5.md. Không có raw artifacts/.env/cache/key trong commit.
+
+**Đã triển khai nhưng chưa xác minh bằng phần cứng:** trải nghiệm camera tích hợp/USB/ảo thật, ánh sáng/driver/OS prompt, autoplay/playsInline trên điện thoại, đèn privacy và FPS so với nguồn vật lý. **Không thể kiểm chứng trong môi trường hiện tại:** Safari/thiết bị thật và native enforcement khi Firefox/WebKit runtime thiếu hỗ trợ; privacy trên Windows có script Kaspersky chèn không được coi là sạch. **Chưa hoàn thành:** nâng tooling cho hai dev advisory moderate glob/minimatch, manual screen reader/zoom/reduced motion/BFCache/sleep-wake, Lighthouse revision mới và ba draft gamepad. Audit production không finding; không tuyên bố toàn bộ dependency sạch. Final Acceptance Phase 1/2 tiếp tục mở.
+
+Tiếp theo: thực hiện ma trận webcam/permission/OS/Safari thật, đối chiếu native policy và xử lý tooling/performance còn mở. Gamepad hoặc milestone mới chỉ triển khai theo yêu cầu tiếp theo; không triển khai Phase 3 hoặc VPS.

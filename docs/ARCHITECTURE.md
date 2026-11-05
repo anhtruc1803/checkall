@@ -13,7 +13,7 @@ Engine mới vẫn dynamic import theo công cụ. Phần đọc device/GPU/stor
 Ứng dụng modular monolith dùng Next.js App Router, React, TypeScript strict, Tailwind CSS, các thành phần shadcn/ui, Lucide và next-intl. Không có tài khoản, database hay upload log thiết bị.
 
 - `src/app/[locale]`: trang server và metadata song ngữ.
-- `src/lib/tools`: registry duy nhất cho 21 chức năng published và 19 mục Phase 2 draft, phân loại phép đo, nội dung và khả năng trình duyệt.
+- `src/lib/tools`: registry duy nhất cho 37 chức năng published và ba mục gamepad Phase 2 draft, phân loại phép đo, nội dung và khả năng trình duyệt.
 - `src/lib/measurements`: thuật toán thuần, không phụ thuộc React.
 - `src/features`: các engine client tải theo nhóm, quản lý vòng đời sự kiện và tài nguyên.
 - `src/lib/storage`: tùy chọn và bản tóm tắt opt-in, giới hạn kích thước.
@@ -35,7 +35,7 @@ Các mô-đun tương lai được ghi trong roadmap, không công bố route ha
 
 ## Rà soát Phase 1 bổ sung
 
-- `getToolSearchIndex` sinh chỉ mục gọn từ registry duy nhất. Client tìm kiếm cả VI/EN nhưng chỉ nhận tên hiển thị và chuỗi tìm kiếm, không cần tải hướng dẫn/phương pháp/giới hạn của cả 21 công cụ. Nội dung SEO đầy đủ vẫn render tại server.
+- `getToolSearchIndex` sinh chỉ mục gọn từ registry duy nhất. Client tìm kiếm cả VI/EN nhưng chỉ nhận tên hiển thị và chuỗi tìm kiếm, không cần tải hướng dẫn/phương pháp/giới hạn của cả 37 công cụ. Nội dung SEO đầy đủ vẫn render tại server.
 - Client chỉ nhận `id`, `engine`, `requiredCapabilities` cho ToolRunner. Các engine vẫn dynamic import theo công cụ; HTML giao diện ban đầu được prerender ở trạng thái `inert`. EngineSurface dùng native fieldset disabled/inert và aria-busy cho đến hydration của chính engine; capability detection ở ToolRunner quyết định fallback. Không có RAF, sự kiện đầu vào hoặc số đo phần cứng được tạo ở server.
 - Validation chuyển sang API `zod/mini` cùng phiên bản Zod; giới hạn dữ liệu không thay đổi. Hộp tìm kiếm chỉ dựng kết quả khi mở; catalog không prefetch hàng loạt các công cụ chưa được chọn. Không loại nội dung hoặc chức năng để tăng điểm.
 - Catalog khóa thao tác trước hydration để không làm mất truy vấn nhập sớm trên WebKit. Capability của Device Overview được kiểm tra một lần cho mỗi lần mount; các giá trị Screen/Viewport/DPR vẫn được đọc cập nhật và dọn listener/timer khi unmount.

@@ -53,7 +53,7 @@ Mỗi công cụ có engine, phương pháp/giới hạn và nội dung VI/EN ri
 | D02 | audio/stereo              | Tín hiệu trái/phải/cả hai, tự nghe định tuyến             |
 | D04 | audio/frequency-generator | Cấu hình OscillatorNode 20–20.000 Hz dưới Nyquist context |
 
-Tổng hiện hành 32 published, tám draft. Mức 0–20% là biên độ số; sample rate lấy từ AudioContext, tần số là cấu hình tín hiệu, không phải kết quả đo đầu ra. Không capture hoặc lưu audio/history. Chi tiết ở [PHASE2-MILESTONE3.md](PHASE2-MILESTONE3.md). Số M2 phía trên là checkpoint trước.
+Checkpoint Milestone 3: 32 published, tám draft. Mức 0–20% là biên độ số; sample rate lấy từ AudioContext, tần số là cấu hình tín hiệu, không phải kết quả đo đầu ra. Không capture hoặc lưu audio/history. Chi tiết ở [PHASE2-MILESTONE3.md](PHASE2-MILESTONE3.md). Số M2 phía trên là checkpoint trước.
 
 ## Phase 2 — Milestone 4
 
@@ -62,7 +62,7 @@ Tổng hiện hành 32 published, tám draft. Mức 0–20% là biên độ số
 | D03 | audio/microphone | Quan sát luồng microphone số: RMS, peak, dBFS, waveform       |
 | D05 | audio/spectrum   | Quan sát FFT, bin mạnh nhất ước tính và giới hạn độ phân giải |
 
-Hiện hành 34 published/sáu draft. Capture sau Start và cho phép quyền, không ghi file, nối loa, lưu audio/history hoặc upload. Policy microphone=self chỉ hai route ở VI/EN; vào/rời dùng document navigation để policy thật được áp dụng. Tần số FFT không phải fundamental/pitch, dBFS không phải dB SPL. Chi tiết [PHASE2-MILESTONE4.md](PHASE2-MILESTONE4.md).
+Checkpoint Milestone 4: 34 published/sáu draft. Capture sau Start và cho phép quyền, không ghi file, nối loa, lưu audio/history hoặc upload. Policy microphone=self chỉ hai route ở VI/EN; vào/rời dùng document navigation để policy thật được áp dụng. Tần số FFT không phải fundamental/pitch, dBFS không phải dB SPL. Chi tiết [PHASE2-MILESTONE4.md](PHASE2-MILESTONE4.md).
 
 ## Roadmap và checkpoint trước
 

@@ -5,7 +5,8 @@
 - [x] Ba engine camera/registry/VI-EN/SEO; 37 published, giữ 34 công cụ cũ; gamepad vẫn draft.
 - [x] Video-only sau Start, whitelist settings/FPS quan sát riêng, pending/late cleanup, video/frame/timer/listener và SSR/StrictMode.
 - [x] Build/typecheck/lint, 234 unit/integration đạt tại checkpoint cục bộ; audit production không finding.
-- [ ] Chốt hồi quy 264 E2E và Docker Linux CI source M5, đọc artifacts trước đánh dấu đạt.
+- [x] CI source f260bfd (41956011535): 260 E2E đạt/4 skip native policy, không failure/flaky; Docker 28 route ba checkpoint, artifacts đã đọc.
+- [ ] Nâng đồng bộ tooling và kiểm chứng hai dev advisory moderate glob/minimatch; production audit không finding.
 - [ ] Native header enforcement trên Firefox/WebKit/browser mục tiêu.
 - [ ] Webcam vật lý/đèn privacy/USB/OS prompt, Safari/điện thoại thật, BFCache/sleep/wake.
 - [ ] Manual screen reader/zoom/reduced motion và Lighthouse source mới; Final Acceptance tiếp tục mở.

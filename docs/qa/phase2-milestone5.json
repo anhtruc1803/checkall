@@ -1,7 +1,7 @@
 {
   "milestone": "Phase 2 — Milestone 5",
   "date": "2026-11-05",
-  "status": "implemented-verification-in-progress",
+  "status": "implemented-and-automatically-verified-with-browser-limitations",
   "publishedTools": 37,
   "phase1PublishedTools": 21,
   "draftTools": 3,
@@ -19,16 +19,146 @@
   },
   "e2e": {
     "scheduled": 264,
-    "status": "running"
+    "passed": 260,
+    "skipped": 4,
+    "failed": 0,
+    "flaky": 0,
+    "durationMs": 374144.77999999997,
+    "projects": {
+      "chromium": {
+        "passed": 66,
+        "skipped": 0,
+        "failed": 0
+      },
+      "firefox": {
+        "passed": 64,
+        "skipped": 2,
+        "failed": 0
+      },
+      "webkit": {
+        "passed": 64,
+        "skipped": 2,
+        "failed": 0
+      },
+      "mobile": {
+        "passed": 66,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "skipDetails": [
+      {
+        "project": "firefox",
+        "test": "native browser policy blocks microphone access when policy introspection is supported",
+        "reason": [
+          "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+        ]
+      },
+      {
+        "project": "webkit",
+        "test": "native browser policy blocks microphone access when policy introspection is supported",
+        "reason": [
+          "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+        ]
+      },
+      {
+        "project": "firefox",
+        "test": "native camera policy denial is enforced when the runtime exposes policy support",
+        "reason": [
+          "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+        ]
+      },
+      {
+        "project": "webkit",
+        "test": "native camera policy denial is enforced when the runtime exposes policy support",
+        "reason": [
+          "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+        ]
+      }
+    ],
+    "nativeVirtualCameraVerifiedOn": ["chromium", "firefox", "webkit", "mobile"]
   },
   "docker": {
-    "local": "CLI unavailable",
-    "ci": "pending",
-    "smokeLocalizedRoutes": 28
+    "local": "CLI unavailable; not fully tested locally",
+    "ci": "passed",
+    "durationSeconds": 70.0,
+    "smokeLocalizedRoutes": 28,
+    "checkpoints": 3,
+    "appHealthy": true,
+    "nodePortPublished": false,
+    "nginxVerified": true,
+    "restartVerified": true,
+    "shutdown": {
+      "Status": "exited",
+      "Running": false,
+      "OOMKilled": false,
+      "ExitCode": 143,
+      "Error": ""
+    },
+    "imageId": "sha256:4506b859f7205258f51d88e5b4027dc2e4dc4548380dcf39d4a86039655ab9c4",
+    "logsReviewed": true,
+    "http4xx5xx": 0
   },
   "physicalCameraVerified": false,
   "realSafariVerified": false,
   "lighthouseMeasured": false,
   "finalAcceptance": "open",
-  "manualQa": "docs/PHASE2-MILESTONE5.md"
+  "manualQa": "docs/PHASE2-MILESTONE5.md",
+  "testedSourceCommit": "f260bfd3ab910aa2c19cd830f4a5156a1852460f",
+  "ci": {
+    "runId": 41956011535,
+    "url": "https://github.com/anhtruc1803/checkall/actions/runs/41956011535",
+    "conclusion": "success",
+    "browserArtifact": "https://github.com/anhtruc1803/checkall/actions/runs/41956011535/artifacts/13383417308",
+    "dockerArtifact": "https://github.com/anhtruc1803/checkall/actions/runs/41956011535/artifacts/13382903012"
+  },
+  "localFocusedM5": {
+    "testSourceCommit": "f260bfd3ab910aa2c19cd830f4a5156a1852460f",
+    "applicationBuildCommit": "4037478f4187c4093d0f390f00f9caa3d9fb3e5d",
+    "applicationSourceUnchangedInTestFix": true,
+    "scheduled": 44,
+    "passed": 38,
+    "skipped": 3,
+    "failed": 3,
+    "flaky": 0,
+    "durationMs": 159704.49,
+    "projects": {
+      "chromium": {
+        "expected": 10,
+        "unexpected": 1
+      },
+      "firefox": {
+        "expected": 9,
+        "unexpected": 1,
+        "skipped": 1
+      },
+      "webkit": {
+        "expected": 9,
+        "skipped": 2
+      },
+      "mobile": {
+        "expected": 10,
+        "unexpected": 1
+      }
+    },
+    "failures": "Ba assertion không upload bắt gặp POST do Kaspersky chèn; không lọc request để báo đạt. Windows WebKit thiếu native mediaDevices; Firefox thiếu native policy support."
+  },
+  "allDependencyAudit": {
+    "moderate": 2,
+    "high": 0,
+    "critical": 0,
+    "scope": "Existing development dependencies only",
+    "advisories": ["GHSA-3g3m-2fjr-6pw4", "GHSA-g3hv-75wg-m249"],
+    "remediation": "Cần nâng đồng bộ tooling và kiểm chứng major glob/minimatch; chưa xử lý trong M5."
+  },
+  "nativePolicyLimitation": "Firefox/WebKit runtime không expose policy API nên chưa xác minh enforcement; bốn skip không tính là tiêu chí native enforcement đã đạt. Header HTTP/Nginx và app guard kiểm tra riêng.",
+  "initialCiAttempt": {
+    "sourceCommit": "4037478f4187c4093d0f390f00f9caa3d9fb3e5d",
+    "runId": 41954759394,
+    "passed": 259,
+    "skipped": 4,
+    "failed": 1,
+    "flaky": 0,
+    "failure": "Selector chọn liên kết desktop ẩn trên mobile. Đã sửa thao tác mở menu mobile, giữ assertion document/policy."
+  }
 }
