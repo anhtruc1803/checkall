@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-06",
+  "timezone": "Asia/Saigon",
+  "status": "Đã triển khai để test; Final Acceptance còn mở",
+  "origin": "https://nguyenanhtruc.io.vn",
+  "releaseCommit": "fca62c61f192b0098e55e1e17e44534109982132",
+  "applicationVerifiedCommit": "76a71cefb9b8c38780a7641e81f7fcab6f9f8bc9",
+  "imageTag": "device-lab:staging-fca62c6-20261106",
+  "imageId": "sha256:98c6449904d5dd5522322d06e13a93120c7669acd78efbab3fa4397e70d4bd52",
+  "documentationChecks": {
+    "typecheckPassed": true,
+    "lintPassed": true,
+    "prettierPassed": true,
+    "secretScanFiles": 213,
+    "secretScanFindings": 0,
+    "summaryMatchesRecordedEvidence": true
+  },
+  "docker": {
+    "productionBuildPassed": true,
+    "engine": "29.9.3",
+    "compose": "5.7.0",
+    "applicationHealthy": true,
+    "nginxSyntaxPassed": true,
+    "nodePortPublished": false,
+    "appRestartHealthPassed": true,
+    "oomKilledAfterRestart": false,
+    "applicationErrorAfterRestart": "",
+    "hostRebootTested": false,
+    "previousReleaseRollbackTested": false,
+    "note": "Không shutdown toàn bộ staging; stop/start và SIGTERM source M6 đã được kiểm tra riêng trên CI 41984091737."
+  },
+  "tls": {
+    "originCertificateVerified": true,
+    "originCertificateExpiresUtc": "2027-02-04T07:29:06Z",
+    "certbotTimerActive": true,
+    "renewalDryRunWithDeployHooksPassed": true,
+    "proxyToOriginTlsModeVerified": false
+  },
+  "http": {
+    "checkedAtUtc": "2026-11-06T08:58:28.315Z",
+    "redirectStatus": 308,
+    "localizedPagesStatus": 200,
+    "canonicalVerified": true,
+    "uniqueSitemapUrls": 100,
+    "healthPassed": true,
+    "representativeRoutesPassed": 34,
+    "scopedPermissionsPolicyPassed": true,
+    "originCspPresent": true,
+    "publicCspPresent": false,
+    "proxyConfiguration": "Người dùng tự quản lý; không chỉnh dashboard. CSP public cần kiểm tra lại sau cấu hình."
+  },
+  "e2e": {
+    "files": ["shell.spec.ts", "screen.spec.ts", "keyboard.spec.ts", "mouse.spec.ts"],
+    "workers": 2,
+    "passed": 45,
+    "skipped": 0,
+    "failed": 0,
+    "flaky": 0,
+    "durationMs": 114678.238,
+    "projects": {
+      "chromium": { "passed": 15 },
+      "firefox": { "passed": 15 },
+      "webkit": { "passed": 15 }
+    },
+    "initialAttempt": "Harness nhập module sai, một project/sáu worker: 14 đạt/một lỗi 503 rate limit. Đã sửa cấu hình harness, giữ assertion và rate limit, rồi chạy lại ba project.",
+    "limitation": "Smoke staging, không phải toàn bộ E2E M6; không xác minh Safari hoặc phần cứng thật, không suy ra privacy sạch trên Windows có phần mềm chèn script."
+  },
+  "remaining": [
+    "Public CSP và chế độ TLS proxy→origin",
+    "Manual hardware/browser/OS QA theo PHASE2-MILESTONE6.md",
+    "Lighthouse revision hiện hành và hai dev advisory moderate",
+    "Reboot host, rollback release trước và drain request dài"
+  ],
+  "finalAcceptance": false
+}

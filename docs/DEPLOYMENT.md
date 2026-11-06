@@ -1,6 +1,43 @@
 # Triển khai và vận hành
 
-Milestone hiện hành: Phase 2 Milestone 6 (05/11/2026). Permissions-Policy thêm gamepad=() mặc định; chỉ sáu URL gamepad VI/EN có gamepad=(self), vẫn chặn camera/microphone. Các route camera/microphone giữ quyền self riêng và chặn gamepad. PolicyLink tải document mới khi vào/rời cả ba nhóm; Nginx chuyển tiếp header Next.js. [CI 41984091737](https://github.com/anhtruc1803/checkall/actions/runs/41984091737) source 76a71ce đạt Docker trong 81 giây: HTTP smoke health + 34 route VI/EN/policy ba checkpoint, private Node port/restart/stop-start, SIGTERM exit 143/OOMKilled false/Error rỗng; artifacts logs/containers/shutdown đã đọc, không lỗi ứng dụng hoặc HTTP 4xx/5xx. Image ID runner sha256:69b281c7583dc29617d017e0e89d6372c8c4e66c4a5757986b47433965b61e9f. Máy hiện không có Docker CLI; không tuyên bố Docker cục bộ hoàn chỉnh hoặc kế thừa kết quả M5 cho M6. Không thêm backend/haptics/service, không VPS/registry; enforcement phụ thuộc browser và được kiểm tra riêng. Kết quả source M6 ở PROGRESS/qa JSON.
+## Staging thực tế ngày 06/11/2026
+
+Đã triển khai theo yêu cầu lên VPS, phục vụ [tiếng Việt](https://nguyenanhtruc.io.vn/vi) và [tiếng Anh](https://nguyenanhtruc.io.vn/en). Giữ proxy hiện có; người dùng tự quản lý cấu hình tên miền/proxy. Không chỉnh bảng điều khiển proxy trong lượt triển khai này. Các checkpoint trước đây ghi “chưa VPS” là lịch sử tại thời điểm milestone đó.
+
+Source phát hành: fca62c61f192b0098e55e1e17e44534109982132; phần code ứng dụng giống source M6 76a71ce đã qua CI. Tag `device-lab:staging-fca62c6-20261106`; image ID tại VPS `sha256:98c6449904d5dd5522322d06e13a93120c7669acd78efbab3fa4397e70d4bd52` (không phải digest đã push registry). Source được chuyển bằng archive của các file Git tracked, không mang `.git`, `.env`, secret, cache hoặc node_modules từ máy phát triển.
+
+Ubuntu 24.04, Docker Engine 29.9.3 và Compose 5.7.0. App chạy user không đặc quyền, filesystem read-only và network nội bộ; `3000/tcp` không có published port. Chỉ Nginx publish 80/443. Host 2 GB RAM có swap 2 GB; app giới hạn 768 MiB và 256 PID. Log container xoay vòng 10 MB × ba file. Docker được bật khi khởi động máy; không thay cấu hình SSH hoặc dịch vụ quản trị của nhà cung cấp.
+
+Layout thực tế:
+
+- `/opt/device-lab/releases/fca62c6`: source release và `.env` cấu hình public tại host.
+- `/opt/device-lab/current`: symlink đến release đang chạy.
+- `/opt/device-lab/shared/compose.staging.yaml`: override tài nguyên, HTTPS, mount Nginx/ACME và log rotation.
+- `/opt/device-lab/shared/nginx.conf` và `locations.conf`: cấu hình staging riêng, không phải cấu hình mặc định trong Git. Nginx dùng Docker DNS cho upstream để phục hồi sau app restart. Chỉ tin X-Forwarded-Proto/real IP từ các IP proxy đã đối chiếu; giữ HTTP → HTTPS mà không tạo redirect loop.
+- `/opt/device-lab/shared/acme`: webroot HTTP-01; `/etc/letsencrypt`: chứng chỉ và private key chỉ ở VPS.
+
+Chứng chỉ origin hợp lệ, hết hạn ngày 04/02/2027; kết nối trực tiếp origin được kiểm tra với xác minh TLS, không bỏ qua certificate validation. `certbot.timer` active; `certbot renew --dry-run --run-deploy-hooks` đạt, hook kiểm tra Nginx rồi reload. Chứng chỉ ở proxy do nhà cung cấp quản lý riêng; chưa xác minh chế độ TLS giữa proxy và origin, không suy ra end-to-end TLS từ việc cả hai đầu có chứng chỉ.
+
+Kết quả: production image build thành công; app healthy trước/sau restart chủ động; Nginx syntax đạt, health qua origin/public đạt. Sau restart OOMKilled=false, Error rỗng và port Node vẫn private. HTTP public 308 sang HTTPS, VI/EN 200, canonical đúng domain và sitemap 100 URL duy nhất. HTTP smoke health + 34 route/policy đạt; 45 E2E staging đạt trên Chromium/Firefox/WebKit. Chi tiết và giới hạn trong [TESTING.md](TESTING.md) và [qa/staging-2026-11-06.json](qa/staging-2026-11-06.json).
+
+**Tiêu chí bảo mật còn mở:** lúc 15:58 ngày 06/11/2026 (Asia/Saigon), CSP có ở origin nhưng không có ở response public VI/EN dù dùng query mới; Permissions-Policy vẫn đúng. Đã báo người dùng và giữ nguyên cấu hình proxy theo chỉ dẫn, không ghi nhận việc chuyển tiếp CSP đã được xác minh. Khi quản trị viên hoàn tất cấu hình, cần đo lại public header và đối chiếu policy động của route camera/microphone/gamepad. Chưa đóng Final Acceptance.
+
+Lệnh vận hành tại VPS (không chứa thông tin đăng nhập):
+
+```bash
+cd /opt/device-lab/current
+docker compose -f compose.yaml -f /opt/device-lab/shared/compose.staging.yaml ps
+docker compose -f compose.yaml -f /opt/device-lab/shared/compose.staging.yaml logs --tail=100 app nginx
+docker compose -f compose.yaml -f /opt/device-lab/shared/compose.staging.yaml exec -T nginx nginx -t
+curl --fail https://nguyenanhtruc.io.vn/api/health
+sudo certbot renew --dry-run --run-deploy-hooks
+```
+
+Nâng cấp/rollback phải dùng **cả hai file Compose** như trên; ghi lại tag/image ID, giữ image cũ và kiểm tra health sau thay đổi. Không chạy `down` hoặc prune trong quy trình smoke public. Không có release ứng dụng cũ trên VPS để kiểm chứng rollback lần đầu; chưa thử reboot host hoặc drain request dài. Các cấu hình staging ngoài Git cần được quản trị viên sao lưu cùng `/etc/letsencrypt` theo quy trình vận hành riêng; không đưa private key, `.env` hoặc raw log vào repository.
+
+## Checkpoint milestone trước triển khai
+
+Phase 2 Milestone 6 (05/11/2026). Permissions-Policy thêm gamepad=() mặc định; chỉ sáu URL gamepad VI/EN có gamepad=(self), vẫn chặn camera/microphone. Các route camera/microphone giữ quyền self riêng và chặn gamepad. PolicyLink tải document mới khi vào/rời cả ba nhóm; Nginx chuyển tiếp header Next.js. [CI 41984091737](https://github.com/anhtruc1803/checkall/actions/runs/41984091737) source 76a71ce đạt Docker trong 81 giây: HTTP smoke health + 34 route VI/EN/policy ba checkpoint, private Node port/restart/stop-start, SIGTERM exit 143/OOMKilled false/Error rỗng; artifacts logs/containers/shutdown đã đọc, không lỗi ứng dụng hoặc HTTP 4xx/5xx. Image ID runner sha256:69b281c7583dc29617d017e0e89d6372c8c4e66c4a5757986b47433965b61e9f. Máy Windows không có Docker CLI; không tuyên bố Docker cục bộ hoàn chỉnh hoặc kế thừa kết quả M5 cho M6. Không thêm backend/haptics/service, không triển khai VPS/registry tại checkpoint M6; enforcement phụ thuộc browser và được kiểm tra riêng. Kết quả source M6 ở PROGRESS/qa JSON.
 
 Checkpoint lịch sử: Phase 2 Milestone 5 (05/11/2026). Sáu URL camera VI/EN khai báo camera=(self), microphone=(), geolocation=(); bốn URL microphone/spectrum khai báo camera=(), microphone=(self), geolocation=(); route khác chặn cả hai. PolicyLink tải document mới vào/rời mỗi nhóm, kể cả locale; Nginx chuyển tiếp header Next.js. HTTP smoke hiện health + 28 route VI/EN kèm policy ở ba checkpoint. Máy Windows không có lệnh Docker; không tuyên bố Docker cục bộ hoàn chỉnh. [CI 41956011535](https://github.com/anhtruc1803/checkall/actions/runs/41956011535) source f260bfd đạt Docker smoke trong 70 giây; đã đọc artifacts: production build/healthy/Nginx, 28 route/policy ba checkpoint, private Node port/restart/stop-start, SIGTERM exit 143/OOMKilled false/Error rỗng, không lỗi ứng dụng hoặc HTTP 4xx/5xx. Image ID runner sha256:4506b859f7205258f51d88e5b4027dc2e4dc4548380dcf39d4a86039655ab9c4. Chi tiết trong PROGRESS.md/qa/phase2-milestone5.json. Không triển khai VPS hoặc HTTPS production, không push image registry. WebKit automation không thay Safari; native header enforcement chưa xác minh được trong runtime hiện tại vẫn là tiêu chí mở.
 
@@ -18,7 +55,7 @@ Source 097404e đã đạt Docker smoke ở [run 41007493526](https://github.com
 
 ## Điều kiện
 
-VPS Linux có Docker Engine và Docker Compose plugin; DNS A/AAAA trỏ về VPS; tường lửa chỉ mở cổng web cần thiết, SSH theo chính sách của quản trị viên. Không mở cổng Node 3000 công khai. Chưa có máy chủ production nào được cấu hình trong tác vụ này.
+VPS Linux có Docker Engine và Docker Compose plugin; DNS A/AAAA trỏ về VPS hoặc reverse proxy có origin đúng; tường lửa chỉ mở cổng web cần thiết, SSH theo chính sách của quản trị viên. Không mở cổng Node 3000 công khai. Staging đã triển khai như mục đầu; các bước tổng quát bên dưới cần điều chỉnh theo layout thực tế khi áp dụng.
 
 Ứng dụng dùng Node.js 24 LTS, Next.js standalone, user UID/GID 1001, filesystem read-only với cache/tmp riêng. Nginx reverse proxy là cổng truy cập duy nhất. Không có database, secrets hoặc thông tin đăng nhập mặc định.
 
