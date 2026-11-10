@@ -60,3 +60,13 @@ Docker CI đạt 87 giây, đầy đủ private port/health/Nginx/route/policy/r
 ## Đo Performance tiếp theo — 10/11/2026
 
 Source ad25dd1 chỉ tối ưu wrapper class tại Button, giữ giao diện/40 công cụ/VI-EN. CI mới đạt 275 unit, 318 E2E/6 skip và Docker; public healthy/34 route/policy cùng UI ba browser đạt. Lighthouse đo ba lượt/trang trên sáu trang đại diện: median lab 100/100/100/99/99/99, HTTPS public 95/98/97/97/96/97; JS truyền tải giảm 9551 byte/trang trong cặp cùng VM. Phạm vi Performance này đã xác minh, còn manual/hardware/field data và bảo mật nêu trong [PERFORMANCE.md](PERFORMANCE.md), gồm cả smoke Windows riêng median 89; không nhận mọi môi trường đạt 90 hoặc đóng Final Acceptance tổng thể.
+
+## Bàn lab tương tác và minh họa nhóm — 10/11/2026
+
+Theo đề xuất đã được người dùng đồng ý, bổ sung hero bàn lab bằng SVG và hình vẽ riêng cho tám danh mục. Dùng UI/UX Pro Max, tra `decorative motion reduced motion --domain ux`: chỉ tạo phản hồi khi người dùng tương tác và tôn trọng prefers-reduced-motion. Đọc tài liệu Server/Client Components và CSS của Next.js cài trong repository trước khi sửa.
+
+Hero là một Client Component nhỏ: con trỏ mouse dịch hình tối đa 5 px ngang/4 px dọc; rời vùng hoặc blur trả vị trí gốc. Chạm/click/Enter/Space đổi ánh sáng minh họa qua nút aria-pressed. Không có timer, RAF loop, listener toàn cục, quyền media, âm thanh tự chạy, storage hoặc event logging. Reduced motion vô hiệu transform bằng CSS, handler cũng không cập nhật tọa độ khi chế độ này đang bật. Hình vẫn đọc được khi JavaScript chưa hydrate; SVG trang trí được ẩn khỏi accessibility tree. Nút có tên bao gồm cả chữ hiển thị, focus ring và chú thích rõ không phải kết quả đo thiết bị.
+
+Tám CategoryArt được render ở server; icon dùng chung của registry/menu/filter giữ nguyên. Hover/focus chỉ dịch nhẹ hình của danh mục được chọn trên thiết bị có hover và cho phép chuyển động. Không thêm dependency, ảnh tải ngoài hoặc font. DeviceOverview giữ nguyên hook/dữ liệu/nhãn ước đoán; đổi vị trí thành dải tóm tắt bên dưới nhóm thiết bị, reflow 4/2/1 cột theo không gian và cỡ chữ. Giữ đủ 40 công cụ, VI/EN, SEO, quyền và lifecycle engine.
+
+File chính: `src/components/tools/lab-scene.tsx`, `category-art.tsx`, trang chủ locale, `interface.css`, messages VI/EN và `tests/e2e/interface.spec.ts`. Thêm kiểm thử pointer/keyboard/touch, aria-pressed, reset, chú thích minh họa, Refresh Rate vẫn chưa đo, Axe hai theme; mở rộng ma trận responsive và chữ 200% cho hero/thông tin thật. Lượt đầu phát hiện nút kế thừa white-space nowrap làm cắt gợi ý ở chữ 200%; đã sửa reflow, không bỏ assertion. Kết quả cuối được ghi ở PROGRESS.md/TESTING.md và QA JSON, không dùng kết quả Lighthouse bản cũ nhận cho giao diện này.

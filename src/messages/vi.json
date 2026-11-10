@@ -11,7 +11,10 @@
     "explore": "Khám phá công cụ",
     "liveOverview": "Thông tin từ trình duyệt",
     "clearSearch": "Xóa từ khóa tìm kiếm",
-    "filterHint": "Lọc theo nhóm thiết bị"
+    "filterHint": "Lọc theo nhóm thiết bị",
+    "sceneAction": "Đổi ánh sáng minh họa bàn lab",
+    "sceneHint": "Chạm để bật một chút sắc màu",
+    "sceneCaption": "Minh họa tương tác · Không phải kết quả đo thiết bị."
   },
   "audio": "Âm thanh",
   "camera": "Camera",

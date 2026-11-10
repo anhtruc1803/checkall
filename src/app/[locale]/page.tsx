@@ -2,7 +2,8 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { ShieldCheck, ArrowRight, Check, Layers3 } from 'lucide-react';
 import PolicyLink from '@/components/navigation/policy-link';
-import { CategoryIcon } from '@/components/tools/category-icon';
+import { CategoryArt } from '@/components/tools/category-art';
+import { LabScene } from '@/components/tools/lab-scene';
 import { DeviceOverview } from '@/components/tools/device-overview';
 import { ToolCard } from '@/components/tools/tool-card';
 import { Catalog } from '@/components/tools/catalog';
@@ -73,7 +74,11 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             </div>
           </dl>
         </div>
-        <DeviceOverview />
+        <LabScene
+          label={t('interface.sceneAction')}
+          hint={t('interface.sceneHint')}
+          caption={t('interface.sceneCaption')}
+        />
       </section>
       <nav className="category-rail" aria-label={t('interface.chooseDevice')}>
         {categories.map((category) => (
@@ -83,9 +88,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             className="category-shortcut"
             data-category={category}
           >
-            <span className="category-icon">
-              <CategoryIcon category={category} />
-            </span>
+            <CategoryArt category={category} />
             <span>{t(category)}</span>
             <span className="category-count">
               {tools.filter((tool) => tool.category === category).length}
@@ -93,6 +96,9 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           </PolicyLink>
         ))}
       </nav>
+      <div className="home-device-summary">
+        <DeviceOverview />
+      </div>
       <section className="section">
         <div className="section-head">
           <div>

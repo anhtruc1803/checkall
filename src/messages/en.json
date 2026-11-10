@@ -11,7 +11,10 @@
     "explore": "Explore the toolkit",
     "liveOverview": "Browser-reported information",
     "clearSearch": "Clear search query",
-    "filterHint": "Filter by device category"
+    "filterHint": "Filter by device category",
+    "sceneAction": "Toggle the illustrated lab lighting",
+    "sceneHint": "Tap to add a little colour",
+    "sceneCaption": "Interactive illustration · Not a device measurement."
   },
   "audio": "Audio",
   "camera": "Camera",
