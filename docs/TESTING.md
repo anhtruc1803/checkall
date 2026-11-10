@@ -4,7 +4,11 @@
 
 Thêm interface.spec.ts: shortcut và count lấy theo registry trong VI/EN; filter/search/clear giữ category và trả focus; hai theme ở 320/375/414/768/1024/1440 px; tăng chữ 200%, reduced motion và keyboard activation. Giữ toàn bộ bài cũ; bộ đầy đủ hiện 324 E2E (81/cấu hình). Không sửa engine hoặc nới assertion để đổi giao diện.
 
-Checkpoint: 275 unit/33 file, build 106 trang, typecheck/lint đạt. Lượt Chromium interface + quality ban đầu 7 đạt/một lỗi reflow shortcut khi chữ 200%; đã sửa auto-fit/minmax theo rem, chạy lại ba bài interface đạt. Full E2E bị gián đoạn khi đổi phiên làm việc, không có kết quả cuối. Chờ hồi quy production standalone và Linux CI source UI mới; chi tiết cập nhật tại PROGRESS.md và UI-UX-REFRESH.md.
+Checkpoint ban đầu: 275 unit/33 file, build 106 trang, typecheck/lint đạt. Lượt Chromium interface + quality 7 đạt/một lỗi reflow shortcut khi chữ 200%; đã sửa auto-fit/minmax theo rem, chạy lại ba bài interface đạt. Full E2E khi đổi phiên bị gián đoạn, không có report cuối. Source 49bd12f đạt 92 local; source 27f1383 bị 19 lỗi accessibility trong CI, lịch sử/nguyên nhân/sửa được giữ tại PROGRESS.md.
+
+**Kết quả cuối source 387c03f:** [CI 42759176453](https://github.com/anhtruc1803/checkall/actions/runs/42759176453) đạt build/typecheck/lint/secret scan, 275 unit/33 file; **318 E2E đạt/6 skip**, không failure/flaky, 681819.829 ms. Chromium/mobile mỗi cấu hình 81 đạt, Firefox/WebKit mỗi cấu hình 78 đạt/ba skip native policy. Không giả skip thành enforcement đã đạt. Nhóm local sau sửa logo và tương phản theme **32/32 đạt** trên bốn cấu hình, 316821.173 ms, gồm toàn bộ ma trận accessibility từng lỗi; giữ assertion.
+
+Docker CI source cuối đạt 87 giây: healthy/private Node port/Nginx/health + 34 route/policy ba checkpoint, restart/stop-start và SIGTERM 143, không OOM/Error. Đã đọc artifacts. Sau triển khai VPS: HTTP smoke 34 route/policy đạt; public HTML/CSS release mới, canonical, sitemap 100 URL và HTTPS đạt; **ba UI E2E public đạt** trên Chromium/Firefox/WebKit, không skip/failure/flaky, 38009.247 ms. Public smoke không thay full CI hoặc Safari/thiết bị thật. CSP public vẫn thiếu; không chỉnh dashboard proxy của người dùng. QA tổng hợp tại [qa/ui-ux-refresh.json](qa/ui-ux-refresh.json), manual QA tại UI-UX-REFRESH.md. Final Acceptance còn mở.
 
 ## Smoke staging ngày 06/11/2026
 

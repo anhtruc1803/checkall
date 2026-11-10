@@ -1,0 +1,178 @@
+{
+  "date": "2026-11-10",
+  "status": "UI đã triển khai; kiểm chứng tự động đạt trong phạm vi khả dụng, Final Acceptance còn mở",
+  "skill": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+  "sourceCommit": "387c03fdbbecb565239f3a32ce1bd957b705ce76",
+  "ci": {
+    "url": "https://github.com/anhtruc1803/checkall/actions/runs/42759176453",
+    "stats": {
+      "startTime": "2026-11-10T05:01:35.045Z",
+      "duration": 681819.829,
+      "expected": 318,
+      "skipped": 6,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "projects": {
+      "chromium": {
+        "passed": 81,
+        "skipped": 0,
+        "failed": 0,
+        "flaky": 0
+      },
+      "firefox": {
+        "passed": 78,
+        "skipped": 3,
+        "failed": 0,
+        "flaky": 0
+      },
+      "webkit": {
+        "passed": 78,
+        "skipped": 3,
+        "failed": 0,
+        "flaky": 0
+      },
+      "mobile": {
+        "passed": 81,
+        "skipped": 0,
+        "failed": 0,
+        "flaky": 0
+      }
+    },
+    "skips": [
+      {
+        "project": "firefox",
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "reason": "Runtime không expose hỗ trợ/introspection Permissions-Policy; HTTP scope và app guard kiểm tra riêng."
+      },
+      {
+        "project": "webkit",
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "reason": "Runtime không expose hỗ trợ/introspection Permissions-Policy; HTTP scope và app guard kiểm tra riêng."
+      },
+      {
+        "project": "firefox",
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "reason": "Runtime không expose hỗ trợ/introspection Permissions-Policy; HTTP scope và app guard kiểm tra riêng."
+      },
+      {
+        "project": "webkit",
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "reason": "Runtime không expose hỗ trợ/introspection Permissions-Policy; HTTP scope và app guard kiểm tra riêng."
+      },
+      {
+        "project": "firefox",
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "reason": "Runtime không công bố directive gamepad; native enforcement chưa xác minh."
+      },
+      {
+        "project": "webkit",
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "reason": "Runtime không công bố directive gamepad; native enforcement chưa xác minh."
+      }
+    ]
+  },
+  "unit": {
+    "passed": 275,
+    "files": 33
+  },
+  "build": {
+    "passed": true,
+    "pages": 106
+  },
+  "lint": "Đạt",
+  "typecheck": "Đạt",
+  "localInterfaceBeforeAccessibilityFix": {
+    "startTime": "2026-11-10T04:35:17.858Z",
+    "duration": 303929.508,
+    "expected": 92,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "localAccessibilityAfterFix": {
+    "startTime": "2026-11-10T04:57:56.496Z",
+    "duration": 316821.173,
+    "expected": 32,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "publicInterface": {
+    "startTime": "2026-11-10T05:14:12.202Z",
+    "duration": 38009.247,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "docker": {
+    "passed": true,
+    "durationSeconds": 87,
+    "runnerImageId": "sha256:c7587f0cdfb32509c0fd366c26d08ce9a55d6c03f60e61d7b878dc910e805d48",
+    "nodePortPublished": false,
+    "shutdown": {
+      "exitCode": 143,
+      "oomKilled": false,
+      "error": ""
+    }
+  },
+  "deployment": {
+    "origin": "https://nguyenanhtruc.io.vn",
+    "imageTag": "device-lab:staging-387c03f-20261110",
+    "imageId": "sha256:80bd265e58e502158ff4042fb29dbeeedc8e06d6bd9575fff1b4e7ffcc8ea778",
+    "http": {
+      "checkedAt": "2026-11-10T05:14:07.572Z",
+      "release": "387c03f",
+      "healthStatus": 200,
+      "httpRedirect": 308,
+      "sitemapUrls": 100,
+      "canonicalVerified": true,
+      "interfaceCssVerified": true,
+      "cssAssets": 1,
+      "pages": [
+        {
+          "locale": "vi",
+          "status": 200,
+          "cspPresent": false,
+          "permissionsPolicy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "locale": "en",
+          "status": 200,
+          "cspPresent": false,
+          "permissionsPolicy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        }
+      ],
+      "publicCspPresent": false
+    },
+    "previousSourceKept": "fca62c6",
+    "proxyDashboardChanged": false
+  },
+  "audit": {
+    "productionFindings": 0,
+    "developmentModerate": ["glob", "minimatch"]
+  },
+  "previousAttempts": [
+    {
+      "source": "49bd12f",
+      "ci": 42756963778,
+      "status": "Chủ động hủy verify để sửa menu; Docker đạt; không triển khai"
+    },
+    {
+      "source": "27f1383",
+      "ci": 42757715180,
+      "passed": 299,
+      "skipped": 6,
+      "failed": 19,
+      "status": "Lỗi tên logo và tương phản trong chuyển theme; đã sửa, không nới assertion; không triển khai"
+    }
+  ],
+  "limitations": [
+    "WebKit automation không phải Safari thật",
+    "Thiết bị vật lý, screen reader, zoom/OS và Lighthouse mới chưa nghiệm thu",
+    "CSP public và TLS proxy→origin do quản trị viên tiếp tục kiểm chứng",
+    "Audit dev tooling còn hai advisory moderate"
+  ],
+  "finalAcceptance": false
+}

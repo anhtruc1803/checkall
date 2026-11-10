@@ -1,6 +1,16 @@
 # Triển khai và vận hành
 
-## Staging thực tế ngày 06/11/2026
+## Cập nhật giao diện staging ngày 10/11/2026
+
+Bản hiện tại phục vụ [VI](https://nguyenanhtruc.io.vn/vi) và [EN](https://nguyenanhtruc.io.vn/en): source **387c03fdbbecb565239f3a32ce1bd957b705ce76**, tag `device-lab:staging-387c03f-20261110`, image VPS `sha256:80bd265e58e502158ff4042fb29dbeeedc8e06d6bd9575fff1b4e7ffcc8ea778`. Archive Git tracked files được đối chiếu SHA256 trước khi build. Chỉ chuyển ứng dụng sau [CI 42759176453](https://github.com/anhtruc1803/checkall/actions/runs/42759176453) success cả verify và Docker; không triển khai source UI thất bại trước đó.
+
+`/opt/device-lab/current` hiện trỏ `/opt/device-lab/releases/387c03f`. Giữ `.env` trên host và cấu hình shared; app healthy/OOMKilled false, Node 3000 không publish. Nginx chỉ cập nhật header marker `X-Device-Lab-Release: 387c03f` và reload sau syntax check; không chỉnh dashboard tên miền/proxy. Bản config trước chuyển ở `/opt/device-lab/shared/nginx.conf.before-ui-20261110`; giữ source/image fca62c6 cũ. Script chuyển bản có nhánh phục hồi khi bước kiểm tra thất bại, nhưng không diễn tập rollback trên VPS trong lượt này. Không prune hoặc reboot host.
+
+Sau chuyển bản: origin/public health đạt, app log khởi động không lỗi, HTTP 308 → HTTPS, VI/EN 200, HTML/CSS đúng release, canonical và sitemap 100 URL đạt; HTTP smoke 34 route/policy đạt, ba E2E UI public Chromium/Firefox/WebKit đạt. CI source này có 275 unit, 318 E2E đạt/6 skip native policy; Docker Linux CI 87 giây có restart/stop-start/SIGTERM 143 không OOM/Error. Kết quả CI không thay việc xác minh Safari/thiết bị thật. Certbot timer vẫn active; dry-run gia hạn được ghi ở lần triển khai đầu bên dưới, không tuyên bố chạy lại ở lần cập nhật UI.
+
+**Còn mở:** CSP có ở origin nhưng response public vẫn thiếu tại 12:14 ngày 10/11/2026 (Asia/Saigon); người dùng tự quản lý proxy. Chế độ TLS proxy→origin, reboot host, rollback thực tế, Lighthouse mới và manual QA chưa nghiệm thu. Không thay hoặc nới Permissions-Policy để làm bài kiểm thử đạt. Chi tiết tại PROGRESS.md, UI-UX-REFRESH.md và qa/ui-ux-refresh.json; Final Acceptance tiếp tục mở.
+
+## Lần triển khai đầu ngày 06/11/2026
 
 Đã triển khai theo yêu cầu lên VPS, phục vụ [tiếng Việt](https://nguyenanhtruc.io.vn/vi) và [tiếng Anh](https://nguyenanhtruc.io.vn/en). Giữ proxy hiện có; người dùng tự quản lý cấu hình tên miền/proxy. Không chỉnh bảng điều khiển proxy trong lượt triển khai này. Các checkpoint trước đây ghi “chưa VPS” là lịch sử tại thời điểm milestone đó.
 
