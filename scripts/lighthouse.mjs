@@ -18,8 +18,18 @@ const { values } = parseArgs({
   },
 });
 const base = new URL(values['base-url']);
-if (!['localhost', '127.0.0.1', '[::1]'].includes(base.hostname))
-  throw new Error('Audit only local QA origins.');
+if (
+  !['http:', 'https:'].includes(base.protocol) ||
+  base.username ||
+  base.password ||
+  base.search ||
+  base.hash ||
+  base.pathname !== '/'
+)
+  throw new Error('Use a plain HTTP(S) origin without credentials or URL parameters.');
+const localOrigin = ['localhost', '127.0.0.1', '[::1]'].includes(base.hostname);
+if (!localOrigin && base.origin !== 'https://nguyenanhtruc.io.vn')
+  throw new Error('Audit only local QA or the authorized staging origin.');
 if (!/^[a-z0-9-]+$/.test(values.label)) throw new Error('Invalid audit label.');
 const repetitions = Number(values.runs);
 if (!Number.isInteger(repetitions) || repetitions < 3 || repetitions > 10)
@@ -27,7 +37,7 @@ if (!Number.isInteger(repetitions) || repetitions < 3 || repetitions > 10)
 const directory = resolve('artifacts/performance', values.label);
 await mkdir(directory, { recursive: true });
 let certificatePin;
-if (base.protocol === 'https:') {
+if (base.protocol === 'https:' && localOrigin) {
   const certificate = new X509Certificate(await readFile(values.cert));
   certificatePin = createHash('sha256')
     .update(certificate.publicKey.export({ type: 'spki', format: 'der' }))
@@ -132,6 +142,7 @@ async function audit(path, run) {
         lcpMs: lhr.audits['largest-contentful-paint'].numericValue,
         tbtMs: lhr.audits['total-blocking-time'].numericValue,
         cls: lhr.audits['cumulative-layout-shift'].numericValue,
+        speedIndexMs: lhr.audits['speed-index'].numericValue,
         jsBytes: bytes('Script'),
         fontBytes: bytes('Font'),
         imageBytes: bytes('Image'),

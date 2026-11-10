@@ -5,6 +5,28 @@ import { resolve } from 'node:path';
 const paths =
   '/vi,/en/screen/ppi,/vi/keyboard/tester,/en/audio/microphone,/vi/camera/preview,/en/gamepad/tester';
 await mkdir('artifacts/performance', { recursive: true });
+async function audit(baseUrl, label, source) {
+  const child = spawn(
+    process.execPath,
+    [
+      'scripts/lighthouse.mjs',
+      '--base-url',
+      baseUrl,
+      '--label',
+      label,
+      '--runs',
+      '3',
+      '--paths',
+      paths,
+    ],
+    { stdio: 'inherit', env: { ...process.env, APP_SOURCE_COMMIT: source } },
+  );
+  const code = await new Promise((done, reject) => {
+    child.once('error', reject);
+    child.once('exit', done);
+  });
+  if (code !== 0) throw new Error(`Lighthouse failed with exit ${code}`);
+}
 async function measure(directory, label) {
   const cwd = resolve(directory);
   const source = execFileSync('git', ['rev-parse', 'HEAD'], { cwd, encoding: 'utf8' }).trim();
@@ -29,31 +51,21 @@ async function measure(directory, label) {
       await new Promise((done) => setTimeout(done, 200));
     }
     if (!healthy) throw new Error('Performance QA server not healthy.');
-    const audit = spawn(
-      process.execPath,
-      [
-        'scripts/lighthouse.mjs',
-        '--base-url',
-        'http://127.0.0.1:3000',
-        '--label',
-        label,
-        '--runs',
-        '3',
-        '--paths',
-        paths,
-      ],
-      { stdio: 'inherit', env: { ...process.env, APP_SOURCE_COMMIT: source } },
-    );
-    const code = await new Promise((done, reject) => {
-      audit.once('error', reject);
-      audit.once('exit', done);
-    });
-    if (code !== 0) throw new Error(`Lighthouse failed with exit ${code}`);
+    await audit('http://127.0.0.1:3000', label, source);
   } finally {
     if (server.exitCode === null) server.kill('SIGTERM');
     await exited;
     await log.close();
   }
 }
-await measure('app-before', 'ui-before');
-if (process.env.PERFORMANCE_AFTER === 'true') await measure('app-after', 'ui-after');
+if (process.env.PERFORMANCE_PUBLIC === 'true') {
+  const source = process.env.PERFORMANCE_PUBLIC_REF;
+  if (!/^[0-9a-f]{40}$/.test(source ?? '')) throw new Error('Expected deployed commit SHA.');
+  const response = await fetch('https://nguyenanhtruc.io.vn/vi');
+  if (!response.ok || response.headers.get('x-device-lab-release') !== source.slice(0, 7))
+    throw new Error('Public release does not match the requested commit.');
+  await audit('https://nguyenanhtruc.io.vn', 'ui-public', source);
+} else {
+  await measure('app-before', 'ui-before');
+  if (process.env.PERFORMANCE_AFTER === 'true') await measure('app-after', 'ui-after');
+}
