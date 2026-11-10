@@ -38,11 +38,17 @@ export function Header({ index }: { index: ToolSearchEntry[] }) {
           <span className="brand-mark">
             <Activity size={21} />
           </span>
-          Device Lab<span className="small">/</span>
+          <span>
+            Device Lab<span className="brand-caption">{t('interface.brandCaption')}</span>
+          </span>
         </Link>
         <nav className="desktop-nav" aria-label={t('allTools')}>
           {categories.map((category) => (
-            <Link key={category} href={`/${locale}/${category}`}>
+            <Link
+              key={category}
+              href={`/${locale}/${category}`}
+              aria-current={path.startsWith(`/${locale}/${category}`) ? 'page' : undefined}
+            >
               {t(category)}
             </Link>
           ))}

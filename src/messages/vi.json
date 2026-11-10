@@ -1,4 +1,18 @@
 {
+  "interface": {
+    "eyebrow": "Không gian kiểm tra thiết bị",
+    "brandCaption": "Hiểu rõ. Kiểm tra thật.",
+    "quickTest": "Đo Refresh Rate",
+    "tools": "Công cụ kiểm tra",
+    "categories": "Nhóm thiết bị",
+    "languages": "Ngôn ngữ",
+    "chooseDevice": "Chọn nhóm thiết bị",
+    "quickStart": "Kiểm tra nhanh",
+    "explore": "Khám phá công cụ",
+    "liveOverview": "Thông tin từ trình duyệt",
+    "clearSearch": "Xóa từ khóa tìm kiếm",
+    "filterHint": "Lọc theo nhóm thiết bị"
+  },
   "audio": "Âm thanh",
   "camera": "Camera",
   "gamepad": "Tay cầm",
@@ -39,7 +53,7 @@
   "noResults": "Không tìm thấy công cụ phù hợp.",
   "toolsCount": "{count} công cụ",
   "heroTitle": "Kiểm tra thiết bị.\nHiểu từng chi tiết.",
-  "heroDescription": "{count} công cụ kiểm tra màn hình, bàn phím, chuột và khả năng trình duyệt. Miễn phí, không cần cài đặt.",
+  "heroDescription": "{count} công cụ kiểm tra màn hình, thiết bị nhập, âm thanh, camera, tay cầm và trình duyệt. Miễn phí, không cần cài đặt.",
   "browse": "Khám phá công cụ",
   "privacyShort": "Chạy trên thiết bị của bạn",
   "noAccount": "Không cần tài khoản",

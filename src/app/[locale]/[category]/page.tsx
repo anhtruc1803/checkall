@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { categories, publishedTools, getToolSearchIndex, type Category } from '@/lib/tools/registry';
+import {
+  categories,
+  publishedTools,
+  getToolSearchIndex,
+  type Category,
+} from '@/lib/tools/registry';
 import { Catalog } from '@/components/tools/catalog';
 import type { Locale } from '@/lib/i18n/routing';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -32,7 +37,7 @@ export default async function CategoryPage({
   setRequestLocale(locale);
   const t = await getTranslations();
   return (
-    <main id="main" className="section">
+    <main id="main" className="section category-page">
       <h1>{t(category)}</h1>
       <p style={{ marginTop: 12 }}>{t('catalogDescription')}</p>
       <Catalog initialCategory={category as Category} index={getToolSearchIndex(locale)} />

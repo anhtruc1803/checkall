@@ -6,6 +6,7 @@ import { routing } from '@/lib/i18n/routing';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import '../globals.css';
+import '../interface.css';
 import { getToolSearchIndex } from '@/lib/tools/registry';
 export const dynamicParams = false;
 export const metadata: Metadata = {

@@ -1,16 +1,9 @@
 import Link from '@/components/navigation/policy-link';
-import { ArrowUpRight, Monitor, Keyboard, Mouse, Volume2, Cpu, Globe } from 'lucide-react';
-import type { Tool, Category } from '@/lib/tools/registry';
+import { ArrowUpRight } from 'lucide-react';
+import { CategoryIcon } from './category-icon';
+import type { Tool } from '@/lib/tools/registry';
 import { toolHref } from '@/lib/tools/registry';
 import type { Locale } from '@/lib/i18n/routing';
-const icons: Partial<Record<Category, typeof Monitor>> = {
-  screen: Monitor,
-  keyboard: Keyboard,
-  mouse: Mouse,
-  audio: Volume2,
-  device: Cpu,
-  browser: Globe,
-};
 export function ToolCard({
   tool,
   locale,
@@ -22,14 +15,15 @@ export function ToolCard({
   categoryLabel: string;
   classLabel: string;
 }) {
-  const Icon = icons[tool.icon] ?? Monitor;
   return (
-    <article className="tool-card">
+    <article className="tool-card" data-category={tool.category}>
       <div className="card-top">
         <span className="tool-icon">
-          <Icon size={22} />
+          <CategoryIcon category={tool.category} size={26} />
         </span>
-        <span className="card-category">{categoryLabel}</span>
+        <span className="card-category">
+          {categoryLabel} <span aria-hidden="true">/ {tool.id}</span>
+        </span>
       </div>
       <h3>
         <Link href={toolHref(tool, locale)} prefetch={false}>
@@ -40,7 +34,7 @@ export function ToolCard({
       <div className="card-bottom">
         <span>{classLabel}</span>
         <Link href={toolHref(tool, locale)} prefetch={false} aria-label={tool.copy[locale].name}>
-          <ArrowUpRight size={20} />
+          <ArrowUpRight size={20} aria-hidden="true" />
         </Link>
       </div>
     </article>

@@ -1,21 +1,26 @@
-/* Hallmark · macrostructure: Ecosystem Index · tone: technical · anchor hue: blue
- * theme: custom · display: Geist · body: Geist · axes: dark / geometric-sans / cool
- * pre-emit critique: P4 H4 E4 S5 R5 V4 */
+/* Device Lab · UI/UX Pro Max · technical workspace · shared VI/EN, dark/light tokens. */
 :root {
   --color-scrim: oklch(5% 0.02 260 / 0.7);
   --font-body: 'Geist Variable', sans-serif;
   --font-display: 'Geist Variable', sans-serif;
   --font-mono: 'Geist Mono Variable', monospace;
-  --color-bg: oklch(15% 0.018 260);
-  --color-surface: oklch(19% 0.02 260);
-  --color-raised: oklch(23% 0.022 260);
+  --color-bg: #0b1018;
+  --color-surface: #121b28;
+  --color-raised: #1b283b;
   --color-ink: oklch(96% 0.008 260);
-  --color-muted: oklch(73% 0.022 260);
+  --color-muted: #a5b3c8;
   --color-subtle: oklch(65% 0.025 260);
-  --color-rule: oklch(31% 0.025 260);
-  --color-accent: oklch(69% 0.17 255);
-  --color-accent-bg: oklch(25% 0.055 255);
-  --color-primary: oklch(53% 0.2 258);
+  --color-rule: #2b3a50;
+  --color-control-border: #637896;
+  --color-accent: #8ab4ff;
+  --color-accent-bg: #192f50;
+  --color-primary: #2b60d8;
+  --color-violet: #c4adff;
+  --color-teal: #74d9c4;
+  --color-amber: #f4c277;
+  --color-shadow: #02050b;
+  --shadow-panel: 0 24px 64px -28px var(--color-shadow);
+  --shadow-hover: 0 16px 32px -20px var(--color-shadow);
   --color-primary-ink: oklch(99% 0.003 255);
   --color-success: oklch(77% 0.15 156);
   --color-warning: oklch(82% 0.13 85);
@@ -40,9 +45,9 @@
   --text-title: clamp(1.8rem, 3vw, 2.6rem);
   --text-body: 1rem;
   --text-small: 0.875rem;
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 160ms;
   --background: var(--color-bg);
@@ -53,9 +58,9 @@
   --ring: var(--color-focus);
 }
 :root[data-theme='light'] {
-  --color-bg: oklch(98% 0.005 255);
-  --color-surface: oklch(99.5% 0.003 255);
-  --color-raised: oklch(95% 0.012 255);
+  --color-bg: #f4f7fb;
+  --color-surface: #ffffff;
+  --color-raised: #e9eff8;
   --color-ink: oklch(23% 0.025 260);
   --color-muted: oklch(44% 0.025 260);
   --color-subtle: oklch(49% 0.025 260);
@@ -66,4 +71,9 @@
   --color-warning: oklch(44% 0.09 70);
   --color-danger: oklch(47% 0.17 25);
   --color-focus: oklch(48% 0.2 255);
+  --color-violet: #6b43b5;
+  --color-teal: #176e61;
+  --color-amber: #8b5208;
+  --color-shadow: #b5c2d5;
+  --color-control-border: #7b8ba2;
 }

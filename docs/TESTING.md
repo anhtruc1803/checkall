@@ -1,5 +1,11 @@
 # Kiểm thử
 
+## Nâng cấp UI/UX — 10/11/2026
+
+Thêm interface.spec.ts: shortcut và count lấy theo registry trong VI/EN; filter/search/clear giữ category và trả focus; hai theme ở 320/375/414/768/1024/1440 px; tăng chữ 200%, reduced motion và keyboard activation. Giữ toàn bộ bài cũ; bộ đầy đủ hiện 324 E2E (81/cấu hình). Không sửa engine hoặc nới assertion để đổi giao diện.
+
+Checkpoint: 275 unit/33 file, build 106 trang, typecheck/lint đạt. Lượt Chromium interface + quality ban đầu 7 đạt/một lỗi reflow shortcut khi chữ 200%; đã sửa auto-fit/minmax theo rem, chạy lại ba bài interface đạt. Full E2E bị gián đoạn khi đổi phiên làm việc, không có kết quả cuối. Chờ hồi quy production standalone và Linux CI source UI mới; chi tiết cập nhật tại PROGRESS.md và UI-UX-REFRESH.md.
+
 ## Smoke staging ngày 06/11/2026
 
 Release fca62c6 đã build/chạy Docker trên VPS theo yêu cầu, tại https://nguyenanhtruc.io.vn. Không thay code hoặc assertion của ứng dụng. `node scripts/smoke-http.mjs https://nguyenanhtruc.io.vn` đạt health + 34 route VI/EN và scope Permissions-Policy, chạy lại đạt sau restart app. Nginx syntax/health/Node port private đạt; Certbot renewal dry-run kèm deploy hook đạt. HTTP → HTTPS 308, canonical VI/EN đúng và sitemap 100 URL duy nhất cùng domain.

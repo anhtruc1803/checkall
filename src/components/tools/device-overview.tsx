@@ -1,6 +1,6 @@
 'use client';
 import { useTranslations } from 'next-intl';
-import { Monitor } from 'lucide-react';
+import { Monitor, ShieldCheck } from 'lucide-react';
 import { useDevice } from '@/hooks/use-device';
 import { useSyncExternalStore } from 'react';
 import { sessionMeasurements } from '@/lib/storage/session-measurements';
@@ -36,12 +36,18 @@ export function DeviceOverview() {
   ] as const;
   return (
     <aside className="device-panel">
+      <div className="device-panel-label">
+        <span>{t('interface.liveOverview')}</span>
+        <span aria-hidden="true">DEVICE / 01</span>
+      </div>
       <div className="panel-head">
+        <span className="device-symbol">
+          <Monitor size={29} aria-hidden="true" />
+        </span>
         <div>
-          <h2 style={{ fontSize: '1rem' }}>{t('overview')}</h2>
+          <h2>{t('overview')}</h2>
           <p className="small">{t('overviewNote')}</p>
         </div>
-        <Monitor size={24} />
       </div>
       <dl className="device-list">
         {rows.map(([key, value]) => (
@@ -51,8 +57,8 @@ export function DeviceOverview() {
           </div>
         ))}
       </dl>
-      <p className="small" style={{ marginTop: 12 }}>
-        <span className="status-dot" />
+      <p className="device-local-note">
+        <ShieldCheck size={15} aria-hidden="true" />
         {t('localOnly')}
       </p>
     </aside>

@@ -1,4 +1,18 @@
 {
+  "interface": {
+    "eyebrow": "Your device testing workspace",
+    "brandCaption": "Real tests. Clear insights.",
+    "quickTest": "Test Refresh Rate",
+    "tools": "Testing tools",
+    "categories": "Device categories",
+    "languages": "Languages",
+    "chooseDevice": "Choose a device category",
+    "quickStart": "Quick start",
+    "explore": "Explore the toolkit",
+    "liveOverview": "Browser-reported information",
+    "clearSearch": "Clear search query",
+    "filterHint": "Filter by device category"
+  },
   "audio": "Audio",
   "camera": "Camera",
   "gamepad": "Gamepad",
@@ -39,7 +53,7 @@
   "noResults": "No matching tools found.",
   "toolsCount": "{count} tools",
   "heroTitle": "Test your device.\nKnow every detail.",
-  "heroDescription": "{count} tools to test your screen, keyboard, mouse and browser capabilities. Free, with nothing to install.",
+  "heroDescription": "{count} tools to test your screen, input devices, audio, camera, gamepad and browser. Free, with nothing to install.",
   "browse": "Explore tools",
   "privacyShort": "Runs on your device",
   "noAccount": "No account needed",

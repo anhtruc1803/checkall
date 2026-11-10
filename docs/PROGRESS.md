@@ -438,3 +438,13 @@ Harness staging đầu tiên nhập config sai dạng module, vô tình dùng s�
 **Không thể kiểm chứng trong lượt này:** thiết bị/Safari thật và các điều kiện manual QA M6. **Chưa hoàn thành:** Lighthouse revision hiện hành, hai dev advisory moderate và manual QA còn mở từ M6. Typecheck/lint chạy lại đạt, Prettier/diff check đạt; secret scan 213 file không finding. QA JSON đã đối chiếu với browser/HTTP evidence. Không chạy lại toàn bộ unit/E2E cho thay đổi tài liệu; build production thực hiện trên VPS, bộ kiểm thử code đầy đủ vẫn dẫn CI source M6, không nhận smoke thay thế.
 
 File tài liệu cập nhật: DEPLOYMENT.md (layout/lệnh vận hành/chứng chỉ/giới hạn), TESTING.md, PROGRESS.md và qa/staging-2026-11-06.json. Không commit credential, origin IP/SSH endpoint, .env, certificate/private key hoặc raw artifact. Tiếp theo: quản trị viên đối chiếu public CSP sau cấu hình proxy, rồi thực hiện ma trận phần cứng và các tiêu chí nghiệm thu còn mở.
+
+## Nâng cấp UI/UX bằng UI/UX Pro Max — 10/11/2026
+
+Theo yêu cầu, đã cài và sử dụng skill UI/UX Pro Max từ repo nextlevelbuilder. Đã tra design system/Next.js/UX, chọn hướng phòng lab kỹ thuật với graphite/cobalt, phân cấp chữ/surface rõ và hai theme đầy đủ. Giữ nguyên 40 công cụ, 80 route công cụ VI/EN, engine, khả năng/quyền/lifecycle và chính sách xử lý cục bộ. Không thêm dependency hoặc tài nguyên font bên ngoài.
+
+Đã sửa trang chủ, header/footer, danh mục, thẻ công cụ, bảng thiết bị và lớp CSS workspace; thêm category shortcut/icon đủ tám nhóm, số đếm registry thật, xóa tìm kiếm giữ bộ lọc và trả focus. Tài liệu/phạm vi/file chính và lệnh tra skill tại UI-UX-REFRESH.md.
+
+Checkpoint: build 106 trang, typecheck/lint, 275 unit/integration trên 33 file đạt. Chromium accessibility đại diện cả hai theme đạt; ba bài UI mới sau sửa grid theo rem đạt 3/3. Lượt đầu có lỗi tràn hai shortcut khi tăng chữ 200%, đã sửa, giữ assertion. Full E2E trước đổi phiên bị gián đoạn, không có report cuối; chưa tính đạt. Đang chạy lại hồi quy giao diện bốn cấu hình và chờ CI đầy đủ source UI mới. Không dùng CI M6 để nhận UI đã nghiệm thu.
+
+Chưa triển khai UI mới lên staging tại checkpoint này; không chỉnh tên miền/proxy người dùng quản lý. Manual hardware/Safari/screen reader, Lighthouse mới và các mục bảo mật/tooling của bàn giao staging còn mở; Final Acceptance chưa hoàn tất.

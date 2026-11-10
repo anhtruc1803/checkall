@@ -1,8 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from '@/components/navigation/policy-link';
-import { ArrowUpRight, Monitor, Keyboard, Mouse, Volume2, Search, Cpu, Globe } from 'lucide-react';
+import { ArrowUpRight, Search, X, SlidersHorizontal } from 'lucide-react';
+import { CategoryIcon } from './category-icon';
 import {
   getSearchCategories,
   searchToolIndex,
@@ -12,14 +13,6 @@ import {
 import type { Category } from '@/lib/tools/registry';
 import { useHydrated } from '@/hooks/use-hydrated';
 import type { Locale } from '@/lib/i18n/routing';
-const icons: Partial<Record<Category, typeof Monitor>> = {
-  screen: Monitor,
-  keyboard: Keyboard,
-  mouse: Mouse,
-  audio: Volume2,
-  device: Cpu,
-  browser: Globe,
-};
 export function Catalog({
   initialCategory,
   heroSearch = false,
@@ -34,21 +27,46 @@ export function Catalog({
   const [query, setQuery] = useState(''),
     [category, setCategory] = useState<Category | undefined>(initialCategory);
   const hydrated = useHydrated();
+  const searchInput = useRef<HTMLInputElement>(null);
   const categories = getSearchCategories(index);
   const found = searchToolIndex(index, query, category);
   return (
     <>
-      <div className="searchbox" style={{ marginTop: heroSearch ? 0 : 20, marginBottom: 24 }}>
-        <Search size={20} />
-        <input
-          aria-label={t('searchLabel')}
-          placeholder={t('search')}
-          value={query}
-          disabled={!hydrated}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+      <div className="catalog-toolbar" data-home={heroSearch}>
+        <div className="searchbox">
+          <Search size={20} aria-hidden="true" />
+          <label htmlFor="catalog-search" className="sr-only">
+            {t('searchLabel')}
+          </label>
+          <input
+            ref={searchInput}
+            id="catalog-search"
+            aria-label={t('searchLabel')}
+            placeholder={t('search')}
+            value={query}
+            disabled={!hydrated}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          {query && (
+            <button
+              type="button"
+              className="search-clear"
+              aria-label={t('interface.clearSearch')}
+              onClick={() => {
+                setQuery('');
+                searchInput.current?.focus();
+              }}
+            >
+              <X size={17} aria-hidden="true" />
+            </button>
+          )}
+        </div>
+        <span className="catalog-hint">
+          <SlidersHorizontal size={15} aria-hidden="true" />
+          {t('interface.filterHint')}
+        </span>
       </div>
-      <div className="filters" aria-label={t('allTools')}>
+      <div className="filters" role="group" aria-label={t('allTools')}>
         {[undefined, ...categories].map((cat) => (
           <button
             key={cat ?? 'all'}
@@ -57,31 +75,34 @@ export function Catalog({
             disabled={!hydrated}
             onClick={() => setCategory(cat)}
           >
+            {cat && <CategoryIcon category={cat} size={16} />}
             {t(cat ?? 'all')}{' '}
-            <span className="small">{searchToolIndex(index, '', cat).length}</span>
+            <span className="filter-count">{searchToolIndex(index, '', cat).length}</span>
           </button>
         ))}
       </div>
-      <p className="sr-only" role="status">
+      <p className="catalog-result-count" role="status" aria-atomic="true">
         {t('toolsCount', { count: found.length })}
       </p>
       <div className="catalog-grid">
         {found.map((tool) => {
-          const Icon = icons[tool.icon] ?? Monitor;
           return (
             <Link
               href={toolHref(tool, locale)}
               key={tool.id}
               className="catalog-item"
+              data-category={tool.category}
               prefetch={false}
               style={{ whiteSpace: 'normal' }}
             >
-              <Icon size={20} />
+              <span className="catalog-icon">
+                <CategoryIcon category={tool.category} size={21} />
+              </span>
               <div>
                 <h3>{tool.name}</h3>
                 <p>{t(tool.classification)}</p>
               </div>
-              <ArrowUpRight className="arrow" />
+              <ArrowUpRight className="arrow" aria-hidden="true" />
             </Link>
           );
         })}
