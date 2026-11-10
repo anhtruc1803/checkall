@@ -513,5 +513,25 @@
       "completed": "Window complete; read the results before Stop or Reset.",
       "invalid": "Insufficient continuous valid data. Results were cleared; try again with this page focused."
     }
+  },
+  "problems": {
+    "eyebrow": "Start with a symptom",
+    "title": "What is happening with your device?",
+    "description": "Choose the symptom you notice to find a useful test.",
+    "startWith": "Start with",
+    "alsoTry": "Also try",
+    "note": "These tools help you observe symptoms; they do not automatically diagnose a faulty device. You control when to activate each test on its tool page.",
+    "screen": {
+      "title": "Screen feels choppy",
+      "description": "Sample browser frame timing and look for motion ghosting."
+    },
+    "keyboard": {
+      "title": "Keys keep repeating",
+      "description": "Watch for unexpected repeated presses and check how each key responds."
+    },
+    "microphone": {
+      "title": "Microphone is not working",
+      "description": "Check the input signal after granting microphone access, then explore its audio spectrum."
+    }
   }
 }

@@ -13,6 +13,9 @@ on:
         description: Chỉ đo staging HTTPS; after_ref phải đúng commit đang phục vụ
         type: boolean
         default: false
+      paths:
+        description: Route VI/EN cần đo, phân cách bằng dấu phẩy (để trống dùng sáu trang mặc định)
+        required: false
 permissions:
   contents: read
 jobs:
@@ -24,6 +27,7 @@ jobs:
       PERFORMANCE_AFTER: ${{ inputs.after_ref != '' }}
       PERFORMANCE_PUBLIC: ${{ inputs.public_only }}
       PERFORMANCE_PUBLIC_REF: ${{ inputs.after_ref }}
+      PERFORMANCE_PATHS: ${{ inputs.paths }}
     steps:
       - uses: actions/checkout@v4
         with:

@@ -3,6 +3,7 @@ import { mkdir, open } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const paths =
+  process.env.PERFORMANCE_PATHS ||
   '/vi,/en/screen/ppi,/vi/keyboard/tester,/en/audio/microphone,/vi/camera/preview,/en/gamepad/tester';
 await mkdir('artifacts/performance', { recursive: true });
 async function audit(baseUrl, label, source) {

@@ -79,3 +79,11 @@ File chính: `src/components/tools/lab-scene.tsx`, `category-art.tsx`, trang ch�
 - Kiểm tra Safari trên macOS/iOS thật; WebKit automation chỉ là bằng chứng runtime tự động.
 
 Kết quả cuối source 882c4d9: build 106/typecheck/lint/275 unit đạt, 322 E2E đạt/6 skip native policy (không failure/flaky), local UI16/16 và public UI6/6 đạt. Lighthouse sạch 36 lượt so sánh/18 lượt HTTPS: median sau lab 99/99/99/98/97/98 và public sáu trang đều99, A/BP/SEO100. Đã phục vụ staging; chi tiết/số đo thực ở PERFORMANCE.md/TESTING.md/qa/lab-scene-2026-11-10.json. Các mục manual ở trên chưa được coi hoàn tất; Final Acceptance tổng thể vẫn mở.
+
+## Lối vào theo vấn đề — 10/11/2026
+
+Dùng cùng thiết kế UI/UX Pro Max, thêm section ngay dưới hero: ba thẻ dấu hiệu, mỗi thẻ có link nên thử trước và kiểm tra thêm. Screen → Refresh Rate/Ghosting; Keyboard → Key Chatter/Keyboard Tester; Microphone → Microphone/Audio Spectrum. Không mô tả các công cụ này như chẩn đoán tự động; giữ cơ chế kích hoạt và quyền của từng engine. Bản đầu truy vấn `descriptive link navigation` trả sticky navigation không phù hợp trọng tâm; truy vấn hẹp `keyboard focus visible --domain ux` trả hướng dẫn focus states phù hợp và đã áp dụng. Không tạo design system mới.
+
+ProblemChooser render server, CSS Module riêng, tên/URL lấy từ published registry. PolicyLink giữ document navigation sang media; prefetch=false. Không thêm JS tương tác, ảnh/font/dependency hoặc event logging; link có chữ đầy đủ, icon trang trí aria-hidden, focus rõ, vùng chạm≥44px, hỗ trợ hai theme/VI-EN/chữ200%. Giữ hero/tám minh họa, DeviceOverview, featured/catalog/SEO cùng40 công cụ. File: problem-chooser.tsx, problem-chooser.module.css, page.tsx/messages và problem-chooser.spec.ts; kết quả thực ở PROGRESS.md/TESTING.md/PERFORMANCE.md sau kiểm thử.
+
+Manual QA tiếp theo: screen reader đọc tên/thứ tự link và quan hệ dấu hiệu→công cụ; Safari/điện thoại thật/zoomOS; quyền microphone vẫn chỉ hỏi khi người dùng chủ động bắt đầu phiên. Không coi spy API của E2E là kiểm tra phần cứng hoặc khả năng microphone thật.

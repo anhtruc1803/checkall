@@ -513,5 +513,25 @@
       "completed": "Đã kết thúc cửa sổ; đọc kết quả trước khi Dừng hoặc Reset.",
       "invalid": "Không đủ dữ liệu liên tục/hợp lệ. Kết quả đã bị xóa; hãy đo lại khi trang có focus."
     }
+  },
+  "problems": {
+    "eyebrow": "Bắt đầu từ vấn đề",
+    "title": "Thiết bị đang gặp vấn đề gì?",
+    "description": "Chọn dấu hiệu bạn đang gặp để tìm công cụ kiểm tra phù hợp.",
+    "startWith": "Bắt đầu với",
+    "alsoTry": "Kiểm tra thêm",
+    "note": "Các công cụ giúp bạn quan sát dấu hiệu, không tự kết luận thiết bị hỏng. Bạn chủ động kích hoạt từng phép thử trong trang công cụ.",
+    "screen": {
+      "title": "Màn hình bị giật",
+      "description": "Lấy mẫu nhịp khung hình trình duyệt và quan sát bóng mờ khi chuyển động."
+    },
+    "keyboard": {
+      "title": "Phím bị lặp",
+      "description": "Theo dõi các lần nhấn lặp bất thường và kiểm tra phản hồi của từng phím."
+    },
+    "microphone": {
+      "title": "Microphone không hoạt động",
+      "description": "Kiểm tra tín hiệu đầu vào sau khi cấp quyền microphone, rồi quan sát phổ âm thanh."
+    }
   }
 }

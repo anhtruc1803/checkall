@@ -4,6 +4,7 @@ import { ShieldCheck, ArrowRight, Check, Layers3 } from 'lucide-react';
 import PolicyLink from '@/components/navigation/policy-link';
 import { CategoryArt } from '@/components/tools/category-art';
 import { LabScene } from '@/components/tools/lab-scene';
+import { ProblemChooser } from '@/components/tools/problem-chooser';
 import { DeviceOverview } from '@/components/tools/device-overview';
 import { ToolCard } from '@/components/tools/tool-card';
 import { Catalog } from '@/components/tools/catalog';
@@ -80,6 +81,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           caption={t('interface.sceneCaption')}
         />
       </section>
+      <ProblemChooser locale={locale} />
       <nav className="category-rail" aria-label={t('interface.chooseDevice')}>
         {categories.map((category) => (
           <PolicyLink
@@ -102,7 +104,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       <section className="section">
         <div className="section-head">
           <div>
-            <p className="eyebrow">01 / {t('interface.quickStart')}</p>
+            <p className="eyebrow">02 / {t('interface.quickStart')}</p>
             <h2>{t('featured')}</h2>
             <p>{t('featuredDescription')}</p>
           </div>
@@ -129,7 +131,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       <section id="catalog" className="section catalog-section">
         <div className="section-head">
           <div>
-            <p className="eyebrow">02 / {t('interface.explore')}</p>
+            <p className="eyebrow">03 / {t('interface.explore')}</p>
             <h2>{t('catalogTitle')}</h2>
             <p>{t('catalogDescription')}</p>
           </div>
