@@ -1,11 +1,33 @@
 import { test, expect } from '@playwright/test';
 import { categories, publishedTools } from '../../src/lib/tools/registry';
+import AxeBuilder from '@axe-core/playwright';
 
 test('category shortcuts and clear search preserve the selected group in both locales', async ({
   page,
 }) => {
+  test.setTimeout(60000);
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
+    const captionVisible = await page.locator('.brand-caption').isVisible();
+    await expect(page.locator('.brand')).toHaveAccessibleName(
+      captionVisible
+        ? locale === 'vi'
+          ? 'Device Lab Hiểu rõ. Kiểm tra thật.'
+          : 'Device Lab Real tests. Clear insights.'
+        : 'Device Lab',
+    );
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate((value) => {
+        document.documentElement.dataset.theme = value;
+      }, theme);
+      expect(
+        (
+          await new AxeBuilder({ page })
+            .withRules(['label-content-name-mismatch', 'color-contrast'])
+            .analyze()
+        ).violations,
+      ).toEqual([]);
+    }
     const shortcuts = page.locator('.category-rail a');
     await expect(shortcuts).toHaveCount(categories.length);
     for (const category of categories) {

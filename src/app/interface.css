@@ -71,7 +71,6 @@
 .button {
   min-height: 44px;
   transition:
-    background-color var(--dur-fast),
     border-color var(--dur-fast),
     transform var(--dur-fast);
 }
@@ -297,7 +296,6 @@ select,
   min-width: 0;
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
-  transition: background-color var(--dur-fast);
 }
 .category-shortcut:hover,
 .category-shortcut:active {
@@ -484,9 +482,7 @@ select,
   padding: 9px 13px;
   background: var(--color-surface);
   font-size: 0.8rem;
-  transition:
-    background-color var(--dur-fast),
-    border-color var(--dur-fast);
+  transition: border-color var(--dur-fast);
 }
 .filter:hover {
   background: var(--color-raised);
@@ -513,9 +509,7 @@ select,
   padding: 18px;
   min-height: 96px;
   border-radius: 12px;
-  transition:
-    background-color var(--dur-fast),
-    border-color var(--dur-fast);
+  transition: border-color var(--dur-fast);
 }
 .catalog-item:hover,
 .catalog-item:active {

@@ -34,9 +34,9 @@ export function Header({ index }: { index: ToolSearchEntry[] }) {
         {t('skip')}
       </a>
       <header className="site-header">
-        <Link href={`/${locale}`} className="brand" aria-label="Device Lab">
+        <Link href={`/${locale}`} className="brand">
           <span className="brand-mark">
-            <Activity size={21} />
+            <Activity size={21} aria-hidden="true" />
           </span>
           <span>
             Device Lab<span className="brand-caption">{t('interface.brandCaption')}</span>

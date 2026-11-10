@@ -37,4 +37,14 @@ Lượt full E2E Windows trước khi đổi phiên làm việc bị gián đo�
 
 Source 49bd12f: nhóm giao diện local 92/92 đạt, không skip/failure/flaky. Kiểm tra bổ sung menu mở phát hiện label quyền riêng tư tràn ở 320px; đã sửa white-space/overflow-wrap và mở rộng bài responsive/200% để kiểm tra menu. CI 42756963778 được hủy khi verify còn chạy, Docker của source này đã đạt; chờ CI mới cho source sau sửa menu. Image chuẩn bị từ 49bd12f chưa được đưa vào phục vụ.
 
+CI 42757715180 trên source 27f1383 phát hiện hai lỗi dùng chung: tên truy cập logo không chứa tagline hiển thị và tương phản kbd giảm trong lúc nền nút chuyển theme. Kết quả 299 đạt/6 skip/19 lỗi; Docker đạt 80 giây. Đã sửa semantic của logo và đổi màu nền/chữ đồng thời, thêm regression trực tiếp hai rule Axe; giữ nguyên các bài kiểm thử cũ. Source thất bại không được triển khai.
+
 Ảnh trước/sau và raw QA chỉ lưu trong artifacts bị Git ignore. Bằng chứng screenshot dùng dữ liệu browser thật sau hydrate; Refresh Rate chưa chạy vẫn ghi chưa đo. Không tuyên bố đã kiểm tra Safari/thiết bị thật, screen reader hoặc Lighthouse mới. Các mục bảo mật proxy, hai advisory dev tooling và Final Acceptance còn mở như bàn giao staging trước.
+
+## Manual QA còn cần thực hiện
+
+- NVDA/VoiceOver ở VI/EN: thứ tự heading, tên nhóm thiết bị, trạng thái filter và thông báo số kết quả; focus sau xóa tìm kiếm và đóng dialog/menu. Axe không thay kiểm tra screen reader thật.
+- Browser zoom 200%/400%, cỡ chữ hệ thống lớn và landscape trên điện thoại thật. Automation tăng root font 200% không tương đương mọi cơ chế zoom/OS.
+- Touch/keyboard thật trên Safari iOS/macOS và browser Android: menu, theme/locale, fullscreen và thao tác vùng đo. Giữ ma trận phần cứng và lifecycle của từng milestone.
+- Lighthouse ở Chromium sạch, đối chiếu bộ số trước/sau trong điều kiện tương đương. Không suy ra điểm Performance từ việc build hoặc E2E đạt.
+- Sau khi quản trị viên thay cấu hình proxy, kiểm tra lại CSP public và chế độ TLS proxy→origin. Đây là tiêu chí vận hành riêng, không mặc định đạt qua đợt đổi giao diện.
