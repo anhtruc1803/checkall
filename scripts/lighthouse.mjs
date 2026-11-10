@@ -1,7 +1,7 @@
 import lighthouse from 'lighthouse';
 import { chromium } from '@playwright/test';
 import { spawn } from 'node:child_process';
-import { mkdir, writeFile, mkdtemp, rm, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, mkdtemp, rm, readFile, open } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
 import { createServer } from 'node:net';
@@ -51,6 +51,7 @@ async function freePort() {
   return address.port;
 }
 async function audit(path, run) {
+  const slug = `${path.slice(1).replaceAll('/', '-')}-${run}`;
   const profile = await mkdtemp(join(tmpdir(), 'device-lab-lighthouse-'));
   const port = await freePort();
   const args = [
@@ -65,11 +66,24 @@ async function audit(path, run) {
     `--user-data-dir=${profile}`,
   ];
   if (certificatePin) args.push(`--ignore-certificate-errors-spki-list=${certificatePin}`);
-  if (process.getuid?.() === 0) args.push('--no-sandbox');
-  const child = spawn(chromium.executablePath(), args, { stdio: 'ignore', windowsHide: true });
+  if (process.env.CI || process.getuid?.() === 0) args.push('--no-sandbox');
+  const browserLog = await open(join(directory, `${slug}-browser.log`), 'w');
+  const child = spawn(chromium.executablePath(), args, {
+    stdio: ['ignore', browserLog.fd, browserLog.fd],
+    windowsHide: true,
+  });
+  let launchError;
+  child.once('error', (error) => {
+    launchError = error;
+  });
+  const closed = new Promise((done) => child.once('close', done));
   try {
     let ready = false;
     for (let attempt = 0; attempt < 60; attempt++) {
+      if (launchError || child.exitCode !== null || child.signalCode !== null)
+        throw new Error(
+          `Chromium exited before CDP readiness: ${launchError?.message ?? child.exitCode ?? child.signalCode}; see ${slug}-browser.log`,
+        );
       try {
         if ((await fetch(`http://127.0.0.1:${port}/json/version`)).ok) {
           ready = true;
@@ -88,7 +102,6 @@ async function audit(path, run) {
     });
     if (!result || result.lhr.runtimeError)
       throw new Error(result?.lhr.runtimeError?.message ?? 'No Lighthouse result');
-    const slug = `${path.slice(1).replaceAll('/', '-')}-${run}`;
     await writeFile(join(directory, `${slug}.json`), result.report[0]);
     await writeFile(join(directory, `${slug}.html`), result.report[1]);
     const { lhr } = result;
@@ -138,8 +151,9 @@ async function audit(path, run) {
     );
     return measurement;
   } finally {
-    child.kill();
-    if (child.exitCode === null) await new Promise((done) => child.once('exit', done));
+    if (child.exitCode === null && child.signalCode === null) child.kill();
+    await closed;
+    await browserLog.close();
     if (!resolve(profile).startsWith(resolve(tmpdir()) + sep + 'device-lab-lighthouse-'))
       throw new Error('Unexpected audit profile path');
     await rm(profile, { recursive: true, force: true }).catch(() => {});
