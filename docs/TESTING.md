@@ -157,3 +157,11 @@ CI Linux cuối của source 5ef7ae1: [run 40836651018](https://github.com/anhtr
 Playwright lưu artifacts/playwright/results.json cho cả lượt thành công. CI upload artifact browser-qa chứa JSON cùng trace/test-results khi có; không còn phụ thuộc vào việc phải có failure mới có bằng chứng browser. Không commit JSON raw/artifacts vào Git.
 
 Trước khi công bố công cụ media ở milestone sau, bổ sung E2E phù hợp cho cấp/từ chối quyền trong secure context, route policy thực và thiết bị giả của browser; đồng thời manual QA microphone/webcam/loa/gamepad và Safari thật. Không nới header toàn website để làm bài kiểm thử dễ đạt.
+
+## Bàn lab tương tác — 10/11/2026
+
+Source 882c4d9: [CI 42783852103](https://github.com/anhtruc1803/checkall/actions/runs/42783852103) success, build 106 trang/typecheck/lint/secret scan, 275 unit/33 file và **322 E2E đạt/6 skip**, không failure/flaky, 717456,362 ms. Chromium/mobile 82 đạt mỗi cấu hình; Firefox/WebKit 79 đạt/ba skip native policy mỗi cấu hình. Giữ nguyên lý do skip, không coi là Safari thực tế. Bộ UI local 16/16 đạt trên bốn cấu hình; public sáu bài category/search và minh họa trên ba browser đạt, không skip/failure/flaky. Lượt đầu 12 đạt/bốn lỗi chữ 200% do white-space kế thừa, đã sửa reflow và chạy lại, không nới assertion.
+
+Bài mới kiểm tra VI/EN, chú thích không phải kết quả đo, SVG trang trí, nút aria-pressed, click/tap/Space/Enter, pointer reset, reduced motion và Refresh Rate không đổi thành số giả. Ma trận cũ mở rộng selector hero/summary ở 320/375/414/768/1024/1440 px, hai theme và chữ 200%; Axe kiểm tra thêm vùng mới. Không gọi camera/microphone/gamepad khi tương tác hero; không thêm timer, listener toàn cục hoặc ghi sự kiện.
+
+Docker Linux CI job 81 giây đạt 34 route/policy ba checkpoint/restart/stop-start/private port/SIGTERM143 không OOM. Production dependency audit 0 finding; audit toàn bộ còn hai moderate dev glob/minimatch. Lighthouse mới: 36 lượt so sánh cùng VM đạt median sau 99/99/99/98/97/98; 18 lượt HTTPS public đạt median sáu trang đều 99, A/BP/SEO đều 100. Từng lượt và môi trường tại PERFORMANCE.md/qa/lab-scene-2026-11-10.json. Public UI 76275,86 ms. Manual QA mới tại UI-UX-REFRESH.md; vẫn cần thiết bị/Safari/screen reader/OS zoom thật. Giữ đủ 40 công cụ, 80 route công cụ VI/EN/100 URL nội dung và Final Acceptance mở.

@@ -70,3 +70,12 @@ Hero là một Client Component nhỏ: con trỏ mouse dịch hình tối đa 5 
 Tám CategoryArt được render ở server; icon dùng chung của registry/menu/filter giữ nguyên. Hover/focus chỉ dịch nhẹ hình của danh mục được chọn trên thiết bị có hover và cho phép chuyển động. Không thêm dependency, ảnh tải ngoài hoặc font. DeviceOverview giữ nguyên hook/dữ liệu/nhãn ước đoán; đổi vị trí thành dải tóm tắt bên dưới nhóm thiết bị, reflow 4/2/1 cột theo không gian và cỡ chữ. Giữ đủ 40 công cụ, VI/EN, SEO, quyền và lifecycle engine.
 
 File chính: `src/components/tools/lab-scene.tsx`, `category-art.tsx`, trang chủ locale, `interface.css`, messages VI/EN và `tests/e2e/interface.spec.ts`. Thêm kiểm thử pointer/keyboard/touch, aria-pressed, reset, chú thích minh họa, Refresh Rate vẫn chưa đo, Axe hai theme; mở rộng ma trận responsive và chữ 200% cho hero/thông tin thật. Lượt đầu phát hiện nút kế thừa white-space nowrap làm cắt gợi ý ở chữ 200%; đã sửa reflow, không bỏ assertion. Kết quả cuối được ghi ở PROGRESS.md/TESTING.md và QA JSON, không dùng kết quả Lighthouse bản cũ nhận cho giao diện này.
+
+### Manual QA dành cho minh họa
+
+- Trên điện thoại thật, chạm nút đổi ánh sáng rồi cuộn dọc qua vùng hero; không được chặn cuộn hoặc yêu cầu quyền thiết bị.
+- Dùng screen reader xác nhận nút được đọc tên/trạng thái bật tắt, hình trang trí không tạo hàng chục phần tử và chú thích không bị hiểu là số đo thật.
+- Bật reduced motion ở hệ điều hành, kiểm tra cả khi trang đang mở; vị trí hình phải đứng yên, nút đổi màu vẫn hoạt động. Kiểm tra zoom browser/OS và chế độ tương phản cao thực tế.
+- Kiểm tra Safari trên macOS/iOS thật; WebKit automation chỉ là bằng chứng runtime tự động.
+
+Kết quả cuối source 882c4d9: build 106/typecheck/lint/275 unit đạt, 322 E2E đạt/6 skip native policy (không failure/flaky), local UI16/16 và public UI6/6 đạt. Lighthouse sạch 36 lượt so sánh/18 lượt HTTPS: median sau lab 99/99/99/98/97/98 và public sáu trang đều99, A/BP/SEO100. Đã phục vụ staging; chi tiết/số đo thực ở PERFORMANCE.md/TESTING.md/qa/lab-scene-2026-11-10.json. Các mục manual ở trên chưa được coi hoàn tất; Final Acceptance tổng thể vẫn mở.

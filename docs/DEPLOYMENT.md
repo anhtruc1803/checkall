@@ -1,8 +1,16 @@
 # Triển khai và vận hành
 
-## Bản Performance đang phục vụ — 10/11/2026
+## Bản bàn lab đang phục vụ — 10/11/2026
 
-Source hiện tại **ad25dd12fe10b5c88634d5befe7363a2261f5dfd**, tag `device-lab:staging-ad25dd1-20261110`, image VPS `sha256:c3df1dca7116c8435399dc79cbe9d31e87bed4c68dd9f7adcb7ecbcb90e5555e`. Current trỏ `/opt/device-lab/releases/ad25dd1`; giữ source/image 387c03f trước đó và backup `/opt/device-lab/shared/nginx.conf.before-perf-20261110`. Archive Git tracked đã kiểm SHA256 trước build, .env chỉ ở host. Đổi sau khi [CI 42775890687](https://github.com/anhtruc1803/checkall/actions/runs/42775890687) success; image build trước nhưng không đưa vào phục vụ khi hồi quy chưa đạt.
+Source **882c4d925e95d86672dd5b9469367335fe93c9d5**, tag `device-lab:staging-882c4d9-20261110`, image VPS `sha256:9de7c5069c43af6e9e6f5f19fd5975d12e68e0546d8c758c3bfcb90fc582aa44`. Current trỏ `/opt/device-lab/releases/882c4d9`; giữ source/image ad25dd1 và `/opt/device-lab/shared/nginx.conf.before-lab-20261110`. Archive Git tracked đã kiểm SHA256; không mang .env, cache hoặc credential từ máy phát triển. Chuyển sau khi [CI 42783852103](https://github.com/anhtruc1803/checkall/actions/runs/42783852103) success verify/Docker và cặp Lighthouse Linux trước/sau đạt.
+
+App healthy, user nextjs/read-only, OOMKilled false/Error rỗng, Node 3000 private; Nginx syntax/startup đạt và Certbot timer active. Chỉ cập nhật marker release origin/reload, không đổi dashboard DNS/proxy. Sau chuyển: VI/EN 200 đúng source, HTTP 308→HTTPS, canonical/sitemap 100 URL đạt, health +34 route/policy đạt; sáu UI E2E public Chromium/Firefox/WebKit đạt, không skip/failure/flaky (76275,86 ms). Đã xem ảnh Dark/Light/mobile từ domain sau hydrate. Không nhận WebKit là Safari thực tế.
+
+Không prune/reboot hoặc chạy lại renewal dry-run/diễn tập rollback. Public CSP vẫn thiếu lúc 16:07 Asia/Saigon, TLS proxy→origin chưa xác minh; người dùng tự quản lý proxy. [Lighthouse HTTPS 42788047041](https://github.com/anhtruc1803/checkall/actions/runs/42788047041) đủ 18 lượt sạch, median sáu trang đều 99/A-BP-SEO 100; số đo tại PERFORMANCE.md; các kết quả source ad25dd1 phía dưới là lịch sử. Final Acceptance còn manual/hardware/bảo mật đã nêu trong PROGRESS.md.
+
+## Lịch sử bản Performance — 10/11/2026
+
+Tại checkpoint trước bàn lab, source **ad25dd12fe10b5c88634d5befe7363a2261f5dfd**, tag `device-lab:staging-ad25dd1-20261110`, image VPS `sha256:c3df1dca7116c8435399dc79cbe9d31e87bed4c68dd9f7adcb7ecbcb90e5555e`. Current trỏ `/opt/device-lab/releases/ad25dd1`; giữ source/image 387c03f trước đó và backup `/opt/device-lab/shared/nginx.conf.before-perf-20261110`. Archive Git tracked đã kiểm SHA256 trước build, .env chỉ ở host. Đổi sau khi [CI 42775890687](https://github.com/anhtruc1803/checkall/actions/runs/42775890687) success; image build trước nhưng không đưa vào phục vụ khi hồi quy chưa đạt.
 
 Ứng dụng healthy/OOMKilled false, Node 3000 chỉ nội bộ; Nginx publish 80/443, syntax/log startup và public health đạt. Chỉ cập nhật marker `X-Device-Lab-Release: ad25dd1` và reload; không chỉnh dashboard DNS/proxy. Smoke 34 route/policy và ba E2E UI public đạt, canonical/sitemap 100 URL/CSS đúng source. Lighthouse public [42778723274](https://github.com/anhtruc1803/checkall/actions/runs/42778723274) đủ 18 lượt sạch trên đúng release, median 95/98/97/97/96/97. Bộ so sánh lab cùng VM riêng đạt 99–100; không ghép hai môi trường để tính mức tăng.
 
