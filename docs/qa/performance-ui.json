@@ -1,0 +1,2735 @@
+{
+  "date": "2026-11-10",
+  "threshold": 90,
+  "before": {
+    "sourceCommit": "da680e48ba5bbc953226541299b9805b93da54e5",
+    "baseUrl": "http://127.0.0.1:3000",
+    "execution": {
+      "node": "v24.22.2",
+      "platform": "linux",
+      "osRelease": "7.0.0-1017-azure",
+      "cpuModel": "AMD EPYC 9V45 96-Core Processor",
+      "cpuCount": 4,
+      "memoryBytes": 16760344576,
+      "githubRunId": "42775910647"
+    },
+    "certificatePinUsed": false,
+    "median": [
+      {
+        "path": "/vi",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.7411999999999,
+          "lcpMs": 912.7411999999999,
+          "tbtMs": 53.00000000000023,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 915.8695,
+          "jsBytes": 201068,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 32022,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/en/screen/ppi",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.6451,
+          "lcpMs": 911.6451,
+          "tbtMs": 60.5,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 911.6451,
+          "jsBytes": 207870,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20763,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.1806999999999,
+          "lcpMs": 912.1806999999999,
+          "tbtMs": 58,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 912.1806999999999,
+          "jsBytes": 210193,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23837,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/en/audio/microphone",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 909.2018,
+          "lcpMs": 909.2018,
+          "tbtMs": 109,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 909.2018,
+          "jsBytes": 201990,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21374,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/vi/camera/preview",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 909.3584000000001,
+          "lcpMs": 909.3584000000001,
+          "tbtMs": 110,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 909.3584000000001,
+          "jsBytes": 201641,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22543,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 910.6247000000001,
+          "lcpMs": 910.6247000000001,
+          "tbtMs": 111,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 910.6247000000001,
+          "jsBytes": 202164,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21365,
+          "cssBytes": 12364
+        }
+      }
+    ],
+    "measurements": [
+      {
+        "path": "/vi",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 915.8695,
+          "lcpMs": 915.8695,
+          "tbtMs": 55,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 915.8695,
+          "jsBytes": 201068,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 32022,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3537.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.3158000000001,
+          "lcpMs": 912.3158000000001,
+          "tbtMs": 151,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 912.3158000000001,
+          "jsBytes": 207870,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20763,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3311,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.9504,
+          "lcpMs": 908.9504,
+          "tbtMs": 58,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 908.9504,
+          "jsBytes": 210193,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23837,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3385.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.3593000000001,
+          "lcpMs": 908.3593000000001,
+          "tbtMs": 109,
+          "cls": 0.003769648275034116,
+          "speedIndexMs": 908.3593000000001,
+          "jsBytes": 201990,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21374,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3400.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 910.2496000000001,
+          "lcpMs": 910.2496000000001,
+          "tbtMs": 110,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 910.2496000000001,
+          "jsBytes": 201641,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22543,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3216.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.7638,
+          "lcpMs": 911.7638,
+          "tbtMs": 119,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 911.7638,
+          "jsBytes": 202164,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21365,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3336.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.6564000000001,
+          "lcpMs": 912.6564000000001,
+          "tbtMs": 49,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 968.4557728322978,
+          "jsBytes": 201068,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 32022,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3384,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.6451,
+          "lcpMs": 911.6451,
+          "tbtMs": 58.5,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 911.6451,
+          "jsBytes": 207870,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20763,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3373,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.6125999999999,
+          "lcpMs": 912.6125999999999,
+          "tbtMs": 70,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 912.6125999999999,
+          "jsBytes": 210193,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23837,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3468.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 910.4082000000001,
+          "lcpMs": 910.4082000000001,
+          "tbtMs": 107,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 910.4082000000001,
+          "jsBytes": 201990,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21374,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3030,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 909.3584000000001,
+          "lcpMs": 909.3584000000001,
+          "tbtMs": 101,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 909.3584000000001,
+          "jsBytes": 201641,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22543,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3424.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 910.6247000000001,
+          "lcpMs": 910.6247000000001,
+          "tbtMs": 111,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 910.6247000000001,
+          "jsBytes": 202164,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21365,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3384.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.7411999999999,
+          "lcpMs": 912.7411999999999,
+          "tbtMs": 53.00000000000023,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 912.7411999999999,
+          "jsBytes": 201068,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 32022,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3506,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 909.4281000000001,
+          "lcpMs": 909.4281000000001,
+          "tbtMs": 60.5,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 909.4281000000001,
+          "jsBytes": 207870,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20763,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3214,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.1806999999999,
+          "lcpMs": 912.1806999999999,
+          "tbtMs": 55.5,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 912.1806999999999,
+          "jsBytes": 210193,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23837,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3325,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 909.2018,
+          "lcpMs": 909.2018,
+          "tbtMs": 109,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 909.2018,
+          "jsBytes": 201990,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21374,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3356,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.6459,
+          "lcpMs": 908.6459,
+          "tbtMs": 111,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 908.6459,
+          "jsBytes": 201641,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22543,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3460,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 909.4176,
+          "lcpMs": 909.4176,
+          "tbtMs": 106,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 909.4176,
+          "jsBytes": 202164,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21365,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3351,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      }
+    ]
+  },
+  "after": {
+    "sourceCommit": "ad25dd12fe10b5c88634d5befe7363a2261f5dfd",
+    "baseUrl": "http://127.0.0.1:3000",
+    "execution": {
+      "node": "v24.22.2",
+      "platform": "linux",
+      "osRelease": "7.0.0-1017-azure",
+      "cpuModel": "AMD EPYC 9V45 96-Core Processor",
+      "cpuCount": 4,
+      "memoryBytes": 16760344576,
+      "githubRunId": "42775910647"
+    },
+    "certificatePinUsed": false,
+    "median": [
+      {
+        "path": "/vi",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 916.8244,
+          "lcpMs": 916.8244,
+          "tbtMs": 65.45579999999995,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 916.8244,
+          "jsBytes": 191517,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 31981,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/en/screen/ppi",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.8175000000001,
+          "lcpMs": 908.8175000000001,
+          "tbtMs": 61.00000000000023,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 908.8175000000001,
+          "jsBytes": 198319,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20729,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.4513,
+          "lcpMs": 911.4513,
+          "tbtMs": 57.5,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 911.4513,
+          "jsBytes": 200642,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23806,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/en/audio/microphone",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.8661999999999,
+          "lcpMs": 911.8661999999999,
+          "tbtMs": 114,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 911.8661999999999,
+          "jsBytes": 192439,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21338,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/vi/camera/preview",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.9824000000001,
+          "lcpMs": 911.9824000000001,
+          "tbtMs": 115,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 911.9824000000001,
+          "jsBytes": 192090,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22506,
+          "cssBytes": 12364
+        }
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.6515999999999,
+          "lcpMs": 908.6515999999999,
+          "tbtMs": 117,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 908.6515999999999,
+          "jsBytes": 192613,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21328,
+          "cssBytes": 12364
+        }
+      }
+    ],
+    "measurements": [
+      {
+        "path": "/vi",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 922.0220999999999,
+          "lcpMs": 922.0220999999999,
+          "tbtMs": 58,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 922.0220999999999,
+          "jsBytes": 191517,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 31981,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3594.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.3474000000001,
+          "lcpMs": 911.3474000000001,
+          "tbtMs": 58,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 911.3474000000001,
+          "jsBytes": 198319,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20729,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3322.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.4513,
+          "lcpMs": 911.4513,
+          "tbtMs": 55.50000000000023,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 911.4513,
+          "jsBytes": 200642,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23806,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3209,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 914.7852,
+          "lcpMs": 914.7852,
+          "tbtMs": 107,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 914.7852,
+          "jsBytes": 192439,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21338,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3453,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.4822999999999,
+          "lcpMs": 908.4822999999999,
+          "tbtMs": 112.5,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 908.4822999999999,
+          "jsBytes": 192090,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22506,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3399.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 1,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.6515999999999,
+          "lcpMs": 908.6515999999999,
+          "tbtMs": 117,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 908.6515999999999,
+          "jsBytes": 192613,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21328,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3366.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 916.8244,
+          "lcpMs": 916.8244,
+          "tbtMs": 74,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 916.8244,
+          "jsBytes": 191517,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 31981,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3322,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.8175000000001,
+          "lcpMs": 908.8175000000001,
+          "tbtMs": 65,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 908.8175000000001,
+          "jsBytes": 198319,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20729,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3427,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.6576,
+          "lcpMs": 912.6576,
+          "tbtMs": 57.5,
+          "cls": 0.0005032165213712738,
+          "speedIndexMs": 912.6576,
+          "jsBytes": 200642,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23806,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3344,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.8661999999999,
+          "lcpMs": 911.8661999999999,
+          "tbtMs": 118,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 911.8661999999999,
+          "jsBytes": 192439,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21338,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3210,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 915.1467,
+          "lcpMs": 915.1467,
+          "tbtMs": 119,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 915.1467,
+          "jsBytes": 192090,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22506,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3399,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 2,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 912.8284000000001,
+          "lcpMs": 912.8284000000001,
+          "tbtMs": 123,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 912.8284000000001,
+          "jsBytes": 192613,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21328,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3462,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.0884000000001,
+          "lcpMs": 911.0884000000001,
+          "tbtMs": 65.45579999999995,
+          "cls": 0.0030236848409143135,
+          "speedIndexMs": 911.0884000000001,
+          "jsBytes": 191517,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 31981,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3278.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.1886999999999,
+          "lcpMs": 908.1886999999999,
+          "tbtMs": 61.00000000000023,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 908.1886999999999,
+          "jsBytes": 198319,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 20729,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3238.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.0746999999999,
+          "lcpMs": 911.0746999999999,
+          "tbtMs": 59,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 911.0746999999999,
+          "jsBytes": 200642,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 23806,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3281.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 910.8507999999999,
+          "lcpMs": 910.8507999999999,
+          "tbtMs": 114,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 910.8507999999999,
+          "jsBytes": 192439,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21338,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3385.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 911.9824000000001,
+          "lcpMs": 911.9824000000001,
+          "tbtMs": 115,
+          "cls": 0.0003799330223956358,
+          "speedIndexMs": 911.9824000000001,
+          "jsBytes": 192090,
+          "fontBytes": 80003,
+          "imageBytes": 0,
+          "documentBytes": 22506,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3302.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 3,
+        "clean": true,
+        "externalScripts": [],
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 908.4141999999999,
+          "lcpMs": 908.4141999999999,
+          "tbtMs": 108,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 908.4141999999999,
+          "jsBytes": 192613,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 21328,
+          "cssBytes": 12364
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 3356,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      }
+    ]
+  },
+  "public": {
+    "sourceCommit": "ad25dd12fe10b5c88634d5befe7363a2261f5dfd",
+    "baseUrl": "https://nguyenanhtruc.io.vn",
+    "execution": {
+      "node": "v24.22.2",
+      "platform": "linux",
+      "osRelease": "7.0.0-1017-azure",
+      "cpuModel": "AMD EPYC 7763 64-Core Processor",
+      "cpuCount": 4,
+      "memoryBytes": 16760344576,
+      "githubRunId": "42778723274"
+    },
+    "certificatePinUsed": false,
+    "median": [
+      {
+        "path": "/vi",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 95,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1106.728,
+          "lcpMs": 1106.728,
+          "tbtMs": 241.5,
+          "cls": 0.0027598138525258414,
+          "speedIndexMs": 2633.6054691752233,
+          "jsBytes": 188510,
+          "fontBytes": 99823,
+          "imageBytes": 0,
+          "documentBytes": 24476,
+          "cssBytes": 11191
+        }
+      },
+      {
+        "path": "/en/screen/ppi",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 965.77,
+          "lcpMs": 965.77,
+          "tbtMs": 176.99999999999977,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 2373.9362500000057,
+          "jsBytes": 193476,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19292,
+          "cssBytes": 11168
+        }
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1006.827,
+          "lcpMs": 1006.827,
+          "tbtMs": 184.5,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 2455.109956000013,
+          "jsBytes": 195710,
+          "fontBytes": 77315,
+          "imageBytes": 0,
+          "documentBytes": 22032,
+          "cssBytes": 11191
+        }
+      },
+      {
+        "path": "/en/audio/microphone",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1296.6999999999998,
+          "lcpMs": 1296.6999999999998,
+          "tbtMs": 192,
+          "cls": 0.00439682713794835,
+          "speedIndexMs": 2126.4598159999946,
+          "jsBytes": 189545,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19679,
+          "cssBytes": 11168
+        }
+      },
+      {
+        "path": "/vi/camera/preview",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1182.65,
+          "lcpMs": 1182.65,
+          "tbtMs": 209,
+          "cls": 0.00007953813140985953,
+          "speedIndexMs": 2310.951492000005,
+          "jsBytes": 189122,
+          "fontBytes": 77315,
+          "imageBytes": 0,
+          "documentBytes": 20931,
+          "cssBytes": 11168
+        }
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1247.596,
+          "lcpMs": 1247.596,
+          "tbtMs": 180,
+          "cls": 0.006028288964869964,
+          "speedIndexMs": 2504.3674000000096,
+          "jsBytes": 189564,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19658,
+          "cssBytes": 11191
+        }
+      }
+    ],
+    "measurements": [
+      {
+        "path": "/vi",
+        "run": 1,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 95,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1131.777,
+          "lcpMs": 1131.777,
+          "tbtMs": 241.5,
+          "cls": 0.0002090855824255832,
+          "speedIndexMs": 2559.6859872706764,
+          "jsBytes": 188532,
+          "fontBytes": 99823,
+          "imageBytes": 0,
+          "documentBytes": 24476,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 2073.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 1,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 977.841,
+          "lcpMs": 977.841,
+          "tbtMs": 182.4999999999999,
+          "cls": 0,
+          "speedIndexMs": 2665.8494140000066,
+          "jsBytes": 193560,
+          "fontBytes": 52696,
+          "imageBytes": 0,
+          "documentBytes": 19292,
+          "cssBytes": 11114
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1931.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 1,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1006.827,
+          "lcpMs": 1006.827,
+          "tbtMs": 184.5,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 2319.456020000006,
+          "jsBytes": 195709,
+          "fontBytes": 77315,
+          "imageBytes": 0,
+          "documentBytes": 22030,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1836.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 1,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1210.02,
+          "lcpMs": 1210.02,
+          "tbtMs": 199,
+          "cls": 0.005585059304260036,
+          "speedIndexMs": 2126.4598159999946,
+          "jsBytes": 189545,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19677,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1883.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 1,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1112.429,
+          "lcpMs": 1112.429,
+          "tbtMs": 198,
+          "cls": 0.0005032165213712738,
+          "speedIndexMs": 2310.951492000005,
+          "jsBytes": 189121,
+          "fontBytes": 77315,
+          "imageBytes": 0,
+          "documentBytes": 20931,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1954,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 1,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1247.596,
+          "lcpMs": 1247.596,
+          "tbtMs": 180,
+          "cls": 0.006028288964869964,
+          "speedIndexMs": 2504.3674000000096,
+          "jsBytes": 189563,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19658,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1883.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi",
+        "run": 2,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1106.728,
+          "lcpMs": 1106.728,
+          "tbtMs": 216,
+          "cls": 0.0027598138525258414,
+          "speedIndexMs": 2633.6054691752233,
+          "jsBytes": 188501,
+          "fontBytes": 99823,
+          "imageBytes": 0,
+          "documentBytes": 24478,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1949.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 2,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 952.4590000000001,
+          "lcpMs": 952.4590000000001,
+          "tbtMs": 176.99999999999977,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 1952.9542819999842,
+          "jsBytes": 193476,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19291,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1861.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 2,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 973.002,
+          "lcpMs": 973.002,
+          "tbtMs": 205.5,
+          "cls": 0.0005032165213712738,
+          "speedIndexMs": 2455.109956000013,
+          "jsBytes": 195747,
+          "fontBytes": 77315,
+          "imageBytes": 0,
+          "documentBytes": 22035,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1826.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 2,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1393.853,
+          "lcpMs": 1393.853,
+          "tbtMs": 188,
+          "cls": 0.004060110474163027,
+          "speedIndexMs": 2624.715506000023,
+          "jsBytes": 189547,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19680,
+          "cssBytes": 11114
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1872.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 2,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1240.56,
+          "lcpMs": 1240.56,
+          "tbtMs": 209,
+          "cls": 0.00007953813140985953,
+          "speedIndexMs": 2401.1018500000087,
+          "jsBytes": 189122,
+          "fontBytes": 77315,
+          "imageBytes": 0,
+          "documentBytes": 20931,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1835,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 2,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1348.48,
+          "lcpMs": 1348.48,
+          "tbtMs": 180,
+          "cls": 0.004668666519699229,
+          "speedIndexMs": 2555.362023999985,
+          "jsBytes": 189595,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19662,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1767,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi",
+        "run": 3,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 95,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1011.7750000000001,
+          "lcpMs": 1011.7750000000001,
+          "tbtMs": 252.5,
+          "cls": 0.0027603107222835465,
+          "speedIndexMs": 2651.2870351954134,
+          "jsBytes": 188510,
+          "fontBytes": 99823,
+          "imageBytes": 0,
+          "documentBytes": 24473,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1834.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/screen/ppi",
+        "run": 3,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 965.77,
+          "lcpMs": 965.77,
+          "tbtMs": 168,
+          "cls": 0.0003597354963106297,
+          "speedIndexMs": 2373.9362500000057,
+          "jsBytes": 193453,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19292,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1851,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "run": 3,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1054.957,
+          "lcpMs": 1054.957,
+          "tbtMs": 177.00000000000023,
+          "cls": 0.0006647324516558022,
+          "speedIndexMs": 2589.1372870090727,
+          "jsBytes": 195710,
+          "fontBytes": 77315,
+          "imageBytes": 0,
+          "documentBytes": 22032,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1812.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/audio/microphone",
+        "run": 3,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1296.6999999999998,
+          "lcpMs": 1296.6999999999998,
+          "tbtMs": 192,
+          "cls": 0.00439682713794835,
+          "speedIndexMs": 2119.9839299999985,
+          "jsBytes": 189470,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19679,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1954.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/vi/camera/preview",
+        "run": 3,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1182.65,
+          "lcpMs": 1182.65,
+          "tbtMs": 218,
+          "cls": 0.00007953813140985953,
+          "speedIndexMs": 2102.1278219999826,
+          "jsBytes": 189122,
+          "fontBytes": 77338,
+          "imageBytes": 0,
+          "documentBytes": 20931,
+          "cssBytes": 11168
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1878.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en/gamepad/tester",
+        "run": 3,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 1238.349,
+          "lcpMs": 1238.349,
+          "tbtMs": 188,
+          "cls": 0.006028288964869964,
+          "speedIndexMs": 2502.9020720000035,
+          "jsBytes": 189564,
+          "fontBytes": 52673,
+          "imageBytes": 0,
+          "documentBytes": 19656,
+          "cssBytes": 11191
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1891.5,
+        "browserUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      }
+    ]
+  },
+  "windowsHarnessSmoke": {
+    "sourceCommit": null,
+    "baseUrl": "https://127.0.0.1:3443",
+    "execution": {
+      "node": "v24.11.1",
+      "platform": "win32",
+      "osRelease": "10.0.19045",
+      "cpuModel": "Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz",
+      "cpuCount": 12,
+      "memoryBytes": 25610858496,
+      "githubRunId": null
+    },
+    "certificatePinUsed": true,
+    "median": [
+      {
+        "path": "/en",
+        "runs": 3,
+        "clean": true,
+        "scores": {
+          "performance": 89,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 92
+        },
+        "metrics": {
+          "fcpMs": 1069.3124,
+          "lcpMs": 1069.3124,
+          "tbtMs": 460.3438000000001,
+          "cls": 0,
+          "speedIndexMs": 1767.9192624600373,
+          "jsBytes": 191473,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 29861,
+          "cssBytes": 12366
+        }
+      }
+    ],
+    "measurements": [
+      {
+        "path": "/en",
+        "run": 1,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 88,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 92
+        },
+        "metrics": {
+          "fcpMs": 1066.668,
+          "lcpMs": 1066.668,
+          "tbtMs": 482.16600000000017,
+          "cls": 0.01664327359352707,
+          "speedIndexMs": 1846.769774572308,
+          "jsBytes": 191473,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 29861,
+          "cssBytes": 12366
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1299,
+        "browserUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en",
+        "run": 2,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 92
+        },
+        "metrics": {
+          "fcpMs": 1205.0043,
+          "lcpMs": 1205.0043,
+          "tbtMs": 198,
+          "cls": 0,
+          "speedIndexMs": 1519.9182506896134,
+          "jsBytes": 191473,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 29861,
+          "cssBytes": 12366
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1440.5,
+        "browserUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      },
+      {
+        "path": "/en",
+        "run": 3,
+        "clean": true,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "externalScripts": [],
+        "scores": {
+          "performance": 89,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 92
+        },
+        "metrics": {
+          "fcpMs": 1069.3124,
+          "lcpMs": 1069.3124,
+          "tbtMs": 460.3438000000001,
+          "cls": 0,
+          "speedIndexMs": 1767.9192624600373,
+          "jsBytes": 191473,
+          "fontBytes": 54008,
+          "imageBytes": 0,
+          "documentBytes": 29861,
+          "cssBytes": 12366
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "benchmarkIndex": 1133,
+        "browserUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36"
+      }
+    ]
+  },
+  "labMedianGoalMet": true,
+  "publicMedianGoalMet": true,
+  "comparisonRun": "https://github.com/anhtruc1803/checkall/actions/runs/42775910647",
+  "publicRun": "https://github.com/anhtruc1803/checkall/actions/runs/42778723274",
+  "bundle": {
+    "removedModule": "tailwind-merge",
+    "moduleBytes": 27421,
+    "moduleGzipEstimateBytes": 8444
+  },
+  "limitations": [
+    "Chỉ đo sáu trang đại diện ở trạng thái idle, không phải toàn bộ 80 route hoặc tải phần cứng khi chạy",
+    "Public và loopback là hai môi trường khác nhau; chỉ cặp loopback được đo cùng VM",
+    "Lighthouse không thay manual QA, field data hoặc Safari/thiết bị thật"
+  ]
+}

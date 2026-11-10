@@ -1,0 +1,123 @@
+{
+  "date": "2026-11-10",
+  "sourceCommit": "ad25dd12fe10b5c88634d5befe7363a2261f5dfd",
+  "ci": "https://github.com/anhtruc1803/checkall/actions/runs/42775890687",
+  "unit": {
+    "passed": 275,
+    "files": 33
+  },
+  "buildPages": 106,
+  "lintPassed": true,
+  "typecheckPassed": true,
+  "e2e": {
+    "startTime": "2026-11-10T07:39:07.887Z",
+    "duration": 668827.891,
+    "expected": 318,
+    "skipped": 6,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "projects": {
+    "chromium": {
+      "expected": 81
+    },
+    "firefox": {
+      "expected": 78,
+      "skipped": 3
+    },
+    "webkit": {
+      "expected": 78,
+      "skipped": 3
+    },
+    "mobile": {
+      "expected": 81
+    }
+  },
+  "skips": "Sáu skip native Permissions-Policy microphone/camera/gamepad ở Firefox/WebKit, không tính là enforcement đã xác minh.",
+  "localUi": {
+    "startTime": "2026-11-10T07:43:04.650Z",
+    "duration": 183267.522,
+    "expected": 44,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "publicUi": {
+    "startTime": "2026-11-10T07:53:56.104Z",
+    "duration": 38789.722,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "registry": {
+    "publishedTools": 40,
+    "phase1": 21,
+    "phase2": 19,
+    "localizedToolRoutes": 80,
+    "contentUrls": 100
+  },
+  "docker": {
+    "jobSeconds": 77,
+    "healthy": true,
+    "imageId": "sha256:85394083dea7b11aeb90a2428108da13b18616f39fc5b132b2a9375b75138aa1",
+    "nodePortPublished": false,
+    "shutdownExit": 143,
+    "oomKilled": false,
+    "error": ""
+  },
+  "staging": {
+    "imageTag": "device-lab:staging-ad25dd1-20261110",
+    "imageId": "sha256:c3df1dca7116c8435399dc79cbe9d31e87bed4c68dd9f7adcb7ecbcb90e5555e",
+    "http": {
+      "checkedAt": "2026-11-10T07:53:20.980Z",
+      "release": "ad25dd1",
+      "healthStatus": 200,
+      "httpRedirect": 308,
+      "sitemapUrls": 100,
+      "canonicalVerified": true,
+      "interfaceCssVerified": true,
+      "cssAssets": 1,
+      "pages": [
+        {
+          "locale": "vi",
+          "status": 200,
+          "cspPresent": false,
+          "permissionsPolicy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "locale": "en",
+          "status": 200,
+          "cspPresent": false,
+          "permissionsPolicy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        }
+      ],
+      "publicCspPresent": false
+    },
+    "smokeRoutes": 34,
+    "previousReleaseKept": "387c03f",
+    "proxyDashboardChanged": false
+  },
+  "audit": {
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "all": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    }
+  },
+  "remaining": [
+    "Smoke Windows riêng có median 89; không nhận mọi môi trường đạt 90",
+    "Phần cứng/Safari/screen reader và field data chưa nghiệm thu",
+    "CSP public, TLS proxy→origin và hai dev advisory moderate vẫn còn mở"
+  ],
+  "finalAcceptance": false
+}

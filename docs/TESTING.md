@@ -1,5 +1,15 @@
 # Kiểm thử
 
+## Performance giao diện mới — 10/11/2026
+
+Source ad25dd1: [CI 42775890687](https://github.com/anhtruc1803/checkall/actions/runs/42775890687) success verify/Docker, build 106 trang/typecheck/lint/secret scan và **275 unit/33 file đạt**. **318 E2E đạt/6 skip**, không failure/flaky, 668827.891 ms. Chromium/mobile mỗi cấu hình 81 đạt, Firefox/WebKit 78 đạt/ba skip native policy; giữ toàn bộ 324 bài/40 công cụ/80 route công cụ. Không coi WebKit là Safari thật hoặc skip là enforcement đã đạt.
+
+Nhóm UI local source tối ưu **44/44 đạt**, không skip/failure/flaky, 183267.522 ms; ba UI public Chromium/Firefox/WebKit **3/3 đạt**, 38789.722 ms. Sau triển khai app healthy/private Node port, smoke health + 34 route/policy, canonical/sitemap 100 URL và CSS/release marker đúng. Docker CI job 77 giây kiểm tra ba checkpoint, restart/stop-start, SIGTERM 143 không OOM/Error; artifacts đã đọc.
+
+Lighthouse Linux: 18 lượt baseline đầu và 36 lượt so sánh trước/sau cùng VM đều sạch; sau có median 100/100/100/99/99/99. HTTPS public sau chuyển release 18 lượt sạch, median 95/98/97/97/96/97, mọi lượt ≥95. Mỗi lượt profile mới/extension tắt, mobile simulated/RTT 150 ms/1638,4 Kbps/CPU ×4; public xác minh TLS và nội dung app thật, không dùng trang challenge làm kết quả. Chi tiết số thực/điều kiện tại PERFORMANCE.md và qa/performance-ui.json; hồi quy tại qa/performance-validation.json.
+
+Smoke riêng kiểm tra harness Windows /en giữ đủ 88/97/89, median 89; CPU/TBT khác runner Linux và SEO 92 do origin QA khác SITE_URL, không nhận Windows ≥90. Không dùng nhóm này tính mức tăng trước/sau. Hardware/Safari/screen reader/field data và các mục bảo mật/tooling cũ còn mở; Final Acceptance vẫn chưa hoàn tất. Không chạy Lighthouse đồng thời build/E2E trong VM đo hoặc tạo số phần cứng giả.
+
 ## Nâng cấp UI/UX — 10/11/2026
 
 Thêm interface.spec.ts: shortcut và count lấy theo registry trong VI/EN; filter/search/clear giữ category và trả focus; hai theme ở 320/375/414/768/1024/1440 px; tăng chữ 200%, reduced motion và keyboard activation. Giữ toàn bộ bài cũ; bộ đầy đủ hiện 324 E2E (81/cấu hình). Không sửa engine hoặc nới assertion để đổi giao diện.

@@ -9,6 +9,7 @@ const { values } = parseArgs({
     public: { type: 'string' },
     'comparison-run': { type: 'string' },
     'public-run': { type: 'string' },
+    'windows-smoke': { type: 'string' },
   },
 });
 for (const key of ['comparison', 'public', 'comparison-run', 'public-run'])
@@ -18,6 +19,41 @@ const load = async (directory, label) =>
 const before = await load(values.comparison, 'ui-before');
 const after = await load(values.comparison, 'ui-after');
 const production = await load(values.public, 'ui-public');
+const rawPublic = JSON.parse(await readFile(join(values.public, 'ui-public', 'vi-1.json'), 'utf8'));
+const date = new Intl.DateTimeFormat('sv-SE', {
+  timeZone: 'Asia/Ho_Chi_Minh',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+}).format(new Date(rawPublic.fetchTime));
+const displayDate = new Intl.DateTimeFormat('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }).format(
+  new Date(rawPublic.fetchTime),
+);
+const rawAfter = JSON.parse(
+  await readFile(join(values.comparison, 'ui-after', 'vi-1.json'), 'utf8'),
+);
+const browserVersion = after.measurements[0].environment.hostUserAgent.match(
+  /(?:HeadlessChrome|Chrome)\/([\d.]+)/,
+)?.[1];
+const windowsSmoke = values['windows-smoke']
+  ? JSON.parse(await readFile(join(values['windows-smoke'], 'summary.json'), 'utf8'))
+  : null;
+const lastSmoke = windowsSmoke?.measurements.at(-1);
+const smokeDetails = lastSmoke
+  ? JSON.parse(
+      await readFile(
+        join(
+          values['windows-smoke'],
+          `${lastSmoke.path.slice(1).replaceAll('/', '-')}-${lastSmoke.run}.json`,
+        ),
+        'utf8',
+      ),
+    )
+  : null;
+const smokeWork = (group) =>
+  smokeDetails?.audits['mainthread-work-breakdown'].details.items.find(
+    (item) => item.group === group,
+  )?.duration;
 assert.equal(before.execution.githubRunId, after.execution.githubRunId);
 assert.equal(after.sourceCommit, production.sourceCommit);
 assert.equal(before.baseUrl, after.baseUrl);
@@ -71,11 +107,12 @@ const compact = (report) => ({
   ),
 });
 const result = {
-  date: '2026-11-10',
+  date,
   threshold: 90,
   before: compact(before),
   after: compact(after),
   public: compact(production),
+  windowsHarnessSmoke: windowsSmoke ? compact(windowsSmoke) : undefined,
   labMedianGoalMet: after.median.every((row) => row.scores.performance >= 90),
   publicMedianGoalMet: production.median.every((row) => row.scores.performance >= 90),
   comparisonRun: `https://github.com/anhtruc1803/checkall/actions/runs/${values['comparison-run']}`,
@@ -90,6 +127,8 @@ const result = {
 await writeFile('docs/qa/performance-ui.json', `${JSON.stringify(result, null, 2)}\n`);
 const n = (value, digits = 0) => value.toFixed(digits);
 const kib = (value) => n(value / 1024, 1);
+const bounds = (report, key, digits = 0) =>
+  `${n(Math.min(...report.median.map((row) => row.metrics[key])), digits)}–${n(Math.max(...report.median.map((row) => row.metrics[key])), digits)}`;
 const ranges = (report) => {
   const values = report.measurements.map((row) => row.environment.benchmarkIndex);
   return `${n(Math.min(...values), 1)}–${n(Math.max(...values), 1)}`;
@@ -120,7 +159,7 @@ const existing = await readFile('docs/PERFORMANCE.md', 'utf8');
 const history = (
   existing.includes(marker) ? existing.split(marker).slice(1).join(marker) : existing
 ).trim();
-const document = `# Performance giao diện mới — 10/11/2026
+const document = `# Performance giao diện mới — ${displayDate}
 
 ## Kết quả và phạm vi
 
@@ -128,7 +167,7 @@ Source trước: ${before.sourceCommit}; source sau/đang phục vụ: ${after.s
 
 Mỗi nhóm đủ 18 lượt: ba lần/trang, luân phiên sáu trang, không bỏ lượt xấu. Cặp trước/sau cùng job [${values['comparison-run']}](${result.comparisonRun}), cùng VM/browser/cấu hình; build cả hai trước khi đo, không chạy build/E2E đồng thời trong VM. [Public ${values['public-run']}](${result.publicRun}) là phép đo riêng qua domain/proxy sau triển khai. Không so điểm public với loopback như một điều kiện đo duy nhất.
 
-Chromium mới và profile tạm mới mỗi lượt, extension tắt, trace không có Script ngoài origin hoặc dấu hiệu Kaspersky/chrome-extension. CI dùng --no-sandbox trong VM tạm; không thay cấu hình bảo vệ của máy Windows. Mobile simulated, RTT 150 ms, throughput 1638,4 Kbps, CPU slowdown ×4. Public xác minh TLS bình thường, không bỏ qua lỗi chứng chỉ. Môi trường/UA/throttling/benchmark từng lượt tại [qa/performance-ui.json](qa/performance-ui.json), raw JSON/HTML/browser log trong artifact CI. CPU benchmark trước ${ranges(before)}, sau ${ranges(after)}, public ${ranges(production)}; điểm lab vẫn có biến thiên.
+Lighthouse ${rawAfter.lighthouseVersion}, Chromium ${browserVersion}, profile tạm mới mỗi lượt, extension tắt, trace không có Script ngoài origin hoặc dấu hiệu Kaspersky/chrome-extension. CI dùng --no-sandbox trong VM tạm; không thay cấu hình bảo vệ của máy Windows. Mobile simulated, RTT 150 ms, throughput 1638,4 Kbps, CPU slowdown ×4. Public xác minh TLS bình thường, không bỏ qua lỗi chứng chỉ. Môi trường/UA/throttling/benchmark từng lượt tại [qa/performance-ui.json](qa/performance-ui.json), raw JSON/HTML/browser log trong artifact CI. CPU benchmark trước ${ranges(before)}, sau ${ranges(after)}, public ${ranges(production)}; điểm lab vẫn có biến thiên.
 
 ## Median trước → sau, cùng VM
 
@@ -148,6 +187,8 @@ Bundle analyzer chỉ ra tailwind-merge trong chunk client dùng chung: 27421 by
 
 Giữ nguyên 40 công cụ, engine/capability/permission/lifecycle, nội dung SEO/a11y, registry VI/EN và font. Không loại subset tiếng Việt hoặc đổi cách đo phần cứng. Các audit được chạy ở trạng thái idle; không tự cấp quyền microphone/camera/gamepad hay khởi chạy engine chỉ để lấy điểm. CSS/font vẫn được báo đầy đủ; ảnh ngoài được đo theo byte thực thay vì bỏ nội dung để nâng điểm.
 
+Trong cặp cùng VM, JavaScript truyền tải giảm 9551 byte (khoảng 9,3 KiB) ở mỗi trang; điểm median giữ 99–100. FCP/LCP lab sau khoảng ${bounds(after, 'lcpMs')} ms, TBT ${bounds(after, 'tbtMs', 1)} ms. Public có FCP/LCP ${bounds(production, 'lcpMs')} ms, TBT ${bounds(production, 'tbtMs', 1)} ms, CLS ${bounds(production, 'cls', 5)}. Tất cả lượt public có Performance từ ${Math.min(...production.measurements.map((row) => row.scores.performance))} đến ${Math.max(...production.measurements.map((row) => row.scores.performance))}; Accessibility/Best Practices/SEO đều được giữ trong QA JSON. CPU benchmark public thấp hơn VM so sánh, nên không quy riêng chênh lệch TBT/điểm giữa hai môi trường cho VPS hoặc proxy. Mức giảm byte công bố lấy từ cặp cùng VM.
+
 Median cũ 84/87/75 thuộc UI Phase 1 trên Windows/CPU khác, không dùng để tính mức tăng của lần này. Baseline sạch UI đầu tiên ở run 42775192337 đã đạt 98/100/100/99/99/99 trước tối ưu; có một lượt homepage LCP 3310 ms nhưng vẫn giữ trong dữ liệu. Tối ưu hiện tại giảm JavaScript được chứng minh bằng graph và transfer; không quy mọi thay đổi TBT/điểm vào một component. Khi median public dưới 90, cần đọc raw LCP breakdown/TTFB/main-thread/network và nêu nguyên nhân bằng dữ liệu trước khi nhận mục tiêu đã đạt.
 
 ## Từng lượt trước tối ưu
@@ -164,6 +205,20 @@ ${runs(after)}
 
 ${tableHead}
 ${runs(production)}
+
+${
+  windowsSmoke
+    ? `## Smoke kiểm tra harness trên Windows — môi trường riêng
+
+Ba lượt /en qua HTTPS loopback để xác minh lifecycle/validator của CLI: Performance ${windowsSmoke.measurements.map((row) => row.scores.performance).join('/')} (median ${windowsSmoke.median[0].scores.performance}), TBT median ${n(windowsSmoke.median[0].metrics.tbtMs, 1)} ms, CPU benchmark ${ranges(windowsSmoke)}. Trace không có script chèn. Lượt cuối ghi Script Evaluation khoảng ${n(smokeWork('scriptEvaluation'))} ms và Style & Layout ${n(smokeWork('styleLayout'))} ms; chưa khoanh riêng nguồn chi phí Windows. Không quy lỗi cho script Kaspersky khi trace không có nó.
+
+Các lượt này không dùng cùng máy với cặp Linux; không gắn commit tự động và SITE_URL build khác origin QA nên SEO 92. Không dùng chúng tính mức tăng trước/sau hoặc nhận Windows ≥90. Giữ nguyên cả ba lượt, kể cả điểm dưới 90, tại QA JSON và bảng dưới.
+
+${tableHead}
+${runs(windowsSmoke)}
+`
+    : ''
+}
 
 ## Tái lập
 

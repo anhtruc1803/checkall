@@ -46,7 +46,7 @@ CI 42757715180 trên source 27f1383 phát hiện hai lỗi dùng chung: tên tru
 - NVDA/VoiceOver ở VI/EN: thứ tự heading, tên nhóm thiết bị, trạng thái filter và thông báo số kết quả; focus sau xóa tìm kiếm và đóng dialog/menu. Axe không thay kiểm tra screen reader thật.
 - Browser zoom 200%/400%, cỡ chữ hệ thống lớn và landscape trên điện thoại thật. Automation tăng root font 200% không tương đương mọi cơ chế zoom/OS.
 - Touch/keyboard thật trên Safari iOS/macOS và browser Android: menu, theme/locale, fullscreen và thao tác vùng đo. Giữ ma trận phần cứng và lifecycle của từng milestone.
-- Lighthouse ở Chromium sạch, đối chiếu bộ số trước/sau trong điều kiện tương đương. Không suy ra điểm Performance từ việc build hoặc E2E đạt.
+- Lighthouse sạch trên sáu trang đại diện đã được bổ sung ở đợt Performance bên dưới; field data và runtime khi chạy phần cứng vẫn cần đo riêng. Không suy ra điểm Performance từ việc build hoặc E2E đạt.
 - Sau khi quản trị viên thay cấu hình proxy, kiểm tra lại CSP public và chế độ TLS proxy→origin. Đây là tiêu chí vận hành riêng, không mặc định đạt qua đợt đổi giao diện.
 
 ## Kết quả cuối và bản đang phục vụ
@@ -56,3 +56,7 @@ Source 387c03f, [CI 42759176453](https://github.com/anhtruc1803/checkall/actions
 Docker CI đạt 87 giây, đầy đủ private port/health/Nginx/route/policy/restart/stop-start; SIGTERM 143 không OOM/Error. Đã triển khai source này lên [staging VI](https://nguyenanhtruc.io.vn/vi) và [staging EN](https://nguyenanhtruc.io.vn/en). App healthy, Node không public; giữ source/image cũ để phục hồi. Public smoke 34 route/policy và ba E2E UI trên Chromium/Firefox/WebKit đạt, gồm cả tên logo và tương phản hai theme; 38009.247 ms. Đã đọc/đối chiếu HTML, CSS, marker release, canonical, sitemap 100 URL và ảnh website thật sau hydrate.
 
 Ảnh/raw artifact ở artifacts bị ignore; bản số liệu tại [qa/ui-ux-refresh.json](qa/ui-ux-refresh.json). Không thay dashboard tên miền/proxy. CSP public vẫn thiếu khi kiểm tra 12:14 Asia/Saigon; audit production không finding, audit dev vẫn hai advisory moderate. Những mục manual/performance ở trên tiếp tục mở; không đánh dấu Final Acceptance hoàn tất.
+
+## Đo Performance tiếp theo — 10/11/2026
+
+Source ad25dd1 chỉ tối ưu wrapper class tại Button, giữ giao diện/40 công cụ/VI-EN. CI mới đạt 275 unit, 318 E2E/6 skip và Docker; public healthy/34 route/policy cùng UI ba browser đạt. Lighthouse đo ba lượt/trang trên sáu trang đại diện: median lab 100/100/100/99/99/99, HTTPS public 95/98/97/97/96/97; JS truyền tải giảm 9551 byte/trang trong cặp cùng VM. Phạm vi Performance này đã xác minh, còn manual/hardware/field data và bảo mật nêu trong [PERFORMANCE.md](PERFORMANCE.md), gồm cả smoke Windows riêng median 89; không nhận mọi môi trường đạt 90 hoặc đóng Final Acceptance tổng thể.

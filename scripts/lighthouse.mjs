@@ -124,7 +124,7 @@ async function audit(path, run) {
       !document.includes('id="main"') ||
       !document.includes('class="brand"') ||
       !document.includes(`lang="${path.split('/')[1]}"`) ||
-      !document.includes(path === '/vi' ? 'category-rail' : 'tool-workspace') ||
+      !document.includes(/^\/(vi|en)$/.test(path) ? 'category-rail' : 'tool-workspace') ||
       finalUrl.origin !== expectedUrl.origin ||
       finalUrl.pathname !== expectedUrl.pathname
     )
