@@ -116,12 +116,25 @@ async function audit(path, run) {
     await writeFile(join(directory, `${slug}.html`), result.report[1]);
     const { lhr } = result;
     const network = lhr.audits['network-requests'].details.items;
+    const document = result.artifacts.MainDocumentContent;
+    const finalUrl = new URL(lhr.finalDisplayedUrl ?? lhr.finalUrl);
+    const expectedUrl = new URL(path, base);
+    if (
+      typeof document !== 'string' ||
+      !document.includes('id="main"') ||
+      !document.includes('class="brand"') ||
+      !document.includes(`lang="${path.split('/')[1]}"`) ||
+      !document.includes(path === '/vi' ? 'category-rail' : 'tool-workspace') ||
+      finalUrl.origin !== expectedUrl.origin ||
+      finalUrl.pathname !== expectedUrl.pathname
+    )
+      throw new Error('Audit did not load the expected Device Lab content.');
     const externalScripts = network
       .filter((item) => item.resourceType === 'Script' && new URL(item.url).origin !== base.origin)
       .map((item) => new URL(item.url).origin);
     const clean =
       externalScripts.length === 0 &&
-      !/kaspersky|kis\.v2\.scr|chrome-extension:/i.test(JSON.stringify(network));
+      !/kaspersky|kis\.v2\.scr|chrome-extension:/i.test(JSON.stringify(network) + document);
     const bytes = (type) =>
       network
         .filter((item) => item.resourceType === type)
@@ -129,6 +142,8 @@ async function audit(path, run) {
     const measurement = {
       path,
       run,
+      pageVerified: true,
+      lighthouseVersion: lhr.lighthouseVersion,
       clean,
       externalScripts: [...new Set(externalScripts)],
       scores: Object.fromEntries(
