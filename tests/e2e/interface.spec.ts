@@ -50,9 +50,10 @@ test('discovery controls reflow across sizes, languages and themes', async ({ pa
           .click();
       for (const width of [320, 375, 414, 768, 1024, 1440]) {
         await page.setViewportSize({ width, height: 900 });
+        if (width <= 1024) await page.locator('.menu-toggle').click();
         const overflow = await page
           .locator(
-            '.brand, .header-actions, .hero h1, .hero-actions a, .category-shortcut, .filter, .catalog-item, .searchbox',
+            '.brand, .header-actions, .mobile-nav a, .hero h1, .hero-actions a, .category-shortcut, .filter, .catalog-item, .searchbox',
           )
           .evaluateAll((elements) =>
             elements
@@ -68,6 +69,7 @@ test('discovery controls reflow across sizes, languages and themes', async ({ pa
               .map((element) => element.className),
           );
         expect(overflow, `${locale}/${theme}/${width}`).toEqual([]);
+        if (width <= 1024) await page.locator('.menu-toggle').click();
       }
     }
   }
@@ -81,8 +83,11 @@ test('discovery remains usable with reduced motion and enlarged text', async ({ 
   await page.evaluate(() => {
     document.documentElement.style.fontSize = '200%';
   });
+  await page.locator('.menu-toggle').click();
   const overflow = await page
-    .locator('.brand, .header-actions, .hero-actions a, .category-shortcut, .filter, .catalog-item')
+    .locator(
+      '.brand, .header-actions, .mobile-nav a, .hero-actions a, .category-shortcut, .filter, .catalog-item',
+    )
     .evaluateAll((elements) =>
       elements
         .filter((element) => {
@@ -96,6 +101,7 @@ test('discovery remains usable with reduced motion and enlarged text', async ({ 
         .map((element) => element.className),
     );
   expect(overflow).toEqual([]);
+  await page.locator('.menu-toggle').click();
   await page.locator('#catalog-search').fill('ppi');
   await expect(page.locator('.catalog-item')).toHaveCount(1);
   await page.getByRole('button', { name: 'Xóa từ khóa tìm kiếm' }).focus();

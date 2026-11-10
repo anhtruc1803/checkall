@@ -35,4 +35,6 @@ Checkpoint trước khi gửi CI: production build đủ 106 trang đạt, lint/
 
 Lượt full E2E Windows trước khi đổi phiên làm việc bị gián đoạn, không có báo cáo kết thúc; không coi đạt. Đang chạy lại nhóm hồi quy giao diện qua production standalone và chờ toàn bộ Linux CI của source mới. Kết quả cuối sẽ bổ sung tại PROGRESS.md/TESTING.md, không kế thừa CI M6 cho UI mới.
 
+Source 49bd12f: nhóm giao diện local 92/92 đạt, không skip/failure/flaky. Kiểm tra bổ sung menu mở phát hiện label quyền riêng tư tràn ở 320px; đã sửa white-space/overflow-wrap và mở rộng bài responsive/200% để kiểm tra menu. CI 42756963778 được hủy khi verify còn chạy, Docker của source này đã đạt; chờ CI mới cho source sau sửa menu. Image chuẩn bị từ 49bd12f chưa được đưa vào phục vụ.
+
 Ảnh trước/sau và raw QA chỉ lưu trong artifacts bị Git ignore. Bằng chứng screenshot dùng dữ liệu browser thật sau hydrate; Refresh Rate chưa chạy vẫn ghi chưa đo. Không tuyên bố đã kiểm tra Safari/thiết bị thật, screen reader hoặc Lighthouse mới. Các mục bảo mật proxy, hai advisory dev tooling và Final Acceptance còn mở như bàn giao staging trước.

@@ -651,6 +651,8 @@ select,
     min-height: 44px;
     background: var(--color-surface);
     border-radius: 8px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
   .hero {
     gap: 32px;
