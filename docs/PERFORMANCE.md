@@ -1,4 +1,54 @@
-# Performance bàn lab tương tác — 10/11/2026
+# Performance mục chọn công cụ theo vấn đề — 10/11/2026
+
+## Kết quả mới nhất
+
+Source **ca2344f2bfdc5ed65d324d480b663da6db3d5e53**. **Đạt median mobile ≥90** trên bảy trang đại diện, gồm hai homepage VI/EN: lab **100/100/100/100/99/99/100**; HTTPS public **98/99/99/99/99/98/98**. Mỗi trang ba lượt luân phiên, giữ tất cả lượt, không dùng số đo bản bàn lab cũ để nhận source mới đạt.
+
+[So sánh 42790638550](https://github.com/anhtruc1803/checkall/actions/runs/42790638550) đủ 42 lượt cùng VM: baseline f6446bf (code app 882c4d9), sau ca2344f. Build cả hai trước khi đo, không chạy build/E2E đồng thời trong VM. [Public](https://github.com/anhtruc1803/checkall/actions/runs/42794779483) đủ 21 lượt trên đúng release sau triển khai, TLS hợp lệ không bỏ qua chứng chỉ. Chromium profile mới/tắt extension, trace đều clean/pageVerified, không có Script ngoài origin hoặc dấu hiệu script chèn. Giữ cả lượt baseline Performance 94. Raw HTML/JSON/browser log nằm trong artifacts của hai run; [QA JSON](qa/problems-2026-11-10.json) có đầy đủ 63 lượt, môi trường/settings/median và hồi quy.
+
+Lighthouse 13.6.0/Chromium156, mobile simulated, RTT 150 ms/1638,4 Kbps/CPU×4. Linux runner tạm dùng --no-sandbox; không nhận đó là kiểm chứng sandbox hoặc thay cấu hình bảo vệ Windows. Benchmark trước 3181–3800, sau 3209–3824, public 3254–3729. Public là VM khác, không so điểm/TBT public và lab như cùng điều kiện hoặc nhận chênh lệch giữa các source trên VM khác là tác dụng của UI.
+
+## Median trước → sau trong cùng VM
+
+| Trang                | P trước → sau | LCP sau ms | TBT sau ms | CLS sau | JS trước → sau KiB |
+| -------------------- | ------------: | ---------: | ---------: | ------: | -----------------: |
+| /vi                  |      99 → 100 |       1064 |       49.5 | 0.00293 |      188.3 → 188.3 |
+| /en                  |     100 → 100 |       1061 |       52.0 | 0.00234 |      188.3 → 188.3 |
+| /en/screen/ppi       |     100 → 100 |        909 |       51.5 | 0.00036 |      194.9 → 194.9 |
+| /vi/keyboard/tester  |     100 → 100 |        911 |       60.5 | 0.00066 |      197.2 → 197.2 |
+| /en/audio/microphone |       99 → 99 |        911 |       94.0 | 0.00406 |      187.9 → 187.9 |
+| /vi/camera/preview   |       99 → 99 |        908 |      107.0 | 0.00038 |      187.6 → 187.6 |
+| /en/gamepad/tester   |      99 → 100 |        911 |       90.0 | 0.00467 |      188.1 → 188.1 |
+
+## Median HTTPS public
+
+| Trang                | P public | FCP ms | LCP ms | TBT ms |     CLS |
+| -------------------- | -------: | -----: | -----: | -----: | ------: |
+| /vi                  |       98 |   1033 |   1033 |  119.5 | 0.00000 |
+| /en                  |       99 |   1009 |   1009 |  105.0 | 0.00000 |
+| /en/screen/ppi       |       99 |    950 |    950 |  133.0 | 0.00036 |
+| /vi/keyboard/tester  |       99 |    988 |    988 |  119.0 | 0.00008 |
+| /en/audio/microphone |       99 |   1258 |   1258 |  111.0 | 0.00406 |
+| /vi/camera/preview   |       98 |   1301 |   1301 |  139.0 | 0.00025 |
+| /en/gamepad/tester   |       98 |   1353 |   1353 |  114.0 | 0.00466 |
+
+Mọi lượt candidate lab có Performance 99–100; public 95–99. Accessibility/Best Practices/SEO của tất cả lượt sau đều 100/100/100; public 100/100/100. Median tính độc lập cho từng metric; số liệu chưa làm tròn và từng lượt trong QA JSON. Đây là kiểm tra idle, không tự bật camera/microphone/gamepad hoặc giả số đo phần cứng để lấy điểm.
+
+## Chi phí của nội dung mới
+
+ProblemChooser là Server Component, chỉ nối tới sáu công cụ published hiện có. Không thêm Client Component riêng; tái dùng PolicyLink hiện có để điều hướng đúng policy. Không thêm dependency, font hoặc ảnh. **JavaScript/font/image truyền tải không đổi trên cả bảy trang trong cặp cùng VM**. Homepage VI thêm 1822 byte document, EN thêm 1788 byte; nội dung VI/EN, SVG inline và SEO vẫn được tính đầy đủ trong HTML/RSC.
+
+CSS Module được import từ section trang chủ, nhưng bundler vẫn chia sẻ chunk: homepage VI/EN, PPI và Keyboard tải 14755 byte CSS (trước 13287, tăng 1468); ba route media/gamepad tải 13292 byte (tăng 5). Trace homepage trước có một request stylesheet 13287 byte; sau có hai request13292+1463 byte. Không nhận CSS Module chỉ tải trên homepage hoặc không có chi phí network.
+
+FCP/LCP homepage lab VI 914→1064 ms, EN 913→1061 ms, tăng khoảng150/148 ms trong mô hình simulated. Đây là chi phí đo được, không nhận UI làm web chạy nhanh hơn từ điểm tổng. Chưa quy phần tăng cho một nguyên nhân đơn lẻ. Mục tiêu vẫn đạt với nội dung/khả năng truy cập giữ nguyên; không cần thay kiến trúc hoặc bỏ tính năng để lấy điểm.
+
+Build 106 trang/typecheck/lint/secret scan, 275 unit trên 33 file và 330 E2E đạt/6 skip, không failure/flaky. Local mới 8/8 và public 6/6 đạt; giữ đủ 40 công cụ/VI-EN. Không nhận WebKit là Safari thật hoặc skip native policy là enforcement đã xác minh.
+
+Giới hạn: không suy rộng thành mọi điện thoại, trạng thái engine đang chạy hoặc field data. Safari, phần cứng, screen reader/OS zoom và các tiêu chí bảo mật/manual còn mở ở PROGRESS.md. Final Acceptance tổng thể chưa đóng; smoke Windows median 89 của lịch sử vẫn được giữ, không nhận mọi runtime≥90.
+
+---
+
+# Lịch sử Performance bàn lab tương tác — 10/11/2026
 
 ## Kết quả mới nhất
 
@@ -19,7 +69,7 @@ Lighthouse 13.6.0/Chromium 156, mobile simulated, RTT 150 ms/1638,4 Kbps/CPU×4.
 | /vi/camera/preview   |       96 → 97 |        914 |      196.0 | 0.00038 |      187.6 → 187.6 |
 | /en/gamepad/tester   |       97 → 98 |        913 |      172.5 | 0.00467 |      188.1 → 188.1 |
 
-## Median HTTPS public bản đang phục vụ
+## Median HTTPS public tại checkpoint bàn lab
 
 | Trang                | P public | FCP ms | LCP ms | TBT ms |     CLS |
 | -------------------- | -------: | -----: | -----: | -----: | ------: |

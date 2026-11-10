@@ -1,5 +1,17 @@
 # Kiểm thử
 
+## Chọn công cụ theo vấn đề — 10/11/2026
+
+Source ca2344f: [CI 42790611051](https://github.com/anhtruc1803/checkall/actions/runs/42790611051) success verify/Docker. Build 106 trang/typecheck/lint/secret scan, 275 unit trên 33 file và 330 E2E đạt/6 skip, không failure/flaky. Local mới 8/8 và public 6/6 đạt; giữ đủ 40 công cụ/VI-EN. Không nhận WebKit là Safari thật hoặc skip native policy là enforcement đã xác minh. E2E toàn bộ 762292.843 ms; Chromium/mobile mỗi cấu hình 84 đạt, Firefox/WebKit 81 đạt/ba skip native microphone/camera/gamepad policy. Unit/native audio smoke đều giữ bộ kiểm tra hiện có, không đổi engine hoặc nới assertion.
+
+Bộ mới kiểm tra ba dấu hiệu/hai link mỗi dấu hiệu ở cả VI/EN: Enter mở đúng sáu route và có workspace, keyboard capture còn idle, spy không có gọi getUserMedia trước Start. Spy chỉ xác nhận không tự yêu cầu capture, không kiểm chứng microphone thật. Có kiểm tra semantic region/heading/link, Axe hai theme, 320/375/768/1024/1440 px/chữ100–200%, reduced motion, target≥44 px và Tab order đủ sáu link.
+
+Local đầu 7 đạt/một lỗi WebKit Windows: Tab bỏ anchor tự nhiên tới input. Debug Tab/Alt+Tab xác nhận, tabindex=0 rõ trên link khắc phục; đã sửa code và giữ assertion. Local cuối 8/8 đạt, 91483.840 ms, không skip/failure/flaky. Public 6/6 trên Chromium/Firefox/WebKit, 131672.631 ms, không skip/failure/flaky; không thay full CI bằng public smoke.
+
+Docker Linux CI đã đọc containers/logs/shutdown: healthy, Nginx/34 route/policy ba checkpoint, private Node port, restart/stop-start, SIGTERM 143/OOM false/Error rỗng. Production audit 0 finding; toàn bộ vẫn hai moderate dev glob/minimatch, không thêm dependency. Lighthouse mới 42 lượt cùng VM/21 lượt public giữ median≥90 cả bảy trang; số đo tại PERFORMANCE.md/qa/problems-2026-11-10.json.
+
+Manual còn Safari/điện thoại thật/screen reader/OS zoom và quyền microphone trên thiết bị thật; xem UI-UX-REFRESH.md cùng ma trận từng milestone. Không đóng Final Acceptance tổng thể.
+
 ## Performance giao diện mới — 10/11/2026
 
 Source ad25dd1: [CI 42775890687](https://github.com/anhtruc1803/checkall/actions/runs/42775890687) success verify/Docker, build 106 trang/typecheck/lint/secret scan và **275 unit/33 file đạt**. **318 E2E đạt/6 skip**, không failure/flaky, 668827.891 ms. Chromium/mobile mỗi cấu hình 81 đạt, Firefox/WebKit 78 đạt/ba skip native policy; giữ toàn bộ 324 bài/40 công cụ/80 route công cụ. Không coi WebKit là Safari thật hoặc skip là enforcement đã đạt.

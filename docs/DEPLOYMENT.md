@@ -1,6 +1,14 @@
 # Triển khai và vận hành
 
-## Bản bàn lab đang phục vụ — 10/11/2026
+## Bản chọn công cụ theo vấn đề đang phục vụ — 10/11/2026
+
+Source **ca2344f2bfdc5ed65d324d480b663da6db3d5e53**, tag `device-lab:staging-ca2344f-20261110`, image VPS `sha256:3046844a77a6ef24435cdef1e4ab69aac630d5d634070ab5bfe2cc6aa186c8a1`. Current trỏ tới `/opt/device-lab/releases/ca2344f`; giữ source/image 882c4d9 và backup `/opt/device-lab/shared/nginx.conf.before-problems-20261110`. Archive Git tracked đối chiếu SHA256 trước build, .env chỉ ở host; chuyển sau CI/lab đạt. Không thay DNS/dashboard proxy, chỉ marker origin/reload Nginx.
+
+App healthy/read-only/user nextjs, OOM false/Error rỗng; Node 3000 không public, Nginx syntax/log startup đạt, Certbot timer active. Public VI/EN 200 đúng source/có section mới, HTTP 308→HTTPS, canonical đúng/sitemap100 URL, health+34 route/policy đạt; sáu E2E public ba browser đạt. Lighthouse HTTPS đủ 21 lượt, median **98/99/99/99/99/98/98**, A/BP/SEO100. Chi tiết tại PERFORMANCE.md/qa/problems-2026-11-10.json.
+
+Không prune/reboot hoặc chạy lại renewal dry-run/diễn tập rollback. CSP public vẫn thiếu tại smoke 2026-11-10T09:55:32.191Z; người dùng tự quản lý proxy, TLS proxy→origin chưa kiểm chứng. Manual/hardware/Safari và Final Acceptance còn mở. Những source và trạng thái phía dưới là lịch sử.
+
+## Lịch sử bản bàn lab — 10/11/2026
 
 Source **882c4d925e95d86672dd5b9469367335fe93c9d5**, tag `device-lab:staging-882c4d9-20261110`, image VPS `sha256:9de7c5069c43af6e9e6f5f19fd5975d12e68e0546d8c758c3bfcb90fc582aa44`. Current trỏ `/opt/device-lab/releases/882c4d9`; giữ source/image ad25dd1 và `/opt/device-lab/shared/nginx.conf.before-lab-20261110`. Archive Git tracked đã kiểm SHA256; không mang .env, cache hoặc credential từ máy phát triển. Chuyển sau khi [CI 42783852103](https://github.com/anhtruc1803/checkall/actions/runs/42783852103) success verify/Docker và cặp Lighthouse Linux trước/sau đạt.
 
