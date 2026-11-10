@@ -7,12 +7,14 @@ import { join, resolve, sep } from 'node:path';
 import { createServer } from 'node:net';
 import { parseArgs } from 'node:util';
 import { X509Certificate, createHash } from 'node:crypto';
+import { cpus, platform, release, totalmem } from 'node:os';
 const { values } = parseArgs({
   options: {
     'base-url': { type: 'string', default: 'https://127.0.0.1:3443' },
     label: { type: 'string', default: 'clean-after' },
     runs: { type: 'string', default: '3' },
     cert: { type: 'string', default: 'artifacts/qa-tls/cert.pem' },
+    paths: { type: 'string', default: '/vi,/en/screen/ppi,/vi/keyboard/tester' },
   },
 });
 const base = new URL(values['base-url']);
@@ -31,7 +33,10 @@ if (base.protocol === 'https:') {
     .update(certificate.publicKey.export({ type: 'spki', format: 'der' }))
     .digest('base64');
 }
-const paths = ['/vi', '/en/screen/ppi', '/vi/keyboard/tester'];
+const paths = values.paths.split(',');
+if (!paths.length || paths.some((path) => !/^\/(vi|en)(\/[a-z0-9-]+)*$/.test(path)))
+  throw new Error('Use explicit VI/EN content paths.');
+if (new Set(paths).size !== paths.length) throw new Error('Duplicate audit paths.');
 function median(numbers) {
   const sorted = [...numbers].sort((a, b) => a - b);
   const middle = Math.floor(sorted.length / 2);
@@ -51,6 +56,11 @@ async function audit(path, run) {
   const args = [
     '--headless=new',
     '--disable-extensions',
+    '--no-first-run',
+    '--no-default-browser-check',
+    '--disable-background-networking',
+    '--disable-component-update',
+    '--disable-sync',
     `--remote-debugging-port=${port}`,
     `--user-data-dir=${profile}`,
   ];
@@ -112,6 +122,8 @@ async function audit(path, run) {
         jsBytes: bytes('Script'),
         fontBytes: bytes('Font'),
         imageBytes: bytes('Image'),
+        documentBytes: bytes('Document'),
+        cssBytes: bytes('Stylesheet'),
       },
       environment: lhr.environment,
       settings: {
@@ -164,6 +176,16 @@ await writeFile(
   JSON.stringify(
     {
       label: values.label,
+      sourceCommit: process.env.APP_SOURCE_COMMIT ?? null,
+      execution: {
+        node: process.version,
+        platform: platform(),
+        osRelease: release(),
+        cpuModel: cpus()[0]?.model,
+        cpuCount: cpus().length,
+        memoryBytes: totalmem(),
+        githubRunId: process.env.GITHUB_RUN_ID ?? null,
+      },
       baseUrl: base.origin,
       certificatePinUsed: Boolean(certificatePin),
       measurements,

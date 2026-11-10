@@ -1,0 +1,66 @@
+name: Lighthouse mobile — đo sạch và so sánh
+on:
+  workflow_dispatch:
+    inputs:
+      before_ref:
+        description: Commit SHA baseline giao diện
+        required: true
+        default: da680e48ba5bbc953226541299b9805b93da54e5
+      after_ref:
+        description: Commit SHA sau tối ưu (để trống khi chỉ đo baseline)
+        required: false
+permissions:
+  contents: read
+jobs:
+  lighthouse:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      SITE_URL: http://127.0.0.1:3000
+      PERFORMANCE_AFTER: ${{ inputs.after_ref != '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Kiểm tra revision được yêu cầu
+        env:
+          BEFORE_REF: ${{ inputs.before_ref }}
+          AFTER_REF: ${{ inputs.after_ref }}
+        run: |
+          [[ "$BEFORE_REF" =~ ^[0-9a-f]{40}$ ]]
+          [[ -z "$AFTER_REF" || "$AFTER_REF" =~ ^[0-9a-f]{40}$ ]]
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Chuẩn bị công cụ đo
+        run: |
+          corepack enable
+          corepack prepare pnpm@11.25.0 --activate
+          pnpm install --frozen-lockfile
+          pnpm exec playwright install --with-deps chromium
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.before_ref }}
+          path: app-before
+          persist-credentials: false
+      - name: Build baseline production
+        working-directory: app-before
+        run: pnpm install --frozen-lockfile && pnpm build
+      - uses: actions/checkout@v4
+        if: inputs.after_ref != ''
+        with:
+          ref: ${{ inputs.after_ref }}
+          path: app-after
+          persist-credentials: false
+      - name: Build candidate production
+        if: inputs.after_ref != ''
+        working-directory: app-after
+        run: pnpm install --frozen-lockfile && pnpm build
+      - name: Đo tuần tự, Chromium mới mỗi lượt, ba lượt mỗi trang
+        run: node scripts/performance-ci.mjs
+      - name: Lưu JSON, HTML và log đo thật
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-mobile
+          path: artifacts/performance/
