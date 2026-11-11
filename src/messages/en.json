@@ -533,5 +533,35 @@
       "title": "Microphone is not working",
       "description": "Check the input signal after granting microphone access, then explore its audio spectrum."
     }
+  },
+  "keyboardTools": {
+    "layoutProgress": "Received {tested}/{total} key codes in this layout",
+    "layoutNote": "Progress uses received events and is retained when switching layouts. This diagram is a reference; an unreceived key is not necessarily faulty.",
+    "remaining": "Key codes not yet received: {count}",
+    "outsideLayout": "Received codes outside the selected diagram",
+    "localNote": "Keys are captured only in the activated test area; data stays in tab memory, without upload or automatic storage.",
+    "unidentified": "{count} events had no code. They remain in the log but do not count toward coverage, rollover or chatter.",
+    "composing": "{count} events belonged to IME/composition. They are excluded from physical-key statistics; inspect isComposing in the log.",
+    "codeLimit": "This session reached 256 key codes; new codes appear only in the log. Reset to begin a new session.",
+    "bestCombination": "Largest combination observed",
+    "rolloverNote": "Keeps the first combination that reached the session maximum. This does not certify NKRO/6KRO; the browser/OS may intercept keys.",
+    "latestEvent": "Latest event",
+    "flagsNote": "Browser-reported flags do not establish LED state or a hardware source. isTrusted does not certify physical input.",
+    "chatterNote": "Totals accumulate until Reset, with auto-repeat separate. Integer thresholds: 1–500 ms. Pairs do not span focus loss, layout changes or IME. A short gap does not establish a faulty switch.",
+    "validPairs": "Valid release → press pairs",
+    "logWindow": "Keeping {retained}/200 recent events; {total} events received. Clearing the log keeps statistics.",
+    "showEvents": "Expand/collapse event list",
+    "filterEvents": "Filter key or code",
+    "eventType": "Event type",
+    "clearLog": "Clear event log",
+    "filteredEvents": "Events displayed: {count}",
+    "stopReason": {
+      "hidden": "Interrupted by a hidden tab",
+      "exit": "Interrupted by Tab/Esc",
+      "composition": "Interrupted by IME/composition",
+      "unavailable": "Interrupted by unavailable key code"
+    },
+    "diagram": "Keyboard diagram: {layout}",
+    "diagramHint": "The diagram scrolls horizontally. Tab/Esc ends capture; when inactive, focus the diagram and use arrow keys to scroll. Test with real keys; tapping a keycap does not generate a result."
   }
 }

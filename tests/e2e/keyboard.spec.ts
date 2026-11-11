@@ -25,6 +25,7 @@ test('key hold is measured and focus loss clears held keys', async ({ page }) =>
   await page.keyboard.down('b');
   await page.waitForTimeout(120);
   await page.getByRole('button', { name: 'Exit test area', exact: true }).click();
+  await expect(page.locator('.keyboard-capture')).toHaveAttribute('data-active', 'false');
   await expect(page.locator('[data-code=KeyB]')).toHaveAttribute('data-held', 'false');
   await expect(page.locator('tbody')).toContainText('Interrupted by focus loss');
   await page.keyboard.up('b');

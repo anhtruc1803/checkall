@@ -533,5 +533,35 @@
       "title": "Microphone không hoạt động",
       "description": "Kiểm tra tín hiệu đầu vào sau khi cấp quyền microphone, rồi quan sát phổ âm thanh."
     }
+  },
+  "keyboardTools": {
+    "layoutProgress": "Đã nhận {tested}/{total} mã phím trong layout",
+    "layoutNote": "Tiến độ dựa trên sự kiện đã nhận, giữ lại khi đổi layout. Sơ đồ là tham khảo; phím chưa nhận không đồng nghĩa bị hỏng.",
+    "remaining": "Mã phím chưa nhận: {count}",
+    "outsideLayout": "Mã đã nhận ngoài sơ đồ đang chọn",
+    "localNote": "Chỉ thu phím trong vùng thử đã kích hoạt; dữ liệu ở bộ nhớ của tab, không upload hoặc tự lưu.",
+    "unidentified": "{count} sự kiện thiếu code. Vẫn có trong log, không tính vào tiến độ, rollover hoặc chatter.",
+    "composing": "{count} sự kiện thuộc IME/composition. Không tính vào thống kê phím vật lý; xem isComposing trong log.",
+    "codeLimit": "Phiên đã đạt giới hạn 256 mã phím; mã mới chỉ có trong log. Đặt lại để bắt đầu phiên mới.",
+    "bestCombination": "Tổ hợp lớn nhất đã quan sát",
+    "rolloverNote": "Giữ tổ hợp đầu tiên đạt mức tối đa trong phiên. Đây không phải chứng nhận NKRO/6KRO; browser/OS có thể chặn phím.",
+    "latestEvent": "Sự kiện gần nhất",
+    "flagsNote": "Các cờ do browser báo, không xác nhận đèn LED hoặc nguồn phần cứng. isTrusted không phải chứng nhận thao tác vật lý.",
+    "chatterNote": "Thống kê cộng dồn đến khi Đặt lại, tách auto-repeat. Ngưỡng nguyên 1–500 ms; không nối cặp qua mất focus, đổi layout hoặc IME. Khoảng ngắn không kết luận switch hỏng.",
+    "validPairs": "Cặp thả → nhấn hợp lệ",
+    "logWindow": "Giữ {retained}/200 sự kiện gần nhất; đã nhận {total} sự kiện. Xóa log không xóa thống kê.",
+    "showEvents": "Mở/đóng danh sách sự kiện",
+    "filterEvents": "Lọc key hoặc code",
+    "eventType": "Loại sự kiện",
+    "clearLog": "Xóa log sự kiện",
+    "filteredEvents": "Sự kiện đang hiển thị: {count}",
+    "stopReason": {
+      "hidden": "Gián đoạn do tab ẩn",
+      "exit": "Gián đoạn do Tab/Esc",
+      "composition": "Gián đoạn do IME/composition",
+      "unavailable": "Gián đoạn do sự kiện thiếu code"
+    },
+    "diagram": "Sơ đồ bàn phím {layout}",
+    "diagramHint": "Sơ đồ có thể cuộn ngang. Tab/Esc dừng thu phím; khi không thu, có thể focus sơ đồ và dùng mũi tên để cuộn. Bấm các phím thật để kiểm tra, chạm ô không tạo kết quả."
   }
 }

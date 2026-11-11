@@ -1,5 +1,6 @@
 import { z } from 'zod/mini';
 import type { IntervalSummary } from './types';
+import { KeyboardChatter } from './keyboard-chatter';
 export const dimensionsSchema = z.object({
   width: z.int().check(z.gt(0), z.lte(100000)),
   height: z.int().check(z.gt(0), z.lte(100000)),
@@ -96,28 +97,7 @@ export interface InputRecord {
   repeat: boolean;
 }
 export function analyzeChatter(events: InputRecord[], threshold: number) {
-  const lastRelease = new Map<string, number>();
-  const keys = new Map<
-    string,
-    { presses: number; repeats: number; suspicious: number; shortestGap: number | null }
-  >();
-  for (const e of events) {
-    const data = keys.get(e.code) ?? { presses: 0, repeats: 0, suspicious: 0, shortestGap: null };
-    if (e.type === 'keyup') lastRelease.set(e.code, e.time);
-    else if (e.repeat) data.repeats++;
-    else {
-      data.presses++;
-      const previous = lastRelease.get(e.code);
-      if (previous !== undefined) {
-        const gap = e.time - previous;
-        if (gap >= 0) {
-          data.shortestGap = data.shortestGap === null ? gap : Math.min(gap, data.shortestGap);
-          if (gap <= threshold) data.suspicious++;
-        }
-        lastRelease.delete(e.code);
-      }
-    }
-    keys.set(e.code, data);
-  }
-  return [...keys].map(([code, data]) => ({ code, ...data }));
+  const session = new KeyboardChatter();
+  events.forEach((event) => session.record(event));
+  return session.snapshot(threshold);
 }

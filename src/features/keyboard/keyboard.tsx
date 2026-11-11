@@ -1,12 +1,13 @@
 'use client';
 import { EngineSurface } from '@/components/tools/engine-surface';
-import { useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import { Metric, CopyButton } from '@/components/tools/measurement-ui';
-import { analyzeChatter } from '@/lib/measurements/calculations';
-import { layouts, keyboardRows, type KeyboardLayout } from './layouts';
+import { Metric } from '@/components/tools/measurement-ui';
+import { layouts, keyboardRows, type KeyboardLayout, type PhysicalKey } from './layouts';
 import { useKeyboard } from './use-keyboard';
+import { KeyboardEventLog } from './keyboard-event-log';
+import './keyboard.css';
 export default function KeyboardTool({ toolId }: { toolId: string }) {
   const t = useTranslations();
   const {
@@ -16,7 +17,13 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
     counts,
     repeatCount,
     maximum,
+    maximumCodes,
     logs,
+    lastEvent,
+    totalEvents,
+    unidentifiedEvents,
+    composingEvents,
+    limitReached,
     holds,
     now,
     heldStarts,
@@ -24,11 +31,25 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
     onKey,
     reset,
     activate,
-  } = useKeyboard();
-  const [layout, setLayout] = useState<KeyboardLayout>('ANSI Full-size'),
-    [threshold, setThreshold] = useState(30);
-  const rows = keyboardRows(layout),
-    stats = analyzeChatter(logs, threshold);
+    onCompositionStart,
+    onCompositionEnd,
+    clearLogs,
+    chatterStats: stats,
+    threshold,
+    updateThreshold,
+  } = useKeyboard({
+    recordEvents: toolId === 'B03' || toolId === 'B05',
+    trackHolds: toolId === 'B04',
+    trackChatter: toolId === 'B03',
+  });
+  const [layout, setLayout] = useState<KeyboardLayout>('ANSI Full-size');
+  const [missingOpen, setMissingOpen] = useState(false);
+  const rows = useMemo(() => keyboardRows(layout), [layout]);
+  const layoutKeys = useMemo(() => rows.flat(), [rows]);
+  const missing = layoutKeys.filter((key) => !counts[key.code]);
+  const outside = Object.keys(counts).filter(
+    (code) => !layoutKeys.some((key) => key.code === code),
+  );
   const pressed = Object.values(counts).reduce((sum, value) => sum + value, 0);
   return (
     <EngineSurface>
@@ -48,8 +69,11 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
             ))}
           </select>
         </label>
-        <Button onClick={active ? interrupt : activate}>
-          {t(active ? 'deactivate' : 'activate')}
+        <Button onClick={activate} disabled={active}>
+          {t('activate')}
+        </Button>
+        <Button variant="outline" onClick={interrupt} disabled={!active}>
+          {t('deactivate')}
         </Button>
         <Button variant="outline" onClick={reset}>
           {t('reset')}
@@ -61,12 +85,43 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
               type="number"
               min="1"
               max="500"
+              step="1"
               value={threshold}
-              onChange={(e) =>
-                setThreshold(Math.min(500, Math.max(1, Number(e.target.value) || 1)))
-              }
+              onChange={(e) => updateThreshold(Number(e.target.value))}
             />
           </label>
+        )}
+      </div>
+      <div className="keyboard-progress">
+        <label htmlFor="keyboard-layout-progress">
+          {t('keyboardTools.layoutProgress', {
+            tested: layoutKeys.length - missing.length,
+            total: layoutKeys.length,
+          })}
+        </label>
+        <progress
+          id="keyboard-layout-progress"
+          value={layoutKeys.length - missing.length}
+          max={layoutKeys.length}
+          data-layout-tested={layoutKeys.length - missing.length}
+        />
+        <p className="small">{t('keyboardTools.layoutNote')}</p>
+        <details open={missingOpen} onToggle={(event) => setMissingOpen(event.currentTarget.open)}>
+          <summary>{t('keyboardTools.remaining', { count: missing.length })}</summary>
+          {missingOpen && (
+            <div className="key-list">
+              {missing.map((key) => (
+                <span className="key-tag" key={key.code}>
+                  {key.code}
+                </span>
+              ))}
+            </div>
+          )}
+        </details>
+        {outside.length > 0 && (
+          <p className="small">
+            {t('keyboardTools.outsideLayout')}: {outside.join(' · ')}
+          </p>
         )}
       </div>
       <div
@@ -81,38 +136,40 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
         }}
         onKeyDown={onKey}
         onKeyUp={onKey}
-        onBlur={interrupt}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) interrupt();
+        }}
+        onCompositionStart={onCompositionStart}
+        onCompositionEnd={onCompositionEnd}
       >
         <p className="small" role="status">
           {t(active ? 'captureActive' : 'captureHint')}
         </p>
-        <div
-          className="keyboard-grid"
-          aria-label={layout}
-          data-full={layout === 'ANSI Full-size' || layout === 'ISO'}
-        >
-          {rows.map((row, i) => (
-            <div className="key-row" key={i} data-numpad={row[0].code === 'NumLock'}>
-              {row.map((key) => (
-                <div
-                  key={key.code}
-                  className="keycap"
-                  style={{ flex: key.size ?? 1 }}
-                  data-code={key.code}
-                  data-tested={Boolean(counts[key.code])}
-                  data-held={held.includes(key.code)}
-                  aria-label={`${key.code}: ${t(held.includes(key.code) ? 'down' : 'up')}, ${counts[key.code] ?? 0}`}
-                >
-                  <span>{key.label}</span>
-                  {Boolean(counts[key.code]) && (
-                    <span className="key-count">✓ {counts[key.code]}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
+        <KeyboardVisual
+          rows={rows}
+          layout={layout}
+          counts={counts}
+          held={held}
+          down={t('down')}
+          up={t('up')}
+          diagramLabel={t('keyboardTools.diagram', { layout })}
+        />
       </div>
+      <p className="small" id="keyboard-diagram-hint">
+        {t('keyboardTools.diagramHint')}
+      </p>
+      <p className="small keyboard-local-note">{t('keyboardTools.localNote')}</p>
+      {unidentifiedEvents > 0 && (
+        <p className="keyboard-notice">
+          {t('keyboardTools.unidentified', { count: unidentifiedEvents })}
+        </p>
+      )}
+      {composingEvents > 0 && (
+        <p className="keyboard-notice">
+          {t('keyboardTools.composing', { count: composingEvents })}
+        </p>
+      )}
+      {limitReached && <p className="keyboard-notice">{t('keyboardTools.codeLimit')}</p>}
       <dl className="results-grid">
         <Metric label={t('held')} value={held.length} />
         <Metric label={t('tested')} value={Object.keys(counts).length} />
@@ -131,30 +188,79 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
           <span className="small">—</span>
         )}
       </div>
+      {toolId === 'B02' && (
+        <section className="keyboard-best">
+          <h3>{t('keyboardTools.bestCombination')}</h3>
+          <p className="small">{t('keyboardTools.rolloverNote')}</p>
+          <div className="key-list" data-max-combination>
+            {maximumCodes.length
+              ? maximumCodes.map((code) => (
+                  <span className="key-tag" key={code}>
+                    {code}
+                  </span>
+                ))
+              : '—'}
+          </div>
+        </section>
+      )}
+      {toolId === 'B05' && (
+        <section className="keyboard-latest">
+          <h3>{t('keyboardTools.latestEvent')}</h3>
+          <p className="small">{t('keyboardTools.flagsNote')}</p>
+          <dl className="results-grid">
+            {(
+              [
+                'key',
+                'code',
+                'type',
+                'location',
+                'repeat',
+                'isComposing',
+                'isTrusted',
+                'capsLock',
+                'numLock',
+                'altGraph',
+              ] as const
+            ).map((field) => (
+              <Metric
+                key={field}
+                label={field}
+                value={
+                  lastEvent
+                    ? lastEvent[field] === ''
+                      ? '""'
+                      : String(lastEvent[field] ?? '—')
+                    : '—'
+                }
+              />
+            ))}
+          </dl>
+        </section>
+      )}
       {toolId === 'B03' && (
         <>
           <h3 style={{ marginTop: 28 }}>{t('suspicious')}</h3>
-          <p className="small">
-            {t('totalEvents')}: {logs.length} / 200
-          </p>
+          <p className="small">{t('keyboardTools.chatterNote')}</p>
           <div className="table-scroll">
-            <table>
+            <table data-chatter>
               <thead>
                 <tr>
                   <th>code</th>
                   <th>{t('presses')}</th>
                   <th>{t('repeats')}</th>
                   <th>{t('suspicious')}</th>
+                  <th>{t('keyboardTools.validPairs')}</th>
                   <th>{t('minimum')} (ms)</th>
                 </tr>
               </thead>
               <tbody>
                 {stats.map((stat) => (
-                  <tr key={stat.code}>
+                  <tr key={stat.code} data-code={stat.code} data-notable={stat.suspicious > 0}>
                     <td>{stat.code}</td>
                     <td>{stat.presses}</td>
                     <td>{stat.repeats}</td>
                     <td>{stat.suspicious}</td>
+                    <td>{stat.pairs}</td>
                     <td>{stat.shortestGap?.toFixed(1) ?? '—'}</td>
                   </tr>
                 ))}
@@ -187,7 +293,13 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
                   <tr key={i}>
                     <td>{hold.code}</td>
                     <td>{hold.duration.toFixed(1)}</td>
-                    <td>{t(hold.interrupted ? 'interrupted' : 'released')}</td>
+                    <td>
+                      {hold.interrupted
+                        ? hold.reason && hold.reason !== 'focus'
+                          ? t(`keyboardTools.stopReason.${hold.reason}`)
+                          : t('interrupted')
+                        : t('released')}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -196,43 +308,68 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
         </>
       )}
       {(toolId === 'B05' || toolId === 'B03') && (
-        <>
-          <div className="panel-head" style={{ marginTop: 28 }}>
-            <h3>{t('eventLog')}</h3>
-            <CopyButton value={JSON.stringify(logs, null, 2)} />
-          </div>
-          {!logs.length ? (
-            <p className="empty">{t('noEvents')}</p>
-          ) : (
-            <div className="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    {['type', 'key', 'code', 'location', 'repeat', 'modifiers', 'timestamp'].map(
-                      (name) => (
-                        <th key={name}>{name}</th>
-                      ),
-                    )}
-                  </tr>
-                </thead>
-                <tbody>
-                  {[...logs].reverse().map((log, i) => (
-                    <tr key={i}>
-                      <td>{log.type}</td>
-                      <td>{log.key}</td>
-                      <td>{log.code}</td>
-                      <td>{log.location}</td>
-                      <td>{String(log.repeat)}</td>
-                      <td>{log.modifiers}</td>
-                      <td>{log.timestamp.toFixed(2)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </>
+        <KeyboardEventLog
+          logs={logs}
+          totalEvents={totalEvents}
+          clear={clearLogs}
+          expanded={toolId === 'B05'}
+        />
       )}
     </EngineSurface>
   );
 }
+
+const KeyboardVisual = memo(function KeyboardVisual({
+  rows,
+  layout,
+  counts,
+  held,
+  down,
+  up,
+  diagramLabel,
+}: {
+  rows: PhysicalKey[][];
+  layout: KeyboardLayout;
+  counts: Record<string, number>;
+  held: string[];
+  down: string;
+  up: string;
+  diagramLabel: string;
+}) {
+  return (
+    <div
+      className="keyboard-diagram"
+      role="region"
+      aria-label={diagramLabel}
+      aria-describedby="keyboard-diagram-hint"
+      tabIndex={0}
+    >
+      <div
+        className="keyboard-grid"
+        aria-label={layout}
+        data-full={layout === 'ANSI Full-size' || layout === 'ISO'}
+      >
+        {rows.map((row, index) => (
+          <div className="key-row" key={index} data-numpad={row[0].code === 'NumLock'}>
+            {row.map((key) => (
+              <div
+                key={key.code}
+                className="keycap"
+                style={{ flex: key.size ?? 1 }}
+                data-code={key.code}
+                data-tested={Boolean(counts[key.code])}
+                data-held={held.includes(key.code)}
+                aria-label={`${key.code}: ${held.includes(key.code) ? down : up}, ${counts[key.code] ?? 0}`}
+              >
+                <span>{key.label}</span>
+                {Boolean(counts[key.code]) && (
+                  <span className="key-count">✓ {counts[key.code]}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+});

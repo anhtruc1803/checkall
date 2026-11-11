@@ -1,0 +1,154 @@
+.keyboard-progress {
+  margin-block: 18px;
+  padding: 18px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+.keyboard-diagram {
+  overflow-x: auto;
+  max-width: 100%;
+  border-radius: 8px;
+}
+.keyboard-diagram .keyboard-grid {
+  min-width: 47.5rem;
+}
+.keyboard-diagram .keyboard-grid[data-full='true'] {
+  min-width: 60rem;
+  grid-template-columns: minmax(0, 1fr) minmax(11.25rem, 0.26fr);
+}
+.keyboard-diagram .keyboard-grid[data-full='true'] .key-row[data-numpad='true'] {
+  grid-column: 2;
+  grid-row: 2 / span 6;
+}
+.keyboard-diagram .keycap {
+  font-size: 0.75rem;
+  min-height: 44px;
+}
+[data-engine='keyboard'] .controls > .button {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+[data-engine='keyboard'] .controls > .field {
+  flex-basis: 14rem;
+  min-width: min(100%, 14rem);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.keyboard-progress label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.keyboard-progress progress {
+  display: block;
+  width: 100%;
+  height: 10px;
+  margin-block: 12px;
+  accent-color: var(--color-primary);
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--color-raised);
+}
+.keyboard-progress progress::-webkit-progress-bar {
+  background: var(--color-raised);
+}
+.keyboard-progress progress::-webkit-progress-value {
+  background: var(--color-accent);
+}
+.keyboard-progress progress::-moz-progress-bar {
+  background: var(--color-accent);
+}
+.keyboard-progress details {
+  margin-top: 12px;
+}
+.keyboard-progress summary,
+.keyboard-log summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 10px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.keyboard-progress .key-list {
+  margin-block: 8px;
+}
+.keyboard-local-note {
+  margin-top: 12px;
+}
+.keyboard-notice {
+  margin-block: 12px;
+  padding: 12px 16px;
+  border-inline-start: 3px solid var(--color-warning);
+  background: var(--color-surface);
+  font-size: 0.875rem;
+}
+.keyboard-best,
+.keyboard-latest,
+.keyboard-log {
+  margin-top: 28px;
+  min-width: 0;
+}
+.keyboard-best .small,
+.keyboard-latest .small {
+  margin-top: 10px;
+}
+.keyboard-log-controls {
+  margin-block: 16px;
+}
+.keyboard-log-controls .field-flex {
+  min-width: min(100%, 14rem);
+}
+.keyboard-log input,
+.keyboard-log select {
+  width: 100%;
+}
+.keyboard-log .controls {
+  align-items: flex-end;
+}
+.keyboard-event-table {
+  max-height: 420px;
+  overflow: auto;
+  margin-top: 12px;
+}
+.keyboard-event-table th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+}
+.keyboard-event-table td {
+  max-width: 24rem;
+  overflow-wrap: anywhere;
+}
+.keyboard-latest .metric dd {
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+.keyboard-latest .results-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(7.5rem, 100%), 1fr));
+  gap: 10px;
+}
+.keyboard-latest .metric {
+  padding: 12px;
+  min-width: 0;
+}
+.keyboard-latest .metric dt {
+  overflow-wrap: anywhere;
+}
+[data-chatter] tr[data-notable='true'] td:first-child {
+  color: var(--color-warning);
+  font-weight: 700;
+}
+@media (max-width: 480px) {
+  [data-engine='keyboard'] .controls > .button {
+    width: 100%;
+  }
+  .keyboard-progress {
+    padding: 14px;
+  }
+  .keyboard-log-controls > .field,
+  .keyboard-log-controls > .button {
+    width: 100%;
+  }
+}
