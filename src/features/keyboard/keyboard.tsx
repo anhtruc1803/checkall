@@ -23,6 +23,7 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
     totalEvents,
     unidentifiedEvents,
     composingEvents,
+    inputIssue,
     limitReached,
     holds,
     now,
@@ -92,6 +93,17 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
           </label>
         )}
       </div>
+      <aside className="keyboard-input-help" aria-label={t('keyboardTools.inputHelpTitle')}>
+        <strong>{t('keyboardTools.inputHelpTitle')}</strong>
+        <p className="small">{t('keyboardTools.inputHelp')}</p>
+      </aside>
+      {inputIssue && (
+        <div className="keyboard-notice keyboard-input-issue" role="alert">
+          <strong>{t('keyboardTools.inputPaused')}</strong>
+          <p>{t(`keyboardTools.inputIssue.${inputIssue}`)}</p>
+          <p>{t('keyboardTools.inputRecovery')}</p>
+        </div>
+      )}
       <div className="keyboard-progress">
         <label htmlFor="keyboard-layout-progress">
           {t('keyboardTools.layoutProgress', {
@@ -142,7 +154,7 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
         onCompositionStart={onCompositionStart}
         onCompositionEnd={onCompositionEnd}
       >
-        <p className="small" role="status">
+        <p className="small keyboard-capture-status" role="status" data-active={active}>
           {t(active ? 'captureActive' : 'captureHint')}
         </p>
         <KeyboardVisual
@@ -154,10 +166,18 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
           up={t('up')}
           diagramLabel={t('keyboardTools.diagram', { layout })}
         />
+        <div className="keyboard-legend" aria-label={t('keyboardTools.legend')}>
+          {(['untested', 'tested', 'held'] as const).map((state) => (
+            <span key={state} data-key-state={state}>
+              <i aria-hidden="true" />
+              {t(`keyboardTools.keyState.${state}`)}
+            </span>
+          ))}
+        </div>
+        <p className="small keyboard-diagram-hint" id="keyboard-diagram-hint">
+          {t('keyboardTools.diagramHint')}
+        </p>
       </div>
-      <p className="small" id="keyboard-diagram-hint">
-        {t('keyboardTools.diagramHint')}
-      </p>
       <p className="small keyboard-local-note">{t('keyboardTools.localNote')}</p>
       {unidentifiedEvents > 0 && (
         <p className="keyboard-notice">
@@ -217,6 +237,7 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
                 'repeat',
                 'isComposing',
                 'isTrusted',
+                'keyCode',
                 'capsLock',
                 'numLock',
                 'altGraph',
@@ -365,7 +386,7 @@ const KeyboardVisual = memo(function KeyboardVisual({
                 data-held={held.includes(key.code)}
                 aria-label={`${key.code}: ${held.includes(key.code) ? down : up}, ${counts[key.code] ?? 0}`}
               >
-                <span>{key.label}</span>
+                <span>{key.code === 'Backspace' ? 'Backspace' : key.label}</span>
                 {Boolean(counts[key.code]) && (
                   <span className="key-count">✓ {counts[key.code]}</span>
                 )}

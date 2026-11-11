@@ -2,6 +2,22 @@ import { describe, it, expect } from 'vitest';
 import { KeyboardChatter, KEYBOARD_CODE_LIMIT } from '@/lib/measurements/keyboard-chatter';
 
 describe('cumulative keyboard chatter', () => {
+  it('keeps an independent checkpoint including histogram and pending sequence state', () => {
+    const session = new KeyboardChatter();
+    const send = (type: 'keydown' | 'keyup', time: number) =>
+      session.record({ code: 'KeyD', type, time, repeat: false });
+    send('keydown', 0);
+    send('keyup', 10);
+    send('keydown', 15);
+    send('keyup', 20);
+    const saved = session.clone();
+    send('keydown', 25);
+    session.reset();
+    expect(saved.snapshot(5)[0]).toMatchObject({ presses: 2, pairs: 1, suspicious: 1 });
+    saved.record({ code: 'KeyD', type: 'keydown', time: 30, repeat: false });
+    expect(saved.snapshot(10)[0]).toMatchObject({ presses: 3, pairs: 2, suspicious: 2 });
+    expect(session.snapshot(30)).toEqual([]);
+  });
   it('keeps totals beyond the event-log limit and changes integer thresholds exactly', () => {
     const session = new KeyboardChatter();
     for (let i = 0; i < 150; i++) {

@@ -540,8 +540,8 @@
     "remaining": "Mã phím chưa nhận: {count}",
     "outsideLayout": "Mã đã nhận ngoài sơ đồ đang chọn",
     "localNote": "Chỉ thu phím trong vùng thử đã kích hoạt; dữ liệu ở bộ nhớ của tab, không upload hoặc tự lưu.",
-    "unidentified": "{count} sự kiện thiếu code; không tính vào tiến độ, rollover hoặc chatter.",
-    "composing": "{count} sự kiện thuộc IME/composition; không tính vào thống kê phím vật lý.",
+    "unidentified": "{count} sự kiện không xác định key/code đã làm dừng lượt thu.",
+    "composing": "{count} sự kiện có tín hiệu IME đã làm dừng lượt thu.",
     "codeLimit": "Phiên đã đạt giới hạn 256 mã phím; mã mới chỉ có trong log. Đặt lại để bắt đầu phiên mới.",
     "bestCombination": "Tổ hợp lớn nhất đã quan sát",
     "rolloverNote": "Giữ tổ hợp đầu tiên đạt mức tối đa trong phiên. Đây không phải chứng nhận NKRO/6KRO; browser/OS có thể chặn phím.",
@@ -562,6 +562,20 @@
       "unavailable": "Gián đoạn do sự kiện thiếu code"
     },
     "diagram": "Sơ đồ bàn phím {layout}",
-    "diagramHint": "Sơ đồ có thể cuộn ngang. Tab/Esc dừng thu phím; khi không thu, có thể focus sơ đồ và dùng mũi tên để cuộn. Bấm các phím thật để kiểm tra, chạm ô không tạo kết quả."
+    "diagramHint": "Sơ đồ có thể cuộn ngang. Tab/Esc dừng thu phím; khi không thu, có thể focus sơ đồ và dùng mũi tên để cuộn. Bấm các phím thật để kiểm tra, chạm ô không tạo kết quả.",
+    "inputHelpTitle": "Trước khi thử bàn phím",
+    "inputHelp": "Nếu dùng UniKey/EVKey, chuyển bộ gõ sang E. Với bộ gõ của hệ điều hành, chọn English (ENG). Bộ gõ tiếng Việt có thể thay chữ và tạo Backspace; website không thể khôi phục phím vật lý đã bị bộ gõ chặn.",
+    "inputPaused": "Đã dừng vì luồng phím không xác định",
+    "inputIssue": {
+      "composition": "Phát hiện tín hiệu IME/composition. Kết quả từ lần kích hoạt vừa rồi đã được loại khỏi thống kê để tránh tính nhầm Backspace hoặc báo chatter sai. Kết quả của các lượt trước được giữ lại.",
+      "unavailable": "Browser gửi sự kiện không xác định key/code. Có thể bộ gõ hoặc lớp nhập liệu đã can thiệp. Kết quả từ lần kích hoạt vừa rồi đã được loại khỏi thống kê; kết quả của các lượt trước được giữ lại."
+    },
+    "inputRecovery": "Đây không phải kết luận bàn phím bị hỏng. Chuyển bộ gõ sang E/ENG rồi bấm Kích hoạt vùng thử để thử lại. Log nếu đang bật chỉ là sự kiện browser, không phải bằng chứng phím vật lý.",
+    "legend": "Chú giải trạng thái phím",
+    "keyState": {
+      "untested": "Chưa nhận",
+      "tested": "Đã nhận · có dấu ✓",
+      "held": "Đang giữ"
+    }
   }
 }

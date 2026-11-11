@@ -11,6 +11,7 @@ export interface KeyLog extends InputRecord {
   isComposing: boolean;
   compositionActive: boolean;
   isTrusted: boolean;
+  keyCode: number;
   capsLock: boolean | null;
   numLock: boolean | null;
   altGraph: boolean | null;
@@ -35,6 +36,17 @@ export function useKeyboard({
     maximumRef = useRef(0);
   const chatter = useRef<KeyboardChatter | null>(null);
   const thresholdRef = useRef(30);
+  const checkpoint = useRef<{
+    counts: Record<string, number>;
+    repeatCount: number;
+    maximum: number;
+    maximumCodes: string[];
+    holds: KeyHold[];
+    limitReached: boolean;
+    codes: Set<string>;
+    chatter: KeyboardChatter | null;
+  } | null>(null);
+  const [inputIssue, setInputIssue] = useState<'composition' | 'unavailable' | null>(null);
   const [threshold, setThreshold] = useState(30);
   const [chatterStats, setChatterStats] = useState<ReturnType<KeyboardChatter['snapshot']>>([]);
   const [active, setActive] = useState(false),
@@ -76,6 +88,7 @@ export function useKeyboard({
     (reason: KeyHold['reason']) => {
       activeRef.current = false;
       composingRef.current = false;
+      checkpoint.current = null;
       releaseHeld(reason);
       setActive(false);
     },
@@ -103,17 +116,43 @@ export function useKeyboard({
     () => () => {
       activeRef.current = false;
       heldRef.current.clear();
+      checkpoint.current = null;
       chatter.current?.breakSequence();
     },
     [],
   );
+
+  function invalidateCapture(reason: 'composition' | 'unavailable') {
+    // A replacement Backspace can precede the first identifiable IME/unknown event.
+    // Discard this whole capture segment, rather than guess which key was physical.
+    const saved = checkpoint.current;
+    stopCapture(reason);
+    if (saved) {
+      knownCodes.current = saved.codes;
+      maximumRef.current = saved.maximum;
+      chatter.current = saved.chatter;
+      setCounts(saved.counts);
+      setRepeatCount(saved.repeatCount);
+      setMaximum(saved.maximum);
+      setMaximumCodes(saved.maximumCodes);
+      setHolds(saved.holds);
+      setLimitReached(saved.limitReached);
+      setChatterStats(saved.chatter?.snapshot(thresholdRef.current) ?? []);
+    }
+    setInputIssue(reason);
+  }
 
   function onKey(event: KeyboardEvent<HTMLDivElement>) {
     if (!activeRef.current) return;
     const exitsCapture = event.key === 'Tab' || event.key === 'Escape';
     const time = performance.now(),
       code = event.code || 'Unidentified';
-    const composing = composingRef.current || event.nativeEvent.isComposing;
+    // Legacy 229 is diagnostic IME evidence only; never use keyCode to map a key.
+    const composing =
+      composingRef.current ||
+      event.nativeEvent.isComposing ||
+      event.nativeEvent.keyCode === 229 ||
+      event.key === 'Process';
     if (
       !exitsCapture &&
       !composing &&
@@ -139,6 +178,7 @@ export function useKeyboard({
       isComposing: event.nativeEvent.isComposing,
       compositionActive: composingRef.current,
       isTrusted: event.isTrusted,
+      keyCode: event.nativeEvent.keyCode,
       capsLock: modifier('CapsLock'),
       numLock: modifier('NumLock'),
       altGraph: modifier('AltGraph'),
@@ -156,9 +196,13 @@ export function useKeyboard({
     setLastEvent(entry);
     setTotalEvents(sequence.current);
     if (recordEvents) setLogs((old) => [...old, entry].slice(-200));
-    const identified = code !== 'Unidentified';
+    const identified = code !== 'Unidentified' && event.key !== 'Unidentified';
     if (!identified) setUnidentifiedEvents((old) => old + 1);
     if (composing) setComposingEvents((old) => old + 1);
+    if (composing || !identified) {
+      invalidateCapture(composing ? 'composition' : 'unavailable');
+      return;
+    }
     if (exitsCapture) {
       if (
         event.type === 'keydown' &&
@@ -171,10 +215,6 @@ export function useKeyboard({
         setCounts((old) => ({ ...old, [code]: (Object.hasOwn(old, code) ? old[code] : 0) + 1 }));
       }
       stopCapture('exit');
-      return;
-    }
-    if (composing || !identified || event.key === 'Process') {
-      releaseHeld(composing ? 'composition' : 'unavailable');
       return;
     }
     if (!knownCodes.current.has(code) && knownCodes.current.size >= KEYBOARD_CODE_LIMIT) {
@@ -233,10 +273,22 @@ export function useKeyboard({
     setLimitReached(false);
     setNow(0);
     setChatterStats([]);
+    setInputIssue(null);
   }
   function activate() {
-    if (document.hidden) return;
+    if (document.hidden || activeRef.current) return;
     chatter.current?.breakSequence();
+    checkpoint.current = {
+      counts,
+      repeatCount,
+      maximum,
+      maximumCodes,
+      holds,
+      limitReached,
+      codes: new Set(knownCodes.current),
+      chatter: chatter.current?.clone() ?? null,
+    };
+    setInputIssue(null);
     activeRef.current = true;
     composingRef.current = false;
     setActive(true);
@@ -244,8 +296,7 @@ export function useKeyboard({
   }
   function onCompositionStart() {
     if (!activeRef.current) return;
-    composingRef.current = true;
-    releaseHeld('composition');
+    invalidateCapture('composition');
   }
   function onCompositionEnd() {
     if (!activeRef.current) return;
@@ -271,6 +322,7 @@ export function useKeyboard({
     totalEvents,
     unidentifiedEvents,
     composingEvents,
+    inputIssue,
     limitReached,
     holds,
     now,

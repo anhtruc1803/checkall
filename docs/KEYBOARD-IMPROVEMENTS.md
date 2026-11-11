@@ -60,3 +60,25 @@ Lighthouse cuối 42 lượt so sánh cùng VM/21 lượt HTTPS public: lab 99/1
 **Đã hoàn thành và xác minh:** sửa Stop race, coverage/sơ đồ/rollover/Chatter cộng dồn/IME/flags/event filter, timer/cleanup/privacy component, build/unit/E2E đa browser/a11y tự động, Docker CI, deploy/smoke và Performance≥90 trong bộ mẫu. File chính tại KEYBOARD-IMPROVEMENTS.md; đã cập nhật PROGRESS/TESTING/PERFORMANCE/DEPLOYMENT và QA JSON. Không commit .env/secret/raw artifacts.
 
 **Đã triển khai nhưng chưa xác minh bằng thiết bị thật:** Fn/shortcut/IME/lock keys/layout thực, NKRO/chatter/hold của bàn phím USB-Bluetooth, Safari/OS/screen reader. **Chưa hoàn thành:** field performance, hai moderate dev advisory và các tiêu chí manual/bảo mật đã ghi. **Không thể kiểm chứng trong lượt này:** phần cứng thật/Safari/OS và TLS proxy→origin. Final Acceptance Phase 1/2 tiếp tục mở. Tiếp theo: ma trận phần cứng/IME/keyboard navigation thật; chỉ mở rộng JIS/mapping khi có bằng chứng, không tự bắt đầu Phase 3.
+
+## Sửa lỗi luồng nhập UniKey/EVKey và bố cục — 11/11/2026
+
+Người dùng báo D lần đầu đúng nhưng lần sau tăng Backspace, kèm ảnh 54 sự kiện thiếu code, và xác nhận UniKey/EVKey đang ở chế độ tiếng Việt. Đây là bằng chứng luồng nhập không xác định, chưa phải kết luận bàn phím hỏng. Chưa thu raw log từ máy người dùng để khẳng định chính xác thứ tự sự kiện của phiên đó.
+
+Engine cũ chỉ bỏ sự kiện thiếu code/composition; Backspace có code hợp lệ xen giữa vẫn cộng vào thống kê. Bản sửa tạo checkpoint khi kích hoạt. Khi có compositionstart, isComposing, key Process, legacy keyCode 229 hoặc key/code không xác định, công cụ dừng ngay và khôi phục thống kê trước lần kích hoạt đó: coverage/count/repeat, maximum/tổ hợp, Hold và Chatter. Bao gồm Backspace đã xuất hiện trước tín hiệu không xác định. Không gán sự kiện thiếu code thành D, không chặn mọi Backspace, không dùng isTrusted làm chứng nhận phần cứng. Checkpoint chỉ giữ aggregate có giới hạn, không thêm log sự kiện hoặc storage/network.
+
+B05/B03 vẫn giữ raw sự kiện đã nhận đến thời điểm dừng, tối đa200; thêm keyCode để chẩn đoán legacy IME, không dùng làm bảng mapping. Những sự kiện sau khi dừng không được thu. Clear log không xóa aggregate; Reset xóa tất cả. Bộ đếm cảnh báo đếm các sự kiện kích hoạt dừng đã quan sát, không đếm các phím đã bị OS/bộ gõ chặn.
+
+UI VI/EN có hướng dẫn: UniKey/EVKey sang E; bộ gõ hệ điều hành chọn English (ENG). Cảnh báo giải thích việc loại kết quả lượt hiện tại và giữ lượt trước. Nhãn Backspace dễ nhận biết, thêm chú giải trạng thái, status gọn; focus ring nằm trong khung và hướng dẫn có khoảng cách riêng bên trong khung. Sơ đồ vẫn cuộn bằng bàn phím khi không capture. Dùng UI/UX Pro Max với truy vấn focus not obscured; giữ focus hiển thị, không bỏ accessibility để sửa bố cục.
+
+Giới hạn: nếu lớp nhập liệu tạo Backspace giống hoàn toàn sự kiện bình thường và không có bất kỳ tín hiệu IME/unknown nào, JavaScript không có bằng chứng để phân biệt. Không cam kết tự khôi phục D đã bị bộ gõ chặn. Chế độ E/ENG là điều kiện thử phím; UniKey V vẫn có thể hoạt động dù layout Windows là ENG. Cần manual QA đúng phiên bản UniKey/EVKey/browser/OS của người dùng, Safari thật, bàn phím thật và screen reader. Automation dùng fixture có chú thích, không thay thế các mục này.
+
+Tham chiếu: [W3C UI Events](https://www.w3.org/TR/uievents/) (IME và legacy keyCode229), [giá trị code](https://www.w3.org/TR/uievents-code/).
+
+### Manual QA bộ gõ cần thực hiện
+
+- Trên cùng keyboard/OS/browser, thử UniKey và EVKey riêng: V/Telex, V/VNI nếu dùng, E. Ghi phiên bản và trạng thái bộ gõ; không upload raw input. Với bộ gõ Windows, thử Vietnamese/English riêng.
+- Ở E/English: nhấn/thả D ba lần phải tăng D ba lần, Backspace không tăng; nhấn Backspace thật phải tăng riêng. Thử giữ D để xác minh repeat tách biệt.
+- Ở V: thử dd, aa, ee, oo, ow/uw và xóa bằng Backspace. Nếu nhận composition/229/Process/unknown, công cụ phải dừng và khôi phục lượt trước, không báo switch hỏng. Nếu browser chỉ gửi Backspace thông thường mà không có tín hiệu khác, ghi nhận giới hạn và chuyển E để thử phím.
+- Thử cảnh báo khi có phím đang giữ, ở Chatter và Hold; không giữ phím kẹt/timer sau dừng. Kích hoạt lại ở E, thống kê tăng từ các lượt hợp lệ trước đó. Reset xóa cả thống kê và cảnh báo.
+- Rà Light/Dark, zoom OS200%, screen reader đọc cảnh báo, Tab/Esc thoát, sơ đồ cuộn khi không thu. WebKit automation không thay thế Safari thực tế.

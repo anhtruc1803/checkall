@@ -88,11 +88,14 @@ test('event review filters locally, labels composition fixtures and ignores unav
   await page.keyboard.press('a');
   await page.keyboard.press('b');
   const area = page.locator('.keyboard-capture');
+  await page.getByRole('button', { name: 'Exit test area', exact: true }).click();
+  await page.getByRole('button', { name: 'Activate test area', exact: true }).click();
   await area.dispatchEvent('keydown', { key: 'Process', code: 'KeyC', isComposing: true });
+  await page.getByRole('button', { name: 'Activate test area', exact: true }).click();
   await area.dispatchEvent('keydown', { key: 'x', code: '' });
   await expect(page.getByRole('progressbar')).toHaveAttribute('value', '2');
-  await expect(page.getByText(/events belonged to IME/)).toBeVisible();
-  await expect(page.getByText(/events had no code/)).toBeVisible();
+  await expect(page.getByText(/events with an IME signal/)).toBeVisible();
+  await expect(page.getByText(/events with an unidentified key/)).toBeVisible();
   await page.getByRole('searchbox', { name: 'Filter key or code' }).fill('KeyB');
   await expect(page.locator('.keyboard-event-table tbody tr')).toHaveCount(2);
   await page.getByRole('combobox', { name: 'Event type', exact: true }).selectOption('keyup');

@@ -104,21 +104,117 @@ it('retains chatter totals beyond 200 events and never pairs across focus loss',
   fireEvent.change(screen.getByRole('spinbutton'), { target: { value: '9' } });
   expect(cells()).toEqual(['KeyA', '151', '0', '0', '149', '10.0']);
 });
-it('does not count unidentified or composing events as physical presses and clears holds on IME', () => {
+it.each(['B01', 'B02', 'B03', 'B04', 'B05'])(
+  'rolls back an ambiguous D/Backspace capture in %s, preserves previous captures and permits retry',
+  (id) => {
+    mount(id);
+    const area = activate();
+    const press = (key: string, code: string) => {
+      fireEvent.keyDown(area, { key, code });
+      fireEvent.keyUp(area, { key, code });
+    };
+    press('d', 'KeyD');
+    fireEvent.click(screen.getByRole('button', { name: 'Exit test area' }));
+    activate();
+    press('d', 'KeyD');
+    press('Backspace', 'Backspace');
+    fireEvent.keyDown(area, { key: 'đ', code: '' });
+    expect(area).toHaveAttribute('data-active', 'false');
+    expect(screen.getByRole('alert')).toHaveTextContent('earlier capture results are preserved');
+    expect(screen.getByRole('progressbar')).toHaveAttribute('value', '1');
+    expect(document.querySelector('[data-code="KeyD"] .key-count')).toHaveTextContent('1');
+    expect(document.querySelector('[data-code="Backspace"]')).toHaveAttribute(
+      'data-tested',
+      'false',
+    );
+    expect(document.querySelector('[data-code="Backspace"]')).toHaveAttribute('data-held', 'false');
+    // Remaining replacement events cannot re-enter the paused capture.
+    for (let i = 0; i < 22; i++) press('Backspace', 'Backspace');
+    expect(screen.getByRole('progressbar')).toHaveAttribute('value', '1');
+    if (id === 'B03') {
+      expect(document.querySelector('[data-chatter] tbody')).toHaveTextContent('KeyD');
+      expect(document.querySelector('[data-chatter] tbody')).not.toHaveTextContent('Backspace');
+    }
+    activate();
+    press('d', 'KeyD');
+    press('d', 'KeyD');
+    press('Backspace', 'Backspace');
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    expect(document.querySelector('[data-code="KeyD"] .key-count')).toHaveTextContent('3');
+    expect(document.querySelector('[data-code="Backspace"] .key-count')).toHaveTextContent('1');
+  },
+);
+it.each([
+  { key: 'Process', code: 'KeyD' },
+  { key: 'Backspace', code: 'Backspace', keyCode: 229 },
+  { key: 'd', code: 'KeyD', isComposing: true },
+  { key: 'Unidentified', code: 'KeyD' },
+  { key: 'd', code: 'Unidentified' },
+])('pauses on ambiguous input without guessing a physical key: %o', (event) => {
   mount('B05');
   const area = activate();
-  fireEvent.keyDown(area, { key: 'a', code: 'KeyA' });
-  fireEvent.compositionStart(area);
-  expect(document.querySelector('[data-code="KeyA"]')).toHaveAttribute('data-held', 'false');
-  fireEvent.keyDown(area, { key: 'Process', code: 'KeyB', isComposing: true });
-  fireEvent.compositionEnd(area);
-  fireEvent.keyDown(area, { key: 'x', code: '' });
-  expect(screen.getByRole('progressbar')).toHaveAttribute('value', '1');
-  expect(document.querySelector('[data-code="KeyB"]')).toHaveAttribute('data-tested', 'false');
-  expect(screen.getByText(/events had no code/)).toBeInTheDocument();
-  expect(screen.getByText(/events belonged to IME/)).toBeInTheDocument();
-  fireEvent.keyDown(area, { key: 'Escape', code: 'Escape' });
+  fireEvent.keyDown(area, event);
+  expect(screen.getByRole('progressbar')).toHaveAttribute('value', '0');
   expect(area).toHaveAttribute('data-active', 'false');
+  expect(screen.getByRole('alert')).toBeInTheDocument();
+  expect(document.querySelectorAll('.keyboard-event-table tbody tr')).toHaveLength(1);
+});
+it('aborts composition before a replacement Backspace and stops the Hold timer', () => {
+  vi.useFakeTimers();
+  const intervals = vi.spyOn(window, 'setInterval');
+  const clear = vi.spyOn(window, 'clearInterval');
+  mount('B04');
+  const area = activate();
+  fireEvent.keyDown(area, { key: 'd', code: 'KeyD' });
+  expect(intervals).toHaveBeenCalledTimes(1);
+  fireEvent.compositionStart(area);
+  fireEvent.keyDown(area, { key: 'Backspace', code: 'Backspace' });
+  expect(clear).toHaveBeenCalledWith(intervals.mock.results[0].value);
+  expect(area).toHaveAttribute('data-active', 'false');
+  expect(screen.getByRole('progressbar')).toHaveAttribute('value', '0');
+});
+it('restores rollover maximum, its combination and repeat totals from before the rejected capture', () => {
+  mount('B02');
+  const area = activate();
+  fireEvent.keyDown(area, { key: 'a', code: 'KeyA' });
+  fireEvent.keyDown(area, { key: 's', code: 'KeyS' });
+  fireEvent.click(screen.getByRole('button', { name: 'Exit test area' }));
+  activate();
+  for (const [key, code] of [
+    ['d', 'KeyD'],
+    ['f', 'KeyF'],
+    ['g', 'KeyG'],
+  ])
+    fireEvent.keyDown(area, { key, code });
+  fireEvent.keyDown(area, { key: 'g', code: 'KeyG', repeat: true });
+  fireEvent.keyUp(area, { key: 'x', code: '' });
+  expect(document.querySelector('[data-max-combination]')).toHaveTextContent('KeyAKeyS');
+  expect(
+    screen.getByText(messages.maxHeld, { selector: 'dt' }).nextElementSibling,
+  ).toHaveTextContent('2');
+  expect(
+    screen.getByText(messages.repeats, { selector: 'dt' }).nextElementSibling,
+  ).toHaveTextContent('0');
+});
+it('removes completed and interrupted Hold results only from the rejected capture', () => {
+  let time = 0;
+  vi.spyOn(performance, 'now').mockImplementation(() => time);
+  mount('B04');
+  const area = activate();
+  fireEvent.keyDown(area, { key: 'a', code: 'KeyA' });
+  time = 40;
+  fireEvent.keyUp(area, { key: 'a', code: 'KeyA' });
+  fireEvent.click(screen.getByRole('button', { name: 'Exit test area' }));
+  activate();
+  fireEvent.keyDown(area, { key: 'd', code: 'KeyD' });
+  time = 110;
+  fireEvent.keyUp(area, { key: 'd', code: 'KeyD' });
+  fireEvent.keyDown(area, { key: 'Backspace', code: 'Backspace' });
+  fireEvent.keyDown(area, { key: 'đ', code: '' });
+  expect(document.querySelectorAll('tbody tr')).toHaveLength(1);
+  expect(document.querySelector('tbody tr')).toHaveTextContent('KeyA40.0');
+  expect(document.querySelector('tbody')).not.toHaveTextContent('KeyD');
+  expect(document.querySelector('tbody')).not.toHaveTextContent('Backspace');
 });
 it.each(['B01', 'B02', 'B03', 'B05'])('does not schedule a live-hold interval for %s', (id) => {
   vi.useFakeTimers();
@@ -157,18 +253,24 @@ it('does not store or send captured key data automatically', () => {
   expect(storage).not.toHaveBeenCalled();
   expect(fetch).not.toHaveBeenCalled();
 });
-it('preserves the native composition flag and empty code in the inspector', () => {
+it('preserves raw IME keyCode/isComposing and empty code in the inspector', () => {
   mount('B05');
   const area = activate();
-  fireEvent.compositionStart(area);
-  fireEvent.keyDown(area, { key: 'a', code: 'KeyA', isComposing: false });
+  fireEvent.keyDown(area, {
+    key: 'Backspace',
+    code: 'Backspace',
+    keyCode: 229,
+    isComposing: false,
+  });
   expect(screen.getByRole('progressbar')).toHaveAttribute('value', '0');
   expect(screen.getByText('isComposing', { selector: 'dt' }).parentElement).toHaveTextContent(
     'false',
   );
-  fireEvent.compositionEnd(area);
-  fireEvent.keyDown(area, { key: 'x', code: '' });
+  expect(screen.getByText('keyCode', { selector: 'dt' }).parentElement).toHaveTextContent('229');
+  activate();
+  fireEvent.keyDown(area, { key: 'đ', code: '' });
   expect(screen.getByText('code', { selector: 'dt' }).parentElement).toHaveTextContent('""');
+  expect(document.querySelectorAll('.keyboard-event-table tbody tr')).toHaveLength(2);
 });
 it('filters event review without logging input typed outside capture, and clears only the log', () => {
   mount('B05');

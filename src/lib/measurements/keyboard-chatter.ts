@@ -60,6 +60,17 @@ export class KeyboardChatter {
     this.releases.clear();
   }
 
+  /** Independent aggregate checkpoint; no raw keyboard events are retained. */
+  clone() {
+    const copy = new KeyboardChatter();
+    copy.keys = new Map(
+      [...this.keys].map(([code, data]) => [code, { ...data, gaps: new Map(data.gaps) }]),
+    );
+    copy.down = new Set(this.down);
+    copy.releases = new Map(this.releases);
+    return copy;
+  }
+
   snapshot(threshold: number) {
     const limit = Math.min(CHATTER_MAX_THRESHOLD, Math.max(1, Math.round(threshold) || 1));
     return [...this.keys].map(([code, data]) => ({

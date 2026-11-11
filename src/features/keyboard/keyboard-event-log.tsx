@@ -87,6 +87,7 @@ export function KeyboardEventLog({
                         'modifiers',
                         'isComposing',
                         'isTrusted',
+                        'keyCode',
                         'timestamp',
                       ].map((name) => (
                         <th key={name}>{name}</th>
@@ -104,6 +105,7 @@ export function KeyboardEventLog({
                         <td>{log.modifiers}</td>
                         <td>{String(log.isComposing)}</td>
                         <td>{String(log.isTrusted)}</td>
+                        <td>{log.keyCode}</td>
                         <td>{log.timestamp.toFixed(2)}</td>
                       </tr>
                     ))}

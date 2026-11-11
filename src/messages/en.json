@@ -540,8 +540,8 @@
     "remaining": "Key codes not yet received: {count}",
     "outsideLayout": "Received codes outside the selected diagram",
     "localNote": "Keys are captured only in the activated test area; data stays in tab memory, without upload or automatic storage.",
-    "unidentified": "{count} events had no code. They do not count toward coverage, rollover or chatter.",
-    "composing": "{count} events belonged to IME/composition. They are excluded from physical-key statistics.",
+    "unidentified": "{count} events with an unidentified key/code stopped capture.",
+    "composing": "{count} events with an IME signal stopped capture.",
     "codeLimit": "This session reached 256 key codes; new codes appear only in the log. Reset to begin a new session.",
     "bestCombination": "Largest combination observed",
     "rolloverNote": "Keeps the first combination that reached the session maximum. This does not certify NKRO/6KRO; the browser/OS may intercept keys.",
@@ -562,6 +562,20 @@
       "unavailable": "Interrupted by unavailable key code"
     },
     "diagram": "Keyboard diagram: {layout}",
-    "diagramHint": "The diagram scrolls horizontally. Tab/Esc ends capture; when inactive, focus the diagram and use arrow keys to scroll. Test with real keys; tapping a keycap does not generate a result."
+    "diagramHint": "The diagram scrolls horizontally. Tab/Esc ends capture; when inactive, focus the diagram and use arrow keys to scroll. Test with real keys; tapping a keycap does not generate a result.",
+    "inputHelpTitle": "Before testing your keyboard",
+    "inputHelp": "If you use UniKey/EVKey, switch it to E. For an operating system input method, select English (ENG). An input method can replace text and generate Backspace; this website cannot recover physical keys intercepted by the input method.",
+    "inputPaused": "Capture stopped: ambiguous keyboard input",
+    "inputIssue": {
+      "composition": "An IME/composition signal was detected. Statistics from the most recent activation were discarded to avoid counting replacement Backspace events or reporting misleading chatter. Earlier capture results are preserved.",
+      "unavailable": "The browser sent an event with an unidentified key/code. An input method or another input layer may be involved. Statistics from the most recent activation were discarded; earlier capture results are preserved."
+    },
+    "inputRecovery": "This does not establish a keyboard fault. Switch to E/ENG, then select Activate test area to retry. If enabled, the log contains browser events, not proof of physical key presses.",
+    "legend": "Key state legend",
+    "keyState": {
+      "untested": "Not received",
+      "tested": "Received · marked ✓",
+      "held": "Held down"
+    }
   }
 }
