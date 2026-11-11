@@ -130,6 +130,9 @@ test('all five keyboard tools remain accessible with recorded data in both theme
               .analyze()
           ).violations,
         ).toEqual([]);
+        expect(
+          (await new AxeBuilder({ page }).withRules(['heading-order']).analyze()).violations,
+        ).toEqual([]);
       }
       await page.emulateMedia({ reducedMotion: 'reduce' });
       for (const width of [320, 375, 768, 1440]) {

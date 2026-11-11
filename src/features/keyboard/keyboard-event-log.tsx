@@ -33,7 +33,7 @@ export function KeyboardEventLog({
   }, [logs, open, query, type]);
   return (
     <section className="keyboard-log">
-      <h3>{t('eventLog')}</h3>
+      <h2>{t('eventLog')}</h2>
       <p className="small">
         {t('keyboardTools.logWindow', { retained: logs.length, total: totalEvents })}
       </p>

@@ -190,7 +190,7 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
       </div>
       {toolId === 'B02' && (
         <section className="keyboard-best">
-          <h3>{t('keyboardTools.bestCombination')}</h3>
+          <h2>{t('keyboardTools.bestCombination')}</h2>
           <p className="small">{t('keyboardTools.rolloverNote')}</p>
           <div className="key-list" data-max-combination>
             {maximumCodes.length
@@ -205,7 +205,7 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
       )}
       {toolId === 'B05' && (
         <section className="keyboard-latest">
-          <h3>{t('keyboardTools.latestEvent')}</h3>
+          <h2>{t('keyboardTools.latestEvent')}</h2>
           <p className="small">{t('keyboardTools.flagsNote')}</p>
           <dl className="results-grid">
             {(
@@ -239,7 +239,9 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
       )}
       {toolId === 'B03' && (
         <>
-          <h3 style={{ marginTop: 28 }}>{t('suspicious')}</h3>
+          <h2 className="keyboard-section-title" style={{ marginTop: 28 }}>
+            {t('suspicious')}
+          </h2>
           <p className="small">{t('keyboardTools.chatterNote')}</p>
           <div className="table-scroll">
             <table data-chatter>
@@ -271,7 +273,9 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
       )}
       {toolId === 'B04' && (
         <>
-          <h3 style={{ marginTop: 28 }}>{t('holdDuration')}</h3>
+          <h2 className="keyboard-section-title" style={{ marginTop: 28 }}>
+            {t('holdDuration')}
+          </h2>
           <div className="key-list">
             {held.map((code) => (
               <span className="key-tag" key={code}>

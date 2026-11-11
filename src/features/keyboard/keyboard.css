@@ -152,3 +152,10 @@
     width: 100%;
   }
 }
+.keyboard-section-title,
+.keyboard-best h2,
+.keyboard-latest h2,
+.keyboard-log h2 {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
