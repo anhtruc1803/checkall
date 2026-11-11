@@ -1,5 +1,17 @@
 # Kiểm thử
 
+## Sửa D/Backspace và giao diện — source 3191485, 11/11/2026
+
+[CI 42991483325](https://github.com/anhtruc1803/checkall/actions/runs/42991483325) success verify/Docker: build 106 trang, typecheck/lint/secret scan, **305 unit trên 34 file, 354 E2E pass/6 skip**, không failure/flaky. Chromium/mobile 90 pass mỗi cấu hình; Firefox/WebKit 87 pass và 3 skip native microphone/camera/gamepad policy mỗi cấu hình. E2E 937530.787 ms; Docker job 84 giây, health/private Node/Nginx/34 route-policy/restart/stop-start đạt. Shutdown SIGTERM 143, OOM false/Error rỗng; trạng thái health sau khi container dừng không phải health đang chạy. Native audio smoke ba browser pass và context closed, không phải loa/microphone thật.
+
+Local bản cuối: toàn bộ 305 unit/nhóm bàn phím 32, regression mới 8/8 (80837.953 ms), bộ bàn phím 36/36 (274237.126 ms). Trên HTTPS public đúng source 3191485: **24/24 pass**, không skip/flaky/failure (106732.597 ms), Chromium/Firefox/WebKit. Đã xem ảnh UI Light/Dark/mobile từ domain. Giữ 40 công cụ, 80 route công cụ và 100 URL sitemap.
+
+Ca mới kiểm tra D ba lần, Backspace thật tách riêng, auto-repeat/maximum/hold rollback, Backspace trước unknown, IME 229 khi isComposing=false, compositionstart, Process, key/code Unidentified, bỏ 22 Backspace tiếp sau dừng, giữ lượt trước và retry. Checkpoint Chatter kiểm tra copy histogram độc lập. Có Axe cảnh báo VI/EN Dark/Light, hình học focus/hint; giữ bộ năm công cụ responsive/chữ 200%/heading-order và privacy/cleanup hiện có. Raw inspector giữ keyCode, key/code/isComposing không sửa thành dữ liệu tưởng tượng.
+
+Các fixture có chú thích; không xác nhận UniKey/EVKey/keyboard vật lý. Lượt đầu vướng selector alert trùng Next.js; đã scope cảnh báo riêng. Rà tiếp phát hiện Firefox không luôn áp dụng focus-visible sau click, sửa focus cho vùng capture thay vì bỏ assertion. Một timeout WebKit xảy ra khi hai suite chạy đồng thời; bài hai locale/bốn Axe có timeout 90 giây, giữ đủ assertion. Kết quả checkpoint không thay thế run cuối. Manual QA cụ thể tại KEYBOARD-IMPROVEMENTS.md; Safari/IME thật/screen reader/OS zoom và Final Acceptance tiếp tục mở.
+
+[Lighthouse public 42994636551](https://github.com/anhtruc1803/checkall/actions/runs/42994636551): chín lượt sạch đúng source 3191485, median **95/96/95** cho /vi, /vi/keyboard/tester, /en/keyboard/events; mọi lượt 93–96, A/BP/SEO 100. Kết quả thật và giới hạn tại [QA JSON](qa/keyboard-input-method-2026-11-11.json).
+
 ## Cải tiến bàn phím — 11/11/2026
 
 Source 4e26811: [CI 42983550339](https://github.com/anhtruc1803/checkall/actions/runs/42983550339) success verify/Docker. Build 106 trang/typecheck/lint/secret scan, **292 unit trên 34 file và 346 E2E đạt/6 skip**, không failure/flaky. Chromium/mobile 88 đạt mỗi cấu hình; Firefox/WebKit 85 đạt/ba skip native microphone/camera/gamepad policy mỗi cấu hình. Full E2E 941394.031 ms. Không dùng CI bị hủy của7b/db hoặc local snapshot cũ nhận source mới đã nghiệm thu.

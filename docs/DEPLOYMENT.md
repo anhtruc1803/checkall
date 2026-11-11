@@ -1,6 +1,18 @@
 # Triển khai và vận hành
 
-## Bản bàn phím đang phục vụ — 11/11/2026
+## Bản sửa IME đang phục vụ — 11/11/2026
+
+Source **3191485048bc024c00376db258f5b939b426e39a**. Image device-lab:staging-3191485-20261111, ID **sha256:9db253dfdf080fb1f4379351bdcc54bc0ced34c4702ea7716a1e7abd58370e55**. Current→/opt/device-lab/releases/3191485. Archive Git tracked kiểm SHA256 **0f3bb84858740f2d78211d410c23b81141039f56e905ac548d226b508d405d42**; .env chỉ trên host. Chuyển sau khi CI source đúng và Lighthouse lab đạt; kiểm đúng image/RELEASE_COMMIT trước thay.
+
+Giữ release/image 4e26811 và backup /opt/device-lab/shared/nginx.conf.before-keyboard-ime-20261111. Chỉ recreate app, kiểm health, cập nhật release marker trong cùng inode của file Nginx, syntax/reload và TLS origin qua curl resolve loopback; xác nhận body có keyboard-input-help rồi mới chuyển symlink. Có trap phục hồi nếu activation thất bại; không nhận đây là diễn tập rollback đã chạy.
+
+Kiểm lúc 09:20:21 UTC: healthy, OOM false/Error rỗng, user nextjs, read-only, capDrop ALL/no-new-privileges, memory 805306368 byte/PID 256. Node 3000 không publish; Nginx giữ 80/443, logs startup và nginx -t đạt, Certbot timer active. Public HTTP308→HTTPS, VI/EN/canonical/10 route bàn phím đủ giao diện mới, health+34 route/policy, sitemap 100 URL; public E2E24/24 pass. Không đổi DNS/proxy/dashboard, prune/reboot, không chạy lại renewal dry-run hoặc restart/shutdown VPS để thay bằng chứng Docker CI.
+
+CSP public vẫn thiếu trên hai homepage ở 09:20:10 UTC; origin giữ cấu hình CSP. Proxy do người dùng quản lý, TLS proxy→origin chưa kiểm chứng. Không suy rộng origin TLS thành kiểm chứng chế độ của proxy. Thiết bị thật/Safari/manual và Final Acceptance còn mở.
+
+[Lighthouse public 42994636551](https://github.com/anhtruc1803/checkall/actions/runs/42994636551): chín lượt sạch đúng source 3191485, median **95/96/95** cho /vi, /vi/keyboard/tester, /en/keyboard/events; mọi lượt 93–96, A/BP/SEO 100. Kết quả thật và giới hạn tại [QA JSON](qa/keyboard-input-method-2026-11-11.json).
+
+## Lịch sử bản bàn phím 4e26811 — 11/11/2026
 
 Source **4e26811527f5c05e1bbc0ef421597505e14d47fc**, tag `device-lab:staging-4e26811-20261111`, image VPS `sha256:8beca3e61a465ffd72bcf0921c880f9db284fb4ab9b8cfc01706e68d8100e458`. Current trỏ tới `/opt/device-lab/releases/4e26811`; giữ ca2344f và backup `/opt/device-lab/shared/nginx.conf.before-keyboard-20261111`. Hai image candidate 7b/db chưa đưa vào phục vụ; không nhận chúng là bản rollback đang dùng trước đó. Archive Git tracked kiểm SHA256 trước build, .env chỉ trên host; chuyển sau CI source 4e/lab đạt.
 

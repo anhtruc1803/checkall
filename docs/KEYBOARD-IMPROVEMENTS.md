@@ -2,6 +2,8 @@
 
 Ngày: 11/11/2026. Phạm vi: B01–B05 đang công bố; giữ tổng40 công cụ và route VI/EN. Không thêm Phase 3, không viết lại Tool Registry hoặc cơ chế tải engine.
 
+Bản hiện hành **3191485** đã sửa luồng UniKey/EVKey và focus, giữ40 công cụ. Kết quả hiện tại tại TESTING.md/PERFORMANCE.md/DEPLOYMENT.md; các checkpoint4e bên dưới là lịch sử. Chi tiết xử lý và manual QA bộ gõ ở phần cuối tài liệu.
+
 ## Vấn đề và đề xuất đã triển khai
 
 | Công cụ             | Hiện trạng phát hiện                                                                          | Thay đổi                                                                                                                                                                                                        |
@@ -49,7 +51,7 @@ Lỗi Exit đã được tái hiện bằng browser automation: capture trở l�
 
 Checkpoint cuối trước CI: build 106/typecheck/lint/292 unit34 file đạt; keyboard E2E 28/28 bốn project đạt không skip/flaky. Native Stop probe sau sửa trả data-active=false; before probe đã trả true. Kết quả source mới trên CI/Linux, Performance và website sẽ bổ sung sau khi thực chạy; không dùng QA của sourceca2344f làm bằng chứng.
 
-## Nghiệm thu phần mềm source 4e26811
+## Lịch sử nghiệm thu phần mềm source4e26811
 
 [CI 42983550339](https://github.com/anhtruc1803/checkall/actions/runs/42983550339) success cả verify/Docker. Build 106 trang/typecheck/lint/secret scan, **292 unit trên 34 file và 346 E2E đạt/6 skip**, không failure/flaky. Chromium/mobile 88 đạt mỗi cấu hình; Firefox/WebKit 85 đạt/ba skip native microphone/camera/gamepad policy mỗi cấu hình. E2E 941394.031 ms. Đã đọc log/JSON, giữ đủ 40 công cụ/80 route công cụ/100 URL nội dung; bộ kiểm thử không bị giảm. Local chức năng28 ở snapshot db và bốn bài accessibility toàn nhóm ở source 4e đều đạt; full CI là bằng chứng source cuối. Public keyboard **18/18 đạt** trên Chromium/Firefox/WebKit, không skip/failure/flaky, 61862.528 ms. Không coi WebKit là Safari thực tế hoặc skip native policy là enforcement đã xác minh.
 
@@ -82,3 +84,7 @@ Tham chiếu: [W3C UI Events](https://www.w3.org/TR/uievents/) (IME và legacy k
 - Ở V: thử dd, aa, ee, oo, ow/uw và xóa bằng Backspace. Nếu nhận composition/229/Process/unknown, công cụ phải dừng và khôi phục lượt trước, không báo switch hỏng. Nếu browser chỉ gửi Backspace thông thường mà không có tín hiệu khác, ghi nhận giới hạn và chuyển E để thử phím.
 - Thử cảnh báo khi có phím đang giữ, ở Chatter và Hold; không giữ phím kẹt/timer sau dừng. Kích hoạt lại ở E, thống kê tăng từ các lượt hợp lệ trước đó. Reset xóa cả thống kê và cảnh báo.
 - Rà Light/Dark, zoom OS200%, screen reader đọc cảnh báo, Tab/Esc thoát, sơ đồ cuộn khi không thu. WebKit automation không thay thế Safari thực tế.
+
+### Xác minh phần mềm bản sửa 3191485
+
+CI 42991483325 success:305 unit/34 file,354 E2E pass/6 skip, build 106/typecheck/lint/secret scan và Docker đạt. Local bàn phím36/36, public 24/24 Chromium/Firefox/WebKit đạt; giữ 40 công cụ. Lighthouse lab 18 lượt median 97/98/99 và public 9 lượt median 95/96/95, A/BP/SEO 100. Website đã phục vụ 3191485, image 9db253df; file chính vẫn trong features/keyboard, keyboard-chatter.ts, messages VI/EN và ba nhóm test bàn phím. Chi tiết tại TESTING/PERFORMANCE/DEPLOYMENT và [QA JSON](qa/keyboard-input-method-2026-11-11.json). Đây là xác minh software/fixture, không thay thế ma trận UniKey/EVKey/keyboard/Safari thật; Final Acceptance còn mở.

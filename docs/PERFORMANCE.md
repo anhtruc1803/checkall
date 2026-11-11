@@ -1,6 +1,32 @@
 # Hiệu năng công cụ bàn phím — 11/11/2026
 
-## Kết quả cuối
+## Bản sửa luồng nhập 3191485 — 11/11/2026
+
+[So sánh 42991541981](https://github.com/anhtruc1803/checkall/actions/runs/42991541981): baseline 097da5ea2e2bc09d4c6ecfce89ddc5b68163eb72 và candidate 3191485048bc024c00376db258f5b939b426e39a, cùng VM, build hai bản trước khi đo tuần tự. Ba trang đại diện, ba lượt/trang/bản, đủ 18 lượt sạch/pageVerified, không bỏ lượt thấp. Median **97/98/99 →97/98/99**, từng lượt 97–100; A/BP/SEO 100 toàn bộ. Đạt mục tiêu≥90 trong bộ mẫu, không suy rộng thành mọi tool hoặc field performance.
+
+| Trang               | P trước → sau | FCP=LCP trước → sau ms | TBT trước → sau ms | CLS sau | JS trước → sau byte |
+| ------------------- | ------------: | ---------------------: | -----------------: | ------: | ------------------: |
+| /vi                 |       97 → 97 |        1071.1 → 1067.0 |      202.0 → 191.0 | 0.00293 |     192805 → 192808 |
+| /vi/keyboard/tester |       98 → 98 |        1066.2 → 1064.9 |      164.0 → 172.0 | 0.00038 |     203438 → 203876 |
+| /en/keyboard/events |       99 → 99 |        1064.0 → 1064.7 |       93.5 → 112.0 | 0.00029 |     203438 → 203876 |
+
+Nhóm bàn phím JS +438 byte, CSS 16544→16854 byte (+310); homepage JS 192805→192808, CSS 14784 giữ nguyên. Font/image không đổi; không thêm ảnh ngoài inlineSVG. TBT keyboard tăng 8 và 18,5 ms trong bộ mẫu; không tuyên bố bản sửa làm mọi metric nhanh hơn. BenchmarkIndex trước 1505.5–2050.5/sau 1774–1993; không có bằng chứng để quy toàn bộ khác biệt CPU cho source. Giữ tính năng/SEO/accessibility, không thay font/dependency hoặc cắt nội dung để lấy điểm.
+
+Lighthouse 13.6/Chromium 156/mobile simulated RTT 150 ms,1638,4 Kbps, CPU ×4, profile mới/tắt extension mỗi lượt; không Script ngoài origin hoặc dấu hiệu chèn được phát hiện. Linux CI --no-sandbox chỉ ở runner tạm, không đổi bảo vệ Windows. Không so điểm VM này với lượt 4e trước đây như cùng điều kiện. Run 42991484746 bị từ chối ở validation vì after_ref SHA ngắn, chưa đo; chỉ run đúng 42991541981 cung cấp dữ liệu trên.
+
+### HTTPS public sau triển khai
+
+[Lighthouse public 42994636551](https://github.com/anhtruc1803/checkall/actions/runs/42994636551): chín lượt sạch đúng source 3191485, median **95/96/95** cho /vi, /vi/keyboard/tester, /en/keyboard/events; mọi lượt 93–96, A/BP/SEO 100. Kết quả thật và giới hạn tại [QA JSON](qa/keyboard-input-method-2026-11-11.json).
+
+| Trang               | Ba lượt P    | Median P | FCP=LCP ms | TBT ms | CLS | Speed Index ms |
+| ------------------- | ------------ | -------: | ---------: | -----: | --: | -------------: |
+| /vi                 | 95 / 93 / 96 |       95 |     1095.8 |  209.5 |   0 |         3561.7 |
+| /vi/keyboard/tester | 96 / 96 / 96 |       96 |      949.4 |  200.0 |   0 |         3374.9 |
+| /en/keyboard/events | 95 / 95 / 94 |       95 |      943.0 |  213.0 |   0 |         3528.8 |
+
+Chạy sau khi kết thúc public E2E, không đồng thời build/E2E trên runner đo. Profile mới mỗi lượt, không extension/Script ngoài origin hoặc dấu hiệu chèn được phát hiện. BenchmarkIndex 1861.5–2057, CPU AMD EPYC 7763 64-Core Processor; khác VM lab, không diễn giải chênh lệch điểm như hồi quy do source. Chỉ nhận Performance ≥90 cho bộ mẫu hiện tại; field performance/phiên thao tác dài vẫn cần đo riêng. Raw HTML/JSON/browser log nằm trong artifact của run; QA JSON giữ đủ 27 phép đo cuối (18 lab +9 public).
+
+## Lịch sử kết quả source 4e26811
 
 Source **4e26811527f5c05e1bbc0ef421597505e14d47fc**. Giữ 40 công cụ VI/EN. Mục tiêu median Performance mobile≥90 đạt trong bộ mẫu bảy trang: lab **99/100/100/99/100/99/100**, HTTPS public **97/95/97/97/95/97/97**. Bao gồm cả hai homepage và đủ năm công cụ bàn phím; mỗi trang ba lượt luân phiên, không bỏ lượt thấp.
 

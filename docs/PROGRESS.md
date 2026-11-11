@@ -588,3 +588,17 @@ Lighthouse cuối 42 lượt so sánh cùng VM/21 lượt HTTPS public: lab 99/1
 Bổ sung kiểm tra: native input D lặp và Backspace thật hoạt động đúng trên Chromium; fixture rollback và IME229 đạt ở cả browser được chạy. Phát hiện Firefox không luôn áp dụng :focus-visible sau kích hoạt bằng chuột; đã đổi riêng vùng thu sang :focus để giữ chỉ báo focus nhất quán, không bỏ assertion. Bài VI/EN có bốn lượt Axe được cấp timeout90 giây, giữ nguyên toàn bộ kiểm tra. Đang build lại và chạy bộ cuối; các checkpoint thất bại/timeout không được nhận là nghiệm thu.
 
 Checkpoint bản sửa cuối: build106 trang/typecheck/lint/Prettier/secret scan đạt; toàn bộ305 unit trên34 file và nhóm bàn phím32/32 đạt. Hai bài regression mới × Chromium/Firefox/WebKit/mobile đạt8/8 sau sửa focus Firefox, không skip. Bao gồm D ba lần, Backspace thật, rollback Backspace trước unknown, IME229 không isComposing, loại22 Backspace sau dừng, retry, Axe cảnh báo VI/EN Dark/Light và hình học focus/hint. Raw JSON giữ tại artifacts (không commit). Chưa dùng kết quả này thay thế full CI/Lighthouse/public QA.
+
+## Kết quả bản sửa 3191485 trên CI và website — 11/11/2026
+
+Đã push source 3191485048bc024c00376db258f5b939b426e39a. CI 42991483325 success: build 106/typecheck/lint/secret scan, 305 unit trên 34 file, 354 E2E pass/6 skip, không failure/flaky; Docker smoke đạt. Local bàn phím 36/36, public 24/24 ba browser đạt; VI/EN, Dark/Light, responsive/chữ 200%, cảnh báo IME, D lặp/Backspace thật, raw flags và rollback đầy đủ. Firefox/WebKit mỗi cấu hình 3 skip native permission-policy vẫn là chưa kiểm chứng, WebKit không phải Safari thật.
+
+Lighthouse lab 42991541981 đủ 18 lượt, baseline 097da5e→3191485 median 97/98/99 giữ nguyên; A/BP/SEO 100. Đã triển khai image 9db253df/current→3191485, giữ 4e26811/backup Nginx. Healthy/private Node/read-only/user nextjs/logs/HTTP/policy/canonical/sitemap 100 đạt, không đổi DNS/proxy. Public CSP vẫn thiếu, TLS proxy→origin chưa xác minh.
+
+Đã chốt Lighthouse public 42994636551: 9 lượt sạch, median 95/96/95, mọi lượt 93–96, A/BP/SEO 100. QA JSON tại qa/keyboard-input-method-2026-11-11.json giữ 27 phép đo và bằng chứng CI/local/public/Docker/deploy; đã cập nhật PROGRESS/TESTING/PERFORMANCE/DEPLOYMENT/KEYBOARD-IMPROVEMENTS. Không coi fixture là xác minh UniKey/EVKey thật, không kết luận switch hỏng hoặc khôi phục được D bị bộ gõ chặn. Final Acceptance tiếp tục mở; tiếp theo manual QA bộ gõ/keyboard/Safari/screen reader.
+
+**Đã hoàn thành và xác minh:** nhận tín hiệu IME/unknown, dừng và rollback lượt nhiễu, giữ lượt trước, không đổi D từ code thiếu; Backspace thật/repeat/Chatter/Hold/rollover, UI/focus VI/EN, kiểm thử phần mềm đa browser/a11y/responsive/privacy, build 106, CI/Docker/deploy/public và Performance ≥90 trong bộ mẫu.
+
+**Đã triển khai nhưng chưa xác minh thực tế:** cơ chế bảo vệ khi dùng các phiên bản UniKey/EVKey/OS của người dùng; chưa kiểm thử trên bộ gõ thật. **Chưa hoàn thành:** manual QA/field performance và các tiêu chí Final Acceptance đang mở. **Không thể kiểm chứng trong lượt này:** bàn phím vật lý/Safari thật/screen reader/OS zoom, lớp nhập liệu chỉ phát Backspace thường không có tín hiệu khác, TLS proxy→origin. Không kết luận lỗi phần cứng hoặc tự chứng nhận Phase 1/2 hoàn tất.
+
+Tiếp theo: người dùng chuyển UniKey/EVKey từ V sang E, tải lại trang và kiểm tra D/Backspace trên keyboard thật; ghi phiên bản nếu còn bất thường. Không tự thay cấu hình bộ gõ/OS của người dùng.
