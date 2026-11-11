@@ -1,0 +1,4342 @@
+{
+  "date": "2026-11-11",
+  "sourceCommit": "4e26811527f5c05e1bbc0ef421597505e14d47fc",
+  "finalAcceptance": false,
+  "physicalHardwareVerified": false,
+  "ciRun": "https://github.com/anhtruc1803/checkall/actions/runs/42983550339",
+  "cancelledRuns": [
+    {
+      "source": "7b067ba",
+      "run": 42980691065
+    },
+    {
+      "source": "7b067ba",
+      "run": 42980754564
+    },
+    {
+      "source": "db864dd",
+      "run": 42981645133
+    }
+  ],
+  "unit": {
+    "passed": 292,
+    "files": 34
+  },
+  "buildPages": 106,
+  "localInitial": {
+    "startTime": "2026-11-11T07:10:16.672Z",
+    "duration": 33826.748,
+    "expected": 6,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  },
+  "localFunctional": {
+    "startTime": "2026-11-11T07:45:51.017Z",
+    "duration": 206467.946,
+    "expected": 28,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "localFunctionalSource": "db864dd16beb9537ad66605e3775709324201062",
+  "localHeading": {
+    "startTime": "2026-11-11T08:00:48.500Z",
+    "duration": 204373.368,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "localHeadingSource": "4e26811527f5c05e1bbc0ef421597505e14d47fc",
+  "ciStats": {
+    "startTime": "2026-11-11T08:02:31.474Z",
+    "duration": 941394.031,
+    "expected": 346,
+    "skipped": 6,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "projects": {
+    "chromium": {
+      "expected": 88
+    },
+    "firefox": {
+      "expected": 85,
+      "skipped": 3
+    },
+    "webkit": {
+      "expected": 85,
+      "skipped": 3
+    },
+    "mobile": {
+      "expected": 88
+    }
+  },
+  "publicStats": {
+    "startTime": "2026-11-11T08:22:55.401Z",
+    "duration": 61862.528,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "publicHttp": {
+    "checkedAt": "2026-11-11T08:22:34.178Z",
+    "pages": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "release": "4e26811",
+        "cspPresent": false,
+        "problemChooserPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "release": "4e26811",
+        "cspPresent": false,
+        "problemChooserPresent": true,
+        "canonical": true
+      }
+    ],
+    "tools": [
+      {
+        "locale": "vi",
+        "slug": "tester",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "vi",
+        "slug": "rollover",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "vi",
+        "slug": "chatter",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "vi",
+        "slug": "hold",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "vi",
+        "slug": "events",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "en",
+        "slug": "tester",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "en",
+        "slug": "rollover",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "en",
+        "slug": "chatter",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "en",
+        "slug": "hold",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      },
+      {
+        "locale": "en",
+        "slug": "events",
+        "status": 200,
+        "release": "4e26811",
+        "progressPresent": true,
+        "diagramPresent": true,
+        "canonical": true
+      }
+    ],
+    "http": {
+      "status": 308,
+      "location": "https://nguyenanhtruc.io.vn/vi"
+    },
+    "sitemapUrls": 100
+  },
+  "docker": {
+    "jobSeconds": 81,
+    "containers": [
+      {
+        "service": "app",
+        "state": "running",
+        "health": "healthy",
+        "ports": "3000/tcp",
+        "publishers": [
+          {
+            "URL": "",
+            "TargetPort": 3000,
+            "PublishedPort": 0,
+            "Protocol": "tcp"
+          }
+        ]
+      },
+      {
+        "service": "nginx",
+        "state": "running",
+        "health": "",
+        "ports": "127.0.0.1:8080->80/tcp",
+        "publishers": [
+          {
+            "URL": "127.0.0.1",
+            "TargetPort": 80,
+            "PublishedPort": 8080,
+            "Protocol": "tcp"
+          }
+        ]
+      }
+    ],
+    "shutdown": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 143,
+      "Error": "",
+      "StartedAt": "2026-11-11T08:00:57.79491726Z",
+      "FinishedAt": "2026-11-11T08:01:04.591103157Z",
+      "Health": {
+        "Status": "unhealthy",
+        "FailingStreak": 0,
+        "Log": [
+          {
+            "Start": "2026-11-11T08:00:55.835626011Z",
+            "End": "2026-11-11T08:00:56.025185197Z",
+            "ExitCode": 0,
+            "Output": ""
+          },
+          {
+            "Start": "2026-11-11T08:01:02.964686668Z",
+            "End": "2026-11-11T08:01:03.185810397Z",
+            "ExitCode": 0,
+            "Output": ""
+          }
+        ]
+      }
+    }
+  },
+  "nativeAudioSmoke": {
+    "physicalHardwareVerified": false,
+    "results": [
+      {
+        "browser": "chromium",
+        "state": "passed",
+        "sampleRate": 44100,
+        "contextState": "closed"
+      },
+      {
+        "browser": "firefox",
+        "state": "passed",
+        "sampleRate": 48000,
+        "contextState": "closed"
+      },
+      {
+        "browser": "webkit",
+        "state": "passed",
+        "sampleRate": 44100,
+        "contextState": "closed"
+      }
+    ]
+  },
+  "performance": {
+    "comparisonRun": "https://github.com/anhtruc1803/checkall/actions/runs/42983672718",
+    "publicRun": "https://github.com/anhtruc1803/checkall/actions/runs/42986572779",
+    "medians": {
+      "before": [
+        {
+          "path": "/vi",
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.755,
+            "lcpMs": 1062.755,
+            "tbtMs": 142.5,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1062.755,
+            "jsBytes": 192789,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 36828,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en",
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.2434,
+            "lcpMs": 1062.2434,
+            "tbtMs": 73.99999999999977,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1062.2434,
+            "jsBytes": 192789,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 34716,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 910.9459999999999,
+            "lcpMs": 910.9459999999999,
+            "tbtMs": 92.59619999999995,
+            "cls": 0.0006647324516558022,
+            "speedIndexMs": 910.9459999999999,
+            "jsBytes": 201914,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 24159,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 913.0628999999999,
+            "lcpMs": 913.0628999999999,
+            "tbtMs": 71.5,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 913.0628999999999,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22806,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "scores": {
+            "performance": 100,
+            "accessibility": 99,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 909.8933999999999,
+            "lcpMs": 909.8933999999999,
+            "tbtMs": 77.00000000000023,
+            "cls": 0.000421101654977238,
+            "speedIndexMs": 909.8933999999999,
+            "jsBytes": 201914,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 24446,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 911.3325,
+            "lcpMs": 911.3325,
+            "tbtMs": 75,
+            "cls": 0.00118588130157797,
+            "speedIndexMs": 911.3325,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22832,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en/keyboard/events",
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 912.1560999999999,
+            "lcpMs": 912.1560999999999,
+            "tbtMs": 71.5,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 912.1560999999999,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22842,
+            "cssBytes": 14755
+          }
+        }
+      ],
+      "after": [
+        {
+          "path": "/vi",
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1064.9056,
+            "lcpMs": 1064.9056,
+            "tbtMs": 149,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1064.9056,
+            "jsBytes": 192805,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 37631,
+            "cssBytes": 14775
+          }
+        },
+        {
+          "path": "/en",
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.7383,
+            "lcpMs": 1062.7383,
+            "tbtMs": 76,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1062.7383,
+            "jsBytes": 192805,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 35606,
+            "cssBytes": 14775
+          }
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.5162,
+            "lcpMs": 1062.5162,
+            "tbtMs": 74,
+            "cls": 0.0003799330223956358,
+            "speedIndexMs": 1062.5162,
+            "jsBytes": 203438,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 25419,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.328,
+            "lcpMs": 1060.328,
+            "tbtMs": 140.99999999999955,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1060.328,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24137,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1063.9168,
+            "lcpMs": 1063.9168,
+            "tbtMs": 73,
+            "cls": 0.0001719632972386238,
+            "speedIndexMs": 1063.9168,
+            "jsBytes": 203438,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 25852,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.5001,
+            "lcpMs": 1061.5001,
+            "tbtMs": 138.99999999999977,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1061.5001,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24117,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/en/keyboard/events",
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.8588,
+            "lcpMs": 1060.8588,
+            "tbtMs": 80,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1060.8588,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24434,
+            "cssBytes": 16535
+          }
+        }
+      ],
+      "public": [
+        {
+          "path": "/vi",
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1095.92,
+            "lcpMs": 1095.92,
+            "tbtMs": 186.5,
+            "cls": 0,
+            "speedIndexMs": 2985.768650429772,
+            "jsBytes": 189784,
+            "fontBytes": 99852,
+            "imageBytes": 0,
+            "documentBytes": 28990,
+            "cssBytes": 12710
+          }
+        },
+        {
+          "path": "/en",
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1000.15,
+            "lcpMs": 1000.15,
+            "tbtMs": 246.4999999999999,
+            "cls": 0,
+            "speedIndexMs": 3281.339595508986,
+            "jsBytes": 189761,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 27549,
+            "cssBytes": 12711
+          }
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 952.37,
+            "lcpMs": 952.37,
+            "tbtMs": 190,
+            "cls": 0,
+            "speedIndexMs": 3005.747277813093,
+            "jsBytes": 198381,
+            "fontBytes": 77342,
+            "imageBytes": 0,
+            "documentBytes": 23458,
+            "cssBytes": 13616
+          }
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1013.729,
+            "lcpMs": 1013.729,
+            "tbtMs": 191.5,
+            "cls": 0,
+            "speedIndexMs": 2888.7124697908093,
+            "jsBytes": 198359,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22113,
+            "cssBytes": 13595
+          }
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 960.689,
+            "lcpMs": 960.689,
+            "tbtMs": 232,
+            "cls": 0,
+            "speedIndexMs": 3222.2727413250145,
+            "jsBytes": 198359,
+            "fontBytes": 99875,
+            "imageBytes": 0,
+            "documentBytes": 23730,
+            "cssBytes": 13595
+          }
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1008.316,
+            "lcpMs": 1008.316,
+            "tbtMs": 186.5000000000001,
+            "cls": 0,
+            "speedIndexMs": 3153.9866199999974,
+            "jsBytes": 198381,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22156,
+            "cssBytes": 13595
+          }
+        },
+        {
+          "path": "/en/keyboard/events",
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1017.237,
+            "lcpMs": 1017.237,
+            "tbtMs": 184.5,
+            "cls": 0,
+            "speedIndexMs": 3078.2807981178253,
+            "jsBytes": 198357,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 22392,
+            "cssBytes": 13616
+          }
+        }
+      ]
+    },
+    "before": {
+      "label": "ui-before",
+      "sourceCommit": "801a05a878133a51a0ecc904816462d6ee6d89b2",
+      "execution": {
+        "node": "v24.22.2",
+        "platform": "linux",
+        "osRelease": "7.0.0-1017-azure",
+        "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+        "cpuCount": 4,
+        "memoryBytes": 16760348672,
+        "githubRunId": "42983672718"
+      },
+      "baseUrl": "http://127.0.0.1:3000",
+      "certificatePinUsed": false,
+      "measurements": [
+        {
+          "path": "/vi",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1071.6263,
+            "lcpMs": 1071.6263,
+            "tbtMs": 151,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1071.6263,
+            "jsBytes": 192789,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 36828,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2458.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-1.html"
+        },
+        {
+          "path": "/en",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1063.6086,
+            "lcpMs": 1063.6086,
+            "tbtMs": 73.99999999999977,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1063.6086,
+            "jsBytes": 192789,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 34716,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2431.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-1.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 910.9459999999999,
+            "lcpMs": 910.9459999999999,
+            "tbtMs": 153.76350000000002,
+            "cls": 0.0006647324516558022,
+            "speedIndexMs": 910.9459999999999,
+            "jsBytes": 201914,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 24159,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2405.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-1.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 915.0459000000001,
+            "lcpMs": 915.0459000000001,
+            "tbtMs": 69.5,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 915.0459000000001,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22806,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2358.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-1.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 99,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 915.1416999999999,
+            "lcpMs": 915.1416999999999,
+            "tbtMs": 77.00000000000023,
+            "cls": 0.000421101654977238,
+            "speedIndexMs": 915.1416999999999,
+            "jsBytes": 201914,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 24446,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2386,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-1.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 911.4635000000001,
+            "lcpMs": 911.4635000000001,
+            "tbtMs": 75,
+            "cls": 0.00118588130157797,
+            "speedIndexMs": 911.4635000000001,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22832,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2265.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-1.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 911.2964,
+            "lcpMs": 911.2964,
+            "tbtMs": 71,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 911.2964,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22842,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2403,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-1.html"
+        },
+        {
+          "path": "/vi",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.6744,
+            "lcpMs": 1061.6744,
+            "tbtMs": 142.5,
+            "cls": 0.0018521638256219068,
+            "speedIndexMs": 1061.6744,
+            "jsBytes": 192789,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 36828,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2393,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-2.html"
+        },
+        {
+          "path": "/en",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.9321,
+            "lcpMs": 1061.9321,
+            "tbtMs": 74,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1061.9321,
+            "jsBytes": 192789,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 34716,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2417.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-2.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 910.8076000000001,
+            "lcpMs": 910.8076000000001,
+            "tbtMs": 92.59619999999995,
+            "cls": 0.0006647324516558022,
+            "speedIndexMs": 910.8076000000001,
+            "jsBytes": 201914,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 24159,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2384,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-2.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 911.7135000000001,
+            "lcpMs": 911.7135000000001,
+            "tbtMs": 71.5,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 911.7135000000001,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22806,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2397,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-2.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 99,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 909.6733999999999,
+            "lcpMs": 909.6733999999999,
+            "tbtMs": 78.16329999999994,
+            "cls": 0.000421101654977238,
+            "speedIndexMs": 909.6733999999999,
+            "jsBytes": 201914,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 24446,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2374.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-2.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 911.3325,
+            "lcpMs": 911.3325,
+            "tbtMs": 72,
+            "cls": 0.00118588130157797,
+            "speedIndexMs": 911.3325,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22832,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2340.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-2.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 914.5572,
+            "lcpMs": 914.5572,
+            "tbtMs": 71.5,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 914.5572,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22842,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2344,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-2.html"
+        },
+        {
+          "path": "/vi",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.755,
+            "lcpMs": 1062.755,
+            "tbtMs": 134,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1062.755,
+            "jsBytes": 192789,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 36828,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2410,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-3.html"
+        },
+        {
+          "path": "/en",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.2434,
+            "lcpMs": 1062.2434,
+            "tbtMs": 63.99999999999977,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1062.2434,
+            "jsBytes": 192789,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 34716,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2302,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-3.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 912.6264000000001,
+            "lcpMs": 912.6264000000001,
+            "tbtMs": 74.99999999999977,
+            "cls": 0.0006647324516558022,
+            "speedIndexMs": 912.6264000000001,
+            "jsBytes": 201914,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 24159,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2362,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-3.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 913.0628999999999,
+            "lcpMs": 913.0628999999999,
+            "tbtMs": 75,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 913.0628999999999,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22806,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2377,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-3.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 99,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 909.8933999999999,
+            "lcpMs": 909.8933999999999,
+            "tbtMs": 74,
+            "cls": 0.000421101654977238,
+            "speedIndexMs": 909.8933999999999,
+            "jsBytes": 201914,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 24446,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2410,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-3.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 908.9739,
+            "lcpMs": 908.9739,
+            "tbtMs": 75,
+            "cls": 0.00118588130157797,
+            "speedIndexMs": 908.9739,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22832,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2398,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-3.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 912.1560999999999,
+            "lcpMs": 912.1560999999999,
+            "tbtMs": 72,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 912.1560999999999,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22842,
+            "cssBytes": 14755
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2343.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-3.html"
+        }
+      ],
+      "median": [
+        {
+          "path": "/vi",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.755,
+            "lcpMs": 1062.755,
+            "tbtMs": 142.5,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1062.755,
+            "jsBytes": 192789,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 36828,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.2434,
+            "lcpMs": 1062.2434,
+            "tbtMs": 73.99999999999977,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1062.2434,
+            "jsBytes": 192789,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 34716,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 910.9459999999999,
+            "lcpMs": 910.9459999999999,
+            "tbtMs": 92.59619999999995,
+            "cls": 0.0006647324516558022,
+            "speedIndexMs": 910.9459999999999,
+            "jsBytes": 201914,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 24159,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 913.0628999999999,
+            "lcpMs": 913.0628999999999,
+            "tbtMs": 71.5,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 913.0628999999999,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22806,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 99,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 909.8933999999999,
+            "lcpMs": 909.8933999999999,
+            "tbtMs": 77.00000000000023,
+            "cls": 0.000421101654977238,
+            "speedIndexMs": 909.8933999999999,
+            "jsBytes": 201914,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 24446,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 911.3325,
+            "lcpMs": 911.3325,
+            "tbtMs": 75,
+            "cls": 0.00118588130157797,
+            "speedIndexMs": 911.3325,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22832,
+            "cssBytes": 14755
+          }
+        },
+        {
+          "path": "/en/keyboard/events",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 98,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 912.1560999999999,
+            "lcpMs": 912.1560999999999,
+            "tbtMs": 71.5,
+            "cls": 0.001173980615778823,
+            "speedIndexMs": 912.1560999999999,
+            "jsBytes": 201914,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 22842,
+            "cssBytes": 14755
+          }
+        }
+      ]
+    },
+    "after": {
+      "label": "ui-after",
+      "sourceCommit": "4e26811527f5c05e1bbc0ef421597505e14d47fc",
+      "execution": {
+        "node": "v24.22.2",
+        "platform": "linux",
+        "osRelease": "7.0.0-1017-azure",
+        "cpuModel": "AMD EPYC 9V74 80-Core Processor",
+        "cpuCount": 4,
+        "memoryBytes": 16760348672,
+        "githubRunId": "42983672718"
+      },
+      "baseUrl": "http://127.0.0.1:3000",
+      "certificatePinUsed": false,
+      "measurements": [
+        {
+          "path": "/vi",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1067.482,
+            "lcpMs": 1067.482,
+            "tbtMs": 163,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1067.482,
+            "jsBytes": 192805,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 37631,
+            "cssBytes": 14775
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2506.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-1.html"
+        },
+        {
+          "path": "/en",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.7383,
+            "lcpMs": 1062.7383,
+            "tbtMs": 76,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1062.7383,
+            "jsBytes": 192805,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 35606,
+            "cssBytes": 14775
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2382,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-1.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1066.1352,
+            "lcpMs": 2456.1351999999997,
+            "tbtMs": 74,
+            "cls": 0.0003799330223956358,
+            "speedIndexMs": 1066.1352,
+            "jsBytes": 203438,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 25419,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2409,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-1.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.328,
+            "lcpMs": 1060.328,
+            "tbtMs": 143.9999999999991,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1060.328,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24137,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2435.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-1.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1063.9334,
+            "lcpMs": 1063.9334,
+            "tbtMs": 145.99999999999955,
+            "cls": 0.0001719632972386238,
+            "speedIndexMs": 1063.9334,
+            "jsBytes": 203438,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 25852,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2432,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-1.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.8245,
+            "lcpMs": 1062.8245,
+            "tbtMs": 142,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1062.8245,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24117,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2391.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-1.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1065.4363,
+            "lcpMs": 1065.4363,
+            "tbtMs": 80,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1065.4363,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24434,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2381.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-1.html"
+        },
+        {
+          "path": "/vi",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1064.9056,
+            "lcpMs": 1064.9056,
+            "tbtMs": 149,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1064.9056,
+            "jsBytes": 192805,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 37631,
+            "cssBytes": 14775
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2303.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-2.html"
+        },
+        {
+          "path": "/en",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1063.8364,
+            "lcpMs": 1063.8364,
+            "tbtMs": 76,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1063.8364,
+            "jsBytes": 192805,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 35606,
+            "cssBytes": 14775
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2382,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-2.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.7689,
+            "lcpMs": 1061.7689,
+            "tbtMs": 71,
+            "cls": 0.0003799330223956358,
+            "speedIndexMs": 1061.7689,
+            "jsBytes": 203438,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 25419,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2328.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-2.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1059.7742,
+            "lcpMs": 1059.7742,
+            "tbtMs": 88.00000000000023,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1059.7742,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24137,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2390,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-2.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1063.9168,
+            "lcpMs": 1063.9168,
+            "tbtMs": 73,
+            "cls": 0.0001719632972386238,
+            "speedIndexMs": 1063.9168,
+            "jsBytes": 203438,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 25852,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2352.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-2.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.5001,
+            "lcpMs": 1061.5001,
+            "tbtMs": 138.99999999999977,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1061.5001,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24117,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2382,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-2.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1058.9753,
+            "lcpMs": 1058.9753,
+            "tbtMs": 68,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1058.9753,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24434,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2365.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-2.html"
+        },
+        {
+          "path": "/vi",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1063.6429,
+            "lcpMs": 1063.6429,
+            "tbtMs": 77.00000000000023,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1063.6429,
+            "jsBytes": 192805,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 37631,
+            "cssBytes": 14775
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2429.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-3.html"
+        },
+        {
+          "path": "/en",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.9513,
+            "lcpMs": 1060.9513,
+            "tbtMs": 75,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1060.9513,
+            "jsBytes": 192805,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 35606,
+            "cssBytes": 14775
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2431.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-3.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.5162,
+            "lcpMs": 1062.5162,
+            "tbtMs": 84,
+            "cls": 0.0003799330223956358,
+            "speedIndexMs": 1062.5162,
+            "jsBytes": 203438,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 25419,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2406.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-3.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.4129,
+            "lcpMs": 1061.4129,
+            "tbtMs": 140.99999999999955,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1061.4129,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24137,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2535.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-3.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.2852,
+            "lcpMs": 1061.2852,
+            "tbtMs": 68.5,
+            "cls": 0.0001719632972386238,
+            "speedIndexMs": 1061.2852,
+            "jsBytes": 203438,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 25852,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2303,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-3.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.2829,
+            "lcpMs": 1061.2829,
+            "tbtMs": 66.5,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1061.2829,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24117,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2469.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-3.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.8588,
+            "lcpMs": 1060.8588,
+            "tbtMs": 154,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1060.8588,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24434,
+            "cssBytes": 16535
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2386,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-3.html"
+        }
+      ],
+      "median": [
+        {
+          "path": "/vi",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1064.9056,
+            "lcpMs": 1064.9056,
+            "tbtMs": 149,
+            "cls": 0.002934925559329008,
+            "speedIndexMs": 1064.9056,
+            "jsBytes": 192805,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 37631,
+            "cssBytes": 14775
+          }
+        },
+        {
+          "path": "/en",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.7383,
+            "lcpMs": 1062.7383,
+            "tbtMs": 76,
+            "cls": 0.002344446300758718,
+            "speedIndexMs": 1062.7383,
+            "jsBytes": 192805,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 35606,
+            "cssBytes": 14775
+          }
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1062.5162,
+            "lcpMs": 1062.5162,
+            "tbtMs": 74,
+            "cls": 0.0003799330223956358,
+            "speedIndexMs": 1062.5162,
+            "jsBytes": 203438,
+            "fontBytes": 80003,
+            "imageBytes": 0,
+            "documentBytes": 25419,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.328,
+            "lcpMs": 1060.328,
+            "tbtMs": 140.99999999999955,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1060.328,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24137,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1063.9168,
+            "lcpMs": 1063.9168,
+            "tbtMs": 73,
+            "cls": 0.0001719632972386238,
+            "speedIndexMs": 1063.9168,
+            "jsBytes": 203438,
+            "fontBytes": 103874,
+            "imageBytes": 0,
+            "documentBytes": 25852,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 99,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1061.5001,
+            "lcpMs": 1061.5001,
+            "tbtMs": 138.99999999999977,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1061.5001,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24117,
+            "cssBytes": 16535
+          }
+        },
+        {
+          "path": "/en/keyboard/events",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 100,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.8588,
+            "lcpMs": 1060.8588,
+            "tbtMs": 80,
+            "cls": 0.0002904621991289113,
+            "speedIndexMs": 1060.8588,
+            "jsBytes": 203438,
+            "fontBytes": 54008,
+            "imageBytes": 0,
+            "documentBytes": 24434,
+            "cssBytes": 16535
+          }
+        }
+      ]
+    },
+    "public": {
+      "label": "ui-public",
+      "sourceCommit": "4e26811527f5c05e1bbc0ef421597505e14d47fc",
+      "execution": {
+        "node": "v24.22.2",
+        "platform": "linux",
+        "osRelease": "7.0.0-1017-azure",
+        "cpuModel": "AMD EPYC 7763 64-Core Processor",
+        "cpuCount": 4,
+        "memoryBytes": 16760336384,
+        "githubRunId": "42986572779"
+      },
+      "baseUrl": "https://nguyenanhtruc.io.vn",
+      "certificatePinUsed": false,
+      "measurements": [
+        {
+          "path": "/vi",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1109.3845000000001,
+            "lcpMs": 1109.3845000000001,
+            "tbtMs": 219.5,
+            "cls": 0,
+            "speedIndexMs": 2985.768650429772,
+            "jsBytes": 189784,
+            "fontBytes": 99875,
+            "imageBytes": 0,
+            "documentBytes": 28987,
+            "cssBytes": 12710
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 2061.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-1.html"
+        },
+        {
+          "path": "/en",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1060.827,
+            "lcpMs": 1060.827,
+            "tbtMs": 221.50000000000023,
+            "cls": 0,
+            "speedIndexMs": 2788.330729184643,
+            "jsBytes": 189780,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 27549,
+            "cssBytes": 12710
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1893,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-1.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 952.37,
+            "lcpMs": 952.37,
+            "tbtMs": 187.5,
+            "cls": 0,
+            "speedIndexMs": 3005.747277813093,
+            "jsBytes": 198353,
+            "fontBytes": 77342,
+            "imageBytes": 0,
+            "documentBytes": 23458,
+            "cssBytes": 13616
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1896.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-1.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1027.6779999999999,
+            "lcpMs": 1027.6779999999999,
+            "tbtMs": 191.5,
+            "cls": 0,
+            "speedIndexMs": 2888.7124697908093,
+            "jsBytes": 198359,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 22113,
+            "cssBytes": 13616
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1970,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-1.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 960.689,
+            "lcpMs": 960.689,
+            "tbtMs": 236,
+            "cls": 0,
+            "speedIndexMs": 3222.2727413250145,
+            "jsBytes": 198358,
+            "fontBytes": 99875,
+            "imageBytes": 0,
+            "documentBytes": 23730,
+            "cssBytes": 13616
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1904.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-1.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 98,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1008.316,
+            "lcpMs": 1008.316,
+            "tbtMs": 162,
+            "cls": 0,
+            "speedIndexMs": 2676.4188860000004,
+            "jsBytes": 198359,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 22153,
+            "cssBytes": 13616
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1791,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-1.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 1,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1019.451,
+            "lcpMs": 1019.451,
+            "tbtMs": 184.5,
+            "cls": 0,
+            "speedIndexMs": 2936.308113999981,
+            "jsBytes": 198357,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 22391,
+            "cssBytes": 13616
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1981,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-1.html"
+        },
+        {
+          "path": "/vi",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1095.92,
+            "lcpMs": 1095.92,
+            "tbtMs": 186.5,
+            "cls": 0,
+            "speedIndexMs": 2810.3372347467525,
+            "jsBytes": 189784,
+            "fontBytes": 99852,
+            "imageBytes": 0,
+            "documentBytes": 28991,
+            "cssBytes": 12710
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1911,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-2.html"
+        },
+        {
+          "path": "/en",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 94,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1000.15,
+            "lcpMs": 1000.15,
+            "tbtMs": 247.5,
+            "cls": 0,
+            "speedIndexMs": 3281.339595508986,
+            "jsBytes": 189761,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 27550,
+            "cssBytes": 12733
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1905.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-2.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1141.274,
+            "lcpMs": 1141.274,
+            "tbtMs": 198.5,
+            "cls": 0,
+            "speedIndexMs": 3260.215165145734,
+            "jsBytes": 198381,
+            "fontBytes": 77365,
+            "imageBytes": 0,
+            "documentBytes": 23457,
+            "cssBytes": 13618
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1882,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-2.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 994.028,
+            "lcpMs": 994.028,
+            "tbtMs": 201.5,
+            "cls": 0,
+            "speedIndexMs": 3703.8070476341854,
+            "jsBytes": 198406,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22111,
+            "cssBytes": 13595
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1863.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-2.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1252.877,
+            "lcpMs": 1252.877,
+            "tbtMs": 183,
+            "cls": 0,
+            "speedIndexMs": 3747.985248857326,
+            "jsBytes": 198406,
+            "fontBytes": 99852,
+            "imageBytes": 0,
+            "documentBytes": 23729,
+            "cssBytes": 13595
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1904,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-2.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 942.6289999999999,
+            "lcpMs": 942.6289999999999,
+            "tbtMs": 216.5,
+            "cls": 0,
+            "speedIndexMs": 3341.378186898216,
+            "jsBytes": 198383,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22156,
+            "cssBytes": 13595
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1892.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-2.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 2,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 96,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 945.297,
+            "lcpMs": 945.297,
+            "tbtMs": 207.5,
+            "cls": 0,
+            "speedIndexMs": 3078.2807981178253,
+            "jsBytes": 198356,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 22392,
+            "cssBytes": 13616
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1870,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-2.html"
+        },
+        {
+          "path": "/vi",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1077.589,
+            "lcpMs": 1077.589,
+            "tbtMs": 173.5,
+            "cls": 0,
+            "speedIndexMs": 3072.878997717904,
+            "jsBytes": 189762,
+            "fontBytes": 99852,
+            "imageBytes": 0,
+            "documentBytes": 28990,
+            "cssBytes": 12734
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1923,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-3.html"
+        },
+        {
+          "path": "/en",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 968.9235,
+            "lcpMs": 968.9235,
+            "tbtMs": 246.4999999999999,
+            "cls": 0,
+            "speedIndexMs": 3302.3209842996416,
+            "jsBytes": 189761,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 27549,
+            "cssBytes": 12711
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1858.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-3.html"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 940.2429999999999,
+            "lcpMs": 940.2429999999999,
+            "tbtMs": 190,
+            "cls": 0,
+            "speedIndexMs": 2661.861676000002,
+            "jsBytes": 198382,
+            "fontBytes": 77342,
+            "imageBytes": 0,
+            "documentBytes": 23459,
+            "cssBytes": 13593
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1988.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-tester-3.html"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1013.729,
+            "lcpMs": 1013.729,
+            "tbtMs": 173.5,
+            "cls": 0,
+            "speedIndexMs": 2845.366753777002,
+            "jsBytes": 198358,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22115,
+            "cssBytes": 13593
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1823.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-rollover-3.html"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 950.403,
+            "lcpMs": 950.403,
+            "tbtMs": 232,
+            "cls": 0,
+            "speedIndexMs": 3120.5460281036567,
+            "jsBytes": 198359,
+            "fontBytes": 99875,
+            "imageBytes": 0,
+            "documentBytes": 23731,
+            "cssBytes": 13593
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1966.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "vi-keyboard-chatter-3.html"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1014.246,
+            "lcpMs": 1014.246,
+            "tbtMs": 186.5000000000001,
+            "cls": 0,
+            "speedIndexMs": 3153.9866199999974,
+            "jsBytes": 198381,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22157,
+            "cssBytes": 13593
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1884.5,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-hold-3.html"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "run": 3,
+          "pageVerified": true,
+          "lighthouseVersion": "13.6.0",
+          "clean": true,
+          "externalScripts": [],
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1017.237,
+            "lcpMs": 1017.237,
+            "tbtMs": 168.5,
+            "cls": 0,
+            "speedIndexMs": 3184.678117823548,
+            "jsBytes": 198384,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 22397,
+            "cssBytes": 13618
+          },
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+            "benchmarkIndex": 1915,
+            "credits": {
+              "axe-core": "4.14.0"
+            }
+          },
+          "settings": {
+            "formFactor": "mobile",
+            "throttlingMethod": "simulate",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            }
+          },
+          "report": "en-keyboard-events-3.html"
+        }
+      ],
+      "median": [
+        {
+          "path": "/vi",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1095.92,
+            "lcpMs": 1095.92,
+            "tbtMs": 186.5,
+            "cls": 0,
+            "speedIndexMs": 2985.768650429772,
+            "jsBytes": 189784,
+            "fontBytes": 99852,
+            "imageBytes": 0,
+            "documentBytes": 28990,
+            "cssBytes": 12710
+          }
+        },
+        {
+          "path": "/en",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1000.15,
+            "lcpMs": 1000.15,
+            "tbtMs": 246.4999999999999,
+            "cls": 0,
+            "speedIndexMs": 3281.339595508986,
+            "jsBytes": 189761,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 27549,
+            "cssBytes": 12711
+          }
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 952.37,
+            "lcpMs": 952.37,
+            "tbtMs": 190,
+            "cls": 0,
+            "speedIndexMs": 3005.747277813093,
+            "jsBytes": 198381,
+            "fontBytes": 77342,
+            "imageBytes": 0,
+            "documentBytes": 23458,
+            "cssBytes": 13616
+          }
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1013.729,
+            "lcpMs": 1013.729,
+            "tbtMs": 191.5,
+            "cls": 0,
+            "speedIndexMs": 2888.7124697908093,
+            "jsBytes": 198359,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22113,
+            "cssBytes": 13595
+          }
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 95,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 960.689,
+            "lcpMs": 960.689,
+            "tbtMs": 232,
+            "cls": 0,
+            "speedIndexMs": 3222.2727413250145,
+            "jsBytes": 198359,
+            "fontBytes": 99875,
+            "imageBytes": 0,
+            "documentBytes": 23730,
+            "cssBytes": 13595
+          }
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1008.316,
+            "lcpMs": 1008.316,
+            "tbtMs": 186.5000000000001,
+            "cls": 0,
+            "speedIndexMs": 3153.9866199999974,
+            "jsBytes": 198381,
+            "fontBytes": 52721,
+            "imageBytes": 0,
+            "documentBytes": 22156,
+            "cssBytes": 13595
+          }
+        },
+        {
+          "path": "/en/keyboard/events",
+          "runs": 3,
+          "clean": true,
+          "scores": {
+            "performance": 97,
+            "accessibility": 100,
+            "best-practices": 100,
+            "seo": 100
+          },
+          "metrics": {
+            "fcpMs": 1017.237,
+            "lcpMs": 1017.237,
+            "tbtMs": 184.5,
+            "cls": 0,
+            "speedIndexMs": 3078.2807981178253,
+            "jsBytes": 198357,
+            "fontBytes": 52698,
+            "imageBytes": 0,
+            "documentBytes": 22392,
+            "cssBytes": 13616
+          }
+        }
+      ]
+    }
+  },
+  "audit": {
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "all": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    }
+  },
+  "deployment": {
+    "tag": "device-lab:staging-4e26811-20261111",
+    "image": "sha256:8beca3e61a465ffd72bcf0921c880f9db284fb4ab9b8cfc01706e68d8100e458",
+    "previousRelease": "ca2344f",
+    "archiveSha256": "37d9710ec057157fb90a8cd2a766793b0c82b48f432e5ed0432bc414f561d703",
+    "healthy": true,
+    "nodePublic": false,
+    "certbotTimerActive": true,
+    "renewalRerun": false,
+    "rollbackExercised": false,
+    "proxyChanged": false
+  },
+  "candidateAudit": {
+    "source": "db864dd16beb9537ad66605e3775709324201062",
+    "run": 42981703826,
+    "served": false,
+    "issue": "heading-order",
+    "median": [
+      {
+        "path": "/vi",
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "path": "/en",
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "path": "/en/keyboard/rollover",
+        "scores": {
+          "performance": 100,
+          "accessibility": 98,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "path": "/vi/keyboard/chatter",
+        "scores": {
+          "performance": 100,
+          "accessibility": 99,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "path": "/en/keyboard/hold",
+        "scores": {
+          "performance": 99,
+          "accessibility": 98,
+          "best-practices": 100,
+          "seo": 100
+        }
+      },
+      {
+        "path": "/en/keyboard/events",
+        "scores": {
+          "performance": 99,
+          "accessibility": 98,
+          "best-practices": 100,
+          "seo": 100
+        }
+      }
+    ]
+  }
+}

@@ -1,5 +1,17 @@
 # Kiểm thử
 
+## Cải tiến bàn phím — 11/11/2026
+
+Source 4e26811: [CI 42983550339](https://github.com/anhtruc1803/checkall/actions/runs/42983550339) success verify/Docker. Build 106 trang/typecheck/lint/secret scan, **292 unit trên 34 file và 346 E2E đạt/6 skip**, không failure/flaky. Chromium/mobile 88 đạt mỗi cấu hình; Firefox/WebKit 85 đạt/ba skip native microphone/camera/gamepad policy mỗi cấu hình. Full E2E 941394.031 ms. Không dùng CI bị hủy của7b/db hoặc local snapshot cũ nhận source mới đã nghiệm thu.
+
+Kiểm tra bao phủ: native keydown/keyup/repeat, Exit không tự kích hoạt lại sau blur, Tab/Esc, coverage theo layout/ngoài layout, max combination thực nhận, Chatter vượt200 sự kiện/xóa log không mất aggregate, không nối cặp qua gián đoạn, ngưỡng và orphan/duplicate, các cờ event nguyên bản, IME/code thiếu fixture rõ, filter local, timer/hidden/unmount/giới hạn bộ nhớ. Unit storage/fetch spies xác nhận component không tự ghi/gửi phím; không suy rộng thành mọi request browser đều trống.
+
+Local functional snapshot db28/28 đạt (206467.946 ms); sau sửa heading, bốn bài bao phủ đủ 5 tool/VI-EN/Dark-Light/WCAG+heading-order/zoom200%/responsive đạt4/4 (204373.368 ms). Full CI source cuối đã chạy cả các ca chức năng và heading. Fixture IME/clock/code không khả dụng không phải phần cứng thật; isTrusted=true của automation không chứng nhận phím vật lý.
+
+Public keyboard **18/18 đạt** trên Chromium/Firefox/WebKit, không skip/failure/flaky, 61862.528 ms. Không coi WebKit là Safari thực tế hoặc skip native policy là enforcement đã xác minh. Native browser input kiểm tra Stop và các trường sự kiện; không test keyboard phần cứng. Docker CI job81 s: healthy/Nginx/34 route/policy ba checkpoint/private Node port/restart/stop-start, SIGTERM 143/OOM false/Error rỗng. Đã đọc JSON/log/native audio smoke context đóng; không thay engine audio/camera/gamepad.
+
+Lighthouse cuối 42 lượt cùng VM và 21 lượt public, median≥90 đủ 7 trang, A/BP/SEO 100; số đo và môi trường tại PERFORMANCE.md/qa/keyboard-2026-11-11.json. Production audit 0 finding; audit toàn bộ còn 2 moderate dev tooling. Manual hardware/IME/Safari/screen reader/OS zoom còn mở ở KEYBOARD-IMPROVEMENTS.md. Final Acceptance chưa đóng.
+
 ## Chọn công cụ theo vấn đề — 10/11/2026
 
 Source ca2344f: [CI 42790611051](https://github.com/anhtruc1803/checkall/actions/runs/42790611051) success verify/Docker. Build 106 trang/typecheck/lint/secret scan, 275 unit trên 33 file và 330 E2E đạt/6 skip, không failure/flaky. Local mới 8/8 và public 6/6 đạt; giữ đủ 40 công cụ/VI-EN. Không nhận WebKit là Safari thật hoặc skip native policy là enforcement đã xác minh. E2E toàn bộ 762292.843 ms; Chromium/mobile mỗi cấu hình 84 đạt, Firefox/WebKit 81 đạt/ba skip native microphone/camera/gamepad policy. Unit/native audio smoke đều giữ bộ kiểm tra hiện có, không đổi engine hoặc nới assertion.

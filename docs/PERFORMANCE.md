@@ -1,4 +1,53 @@
-# Performance mục chọn công cụ theo vấn đề — 10/11/2026
+# Hiệu năng công cụ bàn phím — 11/11/2026
+
+## Kết quả cuối
+
+Source **4e26811527f5c05e1bbc0ef421597505e14d47fc**. Giữ 40 công cụ VI/EN. Mục tiêu median Performance mobile≥90 đạt trong bộ mẫu bảy trang: lab **99/100/100/99/100/99/100**, HTTPS public **97/95/97/97/95/97/97**. Bao gồm cả hai homepage và đủ năm công cụ bàn phím; mỗi trang ba lượt luân phiên, không bỏ lượt thấp.
+
+[So sánh42983672718](https://github.com/anhtruc1803/checkall/actions/runs/42983672718) đủ 42 lượt cùng VM, baseline 801a05a (code app ca2344f) và source mới 4e26811; build cả hai trước rồi đo tuần tự, không chạy build/E2E đồng thời trong VM đo. [Public](https://github.com/anhtruc1803/checkall/actions/runs/42986572779) đủ 21 lượt qua domain sau triển khai, kiểm release đúng và TLS hợp lệ. Raw HTML/JSON/browser log trong artifact GitHub; [QA JSON](qa/keyboard-2026-11-11.json) lưu 63 phép đo của bộ cuối/settings/môi trường/median cùng hồi quy. Candidate db864dd đo trước đó được giữ riêng trong lịch sử PROGRESS.md, không thay số đo cuối.
+
+Lighthouse 13.6.0/Chromium 156, mobile simulated, RTT 150 ms/1638,4 Kbps/CPU×4; profile mới mỗi lượt/tắt extension, tất cả trace clean/pageVerified, không có Script ngoài origin hoặc dấu hiệu script chèn. Linux runner tạm dùng --no-sandbox; không coi là kiểm chứng sandbox và không thay phần mềm bảo vệ Windows. Benchmark trước 2265.5–2458.5, sau 2303–2535.5, public 1791–2061.5. Public khác VM, không so TBT/điểm public và lab như cùng điều kiện.
+
+## Median trước → sau trong cùng VM
+
+| Trang                 | P trước → sau | LCP trước → sau ms | TBT trước → sau ms | CLS sau | JS trước → sau KiB |
+| --------------------- | ------------: | -----------------: | -----------------: | ------: | -----------------: |
+| /vi                   |       99 → 99 |        1063 → 1065 |      142.5 → 149.0 | 0.00293 |      188.3 → 188.3 |
+| /en                   |     100 → 100 |        1062 → 1063 |        74.0 → 76.0 | 0.00234 |      188.3 → 188.3 |
+| /vi/keyboard/tester   |      99 → 100 |         911 → 1063 |        92.6 → 74.0 | 0.00038 |      197.2 → 198.7 |
+| /en/keyboard/rollover |      100 → 99 |         913 → 1060 |       71.5 → 141.0 | 0.00029 |      197.2 → 198.7 |
+| /vi/keyboard/chatter  |     100 → 100 |         910 → 1064 |        77.0 → 73.0 | 0.00017 |      197.2 → 198.7 |
+| /en/keyboard/hold     |      100 → 99 |         911 → 1062 |       75.0 → 139.0 | 0.00029 |      197.2 → 198.7 |
+| /en/keyboard/events   |     100 → 100 |         912 → 1061 |        71.5 → 80.0 | 0.00029 |      197.2 → 198.7 |
+
+## Median HTTPS public
+
+| Trang                 | P public | FCP ms | LCP ms | TBT ms |     CLS |
+| --------------------- | -------: | -----: | -----: | -----: | ------: |
+| /vi                   |       97 |   1096 |   1096 |  186.5 | 0.00000 |
+| /en                   |       95 |   1000 |   1000 |  246.5 | 0.00000 |
+| /vi/keyboard/tester   |       97 |    952 |    952 |  190.0 | 0.00000 |
+| /en/keyboard/rollover |       97 |   1014 |   1014 |  191.5 | 0.00000 |
+| /vi/keyboard/chatter  |       95 |    961 |    961 |  232.0 | 0.00000 |
+| /en/keyboard/hold     |       97 |   1008 |   1008 |  186.5 | 0.00000 |
+| /en/keyboard/events   |       97 |   1017 |   1017 |  184.5 | 0.00000 |
+
+Mọi lượt candidate sau có Performance 97–100, public 94–98. Accessibility/Best Practices/SEO từng lượt sau và public đều100. Accessibility baseline theo thứ tự bảng: 100/100/100/100/99/98/98; sau đều100. Lighthouse đã phát hiện h3 nhảy cấp ở candidate db; sửa thànhh2 và bổ sung rule heading-order toàn trang, không loại rule hoặc giấu nội dung để tăng điểm.
+
+## Tối ưu có căn cứ và chi phí
+
+- B01/B02/B03/B05 không còn interval 50 ms; unit spy xác nhận0 interval khi giữ phím. B04 chỉ chạy khi có phím held; mất focus/hidden/unmount dọn timer. Sơ đồ memoized tránh render lại vì đồng hồ Hold khi dữ liệu phím không đổi. Đây là bằng chứng cơ chế, không phải tuyên bố CPU giảm một tỷ lệ đã đo.
+- B01/B02/B04 không dựng log 200 sự kiện. B03 giữ aggregate cộng dồn riêng thay vì tính từ cửa sổ log đang trượt; raw table chỉ mount khi mở. B05 lọc local với tối đa 200 dòng; code/key/API flags vẫn nguyên bản. Không upload hoặc tự ghi lịch sử phím.
+- Sơ đồ cuộn có focus/label và keycap 0,75 rem giúp đọc được; không ép toàn bộ layout 104/105 phím vào mobile bằng chữ nhỏ. Tiến độ và tổ hợp chỉ là sự kiện browser quan sát, không phải chứng nhận phần cứng.
+- Byte network thực theo thứ tự bảng: JavaScript trước 192789/192789/201914/201914/201914/201914/201914, sau 192805/192805/203438/203438/203438/203438/203438; CSS trước 14755/14755/14755/14755/14755/14755/14755, sau 14775/14775/16535/16535/16535/16535/16535. Không nhận tính năng mới miễn phí về byte hoặc mọi metric đều cải thiện. Font/image không bị cắt; giữ registry/copy SEO và accessibility. FCP/LCP thay đổi được giữ trong QA JSON, không quy chênh lệch TBT/điểm nhỏ cho một tối ưu đơn lẻ.
+
+Các lượt Lighthouse đo idle, không tự tạo phím, cấp quyền hoặc chạy engine để lấy điểm. Không đồng nhất điểm này với điện thoại thật hoặc lúc người dùng giữ nhiều phím. Build 106 trang/typecheck/lint/secret scan, **292 unit trên 34 file và 346 E2E đạt/6 skip**, không failure/flaky. Chromium/mobile 88 đạt mỗi cấu hình; Firefox/WebKit 85 đạt/ba skip native microphone/camera/gamepad policy mỗi cấu hình. Public keyboard **18/18 đạt** trên Chromium/Firefox/WebKit, không skip/failure/flaky, 61862.528 ms. Không coi WebKit là Safari thực tế hoặc skip native policy là enforcement đã xác minh.
+
+Chi tiết lỗi, phương pháp/giới hạn, fixture và manual QA ở KEYBOARD-IMPROVEMENTS.md/TESTING.md. Safari/phần cứng, OS/IME/screen reader/field data và các tiêu chí bảo mật còn mở. Không đóng Final Acceptance Phase 1/2 hoặc nhận mọi runtime≥90; số đo Windows và các source trước vẫn được giữ dưới đây.
+
+---
+
+# Lịch sử Performance mục chọn công cụ theo vấn đề — 10/11/2026
 
 ## Kết quả mới nhất
 

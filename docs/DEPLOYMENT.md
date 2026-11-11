@@ -1,6 +1,14 @@
 # Triển khai và vận hành
 
-## Bản chọn công cụ theo vấn đề đang phục vụ — 10/11/2026
+## Bản bàn phím đang phục vụ — 11/11/2026
+
+Source **4e26811527f5c05e1bbc0ef421597505e14d47fc**, tag `device-lab:staging-4e26811-20261111`, image VPS `sha256:8beca3e61a465ffd72bcf0921c880f9db284fb4ab9b8cfc01706e68d8100e458`. Current trỏ tới `/opt/device-lab/releases/4e26811`; giữ ca2344f và backup `/opt/device-lab/shared/nginx.conf.before-keyboard-20261111`. Hai image candidate 7b/db chưa đưa vào phục vụ; không nhận chúng là bản rollback đang dùng trước đó. Archive Git tracked kiểm SHA256 trước build, .env chỉ trên host; chuyển sau CI source 4e/lab đạt.
+
+Ứng dụng healthy/read-only/user nextjs, OOM false/Error rỗng, Node 3000 không public, Nginx syntax/log startup đạt; Certbot timer active. Không đổi DNS/dashboard proxy, chỉ release marker origin/reload. Public VI/EN 200/đủ 10 route bàn phím có progress/diagram mới/canonical đúng, health+34 route/policy và sitemap 100 URL đạt; keyboard E2E 18/18 ba browser đạt, Lighthouse HTTPS 21 lượt sạch median 97/95/97/97/95/97/97. Đã xem UI Dark/Light/mobile từ domain; không coi WebKit là Safari thật.
+
+Giữ release/image trước để có thể phục hồi, không prune/reboot hoặc chạy lại renewal dry-run/diễn tập rollback. CSP public vẫn thiếu trên VI/EN; người dùng tự quản lý proxy, TLS proxy→origin chưa kiểm chứng. Manual/hardware và Final Acceptance còn mở. Chi tiết QA/số đo tại KEYBOARD-IMPROVEMENTS.md/PERFORMANCE.md/qa/keyboard-2026-11-11.json; những trạng thái phía dưới là lịch sử.
+
+## Lịch sử bản chọn công cụ theo vấn đề — 10/11/2026
 
 Source **ca2344f2bfdc5ed65d324d480b663da6db3d5e53**, tag `device-lab:staging-ca2344f-20261110`, image VPS `sha256:3046844a77a6ef24435cdef1e4ab69aac630d5d634070ab5bfe2cc6aa186c8a1`. Current trỏ tới `/opt/device-lab/releases/ca2344f`; giữ source/image 882c4d9 và backup `/opt/device-lab/shared/nginx.conf.before-problems-20261110`. Archive Git tracked đối chiếu SHA256 trước build, .env chỉ ở host; chuyển sau CI/lab đạt. Không thay DNS/dashboard proxy, chỉ marker origin/reload Nginx.
 
