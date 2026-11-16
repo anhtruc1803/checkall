@@ -120,7 +120,9 @@ it.each(['B01', 'B02', 'B03', 'B04', 'B05'])(
     press('Backspace', 'Backspace');
     fireEvent.keyDown(area, { key: 'đ', code: '' });
     expect(area).toHaveAttribute('data-active', 'false');
-    expect(screen.getByRole('alert')).toHaveTextContent('earlier capture results are preserved');
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      messages.keyboardTools.inputIssue.unavailable,
+    );
     expect(screen.getByRole('progressbar')).toHaveAttribute('value', '1');
     expect(document.querySelector('[data-code="KeyD"] .key-count')).toHaveTextContent('1');
     expect(document.querySelector('[data-code="Backspace"]')).toHaveAttribute(

@@ -1,5 +1,21 @@
 # Triển khai và vận hành
 
+## Rà nội dung website — local 12/11/2026
+
+Nguồn mới tinh gọn nội dung toàn bộ VI/EN, giữ đủ 40 công cụ và chế độ EVKey local. Chỉ production build ở http://127.0.0.1:3100; chưa commit/push/chạy CI từ xa, không cập nhật website hoặc sửa VPS/Docker/Nginx/DNS/proxy. Không dùng phản hồi người dùng chấp nhận UI trước làm yêu cầu triển khai hạ tầng.
+
+Metadata, route, engine, permission và capability giữ nguyên qua đối chiếu AST. Lịch sử dùng tên công cụ thay ID, dữ liệu lưu cũ không đổi schema. Báo cáo kiểm thử/fingerprint bản này tách riêng tại qa/content-review-local-2026-11-12.json và CONTENT-REVIEW.md; các kết quả bên dưới là checkpoint trước. Cần kết quả môi trường sạch và các manual QA đang mở trước nghiệm thu rộng, không đóng Final Acceptance chỉ vì nội dung đã tinh gọn.
+
+## Cảnh báo dd bổ sung — chỉ local 12/11/2026
+
+Preview http://127.0.0.1:3100/vi/keyboard/tester và route EN đã được build lại cùng lưu ý dd → đ/lời nhắc thử D. Chỉ bind loopback; chưa commit/push, chạy CI từ xa hoặc cập nhật website. Không SSH, sửa VPS/Docker/Nginx/DNS/proxy. Kết quả và fingerprint source mới tại qa/keyboard-dd-warning-local-2026-11-12.json; số liệu 328 unit/48 E2E trong checkpoint phía dưới thuộc bản trước cảnh báo dd. Manual EVKey trên UI mới và Lighthouse sạch vẫn chưa xác nhận; không đóng Final Acceptance.
+
+## EVKey keyup đang ở local — 12/11/2026
+
+Chế độ mới B01 chưa được push GitHub hoặc triển khai website. Preview production build chỉ bind 127.0.0.1:3100 để người dùng review, không mở cổng public hay thay Docker/Nginx/DNS/proxy/VPS. Source còn trong working tree; fingerprint tại qa/keyboard-release-local-2026-11-12.json.
+
+Build 106/unit 328/nhóm keyboard E2E 48 đạt, nhưng full E2E local có 9 failure liên quan Kaspersky/context Firefox và 18 skip; Lighthouse bị loại vì script chèn, chưa có median sạch. Không coi đây là full acceptance hoặc bằng chứng đủ mọi điều kiện cập nhật website. Khi có yêu cầu triển khai tiếp, cần xác minh lại trong môi trường sạch và manual EVKey UI mới. Các release/image/CI ở phần dưới là lịch sử đã bàn giao, không chứa chế độ tương thích local này.
+
 ## Bản sửa IME đang phục vụ — 11/11/2026
 
 Source **3191485048bc024c00376db258f5b939b426e39a**. Image device-lab:staging-3191485-20261111, ID **sha256:9db253dfdf080fb1f4379351bdcc54bc0ced34c4702ea7716a1e7abd58370e55**. Current→/opt/device-lab/releases/3191485. Archive Git tracked kiểm SHA256 **0f3bb84858740f2d78211d410c23b81141039f56e905ac548d226b508d405d42**; .env chỉ trên host. Chuyển sau khi CI source đúng và Lighthouse lab đạt; kiểm đúng image/RELEASE_COMMIT trước thay.

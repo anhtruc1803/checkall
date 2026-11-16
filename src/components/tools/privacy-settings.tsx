@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { clearLocalData, writePreference, type SavedSummary } from '@/lib/storage/preferences';
 import { usePreference } from '@/hooks/use-preference';
-export function PrivacySettings() {
+export function PrivacySettings({ toolNames }: { toolNames: Record<string, string> }) {
   const t = useTranslations();
   const enabled = usePreference('save', false),
     summaries = usePreference<SavedSummary[]>('summaries', []);
@@ -26,7 +26,10 @@ export function PrivacySettings() {
         <ul>
           {summaries.map((summary, index) => (
             <li key={index}>
-              {summary.toolId} · {summary.value} · {new Date(summary.time).toLocaleString()}
+              {Object.hasOwn(toolNames, summary.toolId)
+                ? toolNames[summary.toolId]
+                : t('savedTest')}{' '}
+              · {summary.value} · {new Date(summary.time).toLocaleString()}
             </li>
           ))}
         </ul>

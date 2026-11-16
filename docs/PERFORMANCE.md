@@ -1,4 +1,26 @@
-# Hiệu năng công cụ bàn phím — 11/11/2026
+# Hiệu năng và kết quả đo
+
+## Tinh gọn nội dung toàn website — local 12/11/2026
+
+Đã rút gọn mô tả VI/EN, bỏ FAQ lặp ở 80 trang công cụ và giữ nội dung hướng dẫn/giới hạn/metadata. Đối chiếu source: 170 trường nội dung registry giảm tổng 39.424→28.631 ký tự; 87 thông báo hiện có được sửa ở mỗi ngôn ngữ. Đây là thống kê văn bản source, không phải số byte transfer, mức giảm JavaScript hoặc mức tăng Performance. Không cắt công cụ, nội dung SEO cần thiết hoặc accessibility để lấy điểm.
+
+Không thêm dependency, ảnh/font hoặc timer; tên công cụ trong lịch sử được truyền từ server thành bảng tên, không đưa toàn bộ registry vào client component. Đã sửa reflow ở 320 px/chữ 200%, giữ bài kiểm tra không tràn. Build và E2E không thay cho phép đo Lighthouse.
+
+Chưa đo Lighthouse mới; control HTML trắng local trong lượt này vẫn ghi nhận script và POST từ Kaspersky dù không tải mã ứng dụng. Không tắt phần mềm bảo vệ, lọc request, push lên CI hoặc đổi môi trường hệ thống để né validator. **Chưa xác nhận Performance mobile ≥90 cho bản tinh gọn**, không dùng số đo của source public cũ làm bằng chứng mới. Xem CONTENT-REVIEW.md và qa/content-review-local-2026-11-12.json.
+
+## Bổ sung cảnh báo dd — local 12/11/2026
+
+Bản local mới thêm lưu ý dd → đ và lời nhắc theo hai sự kiện keyup D, VI/EN; không font/ảnh/dependency, listener toàn trang, timer, log hoặc request mới. Hook chỉ giữ cờ cảnh báo và cờ quan sát D trước đó; không dùng các cờ này làm thống kê phần cứng. Chưa đo Lighthouse mới cho thay đổi nhỏ này do môi trường chèn Kaspersky đã xác minh bên dưới; **chưa xác nhận Performance mobile ≥90 cho bản hiện tại**. Không suy điểm từ độ nhỏ của thay đổi hoặc lấy điểm public của source cũ. Kết quả E2E accessibility/reflow được ghi riêng ở TESTING.md, không thay thế phép đo Performance.
+
+## EVKey keyup — bản local 12/11/2026, chưa xác minh median sạch
+
+Đã chạy sau full E2E: node scripts/lighthouse.mjs --base-url http://127.0.0.1:3100 --label evkey-keyup-local-20261112 --runs 3 --paths /vi,/vi/keyboard/tester,/en/keyboard/tester. Kế hoạch ba trang/ba lượt mỗi trang; script dừng ngay sau lượt /vi đầu tiên vì clean=false, externalScript origin http://gc.kis.v2.scr.kaspersky-labs.com. Không chỉnh validator hoặc bỏ lượt để tạo median.
+
+Lượt bị loại ghi Performance 71, A 100/BP 81/SEO 92, FCP=LCP 3220.5732 ms/TBT 633 ms/CLS 0.00521347, JS 376960 byte/document 196960 byte. Đây là số liệu có nhiễu, **không dùng kết luận regression, Performance ≥90, hoặc chất lượng SEO của source mới**. Không có phép so sánh sạch để định lượng phần ảnh hưởng của source và phần chèn từ môi trường. Kết quả 95–99 của source 3191485 bên dưới thuộc lịch sử, không thay thế phép đo mới.
+
+Chromium 156 profile mới/tắt extension, Lighthouse 13.6/mobile simulated RTT 150 ms/1638,4 Kbps/CPU×4; vẫn bị chèn từ môi trường Windows. Control HTML trắng không mã ứng dụng cũng có script/POST Kaspersky. Không tắt antivirus, đổi bảo vệ Windows, lọc request hoặc suy điểm từ dữ liệu nhiễu. WSL không khả dụng, chưa có môi trường Linux local sạch để đo lại; chưa push lên CI.
+
+Bản local chỉ thêm Set tối đa 26 mã, cập nhật khi có mã mới, không timer/rAF/raw log/network hoặc font/ảnh mới. Các giới hạn này được kiểm tra bằng unit/lifecycle, không phải bằng chứng định lượng điểm Lighthouse. Không cắt tính năng/SEO/accessibility để lấy điểm. Raw HTML/JSON/browser log tại artifacts/performance/evkey-keyup-local-20261112; fingerprint và trạng thái rejected trong [QA JSON](qa/keyboard-release-local-2026-11-12.json). Source uncommitted nên không gán SHA 97fd2eb thành commit của ứng dụng đã sửa.
 
 ## Bản sửa luồng nhập 3191485 — 11/11/2026
 

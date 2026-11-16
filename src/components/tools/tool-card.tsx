@@ -21,9 +21,7 @@ export function ToolCard({
         <span className="tool-icon">
           <CategoryIcon category={tool.category} size={26} />
         </span>
-        <span className="card-category">
-          {categoryLabel} <span aria-hidden="true">/ {tool.id}</span>
-        </span>
+        <span className="card-category">{categoryLabel}</span>
       </div>
       <h3>
         <Link href={toolHref(tool, locale)} prefetch={false}>

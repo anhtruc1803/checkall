@@ -72,9 +72,9 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
             <ShieldCheck size={13} />
             {t('localOnly')}
           </span>
-          <span className="badge muted">
-            {tool.permissions.length ? t('permissionRequired') : t('noPermissions')}
-          </span>
+          {tool.permissions.length > 0 && (
+            <span className="badge muted">{t('permissionRequired')}</span>
+          )}
         </div>
       </header>
       <section className="tool-workspace" data-engine={tool.engine} aria-label={copy.name}>
@@ -96,17 +96,6 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
           <section className="info-block">
             <h2>{t('method')}</h2>
             <p>{copy.method}</p>
-          </section>
-          <section className="info-block">
-            <h2>{t('faq')}</h2>
-            <details>
-              <summary>{t('toolFaqQ', { name: copy.name })}</summary>
-              <p>{copy.method}</p>
-            </details>
-            <details>
-              <summary>{t('toolLimitQ', { name: copy.name })}</summary>
-              <p>{copy.limitations}</p>
-            </details>
           </section>
         </div>
         <aside className="info-side">

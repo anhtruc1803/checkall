@@ -602,3 +602,55 @@ Lighthouse lab 42991541981 đủ 18 lượt, baseline 097da5e→3191485 median 9
 **Đã triển khai nhưng chưa xác minh thực tế:** cơ chế bảo vệ khi dùng các phiên bản UniKey/EVKey/OS của người dùng; chưa kiểm thử trên bộ gõ thật. **Chưa hoàn thành:** manual QA/field performance và các tiêu chí Final Acceptance đang mở. **Không thể kiểm chứng trong lượt này:** bàn phím vật lý/Safari thật/screen reader/OS zoom, lớp nhập liệu chỉ phát Backspace thường không có tín hiệu khác, TLS proxy→origin. Không kết luận lỗi phần cứng hoặc tự chứng nhận Phase 1/2 hoàn tất.
 
 Tiếp theo: người dùng chuyển UniKey/EVKey từ V sang E, tải lại trang và kiểm tra D/Backspace trên keyboard thật; ghi phiên bản nếu còn bất thường. Không tự thay cấu hình bộ gõ/OS của người dùng.
+
+## Khảo sát D với EVKey V + Telex — 12/11/2026
+
+Chỉ khảo sát local theo yêu cầu, không thay engine/UI/Registry/dependency, không push/SSH/deploy. Source ứng dụng giữ nguyên 97fd2eb. Đã đọc cấu hình EVKey x64 6.0.4.0/Unicode/Telex, Windows 10 Pro 10.0.19045 và Edge 157.0.4341.42. Lượt tự động Windows đổi dd→đ nhưng code của D rỗng nên tách khỏi bằng chứng phím vật lý. Computer Use từng chặn đọc vì URL không đủ tin cậy; đã dừng thao tác. Sau khi người dùng báo Xong, lượt đọc mới xác minh lại đúng cửa sổ/URL localhost và dữ liệu hai lượt bằng tay.
+
+Vùng capture giống website: 22 sự kiện, KeyD down 1/up 3; textarea: 141 sự kiện, KeyD down 2/up 7. Có 2/5 keyup D không ghép được down trước đó và 2/6 keyup D tới sau unknown đầu tiên; không có composition/isComposing=true, sự kiện bàn phím đều isTrusted=true. Có Unicode keyCode 231 và Backspace; người dùng xác nhận thao tác thêm, log textarea có Space và repeat Backspace. Không coi 3/7 up là số lần nhấn vật lý đã đối chứng hoặc mọi Backspace là do EVKey.
+
+**Đã xác minh trong hai mẫu:** keyup KeyD có thể còn tới sau khi down tương ứng bị mất; có cơ sở cho nhận diện D qua sự kiện thả riêng. **Chưa triển khai:** chế độ tương thích và mọi thay đổi website. **Chưa xác minh:** độ đúng số lần nhấn vật lý, hold/rollover/chatter cho các cặp thiếu down, phiên bản/browser/layout khác. Không tạo down hoặc thời gian phần cứng giả; Final Acceptance vẫn mở.
+
+File tài liệu: KEYBOARD-IME-SURVEY.md và qa/keyboard-ime-survey-2026-11-12.json chỉ chứa tóm tắt; probe/trace dữ liệu D/đ/Space/Backspace trong artifacts bị ignore, không upload hoặc thêm vào lịch sử sản phẩm. Đã chạy analyzer/assertions, typecheck, lint và 32/32 kiểm thử bàn phím (hai file), đều đạt. Không chạy build/full E2E/Lighthouse/Docker mới vì không thay mã ứng dụng; không nhận chế độ tương thích đã được kiểm thử hoặc Performance của nó đã đạt. Đã dừng vùng thu, đóng browser probe riêng và server localhost sau khi lưu bằng chứng có giới hạn.
+
+Tiếp theo nếu triển khai: opt-in trạng thái nhận qua keyup tách khỏi phép đo chính xác; kiểm tra với số lần nhấn biết trước/giữ D/modifier/mất focus và nhiều browser. Giữ bảo vệ thống kê và local privacy hiện có; không tự triển khai lên website.
+
+## Triển khai local chế độ EVKey keyup cho B01 — 12/11/2026
+
+Đã thêm opt-in mặc định tắt, riêng B01 và mã chữ KeyA–KeyZ. Hook use-keyboard-release chỉ giữ tập mã/cờ tín hiệu nhập liệu; không press/repeat/hold/rollover/chatter, timestamp, raw log, storage hoặc upload. Bỏ Backspace/số/modifier và tín hiệu thiếu code/Unidentified/composition/Process/229/231/repeat. Tiếp tục chờ keyup hợp lệ sau nhiễu; có lifecycle Stop/Tab/Esc/blur/hidden/unmount. Không sửa use-keyboard/keyboard-chatter, Registry, dependency hoặc hạ tầng; giữ 40 công cụ.
+
+UI VI/EN: checkbox có label/helper và cảnh báo đổi mode xóa phiên; tiến độ theo 26 mã chữ khác nhau, badge nguồn↑/viền đứt, không badge số lần nhấn hoặc thẻ đo giả 0. Hai luồng được nối handler riêng; workspace key theo toolId tránh trạng thái rò sang B02–B05. File chính: use-keyboard-release.ts, keyboard.tsx/CSS, messages VI/EN, tests/keyboard-release.test.tsx và E2E keyboard-release.spec.ts; tài liệu KEYBOARD-EVKEY-COMPATIBILITY/TESTING/PERFORMANCE/DEPLOYMENT và QA JSON. Báo cáo khảo sát trước được giữ nguyên, thêm chú thích lịch sử.
+
+Typecheck/lint/build 106 đạt, 328 unit trên 35 file đạt (bàn phím 55/55). Targeted E2E mới 12/12, full nhóm bàn phím 48/48 trên Chromium/Firefox/WebKit/mobile, không skip/fail. Đủ VI/EN/Dark-Light/a11y/heading-order/reflow 320–1440/chữ 200%, Reset/mode/layout/exit/privacy và tách phép đo. Replay hai trace khảo sát 6/6 ba browser đạt, không phải live hardware mới. HTTP smoke health+34 route/policy đạt; ảnh Light/mobile đã xem.
+
+Full local 372 bài: 345 pass/18 skip/9 fail, không flaky. Sáu failure camera/gamepad no-upload do assertion thấy POST Kaspersky; control HTML trắng không mã ứng dụng cũng có script/POST vendor. Ba failure khác ở đóng context Firefox; lượt chẩn đoán riêng 2 pass/1 skip không tái hiện, không xóa failure full suite hoặc kết luận nguyên nhân gốc. Native audio Chromium/Firefox pass, Windows WebKit thiếu AudioContext;18 skip theo điều kiện có sẵn, không coi là native API đã xác minh. Không đổi assertion/skip/retry cũ hoặc tắt phần mềm bảo vệ.
+
+Lighthouse preset 3 lượt×3 trang nhưng dừng ở lượt 1 vì clean=false, không có median sạch hoặc chứng minh ≥90; không dùng điểm nhiễu 71 hay số đo source cũ để nghiệm thu. WSL unavailable/disabled, không đổi hệ thống hoặc push CI. Fingerprint source/test giữ nguyên trong lúc E2E, tại qa/keyboard-release-local-2026-11-12.json; đây là working tree trên nền 97fd2eb, không phải commit mới.
+
+**Đã triển khai và xác minh phần mềm:** chế độ nhận A–Z qua keyup, unique code, source hiển thị rõ, tách thống kê, không đánh dấu Backspace, opt-in/reset/lifecycle/VI-EN/a11y và hồi quy bàn phím. **Chưa xác minh:** UI bản mới bằng phím thật/EVKey mọi phiên bản, các phím ngoài D/bộ gõ/browser khác, screen reader/Safari thật. **Chưa hoàn tất:** full suite sạch, native media bị skip và Performance sạch. Final Acceptance vẫn mở.
+
+Preview production bind 127.0.0.1:3100 giữ cho người dùng review, manual feedback đang chờ; không coi thời gian chờ là xác nhận. Chưa commit/push/SSH/deploy hoặc cập nhật website. Tiếp theo: kiểm tra sạch trước khi đề xuất triển khai, giữ tách nhận diện keyup khỏi phép đo chính xác và raw dữ liệu local.
+
+Kiểm tra cuối: source ứng dụng giữ nguyên theo fingerprint từ trước E2E. Prettier chuẩn hóa một file E2E sau QA; TypeScript parser xác nhận AST tương đương. Giữ fingerprint tested/final riêng trong QA JSON; ESLint và Prettier file cuối đạt. Preview 3100 healthy, có mode ở VI/EN B01 và không có ở Chatter.
+
+## Cảnh báo dd khi thử Keyboard Tester — local 12/11/2026
+
+Theo phản hồi người dùng, đã thêm lưu ý **dd → đ** luôn hiển thị cạnh lựa chọn EVKey. Nếu browser nhận hai keyup KeyD liên tiếp đủ điều kiện trong B01 active, hiện lời nhắc VI/EN theo chế độ. Không suy đoán số lần nhấn vật lý, không tự nhận diện EVKey, không chuyển đ/Backspace thành D. Hướng dẫn cố định vẫn có khi bộ gõ chặn mất sự kiện nên detector không thể hiện nhắc. Cờ nhắc chỉ phục vụ UI, không tham gia press/hold/rollover/Chatter, log, storage hoặc upload; không đổi engine thường/tương thích hay Registry/40 công cụ.
+
+File mới `src/features/keyboard/use-keyboard-d-warning.ts`; sửa keyboard.tsx/CSS, messages VI/EN và hai file unit/E2E keyboard-release. Đã cập nhật KEYBOARD-EVKEY-COMPATIBILITY/TESTING/PERFORMANCE/DEPLOYMENT và qa/keyboard-dd-warning-local-2026-11-12.json với fingerprint tám file + BUILD_ID; checkpoint trước giữ nguyên.
+
+**Đã hoàn thành và xác minh local:** typecheck/lint/Prettier/secret scan, build106, 333 unit/35 file; nhóm release28/28. Hồi quy keyboard **52/52 E2E** trên Chromium/Firefox/WebKit/mobile Chromium, mỗi cấu hình13 pass, không skip/fail/flaky/global error, 321097.852 ms. Bài cảnh báo mới có VI/EN/Dark-Light/WCAG/reflow 320/chữ200%; giữ toàn bộ bài B01–B05/heading-order/cleanup/IME/metrics trước đó. HTTP health+34 route/policy đạt, đã xem ảnh mobile Light/Dark. Preview production build đã khởi động lại, chỉ bind127.0.0.1:3100.
+
+**Đã triển khai nhưng chưa xác minh bằng bộ gõ thật:** lời nhắc/UI mới trên EVKey V+Telex; browser có thể không cung cấp hai D để phát hiện tự động. **Chưa hoàn thành:** manual QA, Lighthouse sạch và các tiêu chí nghiệm thu rộng đang mở. **Không thể kiểm chứng trong lượt này:** Safari thật/phần cứng/screen reader và Performance≥90 trong môi trường bị chèn script; không dùng điểm public trước thay thế. Không chạy lại full E2E toàn website cho phần cảnh báo nhỏ này, không xóa kết quả full trước 345pass/18skip/9fail. Không push/commit/SSH/deploy hoặc cập nhật website. Tiếp theo: người dùng review local và xác minh EVKey thật; cần môi trường sạch trước nghiệm thu rộng. Final Acceptance vẫn mở.
+
+## Rà soát và tinh gọn toàn bộ nội dung website — local 12/11/2026
+
+Người dùng xác nhận bản EVKey/dd local trước ổn và yêu cầu bỏ thông tin dư thừa/không liên quan. Đã rà trang chủ, danh mục, 40 công cụ/80 route VI/EN, quyền riêng tư và lỗi; rút gọn 170 trường registry/87 thông báo mỗi ngôn ngữ. Bỏ FAQ lặp, badge không cần quyền và mã nội bộ ở thẻ; lịch sử dùng tên công cụ VI/EN/fallback an toàn. Giữ hướng dẫn/giới hạn/SEO, xin quyền trước Bắt đầu, âm lượng thấp, dd/keyup tách phép đo và lưu opt-in. Không đổi engine, route, capability, permission hay dependency; đối chiếu AST/placeholder/hash xác minh phạm vi.
+
+File chính: tool page, registry/phase2-milestone2–6, messages VI/EN, privacy page/PrivacySettings, ToolCard, globals.css/keyboard.css; thêm tests/e2e/user-content.spec.ts. Sửa reflow nút xóa dữ liệu và câu cảnh báo dd ở 320 px/chữ 200%, giữ assertion. Test cũ chỉ cập nhật selector câu chữ. Tài liệu: CONTENT-REVIEW/TESTING/PERFORMANCE/DEPLOYMENT và qa/content-review-local-2026-11-12.json.
+
+**Đã hoàn thành và xác minh local:** typecheck/lint/Prettier/secret scan, build 106 trang, 333 unit trên 35 file; full 384 E2E **359 pass/19 skip/6 fail**, flaky 0, global error 0; 1.532.870,849 ms. Nhóm nội dung 8/8 và bàn phím 52/52 đạt trên Chromium/Firefox/WebKit/mobile. HTTP health+34 route/policy và ảnh Light/Dark/mobile/chữ 200% đạt. Source giữ nguyên trong full run, fingerprint 24 file+BUILD_ID ở QA JSON.
+
+**Chưa hoàn thành:** full gate chưa đạt do Request từ script Kaspersky chèn ngoài ứng dụng; các skip native API chưa kiểm chứng. Control HTML trắng vẫn có script/POST Kaspersky, không tắt bảo vệ hoặc lọc request để lấy pass. **Chưa xác minh trong môi trường hiện tại:** Lighthouse sạch/mobile≥90, Safari/thiết bị/bộ gõ thật/screen reader và các tiêu chí Final Acceptance đang mở. Không dùng source public cũ thay dữ liệu mới. Phản hồi người dùng chấp nhận preview trước không được gán cho mọi phần cứng hoặc bản tinh gọn chưa duyệt.
+
+Preview production chỉ bind 127.0.0.1:3100 để review. Chưa commit/push/CI từ xa/SSH/deploy hoặc cập nhật website. Tiếp theo: người dùng review nội dung local, xác minh môi trường sạch và manual QA trước nghiệm thu rộng; không tự mở Phase 3. Final Acceptance vẫn mở.

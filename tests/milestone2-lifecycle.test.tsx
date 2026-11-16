@@ -92,7 +92,9 @@ it('does not create a GPU context when the page mounts', async () => {
   const view = render(wrap(<GpuInformation />));
   expect(context).not.toHaveBeenCalled();
   fireEvent.click(view.getByRole('button', { name: 'Read data' }));
-  await waitFor(() => expect(view.getByText(/A WebGL context could not be read/)).toBeVisible());
+  await waitFor(() =>
+    expect(view.getByText(messages.deviceTools.gpuUnavailable, { exact: true })).toBeVisible(),
+  );
   expect(context).toHaveBeenCalledWith('webgl2');
   expect(context).toHaveBeenCalledWith('webgl');
 });

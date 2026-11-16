@@ -1,3 +1,4 @@
+import en from '../../src/messages/en.json';
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 const paths = [
@@ -36,7 +37,7 @@ test('device/browser snapshots are explicit, resettable and do not request permi
   await page.getByRole('button', { name: 'Read data' }).click();
   await expect(page.locator('.status')).toContainText('Completed');
   await expect(page.locator('.inspection-list')).toContainText('Pointer Events API');
-  await expect(page.locator('.inspection-list')).toContainText('Camera access / policy');
+  await expect(page.locator('.inspection-list')).toContainText(en.deviceTools.camera);
 });
 test('storage round-trip removes only its temporary keys and retains existing data', async ({
   page,
@@ -91,7 +92,7 @@ test('GPU reads only on demand and supports honest unavailable contexts', async 
   expect(
     await page.evaluate(() => (window as Window & { __contextCalls?: string[] }).__contextCalls),
   ).toContain('webgl2');
-  if (await page.getByText(/A WebGL context could not be read/).count())
+  if (await page.getByText(en.deviceTools.gpuUnavailable, { exact: true }).count())
     await expect(metric(page, 'Graphics API')).toContainText('—');
   else await expect(metric(page, 'Graphics API')).toContainText(/WebGL [12]/);
   await page.getByRole('button', { name: 'Reset', exact: true }).click();
@@ -132,7 +133,7 @@ test('blocked GPU and storage APIs produce fallback states rather than fabricate
   await page.goto('/en/device/gpu');
   await ready(page);
   await page.getByRole('button', { name: 'Read data' }).click();
-  await expect(page.getByText(/A WebGL context could not be read/)).toBeVisible();
+  await expect(page.getByText(en.deviceTools.gpuUnavailable, { exact: true })).toBeVisible();
   await page.goto('/en/browser/storage');
   await ready(page);
   await page.getByRole('button', { name: 'Read data' }).click();

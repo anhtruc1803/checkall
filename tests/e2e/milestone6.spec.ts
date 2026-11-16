@@ -1,3 +1,4 @@
+import en from '../../src/messages/en.json';
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { gamepadFixture } from './helpers/gamepad-fixture';
@@ -73,7 +74,9 @@ test('native Gamepad API discovery is passive until Start, or exposes the actual
     expect(await page.evaluate(() => window.__nativePadReads.count)).toBe(count);
   } else {
     await expect(page.locator('.status')).toHaveAttribute('data-state', 'unsupported');
-    await expect(page.getByText(/runtime does not provide/)).toBeVisible();
+    await expect(
+      page.getByText(en.gamepadTools.capability.unsupported, { exact: true }),
+    ).toBeVisible();
   }
 });
 test('native gamepad policy denial is checked separately when advertised by the runtime', async ({
@@ -116,7 +119,9 @@ test('native gamepad policy denial is checked separately when advertised by the 
   ).toBe('SecurityError');
   await page.getByRole('button', { name: 'Start', exact: true }).click();
   await expect(page.locator('.status')).toHaveAttribute('data-state', 'unsupported');
-  await expect(page.getByText(/Document policy blocks/)).toBeVisible();
+  await expect(
+    page.getByText(en.gamepadTools.capability['policy-blocked'], { exact: true }),
+  ).toBeVisible();
 });
 test('simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded', async ({
   page,

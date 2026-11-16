@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-12",
+  "scope": "Cảnh báo dd cho B01, chỉ local; không push hoặc cập nhật website",
+  "source": {
+    "baseCommit": "97fd2eba74575a549d06122b2d07097197cf13c1",
+    "workingTree": "uncommitted",
+    "buildId": "G1zGgtoVHweXw_-8f7bUN",
+    "files": {
+      "src/features/keyboard/keyboard.tsx": "0cdcd9631c99d7e884f281d50d4b4304dd9bec2165fa2e40886798256fe04eff",
+      "src/features/keyboard/keyboard.css": "ac3dc53b5cb387730fbead1e7b6ce01abf945f0a88482f7c5d7ae7e0122a757a",
+      "src/features/keyboard/use-keyboard-release.ts": "663b2172fd0b79df11085cd1e6d1e4d1de34ef359412c851c2df3404c84c6b9e",
+      "src/features/keyboard/use-keyboard-d-warning.ts": "2a62658ca74a1e14eba19cf3229a49744076b0da921cf13fcd944271028b4733",
+      "src/messages/en.json": "7f51a6382b3a5041013f22edff2867ba662909d5cc44fd705d41e1c864abbc1f",
+      "src/messages/vi.json": "1e178309a71cd4a7cbfac6a7d22c4b1af10a6535f37157bddcc60972702c82ee",
+      "tests/keyboard-release.test.tsx": "ad2763a9abfea93cb64da92bacaa024b51322a2b8509db1574401f52bd4c2809",
+      "tests/e2e/keyboard-release.spec.ts": "3f83d1adae2c04d9756b21c75975cbcc190e63f0b52941ad56bf1e1418e8ec1c"
+    }
+  },
+  "behavior": {
+    "alwaysVisible": "Lưu ý dd → đ cạnh lựa chọn EVKey, VI/EN; vẫn đọc được khi browser thiếu sự kiện D",
+    "trigger": "Hai keyup KeyD liên tiếp đủ điều kiện trong vùng active B01, không xác nhận số lần nhấn vật lý",
+    "exclusions": "Repeat, shortcut Ctrl/Alt/Meta, composition signal, 229/231, Process, Unidentified, code thiếu và phiên inactive",
+    "reset": "Reset hoặc đổi mode xóa cờ nhắc; stop/focus/hidden/composition/phím khác ngắt chuỗi",
+    "independentFromMeasurements": true,
+    "automaticInputMethodDetection": false,
+    "rawEventStorageAdded": false,
+    "networkUploadAdded": false
+  },
+  "checks": {
+    "typecheck": {
+      "command": "pnpm typecheck",
+      "exitCode": 0
+    },
+    "lint": {
+      "command": "pnpm lint",
+      "exitCode": 0
+    },
+    "unit": {
+      "command": "pnpm test",
+      "pass": 333,
+      "files": 35,
+      "exitCode": 0
+    },
+    "focusedUnit": {
+      "command": "pnpm exec vitest run tests/keyboard-release.test.tsx",
+      "pass": 28,
+      "exitCode": 0
+    },
+    "build": {
+      "command": "pnpm build",
+      "staticPages": 106,
+      "exitCode": 0
+    },
+    "keyboardE2E": {
+      "command": "pnpm exec playwright test --config artifacts/playwright.keyboard-dd.config.mts",
+      "pass": 52,
+      "skip": 0,
+      "fail": 0,
+      "flaky": 0,
+      "globalErrors": 0,
+      "durationMs": 321097.852,
+      "perProject": {
+        "chromium": {
+          "pass": 13,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "firefox": {
+          "pass": 13,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "webkit": {
+          "pass": 13,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        },
+        "mobile": {
+          "pass": 13,
+          "fail": 0,
+          "skip": 0,
+          "flaky": 0
+        }
+      },
+      "raw": "artifacts/artifacts/keyboard-dd-local-results.json",
+      "includes": [
+        "B01–B05",
+        "VI/EN",
+        "Dark/Light",
+        "WCAG tự động",
+        "heading-order",
+        "320–1440 px",
+        "chữ 200%",
+        "cleanup",
+        "tách thống kê"
+      ]
+    },
+    "http": {
+      "command": "node scripts/smoke-http.mjs http://127.0.0.1:3100",
+      "health": 200,
+      "routes": 34,
+      "exitCode": 0
+    },
+    "formatting": {
+      "command": "pnpm exec prettier --check (7 file mới/chỉnh trong lượt này)",
+      "exitCode": 0
+    },
+    "secretScan": {
+      "command": "node scripts/scan-secrets.mjs",
+      "findings": 0
+    },
+    "visual": {
+      "inspected": [
+        "VI mobile Light, phần hướng dẫn",
+        "VI mobile Dark, cảnh báo dd"
+      ],
+      "screenshots": "artifacts/keyboard-dd-*.png, không commit"
+    }
+  },
+  "limitations": {
+    "manualEvkeyOnNewUI": "Chưa xác nhận; browser automation không chứng nhận EVKey hoặc bàn phím vật lý",
+    "safariHardware": "Chưa kiểm thử Safari thật; WebKit automation không tương đương Safari thực tế",
+    "cleanLighthouse": "Chưa chạy lại; môi trường bị chèn Kaspersky ở checkpoint trước, chưa xác nhận mobile ≥90 cho source này",
+    "fullWebsiteE2E": "Không chạy lại toàn bộ website cho thay đổi cảnh báo B01; full suite trước bổ sung dd có 345 pass/18 skip/9 fail, không được đổi thành pass",
+    "previousReport": "keyboard-release-local-2026-11-12.json chỉ là checkpoint trước cảnh báo dd, giữ nguyên số liệu cũ"
+  },
+  "preview": {
+    "url": "http://127.0.0.1:3100/vi/keyboard/tester",
+    "binding": "127.0.0.1",
+    "productionBuild": true
+  },
+  "deployment": {
+    "committed": false,
+    "pushed": false,
+    "websiteUpdated": false,
+    "infrastructureChanged": false
+  },
+  "finalAcceptance": false
+}

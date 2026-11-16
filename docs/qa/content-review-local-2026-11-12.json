@@ -1,0 +1,438 @@
+{
+  "date": "2026-11-12",
+  "scope": "Tinh gọn nội dung toàn website VI/EN trên local, giữ 40 công cụ",
+  "source": {
+    "baseCommit": "97fd2eba74575a549d06122b2d07097197cf13c1",
+    "workingTree": "uncommitted",
+    "buildId": "SY5EsORK-EogEt0-RLe45",
+    "files": {
+      "src/lib/tools/registry.ts": "a934eeecc155c2b4877b97507086b8c7a393e8adef006e50fee29ccc7803acab",
+      "src/lib/tools/phase2-milestone2.ts": "5d017e32092a0f76b1010c931d292b9c2469dafa5f09738633b52ea3e42281cb",
+      "src/lib/tools/phase2-milestone3.ts": "c58bb3b9e2f96520036bba839f197494a412e17c8c32dcddc01ddee0eb892f35",
+      "src/lib/tools/phase2-milestone4.ts": "23ebe560528f74348221da47f936780592ee40f398896423201fe0da45699bb7",
+      "src/lib/tools/phase2-milestone5.ts": "5ab53599deceeeaf324331da651d07b5a732f4d324b36c71a1498694330ae4b8",
+      "src/lib/tools/phase2-milestone6.ts": "551af68e80539e801bbd58d698c4a205bcba9009e5be5c64d0137fccc797c20c",
+      "src/messages/vi.json": "39ebabfd7e4da84c739949cfbfdfc28dc8a69d8adf9b6563898fa0b30e567a15",
+      "src/messages/en.json": "be7fde819bf4338a07186d73bb3537b1cb02fc4dbc5e92f4306eb066303f22bc",
+      "src/app/[locale]/[category]/[slug]/page.tsx": "e59e273b9c0283221b86664692b53640488135a2598e4a5a47e713b58fc9f59c",
+      "src/app/[locale]/privacy/page.tsx": "f5e757b49cca2a7c63ef044cf945fa87c4df168c3afbd7669e32a27a00bf89fc",
+      "src/app/globals.css": "27209de334c6c8a9f1d9d7e9e1f8b79f8d9397c9fe1395521ce47ad70073b99b",
+      "src/components/tools/tool-card.tsx": "6d9c813b85fef4118ab1f74b025eca3d46c393a849d01ee86518b8106be20a91",
+      "src/components/tools/privacy-settings.tsx": "6cedc097ef6f45aa70fbf7e29fbab77ce69cc57d7492fd914291086bd1172c51",
+      "src/features/keyboard/keyboard.css": "d979bd83864c6d6cf3581ce0cbb376dbb1a2c70911255ffee5a2c794bd27dab5",
+      "tests/e2e/interface.spec.ts": "8f7c5a952bbf44912bae9ebea4cbc98f9af7fce9422c13e6b39cd200e58f8271",
+      "tests/e2e/user-content.spec.ts": "e295c55ced445097fc30194498c863518682f520eb90b6bd0f87f8c2c0141aa4",
+      "tests/e2e/milestone2.spec.ts": "18dcd2ff8e33f5b9d6092316950f264fbc23641a5f0192dea334de4cde064ac3",
+      "tests/e2e/milestone4.spec.ts": "3b04b97b51f2460cf96607f27d9a3ccd1658c2dc336a932801e698b1214e9cc8",
+      "tests/e2e/milestone5.spec.ts": "2b8e0951995985e82c393ac76c5e4ac5e1a591c851e53308b621a5f8e9c3b149",
+      "tests/e2e/milestone6.spec.ts": "31fc35dd7c4bb13389745e7010bb52726406822c1a98cc23cbebfaac6dae1e90",
+      "tests/e2e/keyboard-input-method.spec.ts": "44bcb5070a76cb83f1c1135f4b4c3f9979d881f6c2392be0fb00edfbe2b42b9a",
+      "tests/input-lifecycle.test.tsx": "a8b0dc6e2312fffc2476670f0a0002bdae6e386701a9830ae189f24d91b448c6",
+      "tests/milestone2-lifecycle.test.tsx": "c72575946586b07ec347e38c0624366aa4ec4f92f39de6429bd37542f279e38b",
+      "tests/keyboard.test.tsx": "2829afeecafd6f2641228fb8e4bb44066bc48653ff6f7c5158bbc79aff0400ee"
+    },
+    "registryMetadataAndLogicUnchanged": true,
+    "keyboardRecognitionUnchangedFromAcceptedLocalPreview": true
+  },
+  "copyReview": {
+    "toolsReviewed": 40,
+    "toolRoutes": 80,
+    "registryFieldsChanged": 170,
+    "registryCopyCharacters": {
+      "before": 39424,
+      "after": 28631,
+      "note": "Ký tự source hai ngôn ngữ, không phải byte transfer hoặc Performance"
+    },
+    "messages": {
+      "vi": {
+        "changed": 87,
+        "removed": ["toolFaqQ", "toolLimitQ", "privacyDetails"],
+        "added": [
+          "savedTest",
+          "privacySections.preferences.title",
+          "privacySections.preferences.body",
+          "privacySections.measurements.title",
+          "privacySections.measurements.body",
+          "privacySections.media.title",
+          "privacySections.media.body"
+        ],
+        "beforeChars": 23208,
+        "afterChars": 19837
+      },
+      "en": {
+        "changed": 87,
+        "removed": ["toolFaqQ", "toolLimitQ", "privacyDetails"],
+        "added": [
+          "savedTest",
+          "privacySections.preferences.title",
+          "privacySections.preferences.body",
+          "privacySections.measurements.title",
+          "privacySections.measurements.body",
+          "privacySections.media.title",
+          "privacySections.media.body"
+        ],
+        "beforeChars": 24047,
+        "afterChars": 20414
+      }
+    },
+    "removals": [
+      "FAQ lặp phương pháp/giới hạn",
+      "Badge không yêu cầu quyền",
+      "Mã nội bộ trên thẻ và lịch sử",
+      "Chi tiết triển khai không giúp người dùng thao tác"
+    ],
+    "preserved": [
+      "40 công cụ",
+      "VI/EN",
+      "SEO metadata/breadcrumb",
+      "Hướng dẫn/giới hạn",
+      "Quyền trước Bắt đầu",
+      "Giảm âm lượng",
+      "dd → đ và EVKey keyup",
+      "Lưu opt-in",
+      "Phân biệt dữ liệu browser và phần cứng"
+    ]
+  },
+  "checks": {
+    "typecheck": {
+      "command": "pnpm typecheck",
+      "exitCode": 0
+    },
+    "lint": {
+      "command": "pnpm lint",
+      "exitCode": 0
+    },
+    "build": {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "staticPages": 106
+    },
+    "unit": {
+      "command": "pnpm test --maxWorkers=2 --reporter=json --outputFile=artifacts/user-copy-unit-final-results.json",
+      "pass": 333,
+      "fail": 0,
+      "files": 35,
+      "success": true
+    },
+    "e2e": {
+      "command": "pnpm exec playwright test --config artifacts/playwright.user-copy.config.mts",
+      "total": 384,
+      "pass": 359,
+      "skip": 19,
+      "fail": 6,
+      "flaky": 0,
+      "globalErrors": 0,
+      "durationMs": 1532870.8490000002,
+      "perProject": {
+        "chromium": {
+          "pass": 94,
+          "skip": 0,
+          "fail": 2,
+          "flaky": 0
+        },
+        "firefox": {
+          "pass": 91,
+          "skip": 3,
+          "fail": 2,
+          "flaky": 0
+        },
+        "webkit": {
+          "pass": 80,
+          "skip": 16,
+          "fail": 0,
+          "flaky": 0
+        },
+        "mobile": {
+          "pass": 94,
+          "skip": 0,
+          "fail": 2,
+          "flaky": 0
+        }
+      },
+      "content": {
+        "pass": 8,
+        "skip": 0,
+        "fail": 0,
+        "flaky": 0
+      },
+      "keyboard": {
+        "pass": 52,
+        "skip": 0,
+        "fail": 0,
+        "flaky": 0
+      },
+      "failures": [
+        {
+          "project": "chromium",
+          "file": "milestone5.spec.ts",
+          "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+          "category": "Request từ script Kaspersky chèn ngoài ứng dụng"
+        },
+        {
+          "project": "firefox",
+          "file": "milestone5.spec.ts",
+          "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+          "category": "Request từ script Kaspersky chèn ngoài ứng dụng"
+        },
+        {
+          "project": "mobile",
+          "file": "milestone5.spec.ts",
+          "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+          "category": "Request từ script Kaspersky chèn ngoài ứng dụng"
+        },
+        {
+          "project": "chromium",
+          "file": "milestone6.spec.ts",
+          "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+          "category": "Request từ script Kaspersky chèn ngoài ứng dụng"
+        },
+        {
+          "project": "firefox",
+          "file": "milestone6.spec.ts",
+          "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+          "category": "Request từ script Kaspersky chèn ngoài ứng dụng"
+        },
+        {
+          "project": "mobile",
+          "file": "milestone6.spec.ts",
+          "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+          "category": "Request từ script Kaspersky chèn ngoài ứng dụng"
+        }
+      ],
+      "skips": [
+        {
+          "project": "webkit",
+          "file": "milestone3.spec.ts",
+          "title": "all three audio tools are idle until Start and Stop/Reset release real audio without capture or persistence",
+          "reason": [
+            "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone3.spec.ts",
+          "title": "stereo switches left/right/both on the same real oscillator",
+          "reason": [
+            "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone3.spec.ts",
+          "title": "generator updates real frequency/waveform and stops invalid input without synthetic readings",
+          "reason": [
+            "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone3.spec.ts",
+          "title": "audio automatically ends after its real ten-second limit",
+          "reason": [
+            "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone3.spec.ts",
+          "title": "focus loss and SPA navigation release audio; returning does not restart",
+          "reason": [
+            "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone3.spec.ts",
+          "title": "audio pages pass axe in both themes, including running and invalid states",
+          "reason": [
+            "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone3.spec.ts",
+          "title": "VI/EN audio controls fit mobile/tablet/desktop widths and locale preserves route",
+          "reason": [
+            "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          ]
+        },
+        {
+          "project": "firefox",
+          "file": "milestone4.spec.ts",
+          "title": "native browser policy blocks microphone access when policy introspection is supported",
+          "reason": [
+            "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone4.spec.ts",
+          "title": "native getUserMedia captures virtual test devices from homepage and releases all tracks",
+          "reason": [
+            "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone4.spec.ts",
+          "title": "native browser policy blocks microphone access when policy introspection is supported",
+          "reason": [
+            "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone4.spec.ts",
+          "title": "real analysis of a synthetic 1 kHz stream populates both tools without saving or uploading",
+          "reason": [
+            "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone4.spec.ts",
+          "title": "revocation releases the live stream and track mute/end clear stale readings",
+          "reason": [
+            "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone4.spec.ts",
+          "title": "blur and session deadline release real stream graphs without background continuation",
+          "reason": [
+            "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone4.spec.ts",
+          "title": "both input tools pass axe in Dark/Light with running and denied states",
+          "reason": [
+            "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          ]
+        },
+        {
+          "project": "firefox",
+          "file": "milestone5.spec.ts",
+          "title": "native camera policy denial is enforced when the runtime exposes policy support",
+          "reason": [
+            "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone5.spec.ts",
+          "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+          "reason": [
+            "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone5.spec.ts",
+          "title": "native camera policy denial is enforced when the runtime exposes policy support",
+          "reason": [
+            "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+          ]
+        },
+        {
+          "project": "firefox",
+          "file": "milestone6.spec.ts",
+          "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+          "reason": [
+            "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+          ]
+        },
+        {
+          "project": "webkit",
+          "file": "milestone6.spec.ts",
+          "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+          "reason": [
+            "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+          ]
+        }
+      ],
+      "gatePassed": false,
+      "raw": "artifacts/user-copy-e2e-results.json",
+      "log": "artifacts/user-copy-full-e2e.log",
+      "assertionsAndExistingSkipsPreserved": true,
+      "retries": 0,
+      "workers": 2
+    },
+    "http": {
+      "command": "node scripts/smoke-http.mjs http://127.0.0.1:3100",
+      "health": 200,
+      "routes": 34,
+      "exitCode": 0
+    },
+    "formatting": {
+      "command": "pnpm exec prettier --check (toàn bộ file source/test trong manifest)",
+      "exitCode": 0
+    },
+    "secretScan": {
+      "command": "node scripts/scan-secrets.mjs",
+      "findings": 0
+    },
+    "visual": {
+      "reviewed": [
+        "Trang chủ VI Light desktop",
+        "Nội dung microphone EN Light desktop",
+        "Cảnh báo dd VI Dark mobile",
+        "Quyền riêng tư VI Light chữ 200%"
+      ],
+      "note": "Ảnh chỉ trong artifacts; đã chờ theme preference thực sự cập nhật sau hydration"
+    }
+  },
+  "checkpoints": {
+    "firstUnit": {
+      "pass": 325,
+      "fail": 8,
+      "note": "Selector câu cũ và timeout bài nhiều sự kiện; không đổi timeout hoặc bỏ assertion"
+    },
+    "fixedSelectorsUnit": {
+      "pass": 333,
+      "fail": 0,
+      "note": "Lượt default workers sau sửa selector trước một số chỉnh CSS/nhãn cuối"
+    },
+    "firstContentE2E": {
+      "pass": 1,
+      "fail": 1,
+      "project": "chromium",
+      "note": "80 route đạt; privacy tràn nút xóa ở 320 px/chữ 200%, đã sửa"
+    },
+    "interruptedFull": "Đã dừng lượt dở trước source cuối; giữ log/trace riêng, không nhận làm full gate",
+    "focusedFinal": {
+      "pass": 3,
+      "fail": 0,
+      "project": "chromium",
+      "note": "Minh họa, dd reflow và privacy sau sửa; giữ assertion"
+    }
+  },
+  "environmentControl": {
+    "applicationSourceLoaded": false,
+    "servedScripts": 0,
+    "kasperskyObserved": true,
+    "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+    "externalPostObserved": true,
+    "noKeyboardOrGamepadInput": true,
+    "note": "HTML trắng local, không script ứng dụng; không lưu URL vendor có session ID hoặc payload trong báo cáo"
+  },
+  "limitations": {
+    "cleanLighthouse": "Chưa đo lại hoặc xác nhận mobile ≥90; có script Kaspersky trong môi trường, không suy điểm từ số chữ giảm",
+    "physicalHardware": "Không kiểm chứng lại thiết bị/bộ gõ/Safari thật/screen reader; WebKit automation không phải Safari thực tế",
+    "userFeedback": "Người dùng xác nhận bản EVKey/dd local trước là ổn; không gán phản hồi đó cho mọi thiết bị hoặc toàn bộ source tinh gọn mới"
+  },
+  "preview": {
+    "url": "http://127.0.0.1:3100/vi",
+    "binding": "127.0.0.1",
+    "productionBuild": true
+  },
+  "deployment": {
+    "committed": false,
+    "pushed": false,
+    "websiteUpdated": false,
+    "infrastructureChanged": false
+  },
+  "finalAcceptance": false
+}

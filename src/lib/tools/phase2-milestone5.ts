@@ -3,40 +3,34 @@ const details = {
   E01: {
     vi: {
       description: 'Xem trước video webcam cục bộ sau khi bạn cho phép camera.',
-      method:
-        'getUserMedia({video:true,audio:false}) và video muted/playsInline; không ghi hình, đọc pixel, enumerate thiết bị, lưu lịch sử hoặc upload video.',
+      method: 'Hiển thị video từ camera bạn cho phép; không sử dụng microphone hoặc ghi hình.',
     },
     en: {
       description: 'Preview a local webcam video after allowing camera access.',
       method:
-        'Uses getUserMedia({video:true,audio:false}) with muted/playsInline video. No recording, pixel reading, device enumeration, history or video upload.',
+        'Displays video from the camera you allow, without using the microphone or recording.',
     },
   },
   E02: {
     vi: {
-      description: 'Đọc kích thước video và độ phân giải luồng camera do browser báo.',
-      method:
-        'Đọc videoWidth/videoHeight của video và width/height từ MediaStreamTrack.getSettings mỗi 250 ms. Đây là cấu hình luồng hiện tại, không phải độ phân giải tối đa hoặc độ phân giải cảm biến.',
+      description: 'Xem kích thước video và độ phân giải luồng camera hiện tại.',
+      method: 'Đối chiếu kích thước video đang hiển thị với cấu hình luồng camera được báo.',
     },
     en: {
-      description:
-        'Read video dimensions and the camera stream resolution reported by the browser.',
-      method:
-        'Reads videoWidth/videoHeight and width/height from MediaStreamTrack.getSettings every 250 ms. These describe the current stream, not maximum resolution or sensor resolution.',
+      description: 'View video dimensions and the current camera stream resolution.',
+      method: 'Compares displayed video dimensions with the reported camera stream settings.',
     },
   },
   E03: {
     vi: {
-      description:
-        'Quan sát FPS khung video được browser đưa tới compositor và đối chiếu FPS luồng được báo.',
+      description: 'Ước tính FPS video đang hiển thị và so sánh với FPS luồng được báo.',
       method:
-        'requestVideoFrameCallback: ΔpresentedFrames × 1000 / Δthời gian callback, cửa sổ ít nhất 2 giây. Không đếm requestAnimationFrame hoặc lấy FPS được báo làm FPS đo. Thiếu API, chưa đủ mẫu hoặc gián đoạn trên 2 giây sẽ không có kết quả đo.',
+        'Tính FPS từ số khung video mới trong khoảng ít nhất 2 giây. Không đủ dữ liệu hoặc trình duyệt không hỗ trợ thì hiện —.',
     },
     en: {
-      description:
-        'Observe video frame submissions to the browser compositor and compare reported stream FPS.',
+      description: 'Estimate displayed video FPS and compare it with the reported stream FPS.',
       method:
-        'requestVideoFrameCallback: ΔpresentedFrames × 1000 / Δcallback time over at least 2 seconds. Does not count requestAnimationFrame or use reported FPS as measured FPS. Missing API, insufficient samples or a gap over 2 seconds produces no reading.',
+        'Calculates FPS from new video frames over at least 2 seconds. Displays — when data or browser support is insufficient.',
     },
   },
 };
@@ -55,17 +49,17 @@ export function publishMilestone5(tool: Tool): Tool {
         ...tool.copy.vi,
         ...copy.vi,
         instructions:
-          'Bấm Bắt đầu và xử lý hộp hỏi quyền. Browser chọn cấu hình camera mặc định. Dừng/Reset, mất focus, ẩn trang, rời trang hoặc hết 60 giây sẽ giải phóng camera. Nếu hộp hỏi quyền còn mở, Dừng không đóng được hộp này; luồng cấp muộn sẽ được giải phóng.',
+          'Bấm Bắt đầu và cho phép camera. Dừng để tắt camera; rời tab hoặc sau 60 giây, phiên tự kết thúc. Nếu hộp quyền còn mở, hãy chọn cho phép hoặc từ chối trước khi thử lại.',
         limitations:
-          'Chỉ quan sát luồng browser, không chứng nhận thông số cảm biến, FPS phần cứng, chất lượng hoặc độ trễ camera. Ánh sáng, driver, xử lý browser, tải máy và Refresh Rate có thể ảnh hưởng kết quả. Không có mẫu hợp lệ được hiển thị bằng dấu —; không dùng số liệu giả.',
+          'Kết quả phản ánh luồng video hiện tại, không phải độ phân giải tối đa hay thông số cảm biến. Ánh sáng, tải máy và Refresh Rate có thể ảnh hưởng FPS.',
       },
       en: {
         ...tool.copy.en,
         ...copy.en,
         instructions:
-          'Select Start and respond to the permission prompt. The browser selects default camera settings. Stop/Reset, focus loss, a hidden page, navigation or the 60-second limit releases the camera. Stop cannot dismiss an open browser prompt; a late stream is released.',
+          'Select Start and allow the camera. Stop turns it off; leaving the tab or reaching 60 seconds ends the session. If the permission prompt is still open, allow or deny it before trying again.',
         limitations:
-          'Observes the browser stream; does not certify sensor specifications, hardware FPS, quality or camera latency. Lighting, drivers, browser processing, system load and display refresh rate can affect results. Invalid or unavailable readings are shown as —; no fabricated measurements.',
+          'Results describe the current video stream, not maximum resolution or sensor specifications. Lighting, system load and display Refresh Rate can affect FPS.',
       },
     },
   };

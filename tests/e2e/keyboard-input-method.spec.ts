@@ -1,3 +1,4 @@
+import en from '../../src/messages/en.json';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -94,7 +95,9 @@ test('IME 229 stops capture even without isComposing; later replacement events a
   }
   await expect(page.getByRole('progressbar')).toHaveAttribute('value', '0');
   await expect(page.locator('[data-code="Backspace"]')).toHaveAttribute('data-tested', 'false');
-  await expect(page.locator('.keyboard-input-issue[role=alert]')).toContainText('IME/composition');
+  await expect(page.locator('.keyboard-input-issue[role=alert]')).toContainText(
+    en.keyboardTools.inputIssue.composition,
+  );
   const row = page.locator('.keyboard-event-table tbody tr').first();
   await expect(row).toContainText('Backspace');
   await expect(row).toContainText('229');

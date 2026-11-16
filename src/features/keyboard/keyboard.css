@@ -26,8 +26,54 @@
   background: var(--color-surface);
 }
 .keyboard-input-help p,
-.keyboard-input-issue p {
+.keyboard-input-issue p,
+.keyboard-dd-warning p {
   margin-top: 8px;
+}
+.keyboard-dd-note {
+  border-inline-start: 3px solid var(--color-warning);
+  padding-inline-start: 12px;
+}
+.keyboard-release-settings {
+  margin-top: 14px;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 10px;
+}
+.keyboard-release-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding-block: 8px;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.keyboard-release-toggle input {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  accent-color: var(--color-accent);
+  padding: 0;
+  margin: 0;
+}
+.keyboard-release-result {
+  margin-top: 24px;
+}
+.keyboard-release-result p {
+  margin-top: 8px;
+}
+.keyboard-diagram .keycap[data-received-via='keyup'],
+.keyboard-legend [data-key-state='keyup'] i {
+  background: var(--color-accent-bg);
+  border-color: var(--color-accent);
+  border-style: dashed;
+}
+.key-release-source {
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  font-size: 0.75rem;
+  line-height: 1;
 }
 .keyboard-capture-status {
   display: inline-flex;
@@ -148,6 +194,7 @@
   margin-top: 12px;
 }
 .keyboard-notice {
+  overflow-wrap: anywhere;
   margin-block: 12px;
   padding: 12px 16px;
   border-inline-start: 3px solid var(--color-warning);

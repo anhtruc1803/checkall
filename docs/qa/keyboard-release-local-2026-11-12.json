@@ -1,0 +1,626 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Saigon",
+  "status": "local-implementation-verified-with-environment-limitations",
+  "source": {
+    "date": "2026-11-12",
+    "baseCommit": "97fd2eba74575a549d06122b2d07097197cf13c1",
+    "workingTree": true,
+    "buildId": "Oibxd7PoqAR9WecS02fZB",
+    "files": {
+      "src/features/keyboard/keyboard.tsx": "7311e8e8a92872353d9bd93fef3b9b74c12bb293ddb3d7fb91125cc9e7863c0f",
+      "src/features/keyboard/keyboard.css": "ee3447441b2ff17d58d67ea5e509a2a87aeeb12fb10f06c4fed147d8ff350b2d",
+      "src/features/keyboard/use-keyboard-release.ts": "663b2172fd0b79df11085cd1e6d1e4d1de34ef359412c851c2df3404c84c6b9e",
+      "src/messages/en.json": "83d379e7e2cf4b246a95e5899d282e2659e5957a1d4dfb06b5117d4ebcd1c9fe",
+      "src/messages/vi.json": "866471a44c06347cd4edf1a093743add1666bb655c91fa59615eb3b74e5cbffa",
+      "tests/keyboard-release.test.tsx": "696ec6f09850192e81ac19bd0e22c3e3df6165d7f67861de5da0fc4088fcd48e",
+      "tests/e2e/keyboard-release.spec.ts": "de2bb813b70af589c2137aefa502c8291e59f31d6e54a311456e6a9e9f4b5610"
+    },
+    "finalReviewFiles": {
+      "src/features/keyboard/keyboard.tsx": "7311e8e8a92872353d9bd93fef3b9b74c12bb293ddb3d7fb91125cc9e7863c0f",
+      "src/features/keyboard/keyboard.css": "ee3447441b2ff17d58d67ea5e509a2a87aeeb12fb10f06c4fed147d8ff350b2d",
+      "src/features/keyboard/use-keyboard-release.ts": "663b2172fd0b79df11085cd1e6d1e4d1de34ef359412c851c2df3404c84c6b9e",
+      "src/messages/en.json": "83d379e7e2cf4b246a95e5899d282e2659e5957a1d4dfb06b5117d4ebcd1c9fe",
+      "src/messages/vi.json": "866471a44c06347cd4edf1a093743add1666bb655c91fa59615eb3b74e5cbffa",
+      "tests/keyboard-release.test.tsx": "696ec6f09850192e81ac19bd0e22c3e3df6165d7f67861de5da0fc4088fcd48e",
+      "tests/e2e/keyboard-release.spec.ts": "c85b50717a26d60b697fbbaa51a84c8484587b516dac6a9d2273641229133216"
+    },
+    "postRunFormatting": {
+      "file": "tests/e2e/keyboard-release.spec.ts",
+      "typeScriptASTEquivalent": true,
+      "applicationSourceUnchanged": true,
+      "reason": "Chuẩn hóa line wrapping/punctuation sau QA; không thay assertion hoặc test logic."
+    }
+  },
+  "scope": {
+    "tool": "B01",
+    "toolsPreserved": 40,
+    "modeDefault": "off",
+    "allowedCodes": "KeyA-KeyZ",
+    "otherKeyboardToolsUnchanged": true,
+    "measurementEnginesChanged": false,
+    "websiteDeployed": false,
+    "pushed": false
+  },
+  "unit": {
+    "passed": 328,
+    "files": 35,
+    "keyboardPassed": 55,
+    "keyboardFiles": 3
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": {
+    "passed": true,
+    "staticPages": 106
+  },
+  "targetedE2E": {
+    "startTime": "2026-11-12T03:34:27.799Z",
+    "duration": 93150.081,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "replay": {
+    "passed": 6,
+    "fixtures": true,
+    "liveHardwareTest": false,
+    "results": [
+      {
+        "browser": "chromium",
+        "sourceSurface": "capture",
+        "keyboardEventsReplayed": 22,
+        "state": {
+          "active": "true",
+          "progress": 1,
+          "received": [
+            "KeyD"
+          ],
+          "measurements": 0,
+          "pressBadges": 0
+        },
+        "passed": true,
+        "fixture": true,
+        "livePhysicalInput": false
+      },
+      {
+        "browser": "chromium",
+        "sourceSurface": "editable",
+        "keyboardEventsReplayed": 64,
+        "state": {
+          "active": "true",
+          "progress": 1,
+          "received": [
+            "KeyD"
+          ],
+          "measurements": 0,
+          "pressBadges": 0
+        },
+        "passed": true,
+        "fixture": true,
+        "livePhysicalInput": false
+      },
+      {
+        "browser": "firefox",
+        "sourceSurface": "capture",
+        "keyboardEventsReplayed": 22,
+        "state": {
+          "active": "true",
+          "progress": 1,
+          "received": [
+            "KeyD"
+          ],
+          "measurements": 0,
+          "pressBadges": 0
+        },
+        "passed": true,
+        "fixture": true,
+        "livePhysicalInput": false
+      },
+      {
+        "browser": "firefox",
+        "sourceSurface": "editable",
+        "keyboardEventsReplayed": 64,
+        "state": {
+          "active": "true",
+          "progress": 1,
+          "received": [
+            "KeyD"
+          ],
+          "measurements": 0,
+          "pressBadges": 0
+        },
+        "passed": true,
+        "fixture": true,
+        "livePhysicalInput": false
+      },
+      {
+        "browser": "webkit",
+        "sourceSurface": "capture",
+        "keyboardEventsReplayed": 22,
+        "state": {
+          "active": "true",
+          "progress": 1,
+          "received": [
+            "KeyD"
+          ],
+          "measurements": 0,
+          "pressBadges": 0
+        },
+        "passed": true,
+        "fixture": true,
+        "livePhysicalInput": false
+      },
+      {
+        "browser": "webkit",
+        "sourceSurface": "editable",
+        "keyboardEventsReplayed": 64,
+        "state": {
+          "active": "true",
+          "progress": 1,
+          "received": [
+            "KeyD"
+          ],
+          "measurements": 0,
+          "pressBadges": 0
+        },
+        "passed": true,
+        "fixture": true,
+        "livePhysicalInput": false
+      }
+    ]
+  },
+  "audioSmoke": {
+    "physicalHardwareVerified": false,
+    "results": [
+      {
+        "browser": "chromium",
+        "state": "passed",
+        "sampleRate": 48000,
+        "contextState": "closed"
+      },
+      {
+        "browser": "firefox",
+        "state": "passed",
+        "sampleRate": 48000,
+        "contextState": "closed"
+      },
+      {
+        "browser": "webkit",
+        "state": "failed",
+        "reason": "ReferenceError: Can't find variable: AudioContext"
+      }
+    ]
+  },
+  "injectionControl": {
+    "applicationSourceLoaded": false,
+    "servedScripts": 0,
+    "plainLocalHtml": true,
+    "browser": "156.0.8078.4",
+    "outsideRequests": [
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "script"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "POST",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      }
+    ],
+    "kasperskyObserved": true,
+    "note": "Origins only; vendor session identifiers and request payloads omitted. No keyboard or gamepad input."
+  },
+  "manualCandidateFeedback": {
+    "status": "not-yet-confirmed",
+    "browser": "unspecified",
+    "oldSurveyReplayIsNotNewPhysicalInput": true
+  },
+  "performance": {
+    "status": "rejected-unclean-no-median",
+    "plannedRunsPerPath": 3,
+    "plannedPaths": [
+      "/vi",
+      "/vi/keyboard/tester",
+      "/en/keyboard/tester"
+    ],
+    "measurements": [
+      {
+        "path": "/vi",
+        "run": 1,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "clean": false,
+        "externalScripts": [
+          "http://gc.kis.v2.scr.kaspersky-labs.com"
+        ],
+        "scores": {
+          "performance": 71,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 92
+        },
+        "metrics": {
+          "fcpMs": 3220.5732029419555,
+          "lcpMs": 3220.5732029419555,
+          "tbtMs": 633,
+          "cls": 0.005213468867315015,
+          "speedIndexMs": 3220.5732029419555,
+          "jsBytes": 376960,
+          "fontBytes": 103874,
+          "imageBytes": 0,
+          "documentBytes": 196960,
+          "cssBytes": 14786
+        },
+        "environment": {
+          "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+          "hostUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "benchmarkIndex": 1624,
+          "credits": {
+            "axe-core": "4.14.0"
+          }
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "report": "vi-1.html"
+      }
+    ],
+    "eligibleMedian": false,
+    "mobile90Verified": false,
+    "applicationRegressionProven": false,
+    "securitySoftwareChanged": false,
+    "extensionDisabledForFreshChromium": true,
+    "sourceManifest": {
+      "src/features/keyboard/keyboard.tsx": "7311e8e8a92872353d9bd93fef3b9b74c12bb293ddb3d7fb91125cc9e7863c0f",
+      "src/features/keyboard/keyboard.css": "ee3447441b2ff17d58d67ea5e509a2a87aeeb12fb10f06c4fed147d8ff350b2d",
+      "src/features/keyboard/use-keyboard-release.ts": "663b2172fd0b79df11085cd1e6d1e4d1de34ef359412c851c2df3404c84c6b9e",
+      "src/messages/en.json": "83d379e7e2cf4b246a95e5899d282e2659e5957a1d4dfb06b5117d4ebcd1c9fe",
+      "src/messages/vi.json": "866471a44c06347cd4edf1a093743add1666bb655c91fa59615eb3b74e5cbffa",
+      "tests/keyboard-release.test.tsx": "696ec6f09850192e81ac19bd0e22c3e3df6165d7f67861de5da0fc4088fcd48e",
+      "tests/e2e/keyboard-release.spec.ts": "de2bb813b70af589c2137aefa502c8291e59f31d6e54a311456e6a9e9f4b5610"
+    }
+  },
+  "notes": [
+    "Không lưu raw khảo sát trong tài liệu hoặc Git.",
+    "Không coi replay hoặc WebKit automation là phép thử phần cứng/Safari thật.",
+    "Không sửa assertion/skip để bỏ qua Kaspersky hoặc thiếu AudioContext."
+  ],
+  "fullE2E": {
+    "stats": {
+      "startTime": "2026-11-12T03:37:15.224Z",
+      "duration": 1217309.841,
+      "expected": 345,
+      "skipped": 18,
+      "unexpected": 9,
+      "flaky": 0
+    },
+    "passed": false,
+    "projects": {
+      "chromium": {
+        "expected": 91,
+        "unexpected": 2
+      },
+      "firefox": {
+        "expected": 86,
+        "unexpected": 5,
+        "skipped": 2
+      },
+      "webkit": {
+        "expected": 77,
+        "skipped": 16
+      },
+      "mobile": {
+        "expected": 91,
+        "unexpected": 2
+      }
+    },
+    "keyboard": {
+      "total": 48,
+      "counts": {
+        "expected": 48
+      }
+    },
+    "addedCases": {
+      "total": 12,
+      "counts": {
+        "expected": 12
+      }
+    },
+    "failures": [
+      {
+        "file": "milestone4.spec.ts",
+        "title": "native getUserMedia captures virtual test devices from homepage and releases all tracks",
+        "project": "firefox",
+        "category": "firefox-context-teardown",
+        "explanation": "Lỗi protocol khi đóng context Firefox; gốc lỗi chưa xác định, không tái hiện ở lượt chạy riêng."
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "project": "firefox",
+        "category": "firefox-context-teardown",
+        "explanation": "Lỗi protocol khi đóng context Firefox; gốc lỗi chưa xác định, không tái hiện ở lượt chạy riêng."
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "permission denial, no device, busy input and capture abort are localized honest failures",
+        "project": "firefox",
+        "category": "firefox-context-teardown",
+        "explanation": "Lỗi protocol khi đóng context Firefox; gốc lỗi chưa xác định, không tái hiện ở lượt chạy riêng."
+      },
+      {
+        "file": "milestone5.spec.ts",
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "project": "chromium",
+        "category": "external-kaspersky-traffic",
+        "explanation": "Assertion không-upload thấy POST từ script Kaspersky bên ngoài; đã có đối chứng trang trắng không chứa mã ứng dụng."
+      },
+      {
+        "file": "milestone5.spec.ts",
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "project": "firefox",
+        "category": "external-kaspersky-traffic",
+        "explanation": "Assertion không-upload thấy POST từ script Kaspersky bên ngoài; đã có đối chứng trang trắng không chứa mã ứng dụng."
+      },
+      {
+        "file": "milestone5.spec.ts",
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "project": "mobile",
+        "category": "external-kaspersky-traffic",
+        "explanation": "Assertion không-upload thấy POST từ script Kaspersky bên ngoài; đã có đối chứng trang trắng không chứa mã ứng dụng."
+      },
+      {
+        "file": "milestone6.spec.ts",
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "project": "chromium",
+        "category": "external-kaspersky-traffic",
+        "explanation": "Assertion không-upload thấy POST từ script Kaspersky bên ngoài; đã có đối chứng trang trắng không chứa mã ứng dụng."
+      },
+      {
+        "file": "milestone6.spec.ts",
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "project": "firefox",
+        "category": "external-kaspersky-traffic",
+        "explanation": "Assertion không-upload thấy POST từ script Kaspersky bên ngoài; đã có đối chứng trang trắng không chứa mã ứng dụng."
+      },
+      {
+        "file": "milestone6.spec.ts",
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "project": "mobile",
+        "category": "external-kaspersky-traffic",
+        "explanation": "Assertion không-upload thấy POST từ script Kaspersky bên ngoài; đã có đối chứng trang trắng không chứa mã ứng dụng."
+      }
+    ],
+    "skipped": [
+      {
+        "file": "milestone3.spec.ts",
+        "title": "all three audio tools are idle until Start and Stop/Reset release real audio without capture or persistence",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "file": "milestone3.spec.ts",
+        "title": "stereo switches left/right/both on the same real oscillator",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "file": "milestone3.spec.ts",
+        "title": "generator updates real frequency/waveform and stops invalid input without synthetic readings",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "file": "milestone3.spec.ts",
+        "title": "audio automatically ends after its real ten-second limit",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "file": "milestone3.spec.ts",
+        "title": "focus loss and SPA navigation release audio; returning does not restart",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "file": "milestone3.spec.ts",
+        "title": "audio pages pass axe in both themes, including running and invalid states",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "file": "milestone3.spec.ts",
+        "title": "VI/EN audio controls fit mobile/tablet/desktop widths and locale preserves route",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "native getUserMedia captures virtual test devices from homepage and releases all tracks",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "real analysis of a synthetic 1 kHz stream populates both tools without saving or uploading",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "revocation releases the live stream and track mute/end clear stale readings",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "blur and session deadline release real stream graphs without background continuation",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "file": "milestone4.spec.ts",
+        "title": "both input tools pass axe in Dark/Light with running and denied states",
+        "project": "webkit",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "file": "milestone5.spec.ts",
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "project": "firefox",
+        "reasons": [
+          "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+        ]
+      },
+      {
+        "file": "milestone5.spec.ts",
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "project": "webkit",
+        "reasons": [
+          "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+        ]
+      },
+      {
+        "file": "milestone5.spec.ts",
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "project": "webkit",
+        "reasons": [
+          "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+        ]
+      },
+      {
+        "file": "milestone6.spec.ts",
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "project": "firefox",
+        "reasons": [
+          "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+        ]
+      },
+      {
+        "file": "milestone6.spec.ts",
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "project": "webkit",
+        "reasons": [
+          "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+        ]
+      }
+    ],
+    "rawResultsIgnoredPath": "artifacts/keyboard-release-full-results.json"
+  },
+  "firefoxIsolatedDiagnostic": {
+    "stats": {
+      "startTime": "2026-11-12T04:00:53.749Z",
+      "duration": 7692.802000000001,
+      "expected": 2,
+      "skipped": 1,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "baseUrl": "http://127.0.0.1:3100",
+    "sameBuild": true,
+    "retries": 0,
+    "sourceChanged": false,
+    "fullFailuresRemain": true,
+    "nativePolicyVerified": false
+  },
+  "localHttpSmoke": {
+    "origin": "http://127.0.0.1:3100",
+    "healthPassed": true,
+    "routeChecks": 34,
+    "scopedPolicyPassed": true
+  },
+  "deployment": {
+    "websiteUpdated": false,
+    "githubPush": false,
+    "remoteInfrastructureChanged": false,
+    "previewOrigin": "http://127.0.0.1:3100",
+    "previewLoopbackOnly": true,
+    "previewKeptForUserReview": true
+  },
+  "acceptance": {
+    "featureAutomationVerified": true,
+    "fullSuitePassed": false,
+    "cleanPerformanceVerified": false,
+    "finalAcceptanceComplete": false,
+    "notes": "Cần môi trường sạch và đối chiếu manual trước khi nghiệm thu rộng hoặc đề xuất cập nhật website."
+  }
+}

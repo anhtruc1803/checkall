@@ -1,3 +1,4 @@
+import en from '../../src/messages/en.json';
 import { test as base, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { inputFixture } from './helpers/input-fixture';
@@ -156,7 +157,9 @@ test('native browser policy blocks microphone access when policy introspection i
   await ready(page);
   await page.getByRole('button', { name: 'Start', exact: true }).click();
   await expect(page.locator('.status')).toHaveAttribute('data-state', 'error');
-  await expect(page.locator('.tool-workspace').getByRole('alert')).toContainText(/policy|refused/);
+  await expect(page.locator('.tool-workspace').getByRole('alert')).toContainText(
+    /Page settings block device access\.|Device access was refused/,
+  );
 });
 test('real analysis of a synthetic 1 kHz stream populates both tools without saving or uploading', async ({
   page,
@@ -343,7 +346,7 @@ test('revocation releases the live stream and track mute/end clear stale reading
   await expect(metric(page, 'Digital RMS amplitude')).not.toContainText('—');
   await page.evaluate(() => window.__inputProbe.mute?.(true));
   await expect(metric(page, 'Digital RMS amplitude')).toHaveText('—');
-  await expect(page.getByText(/reports a muted input/)).toBeVisible();
+  await expect(page.getByText(en.inputAudio.muted, { exact: true })).toBeVisible();
   await page.evaluate(() => window.__inputProbe.mute?.(false));
   await expect(metric(page, 'Digital RMS amplitude')).not.toContainText('—');
   await page.evaluate(() => window.__inputProbe.end?.());

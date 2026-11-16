@@ -1,3 +1,4 @@
+import en from '../../src/messages/en.json';
 import { test as base, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { cameraFixture } from './helpers/camera-fixture';
@@ -141,10 +142,10 @@ test('native virtual camera renders all tools and measures compositor FPS withou
         callbacks,
         'CI/native target must expose rVFC; missing support remains an open criterion',
       ).toBe(true);
-      await expect(metric(page, 'Observed compositor FPS')).not.toContainText('—', {
+      await expect(metric(page, en.cameraTools.observedFps)).not.toContainText('—', {
         timeout: 15000,
       });
-      const fps = parseFloat(await metric(page, 'Observed compositor FPS').innerText());
+      const fps = parseFloat(await metric(page, en.cameraTools.observedFps).innerText());
       expect(fps).toBeGreaterThan(0);
       expect(fps).toBeLessThan(150);
       expect(
@@ -193,7 +194,9 @@ test('native camera policy denial is enforced when the runtime exposes policy su
   await ready(page);
   await page.getByRole('button', { name: 'Start', exact: true }).click();
   await expect(page.locator('.status')).toHaveAttribute('data-state', 'error');
-  await expect(page.locator('.tool-workspace').getByRole('alert')).toContainText(/policy|refused/);
+  await expect(page.locator('.tool-workspace').getByRole('alert')).toContainText(
+    /Page settings block device access\.|Device access was refused/,
+  );
 });
 test('document navigation updates camera, locale, microphone and restrictive policies', async ({
   page,
@@ -258,7 +261,7 @@ test('pending permission cannot recapture after Stop and a late stream is releas
   await expect.poll(() => page.evaluate(() => window.__cameraProbe.calls)).toBe(1);
   await page.getByRole('button', { name: 'Stop', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Start', exact: true })).toBeDisabled();
-  await expect(page.getByText(/request is still pending/)).toBeVisible();
+  await expect(page.getByText(en.cameraTools.latePrompt, { exact: true })).toBeVisible();
   await page.evaluate(() => window.__cameraProbe.resolve?.());
   await closed(page);
   await expect(page.getByRole('button', { name: 'Start', exact: true })).toBeEnabled();
@@ -290,10 +293,10 @@ test('muted, revoked, ended, blurred and pagehide sessions clear video and do no
   await page.goto('/en/camera/fps');
   await ready(page);
   await start(page);
-  await expect(page.getByText(/does not expose requestVideoFrameCallback/)).toBeVisible();
-  await expect(metric(page, 'Observed compositor FPS')).toContainText('—');
+  await expect(page.getByText(en.cameraTools.fpsUnavailable, { exact: true })).toBeVisible();
+  await expect(metric(page, en.cameraTools.observedFps)).toContainText('—');
   await page.evaluate(() => window.__cameraProbe.mute?.(true));
-  await expect(page.getByText(/reports a muted camera/)).toBeVisible();
+  await expect(page.getByText(en.cameraTools.muted, { exact: true })).toBeVisible();
   await page.evaluate(() => window.__cameraProbe.mute?.(false));
   await page.evaluate(() => window.__cameraProbe.revoke?.());
   await closed(page);

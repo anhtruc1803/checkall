@@ -917,6 +917,14 @@ th {
 .privacy-settings {
   max-width: 800px;
 }
+.privacy-settings .tool-workspace {
+  overflow-wrap: anywhere;
+}
+.privacy-settings .tool-workspace .button {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
 .checkbox-label {
   display: flex;
   align-items: center;

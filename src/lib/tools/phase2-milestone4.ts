@@ -2,45 +2,41 @@ import type { Tool } from './types';
 const details = {
   D03: {
     vi: {
-      description:
-        'Quan sát RMS, peak và waveform của luồng microphone sau khi bạn cho phép truy cập.',
+      description: 'Kiểm tra microphone qua mức tín hiệu và dạng sóng trực tiếp.',
       instructions:
-        'Bấm Bắt đầu và xử lý hộp hỏi quyền của browser, rồi nói hoặc tạo âm thanh gần microphone. Dừng hoặc Reset để giải phóng thiết bị. Mất focus, ẩn trang hoặc hết thời hạn 60 giây sẽ dừng phiên; Stop không thể đóng hộp hỏi quyền của browser.',
+        'Bấm Bắt đầu, cho phép microphone rồi nói vào mic. Dừng để kết thúc; rời tab hoặc sau 60 giây, phiên sẽ tự dừng.',
       limitations:
-        'Mức tín hiệu là giá trị số/dBFS của luồng browser, không phải dB SPL, độ nhạy hoặc chứng nhận chất lượng microphone. AGC, echo cancellation, noise suppression, driver và mute hệ thống có thể thay đổi dữ liệu; im lặng không chứng minh thiết bị hỏng.',
+        'Mức tín hiệu không phải độ lớn âm thanh thực tế hoặc đánh giá chất lượng mic. Mute, lọc tiếng ồn và cài đặt hệ thống có thể ảnh hưởng; im lặng chưa chứng minh mic hỏng.',
       method:
-        'getUserMedia chỉ yêu cầu audio sau Bắt đầu. MediaStreamAudioSourceNode nối AnalyserNode FFT 2048 để lấy RMS, peak và tỷ lệ mẫu có |x| ≥ 0,99 theo cửa sổ hiện tại. Không nối ra loa, không ghi file, phát lại, lưu lịch sử, enumerate thiết bị hoặc upload audio.',
+        'Phân tích mức trung bình RMS, mức đỉnh và dạng sóng của âm thanh đầu vào; không phát lại hoặc ghi âm.',
     },
     en: {
-      description: 'Observe RMS, peak and waveform from a microphone stream after granting access.',
+      description: 'Check your microphone using live signal levels and a waveform.',
       instructions:
-        'Select Start and respond to the browser permission prompt, then speak or make a sound near the microphone. Stop or Reset releases it. Focus loss, a hidden page or the 60-second limit stops the session. Stop cannot dismiss the browser permission prompt.',
+        'Select Start, allow microphone access and speak into the mic. Stop ends the test; leaving the tab or reaching 60 seconds stops it automatically.',
       limitations:
-        'Levels describe digital stream amplitude/dBFS, not dB SPL, sensitivity or certified microphone quality. AGC, echo cancellation, noise suppression, drivers and system mute may change the data. Silence does not establish a broken device.',
-      method:
-        'Requests audio-only getUserMedia after Start. A MediaStreamAudioSourceNode feeds an AnalyserNode with FFT size 2048 for RMS, peak and the fraction of samples with |x| ≥ 0.99 in the current window. No speaker monitoring, recording, playback, history, device enumeration or audio upload.',
+        'Signal levels are not physical loudness or a microphone quality rating. Mute, noise filtering and system settings may affect them; silence does not establish a broken mic.',
+      method: 'Analyzes the input’s RMS level, peak and waveform without playback or recording.',
     },
   },
   D05: {
     vi: {
-      description:
-        'Xem phổ FFT trực tiếp của microphone và bin có mức tín hiệu lớn nhất trong vùng hiển thị.',
+      description: 'Xem các dải tần số trong âm thanh microphone trực tiếp.',
       instructions:
-        'Bấm Bắt đầu, cho phép microphone rồi tạo tín hiệu. Đọc phổ 64 dải log từ 20 Hz tới min(20.000 Hz, Nyquist) cùng độ rộng bin thực tế. Dừng/Reset, rời tab hoặc hết thời hạn phiên sẽ giải phóng luồng và context.',
+        'Bấm Bắt đầu, cho phép microphone rồi nói hoặc tạo âm thanh. Quan sát phổ và tần số nổi bật; Dừng để kết thúc.',
       limitations:
-        'Bin mạnh nhất chỉ là ước lượng theo FFT, không khẳng định fundamental/pitch hay độ chính xác máy đo chuyên dụng. Dải không có bin không được nội suy. Sample rate thuộc AudioContext, dữ liệu chịu ảnh hưởng xử lý browser/OS và không đo đáp tuyến microphone hoặc thính lực.',
+        'Tần số nổi bật chỉ là ước tính, không chắc là cao độ của giọng nói. Không dùng để kiểm tra thính lực hoặc đo đáp tuyến microphone.',
       method:
-        'AnalyserNode FFT 2048, smoothing 0,6; đọc dữ liệu float mỗi 125 ms và lấy cực đại trong từng dải log. Chỉ hiển thị bin mạnh nhất khi RMS > 0,00001 và bin > −100 dBFS. Không tự phát tone, không lưu PCM/phổ vào storage hoặc gửi dữ liệu lên server.',
+        'Phân tích FFT để chia tín hiệu thành các dải tần và hiển thị dải nổi bật. Độ chi tiết phụ thuộc tốc độ lấy mẫu.',
     },
     en: {
-      description:
-        'View a live microphone FFT spectrum and the strongest bin within the displayed frequency range.',
+      description: 'View the frequency bands in live microphone audio.',
       instructions:
-        'Select Start, allow microphone access and produce a signal. Read 64 logarithmic bands from 20 Hz to min(20,000 Hz, Nyquist), alongside actual bin spacing. Stop/Reset, leaving the tab or the session limit releases the stream and context.',
+        'Select Start, allow the microphone and speak or make a sound. Observe the spectrum and strongest frequency; Stop ends the test.',
       limitations:
-        'The strongest FFT bin is an approximation, not a confirmed fundamental/pitch or calibrated instrument reading. Empty bands are not interpolated. Context sample rate and browser/OS processing affect data; this does not measure microphone response or hearing.',
+        'The strongest frequency is an estimate, not necessarily the pitch of a voice. This is not a hearing test or microphone frequency-response measurement.',
       method:
-        'Uses an AnalyserNode with FFT size 2048 and smoothing 0.6, reading float data every 125 ms and taking maxima in log bands. The strongest bin is shown only for RMS > 0.00001 and a bin > −100 dBFS. No automatic tone generation, PCM/spectrum storage or server upload.',
+        'Uses FFT analysis to display frequency bands and the strongest bin. Detail depends on the audio sample rate.',
     },
   },
 };

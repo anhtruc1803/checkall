@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Saigon",
+  "applicationSourceUnchanged": "97fd2eba74575a549d06122b2d07097197cf13c1",
+  "environment": {
+    "os": "Windows 10 Pro",
+    "osVersion": "10.0.19045",
+    "name": "EVKey",
+    "version": "6.0.4.0",
+    "typingMode": "Telex",
+    "mode": "Vietnamese behavior confirmed by dd→đ",
+    "browser": {
+      "name": "Microsoft Edge",
+      "version": "157.0.4341.42"
+    }
+  },
+  "method": {
+    "manualSessions": 2,
+    "userReportedCompletion": true,
+    "userConfirmedAdditionalActions": true,
+    "exactUserDPressCountsProvided": false,
+    "automatedWindowsInputComparedSeparately": true,
+    "automatedInputCodeWasEmpty": true,
+    "syntheticDOMEventsUsedForManualSessions": false,
+    "source": "Trang localhost độc lập; người dùng thao tác phím. Phân tích này không tạo hoặc sửa sự kiện đã thu."
+  },
+  "summaries": [
+    {
+      "surface": "capture",
+      "preventDefault": true,
+      "stopReason": "focus",
+      "events": 22,
+      "keyboardEvents": 22,
+      "eventTypes": {
+        "keydown": 10,
+        "keyup": 12
+      },
+      "dDownWithCode": 1,
+      "dUpWithCode": 3,
+      "pairedDUp": 1,
+      "dUpWithoutMatchingDown": 2,
+      "dUpAfterFirstUnavailable": 2,
+      "backspaceDown": 4,
+      "backspaceRepeatDown": 0,
+      "backspaceUp": 4,
+      "spaceDown": 0,
+      "spaceUp": 0,
+      "unicodePacketKeyboardEvents": 10,
+      "unidentifiedKeyboardEvents": 10,
+      "compositionEvents": 0,
+      "allKeyboardEventsTrusted": true,
+      "finalEditableValueIsDStroke": false,
+      "exactPhysicalPressCountVerified": false,
+      "keyupCoverageCandidate": true,
+      "accurateHoldRolloverChatterFromRecoveredReleases": false
+    },
+    {
+      "surface": "editable",
+      "preventDefault": false,
+      "stopReason": "focus",
+      "events": 141,
+      "keyboardEvents": 64,
+      "eventTypes": {
+        "keydown": 33,
+        "keypress": 15,
+        "beforeinput": 33,
+        "input": 29,
+        "keyup": 31
+      },
+      "dDownWithCode": 2,
+      "dUpWithCode": 7,
+      "pairedDUp": 2,
+      "dUpWithoutMatchingDown": 5,
+      "dUpAfterFirstUnavailable": 6,
+      "backspaceDown": 18,
+      "backspaceRepeatDown": 7,
+      "backspaceUp": 11,
+      "spaceDown": 1,
+      "spaceUp": 1,
+      "unicodePacketKeyboardEvents": 24,
+      "unidentifiedKeyboardEvents": 24,
+      "compositionEvents": 0,
+      "allKeyboardEventsTrusted": true,
+      "finalEditableValueIsDStroke": true,
+      "exactPhysicalPressCountVerified": false,
+      "keyupCoverageCandidate": true,
+      "accurateHoldRolloverChatterFromRecoveredReleases": false
+    }
+  ],
+  "privacy": {
+    "rawEvidenceCommitted": false,
+    "rawEvidenceIgnoredPath": "artifacts/ime-survey-manual-edge-2026-11-12.json",
+    "aggregateOnlyInDocs": true,
+    "networkUploadOfKeyEvents": false,
+    "localStorageOrHistoryWrittenByProbe": false,
+    "captureScopedToFocusedArea": true,
+    "probeHtmlSha256": "ef74660bee3bc4230ce2adbaa2b7af60f89ee36a32b2ccdf1388bd7446de4ad1"
+  },
+  "conclusions": {
+    "keyupKeyDSurvivedInBothObservedSessions": true,
+    "keydownLossObservedInBothSessions": true,
+    "keyupFallbackReadyForProduction": false,
+    "accuratePhysicalPressCountProven": false,
+    "allInputMethodsOrBrowsersVerified": false,
+    "applicationCodeChanged": false,
+    "publicWebsiteDeployed": false
+  },
+  "references": [
+    "https://www.w3.org/TR/uievents-code/",
+    "https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes"
+  ],
+  "validation": {
+    "offlineTraceAssertions": "passed",
+    "typecheck": "passed",
+    "lint": "passed",
+    "keyboardTests": {
+      "passed": 32,
+      "files": 2
+    },
+    "productionBuild": "not-run-app-source-unchanged",
+    "fullE2E": "not-run-app-source-unchanged",
+    "lighthouse": "not-run-app-source-unchanged"
+  },
+  "cleanup": {
+    "probeCaptureStopped": true,
+    "ownedBrowserClosed": true,
+    "localhostServerStopped": true,
+    "inputMethodSettingsChanged": false
+  }
+}

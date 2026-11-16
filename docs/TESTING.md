@@ -1,5 +1,67 @@
 # Kiểm thử
 
+## Tinh gọn nội dung toàn website — local 12/11/2026
+
+Đã rà đủ 40 công cụ/80 route VI/EN, rút gọn 170 trường registry và 87 thông báo ở mỗi ngôn ngữ. Bỏ FAQ lặp; giữ hướng dẫn, giới hạn, SEO, quyền, dd/EVKey và privacy. Source uncommitted nền 97fd2eb; fingerprint 24 file và BUILD_ID tại [QA JSON](qa/content-review-local-2026-11-12.json). Không dùng kết quả milestone trước cho source này.
+
+Typecheck/lint/Prettier/secret scan đạt; build 106 trang và **333 unit/35 file** đạt. Lệnh unit cuối dùng --maxWorkers=2, giữ test/timeout/assertion; đầu lượt có 325 pass/8 fail do selector câu cũ và một bài nhiều sự kiện quá thời gian, đã ghi checkpoint riêng. Chỉ sửa câu/nhãn mà assertion tìm, không giảm kiểm tra hành vi.
+
+Full E2E bản cuối chạy đủ 384 bài: **359 pass/19 skip/6 fail**, flaky 0, global error 0; 1.532.870,849 ms. Bốn project, workers 2/retries 0; cấu hình tạm local tương đương project gốc, không thay cấu hình CI. Nhóm nội dung mới **8/8** đạt, mỗi browser mở đủ 80 trang và kiểm tra lịch sử/quyền riêng tư VI/EN. Nhóm bàn phím **52/52** đạt.
+
+| Browser | Pass | Skip | Fail |
+| --- | ---: | ---: | ---: |
+| chromium | 94 | 0 | 2 |
+| firefox | 91 | 3 | 2 |
+| webkit | 80 | 16 | 0 |
+| mobile | 94 | 0 | 2 |
+
+Các failure còn lại: Request từ script Kaspersky chèn ngoài ứng dụng. Full gate vẫn fail; không lọc request hoặc nới assertion để lấy pass. Control HTML trắng không tải mã ứng dụng cũng có script/POST Kaspersky trong lượt này; không suy ra payload request hoặc độ an toàn toàn browser. Lỗi đóng context Firefox của checkpoint trước không tái diễn trong lượt cuối; chưa xác định hoặc sửa nguyên nhân gốc của lỗi trước.
+
+Các skip là điều kiện runtime cũ về native audio/media/policy, không phải bài bị xóa hoặc hardware đã xác minh. WebKit automation không thay Safari thật. Đã kiểm tra HTTP health+34 route/scoped policy; đối chiếu AST registry chỉ đổi copy, locale key/placeholder đủ, engine nhận phím giữ hash của preview trước được người dùng chấp nhận.
+
+Regression mới phát hiện và đã sửa tràn nút xóa dữ liệu ở 320 px/chữ 200%, cụm từ dài của cảnh báo dd; giữ nguyên assertion. Lịch sử hiển thị tên VI/EN thay ID, có fallback cho ID cũ/khóa như __proto__, xóa dữ liệu ứng dụng vẫn giữ khóa ngoài phạm vi. Đã xem ảnh Light desktop, Dark mobile và chữ 200%. Raw log/ảnh/trace ở artifacts bị ignore; QA JSON chỉ aggregate, không URL/sessionID của vendor.
+
+Chưa đo Lighthouse sạch mới hoặc xác nhận mobile≥90; control vẫn có chèn Kaspersky. Chưa kiểm chứng lại thiết bị/bộ gõ/Safari thật/screen reader. Chưa commit/push/triển khai hoặc đổi hạ tầng. Final Acceptance tiếp tục mở. Chi tiết: CONTENT-REVIEW.md.
+
+
+## Cảnh báo dd trên B01 — bản local cuối 12/11/2026
+
+Đã bổ sung lưu ý dd → đ luôn hiển thị và lời nhắc sau hai keyup D đủ điều kiện, VI/EN ở cả chế độ thường và tương thích. Không dùng lời nhắc làm số lần nhấn vật lý. Source chưa commit, nền 97fd2eb; fingerprint tám file source/test và BUILD_ID tại [QA cảnh báo dd](qa/keyboard-dd-warning-local-2026-11-12.json). Đây là checkpoint mới hơn bản EVKey 328 unit/48 E2E phía dưới; giữ nguyên bằng chứng cũ thay vì gán lại cho source mới.
+
+Đã chạy:
+
+- `pnpm typecheck`, `pnpm lint`, `pnpm build`: đạt; build 106 trang.
+- `pnpm test`: **333/333 unit đạt**, 35 file. Nhóm `pnpm exec vitest run tests/keyboard-release.test.tsx`: **28/28 đạt**.
+- `pnpm exec playwright test --config artifacts/playwright.keyboard-dd.config.mts`: **52/52 E2E bàn phím đạt**, không fail/skip/flaky, không global error; 321097.852 ms. Chromium/Firefox/WebKit/mobile Chromium mỗi cấu hình 13 pass. Config trong artifacts chỉ chọn bốn file keyboard hiện có và bốn cấu hình tương đương cấu hình gốc; không sửa config CI hoặc hạ assertion. Một lượt chuẩn bị 13 pass chỉ dùng project mặc định chưa đủ ma trận; chỉ lượt cuối 52 bài được dùng làm kết quả đa browser.
+- `node scripts/smoke-http.mjs http://127.0.0.1:3100`: health + 34 route VI/EN và scoped policy đạt. Secret scan không finding; Prettier bảy file của lượt này đạt.
+
+Regression mới kiểm tra một D chưa cảnh báo, hai sự kiện thả D có nhắc, strict vẫn đúng hai press trong input browser có đầy đủ cặp; tương thích chỉ nhận một mã chữ, không có bộ đếm nhấn/giữ và không đánh dấu Backspace. Loại repeat, phím xen giữa, shortcut, composition/229/231/Process/Unidentified/mã thiếu; không ghép chuỗi qua Stop/Tab/Esc/blur/hidden/phiên mới. Reset/đổi mode xóa nhắc; thiếu D thứ hai do IME vẫn đọc được lưu ý cố định, engine thường tiếp tục dừng/rollback như trước. B02–B05 tiếp tục hồi quy cũ. Kiểm tra cảnh báo role=status, Axe WCAG trong VI/EN/Dark-Light, 320 px/chữ 200%; bộ hiện có giữ reflow đến 1440 px và heading-order. Đã xem ảnh VI mobile phần hướng dẫn Light và cảnh báo Dark; raw ảnh/trace/JSON ở artifacts bị ignore.
+
+Không chạy lại full E2E toàn bộ website cho thay đổi cảnh báo B01; full suite checkpoint trước vẫn có 345 pass/18 skip/9 fail và không được nhận là pass. Chưa đo Lighthouse sạch mới hoặc xác nhận ≥90; không coi kết quả keyboard E2E là khắc phục môi trường Kaspersky/context Firefox. Manual EVKey trên giao diện mới và Safari thật chưa xác nhận; browser automation không xác nhận số lần nhấn phần cứng. Chưa push hoặc cập nhật website, Final Acceptance tiếp tục mở.
+
+## EVKey keyup cho B01 — bản local 12/11/2026
+
+Source chưa commit, nền 97fd2eb; fingerprint bảy file source/test và BUILD_ID tại [QA JSON](qa/keyboard-release-local-2026-11-12.json). Không dùng CI hoặc số đo của source cũ nhận đây là source mới đã nghiệm thu. Không push/triển khai.
+
+Typecheck/lint/build 106 trang đạt; **328 unit/35 file** đạt, nhóm bàn phím 55/55. E2E mới **12/12** bốn cấu hình, không skip/fail/flaky, 93150.081 ms. Trong full E2E, cả **48/48 bài bàn phím** đạt. Bao gồm VI/EN/Dark-Light/heading-order/WCAG tự động/320–1440 px/chữ 200%, source keyup rõ, không đếm nhấn/giữ, không nhận Backspace, code thiếu/231/229/Process/composition/repeat, giữ chế độ cũ, Reset/đổi mode/layout, Tab/Esc/Stop/blur/hidden/unmount và privacy. Không đổi assertion/skip của bộ test hiện có.
+
+Full local chạy đủ 372 bài: **345 pass, 18 skip, 9 fail**, flaky 0, 1217309.841 ms. Chưa đạt full gate.
+
+| Cấu hình | Pass | Skip | Fail |
+| -------- | ---: | ---: | ---: |
+| chromium |   91 |    0 |    2 |
+| firefox  |   86 |    2 |    5 |
+| webkit   |   77 |   16 |    0 |
+| mobile   |   91 |    0 |    2 |
+
+Sáu failure thuộc camera/gamepad no-upload trên Chromium/Firefox/mobile: assertion thấy requestPOST từ script Kaspersky bên ngoài. Control chỉ HTML trắng, không script/mã Device Lab, cũng phát sinh script/POST Kaspersky. Không lọc request hoặc tắt bảo vệ Windows để lấy pass. Ba failure khác là Browser.removeBrowserContext/\_maybeDontRestoreTabs khi teardown Firefox ở nhóm microphone. Chạy riêng ba bài trên cùng build: 2 pass/1 skip, không lỗi đóng context, 7692.802000000001 ms; không dùng lượt riêng xóa failure của full suite, chưa khẳng định nguyên nhân gốc. Bài native microphone policy vẫn chưa xác minh trên runtime không có introspection.
+
+18 skip theo điều kiện có sẵn trong test: Firefox 2, WebKit 16 (native policy/media/Web Audio không khả dụng). Native audio smoke Chromium/Firefox pass; Windows WebKit không có AudioContext, assertion smoke fail. Không coi skip là enforcement/playback đã xác minh, hoặc WebKit là Safari thật.
+
+Replay hai trace khảo sát người dùng ở ba browser đạt 6/6; chỉ KeyD có nguồn keyup, progress 1/26, không badge/count/hold hoặc Backspace giả. Replay dùng event constructor, không phải live hardware mới. Manual UI mới đang chờ phản hồi; không chứng nhận mọi phím A–Z/mọi phiên bản EVKey. Đã xem ảnh local Light/mobile, HTTP smoke health+34 route VI/EN/policy đạt. Raw log/trace chỉ trong artifacts bị ignore; QA JSON chỉ aggregate, failure đã bỏ URL/session identifiers của vendor.
+
+Lighthouse local bị loại vì script ngoài origin; không có median sạch hoặc xác minh ≥90 cho source này. Cần môi trường sạch và đối chiếu manual trước nghiệm thu rộng; xem PERFORMANCE.md/KEYBOARD-EVKEY-COMPATIBILITY.md.
+
 ## Sửa D/Backspace và giao diện — source 3191485, 11/11/2026
 
 [CI 42991483325](https://github.com/anhtruc1803/checkall/actions/runs/42991483325) success verify/Docker: build 106 trang, typecheck/lint/secret scan, **305 unit trên 34 file, 354 E2E pass/6 skip**, không failure/flaky. Chromium/mobile 90 pass mỗi cấu hình; Firefox/WebKit 87 pass và 3 skip native microphone/camera/gamepad policy mỗi cấu hình. E2E 937530.787 ms; Docker job 84 giây, health/private Node/Nginx/34 route-policy/restart/stop-start đạt. Shutdown SIGTERM 143, OOM false/Error rỗng; trạng thái health sau khi container dừng không phải health đang chạy. Native audio smoke ba browser pass và context closed, không phải loa/microphone thật.

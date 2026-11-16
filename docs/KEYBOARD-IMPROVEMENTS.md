@@ -1,8 +1,11 @@
 # Rà soát và cải tiến công cụ bàn phím
 
+Bản local ngày 12/11/2026 đã thêm chế độ EVKey keyup riêng B01, chưa cập nhật website; xem KEYBOARD-EVKEY-COMPATIBILITY.md. Các số liệu source 4e/319 bên dưới là lịch sử, không thay cho kiểm thử hoặc Performance của chế độ mới.
+
+
 Ngày: 11/11/2026. Phạm vi: B01–B05 đang công bố; giữ tổng40 công cụ và route VI/EN. Không thêm Phase 3, không viết lại Tool Registry hoặc cơ chế tải engine.
 
-Bản hiện hành **3191485** đã sửa luồng UniKey/EVKey và focus, giữ40 công cụ. Kết quả hiện tại tại TESTING.md/PERFORMANCE.md/DEPLOYMENT.md; các checkpoint4e bên dưới là lịch sử. Chi tiết xử lý và manual QA bộ gõ ở phần cuối tài liệu.
+Bản đã triển khai ngày 11/11/2026 **3191485** đã sửa luồng UniKey/EVKey và focus, giữ40 công cụ. Kết quả hiện tại tại TESTING.md/PERFORMANCE.md/DEPLOYMENT.md; các checkpoint4e bên dưới là lịch sử. Chi tiết xử lý và manual QA bộ gõ ở phần cuối tài liệu.
 
 ## Vấn đề và đề xuất đã triển khai
 

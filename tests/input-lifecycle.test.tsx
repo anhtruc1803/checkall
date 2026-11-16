@@ -95,7 +95,7 @@ it('keeps duplicate requests blocked after Stop until the browser prompt settles
   });
   fireEvent.click(view.getByRole('button', { name: 'Stop' }));
   expect(view.getByRole('button', { name: 'Start' })).toBeDisabled();
-  expect(view.getByText(/browser permission request is still pending/)).toBeVisible();
+  expect(view.getByText(messages.inputAudio.latePrompt, { exact: true })).toBeVisible();
   await act(async () => {
     pending.resolve(view.stream);
     await pending.promise;

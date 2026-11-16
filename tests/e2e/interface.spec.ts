@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { categories, publishedTools } from '../../src/lib/tools/registry';
 import AxeBuilder from '@axe-core/playwright';
+import vi from '../../src/messages/vi.json';
+import en from '../../src/messages/en.json';
 
 test('category shortcuts and clear search preserve the selected group in both locales', async ({
   page,
@@ -151,8 +153,8 @@ test('lab illustration responds to pointer and keyboard without changing device 
         locale === 'vi' ? 'Đổi ánh sáng minh họa bàn lab' : 'Toggle the illustrated lab lighting',
     });
     await expect(control).toHaveAttribute('aria-pressed', 'false');
-    await expect(page.locator('.lab-scene figcaption')).toContainText(
-      locale === 'vi' ? 'Không phải kết quả đo' : 'Not a device measurement',
+    await expect(page.locator('.lab-scene figcaption')).toHaveText(
+      (locale === 'vi' ? vi : en).interface.sceneCaption,
     );
     await expect(page.locator('.category-art')).toHaveCount(categories.length);
     for (const svg of await page.locator('.category-art').all())
