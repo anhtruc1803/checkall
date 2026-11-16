@@ -1,5 +1,17 @@
 # Kiểm thử
 
+## Source 57a5de2 trên CI sạch và website — 16/11/2026
+
+Source **57a5de29307418c9d060f50e7e1e527bb1626eba**, [CI 43804594079](https://github.com/anhtruc1803/checkall/actions/runs/43804594079) success verify/Docker. Typecheck/lint/secret scan, build 106 trang, 333 unit trên 35 file đạt; full **378 E2E đạt/6 skip**, không fail/flaky/global error, 774.698,232 ms. Không đổi assertion/retry hoặc nhận skip là xác minh quyền native. [Lighthouse lab 43804641819](https://github.com/anhtruc1803/checkall/actions/runs/43804641819) đủ 48 lượt sạch và [public 43807789325](https://github.com/anhtruc1803/checkall/actions/runs/43807789325) đủ 24 lượt sạch; tám trang, ba lượt/trang/nguồn.
+
+CI mỗi project: Chromium 96 pass, Firefox 93 pass/3 skip, WebKit 93 pass/3 skip, mobile 96 pass. Native audio smoke cả ba engine đạt, context closed; đây là backend/thiết bị ảo, không phải âm thanh nghe được hoặc mic/camera thật. Các failure Kaspersky và lỗi context Windows của snapshot local vẫn giữ lịch sử, không tái hiện trong Linux CI của source này.
+
+Docker CI xác minh health/private Node/Nginx/VI-EN/logs/restart/stop-start, SIGTERM 143, OOMKilled=false/Error rỗng. Image trên VPS được build riêng cùng archive/source, thử container cô lập không cổng public rồi mới chuyển; không gán image ID CI cho image VPS.
+
+Public chạy 32 bài: 31 pass/1 fail, không skip/flaky; lỗi duy nhất page.goto WebKit khi chuyển /en/keyboard/tester báo Failed sending data to the peer. Giữ rawlog/trace ban đầu; chạy lại chính bài đó ba lần liên tiếp, workers 1/retries 0: 3 pass/0 fail. Không nhận lượt đầu là 32/32 hoặc tuyên bố nguyên nhân mạng đã sửa. Phạm vi public gồm EVKey/dd, strict D/Backspace/rollback, VI/EN/Dark-Light/a11y/reflow và mở đủ80 trang công cụ ở mỗi browser. WebKit automation không tương đương Safari thật.
+
+Sau chuyển, HTTP health+34 route/quyền, marker/canonical/home/keyboard/privacy VI/EN và sitemap 100 đạt. Origin/public TLS không bỏ qua xác minh chứng chỉ. [QA triển khai](qa/deployment-content-2026-11-16.json) lưu median/từng lượt 72 phép đo và các trạng thái thật. CSP public vẫn thiếu; manual hardware/Safari/screen reader/field data và Final Acceptance còn mở.
+
 ## Tinh gọn nội dung toàn website — local 12/11/2026
 
 Đã rà đủ 40 công cụ/80 route VI/EN, rút gọn 170 trường registry và 87 thông báo ở mỗi ngôn ngữ. Bỏ FAQ lặp; giữ hướng dẫn, giới hạn, SEO, quyền, dd/EVKey và privacy. Source uncommitted nền 97fd2eb; fingerprint 24 file và BUILD_ID tại [QA JSON](qa/content-review-local-2026-11-12.json). Không dùng kết quả milestone trước cho source này.

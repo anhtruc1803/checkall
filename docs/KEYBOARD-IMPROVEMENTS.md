@@ -1,5 +1,11 @@
 # Rà soát và cải tiến công cụ bàn phím
 
+## Cập nhật phát hành — 16/11/2026
+
+Đã push source 57a5de2 và triển khai lên website VI/EN theo yêu cầu mới của người dùng. CI sạch: 378 E2E đạt/6 skip; median Lighthouse mobile lab 98–100, public 94–97. Báo cáo tại [QA triển khai](qa/deployment-content-2026-11-16.json), DEPLOYMENT.md và TESTING.md. Các đoạn “chỉ local/chưa push” phía dưới là checkpoint lịch sử ngày 12/11, không phải trạng thái phát hành hiện tại.
+
+## Checkpoint trước phát hành
+
 Bản local ngày 12/11/2026 đã thêm chế độ EVKey keyup riêng B01, chưa cập nhật website; xem KEYBOARD-EVKEY-COMPATIBILITY.md. Các số liệu source 4e/319 bên dưới là lịch sử, không thay cho kiểm thử hoặc Performance của chế độ mới.
 
 

@@ -1,5 +1,11 @@
 # Chế độ nhận diện EVKey qua keyup — Keyboard Tester
 
+## Cập nhật phát hành — 16/11/2026
+
+Đã push source 57a5de2 và triển khai lên website VI/EN theo yêu cầu mới của người dùng. CI sạch: 378 E2E đạt/6 skip; median Lighthouse mobile lab 98–100, public 94–97. Báo cáo tại [QA triển khai](qa/deployment-content-2026-11-16.json), DEPLOYMENT.md và TESTING.md. Các đoạn “chỉ local/chưa push” phía dưới là checkpoint lịch sử ngày 12/11, không phải trạng thái phát hành hiện tại.
+
+## Checkpoint local — 12/11/2026
+
 Ngày: 12/11/2026. Bản triển khai local, dựa trên khảo sát trong KEYBOARD-IME-SURVEY.md. Không cập nhật website hoặc push GitHub trong lượt này. Giữ 40 công cụ và route VI/EN; không thay engine đo nhấn/giữ/rollover/Chatter hiện có.
 
 ## Cách dùng và phạm vi

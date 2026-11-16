@@ -1,5 +1,39 @@
 # Hiệu năng và kết quả đo
 
+## Đo sạch source 57a5de2 và HTTPS public — 16/11/2026
+
+Source **57a5de29307418c9d060f50e7e1e527bb1626eba**, [CI 43804594079](https://github.com/anhtruc1803/checkall/actions/runs/43804594079) success verify/Docker. Typecheck/lint/secret scan, build 106 trang, 333 unit trên 35 file đạt; full **378 E2E đạt/6 skip**, không fail/flaky/global error, 774.698,232 ms. Không đổi assertion/retry hoặc nhận skip là xác minh quyền native. [Lighthouse lab 43804641819](https://github.com/anhtruc1803/checkall/actions/runs/43804641819) đủ 48 lượt sạch và [public 43807789325](https://github.com/anhtruc1803/checkall/actions/runs/43807789325) đủ 24 lượt sạch; tám trang, ba lượt/trang/nguồn.
+
+Bộ lab so sánh 3191485→57a5de2 trong cùng VM, đo tuần tự; public đo sau khi kiểm tra marker đúng source. Tất cả đều clean/pageVerified, không script ngoài origin; median mobile sau 98–100, public 94–97. A/BP/SEO đều 100 trong toàn bộ 72 phép đo; không lấy điểm Windows nhiễu hoặc source public cũ thay thế.
+
+| Trang | P lab trước → sau | P public median | Ba lượt public | FCP public ms | LCP public ms | TBT public ms | CLS public |
+| --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |
+| /vi | 98 → 98 | 95 | 95/95/94 | 985,561 | 985,561 | 241,5 | 0 |
+| /en | 100 → 100 | 94 | 95/94/94 | 962,954 | 962,954 | 238 | 0 |
+| /vi/keyboard/tester | 99 → 98 | 96 | 96/96/95 | 979,076 | 979,076 | 208 | 0 |
+| /en/keyboard/tester | 100 → 99 | 95 | 95/94/95 | 952,747 | 952,747 | 216 | 0 |
+| /vi/privacy | 100 → 99 | 97 | 97/97/97 | 999,601 | 999,601 | 189,5 | 0,008 |
+| /en/audio/microphone | 98 → 98 | 96 | 96/96/96 | 1.422,576 | 1.422,576 | 197 | 0,005 |
+| /vi/camera/preview | 98 → 98 | 97 | 96/97/97 | 1.327,333 | 1.327,333 | 182 | 0,001 |
+| /en/gamepad/tester | 99 → 98 | 97 | 97/97/97 | 1.266,268 | 1.266,268 | 187 | 0,015 |
+
+JavaScript, document, CSS và font transfer lab (byte):
+
+| Trang | JS trước → sau | Document trước → sau | CSS trước → sau | Font trước → sau |
+| --- | ---: | ---: | ---: | ---: |
+| /vi | 192808 → 192806 | 38053 → 36721 | 14784 → 14815 | 103874 → 103874 |
+| /en | 192808 → 192806 | 35986 → 34629 | 14784 → 14815 | 54008 → 54008 |
+| /vi/keyboard/tester | 203876 → 204836 | 26171 → 25082 | 16854 → 17065 | 80003 → 80003 |
+| /en/keyboard/tester | 203876 → 204836 | 24631 → 23602 | 16854 → 17065 | 54008 → 71260 |
+| /vi/privacy | 189845 → 189878 | 22051 → 21684 | 14784 → 14815 | 56135 → 56135 |
+| /en/audio/microphone | 192458 → 192456 | 22905 → 21615 | 13321 → 13352 | 54008 → 54008 |
+| /vi/camera/preview | 192109 → 192107 | 24120 → 22796 | 13321 → 13352 | 80003 → 80003 |
+| /en/gamepad/tester | 192632 → 192630 | 22889 → 21570 | 13321 → 13352 | 54008 → 54008 |
+
+Không so public với lab như cùng điều kiện mạng/build. Tệp font/dependency không đổi nhưng font transfer Keyboard EN tăng; không bỏ ví dụ Telex hoặc cảnh báo để giảm byte. JS keyboard tăng 960 byte cho hai hook nhận diện/nhắc D, document giảm; không tuyên bố giảm số chữ đồng nghĩa giảm JavaScript. Một số median TBT tăng, không suy hiệu quả CPU định lượng chỉ từ ba mẫu. Không cắt tính năng, SEO hoặc accessibility lấy điểm.
+
+Lighthouse 13.6/Chromium 156, mobile simulated RTT 150 ms/1638,4 Kbps/CPU ×4, profile mới/tắt extension từng lượt; phiên bản/CPU/benchmarkIndex/thông số đầy đủ trong [QA triển khai](qa/deployment-content-2026-11-16.json). Lượt 43804610361 bị chặn validation SHA rút gọn, chưa đo; chỉ 43804641819/43807789325 cung cấp kết quả. Đạt mục tiêu ≥90 trong tám trang đại diện, không chứng nhận mọi trạng thái tương tác hoặc field performance.
+
 ## Tinh gọn nội dung toàn website — local 12/11/2026
 
 Đã rút gọn mô tả VI/EN, bỏ FAQ lặp ở 80 trang công cụ và giữ nội dung hướng dẫn/giới hạn/metadata. Đối chiếu source: 170 trường nội dung registry giảm tổng 39.424→28.631 ký tự; 87 thông báo hiện có được sửa ở mỗi ngôn ngữ. Đây là thống kê văn bản source, không phải số byte transfer, mức giảm JavaScript hoặc mức tăng Performance. Không cắt công cụ, nội dung SEO cần thiết hoặc accessibility để lấy điểm.

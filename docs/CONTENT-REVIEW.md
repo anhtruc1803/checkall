@@ -1,5 +1,9 @@
 # Rà soát nội dung giao diện — 12/11/2026
 
+## Cập nhật phát hành — 16/11/2026
+
+Đã push source 57a5de2 và triển khai lên website VI/EN theo yêu cầu mới của người dùng. CI sạch: 378 E2E đạt/6 skip; median Lighthouse mobile lab 98–100, public 94–97. Báo cáo tại [QA triển khai](qa/deployment-content-2026-11-16.json), DEPLOYMENT.md và TESTING.md. Các đoạn “chỉ local/chưa push” phía dưới là checkpoint lịch sử ngày 12/11, không phải trạng thái phát hành hiện tại.
+
 ## Phạm vi
 
 Theo yêu cầu người dùng, rà nội dung trang chủ, danh mục, 40 công cụ, quyền riêng tư và thông báo lỗi trong cả VI/EN. Bản làm việc local, nối tiếp chế độ EVKey đã được người dùng phản hồi là ổn. Phản hồi này không thay thế ma trận kiểm thử phần cứng. Không tự commit, push, chạy CI từ xa hoặc cập nhật website/VPS.

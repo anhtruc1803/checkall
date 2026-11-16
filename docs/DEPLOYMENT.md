@@ -1,5 +1,17 @@
 # Triển khai và vận hành
 
+## Bản EVKey và nội dung VI/EN đã triển khai — 16/11/2026
+
+Source **57a5de29307418c9d060f50e7e1e527bb1626eba**, [CI 43804594079](https://github.com/anhtruc1803/checkall/actions/runs/43804594079) success verify/Docker. Typecheck/lint/secret scan, build 106 trang, 333 unit trên 35 file đạt; full **378 E2E đạt/6 skip**, không fail/flaky/global error, 774.698,232 ms. Không đổi assertion/retry hoặc nhận skip là xác minh quyền native. [Lighthouse lab 43804641819](https://github.com/anhtruc1803/checkall/actions/runs/43804641819) đủ 48 lượt sạch và [public 43807789325](https://github.com/anhtruc1803/checkall/actions/runs/43807789325) đủ 24 lượt sạch; tám trang, ba lượt/trang/nguồn.
+
+Đang phục vụ [VI](https://nguyenanhtruc.io.vn/vi) và [EN](https://nguyenanhtruc.io.vn/en). Tag **device-lab:staging-57a5de2-20261116**, image **sha256:18ae5b5a3840fdc737f92334ba9cff9ee387cb03b7c8e0e1615cae4e9bc16131**, current→/opt/device-lab/releases/57a5de2. Archive tracked SHA256 **5c4750b26f3b654ba5801453a7b58fc33f34bd08b6155354985ee611a150f657** được kiểm trước giải nén; .env chỉ ở host. Giữ release/image 3191485 và backup /opt/device-lab/shared/nginx.conf.before-content-20261116-retry1.
+
+Chỉ thay app và marker release trong Nginx, giữ inode file bind mount; không sửa routing/policy/DNS/proxy, prune/reboot hoặc chạy lại renewal dry-run. Lần chuyển đầu đã tự rollback vì header cũ còn xuất hiện ngay sau reload trong khi body đã mới; đã xác minh 3191485 healthy. Lần sau thêm chờ có giới hạn, vẫn yêu cầu header/body đúng, chuyển 57a5de2 thành công. Không coi đây là diễn tập mọi tình huống rollback.
+
+Runtime healthy, user nextjs/read-only, Node không public, giới hạn 768 MiB/256 PID, cap drop ALL/no-new-privileges; OOMKilled=false/Error rỗng, log Nginx ghi 9 lần giới hạn tần suất trong khoảng chạy QA public, không nới rate limit để lấy pass. Certbot timer active; curl origin --resolve dùng xác minh TLS thông thường. Origin VI/EN có CSP, public vẫn thiếu; chế độ TLS proxy→origin chưa chứng minh, giữ quyền quản lý proxy của người dùng.
+
+HTTP 308→HTTPS, public VI/EN/canonical/sitemap 100 URL và health+34 route/policy đạt. Public E2E đầu 31 pass/1 fail (kết nối WebKit); bài đó chạy riêng 3/3 đạt, không sửa code/assertion và không xóa failure đầu. Kết quả chi tiết tại [QA triển khai](qa/deployment-content-2026-11-16.json). Final Acceptance phần cứng/Safari/screen reader/bảo mật còn mở.
+
 ## Rà nội dung website — local 12/11/2026
 
 Nguồn mới tinh gọn nội dung toàn bộ VI/EN, giữ đủ 40 công cụ và chế độ EVKey local. Chỉ production build ở http://127.0.0.1:3100; chưa commit/push/chạy CI từ xa, không cập nhật website hoặc sửa VPS/Docker/Nginx/DNS/proxy. Không dùng phản hồi người dùng chấp nhận UI trước làm yêu cầu triển khai hạ tầng.
