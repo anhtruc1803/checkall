@@ -14,6 +14,8 @@ Lượt `8e5c05d` đã qua secret scan và494 unit, dừng ở PulseAudio do HOM
 
 Lượt `53115b7` đã khởi tạo PulseAudio và smoke Chromium, nhưng Firefox từ chối user root với HOME GitHub thuộc pwuser. Đặt HOME đúng `/root` cho user chạy job; daemon audio vẫn pwuser/socket riêng. Không thay launch flags, không bỏ Firefox/WebKit hoặc smoke audio. Chạy lại pipeline trước khi phát hành.
 
+Lượt `4d024e0` qua smoke audio ba engine và build120, dừng trước E2E do webServer không đến được health localhost trong120 giây. Container cấp HOSTNAME tên/IP container trong khi scripts/start.mjs kế thừa biến này. Cố định HOSTNAME127.0.0.1/PORT3000 cho job, bật DEBUG pw:webserver để quan sát startup; không tăng timeout hoặc giảm bài kiểm thử. Website vẫn ở7e3dd0b trong toàn bộ quá trình xử lý môi trường CI.
+
 ## Tiện ích Milestone 2 — local để duyệt, 19/11/2026
 
 Theo yêu cầu mới, chỉ làm local: **U03 đếm từ/ký tự, U04 đổi hoa/thường, U05 bỏ dấu/tạo slug, U06 làm sạch văn bản**. Candidate có **46 công cụ VI/EN**, giữ nguyên metadata/copy và engine của 42 công cụ cũ (40 thiết bị + U01/U02). Không thay kiến trúc hoặc dependency, không mở thêm Phase phần cứng; chưa commit/push/CI từ xa/SSH/deploy. Public vẫn Milestone 1 source `7e3dd0b` phía dưới.

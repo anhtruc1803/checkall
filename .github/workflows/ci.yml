@@ -12,6 +12,8 @@ jobs:
       options: --init --ipc=host
     env:
       HOME: /root
+      HOSTNAME: 127.0.0.1
+      PORT: 3000
       PULSE_SERVER: unix:/tmp/device-lab-pulse/pulse/native
       PULSE_COOKIE: /home/pwuser/.config/pulse/cookie
     steps:
@@ -43,6 +45,8 @@ jobs:
           node scripts/smoke-audio.mjs
       - run: pnpm build
       - run: pnpm test:e2e
+        env:
+          DEBUG: pw:webserver
       - name: Lưu bằng chứng QA
         if: always()
         uses: actions/upload-artifact@v4
