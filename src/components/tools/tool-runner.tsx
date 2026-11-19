@@ -27,7 +27,9 @@ const Camera = dynamic(() => import('@/features/camera/camera'));
 const GamepadTool = dynamic(() => import('@/features/gamepad/gamepad'));
 const NumberWords = dynamic(() => import('@/features/utilities/number-words'));
 const Percentage = dynamic(() => import('@/features/utilities/percentage'));
+const TextTool = dynamic(() => import('@/features/utilities/text-tool'));
 const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
+  text: (id) => <TextTool toolId={id} />,
   'number-words': () => <NumberWords />,
   percentage: () => <Percentage />,
   'screen-info': () => <ScreenInfo />,

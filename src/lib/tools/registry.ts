@@ -6,6 +6,7 @@ import type { Category, Engine, Tool, ToolCopy } from './types';
 import { getPublishedTools, getPublishedCategories, validateToolRegistry } from './catalog';
 import { phase2Tools } from './phase2';
 import { utilityTools } from './utilities';
+import { textUtilityTools } from './text-utilities';
 export { toolHref } from './search';
 export { getPublishedTools, getPublishedCategories } from './catalog';
 export type { Category, Engine, Tool, ToolCopy } from './types';
@@ -515,7 +516,7 @@ const phase1Tools: Tool[] = entries.map(
     };
   },
 );
-export const tools: Tool[] = [...phase1Tools, ...phase2Tools, ...utilityTools];
+export const tools: Tool[] = [...phase1Tools, ...phase2Tools, ...utilityTools, ...textUtilityTools];
 validateToolRegistry(tools);
 export const publishedTools = getPublishedTools(tools);
 export const categories = getPublishedCategories(tools);

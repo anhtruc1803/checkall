@@ -1,5 +1,53 @@
 # Kiểm thử
 
+## Tiện ích Milestone 2 — local để duyệt, 19/11/2026
+
+Candidate gồm 46 công cụ VI/EN, giữ nguyên 40 công cụ thiết bị và U01/U02. Chưa commit/push/CI từ xa/SSH/deploy. Typecheck, lint, secret scan đạt; production build **120 trang**, BUILD_ID `c-NDmO-s7fw5rZXNdGwtV`; HTTP smoke health +**48 route VI/EN** và scope Permissions-Policy đạt. Registry/sitemap kiểm thử 46 công cụ, 92 route công cụ, 114 URL sitemap. Fixture thiết bị cũ giữ nguyên; fixture U01/U02 đối chiếu trực tiếp định nghĩa committed HEAD rồi dùng trong test, không sinh từ metadata M2 để tự xác nhận.
+
+**494 unit/integration đạt trên 41 file**, không fail/skip, 56.116,649 ms ở lượt cuối sau thêm thuộc tính ngôn ngữ. Bài mới bao phủ grapheme emoji/ZWJ/cờ/dấu kết hợp; từ native, đoạn/dòng CRLF/LS; thiếu Segmenter không bịa fallback; tiếng Việt và `đ/Đ`; case/slug ASCII/Unicode; tính ổn định khi xử lý lặp trên 128 tổ hợp làm sạch với mẫu hỗn hợp, giữ xuống dòng khi tắt hết bước; HTML literal; biên 50.000 UTF-16/vượt giới hạn không cắt; composition; giữ bản gốc/xóa kết quả cũ; clipboard chủ động/từ chối; không storage/fetch kể cả opt-in lịch sử và remount reset. Thuộc tính `lang` của input/output theo ngôn ngữ văn bản dù UI vẫn ngôn ngữ khác. Không coi mocks là browser hoặc thiết bị thật.
+
+Focused bốn tiện ích mới **25/28 đạt, 3 fail**, không skip/flaky/global error, 159.974,423 ms. Chromium/Firefox/mobile mỗi6 đạt/1 fail, WebKit7 đạt. VI/EN, case/slug/clean/count, IME fixture, giới hạn và thiếu Segmenter, clipboard fixture, WCAG automation Dark/Light và reflow320/chữ200 đều đạt. Ba fail đều assertion không request ngoài GET/HEAD, chỉ origin Kaspersky; không lọc bỏ request hoặc hạ yêu cầu. Sau lượt này thêm bài điều hướng cùng engine/đổi locale và đặt lại scroll trước ảnh, được kiểm tra trong bộ full. Không đổi code ứng dụng để né lỗi privacy.
+
+Bộ full **440 bài/4 project**: **409 đạt / 19 skip / 12 fail**, không flaky/global error; 1.596.243,295 ms. Dùng production preview loopback, hai worker, không retry. Cả 12 fail chỉ ở assertion không-upload nhận origin Kaspersky: mỗi Chromium/Firefox/mobile có bốn bài camera/gamepad/tiện ích số/tiện ích văn bản. Không nới assertions/skip/timeout hoặc loại request này. Các skip là native Web Audio/mediaDevices/Permissions-Policy theo khả năng runtime, từng lý do trong [QA milestone](qa/utilities-milestone2-local-2026-11-19.json).
+
+| Project         | Đạt | Skip | Fail |
+| --------------- | --: | ---: | ---: |
+| Chromium        | 106 |    0 |    4 |
+| Firefox         | 103 |    3 |    4 |
+| WebKit Windows  |  94 |   16 |    0 |
+| Mobile Chromium | 106 |    0 |    4 |
+
+Full run dùng build `ElsN5RtI1lhnxp6u9TxJS`, source không đổi trong lượt; nhóm văn bản 29 đạt/3 fail, tiện ích số 21 đạt/3 fail. Sau full chỉ thêm hai thuộc tính `lang={language}` cho textarea và assertions trong hai file unit/E2E tương ứng. Không đổi hàm xử lý, Registry, engine hoặc metadata cũ; 207 file khác trong checkpoint 210 file khớp SHA256. Build cuối `c-NDmO-s7fw5rZXNdGwtV` đã typecheck/lint/unit494/build120/HTTP48 và được chạy lại 32 E2E văn bản, gồm locale độc lập với ngôn ngữ input/output. Không tuyên bố chạy lại full440 trên build cuối sau thay đổi thuộc tính; checkpoint/đối chiếu delta và kết quả lượt32 riêng trong QA JSON. Không tính lượt đầu đã dừng để sửa margin checkbox thành một lượt full hoàn tất.
+
+Lượt 32 trên build cuối: **29 đạt/3 fail**, không skip/flaky/global error, 168.729,403 ms; Chromium/Firefox/mobile mỗi 7 đạt/1 fail, WebKit 8 đạt. Ba fail vẫn chỉ là origin Kaspersky trong bài không-upload. Thuộc tính ngôn ngữ, VI/EN, điều hướng/reset, mọi chế độ văn bản, IME/clipboard fixture, fallback/biên và WCAG/reflow đều qua. Lỗi typecheck tạm từ snapshot QA `.tsx` đã xử lý bằng đổi đuôi bản lưu `.txt`; không nới tsconfig, typecheck sau đó đạt.
+
+Đối chứng mới `artifacts/text-injection-control.json`: phục vụ HTML trống, 0 script ứng dụng, không nhập bàn phím; Chromium156.0.8078.4 và Firefox157.0 đều bị chèn script/POST Kaspersky. Chỉ giữ origin/method/type, không path/session/payload. Do đó source/unit chứng minh ứng dụng không gọi storage/upload, nhưng privacy gate toàn môi trường cần chạy lại máy sạch. Không tuyên bố phần mềm bảo mật đã gửi nội dung văn bản; chưa kiểm tra payload của nó.
+
+Audit production **0 advisory**; toàn bộ dependency còn **2 moderate dev tooling** glob/minimatch, không đổi dependency hoặc ép override major. Secret scan bao gồm tracked và untracked không bị ignore, không phát hiện. `.gitignore` vẫn loại `.env`, key, cache, build và raw artifacts. Docker CLI/Engine không có nên chưa kiểm thử Docker M2; script smoke đã mở rộng route mới cho Linux CI khi được phép phát hành. Không lấy CI/Docker/Lighthouse sạch M1 thay bằng chứng M2. Lighthouse chẩn đoán bị loại vì injection, chưa xác minh mobile≥90; chi tiết [PERFORMANCE](PERFORMANCE.md).
+
+Các lệnh đã chạy:
+
+```powershell
+pnpm typecheck
+pnpm lint
+node scripts/scan-secrets.mjs
+pnpm test --maxWorkers=2 --reporter=json --outputFile=artifacts/text-milestone2-unit.json
+pnpm build
+node scripts/smoke-http.mjs http://127.0.0.1:3100
+$env:TEXT_QA_LABEL='focused'
+pnpm exec playwright test tests/e2e/text-utilities.spec.ts --config=artifacts/text-playwright.config.ts
+$env:TEXT_QA_LABEL='full'
+pnpm exec playwright test --config=artifacts/text-playwright.config.ts
+$env:TEXT_QA_LABEL='semantic'
+pnpm exec playwright test tests/e2e/text-utilities.spec.ts --config=artifacts/text-playwright.config.ts
+pnpm audit --prod --json
+pnpm audit --json
+```
+
+Config E2E local trong artifacts chỉ thay baseURL3100/report/output; giữ đủ Chromium/Firefox/WebKit/mobile Chromium và hai worker, không nới assertion. Đây là cấu hình QA máy hiện tại, không file production. Ảnh duyệt bao gồm desktop và mobile Light/Dark của bốn tiện ích, không chứng nhận điện thoại thật. WebKit Windows không tương đương Safari thật.
+
+Manual QA còn mở: người dùng duyệt local/quy tắc tiếng Việt, EVKey/UniKey thật, dán Word/Excel/line ending, clipboard/quyền thật, screen reader, Safari và Android/iOS. Không đóng manual hardware cũ hoặc Final Acceptance. Sau duyệt, chạy lại Linux sạch và Lighthouse ba lượt/trang, Docker trước phát hành theo yêu cầu riêng.
+
 ## Tiện ích Milestone 1 đã phát hành — 19/11/2026
 
 Source **7e3dd0b119ef9c59da69f3b244787b9f5a9c1d04**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44445480650): typecheck/lint/secret scan đạt, **460 unit/39 file**, build 112 trang, **402 E2E đạt/6 skip**, không fail/flaky/global error; E2E 1.174.129,904 ms. Chromium/mobile mỗi 102 đạt, Firefox/WebKit mỗi 99 đạt/3 skip. Sáu skip đều native Permissions-Policy microphone/camera/gamepad; không đổi assertion/retry/timeout để đạt. Native Web Audio ba engine qua backend ảo, không xác nhận thiết bị thật. Nhóm tiện ích **24/24**, hồi quy bàn phím 52 bài; metadata 40 công cụ gốc tiếp tục khớp fixture đã đối chiếu committed HEAD trước milestone.

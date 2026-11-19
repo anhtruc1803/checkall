@@ -1,4 +1,67 @@
 {
+  "textTools": {
+    "input": "Văn bản gốc",
+    "placeholder": "Nhập hoặc dán văn bản tại đây…",
+    "language": "Ngôn ngữ văn bản",
+    "limit": "{count} / {limit} đơn vị UTF-16. Văn bản quá giới hạn sẽ không được xử lý hoặc tự cắt ngắn.",
+    "tooLong": "Văn bản vượt {limit} đơn vị UTF-16. Hãy chia nhỏ nội dung; bản gốc vẫn được giữ nguyên.",
+    "failed": "Chưa xử lý được văn bản. Hãy thử lại với nội dung ngắn hơn.",
+    "unavailable": "Công cụ này chưa sẵn sàng.",
+    "clear": "Xóa văn bản",
+    "ready": "Đã xử lý. Kết quả ở bên dưới; bản gốc vẫn được giữ nguyên.",
+    "pending": "Bấm nút xử lý để xem kết quả. Thay đổi nội dung hoặc tùy chọn sẽ xóa kết quả cũ.",
+    "result": "Kết quả",
+    "emptyResult": "Kết quả là văn bản trống.",
+    "unchanged": "Kết quả không thay đổi so với bản gốc.",
+    "originalKept": "Bản gốc vẫn được giữ nguyên để đối chiếu.",
+    "privacy": "Văn bản chỉ được xử lý trong trang này, không tự lưu, ghi vào lịch sử hoặc gửi lên máy chủ. Không tự đọc clipboard.",
+    "segmenterUnavailable": "Trình duyệt chưa hỗ trợ đếm từ và ký tự hiển thị theo Unicode. Các mục này hiện dấu gạch; số dòng, code point, UTF-16 và byte vẫn dùng được.",
+    "details": "Chi tiết Unicode và dung lượng",
+    "countDefinitions": "Ký tự hiển thị là một cụm Unicode; emoji ghép có thể gồm nhiều code point. UTF-16 và byte là đơn vị lưu trữ, không phải số ký tự nhìn thấy. Đoạn là nhóm dòng không trống, ngăn bằng dòng trống; dòng trống cuối vẫn được tính là dòng.",
+    "caseMode": "Cách viết",
+    "cases": {
+      "upper": "CHỮ HOA",
+      "lower": "chữ thường",
+      "title": "Viết Hoa Đầu Từ",
+      "sentence": "Viết hoa đầu câu"
+    },
+    "slugMode": "Cách tạo kết quả",
+    "slugModes": {
+      "accents": "Bỏ dấu chữ Latin/tiếng Việt",
+      "ascii": "Slug ASCII — bỏ dấu",
+      "unicode": "Slug Unicode — giữ dấu"
+    },
+    "separator": "Dấu nối",
+    "hyphen": "Gạch nối (-)",
+    "underscore": "Gạch dưới (_)",
+    "cleanupOptions": "Các bước làm sạch",
+    "cleanup": {
+      "trimEdges": "Bỏ khoảng trắng ngoài cùng",
+      "trimLines": "Bỏ khoảng trắng đầu/cuối từng dòng",
+      "collapseSpaces": "Gộp khoảng trắng ngang và tab",
+      "removeBlankLines": "Xóa dòng trống",
+      "deduplicateLines": "Xóa dòng trùng, giữ lần đầu",
+      "removeInvisible": "Xóa ký tự ẩn thường gặp",
+      "normalizeNfc": "Chuẩn hóa Unicode về NFC"
+    },
+    "hints": {
+      "count": "Từ được đếm theo ranh giới của trình duyệt, không phân tích từ ghép tiếng Việt. Emoji ghép và dấu kết hợp được tính theo ký tự hiển thị.",
+      "case": "Đầu từ/đầu câu dùng quy tắc đơn giản, không nhận diện tên riêng, viết tắt hoặc tiêu đề biên tập.",
+      "slug": "ASCII chỉ giữ a-z và 0-9; chọn Unicode để giữ chữ của ngôn ngữ khác. Slug chưa được mã hóa URL và không bảo đảm duy nhất.",
+      "clean": "Gộp khoảng trắng có thể đổi thụt lề. Xóa ký tự ẩn giữ ký tự nối emoji/chữ; đây không phải công cụ khử mã HTML an toàn."
+    },
+    "actions": { "count": "Đếm", "case": "Chuyển đổi", "slug": "Tạo kết quả", "clean": "Làm sạch" },
+    "metrics": {
+      "words": "Số từ",
+      "characters": "Ký tự hiển thị",
+      "charactersWithoutWhitespace": "Ký tự không tính khoảng trắng",
+      "lines": "Số dòng",
+      "paragraphs": "Số đoạn",
+      "codePoints": "Code point",
+      "utf16Units": "Đơn vị UTF-16",
+      "utf8Bytes": "Byte UTF-8"
+    }
+  },
   "interface": {
     "eyebrow": "Không gian kiểm tra thiết bị",
     "brandCaption": "Hiểu rõ. Kiểm tra thật.",
@@ -610,8 +673,8 @@
       "body": "Chỉ truy cập sau khi bạn bấm Bắt đầu và cấp quyền. Âm thanh và video được xử lý trên thiết bị, không ghi lại hoặc gửi lên máy chủ. Bấm Dừng hoặc rời trang để tắt thiết bị."
     },
     "utilities": {
-      "title": "Số liệu trong tiện ích",
-      "body": "Số và số tiền chỉ được xử lý trong trang đang mở, không ghi vào lịch sử hoặc gửi lên máy chủ. Sao chép chỉ diễn ra khi bạn bấm nút."
+      "title": "Nội dung trong tiện ích",
+      "body": "Số, số tiền và văn bản chỉ được xử lý trong trang đang mở, không ghi vào lịch sử hoặc gửi lên máy chủ. Sao chép chỉ diễn ra khi bạn bấm nút; trang không tự đọc clipboard."
     }
   },
   "utilities": "Tiện ích",

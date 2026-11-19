@@ -1,5 +1,15 @@
 # Triển khai và vận hành
 
+## Tiện ích Milestone 2 — candidate local, chưa phát hành 19/11/2026
+
+Đợt này chỉ chuẩn bị local để người dùng duyệt: bốn tiện ích văn bản U03–U06, tổng 46 công cụ. Preview production ở `http://127.0.0.1:3100/vi/utilities`; bind loopback, không mở Node ra mạng. Build cuối 120 trang, BUILD_ID `c-NDmO-s7fw5rZXNdGwtV`. HTTP smoke health +48 route VI/EN đạt; script dùng trong Docker CI đã thêm cả tám route văn bản mới và giữ phạm vi quyền thiết bị hiện có.
+
+**Chưa commit/push, chạy CI từ xa, SSH hoặc cập nhật website trong milestone này.** Website vẫn bản Milestone 1 source `7e3dd0b`; lịch sử phát hành phía dưới không phải QA của candidate mới. Không thay DNS/proxy, Docker/Nginx production hoặc hạ tầng thật.
+
+Máy local thiếu Docker CLI/Engine: chưa build image/Compose/healthcheck/Nginx/restart/shutdown cho source M2. CI Ubuntu hiện có job Docker smoke, nhưng chưa được chạy cho candidate. Khi người dùng duyệt và yêu cầu phát hành, chạy môi trường Linux sạch với `pnpm install --frozen-lockfile`, typecheck/lint/unit/build, Playwright đủ bốn project và `bash scripts/docker-smoke.sh`. Giữ nguyên assertions privacy/policy; không lọc request phần mềm bảo mật để làm test đạt. Docker smoke phải qua trước/sau restart/stop-start và xác minh Node không publish như script hiện có.
+
+Trước chuyển website còn cần Lighthouse sạch ít nhất ba lượt/trang đại diện gồm VI/EN của bốn công cụ mới và trang cũ, kiểm tra median/mobile≥90 nếu khả thi. Local hiện bị Kaspersky chèn script nên không có median sạch. Kiểm tra metadata/policy/sitemap 114, giữ rollback release cũ và thử candidate tách biệt trước khi chuyển; kiểm tra lại sau chuyển. Không lấy kết quả CI/Lighthouse/Docker của M1 làm bằng chứng M2. Xem [đặc tả](UTILITIES-MILESTONE-2.md) và [TESTING](TESTING.md); Final Acceptance vẫn mở.
+
 ## Tiện ích Milestone 1 đang phục vụ — 19/11/2026
 
 Source **7e3dd0b119ef9c59da69f3b244787b9f5a9c1d04**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44445480650) success verify/Docker,460 unit,402 E2E đạt/6 native policy skip, build 112. Trước chuyển đã xem 36 lượt Lighthouse sạch median 99–100 trên 12 trang; candidate VPS kiểm tra84 route/sitemap 106 và restart/stop-start/exit143. Gates đạt mới thay app. Tag **device-lab:staging-7e3dd0b-20261119**, image **sha256:7f0e4bdbef741ab5964ce7e960b86f8936d6886f11e947da9d5bdd38c691cfbc**, current→/opt/device-lab/releases/7e3dd0b. Archive tracked SHA256 **77dd8e7531629400a15077d3ad44ed3516277591a6b573a47e1a52dc9241009a**, .env ở host chỉ đổi tag.

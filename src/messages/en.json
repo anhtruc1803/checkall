@@ -1,4 +1,67 @@
 {
+  "textTools": {
+    "input": "Original text",
+    "placeholder": "Type or paste text here…",
+    "language": "Text language",
+    "limit": "{count} / {limit} UTF-16 units. Oversized text is not processed or silently truncated.",
+    "tooLong": "Text exceeds {limit} UTF-16 units. Split it into smaller parts; the original is still intact.",
+    "failed": "Text could not be processed. Try again with a shorter input.",
+    "unavailable": "This tool is not ready.",
+    "clear": "Clear text",
+    "ready": "Processed. The result is below; your original is still intact.",
+    "pending": "Select the action to see results. Editing text or options clears the previous result.",
+    "result": "Result",
+    "emptyResult": "The result is empty text.",
+    "unchanged": "The result is unchanged from the original.",
+    "originalKept": "The original is still available for comparison.",
+    "privacy": "Text is processed on this page, without automatic saving, history logging or server upload. The clipboard is not read automatically.",
+    "segmenterUnavailable": "This browser cannot count Unicode words and visible characters. Those counts show a dash; lines, code points, UTF-16 and byte counts remain available.",
+    "details": "Unicode and size details",
+    "countDefinitions": "A visible character is a Unicode grapheme cluster; combined emoji can contain several code points. UTF-16 units and bytes measure storage, not visible characters. A paragraph is a block of nonblank lines separated by blank lines; a trailing blank line still counts as a line.",
+    "caseMode": "Case mode",
+    "cases": {
+      "upper": "UPPERCASE",
+      "lower": "lowercase",
+      "title": "Capitalize Each Word",
+      "sentence": "Sentence case"
+    },
+    "slugMode": "Output mode",
+    "slugModes": {
+      "accents": "Remove Latin/Vietnamese accents",
+      "ascii": "ASCII slug — remove accents",
+      "unicode": "Unicode slug — keep accents"
+    },
+    "separator": "Separator",
+    "hyphen": "Hyphen (-)",
+    "underscore": "Underscore (_)",
+    "cleanupOptions": "Cleanup steps",
+    "cleanup": {
+      "trimEdges": "Trim outer whitespace",
+      "trimLines": "Trim each line",
+      "collapseSpaces": "Collapse horizontal spaces and tabs",
+      "removeBlankLines": "Remove blank lines",
+      "deduplicateLines": "Remove duplicate lines, keep the first",
+      "removeInvisible": "Remove common invisible characters",
+      "normalizeNfc": "Normalize Unicode to NFC"
+    },
+    "hints": {
+      "count": "Words use browser boundaries, not linguistic analysis of Vietnamese compounds. Combined emoji and accents count as visible characters.",
+      "case": "Word and sentence starts follow simple rules, without recognizing proper names, abbreviations or editorial title conventions.",
+      "slug": "ASCII keeps only a-z and 0-9; use Unicode to keep other scripts. Slugs are not URL-encoded or guaranteed unique.",
+      "clean": "Collapsing spaces can change indentation. Invisible cleanup preserves emoji/script joiners; this is not an HTML security sanitizer."
+    },
+    "actions": { "count": "Count", "case": "Convert", "slug": "Create result", "clean": "Clean" },
+    "metrics": {
+      "words": "Words",
+      "characters": "Visible characters",
+      "charactersWithoutWhitespace": "Characters without whitespace",
+      "lines": "Lines",
+      "paragraphs": "Paragraphs",
+      "codePoints": "Code points",
+      "utf16Units": "UTF-16 units",
+      "utf8Bytes": "UTF-8 bytes"
+    }
+  },
   "interface": {
     "eyebrow": "Your device testing workspace",
     "brandCaption": "Real tests. Clear insights.",
@@ -610,8 +673,8 @@
       "body": "Access starts only after you select Start and grant permission. Audio and video are processed on your device without recording or upload. Select Stop or leave the page to turn the device off."
     },
     "utilities": {
-      "title": "Values in utilities",
-      "body": "Numbers and amounts are processed only on the open page, without saving to history or uploading to the server. Copying happens only when you select Copy."
+      "title": "Content in utilities",
+      "body": "Numbers, amounts and text are processed only on the open page, without saving to history or uploading to the server. Copying happens only when you select Copy; the page does not read your clipboard automatically."
     }
   },
   "utilities": "Utilities",

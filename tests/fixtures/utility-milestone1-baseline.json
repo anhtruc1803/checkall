@@ -1,0 +1,70 @@
+[
+  {
+    "id": "U01",
+    "slug": "number-to-words",
+    "engine": "number-words",
+    "category": "utilities",
+    "icon": "utilities",
+    "phase": null,
+    "status": "published",
+    "requiredCapabilities": [],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["U02"],
+    "copy": {
+      "vi": {
+        "name": "Số và số tiền thành chữ",
+        "description": "Đọc số hoặc số tiền VND thành chữ tiếng Việt, tiếng Anh và sao chép nhanh.",
+        "instructions": "Chọn định dạng nhập, nhập số rồi chọn ngôn ngữ kết quả. Chuyển sang số tiền để đọc VND; điều chỉnh linh/lẻ, nghìn/ngàn nếu cần.",
+        "method": "Đọc số theo từng nhóm ba chữ số. Phần thập phân được đọc từng chữ số; số tiền VND chỉ nhận giá trị nguyên, không tự làm tròn.",
+        "limitations": "Tối đa 24 chữ số phần nguyên và 6 chữ số thập phân. Hỗ trợ VND, chưa hỗ trợ ngoại tệ. Đối chiếu cách diễn đạt theo yêu cầu chứng từ trước khi dùng."
+      },
+      "en": {
+        "name": "Number and money to words",
+        "description": "Spell numbers or VND amounts in Vietnamese or English and copy the result.",
+        "instructions": "Choose the input format, enter a number and choose the output language. Switch to money for VND; Vietnamese wording options are available.",
+        "method": "Spells groups of three digits. Decimal digits are read individually; VND amounts must be whole numbers and are never silently rounded.",
+        "limitations": "Up to 24 integer digits and 6 decimal digits. VND only; other currencies are not supported yet. Check the wording required for your document before use."
+      }
+    }
+  },
+  {
+    "id": "U02",
+    "slug": "percentage",
+    "engine": "percentage",
+    "category": "utilities",
+    "icon": "utilities",
+    "phase": null,
+    "status": "published",
+    "requiredCapabilities": [],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["U01"],
+    "copy": {
+      "vi": {
+        "name": "Tính phần trăm",
+        "description": "Tính phần trăm của một số, tỷ lệ, mức thay đổi hoặc tăng giảm theo phần trăm.",
+        "instructions": "Chọn phép tính và định dạng nhập rồi điền hai giá trị. Xem công thức, số đã hiểu và kết quả trước khi sao chép.",
+        "method": "Tính bằng số nguyên có thang thập phân. Kết quả hiển thị tối đa 6 chữ số thập phân; nếu cần làm tròn, trường hợp đúng nửa được làm tròn ra xa số 0.",
+        "limitations": "Mỗi giá trị tối đa 24 chữ số nguyên và 6 chữ số thập phân. Không chia cho 0; mức thay đổi yêu cầu giá trị ban đầu dương. Tỷ lệ có thể vượt 100%."
+      },
+      "en": {
+        "name": "Percentage calculator",
+        "description": "Calculate a percentage of a number, a ratio, percentage change or a percentage increase or decrease.",
+        "instructions": "Choose the calculation and input format, then enter two values. Review the formula, interpreted numbers and result before copying.",
+        "method": "Uses scaled integer arithmetic. Displays up to 6 decimal places; when rounding is needed, exact halves round away from zero.",
+        "limitations": "Each value supports up to 24 integer digits and 6 decimal digits. No division by zero; percentage change needs a positive initial value. Rates can exceed 100%."
+      }
+    }
+  }
+]

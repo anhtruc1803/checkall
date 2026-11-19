@@ -1,5 +1,19 @@
 # Hiệu năng và kết quả đo
 
+## Tiện ích Milestone 2 — candidate local 19/11/2026
+
+Thêm bốn tiện ích văn bản, tổng 46 công cụ; chưa phát hành. Giữ dependency hiện có, font/ảnh/SEO/accessibility và 42 công cụ trước. Thuật toán chỉ xử lý khi bấm nút, giới hạn 50.000 UTF-16, không chạy segmentation lại trên từng lần gõ. Dùng `Intl.Segmenter` native, không tải polyfill hoặc thư viện xử lý văn bản.
+
+Runtime graph trên Chromium/profile mới xác minh chunk engine text **11.595 byte**, gzip ước tính riêng chunk **3.925 byte**: không tải trên `/vi`, `/vi/keyboard/tester`, `/vi/utilities/number-to-words`; có tải trên `/vi/utilities/word-counter` và `/en/utilities/text-cleaner`. Đây là kiểm tra tách bundle trên năm route, không phải tổng JS/transfer hoặc chứng nhận mọi route và không phải Lighthouse sạch. Tài nguyên đo lưu tại `artifacts/text-runtime-graph.json`.
+
+Messages vẫn do provider hiện có cấp cho mỗi locale; thêm namespace văn bản và bốn mục search làm tăng payload chung. Vì vậy không suy từ chunk tải riêng thành “không có overhead trên trang cũ”. Chưa có phép đo transfer sạch trước/sau cùng điều kiện để định lượng ảnh hưởng tổng thể; không thay kiến trúc provider chỉ từ mẫu Lighthouse bị nhiễu.
+
+Đã thử `node scripts/lighthouse.mjs --base-url http://127.0.0.1:3100 --label text-milestone2-local --runs 3 --paths /vi/utilities/word-counter,/en/utilities/word-counter,/vi/utilities/case-converter,/en/utilities/case-converter,/vi/utilities/remove-accents-slug,/en/utilities/remove-accents-slug,/vi/utilities/text-cleaner,/en/utilities/text-cleaner`. Script dừng đúng guard ngay mẫu đầu vì `http://gc.kis.v2.scr.kaspersky-labs.com` được chèn dù profile mới, extension tắt. Đây là lượt chẩn đoán môi trường đồng thời với E2E, trước chỉnh khoảng cách CSS cuối; **không hợp lệ để đánh giá hiệu năng build cuối, không đủ ba mẫu/trang và không tính median**.
+
+Giữ số liệu thô bị loại để minh bạch: `/vi/utilities/word-counter` Performance73, FCP/LCP 2.872,7133 ms, TBT697 ms, CLS0, JS385.765 byte, font56.135 byte, ảnh0, document91.515 byte, CSS17.892 byte; A11y100/BP81/SEO92. Những số này chịu script ngoài ứng dụng và tải máy, không chứng minh regression code hoặc làm căn cứ tối ưu. Raw `artifacts/performance/text-milestone2-local/runs.json`; không bỏ nội dung/SEO/a11y hoặc nới guard để nâng điểm.
+
+**Chưa xác minh mobile≥90 cho M2.** Median sạch M1 public97–99 phía dưới là lịch sử source khác, không kế thừa sang candidate. Sau duyệt local và trước phát hành cần đo lại Linux/Chromium sạch, không E2E đồng thời, ít nhất ba lượt mỗi trang đại diện trong điều kiện tương đương, lưu mọi mẫu và median FCP/LCP/TBT/CLS/JS/font/ảnh. Nếu median dưới90 phải phân tích trace dữ liệu thật. Không có kết luận “trước/sau tăng điểm” trong lượt local này.
+
 ## Tiện ích Milestone 1 — đo sạch trước và sau triển khai 19/11/2026
 
 Source **7e3dd0b119ef9c59da69f3b244787b9f5a9c1d04**, giữ 40 công cụ cũ và thêm hai tiện ích. [Lab trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44445554690) đủ **36 lượt sạch/12 trang ×3**, median mobile **99–100**. [HTTPS public](https://github.com/anhtruc1803/checkall/actions/runs/44449524546) đủ **36 lượt sạch/12 trang ×3** trên đúng release, median **97–99**. Chromium/profile mới, extension tắt; mọi sample qua guard pageVerified/clean. Median A11y/Best Practices/SEO đều 100 ở hai bộ; đã đọc dữ liệu thực, không chỉ kết luận job success. Không sửa thêm code, bỏ tính năng/nội dung/SEO/a11y để lấy điểm.

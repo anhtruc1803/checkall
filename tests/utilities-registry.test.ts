@@ -29,10 +29,16 @@ it('preserves all 40 original published IDs, routes and engine/capability metada
   const baseline = JSON.parse(readFileSync('tests/fixtures/device-tools-baseline.json', 'utf8'));
   expect(original).toEqual(baseline);
 });
-it('registers exactly two calculators on the independent utility roadmap without permission or storage capabilities', () => {
+it('preserves both original utility definitions including localized copy', () => {
+  const baseline = JSON.parse(
+    readFileSync('tests/fixtures/utility-milestone1-baseline.json', 'utf8'),
+  );
+  expect(publishedTools.filter((tool) => ['U01', 'U02'].includes(tool.id))).toEqual(baseline);
+});
+it('registers six calculators on the independent utility roadmap without permission or storage capabilities', () => {
   expect(getPublishedGroups(publishedTools)).toEqual(['device-tests', 'utilities']);
   const utilities = publishedTools.filter((tool) => getToolGroup(tool.category) === 'utilities');
-  expect(utilities.map((tool) => tool.id)).toEqual(['U01', 'U02']);
+  expect(utilities.map((tool) => tool.id)).toEqual(['U01', 'U02', 'U03', 'U04', 'U05', 'U06']);
   for (const tool of utilities) {
     expect(tool.phase).toBeNull();
     expect(tool.classification).toBe('calculator');

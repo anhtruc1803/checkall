@@ -38,6 +38,7 @@ export const implementedEngines = [
   'gamepad',
   'number-words',
   'percentage',
+  'text',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {
