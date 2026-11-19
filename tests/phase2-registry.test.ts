@@ -17,9 +17,9 @@ import sitemap from '@/app/sitemap';
 
 describe('Phase 2 publication boundary', () => {
   it('keeps 21 Phase 1 tools and publishes all 19 Phase 2 tools with implemented engines', () => {
-    expect(tools).toHaveLength(40);
-    expect(new Set(tools.map((tool) => tool.id)).size).toBe(40);
-    expect(publishedTools).toHaveLength(40);
+    expect(tools).toHaveLength(42);
+    expect(new Set(tools.map((tool) => tool.id)).size).toBe(42);
+    expect(publishedTools).toHaveLength(42);
     expect(publishedTools.filter((tool) => tool.phase === 1)).toHaveLength(21);
     expect(
       publishedTools
@@ -74,6 +74,7 @@ describe('Phase 2 publication boundary', () => {
       'gamepad',
       'device',
       'browser',
+      'utilities',
     ]);
     expect(getSearchCategories(getToolSearchIndex('en'))).toEqual(categories);
     expect(getPublishedTools(tools.filter((tool) => tool.status === 'draft'))).toEqual([]);

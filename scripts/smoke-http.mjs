@@ -22,6 +22,9 @@ for (const locale of ['vi', 'en'])
     '/gamepad/tester',
     '/gamepad/analog-stick',
     '/gamepad/stick-drift',
+    '/utilities',
+    '/utilities/number-to-words',
+    '/utilities/percentage',
   ]) {
     const response = await fetch(`${origin}/${locale}${path}`);
     assert.equal(response.status, 200);
@@ -40,5 +43,5 @@ for (const locale of ['vi', 'en'])
     assert.match(html, /<main/);
   }
 console.log(
-  'HTTP smoke passed: health + 34 VI/EN routes, including scoped camera/microphone/gamepad policy.',
+  'HTTP smoke passed: health + 40 VI/EN routes, including utilities and scoped camera/microphone/gamepad policy.',
 );

@@ -25,7 +25,11 @@ const AudioOutput = dynamic(() => import('@/features/audio/output'));
 const AudioInput = dynamic(() => import('@/features/audio/input'));
 const Camera = dynamic(() => import('@/features/camera/camera'));
 const GamepadTool = dynamic(() => import('@/features/gamepad/gamepad'));
+const NumberWords = dynamic(() => import('@/features/utilities/number-words'));
+const Percentage = dynamic(() => import('@/features/utilities/percentage'));
 const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
+  'number-words': () => <NumberWords />,
+  percentage: () => <Percentage />,
   'screen-info': () => <ScreenInfo />,
   calculator: (id) => <Calculator toolId={id} />,
   refresh: () => <Refresh />,

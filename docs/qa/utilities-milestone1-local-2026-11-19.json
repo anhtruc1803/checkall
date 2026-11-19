@@ -1,0 +1,1215 @@
+{
+  "date": "2026-11-19",
+  "milestone": "utilities-1",
+  "scope": "Chỉ local để người dùng duyệt, chưa commit/push/CI từ xa/SSH/deploy",
+  "baseCommit": "ab82abf8a95338cd81ce27b51913202219a98c21",
+  "workingTreeChanges": true,
+  "buildId": "yU_4PHC86m2i-ZXVA4Lcr",
+  "tools": {
+    "total": 42,
+    "originalDeviceTools": 40,
+    "phase1": 21,
+    "phase2": 19,
+    "utilityIds": ["U01", "U02"],
+    "utilityPhase": null,
+    "categories": 9,
+    "sitemapContentUrls": 106,
+    "originalMetadataComparedWithCommittedHead": true
+  },
+  "runtime": {
+    "next": "16.4.6",
+    "eslintConfigNext": "16.4.6",
+    "node": "24.11.1",
+    "preview": "http://127.0.0.1:3100",
+    "loopbackOnly": true
+  },
+  "checks": {
+    "typecheck": "đạt",
+    "lint": "đạt",
+    "productionBuild": {
+      "status": "đạt",
+      "generatedPages": 112
+    },
+    "httpSmoke": {
+      "status": "đạt",
+      "health": true,
+      "localizedRoutes": 40
+    },
+    "prettier": "đạt cho phạm vi thay đổi",
+    "gitDiffCheck": "đạt"
+  },
+  "unit": {
+    "passed": 460,
+    "failed": 0,
+    "skipped": 0,
+    "files": 39,
+    "durationMs": 128314.84,
+    "rawReport": "artifacts/utilities-unit-patched.json",
+    "copyAfterFinalLabel": {
+      "passed": 11,
+      "failed": 0
+    },
+    "fixtureAfterFormatting": {
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "focusedE2E": {
+    "rawReport": "artifacts/artifacts/utilities-e2e-focused.json",
+    "stats": {
+      "startTime": "2026-11-19T01:37:36.141Z",
+      "duration": 164294.546,
+      "expected": 21,
+      "skipped": 0,
+      "unexpected": 3,
+      "flaky": 0
+    },
+    "globalErrors": 0,
+    "projects": {
+      "chromium": {
+        "passed": 5,
+        "failed": 1
+      },
+      "firefox": {
+        "passed": 5,
+        "failed": 1
+      },
+      "webkit": {
+        "passed": 6
+      },
+      "mobile": {
+        "passed": 5,
+        "failed": 1
+      }
+    },
+    "utilities": {
+      "passed": 21,
+      "failed": 3
+    },
+    "failures": [
+      {
+        "project": "chromium",
+        "file": "utilities.spec.ts",
+        "line": 177,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "utilities.spec.ts",
+        "line": 177,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "utilities.spec.ts",
+        "line": 177,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      }
+    ],
+    "skips": []
+  },
+  "fullE2E": {
+    "rawReport": "artifacts/artifacts/utilities-e2e-full.json",
+    "stats": {
+      "startTime": "2026-11-19T01:42:04.371Z",
+      "duration": 1463932.291,
+      "expected": 380,
+      "skipped": 19,
+      "unexpected": 9,
+      "flaky": 0
+    },
+    "globalErrors": 0,
+    "projects": {
+      "chromium": {
+        "passed": 99,
+        "failed": 3
+      },
+      "firefox": {
+        "passed": 96,
+        "skipped": 3,
+        "failed": 3
+      },
+      "webkit": {
+        "passed": 86,
+        "skipped": 16
+      },
+      "mobile": {
+        "passed": 99,
+        "failed": 3
+      }
+    },
+    "utilities": {
+      "passed": 21,
+      "failed": 3
+    },
+    "failures": [
+      {
+        "project": "chromium",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "chromium",
+        "file": "milestone6.spec.ts",
+        "line": 126,
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "milestone6.spec.ts",
+        "line": 126,
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "milestone6.spec.ts",
+        "line": 126,
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "chromium",
+        "file": "utilities.spec.ts",
+        "line": 177,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "utilities.spec.ts",
+        "line": 177,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "utilities.spec.ts",
+        "line": 177,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do Kaspersky chèn ngoài ứng dụng"
+      }
+    ],
+    "skips": [
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 93,
+        "title": "all three audio tools are idle until Start and Stop/Reset release real audio without capture or persistence",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 120,
+        "title": "stereo switches left/right/both on the same real oscillator",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 146,
+        "title": "generator updates real frequency/waveform and stops invalid input without synthetic readings",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 174,
+        "title": "audio automatically ends after its real ten-second limit",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 182,
+        "title": "focus loss and SPA navigation release audio; returning does not restart",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 266,
+        "title": "audio pages pass axe in both themes, including running and invalid states",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 301,
+        "title": "VI/EN audio controls fit mobile/tablet/desktop widths and locale preserves route",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+          }
+        ]
+      },
+      {
+        "project": "firefox",
+        "file": "milestone4.spec.ts",
+        "line": 129,
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 86,
+        "title": "native getUserMedia captures virtual test devices from homepage and releases all tracks",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 129,
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 164,
+        "title": "real analysis of a synthetic 1 kHz stream populates both tools without saving or uploading",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 338,
+        "title": "revocation releases the live stream and track mute/end clear stale readings",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 360,
+        "title": "blur and session deadline release real stream graphs without background continuation",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 399,
+        "title": "both input tools pass axe in Dark/Light with running and denied states",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+          }
+        ]
+      },
+      {
+        "project": "firefox",
+        "file": "milestone5.spec.ts",
+        "line": 167,
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone5.spec.ts",
+        "line": 167,
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+          }
+        ]
+      },
+      {
+        "project": "firefox",
+        "file": "milestone6.spec.ts",
+        "line": 82,
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+          }
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone6.spec.ts",
+        "line": 82,
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "status": "skipped",
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+          }
+        ]
+      }
+    ]
+  },
+  "keyboardRegression": {
+    "passed": 52,
+    "failed": 0,
+    "skipped": 0,
+    "note": "Automation, không chứng nhận bộ gõ hoặc phần cứng thật"
+  },
+  "security": {
+    "initialProductionAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    },
+    "productionAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "allDependenciesAudit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    },
+    "remainingDevAdvisories": [
+      {
+        "module_name": "glob",
+        "title": "Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal",
+        "severity": "moderate",
+        "vulnerable_versions": ">=9.0.0 <=14.0.1",
+        "patched_versions": ">=14.0.2",
+        "url": "https://github.com/advisories/GHSA-3g3m-2fjr-6pw4"
+      },
+      {
+        "module_name": "minimatch",
+        "title": "minimatch has potential denial of service via globparts amplification",
+        "severity": "moderate",
+        "vulnerable_versions": ">=7.0.0 <11.0.1",
+        "patched_versions": ">=11.0.1",
+        "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249"
+      }
+    ],
+    "secretsScan": {
+      "findings": 0,
+      "filesScanned": 268,
+      "scope": "tracked-and-untracked-not-ignored",
+      "note": "Đã chạy sau cập nhật tài liệu; không thay thế audit toàn bộ lịch sử Git."
+    }
+  },
+  "performance": {
+    "targetMobile": 90,
+    "cleanTargetVerified": false,
+    "plannedPaths": [
+      "/vi/utilities/number-to-words",
+      "/en/utilities/number-to-words",
+      "/vi/utilities/percentage",
+      "/en/utilities/percentage",
+      "/vi",
+      "/en"
+    ],
+    "plannedRunsPerPath": 3,
+    "attemptedRuns": 1,
+    "acceptedCleanRuns": 0,
+    "median": null,
+    "rejectionReason": "Dừng ở mẫu đầu do phát hiện script Kaspersky; không có median sạch và không dùng điểm public trước đó thay thế",
+    "rejectedMeasurements": [
+      {
+        "path": "/vi/utilities/number-to-words",
+        "run": 1,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "clean": false,
+        "externalScripts": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "scores": {
+          "performance": 84,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 92
+        },
+        "metrics": {
+          "fcpMs": 2843.1393881416243,
+          "lcpMs": 2843.1393881416243,
+          "tbtMs": 303,
+          "cls": 0,
+          "speedIndexMs": 2843.1393881416243,
+          "jsBytes": 385064,
+          "fontBytes": 56135,
+          "imageBytes": 0,
+          "documentBytes": 84857,
+          "cssBytes": 16552
+        },
+        "environment": {
+          "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+          "hostUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "benchmarkIndex": 1361.5,
+          "credits": {
+            "axe-core": "4.14.0"
+          }
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "report": "vi-utilities-number-to-words-1.html"
+      }
+    ],
+    "localAuditNotes": {
+      "bestPractices": "Có 5 insecure requests, không coi là kiểm tra HTTPS production",
+      "seo": "Canonical mặc định localhost:3000 khác origin preview 127.0.0.1:3100; không phải cấu hình phát hành"
+    }
+  },
+  "staticSplitting": {
+    "sextillion": [
+      {
+        "file": "1a3dsue-1n16u.js",
+        "bytes": 8349,
+        "gzipBytes": 3271
+      }
+    ],
+    "A × B ÷ 100": [
+      {
+        "file": "1fymh-f-_hoo3.js",
+        "bytes": 5806,
+        "gzipBytes": 2359
+      }
+    ]
+  },
+  "runtimeGraph": {
+    "note": "Graph tài nguyên ứng dụng, không phải Lighthouse hoặc chứng nhận môi trường sạch. Input ảnh chỉ là fixture QA.",
+    "browser": "156.0.8078.4",
+    "targets": {
+      "words": ["1a3dsue-1n16u.js"],
+      "percentage": ["1fymh-f-_hoo3.js"]
+    },
+    "rows": [
+      {
+        "path": "/vi",
+        "utilityChunksLoaded": {
+          "words": false,
+          "percentage": false
+        },
+        "applicationScripts": [
+          "09tliohki1f-j.js",
+          "0y8m5ldt_k4qr.js",
+          "0zcnk9cyczs43.js",
+          "11tjf3br-igt3.js",
+          "14dko2gzj1m9b.js",
+          "14robyas2iuqw.js",
+          "1g_6-_haudr7t.js",
+          "1yx1_eod04c03.js",
+          "2bvx24h5mzfwh.js",
+          "2oz7czoq-aksb.js",
+          "turbopack-2u1d16houkiyo.js"
+        ],
+        "externalScriptOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "expectedLoadingVerified": true
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "utilityChunksLoaded": {
+          "words": false,
+          "percentage": false
+        },
+        "applicationScripts": [
+          "09tliohki1f-j.js",
+          "0zcnk9cyczs43.js",
+          "11tjf3br-igt3.js",
+          "14dko2gzj1m9b.js",
+          "14robyas2iuqw.js",
+          "18gjgzw-rqru5.js",
+          "1g_6-_haudr7t.js",
+          "1yx1_eod04c03.js",
+          "2bvx24h5mzfwh.js",
+          "2ojgrcli3rfq3.js",
+          "2oz7czoq-aksb.js",
+          "turbopack-2u1d16houkiyo.js"
+        ],
+        "externalScriptOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "expectedLoadingVerified": true
+      },
+      {
+        "path": "/vi/utilities/number-to-words",
+        "utilityChunksLoaded": {
+          "words": true,
+          "percentage": false
+        },
+        "applicationScripts": [
+          "09tliohki1f-j.js",
+          "0zcnk9cyczs43.js",
+          "11tjf3br-igt3.js",
+          "14dko2gzj1m9b.js",
+          "14robyas2iuqw.js",
+          "1a3dsue-1n16u.js",
+          "1g_6-_haudr7t.js",
+          "1yx1_eod04c03.js",
+          "2bvx24h5mzfwh.js",
+          "2ojgrcli3rfq3.js",
+          "2oz7czoq-aksb.js",
+          "turbopack-2u1d16houkiyo.js"
+        ],
+        "externalScriptOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "expectedLoadingVerified": true
+      },
+      {
+        "path": "/vi/utilities/percentage",
+        "utilityChunksLoaded": {
+          "words": false,
+          "percentage": true
+        },
+        "applicationScripts": [
+          "09tliohki1f-j.js",
+          "0zcnk9cyczs43.js",
+          "11tjf3br-igt3.js",
+          "14dko2gzj1m9b.js",
+          "14robyas2iuqw.js",
+          "1fymh-f-_hoo3.js",
+          "1g_6-_haudr7t.js",
+          "1yx1_eod04c03.js",
+          "2bvx24h5mzfwh.js",
+          "2ojgrcli3rfq3.js",
+          "2oz7czoq-aksb.js",
+          "turbopack-2u1d16houkiyo.js"
+        ],
+        "externalScriptOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "expectedLoadingVerified": true
+      }
+    ]
+  },
+  "blankHtmlControl": {
+    "applicationSourceLoaded": false,
+    "servedScripts": 0,
+    "plainLocalHtml": true,
+    "browser": "156.0.8078.4",
+    "outsideRequests": [
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "script"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "POST",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      },
+      {
+        "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+        "method": "GET",
+        "type": "xhr"
+      }
+    ],
+    "kasperskyObserved": true,
+    "note": "Origins only; vendor session identifiers and request payloads omitted. No keyboard or gamepad input."
+  },
+  "docker": {
+    "availableLocally": false,
+    "candidateImageBuilt": false,
+    "candidateRuntimeVerified": false,
+    "ciRun": null,
+    "smokeHttpExtended": true,
+    "linuxQa": "bash scripts/docker-smoke.sh; quy trình trong DEPLOYMENT.md"
+  },
+  "testedFingerprints": {
+    "next.config.ts": "4065f72ec4d7167b30d76ccbb25d19d3246aa90d82894760431269f78063d185",
+    "package.json": "c342250902ab0685969d07120892e21313b3af8e3731f8d52610d76e40740907",
+    "playwright.config.ts": "1deb389f1ee99aa6f650056842038a6986c5ef1e465f963599af45b0d7ece998",
+    "pnpm-lock.yaml": "527738a0a2fb7fdd0f86cddf6328aa282210bd1f421b056a3e9e8931f6212722",
+    "pnpm-workspace.yaml": "77327e6dc19b9ad33617edbfb31ca7468c6736e259bb28cce45a22444801734f",
+    "scripts/smoke-http.mjs": "37f84e335bd5ce7674a96923fa5235b9ad36902ddb5d31a7b31b01f9643d5276",
+    "src/app/[locale]/[category]/[slug]/page.tsx": "e59e273b9c0283221b86664692b53640488135a2598e4a5a47e713b58fc9f59c",
+    "src/app/[locale]/[category]/page.tsx": "02a71ee226f760f44d04cf68dca67ca372f3affd3a283210aadea17c7892f87a",
+    "src/app/[locale]/error.tsx": "3dc229e30c2021dc5cd9968e4aba815e72136755988c6d1baaef66da76028647",
+    "src/app/[locale]/layout.tsx": "f2f07767ee5cf9189626420852748ee15dd1d743684ea6058eacb6f697c94ee7",
+    "src/app/[locale]/not-found.tsx": "57eeab6417aba0054053907fd5c73057a7727290bc144f2da74d6b975d9a7ae2",
+    "src/app/[locale]/page.tsx": "3a158f01387b59aa5b4bbec1e410775fa8efe7cabe52346f77462856c562ddc2",
+    "src/app/[locale]/privacy/page.tsx": "45b87592c5b1cb5e760c70d8000dc67e01a4620fb36bc01117b155797de8906e",
+    "src/app/api/health/route.ts": "1671249f05352e7e350fcc2db692d26621443457c807a808e68e631720c17716",
+    "src/app/globals.css": "27209de334c6c8a9f1d9d7e9e1f8b79f8d9397c9fe1395521ce47ad70073b99b",
+    "src/app/icon.svg": "e008f073c270956b58f9eca74821c80fdc4b963b346f998f53298da8a7be1904",
+    "src/app/interface.css": "939680c1b420a95b707e963dc3f91df89e59080a307c070187c786540c2ff1b7",
+    "src/app/robots.ts": "51bcae6d9934da2fdafa206e9eac0aef14a06bd137df493e7700233d5f0affba",
+    "src/app/sitemap.ts": "e014ea1631d6b47db0ba0e4d08cc7c3e6df163babe831799123cdd00df8c6d12",
+    "src/components/layout/footer.tsx": "15737e46c858816646edc01688f08bfe250f8b36f28df8c3f5bfbf6f582f9219",
+    "src/components/layout/header.tsx": "a38cee78bc92d6ce16a654910fa1ffa0a7124471f2f7e5af78abcd75d4561040",
+    "src/components/navigation/command-search.tsx": "45481451a13bea2a476db1b8c50191b29dbf4c2c4708ad04e545c2a5260e5eef",
+    "src/components/navigation/policy-link.tsx": "e0afede2079bc6f178297229f369e1d9c66c9bb4e16e3e3b2b19e88f9ccae212",
+    "src/components/tools/catalog.tsx": "9499df287589ee074ca650269fc38d23a87fff5cb9d80bc376dfbcd16c4069c0",
+    "src/components/tools/category-art.tsx": "c2edf91912df467526a3bde3e3622e5c0ff6b5063469f782eadb67c32a77772b",
+    "src/components/tools/category-icon.tsx": "0c4599c2b68e535d223a4b3f6dc05e1e56bd8a8382ea6e0aa6da0af6e89eec0b",
+    "src/components/tools/device-overview.tsx": "454cedbd58d9fa38e6f748a4e64f3e147e09e3d072d01c858d4c005662b9bc7c",
+    "src/components/tools/engine-surface.tsx": "98d763099e5c3e5d092b04a12898334c78bc18ba96f7c9e08ce0413f56482064",
+    "src/components/tools/inspection-controls.tsx": "8c4a5dc7ae168990d1a568aad38aa72541f7d5f592f3ec13ac396be5f6d7d5ce",
+    "src/components/tools/lab-scene.tsx": "aae6b2b9fb112e57db8f518265dbc9ae673082f308e31914796264eee31a0607",
+    "src/components/tools/measurement-ui.tsx": "9db7a350923e6e28898ca99965e16467f4b4033d3bf5b3aa04de89359efd9754",
+    "src/components/tools/privacy-settings.tsx": "6cedc097ef6f45aa70fbf7e29fbab77ce69cc57d7492fd914291086bd1172c51",
+    "src/components/tools/problem-chooser.module.css": "b4b657d8a035db30bb177d83c748c7435d41a3997cdea7968d27a68a4e5a64de",
+    "src/components/tools/problem-chooser.tsx": "c58652a91e691526021f1bc329db9269c61198e3a68f061abee3438051a681bf",
+    "src/components/tools/tool-card.tsx": "6d9c813b85fef4118ab1f74b025eca3d46c393a849d01ee86518b8106be20a91",
+    "src/components/tools/tool-runner.tsx": "412b59271b03653d8894f201e587dfccfd2c437755fabf79a12a9abcaf40aa66",
+    "src/components/ui/button.tsx": "3a5bd5827b0b4c92521e11f818013884c3e795c2e37209c55ac4e30e4726c86b",
+    "src/features/audio/input.tsx": "202c42fad9580754ec29cd5fa009de53a48a4e3b8a5354669ecacaef6a158fd5",
+    "src/features/audio/output.tsx": "fa726e1429cd8a30731216026aff759b905f3256b117d3abf5bad988a7429d4b",
+    "src/features/browser/compatibility.tsx": "529922cdd041e511cff53cabb0d24e365c4ccf720ecc1ff352b1448a1a6bc60f",
+    "src/features/browser/fullscreen.tsx": "1a5fb10f1ce75289158d2d957254d6e510c99d13d3c8d955eff302ae3e38de0b",
+    "src/features/browser/storage.tsx": "683dbc0638ec94f270f7f22c72d9a4a9d7e23dba8f9790b2e800e304555593fd",
+    "src/features/camera/camera.tsx": "5f1973e696f09c7e1df6a250f973fd6055ae80ade8642fbfa95f1ed504e4b160",
+    "src/features/device/gpu.tsx": "a2f908d803556370d6fefb2db4b61b25a1a16fe502736385700553e5e4f5295b",
+    "src/features/device/information.tsx": "fa1e91d82f7d5ca30f186326feaba5e4b24280cbf41633cc1eef2dbdd5d82161",
+    "src/features/device/pointer.tsx": "cc6d0e2c3352a3064450eea5954e0213eee2417e4eeb881c06ec319a9d15a866",
+    "src/features/gamepad/gamepad.tsx": "b708e49279e57502edbae66dc9ccd5535e7789987fcf45d3d08f623302d96430",
+    "src/features/keyboard/keyboard-event-log.tsx": "59abfd49d5d5bd1796c314d142b791104ce86de46c7396bbfad8cc197c6acac5",
+    "src/features/keyboard/keyboard.css": "d979bd83864c6d6cf3581ce0cbb376dbb1a2c70911255ffee5a2c794bd27dab5",
+    "src/features/keyboard/keyboard.tsx": "0cdcd9631c99d7e884f281d50d4b4304dd9bec2165fa2e40886798256fe04eff",
+    "src/features/keyboard/layouts.ts": "5448830e4b31666ee1ba69397d92f870ee15d44eb991133f6fbb13af3f52284c",
+    "src/features/keyboard/use-keyboard-d-warning.ts": "2a62658ca74a1e14eba19cf3229a49744076b0da921cf13fcd944271028b4733",
+    "src/features/keyboard/use-keyboard-release.ts": "663b2172fd0b79df11085cd1e6d1e4d1de34ef359412c851c2df3404c84c6b9e",
+    "src/features/keyboard/use-keyboard.ts": "3a77179e01b3096cb05d7a09b674aac2e92231c5e7ff7bba0d9bf5f652b4fcfc",
+    "src/features/mouse/accuracy.tsx": "9aaa5711eda5e1dfeb4c7c6cf06bbad0325deca320b1cdca8649c0e9ada8ace5",
+    "src/features/mouse/mouse.tsx": "a5ff41638ba521d142f8dfcc5522e38814824bdf54d0c10b4f0b9a310e53c7a6",
+    "src/features/mouse/movement.tsx": "b063ce2f3cbf3d558df961ec38075f632343cb341ef60cc7775f760f9b46f7ff",
+    "src/features/mouse/use-mouse.ts": "dd4f61cc71a6f6f5b30a06bb9f2db5fd74e42f8d4d42e81133e4677bce9d33a6",
+    "src/features/screen/calculator.tsx": "b4734c956d7a50f2f7eda78f8b321554e3fb9775c15e80aa2a43add1d7c78cd6",
+    "src/features/screen/motion.tsx": "ebf5e7394d60e02b56e5ab179175be3e1879713c5d8404810e3bb669402c0616",
+    "src/features/screen/patterns.tsx": "cb5bf560fb89f14e3972cea68e7852b31acc87957af4129ad4fcb1ce19f260f5",
+    "src/features/screen/refresh.tsx": "e9331f65209808636db637212bc380a1ebce94342c9dde91cb4ab7a01992e949",
+    "src/features/screen/screen-info.tsx": "39ad8241d235b1fcb5583fda53c0909fa2fe7469b648b909b7dc3821cc7ba189",
+    "src/features/screen/touch.tsx": "dd893ecb2a14e56d739b75d8fadda7720720dde6f9f809551539b4806edc7682",
+    "src/features/utilities/number-words.tsx": "8ba52933a40fdb2f6381cf0ad4e9ff491a0bf1ab637b8e4330b4f8758db0443b",
+    "src/features/utilities/percentage.tsx": "3041177d33613e071fba2fa249690280996add4198e5cc33a2fad0cde8ccfa34",
+    "src/features/utilities/shared.tsx": "4407847550f90bf44242e6ec312fd738b61671217e54e429636949f80c257136",
+    "src/features/utilities/utilities.css": "a1e67e771aecc24977aaa6944a4d0c29fd12ab97ddf7791c8705c7ae7647ad5b",
+    "src/hooks/use-device.ts": "1bd0f21a03301ff46096379362eff2e02ddec52dccdddba7853fdc7a321082d7",
+    "src/hooks/use-fullscreen.ts": "e839e3197e09ccaf0e9a84ef781741665f4cf30db576f1edaf7b4b7253562e2d",
+    "src/hooks/use-hydrated.ts": "a692d2516d452ae7f870b09c7251aa31fa5dcbb876462cc65273aad2bc80715d",
+    "src/hooks/use-inspection.ts": "55f62dc2b478796ed1b73afc2439266b6648c882b64946b1c0082164d2a5ebc7",
+    "src/hooks/use-permission.ts": "c950d0d302ccf7fc0770e3aee19cfedb60896a776ff37c673553434f5b3f06af",
+    "src/hooks/use-preference.ts": "990f9e9c19d8047be5c369443dc13b06a4df2b424831ddf6498ec0667f3d9521",
+    "src/hooks/use-timed-task.ts": "e5f920c406c19264f7c3a02517c081d41b216c0fc40193a6ddccc98862188b52",
+    "src/lib/audio/input-analysis.ts": "9a1b4123fcf38bde8d47187e131b58ef64bf82e353e2cbbd398e47a5fed5bbb0",
+    "src/lib/audio/input-session.ts": "7c507eab34caa4c6552f2159bc11ee645e790c0b34840f5e97b9bf4f624e2742",
+    "src/lib/audio/output-session.ts": "837072b4eedecbd14b8d03b191e132beb0cc7e9e0218d9f94893da8bea05dec8",
+    "src/lib/browser/capabilities.ts": "397808786aea526c95145aae568179bc8c4f754ea048471cdc5f2446b4b4ab44",
+    "src/lib/browser/capability-types.ts": "a7ca8d14b1da0cef06d99e8d91b77fcdb14d5d3dbcddd92e276ec2e7e8a188d7",
+    "src/lib/browser/device-details.ts": "07d65c431fd0abd9203c532742e1da905cbbdabab037a9e289a6a0ca1832c18b",
+    "src/lib/browser/gpu-details.ts": "5ecec9d293ebef922a0263e463ba01a48452232c9b5382964bd026447cd423b9",
+    "src/lib/browser/media-session.ts": "342a87170cee9e6313f4fec8f9fd5c09e185185e4a36356f9411026339d2d107",
+    "src/lib/browser/navigation-policy.ts": "2705e4bcddfcd09411fbe16785b1cbec57a56c8aefa93baa64a268d93c77b4ce",
+    "src/lib/browser/permissions.ts": "6ed34157226716ca58340196e521cf6a3f6214f8c0183cd2611c21bf030a916e",
+    "src/lib/browser/storage-details.ts": "01d8d72e89f165e9bee02237795ddec8ef1c244071f732ccda2e1f53c958d07f",
+    "src/lib/camera/camera-session.ts": "c0d0a6aec66e958f744c84c70dd9e788fc354c8f2ace804ba2a02e5f2700a1cd",
+    "src/lib/camera/frame-analysis.ts": "5ad6b1217882696f7bab42902038b92649d846f44afafaf0cb17dd6756e4ac20",
+    "src/lib/gamepad/analysis.ts": "a559f226db14ee349bf347a994f0bfc78b5bdd62ebd68093bcb43efb0f3124a7",
+    "src/lib/gamepad/environment.ts": "16993d09961fb278ae24a635fff258b06c810573880d46fba722a5689367606b",
+    "src/lib/gamepad/session.ts": "3649321919ac92807f4d118e5c97ec6cf1485180c074ebce26a54397aee5a6c9",
+    "src/lib/i18n/request.ts": "575b428617e2e53152e22dcd415b0ae3897ff29a77b7d2688022c60016e91d47",
+    "src/lib/i18n/routing.ts": "581fdb5632d473f7dbc4a45b131233633e71aa91ea821db735e9ae6452230324",
+    "src/lib/measurements/calculations.ts": "3249c4caf89353c4ba25e7659a21edd9434066000eec287d8b9a5f2e7b56395d",
+    "src/lib/measurements/frame-sampler.ts": "14096a0bb9018e3c2f94de9c7d534fd166fc8a4dcd1e5dcfcf0eb79b9c9ba60e",
+    "src/lib/measurements/keyboard-chatter.ts": "79fbd51f5837835e12efee65bae86c382ff73b5f4ac17c41d6ac601a0690c06e",
+    "src/lib/measurements/pointer-observation.ts": "f49165eef1666b2d1a467bae209763101c9e3a3f7f129cff7364f72aff0aa568",
+    "src/lib/measurements/pointer-sampler.ts": "3d9c3f247e038e4e249b2f8c250e27e417bfa73e218d0028057047561443f8ab",
+    "src/lib/measurements/pointer-tasks.ts": "c374a50144eb9594bb8037ee20e2e4aec34eded3ce9f50c945d8423821dba477",
+    "src/lib/measurements/types.ts": "9d4cfc376be88d52d2ba721f57831cf951942a472a035a07d9ef405ab6165b45",
+    "src/lib/seo/metadata.ts": "983fc73b2aad0d1e90f5fad6c94ecc92532c2ab1aea2c3cdb55937e6cbf9f238",
+    "src/lib/storage/preferences.ts": "a442b942926098d7d2753d1666599876d622c7f9f7b821769675cb6562d68bb9",
+    "src/lib/storage/session-measurements.ts": "0c3494e7e1d1958a34b30be1545ff879ae9b5e97448a8b373b92492f39b09b00",
+    "src/lib/tools/catalog.ts": "696bf58c9e9e49424f859a0851d37442a6283449ba284ebab96f733673f3814c",
+    "src/lib/tools/groups.ts": "52bc91b5e7c36ffd649722e436d4f903bb6c60086dad9cb357b1739fe56ec69b",
+    "src/lib/tools/phase2-milestone2.ts": "5d017e32092a0f76b1010c931d292b9c2469dafa5f09738633b52ea3e42281cb",
+    "src/lib/tools/phase2-milestone3.ts": "c58bb3b9e2f96520036bba839f197494a412e17c8c32dcddc01ddee0eb892f35",
+    "src/lib/tools/phase2-milestone4.ts": "23ebe560528f74348221da47f936780592ee40f398896423201fe0da45699bb7",
+    "src/lib/tools/phase2-milestone5.ts": "5ab53599deceeeaf324331da651d07b5a732f4d324b36c71a1498694330ae4b8",
+    "src/lib/tools/phase2-milestone6.ts": "551af68e80539e801bbd58d698c4a205bcba9009e5be5c64d0137fccc797c20c",
+    "src/lib/tools/phase2.ts": "3691326b444c9219b0282f6862c41e2073b8e2163cc4ba35b6876e1013c7158c",
+    "src/lib/tools/registry.ts": "3af186a7c72e59d7378dcd52e3200f2ca41a6f0f0145ff496b57fb4f77e0c0bb",
+    "src/lib/tools/search.ts": "fda0973fb5d1927a72e1660fb734a05ed89c85ea2d0b7fc88b08c2fc979cb8ce",
+    "src/lib/tools/types.ts": "154d28e796614f0706698521f13c4eb340de01efb63e66282c47704d6a6150c5",
+    "src/lib/tools/utilities.ts": "211a334329f8d1c4b96abc53951d12d4a4a38e8229f0915be4c02840bd528fdc",
+    "src/lib/utilities/decimal.ts": "7b2dc279c90b756a75bbf39fa1561bcd47861c010869070968660ef7c253925c",
+    "src/lib/utilities/number-words.ts": "f280e29124796c0fdef2937ea469783a6d040d70e2674f21a0a0d6f7fe784b6c",
+    "src/lib/utils.ts": "c407b940a1b71992691321d7162086f17af79fa371d0e4693926714048699b63",
+    "src/messages/en.json": "57757404af0de55384736ae0727ffb4c34b299c7cfa46caffb24d2369cf59419",
+    "src/messages/vi.json": "0d98e288c89b6cfed4f9bdf1cf09e51b582ee8dcf1c3f9d7df5446822ba73543",
+    "src/proxy.ts": "8ed9638ce75d4ba936a13eab3a68b25da3f32760a566c6ca87996670296bf7aa",
+    "tests/audio-lifecycle.test.tsx": "5e1a91c52b7ee48fa310cdbe3e94f9547d5dde3b865b9c59309fe5c38d025d95",
+    "tests/audio-output.test.ts": "a57a770b5b2aa1861b3b1e352c12869b298b5d663329850479d3ca0fa243c3e5",
+    "tests/browser-ssr.test.ts": "463876791cacb30698a01f9ff315ff632938b9f8ec13af607ddeb4ee8b3a85f7",
+    "tests/browser.test.ts": "583183335421686d358d3c6507ebdacc1886dbe73f7d1485cfdaed943bae9c55",
+    "tests/calculations.test.ts": "501446d0b4cb8bf8bc50411317f00e25090f929dcb93554012cc11d6150bb3f9",
+    "tests/calculator.test.tsx": "daedd9d5eb56e69f19408af30cc2a19c4ca4c435edef84ae6ae9dfb9e2a18c10",
+    "tests/camera-analysis.test.ts": "83c019165d22d91163adb24f459a853c03367f4d7f0bdac84ce9c224f0bbd02f",
+    "tests/camera-lifecycle.test.tsx": "a6852ad920aabf33b5d00dde769f64350f2a88d93d9d03763079189c1ea78ddf",
+    "tests/camera-session.test.ts": "da7b495c83f9e51cfd896082e66e77515c7e16209377785e444923a90e5f72b2",
+    "tests/capabilities.test.ts": "b945266dd1a3a148c378010b756976be19b9a2bff92a8dd42bc10092f0f903ef",
+    "tests/device-details.test.ts": "3bedd5a6a07a581bdb0f1cf7d7f615e40c43d2c2812ddf1f29cb097924fcd1e9",
+    "tests/e2e/foundation.spec.ts": "96b696f376b52db250a440071d4c5f055d7a7323f453641e63d727f791cc5cb6",
+    "tests/e2e/helpers/camera-fixture.ts": "64b43b411f3c2fcb5912f2b94a7957625df84d3e012aa46dbc4750e27bbf2633",
+    "tests/e2e/helpers/gamepad-fixture.ts": "a9cd6edfe81fa0d250c65b4b388be0b0d873230d8b5e5a4b8ab5f85b219ba19f",
+    "tests/e2e/helpers/input-fixture.ts": "3a103f74ec5e027ef8877369dc8f559772e723b0b0e6f10c28015cd798e55344",
+    "tests/e2e/interface.spec.ts": "8f7c5a952bbf44912bae9ebea4cbc98f9af7fce9422c13e6b39cd200e58f8271",
+    "tests/e2e/keyboard-input-method.spec.ts": "44bcb5070a76cb83f1c1135f4b4c3f9979d881f6c2392be0fb00edfbe2b42b9a",
+    "tests/e2e/keyboard-release.spec.ts": "3f83d1adae2c04d9756b21c75975cbcc190e63f0b52941ad56bf1e1418e8ec1c",
+    "tests/e2e/keyboard-upgrade.spec.ts": "6be1c796c19493ddbc17839d9b0d4a7057f602ffa6f94df608396289ebdb5139",
+    "tests/e2e/keyboard.spec.ts": "311dfceaedaa12e3c85c53ab4f2958ecb2f3cdfa6aa21147460578edb69d543a",
+    "tests/e2e/milestone2.spec.ts": "18dcd2ff8e33f5b9d6092316950f264fbc23641a5f0192dea334de4cde064ac3",
+    "tests/e2e/milestone3.spec.ts": "510d3b4b78b471ddbd918b7046f24a35cfb65c5b12f4fcc074184dc8f1d61b03",
+    "tests/e2e/milestone4.spec.ts": "26fa514422f5ed4359668357152f89b90844d3afaadd657dca18bc468a7c6ecb",
+    "tests/e2e/milestone5.spec.ts": "2b8e0951995985e82c393ac76c5e4ac5e1a591c851e53308b621a5f8e9c3b149",
+    "tests/e2e/milestone6.spec.ts": "31fc35dd7c4bb13389745e7010bb52726406822c1a98cc23cbebfaac6dae1e90",
+    "tests/e2e/mouse.spec.ts": "cbd22fe92ea9b28d2949990222183f9faa64038992fff2999cfc0f601badede0",
+    "tests/e2e/problem-chooser.spec.ts": "283efc1819b01f94159d8c7baa8969ecde1912c0f652c95034dc56e517307016",
+    "tests/e2e/quality.spec.ts": "79f9614ddd9ac66490c4f2df6380085d5b322607ba04af280c4371f06633f8fd",
+    "tests/e2e/registry.spec.ts": "07ce8c04eabaa9d8d97e16b176e90405cc9e6077188f72f5a4d41100b780669a",
+    "tests/e2e/screen.spec.ts": "a53e0705b239a6c9500594d097a6ef9428e1e8ab91d0cdf417076d04bd252249",
+    "tests/e2e/shell.spec.ts": "705822c3ae9b01ed2986770425d3366ff664e929a1b1820dbd7289e8f7ee9a29",
+    "tests/e2e/user-content.spec.ts": "0f198d229653133f985ac0ece2e33ad2acc50e72763511447d77770374fb9b7d",
+    "tests/e2e/utilities.spec.ts": "6ca05ea4ae18cf26a9b88f39a82656d5d37ad46f61593c318595552cbce218d9",
+    "tests/fixtures/device-tools-baseline.json": "ec96363643904cf58f4562c3e71330f246d50c4adbd7f419471db8f72388d60d",
+    "tests/frame-sampler.test.ts": "8bb171c79fdea0965a975eadf080c2ba9988f5a7cd41ebeba3e6f350dd3f9f51",
+    "tests/gamepad-analysis.test.ts": "4c6f47742ccac02d853efdb2dc260c74f9f069ee2188818012c934822a3221a5",
+    "tests/gamepad-lifecycle.test.tsx": "2eac8a9f095a9a98fe64839e75222fb6ea5fb37d6297277d4483f93deb3575ff",
+    "tests/gamepad-session.test.ts": "929e16eefdbd3c47b973de018f9ece46fc5eb57a50cc279a9eafa702a2b25792",
+    "tests/gpu-details.test.ts": "2df25a8fcbf6d4c7358327904991d94ff0fcec77262cc099669fa6ff7472a4d8",
+    "tests/helpers/audio.ts": "0d74ef6a10f97ad7e693e966b5b672ab756f500f963977935a4e999024a88651",
+    "tests/helpers/camera.ts": "3c7b45fc74fc99979d06f4ab849b635c8acb3d6feadd8a288516d0f3b5c14824",
+    "tests/helpers/gamepad.ts": "c636c852213b708f4684ca37ce85283dbd9bd0a92d4de54303a1ffc4a86d9ce9",
+    "tests/helpers/input-audio.ts": "1bf79bbf3c2fddfcb0c06ca30f7103124dbb43e554aa959b2fc4782596fd46e2",
+    "tests/helpers/media.ts": "c800203560b95ee04d5dc8e857a6945594aa73eab48bacf2ec16580a6787fe34",
+    "tests/i18n.test.ts": "efdd5b6fe82cba84ee997acfd600f3b65ef0f2261680564b77d572409bc1ed80",
+    "tests/input-analysis.test.ts": "6ae138cd567e5829cb59a2d8cd738f29c560948fe6108b143135f53ab7a94fd1",
+    "tests/input-lifecycle.test.tsx": "a8b0dc6e2312fffc2476670f0a0002bdae6e386701a9830ae189f24d91b448c6",
+    "tests/input-session.test.ts": "18387e0c201df98c81830ba62c8f1f24c8ecee67a2e25d40ce686c3c15cc912c",
+    "tests/keyboard-chatter.test.ts": "3fbfb3ed665ec112a2d3c45868bcd6d66e3b273c54a0736e349cea073bda02d3",
+    "tests/keyboard-release.test.tsx": "ad2763a9abfea93cb64da92bacaa024b51322a2b8509db1574401f52bd4c2809",
+    "tests/keyboard.test.tsx": "2829afeecafd6f2641228fb8e4bb44066bc48653ff6f7c5158bbc79aff0400ee",
+    "tests/lifecycle.test.tsx": "3a60f6bcfaee37570197931c23f2533a948c0ed859ae6af607af4f7dfa13a0f5",
+    "tests/media-session.test.ts": "38fea80962992801139d5603a0091152578a047268969317c9586dc388a0f142",
+    "tests/milestone2-lifecycle.test.tsx": "c72575946586b07ec347e38c0624366aa4ec4f92f39de6429bd37542f279e38b",
+    "tests/mouse.test.tsx": "a85af965b622a2352def752455c0aa48db85f951691d61622a6484b532fc0fb5",
+    "tests/navigation-policy.test.ts": "4f4ecc8dee3475e6c5502c7ada09fe7465ac13cb00cea92029baed4fa980aa02",
+    "tests/permissions.test.tsx": "170899e3044d12f0bce20cd7c047f8616525322f367d96a115af61daff56a859",
+    "tests/phase2-registry.test.ts": "b9ece329b33010c23d7427ce5ee00bd1252823b42515b59eb5fcbae75dceaf86",
+    "tests/pointer-sampler.test.ts": "ea86ce0c4bba509f4474f9d233ec856b7bcacc3af5a7418a6e129a54c845ca07",
+    "tests/pointer-tasks.test.ts": "7bcca6d6a479e0eb58b486ff4638d4f2d14a3bd5afb5a658c36204e56a5d12a5",
+    "tests/search-index.test.ts": "c00e558ca10fa75778e71797ea8ec5852374bed3cdd82b8530c8dee5f0eadf8a",
+    "tests/setup.ts": "91a3c8962a0edcb956206a501d943fe99e1c78c6d4d8b5c9a948a3362c75978c",
+    "tests/storage-details.test.ts": "201cc9c88ebb68628d66642d437b19cbe5d5a9a0512ec9150638a5b7a9dd22b8",
+    "tests/storage.test.ts": "c40ad9d8efd1c99f34f5261203c68bdbc441395a7e22ae9bd22c6cc88ec4fa5e",
+    "tests/utilities-decimal.test.ts": "76dd1f09bdb6a34c93e56d36ecedbcc91173140c3f55ca347273367abfc83a3c",
+    "tests/utilities-registry.test.ts": "4c7ce46ba01b1433bebda7f805bc9ee4f9289fc709c28080f2edf018d8adedf9",
+    "tests/utilities-ui.test.tsx": "13149c062567e5df274eab58d1f3f044dda9a54235c41a88bbebc2d0616380ce",
+    "tests/utilities-words.test.ts": "6103ba852dcccea36b5140f0bdabd56d4bc556a2a5213c0a7683f902feb435b1"
+  },
+  "finalFingerprints": {
+    "next.config.ts": "4065f72ec4d7167b30d76ccbb25d19d3246aa90d82894760431269f78063d185",
+    "package.json": "c342250902ab0685969d07120892e21313b3af8e3731f8d52610d76e40740907",
+    "playwright.config.ts": "1deb389f1ee99aa6f650056842038a6986c5ef1e465f963599af45b0d7ece998",
+    "pnpm-lock.yaml": "527738a0a2fb7fdd0f86cddf6328aa282210bd1f421b056a3e9e8931f6212722",
+    "pnpm-workspace.yaml": "77327e6dc19b9ad33617edbfb31ca7468c6736e259bb28cce45a22444801734f",
+    "scripts/smoke-http.mjs": "37f84e335bd5ce7674a96923fa5235b9ad36902ddb5d31a7b31b01f9643d5276",
+    "src/app/[locale]/[category]/[slug]/page.tsx": "e59e273b9c0283221b86664692b53640488135a2598e4a5a47e713b58fc9f59c",
+    "src/app/[locale]/[category]/page.tsx": "02a71ee226f760f44d04cf68dca67ca372f3affd3a283210aadea17c7892f87a",
+    "src/app/[locale]/error.tsx": "3dc229e30c2021dc5cd9968e4aba815e72136755988c6d1baaef66da76028647",
+    "src/app/[locale]/layout.tsx": "f2f07767ee5cf9189626420852748ee15dd1d743684ea6058eacb6f697c94ee7",
+    "src/app/[locale]/not-found.tsx": "57eeab6417aba0054053907fd5c73057a7727290bc144f2da74d6b975d9a7ae2",
+    "src/app/[locale]/page.tsx": "3a158f01387b59aa5b4bbec1e410775fa8efe7cabe52346f77462856c562ddc2",
+    "src/app/[locale]/privacy/page.tsx": "45b87592c5b1cb5e760c70d8000dc67e01a4620fb36bc01117b155797de8906e",
+    "src/app/api/health/route.ts": "1671249f05352e7e350fcc2db692d26621443457c807a808e68e631720c17716",
+    "src/app/globals.css": "27209de334c6c8a9f1d9d7e9e1f8b79f8d9397c9fe1395521ce47ad70073b99b",
+    "src/app/icon.svg": "e008f073c270956b58f9eca74821c80fdc4b963b346f998f53298da8a7be1904",
+    "src/app/interface.css": "939680c1b420a95b707e963dc3f91df89e59080a307c070187c786540c2ff1b7",
+    "src/app/robots.ts": "51bcae6d9934da2fdafa206e9eac0aef14a06bd137df493e7700233d5f0affba",
+    "src/app/sitemap.ts": "e014ea1631d6b47db0ba0e4d08cc7c3e6df163babe831799123cdd00df8c6d12",
+    "src/components/layout/footer.tsx": "15737e46c858816646edc01688f08bfe250f8b36f28df8c3f5bfbf6f582f9219",
+    "src/components/layout/header.tsx": "a38cee78bc92d6ce16a654910fa1ffa0a7124471f2f7e5af78abcd75d4561040",
+    "src/components/navigation/command-search.tsx": "45481451a13bea2a476db1b8c50191b29dbf4c2c4708ad04e545c2a5260e5eef",
+    "src/components/navigation/policy-link.tsx": "e0afede2079bc6f178297229f369e1d9c66c9bb4e16e3e3b2b19e88f9ccae212",
+    "src/components/tools/catalog.tsx": "9499df287589ee074ca650269fc38d23a87fff5cb9d80bc376dfbcd16c4069c0",
+    "src/components/tools/category-art.tsx": "c2edf91912df467526a3bde3e3622e5c0ff6b5063469f782eadb67c32a77772b",
+    "src/components/tools/category-icon.tsx": "0c4599c2b68e535d223a4b3f6dc05e1e56bd8a8382ea6e0aa6da0af6e89eec0b",
+    "src/components/tools/device-overview.tsx": "454cedbd58d9fa38e6f748a4e64f3e147e09e3d072d01c858d4c005662b9bc7c",
+    "src/components/tools/engine-surface.tsx": "98d763099e5c3e5d092b04a12898334c78bc18ba96f7c9e08ce0413f56482064",
+    "src/components/tools/inspection-controls.tsx": "8c4a5dc7ae168990d1a568aad38aa72541f7d5f592f3ec13ac396be5f6d7d5ce",
+    "src/components/tools/lab-scene.tsx": "aae6b2b9fb112e57db8f518265dbc9ae673082f308e31914796264eee31a0607",
+    "src/components/tools/measurement-ui.tsx": "9db7a350923e6e28898ca99965e16467f4b4033d3bf5b3aa04de89359efd9754",
+    "src/components/tools/privacy-settings.tsx": "6cedc097ef6f45aa70fbf7e29fbab77ce69cc57d7492fd914291086bd1172c51",
+    "src/components/tools/problem-chooser.module.css": "b4b657d8a035db30bb177d83c748c7435d41a3997cdea7968d27a68a4e5a64de",
+    "src/components/tools/problem-chooser.tsx": "c58652a91e691526021f1bc329db9269c61198e3a68f061abee3438051a681bf",
+    "src/components/tools/tool-card.tsx": "6d9c813b85fef4118ab1f74b025eca3d46c393a849d01ee86518b8106be20a91",
+    "src/components/tools/tool-runner.tsx": "412b59271b03653d8894f201e587dfccfd2c437755fabf79a12a9abcaf40aa66",
+    "src/components/ui/button.tsx": "3a5bd5827b0b4c92521e11f818013884c3e795c2e37209c55ac4e30e4726c86b",
+    "src/features/audio/input.tsx": "202c42fad9580754ec29cd5fa009de53a48a4e3b8a5354669ecacaef6a158fd5",
+    "src/features/audio/output.tsx": "fa726e1429cd8a30731216026aff759b905f3256b117d3abf5bad988a7429d4b",
+    "src/features/browser/compatibility.tsx": "529922cdd041e511cff53cabb0d24e365c4ccf720ecc1ff352b1448a1a6bc60f",
+    "src/features/browser/fullscreen.tsx": "1a5fb10f1ce75289158d2d957254d6e510c99d13d3c8d955eff302ae3e38de0b",
+    "src/features/browser/storage.tsx": "683dbc0638ec94f270f7f22c72d9a4a9d7e23dba8f9790b2e800e304555593fd",
+    "src/features/camera/camera.tsx": "5f1973e696f09c7e1df6a250f973fd6055ae80ade8642fbfa95f1ed504e4b160",
+    "src/features/device/gpu.tsx": "a2f908d803556370d6fefb2db4b61b25a1a16fe502736385700553e5e4f5295b",
+    "src/features/device/information.tsx": "fa1e91d82f7d5ca30f186326feaba5e4b24280cbf41633cc1eef2dbdd5d82161",
+    "src/features/device/pointer.tsx": "cc6d0e2c3352a3064450eea5954e0213eee2417e4eeb881c06ec319a9d15a866",
+    "src/features/gamepad/gamepad.tsx": "b708e49279e57502edbae66dc9ccd5535e7789987fcf45d3d08f623302d96430",
+    "src/features/keyboard/keyboard-event-log.tsx": "59abfd49d5d5bd1796c314d142b791104ce86de46c7396bbfad8cc197c6acac5",
+    "src/features/keyboard/keyboard.css": "d979bd83864c6d6cf3581ce0cbb376dbb1a2c70911255ffee5a2c794bd27dab5",
+    "src/features/keyboard/keyboard.tsx": "0cdcd9631c99d7e884f281d50d4b4304dd9bec2165fa2e40886798256fe04eff",
+    "src/features/keyboard/layouts.ts": "5448830e4b31666ee1ba69397d92f870ee15d44eb991133f6fbb13af3f52284c",
+    "src/features/keyboard/use-keyboard-d-warning.ts": "2a62658ca74a1e14eba19cf3229a49744076b0da921cf13fcd944271028b4733",
+    "src/features/keyboard/use-keyboard-release.ts": "663b2172fd0b79df11085cd1e6d1e4d1de34ef359412c851c2df3404c84c6b9e",
+    "src/features/keyboard/use-keyboard.ts": "3a77179e01b3096cb05d7a09b674aac2e92231c5e7ff7bba0d9bf5f652b4fcfc",
+    "src/features/mouse/accuracy.tsx": "9aaa5711eda5e1dfeb4c7c6cf06bbad0325deca320b1cdca8649c0e9ada8ace5",
+    "src/features/mouse/mouse.tsx": "a5ff41638ba521d142f8dfcc5522e38814824bdf54d0c10b4f0b9a310e53c7a6",
+    "src/features/mouse/movement.tsx": "b063ce2f3cbf3d558df961ec38075f632343cb341ef60cc7775f760f9b46f7ff",
+    "src/features/mouse/use-mouse.ts": "dd4f61cc71a6f6f5b30a06bb9f2db5fd74e42f8d4d42e81133e4677bce9d33a6",
+    "src/features/screen/calculator.tsx": "b4734c956d7a50f2f7eda78f8b321554e3fb9775c15e80aa2a43add1d7c78cd6",
+    "src/features/screen/motion.tsx": "ebf5e7394d60e02b56e5ab179175be3e1879713c5d8404810e3bb669402c0616",
+    "src/features/screen/patterns.tsx": "cb5bf560fb89f14e3972cea68e7852b31acc87957af4129ad4fcb1ce19f260f5",
+    "src/features/screen/refresh.tsx": "e9331f65209808636db637212bc380a1ebce94342c9dde91cb4ab7a01992e949",
+    "src/features/screen/screen-info.tsx": "39ad8241d235b1fcb5583fda53c0909fa2fe7469b648b909b7dc3821cc7ba189",
+    "src/features/screen/touch.tsx": "dd893ecb2a14e56d739b75d8fadda7720720dde6f9f809551539b4806edc7682",
+    "src/features/utilities/number-words.tsx": "8ba52933a40fdb2f6381cf0ad4e9ff491a0bf1ab637b8e4330b4f8758db0443b",
+    "src/features/utilities/percentage.tsx": "3041177d33613e071fba2fa249690280996add4198e5cc33a2fad0cde8ccfa34",
+    "src/features/utilities/shared.tsx": "4407847550f90bf44242e6ec312fd738b61671217e54e429636949f80c257136",
+    "src/features/utilities/utilities.css": "a1e67e771aecc24977aaa6944a4d0c29fd12ab97ddf7791c8705c7ae7647ad5b",
+    "src/hooks/use-device.ts": "1bd0f21a03301ff46096379362eff2e02ddec52dccdddba7853fdc7a321082d7",
+    "src/hooks/use-fullscreen.ts": "e839e3197e09ccaf0e9a84ef781741665f4cf30db576f1edaf7b4b7253562e2d",
+    "src/hooks/use-hydrated.ts": "a692d2516d452ae7f870b09c7251aa31fa5dcbb876462cc65273aad2bc80715d",
+    "src/hooks/use-inspection.ts": "55f62dc2b478796ed1b73afc2439266b6648c882b64946b1c0082164d2a5ebc7",
+    "src/hooks/use-permission.ts": "c950d0d302ccf7fc0770e3aee19cfedb60896a776ff37c673553434f5b3f06af",
+    "src/hooks/use-preference.ts": "990f9e9c19d8047be5c369443dc13b06a4df2b424831ddf6498ec0667f3d9521",
+    "src/hooks/use-timed-task.ts": "e5f920c406c19264f7c3a02517c081d41b216c0fc40193a6ddccc98862188b52",
+    "src/lib/audio/input-analysis.ts": "9a1b4123fcf38bde8d47187e131b58ef64bf82e353e2cbbd398e47a5fed5bbb0",
+    "src/lib/audio/input-session.ts": "7c507eab34caa4c6552f2159bc11ee645e790c0b34840f5e97b9bf4f624e2742",
+    "src/lib/audio/output-session.ts": "837072b4eedecbd14b8d03b191e132beb0cc7e9e0218d9f94893da8bea05dec8",
+    "src/lib/browser/capabilities.ts": "397808786aea526c95145aae568179bc8c4f754ea048471cdc5f2446b4b4ab44",
+    "src/lib/browser/capability-types.ts": "a7ca8d14b1da0cef06d99e8d91b77fcdb14d5d3dbcddd92e276ec2e7e8a188d7",
+    "src/lib/browser/device-details.ts": "07d65c431fd0abd9203c532742e1da905cbbdabab037a9e289a6a0ca1832c18b",
+    "src/lib/browser/gpu-details.ts": "5ecec9d293ebef922a0263e463ba01a48452232c9b5382964bd026447cd423b9",
+    "src/lib/browser/media-session.ts": "342a87170cee9e6313f4fec8f9fd5c09e185185e4a36356f9411026339d2d107",
+    "src/lib/browser/navigation-policy.ts": "2705e4bcddfcd09411fbe16785b1cbec57a56c8aefa93baa64a268d93c77b4ce",
+    "src/lib/browser/permissions.ts": "6ed34157226716ca58340196e521cf6a3f6214f8c0183cd2611c21bf030a916e",
+    "src/lib/browser/storage-details.ts": "01d8d72e89f165e9bee02237795ddec8ef1c244071f732ccda2e1f53c958d07f",
+    "src/lib/camera/camera-session.ts": "c0d0a6aec66e958f744c84c70dd9e788fc354c8f2ace804ba2a02e5f2700a1cd",
+    "src/lib/camera/frame-analysis.ts": "5ad6b1217882696f7bab42902038b92649d846f44afafaf0cb17dd6756e4ac20",
+    "src/lib/gamepad/analysis.ts": "a559f226db14ee349bf347a994f0bfc78b5bdd62ebd68093bcb43efb0f3124a7",
+    "src/lib/gamepad/environment.ts": "16993d09961fb278ae24a635fff258b06c810573880d46fba722a5689367606b",
+    "src/lib/gamepad/session.ts": "3649321919ac92807f4d118e5c97ec6cf1485180c074ebce26a54397aee5a6c9",
+    "src/lib/i18n/request.ts": "575b428617e2e53152e22dcd415b0ae3897ff29a77b7d2688022c60016e91d47",
+    "src/lib/i18n/routing.ts": "581fdb5632d473f7dbc4a45b131233633e71aa91ea821db735e9ae6452230324",
+    "src/lib/measurements/calculations.ts": "3249c4caf89353c4ba25e7659a21edd9434066000eec287d8b9a5f2e7b56395d",
+    "src/lib/measurements/frame-sampler.ts": "14096a0bb9018e3c2f94de9c7d534fd166fc8a4dcd1e5dcfcf0eb79b9c9ba60e",
+    "src/lib/measurements/keyboard-chatter.ts": "79fbd51f5837835e12efee65bae86c382ff73b5f4ac17c41d6ac601a0690c06e",
+    "src/lib/measurements/pointer-observation.ts": "f49165eef1666b2d1a467bae209763101c9e3a3f7f129cff7364f72aff0aa568",
+    "src/lib/measurements/pointer-sampler.ts": "3d9c3f247e038e4e249b2f8c250e27e417bfa73e218d0028057047561443f8ab",
+    "src/lib/measurements/pointer-tasks.ts": "c374a50144eb9594bb8037ee20e2e4aec34eded3ce9f50c945d8423821dba477",
+    "src/lib/measurements/types.ts": "9d4cfc376be88d52d2ba721f57831cf951942a472a035a07d9ef405ab6165b45",
+    "src/lib/seo/metadata.ts": "983fc73b2aad0d1e90f5fad6c94ecc92532c2ab1aea2c3cdb55937e6cbf9f238",
+    "src/lib/storage/preferences.ts": "a442b942926098d7d2753d1666599876d622c7f9f7b821769675cb6562d68bb9",
+    "src/lib/storage/session-measurements.ts": "0c3494e7e1d1958a34b30be1545ff879ae9b5e97448a8b373b92492f39b09b00",
+    "src/lib/tools/catalog.ts": "696bf58c9e9e49424f859a0851d37442a6283449ba284ebab96f733673f3814c",
+    "src/lib/tools/groups.ts": "52bc91b5e7c36ffd649722e436d4f903bb6c60086dad9cb357b1739fe56ec69b",
+    "src/lib/tools/phase2-milestone2.ts": "5d017e32092a0f76b1010c931d292b9c2469dafa5f09738633b52ea3e42281cb",
+    "src/lib/tools/phase2-milestone3.ts": "c58bb3b9e2f96520036bba839f197494a412e17c8c32dcddc01ddee0eb892f35",
+    "src/lib/tools/phase2-milestone4.ts": "23ebe560528f74348221da47f936780592ee40f398896423201fe0da45699bb7",
+    "src/lib/tools/phase2-milestone5.ts": "5ab53599deceeeaf324331da651d07b5a732f4d324b36c71a1498694330ae4b8",
+    "src/lib/tools/phase2-milestone6.ts": "551af68e80539e801bbd58d698c4a205bcba9009e5be5c64d0137fccc797c20c",
+    "src/lib/tools/phase2.ts": "3691326b444c9219b0282f6862c41e2073b8e2163cc4ba35b6876e1013c7158c",
+    "src/lib/tools/registry.ts": "3af186a7c72e59d7378dcd52e3200f2ca41a6f0f0145ff496b57fb4f77e0c0bb",
+    "src/lib/tools/search.ts": "fda0973fb5d1927a72e1660fb734a05ed89c85ea2d0b7fc88b08c2fc979cb8ce",
+    "src/lib/tools/types.ts": "154d28e796614f0706698521f13c4eb340de01efb63e66282c47704d6a6150c5",
+    "src/lib/tools/utilities.ts": "211a334329f8d1c4b96abc53951d12d4a4a38e8229f0915be4c02840bd528fdc",
+    "src/lib/utilities/decimal.ts": "7b2dc279c90b756a75bbf39fa1561bcd47861c010869070968660ef7c253925c",
+    "src/lib/utilities/number-words.ts": "f280e29124796c0fdef2937ea469783a6d040d70e2674f21a0a0d6f7fe784b6c",
+    "src/lib/utils.ts": "c407b940a1b71992691321d7162086f17af79fa371d0e4693926714048699b63",
+    "src/messages/en.json": "57757404af0de55384736ae0727ffb4c34b299c7cfa46caffb24d2369cf59419",
+    "src/messages/vi.json": "0d98e288c89b6cfed4f9bdf1cf09e51b582ee8dcf1c3f9d7df5446822ba73543",
+    "src/proxy.ts": "8ed9638ce75d4ba936a13eab3a68b25da3f32760a566c6ca87996670296bf7aa",
+    "tests/audio-lifecycle.test.tsx": "5e1a91c52b7ee48fa310cdbe3e94f9547d5dde3b865b9c59309fe5c38d025d95",
+    "tests/audio-output.test.ts": "a57a770b5b2aa1861b3b1e352c12869b298b5d663329850479d3ca0fa243c3e5",
+    "tests/browser-ssr.test.ts": "463876791cacb30698a01f9ff315ff632938b9f8ec13af607ddeb4ee8b3a85f7",
+    "tests/browser.test.ts": "583183335421686d358d3c6507ebdacc1886dbe73f7d1485cfdaed943bae9c55",
+    "tests/calculations.test.ts": "501446d0b4cb8bf8bc50411317f00e25090f929dcb93554012cc11d6150bb3f9",
+    "tests/calculator.test.tsx": "daedd9d5eb56e69f19408af30cc2a19c4ca4c435edef84ae6ae9dfb9e2a18c10",
+    "tests/camera-analysis.test.ts": "83c019165d22d91163adb24f459a853c03367f4d7f0bdac84ce9c224f0bbd02f",
+    "tests/camera-lifecycle.test.tsx": "a6852ad920aabf33b5d00dde769f64350f2a88d93d9d03763079189c1ea78ddf",
+    "tests/camera-session.test.ts": "da7b495c83f9e51cfd896082e66e77515c7e16209377785e444923a90e5f72b2",
+    "tests/capabilities.test.ts": "b945266dd1a3a148c378010b756976be19b9a2bff92a8dd42bc10092f0f903ef",
+    "tests/device-details.test.ts": "3bedd5a6a07a581bdb0f1cf7d7f615e40c43d2c2812ddf1f29cb097924fcd1e9",
+    "tests/e2e/foundation.spec.ts": "96b696f376b52db250a440071d4c5f055d7a7323f453641e63d727f791cc5cb6",
+    "tests/e2e/helpers/camera-fixture.ts": "64b43b411f3c2fcb5912f2b94a7957625df84d3e012aa46dbc4750e27bbf2633",
+    "tests/e2e/helpers/gamepad-fixture.ts": "a9cd6edfe81fa0d250c65b4b388be0b0d873230d8b5e5a4b8ab5f85b219ba19f",
+    "tests/e2e/helpers/input-fixture.ts": "3a103f74ec5e027ef8877369dc8f559772e723b0b0e6f10c28015cd798e55344",
+    "tests/e2e/interface.spec.ts": "8f7c5a952bbf44912bae9ebea4cbc98f9af7fce9422c13e6b39cd200e58f8271",
+    "tests/e2e/keyboard-input-method.spec.ts": "44bcb5070a76cb83f1c1135f4b4c3f9979d881f6c2392be0fb00edfbe2b42b9a",
+    "tests/e2e/keyboard-release.spec.ts": "3f83d1adae2c04d9756b21c75975cbcc190e63f0b52941ad56bf1e1418e8ec1c",
+    "tests/e2e/keyboard-upgrade.spec.ts": "6be1c796c19493ddbc17839d9b0d4a7057f602ffa6f94df608396289ebdb5139",
+    "tests/e2e/keyboard.spec.ts": "311dfceaedaa12e3c85c53ab4f2958ecb2f3cdfa6aa21147460578edb69d543a",
+    "tests/e2e/milestone2.spec.ts": "18dcd2ff8e33f5b9d6092316950f264fbc23641a5f0192dea334de4cde064ac3",
+    "tests/e2e/milestone3.spec.ts": "510d3b4b78b471ddbd918b7046f24a35cfb65c5b12f4fcc074184dc8f1d61b03",
+    "tests/e2e/milestone4.spec.ts": "26fa514422f5ed4359668357152f89b90844d3afaadd657dca18bc468a7c6ecb",
+    "tests/e2e/milestone5.spec.ts": "2b8e0951995985e82c393ac76c5e4ac5e1a591c851e53308b621a5f8e9c3b149",
+    "tests/e2e/milestone6.spec.ts": "31fc35dd7c4bb13389745e7010bb52726406822c1a98cc23cbebfaac6dae1e90",
+    "tests/e2e/mouse.spec.ts": "cbd22fe92ea9b28d2949990222183f9faa64038992fff2999cfc0f601badede0",
+    "tests/e2e/problem-chooser.spec.ts": "283efc1819b01f94159d8c7baa8969ecde1912c0f652c95034dc56e517307016",
+    "tests/e2e/quality.spec.ts": "79f9614ddd9ac66490c4f2df6380085d5b322607ba04af280c4371f06633f8fd",
+    "tests/e2e/registry.spec.ts": "07ce8c04eabaa9d8d97e16b176e90405cc9e6077188f72f5a4d41100b780669a",
+    "tests/e2e/screen.spec.ts": "a53e0705b239a6c9500594d097a6ef9428e1e8ab91d0cdf417076d04bd252249",
+    "tests/e2e/shell.spec.ts": "705822c3ae9b01ed2986770425d3366ff664e929a1b1820dbd7289e8f7ee9a29",
+    "tests/e2e/user-content.spec.ts": "0f198d229653133f985ac0ece2e33ad2acc50e72763511447d77770374fb9b7d",
+    "tests/e2e/utilities.spec.ts": "0c755e6dadafefbc3c83a2e651d2271a999c935f69445b375fbb081eea89c9f8",
+    "tests/fixtures/device-tools-baseline.json": "51b96168ec6dcf2533314f5e17fff8c5ebf633b842250bbd4d688ae24d6b4e9c",
+    "tests/frame-sampler.test.ts": "8bb171c79fdea0965a975eadf080c2ba9988f5a7cd41ebeba3e6f350dd3f9f51",
+    "tests/gamepad-analysis.test.ts": "4c6f47742ccac02d853efdb2dc260c74f9f069ee2188818012c934822a3221a5",
+    "tests/gamepad-lifecycle.test.tsx": "2eac8a9f095a9a98fe64839e75222fb6ea5fb37d6297277d4483f93deb3575ff",
+    "tests/gamepad-session.test.ts": "929e16eefdbd3c47b973de018f9ece46fc5eb57a50cc279a9eafa702a2b25792",
+    "tests/gpu-details.test.ts": "2df25a8fcbf6d4c7358327904991d94ff0fcec77262cc099669fa6ff7472a4d8",
+    "tests/helpers/audio.ts": "0d74ef6a10f97ad7e693e966b5b672ab756f500f963977935a4e999024a88651",
+    "tests/helpers/camera.ts": "3c7b45fc74fc99979d06f4ab849b635c8acb3d6feadd8a288516d0f3b5c14824",
+    "tests/helpers/gamepad.ts": "c636c852213b708f4684ca37ce85283dbd9bd0a92d4de54303a1ffc4a86d9ce9",
+    "tests/helpers/input-audio.ts": "1bf79bbf3c2fddfcb0c06ca30f7103124dbb43e554aa959b2fc4782596fd46e2",
+    "tests/helpers/media.ts": "c800203560b95ee04d5dc8e857a6945594aa73eab48bacf2ec16580a6787fe34",
+    "tests/i18n.test.ts": "efdd5b6fe82cba84ee997acfd600f3b65ef0f2261680564b77d572409bc1ed80",
+    "tests/input-analysis.test.ts": "6ae138cd567e5829cb59a2d8cd738f29c560948fe6108b143135f53ab7a94fd1",
+    "tests/input-lifecycle.test.tsx": "a8b0dc6e2312fffc2476670f0a0002bdae6e386701a9830ae189f24d91b448c6",
+    "tests/input-session.test.ts": "18387e0c201df98c81830ba62c8f1f24c8ecee67a2e25d40ce686c3c15cc912c",
+    "tests/keyboard-chatter.test.ts": "3fbfb3ed665ec112a2d3c45868bcd6d66e3b273c54a0736e349cea073bda02d3",
+    "tests/keyboard-release.test.tsx": "ad2763a9abfea93cb64da92bacaa024b51322a2b8509db1574401f52bd4c2809",
+    "tests/keyboard.test.tsx": "2829afeecafd6f2641228fb8e4bb44066bc48653ff6f7c5158bbc79aff0400ee",
+    "tests/lifecycle.test.tsx": "3a60f6bcfaee37570197931c23f2533a948c0ed859ae6af607af4f7dfa13a0f5",
+    "tests/media-session.test.ts": "38fea80962992801139d5603a0091152578a047268969317c9586dc388a0f142",
+    "tests/milestone2-lifecycle.test.tsx": "c72575946586b07ec347e38c0624366aa4ec4f92f39de6429bd37542f279e38b",
+    "tests/mouse.test.tsx": "a85af965b622a2352def752455c0aa48db85f951691d61622a6484b532fc0fb5",
+    "tests/navigation-policy.test.ts": "4f4ecc8dee3475e6c5502c7ada09fe7465ac13cb00cea92029baed4fa980aa02",
+    "tests/permissions.test.tsx": "170899e3044d12f0bce20cd7c047f8616525322f367d96a115af61daff56a859",
+    "tests/phase2-registry.test.ts": "b9ece329b33010c23d7427ce5ee00bd1252823b42515b59eb5fcbae75dceaf86",
+    "tests/pointer-sampler.test.ts": "ea86ce0c4bba509f4474f9d233ec856b7bcacc3af5a7418a6e129a54c845ca07",
+    "tests/pointer-tasks.test.ts": "7bcca6d6a479e0eb58b486ff4638d4f2d14a3bd5afb5a658c36204e56a5d12a5",
+    "tests/search-index.test.ts": "c00e558ca10fa75778e71797ea8ec5852374bed3cdd82b8530c8dee5f0eadf8a",
+    "tests/setup.ts": "91a3c8962a0edcb956206a501d943fe99e1c78c6d4d8b5c9a948a3362c75978c",
+    "tests/storage-details.test.ts": "201cc9c88ebb68628d66642d437b19cbe5d5a9a0512ec9150638a5b7a9dd22b8",
+    "tests/storage.test.ts": "c40ad9d8efd1c99f34f5261203c68bdbc441395a7e22ae9bd22c6cc88ec4fa5e",
+    "tests/utilities-decimal.test.ts": "76dd1f09bdb6a34c93e56d36ecedbcc91173140c3f55ca347273367abfc83a3c",
+    "tests/utilities-registry.test.ts": "4c7ce46ba01b1433bebda7f805bc9ee4f9289fc709c28080f2edf018d8adedf9",
+    "tests/utilities-ui.test.tsx": "13149c062567e5df274eab58d1f3f044dda9a54235c41a88bbebc2d0616380ce",
+    "tests/utilities-words.test.ts": "6103ba852dcccea36b5140f0bdabd56d4bc556a2a5213c0a7683f902feb435b1"
+  },
+  "formatOnlyDifferences": [
+    "tests/e2e/utilities.spec.ts",
+    "tests/fixtures/device-tools-baseline.json"
+  ],
+  "formatVerification": {
+    "e2eAstEquivalent": true,
+    "baselineJsonEquivalent": true,
+    "note": "TypeScript printer preserves line layout so emitted-text equality was not used; AST structure and literal values are equal."
+  },
+  "applicationSourceUnchangedDuringFullE2E": true,
+  "classification": {
+    "completedVerified": [
+      "Nhóm công cụ và Registry 42, giữ nguyên metadata/engine 40 công cụ cũ",
+      "Hai tiện ích hoạt động với VI/EN, input format và output language độc lập",
+      "Typecheck/lint/build/unit và HTTP/policy local",
+      "WCAG automation Dark/Light, reflow 320px/chữ 200%, xem ảnh mobile/desktop",
+      "Audit production sau vá Next.js và kiểm tra split JS thực tế"
+    ],
+    "implementedNotYetVerified": [
+      "Người dùng duyệt bản local",
+      "Clipboard API/quyền hệ thống và bàn phím số/dấu âm trên điện thoại thật",
+      "Cách đọc đáp ứng quy cách chứng từ thực tế",
+      "Docker/Linux CI của candidate"
+    ],
+    "notComplete": [
+      "Full gate sạch: 9 no-upload assertions còn fail, 19 skip native",
+      "Ba lượt Lighthouse sạch trên mỗi trang đại diện",
+      "Xử lý 2 moderate dev tooling"
+    ],
+    "unverifiableHere": [
+      "Safari thật/screen reader/phần cứng và EVKey thật trong lượt này",
+      "Chromium/Firefox không bị phần mềm bảo vệ chèn script",
+      "Docker Engine không có tại local"
+    ]
+  },
+  "localReviewReady": true,
+  "releaseGatePassed": false,
+  "finalAcceptanceComplete": false,
+  "nextSteps": [
+    "Người dùng review hai tiện ích trên local",
+    "Hoàn tất QA Linux sạch/Lighthouse/Docker và manual QA trước phát hành khi được cho phép",
+    "Không tự push hoặc triển khai"
+  ]
+}

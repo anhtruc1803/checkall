@@ -11,6 +11,7 @@ export const categoryOrder = [
   'gamepad',
   'device',
   'browser',
+  'utilities',
 ] as const;
 export type Category = (typeof categoryOrder)[number];
 export const implementedEngines = [
@@ -35,6 +36,8 @@ export const implementedEngines = [
   'audio-spectrum',
   'camera',
   'gamepad',
+  'number-words',
+  'percentage',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {
@@ -52,7 +55,8 @@ export interface Tool {
   id: string;
   slug: string;
   category: Category;
-  phase: 1 | 2 | 3;
+  // Utilities belong to a separate roadmap from device testing.
+  phase: 1 | 2 | 3 | null;
   status: 'published' | 'draft';
   icon: Category;
   engine: Engine;

@@ -6,29 +6,29 @@ Source **57a5de29307418c9d060f50e7e1e527bb1626eba**, [CI 43804594079](https://gi
 
 Bộ lab so sánh 3191485→57a5de2 trong cùng VM, đo tuần tự; public đo sau khi kiểm tra marker đúng source. Tất cả đều clean/pageVerified, không script ngoài origin; median mobile sau 98–100, public 94–97. A/BP/SEO đều 100 trong toàn bộ 72 phép đo; không lấy điểm Windows nhiễu hoặc source public cũ thay thế.
 
-| Trang | P lab trước → sau | P public median | Ba lượt public | FCP public ms | LCP public ms | TBT public ms | CLS public |
-| --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |
-| /vi | 98 → 98 | 95 | 95/95/94 | 985,561 | 985,561 | 241,5 | 0 |
-| /en | 100 → 100 | 94 | 95/94/94 | 962,954 | 962,954 | 238 | 0 |
-| /vi/keyboard/tester | 99 → 98 | 96 | 96/96/95 | 979,076 | 979,076 | 208 | 0 |
-| /en/keyboard/tester | 100 → 99 | 95 | 95/94/95 | 952,747 | 952,747 | 216 | 0 |
-| /vi/privacy | 100 → 99 | 97 | 97/97/97 | 999,601 | 999,601 | 189,5 | 0,008 |
-| /en/audio/microphone | 98 → 98 | 96 | 96/96/96 | 1.422,576 | 1.422,576 | 197 | 0,005 |
-| /vi/camera/preview | 98 → 98 | 97 | 96/97/97 | 1.327,333 | 1.327,333 | 182 | 0,001 |
-| /en/gamepad/tester | 99 → 98 | 97 | 97/97/97 | 1.266,268 | 1.266,268 | 187 | 0,015 |
+| Trang                | P lab trước → sau | P public median | Ba lượt public | FCP public ms | LCP public ms | TBT public ms | CLS public |
+| -------------------- | ----------------: | --------------: | -------------- | ------------: | ------------: | ------------: | ---------: |
+| /vi                  |           98 → 98 |              95 | 95/95/94       |       985,561 |       985,561 |         241,5 |          0 |
+| /en                  |         100 → 100 |              94 | 95/94/94       |       962,954 |       962,954 |           238 |          0 |
+| /vi/keyboard/tester  |           99 → 98 |              96 | 96/96/95       |       979,076 |       979,076 |           208 |          0 |
+| /en/keyboard/tester  |          100 → 99 |              95 | 95/94/95       |       952,747 |       952,747 |           216 |          0 |
+| /vi/privacy          |          100 → 99 |              97 | 97/97/97       |       999,601 |       999,601 |         189,5 |      0,008 |
+| /en/audio/microphone |           98 → 98 |              96 | 96/96/96       |     1.422,576 |     1.422,576 |           197 |      0,005 |
+| /vi/camera/preview   |           98 → 98 |              97 | 96/97/97       |     1.327,333 |     1.327,333 |           182 |      0,001 |
+| /en/gamepad/tester   |           99 → 98 |              97 | 97/97/97       |     1.266,268 |     1.266,268 |           187 |      0,015 |
 
 JavaScript, document, CSS và font transfer lab (byte):
 
-| Trang | JS trước → sau | Document trước → sau | CSS trước → sau | Font trước → sau |
-| --- | ---: | ---: | ---: | ---: |
-| /vi | 192808 → 192806 | 38053 → 36721 | 14784 → 14815 | 103874 → 103874 |
-| /en | 192808 → 192806 | 35986 → 34629 | 14784 → 14815 | 54008 → 54008 |
-| /vi/keyboard/tester | 203876 → 204836 | 26171 → 25082 | 16854 → 17065 | 80003 → 80003 |
-| /en/keyboard/tester | 203876 → 204836 | 24631 → 23602 | 16854 → 17065 | 54008 → 71260 |
-| /vi/privacy | 189845 → 189878 | 22051 → 21684 | 14784 → 14815 | 56135 → 56135 |
-| /en/audio/microphone | 192458 → 192456 | 22905 → 21615 | 13321 → 13352 | 54008 → 54008 |
-| /vi/camera/preview | 192109 → 192107 | 24120 → 22796 | 13321 → 13352 | 80003 → 80003 |
-| /en/gamepad/tester | 192632 → 192630 | 22889 → 21570 | 13321 → 13352 | 54008 → 54008 |
+| Trang                |  JS trước → sau | Document trước → sau | CSS trước → sau | Font trước → sau |
+| -------------------- | --------------: | -------------------: | --------------: | ---------------: |
+| /vi                  | 192808 → 192806 |        38053 → 36721 |   14784 → 14815 |  103874 → 103874 |
+| /en                  | 192808 → 192806 |        35986 → 34629 |   14784 → 14815 |    54008 → 54008 |
+| /vi/keyboard/tester  | 203876 → 204836 |        26171 → 25082 |   16854 → 17065 |    80003 → 80003 |
+| /en/keyboard/tester  | 203876 → 204836 |        24631 → 23602 |   16854 → 17065 |    54008 → 71260 |
+| /vi/privacy          | 189845 → 189878 |        22051 → 21684 |   14784 → 14815 |    56135 → 56135 |
+| /en/audio/microphone | 192458 → 192456 |        22905 → 21615 |   13321 → 13352 |    54008 → 54008 |
+| /vi/camera/preview   | 192109 → 192107 |        24120 → 22796 |   13321 → 13352 |    80003 → 80003 |
+| /en/gamepad/tester   | 192632 → 192630 |        22889 → 21570 |   13321 → 13352 |    54008 → 54008 |
 
 Không so public với lab như cùng điều kiện mạng/build. Tệp font/dependency không đổi nhưng font transfer Keyboard EN tăng; không bỏ ví dụ Telex hoặc cảnh báo để giảm byte. JS keyboard tăng 960 byte cho hai hook nhận diện/nhắc D, document giảm; không tuyên bố giảm số chữ đồng nghĩa giảm JavaScript. Một số median TBT tăng, không suy hiệu quả CPU định lượng chỉ từ ba mẫu. Không cắt tính năng, SEO hoặc accessibility lấy điểm.
 
@@ -447,3 +447,23 @@ Trên Linux sạch có thể dùng --base-url http://127.0.0.1:3000 và SITE_URL
 Các điểm 75–81 trong bàn giao trước là một lượt đo HTTP bị chèn script, không phải median sạch. Chúng còn ở artifacts/lighthouse-baseline và báo cáo cũ, chỉ dùng để giải thích lịch sử. Các bộ trung gian clean-after và clean-final vẫn giữ nguyên trong artifacts/performance; kết quả phát hành dùng clean-release, kể cả điểm thấp hơn.
 
 Source M4 cuối 8f6e773 đã đạt kiểm thử chức năng/CI trong phạm vi capability hiện có; Lighthouse vẫn chưa đo. Không dùng kết quả unit/E2E, native audio smoke hoặc các median Phase 1 để chứng minh Performance của source này.
+
+## Tiện ích Milestone 1 — local 19/11/2026
+
+Bổ sung U01/U02, giữ nguyên 40 engine thiết bị, font/ảnh/SEO và accessibility. Hai engine mới tiếp tục tải qua `next/dynamic`; không đưa thuật toán đọc chữ vào Header/search index hoặc engine bàn phím. Với production build Next.js 16.4.6, file chứa bộ đọc số (`1a3dsue-1n16u.js`) là 8.349 byte / gzip ngoại tuyến 3.271 byte; file chứa biểu mẫu phần trăm (`1fymh-f-_hoo3.js`) là 5.806 / 2.359 byte. Đây là kích thước file, chưa phải tổng JavaScript truyền tải của trang. Đối chiếu HTML prerender: homepage VI và Keyboard Tester VI không tham chiếu hai file; trang U01 chỉ tham chiếu file U01, U02 chỉ tham chiếu U02. Kiểm tra marker/byte nằm ở raw artifact `artifacts/utilities-static-splitting.json`.
+
+Lighthouse sạch và Runtime graph của candidate được ghi ở bản QA milestone sau khi kiểm tra; không lấy median public 94–97 ngày 16/11 làm điểm của tính năng mới. Môi trường Windows hiện vẫn bị Kaspersky chèn script/POST: đối chứng HTML trắng ngày 19/11 không có mã ứng dụng vẫn phát sinh request ngoài. Giữ nguyên tiêu chí clean của `scripts/lighthouse.mjs`, không lọc script, không tắt bảo vệ máy, không bỏ nội dung hoặc tính năng để lấy điểm. Chỉ công bố median khi có đủ ít nhất ba lượt sạch/trang trong điều kiện tương đương; nếu bị chặn, ghi rõ số lượt thực và không nhận mục tiêu mobile ≥90 đã xác minh.
+
+### Kết quả candidate sau full E2E
+
+Graph request thực trên Chromium 156.0.8078.4 xác nhận `/vi` và `/vi/keyboard/tester` không tải hai file JS tiện ích; `/vi/utilities/number-to-words` chỉ tải engine đọc chữ, `/vi/utilities/percentage` chỉ tải engine phần trăm. Raw `artifacts/utilities-runtime-graph.json`, dữ liệu gọn nằm trong [QA milestone](qa/utilities-milestone1-local-2026-11-19.json). Đây là kiểm tra graph ứng dụng, không phải chứng nhận browser sạch hoặc tổng payload giảm so với public cũ.
+
+Đã chạy lệnh dưới đây khi full E2E và lint/typecheck kết thúc, không chạy benchmark đồng thời với bộ kiểm thử:
+
+```text
+node scripts/lighthouse.mjs --base-url http://127.0.0.1:3100 --label utilities-local-20261119 --runs 3 --paths /vi/utilities/number-to-words,/en/utilities/number-to-words,/vi/utilities/percentage,/en/utilities/percentage,/vi,/en
+```
+
+Lập lịch 18 lượt, **thực hiện 1, 0 lượt sạch được chấp nhận**; script chủ động dừng ở mẫu đầu vì phát hiện external script Kaspersky trong Chromium mới/extension tắt. Mẫu U01 VI bị loại có Performance **84**, FCP/LCP **2.843,139 ms**, TBT **303 ms**, CLS **0**, Speed Index **2.843,139 ms**; script 385.064 byte, font 56.135 byte, ảnh 0, document 84.857 byte, CSS 16.552 byte. A11y 100, Best Practices 81 (5 insecure requests), SEO 92 (canonical mặc định localhost:3000 khác origin preview 127.0.0.1:3100). Các giá trị này chỉ là dấu vết của lần thử không hợp lệ; không gán nguyên nhân toàn bộ TBT/điểm cho một resource hoặc kết luận hiệu năng production từ đây.
+
+**Median: chưa có. Mobile ≥90: chưa xác minh.** Không đo đủ ba lượt sạch/trang do môi trường bị chèn; không tính median từ một mẫu không sạch, không tiếp tục lặp mẫu nhiễu để hợp thức hóa điểm. Không đổi cấu hình public hay SITE_URL phát hành trong nhiệm vụ local. Chưa đo các route còn lại trong điều kiện sạch. Raw JSON/HTML tại `artifacts/performance/utilities-local-20261119/`; các metric/settings thực được giữ trong QA milestone. Tiếp theo cần Chromium/Linux sạch, cùng origin/canonical và CPU/network tương đương, ít nhất ba lượt trên sáu trang rồi mới so sánh với baseline phù hợp.

@@ -11,6 +11,7 @@ import {
   type ToolSearchEntry,
 } from '@/lib/tools/search';
 import type { Category } from '@/lib/tools/registry';
+import { getToolGroup, getPublishedGroups, type ToolGroup } from '@/lib/tools/groups';
 import { useHydrated } from '@/hooks/use-hydrated';
 import type { Locale } from '@/lib/i18n/routing';
 export function Catalog({
@@ -28,8 +29,13 @@ export function Catalog({
     [category, setCategory] = useState<Category | undefined>(initialCategory);
   const hydrated = useHydrated();
   const searchInput = useRef<HTMLInputElement>(null);
-  const categories = getSearchCategories(index);
-  const found = searchToolIndex(index, query, category);
+  const [group, setGroup] = useState<ToolGroup | undefined>(
+    initialCategory ? getToolGroup(initialCategory) : undefined,
+  );
+  const groupIndex = group ? index.filter((tool) => getToolGroup(tool.category) === group) : index;
+  const categories = getSearchCategories(groupIndex);
+  const found = searchToolIndex(groupIndex, query, category);
+  const groups = getPublishedGroups(index.map((tool) => ({ ...tool, status: 'published' })));
   return (
     <>
       <div className="catalog-toolbar" data-home={heroSearch}>
@@ -66,6 +72,27 @@ export function Catalog({
           {t('interface.filterHint')}
         </span>
       </div>
+      <div className="filters tool-groups" role="group" aria-label={t('toolGroups.label')}>
+        {[undefined, ...groups].map((value) => (
+          <button
+            className="filter"
+            key={value ?? 'all'}
+            disabled={!hydrated}
+            aria-pressed={group === value}
+            onClick={() => {
+              setGroup(value);
+              setCategory(undefined);
+            }}
+          >
+            {t(value ? `toolGroups.${value}` : 'all')}{' '}
+            <span className="filter-count">
+              {value
+                ? index.filter((tool) => getToolGroup(tool.category) === value).length
+                : index.length}
+            </span>
+          </button>
+        ))}
+      </div>
       <div className="filters" role="group" aria-label={t('allTools')}>
         {[undefined, ...categories].map((cat) => (
           <button
@@ -77,7 +104,7 @@ export function Catalog({
           >
             {cat && <CategoryIcon category={cat} size={16} />}
             {t(cat ?? 'all')}{' '}
-            <span className="filter-count">{searchToolIndex(index, '', cat).length}</span>
+            <span className="filter-count">{searchToolIndex(groupIndex, '', cat).length}</span>
           </button>
         ))}
       </div>

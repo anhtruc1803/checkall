@@ -49,7 +49,7 @@ test('privacy opt-in, save and delete keep unrelated local data', async ({ page 
 });
 test('search dialog supports focus, arrow navigation and escape', async ({ page }) => {
   await page.goto('/en');
-  await page.getByRole('button', { name: 'Search testing tools' }).click();
+  await page.getByRole('button', { name: 'Search tools' }).click();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
   await dialog.getByRole('textbox').fill('polling');

@@ -1,7 +1,18 @@
-import { Camera, Cpu, Gamepad2, Globe, Keyboard, Monitor, Mouse, Volume2 } from 'lucide-react';
+import {
+  Calculator,
+  Camera,
+  Cpu,
+  Gamepad2,
+  Globe,
+  Keyboard,
+  Monitor,
+  Mouse,
+  Volume2,
+} from 'lucide-react';
 import type { Category } from '@/lib/tools/registry';
 
 const icons = {
+  utilities: Calculator,
   screen: Monitor,
   keyboard: Keyboard,
   mouse: Mouse,

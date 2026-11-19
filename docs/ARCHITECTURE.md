@@ -54,3 +54,9 @@ Theo yêu cầu tiếp tục của người dùng, milestone nền tảng Phase 
 Các màu RGB thuần và thang xám trong Canvas là dữ liệu phép thử, không phải màu trang trí UI. Các số liệu mẫu mặc định 1920×1080/24 inch chỉ là đầu vào calculator có thể sửa, không phải thông số thiết bị được phát hiện. UI dark/light dùng semantic tokens riêng.
 
 Layout ANSI/ISO dùng KeyboardEvent.code để định vị. Các bàn phím có Fn, firmware remap hoặc layout vendor riêng có thể không gửi code tương ứng; không suy ra lỗi switch khi code không xuất hiện. Các bố cục compact là mô hình phổ biến, không cam kết khớp mọi sản phẩm.
+
+## Nhánh tiện ích — Milestone 1 (local 19/11/2026)
+
+Registry có thêm category `utilities` và hai engine tải động `number-words`/`percentage`. `groups.ts` sinh hai nhóm published từ category, Catalog lọc theo nhóm rồi category và truy vấn. Không tạo Registry thứ hai hoặc thay route/engine của 40 công cụ thiết bị. `Tool.phase` nhận `null` cho nhánh tiện ích riêng; các công cụ thiết bị vẫn thuộc Phase 1/2. Client search index giữ cấu trúc mỏng cũ, nhóm được suy ra từ category; không chuyển toàn bộ bản dịch/phương pháp đọc số vào Header.
+
+`src/lib/utilities/` chứa parser thập phân bị giới hạn độ dài, bộ đọc chữ VI/EN và phép tính phần trăm dùng BigInt. `src/features/utilities/` chỉ điều khiển biểu mẫu và sao chép chủ động; không gọi storage/history/media/network. Hai route dùng Permissions-Policy chặn thiết bị mặc định. Xem [UTILITIES-MILESTONE-1.md](UTILITIES-MILESTONE-1.md) về hợp đồng số học và giới hạn; kết quả kiểm tra cập nhật riêng, không kế thừa nghiệm thu từ bản public.

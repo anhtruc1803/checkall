@@ -1,0 +1,1362 @@
+[
+  {
+    "id": "A01",
+    "slug": "resolution",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "screen-info",
+    "requiredCapabilities": ["screen"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A02", "A03", "A04"],
+    "copy": {
+      "vi": {
+        "name": "Độ phân giải màn hình",
+        "description": "Đọc kích thước màn hình, vùng khả dụng và hướng hiển thị.",
+        "instructions": "So sánh kích thước màn hình và viewport; thay đổi màn hình hoặc xoay thiết bị để cập nhật.",
+        "limitations": "CSS pixels không xác nhận độ phân giải native. Nhân với DPR chỉ tạo ước tính, chịu ảnh hưởng scaling và zoom.",
+        "method": "Hiển thị kích thước màn hình và cửa sổ theo dữ liệu trình duyệt."
+      },
+      "en": {
+        "name": "Screen resolution",
+        "description": "Read screen size, available area and display orientation.",
+        "instructions": "Compare screen and viewport dimensions; move between displays or rotate the device to update.",
+        "limitations": "CSS pixels do not establish native panel resolution. Multiplying by DPR is an estimate affected by scaling and zoom.",
+        "method": "Shows screen and window dimensions reported by the browser."
+      }
+    }
+  },
+  {
+    "id": "A02",
+    "slug": "viewport",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "screen-info",
+    "requiredCapabilities": ["screen"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A03", "A04"],
+    "copy": {
+      "vi": {
+        "name": "Viewport & DPR",
+        "description": "Theo dõi vùng hiển thị và mật độ điểm ảnh khi thay đổi cửa sổ.",
+        "instructions": "Kéo kích thước cửa sổ, xoay thiết bị hoặc thử pinch zoom và quan sát visual viewport.",
+        "limitations": "DPR bao gồm ảnh hưởng zoom và scaling hệ điều hành; visualViewport có thể không được hỗ trợ.",
+        "method": "Cập nhật vùng hiển thị và DPR khi bạn đổi kích thước cửa sổ hoặc zoom."
+      },
+      "en": {
+        "name": "Viewport & DPR",
+        "description": "Watch viewport and pixel density as the window changes.",
+        "instructions": "Resize the window, rotate the device or pinch zoom and inspect the visual viewport.",
+        "limitations": "DPR includes browser zoom and OS scaling; visualViewport may be unavailable.",
+        "method": "Updates the visible area and DPR as you resize or zoom."
+      }
+    }
+  },
+  {
+    "id": "A03",
+    "slug": "aspect-ratio",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "calculator",
+    "requiredCapabilities": [],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A04"],
+    "copy": {
+      "vi": {
+        "name": "Tính tỷ lệ khung hình",
+        "description": "Rút gọn tỷ lệ từ chiều rộng và chiều cao bạn nhập.",
+        "instructions": "Nhập hai số nguyên dương, sau đó sao chép tỷ lệ đã rút gọn.",
+        "limitations": "Kết quả phụ thuộc kích thước bạn nhập. Nhãn tỷ lệ phổ biến là giá trị gần đúng.",
+        "method": "Chia hai kích thước cho ước chung lớn nhất; tỷ lệ thập phân bằng width / height."
+      },
+      "en": {
+        "name": "Aspect ratio calculator",
+        "description": "Simplify the ratio of a width and height you provide.",
+        "instructions": "Enter two positive integers, then copy the simplified ratio.",
+        "limitations": "Results depend on your inputs. Common ratio labels are approximate matches.",
+        "method": "Divides both dimensions by their greatest common divisor; decimal ratio is width / height."
+      }
+    }
+  },
+  {
+    "id": "A04",
+    "slug": "ppi",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "calculator",
+    "requiredCapabilities": [],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Tính mật độ điểm ảnh PPI",
+        "description": "Tính PPI bằng độ phân giải và đường chéo thực tế.",
+        "instructions": "Nhập độ phân giải panel và đường chéo tính bằng inch từ thông số nhà sản xuất.",
+        "limitations": "Trình duyệt không tự xác định đường chéo vật lý. Kết quả phụ thuộc độ chính xác đầu vào.",
+        "method": "PPI = √(width² + height²) / diagonal, với đường chéo tính bằng inch."
+      },
+      "en": {
+        "name": "PPI calculator",
+        "description": "Calculate pixel density from resolution and physical diagonal.",
+        "instructions": "Enter panel resolution and diagonal in inches from manufacturer specifications.",
+        "limitations": "The browser cannot detect physical diagonal size. Results depend on input accuracy.",
+        "method": "PPI = √(width² + height²) / diagonal, with diagonal measured in inches."
+      }
+    }
+  },
+  {
+    "id": "A05",
+    "slug": "refresh-rate",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "refresh",
+    "requiredCapabilities": ["animationFrame"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "estimate",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Ước tính Refresh Rate",
+        "description": "Lấy mẫu nhịp khung hình thực tế mà trình duyệt quan sát được.",
+        "instructions": "Chọn thời gian đo, bấm bắt đầu và giữ tab ở phía trước cho đến khi hoàn tất.",
+        "limitations": "Tải máy, chế độ tiết kiệm pin và trình duyệt có thể làm kết quả khác Hz trong thông số màn hình.",
+        "method": "Ước tính Hz từ khoảng thời gian trung vị giữa các khung hình trình duyệt hiển thị."
+      },
+      "en": {
+        "name": "Refresh Rate estimate",
+        "description": "Sample the actual frame cadence observed by your browser.",
+        "instructions": "Choose a duration, start sampling and keep this tab visible until completion.",
+        "limitations": "System load, power saving and the browser can make the estimate differ from the display’s specified Hz.",
+        "method": "Estimates Hz from the median time between frames displayed by the browser."
+      }
+    }
+  },
+  {
+    "id": "A06",
+    "slug": "dead-pixel",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "patterns",
+    "requiredCapabilities": ["canvas"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "visual",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra điểm ảnh chết",
+        "description": "Quan sát từng điểm ảnh trên các nền màu đồng nhất.",
+        "instructions": "Lau sạch màn hình, bật toàn màn hình và dùng phím mũi tên hoặc chạm để đổi màu. Esc để thoát.",
+        "limitations": "Bạn tự quan sát; website không đọc được điểm ảnh vật lý và không tự phát hiện điểm chết.",
+        "method": "Hiển thị đen, trắng, đỏ, xanh lá, xanh lam và các màu bổ sung."
+      },
+      "en": {
+        "name": "Dead pixel test",
+        "description": "Inspect individual pixels against solid color backgrounds.",
+        "instructions": "Clean the screen, enter fullscreen and use arrow keys or tap to change colors. Esc exits.",
+        "limitations": "Inspection is manual; the website cannot read physical pixels or automatically detect dead pixels.",
+        "method": "Displays black, white, red, green, blue and additional solid colors."
+      }
+    }
+  },
+  {
+    "id": "A07",
+    "slug": "stuck-pixel",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "patterns",
+    "requiredCapabilities": ["canvas"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "visual",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra điểm ảnh kẹt",
+        "description": "Dùng các nền tương phản để tìm điểm ảnh luôn sáng một màu.",
+        "instructions": "Đổi từng màu bằng nút, phím mũi tên hoặc chạm; quan sát điểm vẫn giữ nguyên màu.",
+        "limitations": "Không có chẩn đoán tự động hoặc bảo đảm sửa được pixel; công cụ không dùng nhấp nháy nhanh.",
+        "method": "Các nền RGB và màu đối lập giúp quan sát thủ công subpixel có thể bị kẹt."
+      },
+      "en": {
+        "name": "Stuck pixel test",
+        "description": "Use contrasting backgrounds to find pixels stuck on one color.",
+        "instructions": "Change colors with buttons, arrow keys or taps; look for pixels that keep the same color.",
+        "limitations": "No automatic diagnosis or guaranteed repair is provided; this tool uses no rapid flashing.",
+        "method": "RGB and complementary backgrounds support manual inspection of potentially stuck subpixels."
+      }
+    }
+  },
+  {
+    "id": "A08",
+    "slug": "backlight-bleed",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "patterns",
+    "requiredCapabilities": ["canvas"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "visual",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra hở sáng",
+        "description": "Nền đen toàn màn hình để quan sát ánh sáng không đồng đều.",
+        "instructions": "Giảm ánh sáng phòng, mở toàn màn hình và kiểm tra các cạnh ở độ sáng sử dụng thường ngày.",
+        "limitations": "Không định lượng hở sáng. IPS glow thay đổi theo góc nhìn; hở sáng thường cố định tại cạnh. OLED có hành vi khác LCD.",
+        "method": "Vẽ nền đen RGB(0,0,0); kết quả quan sát phụ thuộc panel, môi trường và độ sáng."
+      },
+      "en": {
+        "name": "Backlight bleed test",
+        "description": "Inspect uneven illumination against a fullscreen black background.",
+        "instructions": "Dim the room, enter fullscreen and inspect edges at your normal brightness.",
+        "limitations": "Cannot quantify bleed. IPS glow changes with viewing angle; bleed usually stays near edges. OLED differs from LCD.",
+        "method": "Renders RGB(0,0,0); visual results depend on the panel, room and brightness."
+      }
+    }
+  },
+  {
+    "id": "A09",
+    "slug": "color-gradient",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "patterns",
+    "requiredCapabilities": ["canvas"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "visual",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Màu sắc & Gradient",
+        "description": "Quan sát chuyển màu, thang xám, sọc màu và banding.",
+        "instructions": "Chuyển giữa RGB gradient, thang xám và các dải màu; xem ở chế độ toàn màn hình.",
+        "limitations": "Không thay thế thiết bị hiệu chuẩn màu. Trình duyệt, quản lý màu và độ sâu bit ảnh hưởng kết quả.",
+        "method": "Hiển thị dải chuyển màu liên tục, thang xám 16 mức và các thanh màu."
+      },
+      "en": {
+        "name": "Color & gradient test",
+        "description": "Inspect color ramps, grayscale, color bars and banding.",
+        "instructions": "Switch between RGB gradients, grayscale and color bars; inspect in fullscreen.",
+        "limitations": "Does not replace calibration equipment. Browser color management and bit depth affect results.",
+        "method": "Displays continuous color ramps, 16-step grayscale and color bars."
+      }
+    }
+  },
+  {
+    "id": "A10",
+    "slug": "ghosting",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "motion",
+    "requiredCapabilities": ["canvas", "animationFrame"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "visual",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Ghosting & Motion Blur",
+        "description": "Theo dõi vật thể chuyển động để quan sát vệt bóng.",
+        "instructions": "Bắt đầu chuyển động, điều chỉnh tốc độ, hướng và độ tương phản; nhìn theo vật thể.",
+        "limitations": "Quan sát thủ công, không đo được thời gian phản hồi GTG hoặc MPRT chính xác. Frame không đều có thể do trình duyệt.",
+        "method": "Di chuyển mẫu theo tốc độ đã chọn và hiển thị độ đều của nhịp khung hình."
+      },
+      "en": {
+        "name": "Ghosting & motion blur",
+        "description": "Follow a moving object to inspect visible trails.",
+        "instructions": "Start motion, adjust speed, direction and contrast, then follow the object with your eyes.",
+        "limitations": "Manual inspection cannot accurately measure GTG or MPRT response time. Uneven frames may originate in the browser.",
+        "method": "Moves the pattern at your selected speed and shows frame timing consistency."
+      }
+    }
+  },
+  {
+    "id": "A11",
+    "slug": "touch",
+    "category": "screen",
+    "phase": 1,
+    "status": "published",
+    "icon": "screen",
+    "engine": "touch",
+    "requiredCapabilities": ["pointer", "touch"],
+    "optionalCapabilities": ["fullscreen", "visualViewport"],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "A03"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra cảm ứng",
+        "description": "Vẽ dấu chạm, đường di chuyển và đếm nhiều điểm cùng lúc.",
+        "instructions": "Dùng ngón tay chạm và kéo trong vùng thử; thử nhiều ngón rồi xóa để làm lại.",
+        "limitations": "Cần màn hình cảm ứng hoặc bút tương thích. Phép thử chỉ phản ánh những điểm chạm trình duyệt nhận được.",
+        "method": "Vẽ đường di chuyển và đếm các điểm chạm đang hoạt động trong vùng thử."
+      },
+      "en": {
+        "name": "Touch screen test",
+        "description": "Draw touch trails and count concurrent contact points.",
+        "instructions": "Touch and drag inside the test area; try several fingers, then reset.",
+        "limitations": "Requires a touch screen or compatible pen. The test reflects only contacts received by the browser.",
+        "method": "Draws movement trails and counts active contacts inside the test area."
+      }
+    }
+  },
+  {
+    "id": "B01",
+    "slug": "tester",
+    "category": "keyboard",
+    "phase": 1,
+    "status": "published",
+    "icon": "keyboard",
+    "engine": "keyboard",
+    "requiredCapabilities": ["keyboard"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["B02", "B03", "B04"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra bàn phím",
+        "description": "Thử từng phím, xem phím đang giữ và tiến độ theo layout.",
+        "instructions": "Chọn layout, kích hoạt vùng thử rồi nhấn các phím. Tab hoặc Esc thoát; dùng chuột để đặt lại.",
+        "limitations": "Bộ gõ và phím tắt hệ thống có thể chặn sự kiện. Phím chưa được đánh dấu chưa chắc bị hỏng.",
+        "method": "Đánh dấu phím theo tín hiệu nhấn/thả nhận được. Chế độ EVKey chỉ nhận diện A–Z khi thả, không đếm số lần nhấn."
+      },
+      "en": {
+        "name": "Keyboard tester",
+        "description": "Test each key, see held keys and track layout coverage.",
+        "instructions": "Choose a layout, activate the test area and press keys. Tab or Esc exits; reset with the button.",
+        "limitations": "Input methods and system shortcuts may intercept keys. An unmarked key is not necessarily faulty.",
+        "method": "Marks keys from received press/release signals. EVKey mode recognizes A–Z on release only and does not count presses."
+      }
+    }
+  },
+  {
+    "id": "B02",
+    "slug": "rollover",
+    "category": "keyboard",
+    "phase": 1,
+    "status": "published",
+    "icon": "keyboard",
+    "engine": "keyboard",
+    "requiredCapabilities": ["keyboard"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["B01", "B03", "B04"],
+    "copy": {
+      "vi": {
+        "name": "Key Rollover",
+        "description": "Đếm phím giữ đồng thời và mức tối đa quan sát được.",
+        "instructions": "Kích hoạt vùng thử, giữ nhiều phím cùng lúc rồi xem danh sách và số lượng tối đa.",
+        "limitations": "Số phím nhận được không chứng nhận NKRO hoặc 6KRO. Browser và OS có thể chặn tổ hợp phím.",
+        "method": "Đếm các phím đang giữ và lưu tổ hợp lớn nhất đến khi Đặt lại; giữ một phím tự lặp không làm tăng số phím."
+      },
+      "en": {
+        "name": "Key rollover test",
+        "description": "Count held keys and the highest simultaneous count observed.",
+        "instructions": "Activate the area, hold several keys and inspect the list and maximum count.",
+        "limitations": "Observed counts do not certify NKRO or 6KRO. Browser and OS may intercept combinations.",
+        "method": "Counts held keys and keeps the largest combination until Reset; holding an auto-repeating key does not increase the count."
+      }
+    }
+  },
+  {
+    "id": "B03",
+    "slug": "chatter",
+    "category": "keyboard",
+    "phase": 1,
+    "status": "published",
+    "icon": "keyboard",
+    "engine": "keyboard",
+    "requiredCapabilities": ["keyboard"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "estimate",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["B01", "B02", "B04"],
+    "copy": {
+      "vi": {
+        "name": "Key Chatter",
+        "description": "Phân tích chuỗi nhấn nhanh, tách biệt auto-repeat.",
+        "instructions": "Chọn ngưỡng điều tra, kích hoạt vùng thử và nhấn từng phím nhiều lần một cách bình thường.",
+        "limitations": "Khoảng nhấn ngắn chưa chứng minh switch hỏng. Auto-repeat được tính riêng; kết quả không phải độ trễ phần cứng.",
+        "method": "So sánh khoảng thả → nhấn lại cùng phím với ngưỡng đã chọn. Mất focus, đổi layout hoặc bộ gõ can thiệp sẽ ngắt cặp đang xét."
+      },
+      "en": {
+        "name": "Key chatter test",
+        "description": "Inspect rapid repeat sequences separately from auto-repeat.",
+        "instructions": "Set an investigation threshold, activate capture and press each key normally several times.",
+        "limitations": "A short gap does not prove a faulty switch. Auto-repeat is separate; this is not a hardware latency measurement.",
+        "method": "Compares each release → next press of the same key with your threshold. Focus loss, layout changes or input-method interference break the pair."
+      }
+    }
+  },
+  {
+    "id": "B04",
+    "slug": "hold",
+    "category": "keyboard",
+    "phase": 1,
+    "status": "published",
+    "icon": "keyboard",
+    "engine": "keyboard",
+    "requiredCapabilities": ["keyboard"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["B01", "B02", "B03"],
+    "copy": {
+      "vi": {
+        "name": "Thời gian giữ phím",
+        "description": "Đo thời gian giữ từng phím và các sự kiện lặp.",
+        "instructions": "Kích hoạt vùng thử, giữ phím rồi thả; xem thời gian khi đang giữ và sau khi thả.",
+        "limitations": "Mất focus hoặc tab bị ẩn sẽ ngắt lượt giữ; thời gian phản ánh sự kiện browser nhận được.",
+        "method": "Tính thời gian từ lúc nhận nhấn đến lúc nhận thả phím; đánh dấu riêng các lượt bị gián đoạn."
+      },
+      "en": {
+        "name": "Key hold test",
+        "description": "Measure per-key hold time and repeat events.",
+        "instructions": "Activate capture, hold and release keys; inspect live and completed durations.",
+        "limitations": "Losing focus or hiding the tab interrupts holds; duration reflects events received by the browser.",
+        "method": "Times each received key press through its release and labels interrupted holds separately."
+      }
+    }
+  },
+  {
+    "id": "B05",
+    "slug": "events",
+    "category": "keyboard",
+    "phase": 1,
+    "status": "published",
+    "icon": "keyboard",
+    "engine": "keyboard",
+    "requiredCapabilities": ["keyboard"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["B01", "B02", "B03"],
+    "copy": {
+      "vi": {
+        "name": "Keyboard Event Inspector",
+        "description": "Đọc key, code, location, modifiers, composition và lọc sự kiện.",
+        "instructions": "Kích hoạt vùng thử, nhấn các tổ hợp và xem log; có thể sao chép log hoặc xóa.",
+        "limitations": "Log chỉ giữ 200 sự kiện gần nhất trong bộ nhớ. Không upload hoặc tự lưu nội dung phím.",
+        "method": "Hiển thị thông tin sự kiện trình duyệt nhận được. Lọc hoặc xóa log không xóa thống kê; isTrusted không chứng minh phím được nhấn bằng tay."
+      },
+      "en": {
+        "name": "Keyboard event inspector",
+        "description": "Inspect key, code, location, modifiers and composition; filter received events.",
+        "instructions": "Activate capture, try combinations and inspect logs; copy or clear them as needed.",
+        "limitations": "Only the latest 200 events are kept in memory. Key contents are never uploaded or saved automatically.",
+        "method": "Shows events received by the browser. Filtering or clearing the log preserves statistics; isTrusted does not prove a physical key press."
+      }
+    }
+  },
+  {
+    "id": "C01",
+    "slug": "buttons",
+    "category": "mouse",
+    "phase": 1,
+    "status": "published",
+    "icon": "mouse",
+    "engine": "mouse",
+    "requiredCapabilities": ["pointer"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["C02", "C03", "C04"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra nút chuột",
+        "description": "Xem trạng thái và bộ đếm của các nút chuột.",
+        "instructions": "Nhấn và thả từng nút trong vùng thử; thử nút trái, phải, giữa và nút phụ.",
+        "limitations": "Nút phụ có thể bị trình duyệt hoặc hệ điều hành dành cho điều hướng; chỉ các event nhận được mới được đếm.",
+        "method": "Ghi nhận các nút được nhấn/thả trong vùng thử; tắt menu chuột phải tại đây để bạn thử nút phải."
+      },
+      "en": {
+        "name": "Mouse button tester",
+        "description": "Inspect mouse button states and counters.",
+        "instructions": "Press and release each button in the test area; try left, right, middle and auxiliary buttons.",
+        "limitations": "Auxiliary buttons may be reserved for OS/browser navigation; only received events are counted.",
+        "method": "Records button presses/releases inside the test area; disables its context menu so you can test right-click."
+      }
+    }
+  },
+  {
+    "id": "C02",
+    "slug": "double-click",
+    "category": "mouse",
+    "phase": 1,
+    "status": "published",
+    "icon": "mouse",
+    "engine": "mouse",
+    "requiredCapabilities": ["pointer"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "estimate",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["C01", "C03", "C04"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra Double Click",
+        "description": "Đo khoảng cách giữa các lần nhấp và phát hiện chuỗi nhanh.",
+        "instructions": "Đặt ngưỡng điều tra rồi nhấp đơn bình thường; so sánh khi cố ý nhấp đôi.",
+        "limitations": "Nhấp nhanh không chứng minh switch lỗi. Người dùng phải phân biệt nhấp đôi chủ ý.",
+        "method": "So sánh khoảng thời gian giữa hai lần nhấn nút trái liên tiếp với ngưỡng bạn chọn."
+      },
+      "en": {
+        "name": "Double click tester",
+        "description": "Measure click gaps and investigate rapid sequences.",
+        "instructions": "Set a threshold and click normally; compare against intentional double clicks.",
+        "limitations": "A short gap does not prove a faulty switch. Intentional double clicks require user interpretation.",
+        "method": "Compares the time between consecutive left-button presses with your selected threshold."
+      }
+    }
+  },
+  {
+    "id": "C03",
+    "slug": "cps",
+    "category": "mouse",
+    "phase": 1,
+    "status": "published",
+    "icon": "mouse",
+    "engine": "mouse",
+    "requiredCapabilities": ["pointer"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["C01", "C02", "C04"],
+    "copy": {
+      "vi": {
+        "name": "Tốc độ nhấp CPS",
+        "description": "Đếm số lần nhấp trong một khoảng thời gian bạn chọn.",
+        "instructions": "Chọn thời lượng, bấm bắt đầu rồi nhấp trong vùng thử trước khi đồng hồ kết thúc.",
+        "limitations": "Chỉ tính nút trái trong vùng thử. Kết quả phụ thuộc thao tác và thời gian thực tế của lượt đo.",
+        "method": "CPS = số lần nhấp / thời gian thực tế tính bằng giây."
+      },
+      "en": {
+        "name": "Clicks per second",
+        "description": "Count clicks within a duration you choose.",
+        "instructions": "Select a duration, start and click inside the region before the timer ends.",
+        "limitations": "Only left-button presses inside the area count. Results depend on your input and the actual run duration.",
+        "method": "CPS = click count / actual elapsed seconds."
+      }
+    }
+  },
+  {
+    "id": "C04",
+    "slug": "scroll",
+    "category": "mouse",
+    "phase": 1,
+    "status": "published",
+    "icon": "mouse",
+    "engine": "mouse",
+    "requiredCapabilities": [],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "observation",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["C01", "C02", "C03"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra con lăn",
+        "description": "Quan sát hướng cuộn, delta và đơn vị wheel event.",
+        "instructions": "Đặt con trỏ trong vùng thử và cuộn dọc hoặc ngang; đưa chuột ra ngoài để cuộn trang.",
+        "limitations": "Wheel event không tương đương số nấc con lăn. deltaMode quy định đơn vị pixel, dòng hoặc trang.",
+        "method": "Hiển thị hướng, khoảng cuộn và đơn vị trình duyệt nhận được khi con trỏ ở trong vùng thử."
+      },
+      "en": {
+        "name": "Scroll wheel tester",
+        "description": "Inspect direction, deltas and wheel event units.",
+        "instructions": "Move into the region and scroll vertically or horizontally; move outside to scroll the page.",
+        "limitations": "Wheel events do not equal hardware detents. deltaMode specifies pixels, lines or pages.",
+        "method": "Shows the scroll direction, distance and units received while the pointer is inside the test area."
+      }
+    }
+  },
+  {
+    "id": "C05",
+    "slug": "polling-rate",
+    "category": "mouse",
+    "phase": 1,
+    "status": "published",
+    "icon": "mouse",
+    "engine": "mouse",
+    "requiredCapabilities": ["pointer"],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "estimate",
+    "environments": ["desktop"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["C01", "C02", "C03"],
+    "copy": {
+      "vi": {
+        "name": "Ước tính Polling Rate",
+        "description": "Lấy mẫu tần suất sự kiện di chuyển chuột mà browser nhận được.",
+        "instructions": "Bắt đầu rồi di chuột liên tục trong vùng thử; lặp lại và so sánh các lượt.",
+        "limitations": "Đây là tần suất sự kiện trình duyệt nhận được, không xác nhận USB Polling Rate. Hệ điều hành và tải máy có thể ảnh hưởng kết quả.",
+        "method": "Ước tính tần suất từ số mẫu di chuyển chuột và khoảng thời gian quan sát."
+      },
+      "en": {
+        "name": "Polling Rate estimate",
+        "description": "Sample mouse movement event frequency observed by the browser.",
+        "instructions": "Start and move the mouse continuously inside the region; repeat and compare runs.",
+        "limitations": "This is the event rate received by the browser, not a confirmed USB Polling Rate. The OS and system load can affect results.",
+        "method": "Estimates frequency from mouse movement samples and the observation duration."
+      }
+    }
+  },
+  {
+    "id": "D01",
+    "category": "audio",
+    "slug": "speaker",
+    "engine": "audio-output",
+    "requiredCapabilities": ["audioContext"],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "audio",
+    "optionalCapabilities": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["D02", "D04"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra loa",
+        "description": "Phát âm thử để kiểm tra loa hoặc tai nghe đang được chọn.",
+        "instructions": "Giảm âm lượng hệ thống, chọn mức thấp rồi bấm Bắt đầu. Nghe thử và bấm Dừng nếu khó chịu. Tín hiệu tự dừng sau 10 giây hoặc khi rời tab.",
+        "limitations": "Bạn cần tự nghe xác nhận. Trạng thái phát không bảo đảm loa có tiếng; kiểm tra mute và thiết bị đầu ra nếu không nghe được.",
+        "method": "Phát âm sine 440 Hz qua thiết bị đầu ra hiện tại; không sử dụng microphone."
+      },
+      "en": {
+        "name": "Speaker test",
+        "description": "Play a test tone through your selected speakers or headphones.",
+        "instructions": "Lower system volume, choose a low level and select Start. Listen and stop if uncomfortable. Playback stops after 10 seconds or when you leave the tab.",
+        "limitations": "Confirm audibility by listening. Playback status does not guarantee sound; check mute and the selected output if you hear nothing.",
+        "method": "Plays a 440 Hz sine tone through the current output without using the microphone."
+      }
+    }
+  },
+  {
+    "id": "D02",
+    "category": "audio",
+    "slug": "stereo",
+    "engine": "audio-output",
+    "requiredCapabilities": ["audioContext"],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "audio",
+    "optionalCapabilities": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["D01", "D04"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra kênh stereo",
+        "description": "Phát tín hiệu vào kênh trái, phải hoặc cả hai để tự kiểm tra định tuyến stereo.",
+        "instructions": "Dùng tai nghe hoặc hai loa, giảm âm lượng hệ thống rồi chọn Trái, Phải hoặc Cả hai và bấm Bắt đầu. Có thể đổi kênh khi đang phát. Mỗi phiên tối đa 10 giây, Dừng hoặc rời tab để kết thúc.",
+        "limitations": "Mono output, spatial audio, driver hoặc thiết lập hệ thống có thể trộn kênh. Browser không xác nhận phía tai nghe bạn đang nghe, sơ đồ dây hay chất lượng loa; cần nghe kiểm chứng thực tế.",
+        "method": "Phát cùng âm thử 440 Hz riêng vào kênh trái, phải hoặc cả hai theo lựa chọn."
+      },
+      "en": {
+        "name": "Stereo channel test",
+        "description": "Send a test signal to the left, right or both channels to manually check stereo routing.",
+        "instructions": "Use headphones or two speakers, lower system volume, choose Left, Right or Both and select Start. Channels can change during playback. Sessions last at most 10 seconds; Stop or leaving the tab ends playback.",
+        "limitations": "Mono output, spatial audio, drivers or system settings may mix channels. The browser cannot verify which ear you hear, wiring or speaker quality; listening with real equipment is required.",
+        "method": "Sends the same 440 Hz test tone to the left, right or both channels as selected."
+      }
+    }
+  },
+  {
+    "id": "D03",
+    "category": "audio",
+    "slug": "microphone",
+    "engine": "microphone",
+    "requiredCapabilities": [],
+    "permissions": ["microphone"],
+    "phase": 2,
+    "status": "published",
+    "icon": "audio",
+    "optionalCapabilities": ["secureContext", "mediaDevices", "audioContext", "permissions"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["D01", "D02", "D04", "D05"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra microphone",
+        "description": "Kiểm tra microphone qua mức tín hiệu và dạng sóng trực tiếp.",
+        "instructions": "Bấm Bắt đầu, cho phép microphone rồi nói vào mic. Dừng để kết thúc; rời tab hoặc sau 60 giây, phiên sẽ tự dừng.",
+        "limitations": "Mức tín hiệu không phải độ lớn âm thanh thực tế hoặc đánh giá chất lượng mic. Mute, lọc tiếng ồn và cài đặt hệ thống có thể ảnh hưởng; im lặng chưa chứng minh mic hỏng.",
+        "method": "Phân tích mức trung bình RMS, mức đỉnh và dạng sóng của âm thanh đầu vào; không phát lại hoặc ghi âm."
+      },
+      "en": {
+        "name": "Microphone test",
+        "description": "Check your microphone using live signal levels and a waveform.",
+        "instructions": "Select Start, allow microphone access and speak into the mic. Stop ends the test; leaving the tab or reaching 60 seconds stops it automatically.",
+        "limitations": "Signal levels are not physical loudness or a microphone quality rating. Mute, noise filtering and system settings may affect them; silence does not establish a broken mic.",
+        "method": "Analyzes the input’s RMS level, peak and waveform without playback or recording."
+      }
+    }
+  },
+  {
+    "id": "D04",
+    "category": "audio",
+    "slug": "frequency-generator",
+    "engine": "audio-output",
+    "requiredCapabilities": ["audioContext"],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "audio",
+    "optionalCapabilities": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["D01", "D02"],
+    "copy": {
+      "vi": {
+        "name": "Tạo tần số âm thanh",
+        "description": "Tạo tín hiệu âm thanh từ 20 đến 20.000 Hz với dạng sóng và mức biên độ do bạn chọn.",
+        "instructions": "Giảm âm lượng hệ thống, chọn tần số và dạng sóng rồi bấm Bắt đầu. Có thể đổi khi đang phát. Dừng nếu khó chịu; phiên tự kết thúc sau 10 giây hoặc khi rời tab.",
+        "limitations": "Tần số là thiết lập tín hiệu, không phải phép đo âm thanh thực tế. Không dùng để kiểm tra thính lực hoặc đo đáp tuyến loa. Khả năng phát tần số cao tùy trình duyệt và thiết bị.",
+        "method": "Tạo âm theo tần số, dạng sóng và mức tín hiệu bạn chọn trong phạm vi trình duyệt hỗ trợ."
+      },
+      "en": {
+        "name": "Frequency generator",
+        "description": "Generate an audio signal from 20 to 20,000 Hz with selectable waveform and digital amplitude.",
+        "instructions": "Lower system volume, choose a frequency and waveform, then select Start. Settings can change during playback. Stop if uncomfortable; sessions end after 10 seconds or when you leave the tab.",
+        "limitations": "Frequency is a signal setting, not a physical sound measurement. Do not use this as a hearing test or a speaker frequency-response measurement. High-frequency output depends on the browser and device.",
+        "method": "Generates audio at your selected frequency, waveform and signal level within the browser’s supported range."
+      }
+    }
+  },
+  {
+    "id": "D05",
+    "category": "audio",
+    "slug": "spectrum",
+    "engine": "audio-spectrum",
+    "requiredCapabilities": [],
+    "permissions": ["microphone"],
+    "phase": 2,
+    "status": "published",
+    "icon": "audio",
+    "optionalCapabilities": ["secureContext", "mediaDevices", "audioContext", "permissions"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["D01", "D02", "D03", "D04"],
+    "copy": {
+      "vi": {
+        "name": "Phổ âm thanh",
+        "description": "Xem các dải tần số trong âm thanh microphone trực tiếp.",
+        "instructions": "Bấm Bắt đầu, cho phép microphone rồi nói hoặc tạo âm thanh. Quan sát phổ và tần số nổi bật; Dừng để kết thúc.",
+        "limitations": "Tần số nổi bật chỉ là ước tính, không chắc là cao độ của giọng nói. Không dùng để kiểm tra thính lực hoặc đo đáp tuyến microphone.",
+        "method": "Phân tích FFT để chia tín hiệu thành các dải tần và hiển thị dải nổi bật. Độ chi tiết phụ thuộc tốc độ lấy mẫu."
+      },
+      "en": {
+        "name": "Audio spectrum",
+        "description": "View the frequency bands in live microphone audio.",
+        "instructions": "Select Start, allow the microphone and speak or make a sound. Observe the spectrum and strongest frequency; Stop ends the test.",
+        "limitations": "The strongest frequency is an estimate, not necessarily the pitch of a voice. This is not a hearing test or microphone frequency-response measurement.",
+        "method": "Uses FFT analysis to display frequency bands and the strongest bin. Detail depends on the audio sample rate."
+      }
+    }
+  },
+  {
+    "id": "E01",
+    "category": "camera",
+    "slug": "preview",
+    "engine": "camera",
+    "requiredCapabilities": [],
+    "permissions": ["camera"],
+    "phase": 2,
+    "status": "published",
+    "icon": "camera",
+    "optionalCapabilities": ["secureContext", "mediaDevices", "permissions"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["E02", "E03", "G01", "G02"],
+    "copy": {
+      "vi": {
+        "name": "Xem trước webcam",
+        "description": "Xem trước video webcam cục bộ sau khi bạn cho phép camera.",
+        "instructions": "Bấm Bắt đầu và cho phép camera. Dừng để tắt camera; rời tab hoặc sau 60 giây, phiên tự kết thúc. Nếu hộp quyền còn mở, hãy chọn cho phép hoặc từ chối trước khi thử lại.",
+        "limitations": "Kết quả phản ánh luồng video hiện tại, không phải độ phân giải tối đa hay thông số cảm biến. Ánh sáng, tải máy và Refresh Rate có thể ảnh hưởng FPS.",
+        "method": "Hiển thị video từ camera bạn cho phép; không sử dụng microphone hoặc ghi hình."
+      },
+      "en": {
+        "name": "Webcam preview",
+        "description": "Preview a local webcam video after allowing camera access.",
+        "instructions": "Select Start and allow the camera. Stop turns it off; leaving the tab or reaching 60 seconds ends the session. If the permission prompt is still open, allow or deny it before trying again.",
+        "limitations": "Results describe the current video stream, not maximum resolution or sensor specifications. Lighting, system load and display Refresh Rate can affect FPS.",
+        "method": "Displays video from the camera you allow, without using the microphone or recording."
+      }
+    }
+  },
+  {
+    "id": "E02",
+    "category": "camera",
+    "slug": "resolution",
+    "engine": "camera",
+    "requiredCapabilities": [],
+    "permissions": ["camera"],
+    "phase": 2,
+    "status": "published",
+    "icon": "camera",
+    "optionalCapabilities": ["secureContext", "mediaDevices", "permissions"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["E01", "E03", "G01", "G02"],
+    "copy": {
+      "vi": {
+        "name": "Độ phân giải camera",
+        "description": "Xem kích thước video và độ phân giải luồng camera hiện tại.",
+        "instructions": "Bấm Bắt đầu và cho phép camera. Dừng để tắt camera; rời tab hoặc sau 60 giây, phiên tự kết thúc. Nếu hộp quyền còn mở, hãy chọn cho phép hoặc từ chối trước khi thử lại.",
+        "limitations": "Kết quả phản ánh luồng video hiện tại, không phải độ phân giải tối đa hay thông số cảm biến. Ánh sáng, tải máy và Refresh Rate có thể ảnh hưởng FPS.",
+        "method": "Đối chiếu kích thước video đang hiển thị với cấu hình luồng camera được báo."
+      },
+      "en": {
+        "name": "Camera resolution",
+        "description": "View video dimensions and the current camera stream resolution.",
+        "instructions": "Select Start and allow the camera. Stop turns it off; leaving the tab or reaching 60 seconds ends the session. If the permission prompt is still open, allow or deny it before trying again.",
+        "limitations": "Results describe the current video stream, not maximum resolution or sensor specifications. Lighting, system load and display Refresh Rate can affect FPS.",
+        "method": "Compares displayed video dimensions with the reported camera stream settings."
+      }
+    }
+  },
+  {
+    "id": "E03",
+    "category": "camera",
+    "slug": "fps",
+    "engine": "camera",
+    "requiredCapabilities": [],
+    "permissions": ["camera"],
+    "phase": 2,
+    "status": "published",
+    "icon": "camera",
+    "optionalCapabilities": ["secureContext", "mediaDevices", "permissions"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["E01", "E02", "G01", "G02"],
+    "copy": {
+      "vi": {
+        "name": "FPS camera",
+        "description": "Ước tính FPS video đang hiển thị và so sánh với FPS luồng được báo.",
+        "instructions": "Bấm Bắt đầu và cho phép camera. Dừng để tắt camera; rời tab hoặc sau 60 giây, phiên tự kết thúc. Nếu hộp quyền còn mở, hãy chọn cho phép hoặc từ chối trước khi thử lại.",
+        "limitations": "Kết quả phản ánh luồng video hiện tại, không phải độ phân giải tối đa hay thông số cảm biến. Ánh sáng, tải máy và Refresh Rate có thể ảnh hưởng FPS.",
+        "method": "Tính FPS từ số khung video mới trong khoảng ít nhất 2 giây. Không đủ dữ liệu hoặc trình duyệt không hỗ trợ thì hiện —."
+      },
+      "en": {
+        "name": "Camera FPS",
+        "description": "Estimate displayed video FPS and compare it with the reported stream FPS.",
+        "instructions": "Select Start and allow the camera. Stop turns it off; leaving the tab or reaching 60 seconds ends the session. If the permission prompt is still open, allow or deny it before trying again.",
+        "limitations": "Results describe the current video stream, not maximum resolution or sensor specifications. Lighting, system load and display Refresh Rate can affect FPS.",
+        "method": "Calculates FPS from new video frames over at least 2 seconds. Displays — when data or browser support is insufficient."
+      }
+    }
+  },
+  {
+    "id": "F01",
+    "category": "gamepad",
+    "slug": "tester",
+    "engine": "gamepad",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "gamepad",
+    "optionalCapabilities": ["secureContext", "gamepad", "animationFrame"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["F02", "F03", "G02"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra tay cầm",
+        "description": "Quan sát nút bấm, giá trị analog và các trục của tay cầm do browser cung cấp.",
+        "instructions": "Kết nối tay cầm, bấm Bắt đầu rồi nhấn một nút để trình duyệt nhận thiết bị. Chọn tay cầm và cặp trục. Đổi tay cầm, trục hoặc deadzone sẽ xóa kết quả drift. Phiên tối đa 120 giây; Dừng hoặc rời tab sẽ kết thúc và xóa kết quả.",
+        "limitations": "Driver và trình duyệt có thể áp dụng mapping hoặc deadzone trước khi gửi dữ liệu. Kết quả không đo USB Polling Rate, độ trễ hoặc tự xác nhận tay cầm tốt/hỏng.",
+        "method": "Hiển thị trạng thái từng nút và giá trị các trục mà trình duyệt nhận được từ tay cầm."
+      },
+      "en": {
+        "name": "Gamepad tester",
+        "description": "Observe gamepad buttons, analog values and axes supplied by the browser.",
+        "instructions": "Connect a controller, select Start and press a controller button so the browser detects it. Choose a controller and axis pair. Changing controller, axes or deadzone clears drift results. Sessions last up to 120 seconds; Stop or leaving the tab ends the test and clears results.",
+        "limitations": "Drivers and browsers may apply mapping or deadzones before reporting data. Results do not measure USB Polling Rate or latency, or determine whether a controller is faulty.",
+        "method": "Shows button states and axis values received from the controller by the browser."
+      }
+    }
+  },
+  {
+    "id": "F02",
+    "category": "gamepad",
+    "slug": "analog-stick",
+    "engine": "gamepad",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "gamepad",
+    "optionalCapabilities": ["secureContext", "gamepad", "animationFrame"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["F01", "F03", "G02"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra analog stick",
+        "description": "Quan sát tọa độ và đường di chuyển của analog stick.",
+        "instructions": "Kết nối tay cầm, bấm Bắt đầu rồi nhấn một nút để trình duyệt nhận thiết bị. Chọn tay cầm và cặp trục. Đổi tay cầm, trục hoặc deadzone sẽ xóa kết quả drift. Phiên tối đa 120 giây; Dừng hoặc rời tab sẽ kết thúc và xóa kết quả.",
+        "limitations": "Driver và trình duyệt có thể áp dụng mapping hoặc deadzone trước khi gửi dữ liệu. Kết quả không đo USB Polling Rate, độ trễ hoặc tự xác nhận tay cầm tốt/hỏng.",
+        "method": "Vẽ vị trí của cặp trục đã chọn. Vòng deadzone chỉ để đối chiếu, không thay đổi dữ liệu hoặc cài đặt tay cầm."
+      },
+      "en": {
+        "name": "Analog stick test",
+        "description": "Observe analog stick coordinates and movement trails.",
+        "instructions": "Connect a controller, select Start and press a controller button so the browser detects it. Choose a controller and axis pair. Changing controller, axes or deadzone clears drift results. Sessions last up to 120 seconds; Stop or leaving the tab ends the test and clears results.",
+        "limitations": "Drivers and browsers may apply mapping or deadzones before reporting data. Results do not measure USB Polling Rate or latency, or determine whether a controller is faulty.",
+        "method": "Plots the selected axis pair. The deadzone circle is a visual reference and changes neither data nor controller settings."
+      }
+    }
+  },
+  {
+    "id": "F03",
+    "category": "gamepad",
+    "slug": "stick-drift",
+    "engine": "gamepad",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "gamepad",
+    "optionalCapabilities": ["secureContext", "gamepad", "animationFrame"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["F01", "F02", "G02"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra stick drift",
+        "description": "Kiểm tra mức lệch của analog stick khi bạn buông tay.",
+        "instructions": "Kết nối tay cầm, bấm Bắt đầu rồi nhấn một nút để trình duyệt nhận thiết bị. Chọn tay cầm và cặp trục. Đổi tay cầm, trục hoặc deadzone sẽ xóa kết quả drift. Phiên tối đa 120 giây; Dừng hoặc rời tab sẽ kết thúc và xóa kết quả.",
+        "limitations": "Driver và trình duyệt có thể áp dụng mapping hoặc deadzone trước khi gửi dữ liệu. Kết quả không đo USB Polling Rate, độ trễ hoặc tự xác nhận tay cầm tốt/hỏng.",
+        "method": "Chờ ổn định 1 giây rồi quan sát vị trí nghỉ trong 5 giây. Tổng hợp độ lệch so với tâm; cần dữ liệu liên tục để có kết quả."
+      },
+      "en": {
+        "name": "Stick drift test",
+        "description": "Check analog stick offsets while your hands are off the stick.",
+        "instructions": "Connect a controller, select Start and press a controller button so the browser detects it. Choose a controller and axis pair. Changing controller, axes or deadzone clears drift results. Sessions last up to 120 seconds; Stop or leaving the tab ends the test and clears results.",
+        "limitations": "Drivers and browsers may apply mapping or deadzones before reporting data. Results do not measure USB Polling Rate or latency, or determine whether a controller is faulty.",
+        "method": "Waits 1 second to settle, then observes the rest position for 5 seconds. Summarizes distance from the center; continuous data is required."
+      }
+    }
+  },
+  {
+    "id": "G01",
+    "category": "device",
+    "slug": "information",
+    "engine": "device-info",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "device",
+    "optionalCapabilities": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A01", "A02", "G02"],
+    "copy": {
+      "vi": {
+        "name": "Thông tin thiết bị",
+        "description": "Xem thông tin màn hình, trình duyệt, ngôn ngữ và tài nguyên được báo.",
+        "instructions": "Bấm Đọc dữ liệu. Đọc lại sau khi đổi màn hình hoặc zoom; Đặt lại để xóa kết quả.",
+        "limitations": "Thông tin có thể được làm tròn hoặc ẩn. Không dùng để xác nhận model CPU, RAM lắp đặt hoặc độ phân giải vật lý.",
+        "method": "Hiển thị thông tin trình duyệt cho phép truy cập; mục không có dữ liệu hiện dấu —."
+      },
+      "en": {
+        "name": "Device information",
+        "description": "View reported screen, browser, language and device resource information.",
+        "instructions": "Select Read data. Read again after changing displays or zoom; Reset clears the results.",
+        "limitations": "Information may be rounded or hidden. It does not confirm the CPU model, installed RAM or physical display resolution.",
+        "method": "Shows information exposed by the browser; unavailable fields display —."
+      }
+    }
+  },
+  {
+    "id": "G02",
+    "category": "browser",
+    "slug": "compatibility",
+    "engine": "browser-info",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "browser",
+    "optionalCapabilities": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["G01", "G05", "G06"],
+    "copy": {
+      "vi": {
+        "name": "Khả năng tương thích trình duyệt",
+        "description": "Xem trình duyệt hỗ trợ những tính năng kiểm tra nào.",
+        "instructions": "Bấm Đọc dữ liệu và xem trạng thái từng tính năng. Kiểm tra lại sau khi thay đổi cài đặt trình duyệt.",
+        "limitations": "Có hỗ trợ không bảo đảm thiết bị đã kết nối hoặc quyền đã được cấp. Mục chưa xác định cần thử trực tiếp bằng công cụ tương ứng.",
+        "method": "Kiểm tra hỗ trợ mà không mở camera, microphone hay yêu cầu cấp quyền."
+      },
+      "en": {
+        "name": "Browser compatibility",
+        "description": "Check which testing features your browser supports.",
+        "instructions": "Select Read data and review each feature. Check again after changing browser settings.",
+        "limitations": "Support does not guarantee connected hardware or granted permission. Try the relevant tool when a status is unknown.",
+        "method": "Checks feature support without opening the camera or microphone or requesting permission."
+      }
+    }
+  },
+  {
+    "id": "G03",
+    "category": "device",
+    "slug": "gpu",
+    "engine": "gpu-info",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "device",
+    "optionalCapabilities": ["webgl"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["G01", "G02", "A10"],
+    "copy": {
+      "vi": {
+        "name": "Thông tin GPU / WebGL",
+        "description": "Xem thông tin đồ họa và WebGL do trình duyệt cung cấp.",
+        "instructions": "Bấm Đọc dữ liệu. Bật renderer chi tiết nếu muốn xem thêm thông tin driver; Đặt lại để xóa kết quả.",
+        "limitations": "Thông tin có thể bị ẩn hoặc mô tả đồ họa phần mềm. Không xác nhận GPU vật lý, VRAM hoặc hiệu năng.",
+        "method": "Hiển thị phiên bản WebGL, vendor, renderer và giới hạn texture. Thông tin driver chi tiết chỉ được đọc khi bạn cho phép."
+      },
+      "en": {
+        "name": "GPU / WebGL information",
+        "description": "View graphics and WebGL information provided by the browser.",
+        "instructions": "Select Read data. Enable detailed renderer information for extra driver details; Reset clears results.",
+        "limitations": "Information may be hidden or describe software rendering. It does not confirm the physical GPU, VRAM or performance.",
+        "method": "Shows WebGL version, vendor, renderer and texture limits. Detailed driver information is read only with your consent."
+      }
+    }
+  },
+  {
+    "id": "G04",
+    "category": "device",
+    "slug": "pointer-capabilities",
+    "engine": "pointer-info",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "device",
+    "optionalCapabilities": ["pointer", "touch"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A11", "G01", "C06"],
+    "copy": {
+      "vi": {
+        "name": "Khả năng cảm ứng và pointer",
+        "description": "Thử cảm ứng, bút và chuột; xem vị trí và các điểm đang chạm.",
+        "instructions": "Bấm Bắt đầu rồi di chuột, chạm hoặc dùng bút trong vùng thử. Dừng để kết thúc; mỗi phiên tối đa 60 giây.",
+        "limitations": "Lực nhấn và kích thước điểm chạm có thể là giá trị mặc định của trình duyệt, không phải phép đo lực thực tế.",
+        "method": "Hiển thị loại con trỏ, tọa độ và các điểm đang hoạt động trong vùng thử."
+      },
+      "en": {
+        "name": "Touch & pointer capabilities",
+        "description": "Test touch, pen and mouse input; see positions and active contacts.",
+        "instructions": "Select Start, then move, touch or use a pen inside the area. Stop ends the test; each session lasts up to 60 seconds.",
+        "limitations": "Pressure and contact size may be browser defaults rather than measurements of physical force.",
+        "method": "Shows pointer type, coordinates and active contacts inside the test area."
+      }
+    }
+  },
+  {
+    "id": "G05",
+    "category": "browser",
+    "slug": "storage",
+    "engine": "storage",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "browser",
+    "optionalCapabilities": ["storage", "secureContext"],
+    "classification": "estimate",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["G02", "G01", "G06"],
+    "copy": {
+      "vi": {
+        "name": "Khả năng lưu trữ",
+        "description": "Kiểm tra khả năng lưu dữ liệu của website trong trình duyệt.",
+        "instructions": "Bấm Đọc dữ liệu để thử bộ nhớ và xem dung lượng được báo. Phép thử dùng dữ liệu tạm, không xóa dữ liệu hiện có.",
+        "limitations": "Dung lượng là ước tính dành cho website, không phải dung lượng ổ đĩa. IndexedDB và CacheStorage chỉ kiểm tra hỗ trợ, chưa thử đọc/ghi. Chế độ riêng tư có thể giới hạn lưu trữ.",
+        "method": "Thử ghi, đọc rồi xóa dữ liệu tạm trong localStorage và sessionStorage; đọc mức sử dụng và giới hạn lưu trữ nếu trình duyệt cung cấp."
+      },
+      "en": {
+        "name": "Storage capabilities",
+        "description": "Check whether this website can store data in your browser.",
+        "instructions": "Select Read data to test storage and view reported capacity. The test uses temporary data and preserves existing data.",
+        "limitations": "Capacity is an estimate for this website, not disk capacity. IndexedDB and CacheStorage are checked for support only, without read/write tests. Private browsing can restrict storage.",
+        "method": "Writes, reads and deletes temporary data in localStorage and sessionStorage, and reads usage and quota when available."
+      }
+    }
+  },
+  {
+    "id": "G06",
+    "category": "browser",
+    "slug": "fullscreen",
+    "engine": "fullscreen",
+    "requiredCapabilities": [],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "browser",
+    "optionalCapabilities": ["fullscreen"],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["A06", "A10", "G02"],
+    "copy": {
+      "vi": {
+        "name": "Kiểm tra Fullscreen",
+        "description": "Thử chế độ toàn màn hình và xem kích thước vùng hiển thị.",
+        "instructions": "Bấm Toàn màn hình, dùng nút thoát hoặc Esc để trở lại. Nếu không hỗ trợ, tiếp tục thử trong trang.",
+        "limitations": "Trình duyệt hoặc cài đặt trang có thể chặn toàn màn hình. Kích thước theo CSS không phải độ phân giải vật lý của màn hình.",
+        "method": "Mở vùng thử toàn màn hình và cập nhật kích thước khi vùng hiển thị thay đổi."
+      },
+      "en": {
+        "name": "Fullscreen test",
+        "description": "Try fullscreen mode and check the display area size.",
+        "instructions": "Select Fullscreen; use its exit button or Esc to return. If unsupported, continue with the inline area.",
+        "limitations": "Browser or page settings may block fullscreen. CSS dimensions are not the display’s physical resolution.",
+        "method": "Opens the test area in fullscreen and updates its dimensions as the display area changes."
+      }
+    }
+  },
+  {
+    "id": "C06",
+    "category": "mouse",
+    "slug": "movement",
+    "engine": "mouse-movement",
+    "requiredCapabilities": ["pointer"],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "mouse",
+    "optionalCapabilities": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["C05", "C07", "C01"],
+    "copy": {
+      "vi": {
+        "name": "Chuyển động chuột",
+        "description": "Quan sát đường đi, vị trí và khoảng cách con trỏ chuột trong vùng thử bằng CSS pixels.",
+        "instructions": "Bấm Bắt đầu rồi di chuột trong vùng thử. Dừng để giữ kết quả, Đặt lại để xóa. Phiên tối đa 60 giây.",
+        "limitations": "Khoảng cách theo CSS pixels, không đo DPI/CPI, quãng đường vật lý, Polling Rate hoặc độ trễ. Tốc độ trung bình tính cả thời gian nghỉ.",
+        "method": "Cộng khoảng cách giữa các vị trí chuột liên tiếp. Rời vùng rồi quay lại không nối thêm đường đi."
+      },
+      "en": {
+        "name": "Mouse movement",
+        "description": "Observe mouse pointer paths, position and distance inside a test region in CSS pixels.",
+        "instructions": "Select Start and move the mouse inside the area. Stop preserves results; Reset clears them. Sessions last up to 60 seconds.",
+        "limitations": "Distance is in CSS pixels, not DPI/CPI, physical travel, Polling Rate or latency. Average speed includes idle time.",
+        "method": "Adds the distances between consecutive pointer positions. Leaving and returning does not add a connecting segment."
+      }
+    }
+  },
+  {
+    "id": "C07",
+    "category": "mouse",
+    "slug": "accuracy",
+    "engine": "mouse-accuracy",
+    "requiredCapabilities": ["pointer"],
+    "permissions": [],
+    "phase": 2,
+    "status": "published",
+    "icon": "mouse",
+    "optionalCapabilities": [],
+    "classification": "observation",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["C06", "C02", "C03"],
+    "copy": {
+      "vi": {
+        "name": "Độ chính xác chuột",
+        "description": "Thử nhấn 10 mục tiêu, xem tỷ lệ trúng và khoảng cách tới tâm.",
+        "instructions": "Chọn kích thước, bấm Bắt đầu rồi dùng nút trái nhấn các mục tiêu. Trúng để chuyển tiếp; trượt để thử lại. Phiên tối đa 60 giây.",
+        "limitations": "Chỉ chấm nút trái chuột; bàn phím, cảm ứng và bút không tính điểm. Kết quả phản ánh thao tác của bạn, không xác nhận độ chính xác cảm biến hoặc độ trễ.",
+        "method": "Tính số lần trúng trên tổng lần nhấn và khoảng cách trung bình tới tâm của những lần trúng."
+      },
+      "en": {
+        "name": "Mouse accuracy",
+        "description": "Click 10 targets and review your hit rate and distance from the center.",
+        "instructions": "Choose a size, select Start and left-click the targets. Hits advance; misses let you try again. Sessions last up to 60 seconds.",
+        "limitations": "Only left mouse clicks are scored; keyboard, touch and pen do not count. Results describe your task performance, not sensor precision or latency.",
+        "method": "Calculates hits as a share of attempts and the average distance from the center for successful hits."
+      }
+    }
+  }
+]

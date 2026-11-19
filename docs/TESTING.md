@@ -20,21 +20,20 @@ Typecheck/lint/Prettier/secret scan đạt; build 106 trang và **333 unit/35 fi
 
 Full E2E bản cuối chạy đủ 384 bài: **359 pass/19 skip/6 fail**, flaky 0, global error 0; 1.532.870,849 ms. Bốn project, workers 2/retries 0; cấu hình tạm local tương đương project gốc, không thay cấu hình CI. Nhóm nội dung mới **8/8** đạt, mỗi browser mở đủ 80 trang và kiểm tra lịch sử/quyền riêng tư VI/EN. Nhóm bàn phím **52/52** đạt.
 
-| Browser | Pass | Skip | Fail |
-| --- | ---: | ---: | ---: |
-| chromium | 94 | 0 | 2 |
-| firefox | 91 | 3 | 2 |
-| webkit | 80 | 16 | 0 |
-| mobile | 94 | 0 | 2 |
+| Browser  | Pass | Skip | Fail |
+| -------- | ---: | ---: | ---: |
+| chromium |   94 |    0 |    2 |
+| firefox  |   91 |    3 |    2 |
+| webkit   |   80 |   16 |    0 |
+| mobile   |   94 |    0 |    2 |
 
 Các failure còn lại: Request từ script Kaspersky chèn ngoài ứng dụng. Full gate vẫn fail; không lọc request hoặc nới assertion để lấy pass. Control HTML trắng không tải mã ứng dụng cũng có script/POST Kaspersky trong lượt này; không suy ra payload request hoặc độ an toàn toàn browser. Lỗi đóng context Firefox của checkpoint trước không tái diễn trong lượt cuối; chưa xác định hoặc sửa nguyên nhân gốc của lỗi trước.
 
 Các skip là điều kiện runtime cũ về native audio/media/policy, không phải bài bị xóa hoặc hardware đã xác minh. WebKit automation không thay Safari thật. Đã kiểm tra HTTP health+34 route/scoped policy; đối chiếu AST registry chỉ đổi copy, locale key/placeholder đủ, engine nhận phím giữ hash của preview trước được người dùng chấp nhận.
 
-Regression mới phát hiện và đã sửa tràn nút xóa dữ liệu ở 320 px/chữ 200%, cụm từ dài của cảnh báo dd; giữ nguyên assertion. Lịch sử hiển thị tên VI/EN thay ID, có fallback cho ID cũ/khóa như __proto__, xóa dữ liệu ứng dụng vẫn giữ khóa ngoài phạm vi. Đã xem ảnh Light desktop, Dark mobile và chữ 200%. Raw log/ảnh/trace ở artifacts bị ignore; QA JSON chỉ aggregate, không URL/sessionID của vendor.
+Regression mới phát hiện và đã sửa tràn nút xóa dữ liệu ở 320 px/chữ 200%, cụm từ dài của cảnh báo dd; giữ nguyên assertion. Lịch sử hiển thị tên VI/EN thay ID, có fallback cho ID cũ/khóa như **proto**, xóa dữ liệu ứng dụng vẫn giữ khóa ngoài phạm vi. Đã xem ảnh Light desktop, Dark mobile và chữ 200%. Raw log/ảnh/trace ở artifacts bị ignore; QA JSON chỉ aggregate, không URL/sessionID của vendor.
 
 Chưa đo Lighthouse sạch mới hoặc xác nhận mobile≥90; control vẫn có chèn Kaspersky. Chưa kiểm chứng lại thiết bị/bộ gõ/Safari thật/screen reader. Chưa commit/push/triển khai hoặc đổi hạ tầng. Final Acceptance tiếp tục mở. Chi tiết: CONTENT-REVIEW.md.
-
 
 ## Cảnh báo dd trên B01 — bản local cuối 12/11/2026
 
@@ -275,3 +274,55 @@ Source 882c4d9: [CI 42783852103](https://github.com/anhtruc1803/checkall/actions
 Bài mới kiểm tra VI/EN, chú thích không phải kết quả đo, SVG trang trí, nút aria-pressed, click/tap/Space/Enter, pointer reset, reduced motion và Refresh Rate không đổi thành số giả. Ma trận cũ mở rộng selector hero/summary ở 320/375/414/768/1024/1440 px, hai theme và chữ 200%; Axe kiểm tra thêm vùng mới. Không gọi camera/microphone/gamepad khi tương tác hero; không thêm timer, listener toàn cục hoặc ghi sự kiện.
 
 Docker Linux CI job 81 giây đạt 34 route/policy ba checkpoint/restart/stop-start/private port/SIGTERM143 không OOM. Production dependency audit 0 finding; audit toàn bộ còn hai moderate dev glob/minimatch. Lighthouse mới: 36 lượt so sánh cùng VM đạt median sau 99/99/99/98/97/98; 18 lượt HTTPS public đạt median sáu trang đều 99, A/BP/SEO đều 100. Từng lượt và môi trường tại PERFORMANCE.md/qa/lab-scene-2026-11-10.json. Public UI 76275,86 ms. Manual QA mới tại UI-UX-REFRESH.md; vẫn cần thiết bị/Safari/screen reader/OS zoom thật. Giữ đủ 40 công cụ, 80 route công cụ VI/EN/100 URL nội dung và Final Acceptance mở.
+
+## Tiện ích Milestone 1 — local 19/11/2026
+
+### Phạm vi và lệnh tái lập
+
+Giữ nguyên 40 công cụ thiết bị, thêm U01/U02. Bộ kiểm thử mới: `tests/utilities-decimal.test.ts`, `utilities-words.test.ts`, `utilities-registry.test.ts`, `utilities-ui.test.tsx`, `tests/e2e/utilities.spec.ts` và fixture metadata 40 công cụ ở `tests/fixtures/device-tools-baseline.json`. Các test tổng số chỉ cập nhật 40→42, 80→84 URL công cụ, 100→106 URL nội dung, category 8→9. Giữ assertion 21 Phase 1/19 Phase 2, permission scope, không upload, cleanup, fallback, timeout và retry; thêm đối chiếu đầy đủ metadata gốc của 40 công cụ, không chỉ tổng số.
+
+```text
+pnpm typecheck
+pnpm lint
+pnpm test --maxWorkers=2 --reporter=json --outputFile=artifacts/utilities-unit-patched.json
+pnpm test tests/i18n.test.ts tests/utilities-ui.test.tsx --maxWorkers=2 --reporter=json --outputFile=artifacts/utilities-copy-final-unit.json
+pnpm build
+node scripts/scan-secrets.mjs
+pnpm audit --json
+pnpm audit --prod --json
+node scripts/smoke-http.mjs http://127.0.0.1:3100
+```
+
+Production preview bind loopback 3100. Playwright local dùng bản config QA trong `artifacts/` giữ nguyên bốn project Chromium/Firefox/WebKit/mobile Chromium, workers=2, retries=0, trace khi fail, chỉ đổi baseURL/output và bỏ khởi động thêm server 3000. CI hiện có vẫn tự phát hiện toàn bộ file mới qua config chính; chưa chạy CI của candidate vì người dùng yêu cầu local.
+
+```text
+pnpm exec playwright test --config=artifacts/utilities-playwright.config.ts tests/e2e/utilities.spec.ts
+pnpm exec playwright test --config=artifacts/utilities-playwright-full.config.ts
+```
+
+### Kết quả đã xác minh trước full E2E
+
+Next.js/eslint-config-next 16.4.6; typecheck/lint đạt, production build 112 trang đạt, 106 URL nội dung trong sitemap. Unit **460/460, 39 file**, 128.314,84 ms sau bản vá dependency; 11/11 i18n/UI đạt sau chỉnh một nhãn VI. Initial unit có một golden case dùng “tư” khác quy ước “bốn” của bộ đọc; đã đối chiếu số và thống nhất hợp đồng bốn, không sửa thuật toán để làm tròn hoặc mất chữ số. Rà soát label bổ sung `aria-labelledby` để tên ô nhập tách khỏi mô tả/lỗi. Mock pathname chỉ dùng trong unit Catalog; không thay navigation code thật.
+
+Nhóm riêng tiện ích **21/24 E2E đạt, 3 fail, không skip/flaky**: Chromium 5/6, Firefox 5/6, WebKit 6/6, mobile Chromium 5/6. Thời gian và chi tiết kết quả từ raw JSON được đóng băng trong QA JSON milestone. VI/EN, độc lập ngôn ngữ kết quả/định dạng nhập, số lớn, tiền lẻ bị từ chối, năm phép tính, chia cho 0, làm tròn, clipboard fixture, WCAG AA Dark/Light, lỗi nhập và reflow 320px/chữ 200% đều đạt. Đã xem ảnh mobile Light/Dark.
+
+Ba fail đều ở assertion không có request ngoài GET/HEAD, chỉ nhận POST từ origin Kaspersky (Chromium/mobile `gc.kis.v2.scr.kaspersky-labs.com`, Firefox `ff.kis.v2.scr.kaspersky-labs.com`). Các assertion trước đó về storage/permission/capture bằng 0 và reload xóa giá trị đã qua. Không lọc request, không nới assertion, không tắt bảo vệ để lấy pass. Control HTML trắng mới ngày 19/11, không có script ứng dụng hoặc nhập dữ liệu, vẫn có script/POST Kaspersky; raw `artifacts/utilities-injection-control-2026-11-19.json` chỉ ghi origin/method/type, không session ID/payload. Unit xác minh tiện ích không tự lưu/upload kể cả khi bật lưu lịch sử cũ; chưa tuyên bố toàn bộ môi trường browser sạch.
+
+Audit production không có advisory; audit toàn bộ còn 2 moderate trong dev tooling glob/minimatch, chưa giải quyết bằng ép major override. Secret scan không phát hiện trong source được theo dõi và file mới không bị ignore. Không đồng nhất audit production với toàn bộ repository không có rủi ro.
+
+### Manual QA còn mở
+
+Người dùng duyệt local; cách đọc phù hợp chứng từ thực tế; gõ dấu âm/phân cách bằng bàn phím số Android/iOS; Clipboard API thật khi cấp hoặc từ chối quyền; screen reader với nhãn và vùng kết quả; Safari thật. Không coi clipboard fixture là quyền hệ thống thật, WebKit Windows là Safari, hoặc media/gamepad fixture là phần cứng thật. Yêu cầu manual hardware cũ không bị đóng bởi milestone tiện ích. Full E2E/Lighthouse sạch và kết luận release được cập nhật ở PROGRESS và QA JSON khi kết thúc, không lấy kết quả public trước thay thế.
+
+### Full E2E của candidate
+
+Đã chạy đủ **408 bài trên bốn project**, 1.463.932,291 ms: **380 đạt / 19 skip / 9 fail**, flaky 0, global error 0. Raw JSON: `artifacts/artifacts/utilities-e2e-full.json`; không ghi raw request path/session ID vào tài liệu commit. Cùng source ứng dụng và BUILD_ID trong toàn bộ lượt; sau QA chỉ chuẩn hóa định dạng một file E2E và JSON fixture. TypeScript AST/literal và dữ liệu JSON trước/sau tương đương; unit fixture 2/2 chạy lại đạt. Kiểm tra so sánh emitted JS ban đầu khác do TypeScript giữ bố cục xuống dòng nên không dùng làm bằng chứng; đối chiếu AST mới là bằng chứng được chấp nhận.
+
+| Project         | Đạt | Skip | Fail |
+| --------------- | --: | ---: | ---: |
+| Chromium        |  99 |    0 |    3 |
+| Firefox         |  96 |    3 |    3 |
+| WebKit Windows  |  86 |   16 |    0 |
+| Mobile Chromium |  99 |    0 |    3 |
+
+Cả chín fail chỉ có request origin Kaspersky: mỗi Chromium/Firefox/mobile một bài camera, một gamepad và một tiện ích. Các bài này giữ nguyên assertion không upload; không đổi retry/timeout/skip để lấy pass. Full run bao gồm lại nhóm tiện ích 21 đạt/3 fail và toàn bộ hồi quy 40 công cụ. Các skip gồm Web Audio/mediaDevices và native introspection/enforcement Permissions-Policy không có trong runtime; danh sách từng bài và lý do ở QA JSON. **Full gate chưa đạt**, không dùng 380 pass để che 19 skip hoặc 9 fail. Chưa chạy full suite sạch trên Linux của candidate; không kế thừa CI trước đây.

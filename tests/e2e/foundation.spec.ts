@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { tools } from '../../src/lib/tools/registry';
 
-test('all 40 published tools are discoverable while unknown future routes stay private', async ({
+test('all 42 published tools are discoverable while unknown future routes stay private', async ({
   page,
   request,
 }) => {
@@ -11,8 +11,8 @@ test('all 40 published tools are discoverable while unknown future routes stay p
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
-    await expect(page.locator('.catalog-item')).toHaveCount(40);
-    await expect(page.locator('.desktop-nav a')).toHaveCount(8);
+    await expect(page.locator('.catalog-item')).toHaveCount(42);
+    await expect(page.locator('.desktop-nav a')).toHaveCount(9);
     for (const tool of drafts) {
       const route = `/${locale}/${tool.category}/${tool.slug}`;
       expect((await request.get(route)).status(), route).toBe(404);
@@ -24,7 +24,7 @@ test('all 40 published tools are discoverable while unknown future routes stay p
     expect((await request.get(`/${locale}/gamepad/future-tool`)).status()).toBe(404);
     expect(sitemap).not.toContain(`/${locale}/gamepad/future-tool`);
     await page
-      .getByRole('textbox', { name: locale === 'vi' ? 'Tìm kiếm công cụ' : 'Search testing tools' })
+      .getByRole('textbox', { name: locale === 'vi' ? 'Tìm kiếm công cụ' : 'Search tools' })
       .fill('__unpublished_future_tool__');
     await expect(page.locator('.catalog-item')).toHaveCount(0);
   }

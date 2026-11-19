@@ -15,6 +15,13 @@ export function CategoryArt({ category }: { category: Category }) {
       focusable="false"
     >
       <ellipse cx="60" cy="61" rx="39" ry="5" className="art-shadow" stroke="none" />
+      {category === 'utilities' && (
+        <>
+          <rect x="37" y="7" width="46" height="54" rx="6" className="art-surface" />
+          <path d="M44 15h32v12H44Z" className="art-accent" />
+          <path d="M45 36h6m-3-3v6m12-3h6m-21 12h6m9-3 6 6m0-6-6 6m13-16v16" />
+        </>
+      )}
       {category === 'screen' && (
         <>
           <rect x="27" y="10" width="66" height="42" rx="5" className="art-surface" />

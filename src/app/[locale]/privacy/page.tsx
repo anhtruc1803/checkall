@@ -16,7 +16,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
     <main id="main" className="section privacy-settings">
       <h1>{t('privacyLink')}</h1>
       <p style={{ marginTop: 20 }}>{t('privacyText')}</p>
-      {(['preferences', 'measurements', 'media'] as const).map((section) => (
+      {(['preferences', 'measurements', 'media', 'utilities'] as const).map((section) => (
         <section className="info-block" key={section}>
           <h2>{t(`privacySections.${section}.title`)}</h2>
           <p>{t(`privacySections.${section}.body`)}</p>
