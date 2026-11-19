@@ -10,6 +10,8 @@ Source `e825c4c` tiếp tục đạt Docker/candidate và 48 Lighthouse sạch m
 
 Lượt container `0dbf8f8` qua install/typecheck/lint, nhưng secret scan dừng do Git dubious ownership giữa bind mount của runner và user container. Bổ sung safe.directory chỉ cho `$GITHUB_WORKSPACE` đã checkout, không dùng wildcard hoặc bỏ scan. Không tính lượt này là kiểm thử đã đạt; chạy lại toàn bộ pipeline.
 
+Lượt `8e5c05d` đã qua secret scan và494 unit, dừng ở PulseAudio do HOME GitHub không phù hợp chủ sở hữu home/runtime của daemon. Chạy daemon bằng pwuser không root với HOME và XDG_RUNTIME_DIR riêng; client dùng Unix socket/cookie rõ ràng trong CI. Giữ smoke audio ba engine bắt buộc, không thêm skip hoặc sửa phép đo. Không thay quyền/daemon trên VPS production.
+
 ## Tiện ích Milestone 2 — local để duyệt, 19/11/2026
 
 Theo yêu cầu mới, chỉ làm local: **U03 đếm từ/ký tự, U04 đổi hoa/thường, U05 bỏ dấu/tạo slug, U06 làm sạch văn bản**. Candidate có **46 công cụ VI/EN**, giữ nguyên metadata/copy và engine của 42 công cụ cũ (40 thiết bị + U01/U02). Không thay kiến trúc hoặc dependency, không mở thêm Phase phần cứng; chưa commit/push/CI từ xa/SSH/deploy. Public vẫn Milestone 1 source `7e3dd0b` phía dưới.
