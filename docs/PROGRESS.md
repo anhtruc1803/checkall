@@ -12,6 +12,8 @@ Lượt container `0dbf8f8` qua install/typecheck/lint, nhưng secret scan dừn
 
 Lượt `8e5c05d` đã qua secret scan và494 unit, dừng ở PulseAudio do HOME GitHub không phù hợp chủ sở hữu home/runtime của daemon. Chạy daemon bằng pwuser không root với HOME và XDG_RUNTIME_DIR riêng; client dùng Unix socket/cookie rõ ràng trong CI. Giữ smoke audio ba engine bắt buộc, không thêm skip hoặc sửa phép đo. Không thay quyền/daemon trên VPS production.
 
+Lượt `53115b7` đã khởi tạo PulseAudio và smoke Chromium, nhưng Firefox từ chối user root với HOME GitHub thuộc pwuser. Đặt HOME đúng `/root` cho user chạy job; daemon audio vẫn pwuser/socket riêng. Không thay launch flags, không bỏ Firefox/WebKit hoặc smoke audio. Chạy lại pipeline trước khi phát hành.
+
 ## Tiện ích Milestone 2 — local để duyệt, 19/11/2026
 
 Theo yêu cầu mới, chỉ làm local: **U03 đếm từ/ký tự, U04 đổi hoa/thường, U05 bỏ dấu/tạo slug, U06 làm sạch văn bản**. Candidate có **46 công cụ VI/EN**, giữ nguyên metadata/copy và engine của 42 công cụ cũ (40 thiết bị + U01/U02). Không thay kiến trúc hoặc dependency, không mở thêm Phase phần cứng; chưa commit/push/CI từ xa/SSH/deploy. Public vẫn Milestone 1 source `7e3dd0b` phía dưới.
