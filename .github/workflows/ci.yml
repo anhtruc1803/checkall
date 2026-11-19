@@ -7,6 +7,9 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-24.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
+      options: --init --ipc=host
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,11 +22,12 @@ jobs:
       - run: pnpm lint
       - run: node scripts/scan-secrets.mjs
       - run: pnpm test
-      - run: pnpm exec playwright install --with-deps chromium firefox webkit
+      - name: Xác nhận Playwright khớp browser trong image đã pin
+        run: pnpm exec playwright --version
       - name: Chuẩn bị audio backend ảo cho browser Linux
         run: |
-          sudo apt-get update
-          sudo apt-get install --no-install-recommends -y pulseaudio pulseaudio-utils
+          apt-get update
+          apt-get install --no-install-recommends -y pulseaudio pulseaudio-utils
           pulseaudio --start --exit-idle-time=-1
           pactl load-module module-null-sink sink_name=device_lab_qa rate=48000 channels=2 channel_map=front-left,front-right
           pactl set-default-sink device_lab_qa
