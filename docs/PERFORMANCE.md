@@ -1,5 +1,28 @@
 # Hiệu năng và kết quả đo
 
+## Tiện ích Milestone 1 — đo sạch trước và sau triển khai 19/11/2026
+
+Source **7e3dd0b119ef9c59da69f3b244787b9f5a9c1d04**, giữ 40 công cụ cũ và thêm hai tiện ích. [Lab trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44445554690) đủ **36 lượt sạch/12 trang ×3**, median mobile **99–100**. [HTTPS public](https://github.com/anhtruc1803/checkall/actions/runs/44449524546) đủ **36 lượt sạch/12 trang ×3** trên đúng release, median **97–99**. Chromium/profile mới, extension tắt; mọi sample qua guard pageVerified/clean. Median A11y/Best Practices/SEO đều 100 ở hai bộ; đã đọc dữ liệu thực, không chỉ kết luận job success. Không sửa thêm code, bỏ tính năng/nội dung/SEO/a11y để lấy điểm.
+
+| Trang                           | Lab trước chuyển | Public | LCP public (ms) | TBT public (ms) | CLS public |
+| ------------------------------- | ---------------: | -----: | --------------: | --------------: | ---------: |
+| `/vi`                           |              100 |     98 |         1046.61 |          142.00 |    0.00000 |
+| `/en`                           |              100 |     99 |         1040.38 |           95.00 |    0.00000 |
+| `/vi/keyboard/tester`           |              100 |     97 |          992.95 |          158.00 |    0.00000 |
+| `/en/keyboard/tester`           |              100 |     98 |          997.29 |          132.00 |    0.00000 |
+| `/vi/privacy`                   |               99 |     99 |         1025.51 |           97.00 |    0.00729 |
+| `/en/audio/microphone`          |               99 |     99 |         1366.00 |          107.00 |    0.00466 |
+| `/vi/camera/preview`            |               99 |     99 |         1366.54 |          106.00 |    0.00038 |
+| `/en/gamepad/tester`            |               99 |     99 |         1387.70 |          104.00 |    0.01514 |
+| `/vi/utilities/number-to-words` |              100 |     98 |          972.21 |          123.50 |    0.00000 |
+| `/en/utilities/number-to-words` |               99 |     99 |          981.02 |           99.00 |    0.00000 |
+| `/vi/utilities/percentage`      |               99 |     98 |          936.51 |           98.50 |    0.00000 |
+| `/en/utilities/percentage`      |              100 |     99 |          946.68 |           96.50 |    0.00000 |
+
+Bảng là median ba lượt/trang, làm tròn để hiển thị. FCP/LCP/TBT/CLS/Speed Index, byte JS/font/ảnh/document/CSS, CPU benchmark, môi trường/throttling của **toàn bộ 72 sample** và median chưa làm tròn được giữ trong [QA phát hành](qa/deployment-utilities-2026-11-19.json). Raw tại artifact lighthouse-mobile của hai run; bản local trong `artifacts/utilities-lab-clean` và `artifacts/utilities-public-performance`.
+
+Lab và public khác VM/origin/network/CPU, không quy chênh lệch điểm thành hồi quy/tăng tốc do code. Label `ui-before` là tên workflow dùng lại cho candidate-only, không phải source 40 công cụ trước đó. Mẫu Windows 84 bị chèn vẫn bị loại, không dùng tính mức cải thiện. Chỉ đo idle, không tự cấp quyền hoặc khởi chạy engine phần cứng; không nhận 12 trang là toàn bộ 84 route/trạng thái hoặc dữ liệu thực địa. Các phần dưới là checkpoint lịch sử.
+
 ## Đo sạch source 57a5de2 và HTTPS public — 16/11/2026
 
 Source **57a5de29307418c9d060f50e7e1e527bb1626eba**, [CI 43804594079](https://github.com/anhtruc1803/checkall/actions/runs/43804594079) success verify/Docker. Typecheck/lint/secret scan, build 106 trang, 333 unit trên 35 file đạt; full **378 E2E đạt/6 skip**, không fail/flaky/global error, 774.698,232 ms. Không đổi assertion/retry hoặc nhận skip là xác minh quyền native. [Lighthouse lab 43804641819](https://github.com/anhtruc1803/checkall/actions/runs/43804641819) đủ 48 lượt sạch và [public 43807789325](https://github.com/anhtruc1803/checkall/actions/runs/43807789325) đủ 24 lượt sạch; tám trang, ba lượt/trang/nguồn.

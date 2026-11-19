@@ -1,6 +1,10 @@
-# Tiện ích — Milestone 1, bản local ngày 19/11/2026
+# Tiện ích — Milestone 1, ngày 19/11/2026
 
-## Phạm vi để người dùng duyệt
+## Trạng thái phát hành
+
+Người dùng đã duyệt local và cho phép push/triển khai sau QA sạch. Source **7e3dd0b** đã công bố 42 công cụ VI/EN, giữ nguyên 40 công cụ cũ. CI 460 unit, 402 E2E đạt/6 native policy skip, tiện ích 24/24; Docker/candidate/public HTTP/UI đạt. Lighthouse trước chuyển 99–100, public 97–99, mỗi bộ 12 trang ×3 lượt sạch. Xem [QA phát hành](qa/deployment-utilities-2026-11-19.json). Manual QA/proxy/dev tooling và Final Acceptance vẫn mở.
+
+## Phạm vi ban đầu để người dùng duyệt
 
 Giữ nguyên 40 công cụ kiểm tra thiết bị. Bổ sung hai công cụ, giao diện VI/EN và hai nhóm khám phá: **Kiểm tra thiết bị** / **Tiện ích hằng ngày**. Đây là nhánh tiện ích riêng; không gán công cụ mới vào Phase 3 kiểm tra thiết bị. Chỉ làm local, không commit/push/CI từ xa/SSH/deploy trong milestone này.
 

@@ -1,5 +1,15 @@
 # Triển khai và vận hành
 
+## Tiện ích Milestone 1 đang phục vụ — 19/11/2026
+
+Source **7e3dd0b119ef9c59da69f3b244787b9f5a9c1d04**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44445480650) success verify/Docker,460 unit,402 E2E đạt/6 native policy skip, build 112. Trước chuyển đã xem 36 lượt Lighthouse sạch median 99–100 trên 12 trang; candidate VPS kiểm tra84 route/sitemap 106 và restart/stop-start/exit143. Gates đạt mới thay app. Tag **device-lab:staging-7e3dd0b-20261119**, image **sha256:7f0e4bdbef741ab5964ce7e960b86f8936d6886f11e947da9d5bdd38c691cfbc**, current→/opt/device-lab/releases/7e3dd0b. Archive tracked SHA256 **77dd8e7531629400a15077d3ad44ed3516277591a6b573a47e1a52dc9241009a**, .env ở host chỉ đổi tag.
+
+Giữ release/image 57a5de2 và `/opt/device-lab/shared/nginx.conf.before-utilities-20261119` để rollback. Chuyển thành công lần đầu; nhánh phục hồi tự động đã chuẩn bị nhưng không cố gây lỗi/diễn tập trên production. Nginx chỉ đổi marker/reload, giữ inode bind mount; đối chiếu backup xác minh không đổi routing/policy/DNS/proxy. Không prune/reboot hoặc chạy renewal mới. App nextjs/read-only/healthy/không OOM/Error, Node 3000 không public, Node.js 24.22.3, giới hạn768 MiB/256 PID/cap-drop ALL/no-new-privileges. Nginx từ app start không có error; app tail 80 dòng không có error, Certbot timer active.
+
+Sau chuyển: HTTPS/canonical/84 route công cụ VI/EN/policy/sitemap 106 đạt, public 28/28 browser smoke, [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44449524546)36 lượt sạch/12 trang × 3 median 97–99, median A/BP/SEO100. Dữ liệu đầy đủ và phân biệt lab/public ở [QA phát hành](qa/deployment-utilities-2026-11-19.json). Không nhận đã chạy full 408 trên VPS hoặc WebKit là Safari thật.
+
+CSP được xác minh trực tiếp trong app, public VI/EN vẫn bị proxy bỏ; người dùng quản lý proxy nên không tự sửa. TLS proxy→origin, manual hardware/Safari/screen reader/field data,6 native policy skips và 2 moderate dev tooling còn mở. Không đóng Final Acceptance. Phiên SSH kết thúc. Các phần dưới là lịch sử, không phải source đang phục vụ.
+
 ## Bản EVKey và nội dung VI/EN đã triển khai — 16/11/2026
 
 Source **57a5de29307418c9d060f50e7e1e527bb1626eba**, [CI 43804594079](https://github.com/anhtruc1803/checkall/actions/runs/43804594079) success verify/Docker. Typecheck/lint/secret scan, build 106 trang, 333 unit trên 35 file đạt; full **378 E2E đạt/6 skip**, không fail/flaky/global error, 774.698,232 ms. Không đổi assertion/retry hoặc nhận skip là xác minh quyền native. [Lighthouse lab 43804641819](https://github.com/anhtruc1803/checkall/actions/runs/43804641819) đủ 48 lượt sạch và [public 43807789325](https://github.com/anhtruc1803/checkall/actions/runs/43807789325) đủ 24 lượt sạch; tám trang, ba lượt/trang/nguồn.

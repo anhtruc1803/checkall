@@ -1,5 +1,15 @@
 # Kiểm thử
 
+## Tiện ích Milestone 1 đã phát hành — 19/11/2026
+
+Source **7e3dd0b119ef9c59da69f3b244787b9f5a9c1d04**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44445480650): typecheck/lint/secret scan đạt, **460 unit/39 file**, build 112 trang, **402 E2E đạt/6 skip**, không fail/flaky/global error; E2E 1.174.129,904 ms. Chromium/mobile mỗi 102 đạt, Firefox/WebKit mỗi 99 đạt/3 skip. Sáu skip đều native Permissions-Policy microphone/camera/gamepad; không đổi assertion/retry/timeout để đạt. Native Web Audio ba engine qua backend ảo, không xác nhận thiết bị thật. Nhóm tiện ích **24/24**, hồi quy bàn phím 52 bài; metadata 40 công cụ gốc tiếp tục khớp fixture đã đối chiếu committed HEAD trước milestone.
+
+Docker CI đạt build/health/Nginx/40 route VI/EN trước/sau restart/stop-start, SIGTERM143/OOM false/Error rỗng, Node không publish. Candidate VPS có bằng chứng riêng: 84 route/sitemap 106 trước/sau restart/stop-start, network none/nonroot/read-only; app cũ chỉ được thay sau khi CI và 36 lượt Lighthouse sạch đạt. Không đồng nhất Docker CI với kiểm tra VPS.
+
+Sau chuyển: public HTTP kiểm tra 84 route với H1/canonical/header release/policy, hai trang chủ 42 thẻ, sitemap 106, redirect HTTPS. **28/28 public browser smoke** đạt trên Chromium/Firefox/WebKit/mobile, 221.037,348 ms, không fail/skip/flaky/global error; chọn nhóm tiện ích/đọc chữ/VND/phần trăm/clipboard fixture/a11y/reflow/EVKey/dd. Không chạy lại full 408 trên VPS để tránh tải không cần thiết. Public smoke dùng Windows hiện có, không phải chứng nhận full suite sạch/no-upload; bộ đầy đủ đã chạy trước chuyển trên Ubuntu, gồm cả bài không upload của hai tiện ích. Đã xem ảnh mobile public; không nhận emulation là điện thoại thật.
+
+Audit production lặp lại không có advisory, toàn bộ dependency còn 2 moderate dev tooling. App trực tiếp có CSP, public VI/EN vẫn bị proxy bỏ; không thay proxy hoặc nới policy. Danh sách skip/scope, 72 sample Lighthouse, runtime và rollback nằm ở [QA phát hành](qa/deployment-utilities-2026-11-19.json). Kết quả Windows 380/19/9 vẫn giữ đúng checkpoint trước, không xóa hoặc gán lại là pass. Manual hardware/Safari/screen reader/clipboard/quy cách chứng từ và Final Acceptance còn mở. Các phần dưới lưu lịch sử trước phát hành.
+
 ## Source 57a5de2 trên CI sạch và website — 16/11/2026
 
 Source **57a5de29307418c9d060f50e7e1e527bb1626eba**, [CI 43804594079](https://github.com/anhtruc1803/checkall/actions/runs/43804594079) success verify/Docker. Typecheck/lint/secret scan, build 106 trang, 333 unit trên 35 file đạt; full **378 E2E đạt/6 skip**, không fail/flaky/global error, 774.698,232 ms. Không đổi assertion/retry hoặc nhận skip là xác minh quyền native. [Lighthouse lab 43804641819](https://github.com/anhtruc1803/checkall/actions/runs/43804641819) đủ 48 lượt sạch và [public 43807789325](https://github.com/anhtruc1803/checkall/actions/runs/43807789325) đủ 24 lượt sạch; tám trang, ba lượt/trang/nguồn.

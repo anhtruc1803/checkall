@@ -4,7 +4,7 @@ Nền tảng kiểm tra thiết bị cục bộ trên trình duyệt, song ngữ
 
 Phase 2 có nền tảng registry/capability/permission và tám công cụ Milestone 2: thiết bị/browser/GPU, touch/pointer, storage, fullscreen và mouse movement/accuracy. Milestone 3 bổ sung Speaker Test, Stereo Channel Test và Frequency Generator. Milestone 4 bổ sung Microphone Test và Audio Spectrum với quyền và cleanup riêng. Milestone 5 bổ sung Webcam Preview, Camera Resolution và Camera FPS, chỉ capture video sau Start. Milestone 6 bổ sung Gamepad Tester, Analog Stick Test và Stick Drift Test với dữ liệu browser thật, mapping rõ ràng và cleanup. Tổng cộng 40 công cụ thiết bị (21 Phase 1 + 19 Phase 2). Xem [nền tảng](docs/PHASE2-FOUNDATION.md) và [Milestone 2](docs/PHASE2-MILESTONE2.md) và [Milestone 3](docs/PHASE2-MILESTONE3.md), [Milestone 4](docs/PHASE2-MILESTONE4.md), [Milestone 5](docs/PHASE2-MILESTONE5.md), [Milestone 6](docs/PHASE2-MILESTONE6.md).
 
-Nhánh tiện ích Milestone 1 bổ sung số/số tiền VND thành chữ và tính phần trăm, giữ nguyên 40 công cụ thiết bị: tổng 42 công cụ VI/EN. Bản local đã được duyệt; tiến trình QA sạch và phát hành được cập nhật trong `docs/PROGRESS.md`. Xem [đặc tả tiện ích](docs/UTILITIES-MILESTONE-1.md) và kết quả thật trong `docs/PROGRESS.md`.
+Nhánh tiện ích Milestone 1 bổ sung số/số tiền VND thành chữ và tính phần trăm, giữ nguyên 40 công cụ thiết bị: tổng 42 công cụ VI/EN. Đã được duyệt và triển khai trên [website](https://nguyenanhtruc.io.vn/vi/utilities) sau CI/Lighthouse sạch; xem [đặc tả tiện ích](docs/UTILITIES-MILESTONE-1.md) và kết quả/giới hạn nghiệm thu trong `docs/PROGRESS.md`.
 
 ## Chạy phát triển
 
