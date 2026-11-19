@@ -4,6 +4,8 @@
 
 Người dùng đã duyệt bốn tiện ích văn bản và yêu cầu push GitHub/triển khai sau QA môi trường sạch và Lighthouse trước chuyển. Đang chuẩn bị source đã duyệt, giữ nguyên 42 công cụ trước. Chưa chuyển website; chỉ thực hiện khi đã đọc kết quả CI đầy đủ, Docker smoke và ba lượt Lighthouse sạch trên mỗi trang đại diện. Các checkpoint local và bằng chứng phía dưới được giữ nguyên để đối chiếu; không kế thừa CI/Lighthouse M1 làm xác minh M2.
 
+Lượt đầu source `e0b0e96`: Docker CI và candidate cô lập VPS đạt; Lighthouse đủ 48 mẫu sạch/16 trang ×3, median99–100. CI verify bị dừng để chẩn đoán sau hơn15 phút cài browser: ubuntu-latest đã chọn Ubuntu26.04, log APT mirror tải chậm/thử lại gói media, chưa tới E2E; không ghi lượt này là pass hoặc lỗi ứng dụng. Cố định hai job CI sang Ubuntu24.04 để tái lập môi trường và đồng nhất Lighthouse. Không đổi source ứng dụng, test hoặc assertion; chạy lại CI/Lighthouse/candidate đúng commit mới trước chuyển website.
+
 ## Tiện ích Milestone 2 — local để duyệt, 19/11/2026
 
 Theo yêu cầu mới, chỉ làm local: **U03 đếm từ/ký tự, U04 đổi hoa/thường, U05 bỏ dấu/tạo slug, U06 làm sạch văn bản**. Candidate có **46 công cụ VI/EN**, giữ nguyên metadata/copy và engine của 42 công cụ cũ (40 thiết bị + U01/U02). Không thay kiến trúc hoặc dependency, không mở thêm Phase phần cứng; chưa commit/push/CI từ xa/SSH/deploy. Public vẫn Milestone 1 source `7e3dd0b` phía dưới.
