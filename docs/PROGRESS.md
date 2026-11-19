@@ -8,6 +8,8 @@ Lượt đầu source `e0b0e96`: Docker CI và candidate cô lập VPS đạt; L
 
 Source `e825c4c` tiếp tục đạt Docker/candidate và 48 Lighthouse sạch median99–100, nhưng verify vẫn kéo dài hơn20 phút ở cài dependency browser. Chuyển riêng job verify sang image Playwright1.64.1-noble chính thức, pin digest `sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f`, có sẵn ba browser/thư viện. Giữ Node24, backend audio ảo, full440 và toàn bộ assertions; không đổi ứng dụng. Lượt chưa chạy E2E không được tính pass. Tham khảo [Playwright CI](https://playwright.dev/docs/ci). Gates sẽ dùng lại đúng source commit sau cập nhật CI.
 
+Lượt container `0dbf8f8` qua install/typecheck/lint, nhưng secret scan dừng do Git dubious ownership giữa bind mount của runner và user container. Bổ sung safe.directory chỉ cho `$GITHUB_WORKSPACE` đã checkout, không dùng wildcard hoặc bỏ scan. Không tính lượt này là kiểm thử đã đạt; chạy lại toàn bộ pipeline.
+
 ## Tiện ích Milestone 2 — local để duyệt, 19/11/2026
 
 Theo yêu cầu mới, chỉ làm local: **U03 đếm từ/ký tự, U04 đổi hoa/thường, U05 bỏ dấu/tạo slug, U06 làm sạch văn bản**. Candidate có **46 công cụ VI/EN**, giữ nguyên metadata/copy và engine của 42 công cụ cũ (40 thiết bị + U01/U02). Không thay kiến trúc hoặc dependency, không mở thêm Phase phần cứng; chưa commit/push/CI từ xa/SSH/deploy. Public vẫn Milestone 1 source `7e3dd0b` phía dưới.
