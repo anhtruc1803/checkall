@@ -1,6 +1,24 @@
 # Kiểm thử
 
-## Tiện ích Milestone 3 — local để duyệt, 20/11/2026
+## Tiện ích Milestone 3 đã triển khai — 20/11/2026
+
+Source **890aa52d9af73d1d36fd96b79d941adcb20296ed**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44663888110), [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44663904488) và [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44668621145). Đã triển khai **U07 Đổi đơn vị** và **U08 Tính ngày** sau khi người dùng duyệt local: **48 công cụ VI/EN**, giữ nguyên metadata/route/engine/copy của **46 công cụ trước**; **96 route công cụ**, sitemap **118 URL**. Không sửa mã ứng dụng/tests/scripts sau bản đã duyệt; không thêm dependency hoặc viết lại kiến trúc.
+
+Typecheck/lint/secret scan đạt, **575 unit/integration/43 file**, build **124 trang**. Full CI sạch **466 E2E đạt/6 native policy skip**, không fail/flaky/global error; hai công cụ mới **32/32**, văn bản M2 **32/32**, số M1 **24/24**. Chromium/mobile mỗi 118 đạt; Firefox/WebKit mỗi 115 đạt/3 skip. Backend audio ảo qua smoke cả ba engine, không phải phần cứng thật hoặc Safari.
+
+Trước chuyển đủ **60 mẫu sạch/20 trang × 3**, median mobile **98–100**; sau chuyển đủ **60 mẫu sạch/20 trang × 3**, median **96–99**. Median Accessibility/Best Practices/SEO 100 trên mọi trang ở cả hai bộ. Đối chiếu source/path/pageVerified/clean của từng mẫu; đủ 120 mẫu, FCP/LCP/TBT/CLS và byte JS/font/ảnh trong [QA phát hành](qa/deployment-utilities-milestone3-2026-11-20.json). Không lấy điểm Windows 76 có injection làm baseline hoặc nhận chênh lệch lab/public là thay đổi do code.
+
+Docker CI đạt build/health/Nginx/**52 route smoke VI/EN** trước/sau restart/stop-start, Node private, SIGTERM 143/không OOM/Error. Candidate VPS network none, non-root/read-only, 768 MiB/256 PID: đủ **96 route**, sitemap 118 trước/sau restart/stop-start và exit 143; đã dọn candidate. Chỉ sau khi đọc đủ CI/Lighthouse/candidate và sinh gate đúng source mới chuyển website.
+
+Public HTTP→HTTPS308, H1/canonical/release/policy và đủ **96 route** (92 cũ + 4 mới), 48 card, sitemap 118 đạt. **84/84 public smoke** trên Chromium/Firefox/WebKit/mobile, mỗi cấu hình 21 bài, không fail/skip/flaky/global error; gồm tiện ích số/văn bản/đơn vị/ngày, VI/EN, clipboard fixture, theme/reflow/WCAG và EVKey/dd. Đây là subset chức năng trên Windows hiện có; kiểm tra không-upload của full suite được xác minh riêng trong CI sạch. Public Lighthouse đo sau smoke để không có tải QA đồng thời.
+
+Các số liệu sạch thuộc source `890aa52`; không đổi 15 failure/19 skip của lượt Windows cũ thành pass. Giữ checkpoint local/đối chứng Kaspersky và báo cáo raw; sáu skip CI là native microphone/camera/gamepad policy của Firefox/WebKit, HTTP scope/app guard đã kiểm tra riêng. Không giảm timeout/assertions, thêm skip hoặc sửa ứng dụng để làm CI đạt.
+
+**Đã hoàn thành và xác minh:** phần mềm CI sạch, giữ 46 công cụ cũ, Docker CI/candidate, public HTTP/UI và median mobile ≥90 trên 20 trang đại diện. **Đã triển khai nhưng chưa xác minh đầy đủ:** clipboard quyền hệ thống, screen reader, date picker/bàn phím số/nhập âm/bộ gõ trên điện thoại thật; rollback khi production lỗi chưa diễn tập cố ý. **Chưa hoàn thành:** 6 native policy skip, hai moderate dev tooling glob/minimatch, TLS proxy→origin trong dashboard/field data và các mục manual của nền tảng. CSP có tại app/origin nhưng public chỉ 0/96 route có header; proxy do người dùng quản lý, không tự sửa. **Không thể kiểm chứng lượt này:** Safari/phần cứng thật và mọi phiên bản EVKey; chế độ TLS trong dashboard proxy. Không coi fixture/WebKit automation là thiết bị/Safari thật. **Các gate phát hành phần mềm đạt; Final Acceptance tổng thể vẫn mở.**
+
+[Nghiệm thu M3](ACCEPTANCE-UTILITIES-MILESTONE-3.md); [QA phát hành](qa/deployment-utilities-milestone3-2026-11-20.json).
+
+## Lịch sử trước phát hành: Tiện ích Milestone 3 — local để duyệt, 20/11/2026
 
 Candidate local **48 công cụ VI/EN**, giữ nguyên metadata/route/engine/copy của 46 công cụ trước; thêm **U07 Đổi đơn vị** (tám nhóm, phân số BigInt) và **U08 Tính ngày** (khoảng cách và cộng/trừ ngày Gregorian 0001–9999, độc lập DST). Không thêm dependency, API, capability hoặc permission. Chưa commit/push, CI từ xa, SSH hoặc triển khai website; public vẫn M2. Xem [đặc tả M3](UTILITIES-MILESTONE-3.md).
 

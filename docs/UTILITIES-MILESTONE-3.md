@@ -1,6 +1,8 @@
 # Tiện ích Milestone 3 — đổi đơn vị và tính ngày
 
-Ngày 20/11/2026. Phạm vi người dùng chọn: **Đổi đơn vị** và **Tính ngày**, chỉ làm local để duyệt. Candidate có **48 công cụ VI/EN**, giữ nguyên 46 công cụ M2. Chưa commit, push, chạy CI từ xa, SSH hoặc triển khai website; public vẫn M2.
+## Trạng thái phát hành
+
+Đã được người dùng duyệt và triển khai ngày **20/11/2026**, source `890aa52`: **48 công cụ VI/EN**, giữ 46 công cụ trước. CI sạch 575 unit/43 file, build 124, 466 E2E đạt/6 native policy skip; nhóm mới 32/32; public smoke 84/84. Lighthouse trước chuyển 98–100, public 96–99, mỗi bộ 20 trang × 3 mẫu sạch. Xem [Nghiệm thu M3](ACCEPTANCE-UTILITIES-MILESTONE-3.md) và [QA phát hành](qa/deployment-utilities-milestone3-2026-11-20.json); Final Acceptance tổng thể vẫn mở. Đặc tả xử lý dưới đây không đổi sau duyệt.
 
 | ID  | Route sau locale             | Công dụng                                |
 | --- | ---------------------------- | ---------------------------------------- |
@@ -57,10 +59,10 @@ Tính cả cuối tuần/ngày lễ. Không tính ngày làm việc, tuổi, âm
 - Không API mới, đọc clipboard, storage/lịch sử, upload, listener toàn cục, timer, worker hoặc tài nguyên phần cứng. State chỉ trong component; rời route hoặc reload xóa input. Chỉ ghi clipboard khi bấm Sao chép, có phản hồi thành công/thất bại; đổi kết quả xóa phản hồi cũ.
 - Không thay engine/copy của 46 công cụ cũ. Fixture 40 thiết bị và M1 giữ nguyên; thêm fixture M2 U03–U06 lấy từ `git show HEAD:src/lib/tools/text-utilities.ts` trước khi triển khai, không sinh lại từ metadata candidate để tự xác nhận.
 
-## Kiểm thử và duyệt local
+## Lịch sử kiểm thử local và manual QA
 
 Kiểm thử bao gồm mốc chuyển đổi độc lập, số lớn, làm tròn, input lỗi, 0 K, đổi chéo nhóm, năm nhuận/thế kỷ, năm 0001/0099/9999, ngày sai, phạm vi, DST, VI/EN, tìm kiếm/đổi locale, clipboard fixture, theme, accessibility và reflow. Full suite giữ toàn bộ kiểm thử cũ; chỉ cập nhật tổng số công cụ/route và thêm assertions hồi quy M2.
 
-Kết quả cuối: **575 unit/43 file**, build **124 trang**; full E2E **438 đạt/19 skip/15 fail** do request Kaspersky, không flaky/global error. Nhóm mới **29/32 đạt**, còn 3 fail do injection. Đủ 96 route công cụ VI/EN và sitemap 118. Lighthouse sạch/mobile ≥90 và Docker/Linux còn mở. BUILD_ID, fingerprint và từng browser/file nằm trong [QA JSON M3](qa/utilities-milestone3-local-2026-11-20.json), PROGRESS/TESTING/PERFORMANCE. Không coi WebKit automation là Safari thật hoặc kết quả M2 public là xác minh Performance candidate M3.
+Checkpoint local trước phát hành: **575 unit/43 file**, build **124 trang**; full E2E **438 đạt/19 skip/15 fail** do request Kaspersky, không flaky/global error. Nhóm mới **29/32 đạt**, còn 3 fail do injection. Đủ 96 route công cụ VI/EN và sitemap 118. Tại checkpoint này chưa xác minh Lighthouse sạch/mobile ≥90 và Docker/Linux; kết quả phát hành sạch nằm ở đầu tài liệu và báo cáo nghiệm thu. BUILD_ID, fingerprint và từng browser/file của lượt local nằm trong [QA JSON M3](qa/utilities-milestone3-local-2026-11-20.json). Không coi WebKit automation là Safari thật hoặc kết quả M2 public là xác minh Performance candidate M3.
 
-Manual QA còn cần: date picker và bàn phím số/nhập dấu âm trên điện thoại thật, screen reader, Safari thật, clipboard quyền hệ thống và bộ gõ thực. Docker/Linux/Lighthouse sạch trước phát hành thuộc gate sau khi người dùng duyệt; không triển khai từ nhiệm vụ local này.
+Manual QA còn cần: date picker và bàn phím số/nhập dấu âm trên điện thoại thật, screen reader, Safari thật, clipboard quyền hệ thống và bộ gõ thực. Docker/Linux và Lighthouse sạch đã được xác minh trong đợt phát hành; các mục manual vẫn mở.

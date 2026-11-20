@@ -1,6 +1,10 @@
 # Kiến trúc Device Lab
 
-## Candidate local tiện ích Milestone 3 — 20/11/2026
+## Tiện ích Milestone 3 đã triển khai — 20/11/2026
+
+Source `890aa52`, 48 công cụ VI/EN, giữ nguyên 46 định nghĩa trước; CI/Lighthouse/candidate/public đã xác minh theo [QA phát hành](qa/deployment-utilities-milestone3-2026-11-20.json). Không thay mã ứng dụng/tests/scripts sau duyệt local, không dependency/API/capability/permission hoặc kiến trúc mới. Giữ Registry/ToolRunner/next-intl và hai engine tải động, tính toán chỉ từ input trong state. Các phần dưới là lịch sử kiến trúc/checkpoint, không phải trạng thái phát hành hiện tại.
+
+## Lịch sử trước phát hành: Candidate local tiện ích Milestone 3 — 20/11/2026
 
 48 công cụ (40 thiết bị + 8 tiện ích), giữ nguyên 46 định nghĩa trước; public vẫn M2 source `142f807`. U07/U08 có hai engine `unit-converter`/`date-calculator` tải riêng qua `next/dynamic`, dùng lại Registry/ToolRunner/next-intl/EngineSurface/CopyResult và CSS utilities. Tám nhóm đơn vị dùng phân số BigInt và parser/formatter M1; ngày dùng Gregorian nghiêm ngặt, UTC và năm 0001–9999. Không dependency, API, capability, permission, storage/listener/timer hoặc kiến trúc mới. Registry tự dẫn xuất 96 tool route VI/EN, sitemap 118 URL. Fixture M2 lấy từ committed HEAD kết hợp fixture thiết bị/M1 khóa đầy đủ 46 định nghĩa cũ. Xem [UTILITIES-MILESTONE-3.md](UTILITIES-MILESTONE-3.md). Các phần dưới là lịch sử phát hành/checkpoint trước.
 

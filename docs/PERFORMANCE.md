@@ -1,6 +1,39 @@
 # Hiệu năng và kết quả đo
 
-## Tiện ích Milestone 3 — local để duyệt, 20/11/2026
+## Tiện ích Milestone 3 đã triển khai — 20/11/2026
+
+Trước chuyển đủ **60 mẫu sạch/20 trang × 3**, median mobile **98–100**; sau chuyển đủ **60 mẫu sạch/20 trang × 3**, median **96–99**. Median Accessibility/Best Practices/SEO 100 trên mọi trang ở cả hai bộ. Đối chiếu source/path/pageVerified/clean của từng mẫu; đủ 120 mẫu, FCP/LCP/TBT/CLS và byte JS/font/ảnh trong [QA phát hành](qa/deployment-utilities-milestone3-2026-11-20.json). Không lấy điểm Windows 76 có injection làm baseline hoặc nhận chênh lệch lab/public là thay đổi do code.
+
+[CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44663888110), [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44663904488) và [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44668621145)
+
+| Trang                               | Lab trước chuyển | Public | FCP public ms | LCP public ms | TBT public ms | CLS public |
+| ----------------------------------- | ---------------: | -----: | ------------: | ------------: | ------------: | ---------: |
+| `/vi`                               |               98 |     98 |       1079.09 |       1079.09 |        116.00 |    0.00000 |
+| `/en`                               |              100 |     98 |       1079.65 |       1083.91 |        101.00 |    0.00000 |
+| `/vi/keyboard/tester`               |              100 |     99 |       1007.57 |       1007.57 |        103.00 |    0.00000 |
+| `/en/audio/microphone`              |               99 |     99 |       1351.67 |       1351.67 |        103.00 |    0.00505 |
+| `/vi/camera/preview`                |               98 |     99 |       1365.22 |       1365.22 |        106.00 |    0.00050 |
+| `/en/gamepad/tester`                |               98 |     99 |       1376.03 |       1376.03 |        105.00 |    0.01514 |
+| `/vi/utilities/number-to-words`     |               98 |     99 |        969.79 |        969.79 |         96.00 |    0.00000 |
+| `/en/utilities/percentage`          |              100 |     99 |        978.01 |        978.01 |        102.00 |    0.00000 |
+| `/vi/utilities/word-counter`        |              100 |     99 |        974.02 |        974.02 |        104.00 |    0.00000 |
+| `/en/utilities/word-counter`        |               99 |     96 |        961.91 |        961.91 |        183.00 |    0.00000 |
+| `/vi/utilities/case-converter`      |               98 |     97 |        976.16 |        976.16 |        151.50 |    0.00000 |
+| `/en/utilities/case-converter`      |              100 |     98 |        972.43 |        972.43 |        119.00 |    0.00000 |
+| `/vi/utilities/remove-accents-slug` |              100 |     98 |        985.79 |        985.79 |        128.50 |    0.00000 |
+| `/en/utilities/remove-accents-slug` |              100 |     98 |        964.17 |        964.17 |        115.00 |    0.00000 |
+| `/vi/utilities/text-cleaner`        |              100 |     99 |        981.52 |        981.52 |        104.00 |    0.00000 |
+| `/en/utilities/text-cleaner`        |               98 |     98 |        938.93 |        938.93 |         98.00 |    0.00000 |
+| `/vi/utilities/unit-converter`      |               99 |     99 |        966.49 |        966.49 |        108.50 |    0.00000 |
+| `/en/utilities/unit-converter`      |              100 |     99 |        972.84 |        972.84 |         96.50 |    0.00000 |
+| `/vi/utilities/date-calculator`     |               98 |     99 |        979.57 |        979.57 |         96.00 |    0.00000 |
+| `/en/utilities/date-calculator`     |              100 |     97 |        985.27 |        985.27 |        157.50 |    0.00000 |
+
+Hai bộ cùng source `890aa52d9af73d1d36fd96b79d941adcb20296ed`: mỗi trang ba lượt Chromium/profile mới, extension tắt, mobile/throttling mô phỏng cùng cấu hình ghi trong [QA phát hành](qa/deployment-utilities-milestone3-2026-11-20.json). Public đo sau khi smoke kết thúc. VM/origin/HTTP khác HTTPS proxy nên không quy chênh lệch điểm cho code. Mẫu Windows có Kaspersky không dùng so sánh tối ưu. Không bỏ công cụ/SEO/accessibility hoặc sửa UI đã duyệt để lấy điểm. Đây là Lighthouse lab, không phải field Core Web Vitals.
+
+Toàn bộ 120 mẫu, số đo không làm tròn, settings/execution và byte Script/Font/Image/Document/CSS nằm trong QA JSON; raw HTML/JSON bị ignore. Mục tiêu median mobile ≥90 đạt trên 20 trang đại diện trước và sau triển khai. Xem [Nghiệm thu M3](ACCEPTANCE-UTILITIES-MILESTONE-3.md); các mục manual/field data còn mở.
+
+## Lịch sử trước phát hành: Tiện ích Milestone 3 — local để duyệt, 20/11/2026
 
 Build cuối `53i7Q8tGFzXpfNgRhVJ7k`, chưa commit/push/deploy. Hai engine tải riêng; unit **7.594 byte / gzip ước tính 2.864 byte**, date **4.761 / 1.783 byte**. Không tải trên `/vi`, `/vi/keyboard/tester`, `/vi/utilities/number-to-words`; có trên bốn route mới VI/EN trong runtime graph. Không thêm dependency, font/ảnh hoặc bỏ SEO/accessibility; messages và Registry tăng payload chung, không tuyên bố không overhead.
 
