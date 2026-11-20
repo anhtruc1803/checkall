@@ -1,0 +1,1820 @@
+{
+  "date": "2026-11-20",
+  "milestone": "utilities-3",
+  "scope": "Chỉ local để người dùng duyệt: Đổi đơn vị và Tính ngày",
+  "baseCommit": "b28b4b17a6adbf03e79d20c8db204fe6e91c12d7",
+  "candidateCommit": null,
+  "workingTreeChanges": true,
+  "buildId": "53i7Q8tGFzXpfNgRhVJ7k",
+  "productionBuildPages": 124,
+  "tools": {
+    "total": 48,
+    "existingToolsPreserved": 46,
+    "originalDeviceTools": 40,
+    "utilityIds": ["U01", "U02", "U03", "U04", "U05", "U06", "U07", "U08"],
+    "localizedToolRoutes": 96,
+    "sitemapContentUrls": 118,
+    "categories": 9,
+    "locales": ["vi", "en"],
+    "originalMetadataFixturesVerified": true,
+    "m2FixtureSource": "git show HEAD:src/lib/tools/text-utilities.ts tại baseCommit trước chỉnh sửa",
+    "m2FixtureSha256": "93cb5e2ffc5a727f4bc134550768d57823482aa41c69ece45ef6909bc26ee352"
+  },
+  "checks": {
+    "typecheck": "đạt",
+    "lint": "đạt",
+    "unit": "đạt",
+    "productionBuild": "đạt",
+    "secretScan": "đạt, không finding trong tracked/untracked không bị ignore",
+    "formatting": "đạt trong phạm vi thay đổi",
+    "gitDiffCheck": "đạt"
+  },
+  "unit": {
+    "passed": 575,
+    "failed": 0,
+    "skipped": 0,
+    "files": 43,
+    "rawReport": "artifacts/utilities-m3-unit-final.json",
+    "baselinePassed": 494,
+    "newUnitAndUiAssertions": 80,
+    "newM2MetadataRegression": 1
+  },
+  "fullE2e": {
+    "rawReport": "artifacts/utilities-m3-full-final.json",
+    "stats": {
+      "startTime": "2026-11-20T02:02:04.988Z",
+      "duration": 1878757.726,
+      "expected": 438,
+      "skipped": 19,
+      "unexpected": 15,
+      "flaky": 0
+    },
+    "globalErrors": 0,
+    "projects": {
+      "chromium": {
+        "passed": 113,
+        "failed": 5
+      },
+      "firefox": {
+        "passed": 110,
+        "failed": 5,
+        "skipped": 3
+      },
+      "webkit": {
+        "passed": 102,
+        "skipped": 16
+      },
+      "mobile": {
+        "passed": 113,
+        "failed": 5
+      }
+    },
+    "byFile": {
+      "conversion-utilities.spec.ts": {
+        "passed": 29,
+        "failed": 3
+      },
+      "foundation.spec.ts": {
+        "passed": 8
+      },
+      "interface.spec.ts": {
+        "passed": 16
+      },
+      "keyboard-input-method.spec.ts": {
+        "passed": 8
+      },
+      "keyboard-release.spec.ts": {
+        "passed": 16
+      },
+      "keyboard-upgrade.spec.ts": {
+        "passed": 16
+      },
+      "keyboard.spec.ts": {
+        "passed": 12
+      },
+      "milestone2.spec.ts": {
+        "passed": 40
+      },
+      "milestone3.spec.ts": {
+        "passed": 29,
+        "skipped": 7
+      },
+      "milestone4.spec.ts": {
+        "passed": 41,
+        "skipped": 7
+      },
+      "milestone5.spec.ts": {
+        "passed": 38,
+        "failed": 3,
+        "skipped": 3
+      },
+      "milestone6.spec.ts": {
+        "passed": 43,
+        "failed": 3,
+        "skipped": 2
+      },
+      "mouse.spec.ts": {
+        "passed": 20
+      },
+      "problem-chooser.spec.ts": {
+        "passed": 8
+      },
+      "quality.spec.ts": {
+        "passed": 20
+      },
+      "registry.spec.ts": {
+        "passed": 8
+      },
+      "screen.spec.ts": {
+        "passed": 16
+      },
+      "shell.spec.ts": {
+        "passed": 12
+      },
+      "text-utilities.spec.ts": {
+        "passed": 29,
+        "failed": 3
+      },
+      "user-content.spec.ts": {
+        "passed": 8
+      },
+      "utilities.spec.ts": {
+        "passed": 21,
+        "failed": 3
+      }
+    },
+    "failures": [
+      {
+        "project": "chromium",
+        "file": "conversion-utilities.spec.ts",
+        "line": 238,
+        "title": "numeric and date input stay in memory, never upload or request hardware, and reset after navigation",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "conversion-utilities.spec.ts",
+        "line": 238,
+        "title": "numeric and date input stay in memory, never upload or request hardware, and reset after navigation",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "conversion-utilities.spec.ts",
+        "line": 238,
+        "title": "numeric and date input stay in memory, never upload or request hardware, and reset after navigation",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "chromium",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "chromium",
+        "file": "milestone6.spec.ts",
+        "line": 126,
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "milestone6.spec.ts",
+        "line": 126,
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "milestone6.spec.ts",
+        "line": 126,
+        "title": "simulated buttons/axes are read-only, bounded and never captured, vibrated, stored or uploaded",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "chromium",
+        "file": "text-utilities.spec.ts",
+        "line": 233,
+        "title": "text tools neither persist content nor request device permissions or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "text-utilities.spec.ts",
+        "line": 233,
+        "title": "text tools neither persist content nor request device permissions or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "text-utilities.spec.ts",
+        "line": 233,
+        "title": "text tools neither persist content nor request device permissions or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "chromium",
+        "file": "utilities.spec.ts",
+        "line": 175,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "firefox",
+        "file": "utilities.spec.ts",
+        "line": 175,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://ff.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      },
+      {
+        "project": "mobile",
+        "file": "utilities.spec.ts",
+        "line": 175,
+        "title": "utilities never request device permissions, persist inputs or upload events",
+        "status": "failed",
+        "externalOrigins": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "reason": "Request do phần mềm Kaspersky chèn ngoài ứng dụng"
+      }
+    ],
+    "skips": [
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 93,
+        "title": "all three audio tools are idle until Start and Stop/Reset release real audio without capture or persistence",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 120,
+        "title": "stereo switches left/right/both on the same real oscillator",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 146,
+        "title": "generator updates real frequency/waveform and stops invalid input without synthetic readings",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 174,
+        "title": "audio automatically ends after its real ten-second limit",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 182,
+        "title": "focus loss and SPA navigation release audio; returning does not restart",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 266,
+        "title": "audio pages pass axe in both themes, including running and invalid states",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone3.spec.ts",
+        "line": 301,
+        "title": "VI/EN audio controls fit mobile/tablet/desktop widths and locale preserves route",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio is unavailable in this browser build; real playback requires Linux CI or hardware QA."
+        ]
+      },
+      {
+        "project": "firefox",
+        "file": "milestone4.spec.ts",
+        "line": 129,
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "status": "skipped",
+        "reasons": [
+          "Native Permissions-Policy enforcement is unavailable in this runtime; header scope and app permission handling are tested separately."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 86,
+        "title": "native getUserMedia captures virtual test devices from homepage and releases all tracks",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 129,
+        "title": "native browser policy blocks microphone access when policy introspection is supported",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 164,
+        "title": "real analysis of a synthetic 1 kHz stream populates both tools without saving or uploading",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 338,
+        "title": "revocation releases the live stream and track mute/end clear stale readings",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 360,
+        "title": "blur and session deadline release real stream graphs without background continuation",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone4.spec.ts",
+        "line": 399,
+        "title": "both input tools pass axe in Dark/Light with running and denied states",
+        "status": "skipped",
+        "reasons": [
+          "Native Web Audio unavailable in this browser build; Linux CI must verify input graph."
+        ]
+      },
+      {
+        "project": "firefox",
+        "file": "milestone5.spec.ts",
+        "line": 167,
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "status": "skipped",
+        "reasons": [
+          "Native Permissions-Policy unavailable; HTTP scope and app guard are verified separately."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone5.spec.ts",
+        "line": 86,
+        "title": "native virtual camera renders all tools and measures compositor FPS without storage or upload",
+        "status": "skipped",
+        "reasons": [
+          "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone5.spec.ts",
+        "line": 167,
+        "title": "native camera policy denial is enforced when the runtime exposes policy support",
+        "status": "skipped",
+        "reasons": [
+          "Native mediaDevices unavailable in this runtime; Linux CI must verify camera capture."
+        ]
+      },
+      {
+        "project": "firefox",
+        "file": "milestone6.spec.ts",
+        "line": 82,
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "status": "skipped",
+        "reasons": [
+          "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+        ]
+      },
+      {
+        "project": "webkit",
+        "file": "milestone6.spec.ts",
+        "line": 82,
+        "title": "native gamepad policy denial is checked separately when advertised by the runtime",
+        "status": "skipped",
+        "reasons": [
+          "Runtime does not advertise the gamepad policy directive; native enforcement remains unverified."
+        ]
+      }
+    ]
+  },
+  "newToolE2e": {
+    "passed": 29,
+    "failed": 3
+  },
+  "privacyControl": {
+    "note": "Đối chứng HTML trống, không tải ứng dụng, không nhập dữ liệu. Chỉ lưu origin/method/type, bỏ path/session/payload.",
+    "rows": [
+      {
+        "browser": "chromium",
+        "version": "156.0.8078.4",
+        "applicationLoaded": false,
+        "servedScripts": 0,
+        "keyboardInput": false,
+        "outsideRequests": [
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "script"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "POST",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://gc.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          }
+        ]
+      },
+      {
+        "browser": "firefox",
+        "version": "157.0",
+        "applicationLoaded": false,
+        "servedScripts": 0,
+        "keyboardInput": false,
+        "outsideRequests": [
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "script"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "POST",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          },
+          {
+            "origin": "http://ff.kis.v2.scr.kaspersky-labs.com",
+            "method": "GET",
+            "type": "xhr"
+          }
+        ]
+      }
+    ]
+  },
+  "http": {
+    "scriptSmokeRoutes": 52,
+    "allTools": {
+      "checkedAt": "2026-11-20T02:06:20.662Z",
+      "toolRoutes": 96,
+      "sitemapUrls": 118,
+      "baseUrl": "http://127.0.0.1:3100",
+      "results": [
+        {
+          "path": "/vi/screen/resolution",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/resolution",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/viewport",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/viewport",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/aspect-ratio",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/aspect-ratio",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/ppi",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/ppi",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/refresh-rate",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/refresh-rate",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/dead-pixel",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/dead-pixel",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/stuck-pixel",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/stuck-pixel",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/backlight-bleed",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/backlight-bleed",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/color-gradient",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/color-gradient",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/ghosting",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/ghosting",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/screen/touch",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/screen/touch",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/keyboard/tester",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/keyboard/tester",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/keyboard/rollover",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/keyboard/rollover",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/keyboard/chatter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/keyboard/chatter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/keyboard/hold",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/keyboard/hold",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/keyboard/events",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/keyboard/events",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/mouse/buttons",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/mouse/buttons",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/mouse/double-click",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/mouse/double-click",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/mouse/cps",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/mouse/cps",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/mouse/scroll",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/mouse/scroll",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/mouse/polling-rate",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/mouse/polling-rate",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/audio/speaker",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/audio/speaker",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/audio/stereo",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/audio/stereo",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/audio/microphone",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(self), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/audio/microphone",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(self), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/audio/frequency-generator",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/audio/frequency-generator",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/audio/spectrum",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(self), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/audio/spectrum",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(self), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/camera/preview",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(self), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/camera/preview",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(self), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/camera/resolution",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(self), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/camera/resolution",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(self), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/camera/fps",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(self), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/camera/fps",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(self), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/gamepad/tester",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=(self)"
+        },
+        {
+          "path": "/en/gamepad/tester",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=(self)"
+        },
+        {
+          "path": "/vi/gamepad/analog-stick",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=(self)"
+        },
+        {
+          "path": "/en/gamepad/analog-stick",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=(self)"
+        },
+        {
+          "path": "/vi/gamepad/stick-drift",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=(self)"
+        },
+        {
+          "path": "/en/gamepad/stick-drift",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=(self)"
+        },
+        {
+          "path": "/vi/device/information",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/device/information",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/browser/compatibility",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/browser/compatibility",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/device/gpu",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/device/gpu",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/device/pointer-capabilities",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/device/pointer-capabilities",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/browser/storage",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/browser/storage",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/browser/fullscreen",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/browser/fullscreen",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/mouse/movement",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/mouse/movement",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/mouse/accuracy",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/mouse/accuracy",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/number-to-words",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/number-to-words",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/percentage",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/percentage",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/word-counter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/word-counter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/case-converter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/case-converter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/remove-accents-slug",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/remove-accents-slug",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/text-cleaner",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/text-cleaner",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/unit-converter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/unit-converter",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/vi/utilities/date-calculator",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        },
+        {
+          "path": "/en/utilities/date-calculator",
+          "status": 200,
+          "localizedHtml": true,
+          "canonical": true,
+          "csp": true,
+          "policy": "camera=(), microphone=(), geolocation=(), gamepad=()"
+        }
+      ]
+    }
+  },
+  "performance": {
+    "cleanMedian": null,
+    "mobile90Verified": false,
+    "plannedRunsPerPage": 3,
+    "plannedPaths": [
+      "/vi/utilities/unit-converter",
+      "/en/utilities/unit-converter",
+      "/vi/utilities/date-calculator",
+      "/en/utilities/date-calculator",
+      "/vi",
+      "/vi/keyboard/tester"
+    ],
+    "actualDiagnosticSamples": [
+      {
+        "path": "/vi/utilities/unit-converter",
+        "run": 1,
+        "pageVerified": true,
+        "lighthouseVersion": "13.6.0",
+        "clean": false,
+        "externalScripts": ["http://gc.kis.v2.scr.kaspersky-labs.com"],
+        "scores": {
+          "performance": 76,
+          "accessibility": 100,
+          "best-practices": 81,
+          "seo": 100
+        },
+        "metrics": {
+          "fcpMs": 2862.7151999999996,
+          "lcpMs": 2862.7151999999996,
+          "tbtMs": 539,
+          "cls": 0,
+          "speedIndexMs": 3023.7124171903633,
+          "jsBytes": 384829,
+          "fontBytes": 56135,
+          "imageBytes": 0,
+          "documentBytes": 97830,
+          "cssBytes": 16569
+        },
+        "environment": {
+          "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+          "hostUserAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+          "benchmarkIndex": 1079.5,
+          "credits": {
+            "axe-core": "4.14.0"
+          }
+        },
+        "settings": {
+          "formFactor": "mobile",
+          "throttlingMethod": "simulate",
+          "throttling": {
+            "rttMs": 150,
+            "throughputKbps": 1638.4,
+            "requestLatencyMs": 562.5,
+            "downloadThroughputKbps": 1474.5600000000002,
+            "uploadThroughputKbps": 675,
+            "cpuSlowdownMultiplier": 4
+          }
+        },
+        "report": "vi-utilities-unit-converter-1.html"
+      }
+    ],
+    "rejectedReason": "Script Kaspersky chèn ngoài ứng dụng; guard dừng ở mẫu đầu. Không đủ ba mẫu/trang, không có median sạch. Mẫu thô chỉ chẩn đoán, không phải nghiệm thu Performance.",
+    "runtimeGraph": [
+      {
+        "path": "/vi/utilities/unit-converter",
+        "width": 1200,
+        "chunks": [
+          {
+            "engine": "unit-converter",
+            "path": "/_next/static/chunks/402pbdfnpvdpi.js",
+            "bytes": 7594,
+            "gzipEstimate": 2864
+          }
+        ],
+        "screenshot": "artifacts/utilities-m3-vi-utilities-unit-converter-1200.png",
+        "overflow": false
+      },
+      {
+        "path": "/en/utilities/unit-converter",
+        "width": 375,
+        "chunks": [
+          {
+            "engine": "unit-converter",
+            "path": "/_next/static/chunks/402pbdfnpvdpi.js",
+            "bytes": 7594,
+            "gzipEstimate": 2864
+          }
+        ],
+        "screenshot": "artifacts/utilities-m3-en-utilities-unit-converter-375.png",
+        "overflow": false
+      },
+      {
+        "path": "/vi/utilities/date-calculator",
+        "width": 375,
+        "chunks": [
+          {
+            "engine": "date-calculator",
+            "path": "/_next/static/chunks/2j3-u_81rsh12.js",
+            "bytes": 4761,
+            "gzipEstimate": 1783
+          }
+        ],
+        "screenshot": "artifacts/utilities-m3-vi-utilities-date-calculator-375.png",
+        "overflow": false
+      },
+      {
+        "path": "/en/utilities/date-calculator",
+        "width": 1200,
+        "chunks": [
+          {
+            "engine": "date-calculator",
+            "path": "/_next/static/chunks/2j3-u_81rsh12.js",
+            "bytes": 4761,
+            "gzipEstimate": 1783
+          }
+        ],
+        "screenshot": "artifacts/utilities-m3-en-utilities-date-calculator-1200.png",
+        "overflow": false
+      },
+      {
+        "path": "/vi",
+        "width": 1200,
+        "chunks": [],
+        "screenshot": null,
+        "overflow": false
+      },
+      {
+        "path": "/vi/keyboard/tester",
+        "width": 1200,
+        "chunks": [],
+        "screenshot": null,
+        "overflow": false
+      },
+      {
+        "path": "/vi/utilities/number-to-words",
+        "width": 1200,
+        "chunks": [],
+        "screenshot": null,
+        "overflow": false
+      }
+    ],
+    "gzipNote": "Ước tính nén riêng chunk, không phải transfer toàn trang hoặc điểm Lighthouse; messages/Registry vẫn có overhead chung.",
+    "m2ScoresReused": false,
+    "diagnosticScriptTransferBytesByOrigin": {
+      "http://127.0.0.1:3100": 200634,
+      "http://gc.kis.v2.scr.kaspersky-labs.com": 184195
+    }
+  },
+  "audit": {
+    "production": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "allDependencies": {
+      "info": 0,
+      "low": 0,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    },
+    "remainingDevPackages": ["glob", "minimatch"],
+    "dependencyChanges": false
+  },
+  "docker": {
+    "engineAvailable": false,
+    "tested": false,
+    "wslAvailable": false,
+    "reason": "Không có Docker CLI; WSL báo service/thiết bị chưa bật. Không cài hoặc đổi dịch vụ máy.",
+    "futureSmokeRoutes": 52,
+    "remoteCiTriggered": false
+  },
+  "implementation": {
+    "numberArithmetic": "Phân số BigInt, tối đa sáu chữ số thập phân, làm tròn nửa ra xa 0; hệ số có nguồn NIST",
+    "calendar": "Gregorian kéo dài năm 0001–9999, kiểm tra ngày trước Date, UTC không phụ thuộc DST; khoảng cách end − start, không cộng ngày hai đầu",
+    "lifecycle": "Không tài nguyên phần cứng/listener/timer/storage; chỉ state trong component và ghi clipboard sau thao tác",
+    "existingEnginesChanged": false,
+    "newDependencies": false
+  },
+  "review": {
+    "screenshotsReviewed": true,
+    "localPreview": "http://127.0.0.1:3100",
+    "loopbackOnly": true,
+    "clipboardTests": "Fixture API thành công/từ chối; chưa chứng nhận quyền hệ thống",
+    "webkitIsRealSafari": false,
+    "lightErrorScreenshotsReviewed": true
+  },
+  "initialFocusedRun": {
+    "status": "Đã dừng để sửa nhãn select và lời nhắc input; không tính là full QA",
+    "rawArtifacts": "artifacts/utilities-m3-focused",
+    "applicationChangedBeforeFinalBuild": true,
+    "finalBuildAndFullSuiteAfterFix": true
+  },
+  "sourceFingerprint": {
+    "buildId": "53i7Q8tGFzXpfNgRhVJ7k",
+    "files": {
+      "scripts/check-compose.ps1": "84e95a71bac75a213e9109b5f5f3d0a0b3a3a9f3b577dddd0ba4c878c1dc0e38",
+      "scripts/docker-smoke.sh": "6ec5c21a3e3573e89351f1fa2a92e4c050e12ae5e63bd404f48d910e69cf43a4",
+      "scripts/inspect-browser.mjs": "79fc551196a46aadd405ab7d5b8c1f6427fba68c350f4976ac4f8fb6e4c3acc8",
+      "scripts/lighthouse.mjs": "6c187fd54edea0c0856f6bf65efffffe11f509e728918b051739d574379bdbd5",
+      "scripts/performance-ci.mjs": "44929168ad368434328602ca86451b117a5423d11c2546d721eb57ab69c181ad",
+      "scripts/probe-browser.mjs": "135f9e13bfb71a26190e99a8c4f85e3188ed1d1c93205d3e184d89413331ae20",
+      "scripts/qa-https.mjs": "6390c745537743773e9cae8386721b4b07485efbb267748cd657e0959882aa02",
+      "scripts/report-performance.mjs": "4df820fe18f0fb1fa0f69a796042a6997bed1e95b5155c0347527d89b4186881",
+      "scripts/report-ui-performance.mjs": "364242be0d37d642a5a4b9144d09bab15b27797537029b14791f7f18e89fc385",
+      "scripts/scan-secrets.mjs": "161df9c253cffa33d6b1ad46fb48f15fa2cd9ffc1c35201ddf472b277ddef317",
+      "scripts/smoke-audio.mjs": "ef5534784c931d30afd329f055dcccc63eccfadd444415bf267e71009cda94c6",
+      "scripts/smoke-http.mjs": "1a9d246996dfc0a5d922e71534844fbee6eabdc5fc7f7711de43b311b8a503a8",
+      "scripts/start.mjs": "fbcf54e6963ab076cda12873f5d0a0a988a67ea4eb784d3454a96daf9723538f",
+      "src/app/[locale]/[category]/[slug]/page.tsx": "e59e273b9c0283221b86664692b53640488135a2598e4a5a47e713b58fc9f59c",
+      "src/app/[locale]/[category]/page.tsx": "02a71ee226f760f44d04cf68dca67ca372f3affd3a283210aadea17c7892f87a",
+      "src/app/[locale]/error.tsx": "3dc229e30c2021dc5cd9968e4aba815e72136755988c6d1baaef66da76028647",
+      "src/app/[locale]/layout.tsx": "f2f07767ee5cf9189626420852748ee15dd1d743684ea6058eacb6f697c94ee7",
+      "src/app/[locale]/not-found.tsx": "57eeab6417aba0054053907fd5c73057a7727290bc144f2da74d6b975d9a7ae2",
+      "src/app/[locale]/page.tsx": "3a158f01387b59aa5b4bbec1e410775fa8efe7cabe52346f77462856c562ddc2",
+      "src/app/[locale]/privacy/page.tsx": "45b87592c5b1cb5e760c70d8000dc67e01a4620fb36bc01117b155797de8906e",
+      "src/app/api/health/route.ts": "1671249f05352e7e350fcc2db692d26621443457c807a808e68e631720c17716",
+      "src/app/globals.css": "27209de334c6c8a9f1d9d7e9e1f8b79f8d9397c9fe1395521ce47ad70073b99b",
+      "src/app/icon.svg": "e008f073c270956b58f9eca74821c80fdc4b963b346f998f53298da8a7be1904",
+      "src/app/interface.css": "939680c1b420a95b707e963dc3f91df89e59080a307c070187c786540c2ff1b7",
+      "src/app/robots.ts": "51bcae6d9934da2fdafa206e9eac0aef14a06bd137df493e7700233d5f0affba",
+      "src/app/sitemap.ts": "e014ea1631d6b47db0ba0e4d08cc7c3e6df163babe831799123cdd00df8c6d12",
+      "src/components/layout/footer.tsx": "15737e46c858816646edc01688f08bfe250f8b36f28df8c3f5bfbf6f582f9219",
+      "src/components/layout/header.tsx": "a38cee78bc92d6ce16a654910fa1ffa0a7124471f2f7e5af78abcd75d4561040",
+      "src/components/navigation/command-search.tsx": "45481451a13bea2a476db1b8c50191b29dbf4c2c4708ad04e545c2a5260e5eef",
+      "src/components/navigation/policy-link.tsx": "e0afede2079bc6f178297229f369e1d9c66c9bb4e16e3e3b2b19e88f9ccae212",
+      "src/components/tools/catalog.tsx": "9499df287589ee074ca650269fc38d23a87fff5cb9d80bc376dfbcd16c4069c0",
+      "src/components/tools/category-art.tsx": "c2edf91912df467526a3bde3e3622e5c0ff6b5063469f782eadb67c32a77772b",
+      "src/components/tools/category-icon.tsx": "0c4599c2b68e535d223a4b3f6dc05e1e56bd8a8382ea6e0aa6da0af6e89eec0b",
+      "src/components/tools/device-overview.tsx": "454cedbd58d9fa38e6f748a4e64f3e147e09e3d072d01c858d4c005662b9bc7c",
+      "src/components/tools/engine-surface.tsx": "98d763099e5c3e5d092b04a12898334c78bc18ba96f7c9e08ce0413f56482064",
+      "src/components/tools/inspection-controls.tsx": "8c4a5dc7ae168990d1a568aad38aa72541f7d5f592f3ec13ac396be5f6d7d5ce",
+      "src/components/tools/lab-scene.tsx": "aae6b2b9fb112e57db8f518265dbc9ae673082f308e31914796264eee31a0607",
+      "src/components/tools/measurement-ui.tsx": "9db7a350923e6e28898ca99965e16467f4b4033d3bf5b3aa04de89359efd9754",
+      "src/components/tools/privacy-settings.tsx": "6cedc097ef6f45aa70fbf7e29fbab77ce69cc57d7492fd914291086bd1172c51",
+      "src/components/tools/problem-chooser.module.css": "b4b657d8a035db30bb177d83c748c7435d41a3997cdea7968d27a68a4e5a64de",
+      "src/components/tools/problem-chooser.tsx": "c58652a91e691526021f1bc329db9269c61198e3a68f061abee3438051a681bf",
+      "src/components/tools/tool-card.tsx": "6d9c813b85fef4118ab1f74b025eca3d46c393a849d01ee86518b8106be20a91",
+      "src/components/tools/tool-runner.tsx": "74e813e2c565aaadb77542d22647d4e3bc869de55875d21def422047af07dec5",
+      "src/components/ui/button.tsx": "3a5bd5827b0b4c92521e11f818013884c3e795c2e37209c55ac4e30e4726c86b",
+      "src/features/audio/input.tsx": "202c42fad9580754ec29cd5fa009de53a48a4e3b8a5354669ecacaef6a158fd5",
+      "src/features/audio/output.tsx": "fa726e1429cd8a30731216026aff759b905f3256b117d3abf5bad988a7429d4b",
+      "src/features/browser/compatibility.tsx": "529922cdd041e511cff53cabb0d24e365c4ccf720ecc1ff352b1448a1a6bc60f",
+      "src/features/browser/fullscreen.tsx": "1a5fb10f1ce75289158d2d957254d6e510c99d13d3c8d955eff302ae3e38de0b",
+      "src/features/browser/storage.tsx": "683dbc0638ec94f270f7f22c72d9a4a9d7e23dba8f9790b2e800e304555593fd",
+      "src/features/camera/camera.tsx": "5f1973e696f09c7e1df6a250f973fd6055ae80ade8642fbfa95f1ed504e4b160",
+      "src/features/device/gpu.tsx": "a2f908d803556370d6fefb2db4b61b25a1a16fe502736385700553e5e4f5295b",
+      "src/features/device/information.tsx": "fa1e91d82f7d5ca30f186326feaba5e4b24280cbf41633cc1eef2dbdd5d82161",
+      "src/features/device/pointer.tsx": "cc6d0e2c3352a3064450eea5954e0213eee2417e4eeb881c06ec319a9d15a866",
+      "src/features/gamepad/gamepad.tsx": "b708e49279e57502edbae66dc9ccd5535e7789987fcf45d3d08f623302d96430",
+      "src/features/keyboard/keyboard-event-log.tsx": "59abfd49d5d5bd1796c314d142b791104ce86de46c7396bbfad8cc197c6acac5",
+      "src/features/keyboard/keyboard.css": "d979bd83864c6d6cf3581ce0cbb376dbb1a2c70911255ffee5a2c794bd27dab5",
+      "src/features/keyboard/keyboard.tsx": "0cdcd9631c99d7e884f281d50d4b4304dd9bec2165fa2e40886798256fe04eff",
+      "src/features/keyboard/layouts.ts": "5448830e4b31666ee1ba69397d92f870ee15d44eb991133f6fbb13af3f52284c",
+      "src/features/keyboard/use-keyboard-d-warning.ts": "2a62658ca74a1e14eba19cf3229a49744076b0da921cf13fcd944271028b4733",
+      "src/features/keyboard/use-keyboard-release.ts": "663b2172fd0b79df11085cd1e6d1e4d1de34ef359412c851c2df3404c84c6b9e",
+      "src/features/keyboard/use-keyboard.ts": "3a77179e01b3096cb05d7a09b674aac2e92231c5e7ff7bba0d9bf5f652b4fcfc",
+      "src/features/mouse/accuracy.tsx": "9aaa5711eda5e1dfeb4c7c6cf06bbad0325deca320b1cdca8649c0e9ada8ace5",
+      "src/features/mouse/mouse.tsx": "a5ff41638ba521d142f8dfcc5522e38814824bdf54d0c10b4f0b9a310e53c7a6",
+      "src/features/mouse/movement.tsx": "b063ce2f3cbf3d558df961ec38075f632343cb341ef60cc7775f760f9b46f7ff",
+      "src/features/mouse/use-mouse.ts": "dd4f61cc71a6f6f5b30a06bb9f2db5fd74e42f8d4d42e81133e4677bce9d33a6",
+      "src/features/screen/calculator.tsx": "b4734c956d7a50f2f7eda78f8b321554e3fb9775c15e80aa2a43add1d7c78cd6",
+      "src/features/screen/motion.tsx": "ebf5e7394d60e02b56e5ab179175be3e1879713c5d8404810e3bb669402c0616",
+      "src/features/screen/patterns.tsx": "cb5bf560fb89f14e3972cea68e7852b31acc87957af4129ad4fcb1ce19f260f5",
+      "src/features/screen/refresh.tsx": "e9331f65209808636db637212bc380a1ebce94342c9dde91cb4ab7a01992e949",
+      "src/features/screen/screen-info.tsx": "39ad8241d235b1fcb5583fda53c0909fa2fe7469b648b909b7dc3821cc7ba189",
+      "src/features/screen/touch.tsx": "dd893ecb2a14e56d739b75d8fadda7720720dde6f9f809551539b4806edc7682",
+      "src/features/utilities/date-calculator.tsx": "cbad8cddc46521d1236ca07cf710bbc02ed17ab11a0af79ba90c2723ade03122",
+      "src/features/utilities/number-words.tsx": "8ba52933a40fdb2f6381cf0ad4e9ff491a0bf1ab637b8e4330b4f8758db0443b",
+      "src/features/utilities/percentage.tsx": "3041177d33613e071fba2fa249690280996add4198e5cc33a2fad0cde8ccfa34",
+      "src/features/utilities/shared.tsx": "4407847550f90bf44242e6ec312fd738b61671217e54e429636949f80c257136",
+      "src/features/utilities/text-tool.css": "e6bee41396a0f33cb39cff8cf0430e71ca2105082f06e21985dca0d7ba930a71",
+      "src/features/utilities/text-tool.tsx": "10157c7f4189ac3ebd27de88506d043170695027d63bd0da61bd682c54435d60",
+      "src/features/utilities/unit-converter.tsx": "d1840c703da27b5563500ab62b58ff3a17bfac7f0dd0786c2462c44b6aacb08c",
+      "src/features/utilities/utilities.css": "a1e67e771aecc24977aaa6944a4d0c29fd12ab97ddf7791c8705c7ae7647ad5b",
+      "src/hooks/use-device.ts": "1bd0f21a03301ff46096379362eff2e02ddec52dccdddba7853fdc7a321082d7",
+      "src/hooks/use-fullscreen.ts": "e839e3197e09ccaf0e9a84ef781741665f4cf30db576f1edaf7b4b7253562e2d",
+      "src/hooks/use-hydrated.ts": "a692d2516d452ae7f870b09c7251aa31fa5dcbb876462cc65273aad2bc80715d",
+      "src/hooks/use-inspection.ts": "55f62dc2b478796ed1b73afc2439266b6648c882b64946b1c0082164d2a5ebc7",
+      "src/hooks/use-permission.ts": "c950d0d302ccf7fc0770e3aee19cfedb60896a776ff37c673553434f5b3f06af",
+      "src/hooks/use-preference.ts": "990f9e9c19d8047be5c369443dc13b06a4df2b424831ddf6498ec0667f3d9521",
+      "src/hooks/use-timed-task.ts": "e5f920c406c19264f7c3a02517c081d41b216c0fc40193a6ddccc98862188b52",
+      "src/lib/audio/input-analysis.ts": "9a1b4123fcf38bde8d47187e131b58ef64bf82e353e2cbbd398e47a5fed5bbb0",
+      "src/lib/audio/input-session.ts": "7c507eab34caa4c6552f2159bc11ee645e790c0b34840f5e97b9bf4f624e2742",
+      "src/lib/audio/output-session.ts": "837072b4eedecbd14b8d03b191e132beb0cc7e9e0218d9f94893da8bea05dec8",
+      "src/lib/browser/capabilities.ts": "397808786aea526c95145aae568179bc8c4f754ea048471cdc5f2446b4b4ab44",
+      "src/lib/browser/capability-types.ts": "a7ca8d14b1da0cef06d99e8d91b77fcdb14d5d3dbcddd92e276ec2e7e8a188d7",
+      "src/lib/browser/device-details.ts": "07d65c431fd0abd9203c532742e1da905cbbdabab037a9e289a6a0ca1832c18b",
+      "src/lib/browser/gpu-details.ts": "5ecec9d293ebef922a0263e463ba01a48452232c9b5382964bd026447cd423b9",
+      "src/lib/browser/media-session.ts": "342a87170cee9e6313f4fec8f9fd5c09e185185e4a36356f9411026339d2d107",
+      "src/lib/browser/navigation-policy.ts": "2705e4bcddfcd09411fbe16785b1cbec57a56c8aefa93baa64a268d93c77b4ce",
+      "src/lib/browser/permissions.ts": "6ed34157226716ca58340196e521cf6a3f6214f8c0183cd2611c21bf030a916e",
+      "src/lib/browser/storage-details.ts": "01d8d72e89f165e9bee02237795ddec8ef1c244071f732ccda2e1f53c958d07f",
+      "src/lib/camera/camera-session.ts": "c0d0a6aec66e958f744c84c70dd9e788fc354c8f2ace804ba2a02e5f2700a1cd",
+      "src/lib/camera/frame-analysis.ts": "5ad6b1217882696f7bab42902038b92649d846f44afafaf0cb17dd6756e4ac20",
+      "src/lib/gamepad/analysis.ts": "a559f226db14ee349bf347a994f0bfc78b5bdd62ebd68093bcb43efb0f3124a7",
+      "src/lib/gamepad/environment.ts": "16993d09961fb278ae24a635fff258b06c810573880d46fba722a5689367606b",
+      "src/lib/gamepad/session.ts": "3649321919ac92807f4d118e5c97ec6cf1485180c074ebce26a54397aee5a6c9",
+      "src/lib/i18n/request.ts": "575b428617e2e53152e22dcd415b0ae3897ff29a77b7d2688022c60016e91d47",
+      "src/lib/i18n/routing.ts": "581fdb5632d473f7dbc4a45b131233633e71aa91ea821db735e9ae6452230324",
+      "src/lib/measurements/calculations.ts": "3249c4caf89353c4ba25e7659a21edd9434066000eec287d8b9a5f2e7b56395d",
+      "src/lib/measurements/frame-sampler.ts": "14096a0bb9018e3c2f94de9c7d534fd166fc8a4dcd1e5dcfcf0eb79b9c9ba60e",
+      "src/lib/measurements/keyboard-chatter.ts": "79fbd51f5837835e12efee65bae86c382ff73b5f4ac17c41d6ac601a0690c06e",
+      "src/lib/measurements/pointer-observation.ts": "f49165eef1666b2d1a467bae209763101c9e3a3f7f129cff7364f72aff0aa568",
+      "src/lib/measurements/pointer-sampler.ts": "3d9c3f247e038e4e249b2f8c250e27e417bfa73e218d0028057047561443f8ab",
+      "src/lib/measurements/pointer-tasks.ts": "c374a50144eb9594bb8037ee20e2e4aec34eded3ce9f50c945d8423821dba477",
+      "src/lib/measurements/types.ts": "9d4cfc376be88d52d2ba721f57831cf951942a472a035a07d9ef405ab6165b45",
+      "src/lib/seo/metadata.ts": "983fc73b2aad0d1e90f5fad6c94ecc92532c2ab1aea2c3cdb55937e6cbf9f238",
+      "src/lib/storage/preferences.ts": "a442b942926098d7d2753d1666599876d622c7f9f7b821769675cb6562d68bb9",
+      "src/lib/storage/session-measurements.ts": "0c3494e7e1d1958a34b30be1545ff879ae9b5e97448a8b373b92492f39b09b00",
+      "src/lib/tools/catalog.ts": "696bf58c9e9e49424f859a0851d37442a6283449ba284ebab96f733673f3814c",
+      "src/lib/tools/conversion-utilities.ts": "568dde7708ec2e0a7bd26e2a192f53245080d643d5b142bf7bfe41aa57bc5bea",
+      "src/lib/tools/groups.ts": "52bc91b5e7c36ffd649722e436d4f903bb6c60086dad9cb357b1739fe56ec69b",
+      "src/lib/tools/phase2-milestone2.ts": "5d017e32092a0f76b1010c931d292b9c2469dafa5f09738633b52ea3e42281cb",
+      "src/lib/tools/phase2-milestone3.ts": "c58bb3b9e2f96520036bba839f197494a412e17c8c32dcddc01ddee0eb892f35",
+      "src/lib/tools/phase2-milestone4.ts": "23ebe560528f74348221da47f936780592ee40f398896423201fe0da45699bb7",
+      "src/lib/tools/phase2-milestone5.ts": "5ab53599deceeeaf324331da651d07b5a732f4d324b36c71a1498694330ae4b8",
+      "src/lib/tools/phase2-milestone6.ts": "551af68e80539e801bbd58d698c4a205bcba9009e5be5c64d0137fccc797c20c",
+      "src/lib/tools/phase2.ts": "3691326b444c9219b0282f6862c41e2073b8e2163cc4ba35b6876e1013c7158c",
+      "src/lib/tools/registry.ts": "78462dd7fd8810f143dcbb08554ce741ffc63af183503685c46e895e08f52b74",
+      "src/lib/tools/search.ts": "fda0973fb5d1927a72e1660fb734a05ed89c85ea2d0b7fc88b08c2fc979cb8ce",
+      "src/lib/tools/text-utilities.ts": "93b574b6eed0727b20bfff588e91df9fa36696a7dcedd35463be15b7c02dfcac",
+      "src/lib/tools/types.ts": "92f09a78160fc20880184399a8c9fc032cd2dec63b23e7cd8390e5fb930720a3",
+      "src/lib/tools/utilities.ts": "211a334329f8d1c4b96abc53951d12d4a4a38e8229f0915be4c02840bd528fdc",
+      "src/lib/utilities/dates.ts": "c714029bb1027d2126418214693df061c2d11cbfe375b1d0a2b8aac3b780109f",
+      "src/lib/utilities/decimal.ts": "7b2dc279c90b756a75bbf39fa1561bcd47861c010869070968660ef7c253925c",
+      "src/lib/utilities/number-words.ts": "f280e29124796c0fdef2937ea469783a6d040d70e2674f21a0a0d6f7fe784b6c",
+      "src/lib/utilities/text.ts": "4b241db0614df87a005c48f9f213b8e9fd6d9d418f579f4387815b55cc6c1790",
+      "src/lib/utilities/units.ts": "d6fdad2d503afd652feb6cc93e65c7a1052abae96a6e874e19bf267b1110274f",
+      "src/lib/utils.ts": "c407b940a1b71992691321d7162086f17af79fa371d0e4693926714048699b63",
+      "src/messages/en.json": "30985ff75f99d4233378298788b88c88ec38bc9e6219263fee43797e0285eb8d",
+      "src/messages/vi.json": "853bbab9b89074f6d8b2bb822b7bc1a3785d42f9a9f53465f2e3fefd1ccea8f0",
+      "src/proxy.ts": "8ed9638ce75d4ba936a13eab3a68b25da3f32760a566c6ca87996670296bf7aa",
+      "tests/audio-lifecycle.test.tsx": "5e1a91c52b7ee48fa310cdbe3e94f9547d5dde3b865b9c59309fe5c38d025d95",
+      "tests/audio-output.test.ts": "a57a770b5b2aa1861b3b1e352c12869b298b5d663329850479d3ca0fa243c3e5",
+      "tests/browser-ssr.test.ts": "463876791cacb30698a01f9ff315ff632938b9f8ec13af607ddeb4ee8b3a85f7",
+      "tests/browser.test.ts": "583183335421686d358d3c6507ebdacc1886dbe73f7d1485cfdaed943bae9c55",
+      "tests/calculations.test.ts": "501446d0b4cb8bf8bc50411317f00e25090f929dcb93554012cc11d6150bb3f9",
+      "tests/calculator.test.tsx": "daedd9d5eb56e69f19408af30cc2a19c4ca4c435edef84ae6ae9dfb9e2a18c10",
+      "tests/camera-analysis.test.ts": "83c019165d22d91163adb24f459a853c03367f4d7f0bdac84ce9c224f0bbd02f",
+      "tests/camera-lifecycle.test.tsx": "a6852ad920aabf33b5d00dde769f64350f2a88d93d9d03763079189c1ea78ddf",
+      "tests/camera-session.test.ts": "da7b495c83f9e51cfd896082e66e77515c7e16209377785e444923a90e5f72b2",
+      "tests/capabilities.test.ts": "b945266dd1a3a148c378010b756976be19b9a2bff92a8dd42bc10092f0f903ef",
+      "tests/conversion-utilities-ui.test.tsx": "eddb478e91db296a0efe6f7896db29d46e30d4c4f7405fd1510fd7a89d6fee3f",
+      "tests/conversion-utilities.test.ts": "2b972436abbdb90a48ba0aa3a448c1e4eea8e8804c7440f958700def8ff4a489",
+      "tests/device-details.test.ts": "3bedd5a6a07a581bdb0f1cf7d7f615e40c43d2c2812ddf1f29cb097924fcd1e9",
+      "tests/e2e/conversion-utilities.spec.ts": "bf06a82cfbddfd15c191b278d037106f7c1ffe5906e62b6bd8bebbe8f1accc59",
+      "tests/e2e/foundation.spec.ts": "3fc6d68938d509878ec1f147901d5f36cb3eeecfe94dadfb023e7d7c6804ee3d",
+      "tests/e2e/helpers/camera-fixture.ts": "64b43b411f3c2fcb5912f2b94a7957625df84d3e012aa46dbc4750e27bbf2633",
+      "tests/e2e/helpers/gamepad-fixture.ts": "a9cd6edfe81fa0d250c65b4b388be0b0d873230d8b5e5a4b8ab5f85b219ba19f",
+      "tests/e2e/helpers/input-fixture.ts": "3a103f74ec5e027ef8877369dc8f559772e723b0b0e6f10c28015cd798e55344",
+      "tests/e2e/interface.spec.ts": "8f7c5a952bbf44912bae9ebea4cbc98f9af7fce9422c13e6b39cd200e58f8271",
+      "tests/e2e/keyboard-input-method.spec.ts": "44bcb5070a76cb83f1c1135f4b4c3f9979d881f6c2392be0fb00edfbe2b42b9a",
+      "tests/e2e/keyboard-release.spec.ts": "3f83d1adae2c04d9756b21c75975cbcc190e63f0b52941ad56bf1e1418e8ec1c",
+      "tests/e2e/keyboard-upgrade.spec.ts": "6be1c796c19493ddbc17839d9b0d4a7057f602ffa6f94df608396289ebdb5139",
+      "tests/e2e/keyboard.spec.ts": "311dfceaedaa12e3c85c53ab4f2958ecb2f3cdfa6aa21147460578edb69d543a",
+      "tests/e2e/milestone2.spec.ts": "18dcd2ff8e33f5b9d6092316950f264fbc23641a5f0192dea334de4cde064ac3",
+      "tests/e2e/milestone3.spec.ts": "510d3b4b78b471ddbd918b7046f24a35cfb65c5b12f4fcc074184dc8f1d61b03",
+      "tests/e2e/milestone4.spec.ts": "26fa514422f5ed4359668357152f89b90844d3afaadd657dca18bc468a7c6ecb",
+      "tests/e2e/milestone5.spec.ts": "2b8e0951995985e82c393ac76c5e4ac5e1a591c851e53308b621a5f8e9c3b149",
+      "tests/e2e/milestone6.spec.ts": "31fc35dd7c4bb13389745e7010bb52726406822c1a98cc23cbebfaac6dae1e90",
+      "tests/e2e/mouse.spec.ts": "cbd22fe92ea9b28d2949990222183f9faa64038992fff2999cfc0f601badede0",
+      "tests/e2e/problem-chooser.spec.ts": "283efc1819b01f94159d8c7baa8969ecde1912c0f652c95034dc56e517307016",
+      "tests/e2e/quality.spec.ts": "79f9614ddd9ac66490c4f2df6380085d5b322607ba04af280c4371f06633f8fd",
+      "tests/e2e/registry.spec.ts": "07ce8c04eabaa9d8d97e16b176e90405cc9e6077188f72f5a4d41100b780669a",
+      "tests/e2e/screen.spec.ts": "a53e0705b239a6c9500594d097a6ef9428e1e8ab91d0cdf417076d04bd252249",
+      "tests/e2e/shell.spec.ts": "a8807cbc680feaebf1bfc22695ab35dc488b663c7f9e79517ae5d0d481bb3738",
+      "tests/e2e/text-utilities.spec.ts": "f5e3a4db764dd02e304885ecc73f71a7175a6703c4d1ed7c0b4b93495308df70",
+      "tests/e2e/user-content.spec.ts": "12d28e49c268e7e247a8c571dd4c82e676d83a5edf993ad37f502c2490661433",
+      "tests/e2e/utilities.spec.ts": "d3c715b405e8d9dde14f5cc67bc9ba27b1c75c102fd62bf55350b39c3b026c70",
+      "tests/fixtures/device-tools-baseline.json": "51b96168ec6dcf2533314f5e17fff8c5ebf633b842250bbd4d688ae24d6b4e9c",
+      "tests/fixtures/utility-milestone1-baseline.json": "6e3dac844c7d7182f484801778f3c9333134333dc0f5cc7bc35f6b466fa2e25b",
+      "tests/fixtures/utility-milestone2-baseline.json": "93cb5e2ffc5a727f4bc134550768d57823482aa41c69ece45ef6909bc26ee352",
+      "tests/frame-sampler.test.ts": "8bb171c79fdea0965a975eadf080c2ba9988f5a7cd41ebeba3e6f350dd3f9f51",
+      "tests/gamepad-analysis.test.ts": "4c6f47742ccac02d853efdb2dc260c74f9f069ee2188818012c934822a3221a5",
+      "tests/gamepad-lifecycle.test.tsx": "2eac8a9f095a9a98fe64839e75222fb6ea5fb37d6297277d4483f93deb3575ff",
+      "tests/gamepad-session.test.ts": "929e16eefdbd3c47b973de018f9ece46fc5eb57a50cc279a9eafa702a2b25792",
+      "tests/gpu-details.test.ts": "2df25a8fcbf6d4c7358327904991d94ff0fcec77262cc099669fa6ff7472a4d8",
+      "tests/helpers/audio.ts": "0d74ef6a10f97ad7e693e966b5b672ab756f500f963977935a4e999024a88651",
+      "tests/helpers/camera.ts": "3c7b45fc74fc99979d06f4ab849b635c8acb3d6feadd8a288516d0f3b5c14824",
+      "tests/helpers/gamepad.ts": "c636c852213b708f4684ca37ce85283dbd9bd0a92d4de54303a1ffc4a86d9ce9",
+      "tests/helpers/input-audio.ts": "1bf79bbf3c2fddfcb0c06ca30f7103124dbb43e554aa959b2fc4782596fd46e2",
+      "tests/helpers/media.ts": "c800203560b95ee04d5dc8e857a6945594aa73eab48bacf2ec16580a6787fe34",
+      "tests/i18n.test.ts": "0e8abc637d3ebc969d49544e4c350104fdcde98a1b70a2a0c171abc764b9a451",
+      "tests/input-analysis.test.ts": "6ae138cd567e5829cb59a2d8cd738f29c560948fe6108b143135f53ab7a94fd1",
+      "tests/input-lifecycle.test.tsx": "a8b0dc6e2312fffc2476670f0a0002bdae6e386701a9830ae189f24d91b448c6",
+      "tests/input-session.test.ts": "18387e0c201df98c81830ba62c8f1f24c8ecee67a2e25d40ce686c3c15cc912c",
+      "tests/keyboard-chatter.test.ts": "3fbfb3ed665ec112a2d3c45868bcd6d66e3b273c54a0736e349cea073bda02d3",
+      "tests/keyboard-release.test.tsx": "ad2763a9abfea93cb64da92bacaa024b51322a2b8509db1574401f52bd4c2809",
+      "tests/keyboard.test.tsx": "2829afeecafd6f2641228fb8e4bb44066bc48653ff6f7c5158bbc79aff0400ee",
+      "tests/lifecycle.test.tsx": "3a60f6bcfaee37570197931c23f2533a948c0ed859ae6af607af4f7dfa13a0f5",
+      "tests/media-session.test.ts": "38fea80962992801139d5603a0091152578a047268969317c9586dc388a0f142",
+      "tests/milestone2-lifecycle.test.tsx": "c72575946586b07ec347e38c0624366aa4ec4f92f39de6429bd37542f279e38b",
+      "tests/mouse.test.tsx": "a85af965b622a2352def752455c0aa48db85f951691d61622a6484b532fc0fb5",
+      "tests/navigation-policy.test.ts": "4f4ecc8dee3475e6c5502c7ada09fe7465ac13cb00cea92029baed4fa980aa02",
+      "tests/permissions.test.tsx": "170899e3044d12f0bce20cd7c047f8616525322f367d96a115af61daff56a859",
+      "tests/phase2-registry.test.ts": "a1989f8eda32e67cec929add82f96b2550fb9899e7f919eeee3e55dc4c124a02",
+      "tests/pointer-sampler.test.ts": "ea86ce0c4bba509f4474f9d233ec856b7bcacc3af5a7418a6e129a54c845ca07",
+      "tests/pointer-tasks.test.ts": "7bcca6d6a479e0eb58b486ff4638d4f2d14a3bd5afb5a658c36204e56a5d12a5",
+      "tests/search-index.test.ts": "9a341ff094df9cef4f04e6047fbc51e322dd390ffd5e3187ad73f930958c5277",
+      "tests/setup.ts": "91a3c8962a0edcb956206a501d943fe99e1c78c6d4d8b5c9a948a3362c75978c",
+      "tests/storage-details.test.ts": "201cc9c88ebb68628d66642d437b19cbe5d5a9a0512ec9150638a5b7a9dd22b8",
+      "tests/storage.test.ts": "c40ad9d8efd1c99f34f5261203c68bdbc441395a7e22ae9bd22c6cc88ec4fa5e",
+      "tests/text-utilities-ui.test.tsx": "871398c6693643ecd23c3b67e817d308c90c5265a571ef8a8e77c7790e0bab1e",
+      "tests/text-utilities.test.ts": "1077141aff09360ae7d694c631dd71e5635c59ee11adabdaf53bd4752420fc9a",
+      "tests/utilities-decimal.test.ts": "76dd1f09bdb6a34c93e56d36ecedbcc91173140c3f55ca347273367abfc83a3c",
+      "tests/utilities-registry.test.ts": "64074b2f774fdff82dacd48060098e84e950a09eaa477a9001bf6bf07e851b6c",
+      "tests/utilities-ui.test.tsx": "cdb7a5364eba6d9fa99b0d3b23c9d7d651b4f58df4e97ac61dbaf54dd8a4db3e",
+      "tests/utilities-words.test.ts": "6103ba852dcccea36b5140f0bdabd56d4bc556a2a5213c0a7683f902feb435b1"
+    },
+    "aggregateSha256": "0ba88da8a711a24060e2e98eeb85e537f00c70f4108efd234aea1c3dea4381cf"
+  },
+  "acceptance": {
+    "verified": [
+      "48 công cụ VI/EN, giữ metadata/route/engine/copy của 46 công cụ trước",
+      "575 unit/integration, build124, HTTP96 route/sitemap118",
+      "Các bài E2E có trạng thái passed; xem từng browser/file, không gộp failure hoặc skip vào pass",
+      "Hai engine tải riêng và đã xem ảnh desktop/mobile"
+    ],
+    "implementedNotYetFullyVerified": [
+      "Clipboard quyền hệ thống; date picker/bàn phím số, nhập âm/bộ gõ trên điện thoại thật; screen reader"
+    ],
+    "notComplete": [
+      "Full E2E chưa xanh do request Kaspersky; các skip native/runtime còn mở",
+      "Lighthouse sạch đủ ba lượt/trang và mục tiêu median mobile ≥90 chưa xác minh cho M3",
+      "Docker/Linux candidate, 2 moderate dev tooling"
+    ],
+    "unverifiableInThisEnvironment": [
+      "Môi trường browser hoàn toàn sạch script bảo mật trên máy Windows hiện tại",
+      "Safari thật và phần cứng/OS/clipboard thực; Docker Engine/WSL không khả dụng"
+    ]
+  },
+  "releaseChecksPassed": false,
+  "finalAcceptanceComplete": false,
+  "git": {
+    "committed": false,
+    "pushed": false
+  },
+  "remoteCiTriggered": false,
+  "sshConnected": false,
+  "websiteUpdated": false,
+  "nextSteps": [
+    "Người dùng duyệt hai công cụ trên local",
+    "Sau duyệt: kiểm thử môi trường sạch, Lighthouse và Docker/Linux đúng source trước cập nhật website; push chỉ theo yêu cầu mới",
+    "Giữ nguyên các mục manual/native và bảo mật còn mở của M2"
+  ]
+}

@@ -35,10 +35,27 @@ it('preserves both original utility definitions including localized copy', () =>
   );
   expect(publishedTools.filter((tool) => ['U01', 'U02'].includes(tool.id))).toEqual(baseline);
 });
-it('registers six calculators on the independent utility roadmap without permission or storage capabilities', () => {
+it('preserves all four Milestone 2 text tool definitions including localized copy', () => {
+  const baseline = JSON.parse(
+    readFileSync('tests/fixtures/utility-milestone2-baseline.json', 'utf8'),
+  );
+  expect(publishedTools.filter((tool) => ['U03', 'U04', 'U05', 'U06'].includes(tool.id))).toEqual(
+    baseline,
+  );
+});
+it('registers eight calculators on the independent utility roadmap without permission or storage capabilities', () => {
   expect(getPublishedGroups(publishedTools)).toEqual(['device-tests', 'utilities']);
   const utilities = publishedTools.filter((tool) => getToolGroup(tool.category) === 'utilities');
-  expect(utilities.map((tool) => tool.id)).toEqual(['U01', 'U02', 'U03', 'U04', 'U05', 'U06']);
+  expect(utilities.map((tool) => tool.id)).toEqual([
+    'U01',
+    'U02',
+    'U03',
+    'U04',
+    'U05',
+    'U06',
+    'U07',
+    'U08',
+  ]);
   for (const tool of utilities) {
     expect(tool.phase).toBeNull();
     expect(tool.classification).toBe('calculator');

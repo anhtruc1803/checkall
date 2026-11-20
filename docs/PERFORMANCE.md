@@ -1,5 +1,19 @@
 # Hiệu năng và kết quả đo
 
+## Tiện ích Milestone 3 — local để duyệt, 20/11/2026
+
+Build cuối `53i7Q8tGFzXpfNgRhVJ7k`, chưa commit/push/deploy. Hai engine tải riêng; unit **7.594 byte / gzip ước tính 2.864 byte**, date **4.761 / 1.783 byte**. Không tải trên `/vi`, `/vi/keyboard/tester`, `/vi/utilities/number-to-words`; có trên bốn route mới VI/EN trong runtime graph. Không thêm dependency, font/ảnh hoặc bỏ SEO/accessibility; messages và Registry tăng payload chung, không tuyên bố không overhead.
+
+Đã yêu cầu Lighthouse mobile ba lượt/trang trên sáu trang (bốn route mới VI/EN, trang chủ và Keyboard Tester), profile Chromium mới và extension tắt. Chạy sau full E2E để không có tải QA đồng thời. Guard phát hiện Kaspersky và dừng đúng thiết kế ở mẫu đầu; **không có median sạch**, **chưa xác minh mobile ≥90 cho M3**. Số dưới chỉ chẩn đoán bị loại, không phải Performance nghiệm thu:
+
+| Trang                          | Lượt | Performance thô |  FCP ms |  LCP ms | TBT ms |     CLS | Sạch  |
+| ------------------------------ | ---: | --------------: | ------: | ------: | -----: | ------: | ----- |
+| `/vi/utilities/unit-converter` |    1 |              76 | 2862.72 | 2862.72 | 539.00 | 0.00000 | không |
+
+[QA JSON M3](qa/utilities-milestone3-local-2026-11-20.json) giữ số thô, external origins, điều kiện đo và runtime graph; raw HTML/JSON trong artifacts bị ignore. Gzip là phép nén ước tính của riêng chunk, không phải transfer toàn trang. Không lấy điểm public M2 95–98 làm xác minh candidate hoặc so sánh cải thiện với mẫu Windows có injection. Máy không có Docker/Linux khả dụng; để ngỏ đo sạch trước gate phát hành sau duyệt, không tắt phần mềm bảo mật hoặc giảm guard để lấy điểm. Không suy Lighthouse lab thành field Core Web Vitals.
+
+Trong mẫu bị loại, Script transfer tổng **384.829 byte** gồm **200.634 byte từ ứng dụng local** và **184.195 byte từ origin Kaspersky**; font 56.135 byte, ảnh 0 byte. Phần script chèn được xác minh bằng network log, nhưng không thể quy toàn bộ TBT 539 ms hoặc điểm 76 cho một nguồn khi chưa có phép đo sạch đối chứng. Chưa có dữ liệu để kết luận Performance của code M3 dưới 90 hoặc để tối ưu dựa trên mẫu này.
+
 ## Tiện ích Milestone 2 — đo sạch trước/sau chuyển 19/11/2026
 
 Báo cáo hoàn thiện và kiểm tra lại HTTP ngày **20/11/2026**; số liệu CI, Lighthouse và snapshot Docker/runtime bên dưới thuộc đợt phát hành **19/11/2026**. Kết luận và phân loại chi tiết: [Nghiệm thu Milestone 2](ACCEPTANCE-UTILITIES-MILESTONE-2.md).

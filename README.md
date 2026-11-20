@@ -8,6 +8,8 @@ Nhánh tiện ích Milestone 1 bổ sung số/số tiền VND thành chữ và t
 
 Tiện ích Milestone 2 bổ sung đếm từ/ký tự, đổi hoa/thường, bỏ dấu/slug và làm sạch văn bản: **46 công cụ VI/EN**, giữ nguyên 42 công cụ trước. Đã triển khai sau CI/Docker/Lighthouse sạch; xem [đặc tả](docs/UTILITIES-MILESTONE-2.md), [nghiệm thu ngày 20/11](docs/ACCEPTANCE-UTILITIES-MILESTONE-2.md), [bằng chứng phát hành](docs/qa/deployment-utilities-milestone2-2026-11-19.json) và các giới hạn trong docs/PROGRESS.md.
 
+Candidate local tiện ích Milestone 3 thêm **Đổi đơn vị** (tám nhóm) và **Tính ngày**: tổng **48 công cụ VI/EN**, giữ nguyên 46 công cụ trước. Chưa push hoặc triển khai; xem [phạm vi và quy ước](docs/UTILITIES-MILESTONE-3.md), kết quả thực chạy trong `docs/PROGRESS.md` và `docs/TESTING.md`.
+
 ## Chạy phát triển
 
 Yêu cầu Node.js 24 LTS và pnpm 11.25.0.

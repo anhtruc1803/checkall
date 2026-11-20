@@ -28,7 +28,11 @@ const GamepadTool = dynamic(() => import('@/features/gamepad/gamepad'));
 const NumberWords = dynamic(() => import('@/features/utilities/number-words'));
 const Percentage = dynamic(() => import('@/features/utilities/percentage'));
 const TextTool = dynamic(() => import('@/features/utilities/text-tool'));
+const UnitConverter = dynamic(() => import('@/features/utilities/unit-converter'));
+const DateCalculator = dynamic(() => import('@/features/utilities/date-calculator'));
 const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
+  'unit-converter': () => <UnitConverter />,
+  'date-calculator': () => <DateCalculator />,
   text: (id) => <TextTool toolId={id} />,
   'number-words': () => <NumberWords />,
   percentage: () => <Percentage />,

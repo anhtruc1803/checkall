@@ -7,7 +7,7 @@ import { publishedTools } from '../../src/lib/tools/registry';
 const wordsPath = (locale: string) => `/${locale}/utilities/number-to-words`;
 const percentPath = (locale: string) => `/${locale}/utilities/percentage`;
 
-test('utility groups discover all 46 tools and preserve the original 40 in VI/EN', async ({
+test('utility groups discover all 48 tools and preserve the original 40 in VI/EN', async ({
   page,
   request,
 }) => {
@@ -15,9 +15,9 @@ test('utility groups discover all 46 tools and preserve the original 40 in VI/EN
     const t = locale === 'vi' ? vi : en;
     await page.goto(`/${locale}`);
     const groups = page.getByRole('group', { name: t.toolGroups.label, exact: true });
-    await expect(page.locator('.catalog-item')).toHaveCount(46);
-    await groups.getByRole('button', { name: `${t.toolGroups.utilities} 6` }).click();
-    await expect(page.locator('.catalog-item')).toHaveCount(6);
+    await expect(page.locator('.catalog-item')).toHaveCount(48);
+    await groups.getByRole('button', { name: `${t.toolGroups.utilities} 8` }).click();
+    await expect(page.locator('.catalog-item')).toHaveCount(8);
     await expect(page.locator(`.catalog-item[href="${wordsPath(locale)}"]`)).toHaveCount(1);
     await groups.getByRole('button', { name: `${t.toolGroups['device-tests']} 40` }).click();
     await expect(page.locator('.catalog-item')).toHaveCount(40);
@@ -32,7 +32,7 @@ test('utility groups discover all 46 tools and preserve the original 40 in VI/EN
       expect(response.headers()['permissions-policy']).toContain('camera=()');
     }
     await page.goto(`/${locale}/utilities`);
-    await expect(page.locator('.catalog-item')).toHaveCount(6);
+    await expect(page.locator('.catalog-item')).toHaveCount(8);
     await page
       .getByRole('textbox', { name: t.searchLabel })
       .fill(locale === 'vi' ? 'so tien' : 'money');

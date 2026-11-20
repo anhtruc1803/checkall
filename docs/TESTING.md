@@ -1,5 +1,32 @@
 # Kiểm thử
 
+## Tiện ích Milestone 3 — local để duyệt, 20/11/2026
+
+Candidate local **48 công cụ VI/EN**, giữ nguyên metadata/route/engine/copy của 46 công cụ trước; thêm **U07 Đổi đơn vị** (tám nhóm, phân số BigInt) và **U08 Tính ngày** (khoảng cách và cộng/trừ ngày Gregorian 0001–9999, độc lập DST). Không thêm dependency, API, capability hoặc permission. Chưa commit/push, CI từ xa, SSH hoặc triển khai website; public vẫn M2. Xem [đặc tả M3](UTILITIES-MILESTONE-3.md).
+
+Typecheck/lint/secret scan đạt; **575 unit/integration/43 file** đạt, không fail/skip (baseline trước sửa 494/41). Build cuối **124 trang**, BUILD_ID `53i7Q8tGFzXpfNgRhVJ7k`; health +**52 route smoke VI/EN**/policy đạt; kiểm tra thêm đủ **96 tool route**, canonical/CSP/ngôn ngữ và sitemap **118 URL**. Fixture thiết bị/M1 giữ nguyên; thêm fixture M2 U03–U06 từ committed HEAD, không sinh lại từ candidate. 213 file source/test/script được fingerprint, không đổi từ build cuối trong suốt full suite.
+
+Full **472 E2E: 438 đạt / 19 skip / 15 fail**, không flaky/global error; 1.878.757,726 ms. Nhóm mới **29/32 đạt, 3 fail, 0 skip**. Tất cả failure đã đọc đều là POST do Kaspersky chèn ngoài ứng dụng; đối chứng mới HTML trống không tải app/nhập dữ liệu cũng có script/POST Kaspersky trên Chromium và Firefox. Không lọc request, giảm assertion, tăng timeout hoặc gán failure thành pass. Các skip native/runtime giữ từng lý do trong [QA JSON M3](qa/utilities-milestone3-local-2026-11-20.json); không chứng nhận quyền/phần cứng từ fixture hoặc Safari thật từ WebKit.
+
+Hai engine tải riêng: unit chunk **7.594 byte**, gzip ước tính **2.864 byte**; date chunk **4.761 byte**, gzip ước tính **1.783 byte**. Không tải hai engine trên trang chủ, Keyboard Tester và đọc số trong bảy route runtime graph đã kiểm tra. Đây không phải tổng JS/transfer hoặc kết luận điểm Lighthouse; messages/Registry có overhead chung. Đã xem ảnh desktop/mobile của cả hai công cụ; các bài passed bao gồm VI/EN, tính toán, clipboard fixture, Dark/Light/WCAG và reflow 320px/chữ 200%.
+
+Lighthouse profile mới/extension tắt dừng bởi guard injection; chỉ có **1 mẫu chẩn đoán bị loại**, chưa đủ ba lượt/trang, chưa có median sạch hoặc xác minh mobile ≥90 cho M3. Không lấy điểm public M2 làm bằng chứng. Audit production **0 advisory**, còn **2 moderate dev tooling** glob/minimatch. Docker CLI không có, WSL không khả dụng; không tuyên bố đã thử Docker/Linux candidate.
+
+| Browser/config | Đạt | Skip | Fail |
+| -------------- | --: | ---: | ---: |
+| chromium       | 113 |    0 |    5 |
+| firefox        | 110 |    3 |    5 |
+| webkit         | 102 |   16 |    0 |
+| mobile         | 113 |    0 |    5 |
+
+Các lệnh đã chạy: `pnpm typecheck`, `pnpm lint`, `pnpm test --maxWorkers=2 --reporter=json --outputFile=artifacts/utilities-m3-unit-final.json`, `pnpm build` với SITE_URL local, `node scripts/smoke-http.mjs http://127.0.0.1:3100`, `pnpm exec playwright test --config artifacts/utilities-m3-playwright.config.ts`, audit production/toàn bộ, Prettier và secret/diff checks. Config QA dùng production server khởi tạo riêng ở loopback và output riêng; giữ bốn project, hai worker, timeout/assertions và các kiểm thử cũ. File E2E M3 chạy múi giờ America/New_York để kiểm tra qua mốc DST; không đổi timezone của các bài cũ.
+
+Lượt focused đầu chủ động dừng để sửa liên kết nhãn select và lời nhắc một giá trị. Các bài lỗi/dừng ban đầu không tính là full QA; build cuối và 472 E2E phía trên chạy sau sửa. Không thay source trong lúc full suite đang chạy. Clipboard/permission fixtures và backend audio/thiết bị ảo không chứng nhận OS/hardware.
+
+**Đã hoàn thành và xác minh:** implementation local, khóa 46 định nghĩa cũ, unit/build/HTTP và các bài E2E có trạng thái passed. **Đã triển khai nhưng chưa xác minh đầy đủ:** clipboard quyền hệ thống, date picker/bàn phím số/nhập âm/bộ gõ trên điện thoại thật, screen reader. **Chưa hoàn thành:** full E2E sạch, Lighthouse sạch/mobile ≥90, Docker/Linux candidate, native/runtime skips và hai dev advisory. **Không thể kiểm chứng trong môi trường hiện tại:** browser hoàn toàn sạch script bảo mật trên Windows này, Safari/phần cứng thật, Docker Engine/WSL. Các mục native/manual/bảo mật còn mở của M2 vẫn giữ nguyên. **Final Acceptance và gate phát hành M3 chưa đóng.**
+
+Tiếp theo: người dùng duyệt [Đổi đơn vị local](http://127.0.0.1:3100/vi/utilities/unit-converter) và [Tính ngày local](http://127.0.0.1:3100/vi/utilities/date-calculator); có EN qua bộ đổi ngôn ngữ. Sau duyệt và yêu cầu phát hành mới: CI/browser sạch, Lighthouse ba lượt/trang và Docker/Linux đúng source trước cập nhật website. Không tự mở milestone tiếp theo hoặc triển khai từ lượt local này.
+
 ## Tiện ích Milestone 2 đã phát hành — 19/11/2026
 
 Báo cáo hoàn thiện và kiểm tra lại HTTP ngày **20/11/2026**; số liệu CI, Lighthouse và snapshot Docker/runtime bên dưới thuộc đợt phát hành **19/11/2026**. Kết luận và phân loại chi tiết: [Nghiệm thu Milestone 2](ACCEPTANCE-UTILITIES-MILESTONE-2.md).

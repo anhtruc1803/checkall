@@ -7,6 +7,7 @@ import { getPublishedTools, getPublishedCategories, validateToolRegistry } from 
 import { phase2Tools } from './phase2';
 import { utilityTools } from './utilities';
 import { textUtilityTools } from './text-utilities';
+import { conversionUtilityTools } from './conversion-utilities';
 export { toolHref } from './search';
 export { getPublishedTools, getPublishedCategories } from './catalog';
 export type { Category, Engine, Tool, ToolCopy } from './types';
@@ -516,7 +517,13 @@ const phase1Tools: Tool[] = entries.map(
     };
   },
 );
-export const tools: Tool[] = [...phase1Tools, ...phase2Tools, ...utilityTools, ...textUtilityTools];
+export const tools: Tool[] = [
+  ...phase1Tools,
+  ...phase2Tools,
+  ...utilityTools,
+  ...textUtilityTools,
+  ...conversionUtilityTools,
+];
 validateToolRegistry(tools);
 export const publishedTools = getPublishedTools(tools);
 export const categories = getPublishedCategories(tools);

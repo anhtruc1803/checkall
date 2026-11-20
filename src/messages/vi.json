@@ -50,7 +50,12 @@
       "slug": "ASCII chỉ giữ a-z và 0-9; chọn Unicode để giữ chữ của ngôn ngữ khác. Slug chưa được mã hóa URL và không bảo đảm duy nhất.",
       "clean": "Gộp khoảng trắng có thể đổi thụt lề. Xóa ký tự ẩn giữ ký tự nối emoji/chữ; đây không phải công cụ khử mã HTML an toàn."
     },
-    "actions": { "count": "Đếm", "case": "Chuyển đổi", "slug": "Tạo kết quả", "clean": "Làm sạch" },
+    "actions": {
+      "count": "Đếm",
+      "case": "Chuyển đổi",
+      "slug": "Tạo kết quả",
+      "clean": "Làm sạch"
+    },
     "metrics": {
       "words": "Số từ",
       "characters": "Ký tự hiển thị",
@@ -674,7 +679,7 @@
     },
     "utilities": {
       "title": "Nội dung trong tiện ích",
-      "body": "Số, số tiền và văn bản chỉ được xử lý trong trang đang mở, không ghi vào lịch sử hoặc gửi lên máy chủ. Sao chép chỉ diễn ra khi bạn bấm nút; trang không tự đọc clipboard."
+      "body": "Số, số tiền, văn bản và ngày chỉ được xử lý trong trang đang mở, không ghi vào lịch sử hoặc gửi lên máy chủ. Sao chép chỉ diễn ra khi bạn bấm nút; trang không tự đọc clipboard."
     }
   },
   "utilities": "Tiện ích",
@@ -738,6 +743,110 @@
       "vndFraction": "Số tiền VND cần là số nguyên. Hãy bỏ phần lẻ; công cụ không tự làm tròn.",
       "zeroBase": "Không thể chia cho 0. Hãy nhập giá trị làm mốc khác 0.",
       "negativeBase": "Mức thay đổi cần giá trị ban đầu lớn hơn 0."
+    }
+  },
+  "unitTool": {
+    "group": "Nhóm đơn vị",
+    "from": "Từ đơn vị",
+    "to": "Sang đơn vị",
+    "value": "Giá trị cần đổi",
+    "swap": "Đảo đơn vị",
+    "clear": "Xóa giá trị",
+    "groups": {
+      "length": "Độ dài",
+      "mass": "Khối lượng",
+      "area": "Diện tích",
+      "volume": "Thể tích",
+      "temperature": "Nhiệt độ",
+      "speed": "Tốc độ",
+      "duration": "Thời lượng",
+      "data": "Dung lượng dữ liệu"
+    },
+    "units": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "km": "km",
+      "in": "in (inch)",
+      "ft": "ft (foot quốc tế)",
+      "yd": "yd (yard)",
+      "mi": "mi (mile quốc tế)",
+      "mg": "mg",
+      "g": "g",
+      "kg": "kg",
+      "tonne": "t (tấn mét)",
+      "oz": "oz (ounce khối lượng)",
+      "lb": "lb (pound)",
+      "cm2": "cm²",
+      "m2": "m²",
+      "ha": "ha",
+      "km2": "km²",
+      "ft2": "ft²",
+      "acre": "acre (quốc tế)",
+      "ml": "mL",
+      "l": "L",
+      "m3": "m³",
+      "us_gal": "gal (Mỹ, chất lỏng)",
+      "uk_gal": "gal (Anh, Imperial)",
+      "c": "°C",
+      "f": "°F",
+      "k": "K",
+      "mps": "m/s",
+      "kph": "km/h",
+      "mph": "mph (mile/giờ)",
+      "knot": "kn (hải lý/giờ)",
+      "ms": "ms",
+      "s": "s (giây)",
+      "min": "min (phút)",
+      "h": "h (giờ)",
+      "day": "ngày (24 giờ)",
+      "week": "tuần (7 ngày)",
+      "bit": "bit",
+      "byte": "B (byte)",
+      "kb": "kB (1.000 B)",
+      "mb": "MB (10⁶ B)",
+      "gb": "GB (10⁹ B)",
+      "tb": "TB (10¹² B)",
+      "kib": "KiB (1.024 B)",
+      "mib": "MiB (2²⁰ B)",
+      "gib": "GiB (2³⁰ B)",
+      "tib": "TiB (2⁴⁰ B)"
+    },
+    "hints": {
+      "length": "Foot/mile quốc tế; không dùng US survey foot.",
+      "mass": "Pound và ounce avoirdupois; ounce ở đây là khối lượng, không phải thể tích.",
+      "area": "Dùng acre quốc tế; không quy đổi sào, mẫu do khác nhau theo vùng.",
+      "volume": "Gallon Mỹ là US liquid, khác gallon Anh (Imperial); không dùng gallon khô.",
+      "temperature": "Đổi giá trị nhiệt độ, không phải độ chênh nhiệt. Không nhận giá trị dưới 0 K.",
+      "speed": "Một hải lý bằng 1.852 m; knot là hải lý/giờ.",
+      "duration": "Một ngày bằng 24 giờ, một tuần bằng 7 ngày. Không đổi tháng/năm hoặc ngày lịch có DST.",
+      "data": "1 byte = 8 bit; kB/MB dùng cơ số 1.000, KiB/MiB dùng cơ số 1.024. Không phải dung lượng phần cứng đã đo."
+    },
+    "errors": {
+      "unit": "Hãy chọn hai đơn vị trong cùng nhóm.",
+      "absoluteZero": "Nhiệt độ không được thấp hơn 0 K (−273,15 °C / −459,67 °F).",
+      "negative": "Nhóm này chỉ nhận giá trị không âm."
+    },
+    "empty": "Nhập giá trị hợp lệ để xem kết quả.",
+    "bounds": "Tối đa 24 chữ số phần nguyên và 6 chữ số thập phân; không dùng dạng 1e6. Chỉ nhóm nhiệt độ nhận giá trị âm."
+  },
+  "dateTool": {
+    "mode": "Cách tính",
+    "difference": "Số ngày giữa hai ngày",
+    "add": "Cộng / trừ ngày",
+    "start": "Ngày bắt đầu",
+    "end": "Ngày kết thúc",
+    "days": "Số ngày (âm để trừ)",
+    "swap": "Đảo hai ngày",
+    "clear": "Xóa dữ liệu",
+    "dayResult": "{count} ngày",
+    "differenceHint": "Ngày kết thúc − ngày bắt đầu. Cùng ngày = 0; ngày kết thúc sớm hơn cho kết quả âm. Không cộng thêm ngày đầu/cuối.",
+    "addHint": "Nhập số nguyên từ −9.999.999 đến 9.999.999, không phân nhóm; ví dụ −7 để lùi một tuần. Kết quả phải nằm trong năm 0001–9999.",
+    "calendarHint": "Lịch Gregorian, năm 0001–9999; tính cả cuối tuần/ngày lễ, không tính ngày làm việc hoặc âm lịch. Độc lập múi giờ/DST; kết quả ngày dùng YYYY-MM-DD.",
+    "errors": {
+      "date": "Nhập ngày Gregorian hợp lệ trong năm 0001–9999.",
+      "days": "Nhập số ngày nguyên, tối đa 7 chữ số, có thể có dấu + hoặc − (gõ -).",
+      "dateRange": "Kết quả vượt phạm vi ngày 0001-01-01 đến 9999-12-31."
     }
   }
 }

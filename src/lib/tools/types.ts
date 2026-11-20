@@ -39,6 +39,8 @@ export const implementedEngines = [
   'number-words',
   'percentage',
   'text',
+  'unit-converter',
+  'date-calculator',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {

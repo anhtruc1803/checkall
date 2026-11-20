@@ -50,7 +50,12 @@
       "slug": "ASCII keeps only a-z and 0-9; use Unicode to keep other scripts. Slugs are not URL-encoded or guaranteed unique.",
       "clean": "Collapsing spaces can change indentation. Invisible cleanup preserves emoji/script joiners; this is not an HTML security sanitizer."
     },
-    "actions": { "count": "Count", "case": "Convert", "slug": "Create result", "clean": "Clean" },
+    "actions": {
+      "count": "Count",
+      "case": "Convert",
+      "slug": "Create result",
+      "clean": "Clean"
+    },
     "metrics": {
       "words": "Words",
       "characters": "Visible characters",
@@ -674,7 +679,7 @@
     },
     "utilities": {
       "title": "Content in utilities",
-      "body": "Numbers, amounts and text are processed only on the open page, without saving to history or uploading to the server. Copying happens only when you select Copy; the page does not read your clipboard automatically."
+      "body": "Numbers, amounts, text and dates are processed only in the current page, never added to history or sent to a server. Copying happens only when you press the button; the page never reads your clipboard."
     }
   },
   "utilities": "Utilities",
@@ -738,6 +743,110 @@
       "vndFraction": "VND amounts must be whole numbers. Remove the fractional part; this tool never rounds it automatically.",
       "zeroBase": "Cannot divide by zero. Enter a nonzero reference value.",
       "negativeBase": "Percentage change needs an initial value greater than zero."
+    }
+  },
+  "unitTool": {
+    "group": "Unit group",
+    "from": "From unit",
+    "to": "To unit",
+    "value": "Value to convert",
+    "swap": "Swap units",
+    "clear": "Clear value",
+    "groups": {
+      "length": "Length",
+      "mass": "Mass",
+      "area": "Area",
+      "volume": "Volume",
+      "temperature": "Temperature",
+      "speed": "Speed",
+      "duration": "Duration",
+      "data": "Data size"
+    },
+    "units": {
+      "mm": "mm",
+      "cm": "cm",
+      "m": "m",
+      "km": "km",
+      "in": "in (inch)",
+      "ft": "ft (international foot)",
+      "yd": "yd (yard)",
+      "mi": "mi (international mile)",
+      "mg": "mg",
+      "g": "g",
+      "kg": "kg",
+      "tonne": "t (metric tonne)",
+      "oz": "oz (mass ounce)",
+      "lb": "lb (pound)",
+      "cm2": "cm²",
+      "m2": "m²",
+      "ha": "ha",
+      "km2": "km²",
+      "ft2": "ft²",
+      "acre": "acre (international)",
+      "ml": "mL",
+      "l": "L",
+      "m3": "m³",
+      "us_gal": "gal (US liquid)",
+      "uk_gal": "gal (Imperial)",
+      "c": "°C",
+      "f": "°F",
+      "k": "K",
+      "mps": "m/s",
+      "kph": "km/h",
+      "mph": "mph (miles/hour)",
+      "knot": "kn (nautical miles/hour)",
+      "ms": "ms",
+      "s": "s (seconds)",
+      "min": "min (minutes)",
+      "h": "h (hours)",
+      "day": "days (24 hours)",
+      "week": "weeks (7 days)",
+      "bit": "bit",
+      "byte": "B (byte)",
+      "kb": "kB (1,000 B)",
+      "mb": "MB (10⁶ B)",
+      "gb": "GB (10⁹ B)",
+      "tb": "TB (10¹² B)",
+      "kib": "KiB (1,024 B)",
+      "mib": "MiB (2²⁰ B)",
+      "gib": "GiB (2³⁰ B)",
+      "tib": "TiB (2⁴⁰ B)"
+    },
+    "hints": {
+      "length": "International feet/miles; not US survey feet.",
+      "mass": "Avoirdupois pounds and ounces. Ounces here measure mass, not volume.",
+      "area": "International acres; region-dependent land units are not included.",
+      "volume": "US gallons are liquid gallons and differ from Imperial gallons; no dry gallons.",
+      "temperature": "Converts temperature values, not temperature differences. Values below 0 K are rejected.",
+      "speed": "One nautical mile is 1,852 m; a knot is one nautical mile per hour.",
+      "duration": "A day is 24 hours and a week is 7 days. No months/years or DST calendar days.",
+      "data": "1 byte = 8 bits; kB/MB use powers of 1,000, KiB/MiB use powers of 1,024. This is not measured hardware capacity."
+    },
+    "errors": {
+      "unit": "Choose two units in the same group.",
+      "absoluteZero": "Temperature must not be below 0 K (−273.15 °C / −459.67 °F).",
+      "negative": "This group accepts non-negative values only."
+    },
+    "empty": "Enter a valid value to see the result.",
+    "bounds": "Up to 24 integer digits and 6 decimal places; no scientific notation such as 1e6. Only temperature accepts negative values."
+  },
+  "dateTool": {
+    "mode": "Calculation",
+    "difference": "Days between dates",
+    "add": "Add / subtract days",
+    "start": "Start date",
+    "end": "End date",
+    "days": "Number of days (negative to subtract)",
+    "swap": "Swap dates",
+    "clear": "Clear dates",
+    "dayResult": "{count, plural, one {# day} other {# days}}",
+    "differenceHint": "End date − start date. Equal dates = 0; an earlier end gives a negative result. No extra inclusive day is added.",
+    "addHint": "Enter a whole number from −9,999,999 to 9,999,999, without grouping; for example −7 goes back one week. The result must stay within years 0001–9999.",
+    "calendarHint": "Gregorian calendar, years 0001–9999; includes weekends/holidays, not business days or lunar dates. Independent of time zones/DST; date results use YYYY-MM-DD.",
+    "errors": {
+      "date": "Enter a valid Gregorian date in years 0001–9999.",
+      "days": "Enter up to 7 digits for whole days, optionally prefixed with + or -.",
+      "dateRange": "The result is outside 0001-01-01 to 9999-12-31."
     }
   }
 }

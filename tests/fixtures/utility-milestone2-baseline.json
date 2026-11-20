@@ -1,0 +1,138 @@
+[
+  {
+    "id": "U03",
+    "slug": "word-counter",
+    "engine": "text",
+    "category": "utilities",
+    "icon": "utilities",
+    "phase": null,
+    "status": "published",
+    "requiredCapabilities": [],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["U04", "U05", "U06"],
+    "copy": {
+      "vi": {
+        "name": "Đếm từ và ký tự",
+        "description": "Đếm từ, ký tự hiển thị, dòng, đoạn và dung lượng UTF-8 của văn bản.",
+        "instructions": "Nhập văn bản, chọn ngôn ngữ rồi bấm Đếm. Mở Chi tiết để xem code point, UTF-16 và byte UTF-8.",
+        "method": "Ký tự hiển thị được đếm theo cụm Unicode, giữ emoji ghép và dấu kết hợp. Từ được đếm theo ranh giới từ của trình duyệt.",
+        "limitations": "Không phân tích từ ghép tiếng Việt hoặc ngữ nghĩa. Cách tách từ có thể khác theo phiên bản trình duyệt; mục không được hỗ trợ sẽ hiện dấu gạch, không ước tính thay thế."
+      },
+      "en": {
+        "name": "Word and character counter",
+        "description": "Count words, visible characters, lines, paragraphs and UTF-8 bytes in text.",
+        "instructions": "Enter text, choose its language and select Count. Open Details for code points, UTF-16 units and UTF-8 bytes.",
+        "method": "Visible characters use Unicode grapheme clusters, including combined emoji and combining accents. Words use the browser’s word boundaries.",
+        "limitations": "Does not analyze Vietnamese compound words or meaning. Word boundaries may vary by browser version; unsupported counts show a dash instead of an estimate."
+      }
+    }
+  },
+  {
+    "id": "U04",
+    "slug": "case-converter",
+    "engine": "text",
+    "category": "utilities",
+    "icon": "utilities",
+    "phase": null,
+    "status": "published",
+    "requiredCapabilities": [],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["U03", "U05", "U06"],
+    "copy": {
+      "vi": {
+        "name": "Đổi chữ hoa và chữ thường",
+        "description": "Chuyển chữ hoa, chữ thường hoặc viết hoa đầu từ, đầu câu với bản xem trước.",
+        "instructions": "Nhập văn bản, chọn cách viết và ngôn ngữ rồi bấm Chuyển đổi. Bản gốc luôn được giữ để đối chiếu.",
+        "method": "Chuyển hoa/thường theo ngôn ngữ đã chọn. Đầu từ dựa trên cụm chữ; đầu câu dựa trên dấu chấm, hỏi, than và xuống dòng.",
+        "limitations": "Không nhận diện tên riêng, viết tắt hoặc quy tắc tiêu đề biên tập. Chuyển hoa/thường có thể thay đổi số ký tự; hãy xem kết quả trước khi sao chép."
+      },
+      "en": {
+        "name": "Text case converter",
+        "description": "Preview uppercase, lowercase, title-style or sentence-style text.",
+        "instructions": "Enter text, choose a case mode and language, then select Convert. The original stays available for comparison.",
+        "method": "Uses the selected language for case mapping. Word starts use letter sequences; sentence starts follow periods, question marks, exclamation marks and line breaks.",
+        "limitations": "Does not recognize proper names, abbreviations or editorial title rules. Case conversion can change the character count; review before copying."
+      }
+    }
+  },
+  {
+    "id": "U05",
+    "slug": "remove-accents-slug",
+    "engine": "text",
+    "category": "utilities",
+    "icon": "utilities",
+    "phase": null,
+    "status": "published",
+    "requiredCapabilities": [],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["U03", "U04", "U06"],
+    "copy": {
+      "vi": {
+        "name": "Bỏ dấu và tạo slug",
+        "description": "Bỏ dấu chữ Latin/tiếng Việt hoặc tạo slug ASCII, Unicode với dấu nối tùy chọn.",
+        "instructions": "Chọn Bỏ dấu để giữ nội dung và chữ hoa/thường, hoặc chọn slug ASCII/Unicode rồi bấm Tạo kết quả.",
+        "method": "Bỏ dấu trên chữ Latin, đổi đ/Đ thành d/D. Slug ASCII giữ a-z và 0-9; slug Unicode giữ chữ, số và dấu kết hợp, chuyển thường và nối các cụm.",
+        "limitations": "Không phiên âm mọi ngôn ngữ hoặc bảo đảm slug duy nhất. Slug ASCII có thể bỏ chữ ngoài bảng Latin cơ bản; kết quả là chuỗi, chưa phải một URL được mã hóa."
+      },
+      "en": {
+        "name": "Remove accents and create slugs",
+        "description": "Remove Latin/Vietnamese accents or create ASCII or Unicode slugs with a chosen separator.",
+        "instructions": "Choose Remove accents to preserve content and case, or choose an ASCII/Unicode slug and select Create result.",
+        "method": "Removes marks from Latin letters and maps đ/Đ to d/D. ASCII slugs keep a-z and 0-9; Unicode slugs keep letters, digits and attached marks, lowercase them and join runs.",
+        "limitations": "Does not transliterate every language or guarantee uniqueness. ASCII can discard other letters; the output is a string, not an encoded URL."
+      }
+    }
+  },
+  {
+    "id": "U06",
+    "slug": "text-cleaner",
+    "engine": "text",
+    "category": "utilities",
+    "icon": "utilities",
+    "phase": null,
+    "status": "published",
+    "requiredCapabilities": [],
+    "optionalCapabilities": [],
+    "permissions": [],
+    "classification": "calculator",
+    "environments": ["desktop", "mobile", "tablet"],
+    "seo": {
+      "index": true
+    },
+    "relatedTools": ["U03", "U04", "U05"],
+    "copy": {
+      "vi": {
+        "name": "Làm sạch văn bản",
+        "description": "Xử lý khoảng trắng, dòng trống, dòng trùng và ký tự ẩn theo tùy chọn.",
+        "instructions": "Chọn các bước cần dùng rồi bấm Làm sạch. Xem kết quả riêng bên dưới; bản gốc không bị ghi đè.",
+        "method": "Áp dụng lần lượt chuẩn hóa Unicode tùy chọn, bỏ ký tự ẩn, gộp khoảng trắng ngang, cắt lề, lọc dòng trống/trùng và cắt khoảng trắng ngoài cùng.",
+        "limitations": "Gộp khoảng trắng có thể đổi thụt lề. Dòng trùng được so khớp chính xác sau các bước trước đó. Không sửa ngữ pháp, dịch nội dung hoặc khử mã HTML để bảo đảm an toàn."
+      },
+      "en": {
+        "name": "Text cleaner",
+        "description": "Clean whitespace, blank lines, duplicate lines and selected invisible characters.",
+        "instructions": "Choose the steps you need, then select Clean. Review the separate output; the original is never overwritten.",
+        "method": "Applies optional Unicode normalization, invisible removal, horizontal whitespace collapsing, line trimming, blank/duplicate filtering and outer trimming in order.",
+        "limitations": "Collapsing whitespace can change indentation. Duplicate matching is exact after earlier steps. Does not correct grammar, translate text or sanitize HTML for safe execution."
+      }
+    }
+  }
+]

@@ -1,5 +1,11 @@
 # Triển khai và vận hành
 
+## Candidate local tiện ích Milestone 3 — 20/11/2026
+
+Chỉ làm local để người dùng duyệt: U07 Đổi đơn vị, U08 Tính ngày; tổng 48 công cụ VI/EN, giữ 46 công cụ trước. Website public vẫn M2 source `142f807`; chưa commit/push, chạy CI từ xa, SSH, build image VPS hoặc thay DNS/proxy/container. Không lấy Docker/CI/Lighthouse M2 bên dưới làm xác minh candidate M3.
+
+Máy local không có lệnh Docker; WSL không khởi động được do service/thiết bị chưa bật. Chưa kiểm thử Docker M3. `scripts/smoke-http.mjs` mở rộng thành health +52 route VI/EN, gồm bốn route mới và kiểm tra policy; script đạt với production server local. Quy trình Docker/Linux hiện có vẫn bắt buộc trước phát hành sau khi được duyệt: build image, Compose health/Nginx/policy, Node private, logs, restart và shutdown; không giảm smoke hoặc bỏ browser.
+
 ## Tiện ích Milestone 2 đang phục vụ — 19/11/2026
 
 Báo cáo hoàn thiện và kiểm tra lại HTTP ngày **20/11/2026**; số liệu CI, Lighthouse và snapshot Docker/runtime bên dưới thuộc đợt phát hành **19/11/2026**. Kết luận và phân loại chi tiết: [Nghiệm thu Milestone 2](ACCEPTANCE-UTILITIES-MILESTONE-2.md).
