@@ -1,6 +1,28 @@
 # Tiến độ Device Lab
 
-## Tiện ích Milestone 2 — đã duyệt local, chuẩn bị phát hành 19/11/2026
+## Tiện ích Milestone 2 đã triển khai — 19/11/2026
+
+Báo cáo hoàn thiện và kiểm tra lại HTTP ngày **20/11/2026**; số liệu CI, Lighthouse và snapshot Docker/runtime bên dưới thuộc đợt phát hành **19/11/2026**. Kết luận và phân loại chi tiết: [Nghiệm thu Milestone 2](ACCEPTANCE-UTILITIES-MILESTONE-2.md).
+
+Source **142f807dbb87374452acb65a8be6e2052caa5367**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44492926836), [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44493548246) và [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44498282182). Giữ nguyên 42 công cụ trước (40 thiết bị + U01/U02), thêm U03–U06: **46 công cụ VI/EN**, **92 route công cụ**, sitemap **114 URL**. Mã ứng dụng, tests và scripts không đổi từ bản người dùng đã duyệt; các commit sau chỉ chuẩn hóa CI/tài liệu.
+
+Typecheck/lint/secret scan đạt, **494 unit/41 file**, production build **120 trang**; full E2E **434 đạt/6 native policy skip**, không fail/flaky/global error, 1.034.526,065 ms. Chromium/mobile mỗi 110 đạt; Firefox/WebKit mỗi 107 đạt/3 skip. Nhóm văn bản **32/32**, tiện ích số **24/24** sạch. Backend audio ảo qua smoke cả ba engine; không chứng nhận phần cứng thật hoặc Safari.
+
+Trước chuyển đủ **48 mẫu sạch/16 trang × 3**, median mobile **99–100**; sau chuyển đủ **48 mẫu sạch/16 trang × 3**, median **95–98**. Cả hai bộ có median Accessibility/Best Practices/SEO 100 trên mọi trang. Kiểm tra source/path/pageVerified/clean của từng mẫu; không chỉ dựa job success. Giữ toàn bộ 96 sample và median FCP/LCP/TBT/CLS/JS/font/ảnh trong [QA phát hành](qa/deployment-utilities-milestone2-2026-11-19.json). Không lấy mẫu Windows bị Kaspersky chèn hoặc dữ liệu M1 làm baseline tăng điểm M2.
+
+VPS current→`/opt/device-lab/releases/142f807`, image **device-lab:staging-142f807-20261119**, ID **sha256:d75f3fd8a673b27311c3e9f585b5a38a2c2ead7190d7379715e337628124ec10**. Archive Git tracked SHA256 **797d67bdf02804fa4489886396852ba0fefe52689cf52111455861bf004a7571**, không mang .env/secret/cache. Candidate thử network none/non-root/read-only, đủ 92 route/sitemap 114 trước/sau restart/stop-start, SIGTERM 143/không OOM/Error, Node không public. Chỉ sau gate CI/Lighthouse/candidate đạt mới chuyển ứng dụng. Runtime Node.js v24.22.3, healthy/nextjs/read-only, 768 MiB/256 PID/cap-drop ALL/no-new-privileges.
+
+Public HTTP→HTTPS308, H1/canonical/release/policy và toàn bộ 92 route (84 cũ + 8 mới) đạt. **56/56 public smoke** trên Chromium/Firefox/WebKit/mobile, không fail/skip/flaky/global error; gồm VI/EN, chữ/số, ngôn ngữ văn bản độc lập UI, clipboard/IME fixture, theme/reflow/WCAG và EVKey/dd. Đây là subset chức năng Windows hiện có, không phải full privacy sạch trên public; full privacy đã xác minh riêng trong CI.
+
+Nginx chỉ đổi marker release và reload, giữ inode bind mount; DNS/proxy/routing/policy/quyền và Compose override không đổi. Chuyển thành công, giữ release/image `7e3dd0b` và backup `/opt/device-lab/shared/nginx.conf.before-text-m2-20261119`; không prune/reboot hoặc chạy renewal mới. Log Nginx từ app start: 15 bản ghi rate-limit, 0 lỗi upstream; app tail 80 dòng: 0 error; không nới rate limit để lấy pass; Certbot timer active. Phiên SSH đã đóng.
+
+File chính phát hành: Registry/engine text/UI/messages/tests/fixture khóa 42 công cụ đã duyệt; `.github/workflows/ci.yml` pin Ubuntu 24.04/image Playwright 1.64.1+digest, trust đúng workspace, HOME/loopback và audio pwuser. Không sửa assertions/timeout/skip để làm pass. Các lượt bootstrap chưa E2E/không đạt được giữ trong sourceHistory của QA, không tính pass. Tài liệu cập nhật README/ARCHITECTURE/PROGRESS/TESTING/PERFORMANCE/DEPLOYMENT/UTILITIES-MILESTONE-2 và QA JSON; raw artifacts bị ignore.
+
+**Đã hoàn thành và xác minh:** phần mềm qua CI, Docker CI/candidate, public HTTP/UI, median mobile ≥90 trên bộ đại diện. **Đã triển khai nhưng chưa xác minh đầy đủ:** clipboard/bộ gõ/mobile/screen reader thật, rollback khi lỗi production chưa diễn tập cố ý. **Chưa hoàn thành:** 6 native policy skips, 2 moderate dev tooling glob/minimatch, CSP public còn bị proxy bỏ (0/92 route có header), TLS proxy→origin/field data. **Không thể kiểm chứng lượt này:** Safari thật/phần cứng/mọi phiên bản EVKey. Không đồng nhất WebKit automation với Safari thật, fixture/backend ảo với thiết bị thật. Người dùng quản lý proxy; không tự sửa. **Final Acceptance tổng thể vẫn mở.**
+
+Tiếp theo: người dùng dùng bốn tiện ích tại `/vi/utilities` hoặc `/en/utilities`; hoàn tất các mục manual/native/bảo mật còn mở. Không tự mở milestone tiếp theo. Các phần dưới là lịch sử checkpoint trước phát hành.
+
+## Lịch sử trước phát hành: Milestone 2 đã duyệt local, chuẩn bị phát hành 19/11/2026
 
 Người dùng đã duyệt bốn tiện ích văn bản và yêu cầu push GitHub/triển khai sau QA môi trường sạch và Lighthouse trước chuyển. Đang chuẩn bị source đã duyệt, giữ nguyên 42 công cụ trước. Chưa chuyển website; chỉ thực hiện khi đã đọc kết quả CI đầy đủ, Docker smoke và ba lượt Lighthouse sạch trên mỗi trang đại diện. Các checkpoint local và bằng chứng phía dưới được giữ nguyên để đối chiếu; không kế thừa CI/Lighthouse M1 làm xác minh M2.
 
@@ -16,7 +38,7 @@ Lượt `53115b7` đã khởi tạo PulseAudio và smoke Chromium, nhưng Firefo
 
 Lượt `4d024e0` qua smoke audio ba engine và build120, dừng trước E2E do webServer không đến được health localhost trong120 giây. Container cấp HOSTNAME tên/IP container trong khi scripts/start.mjs kế thừa biến này. Cố định HOSTNAME127.0.0.1/PORT3000 cho job, bật DEBUG pw:webserver để quan sát startup; không tăng timeout hoặc giảm bài kiểm thử. Website vẫn ở7e3dd0b trong toàn bộ quá trình xử lý môi trường CI.
 
-## Tiện ích Milestone 2 — local để duyệt, 19/11/2026
+## Lịch sử trước phát hành: Milestone 2 local để duyệt, 19/11/2026
 
 Theo yêu cầu mới, chỉ làm local: **U03 đếm từ/ký tự, U04 đổi hoa/thường, U05 bỏ dấu/tạo slug, U06 làm sạch văn bản**. Candidate có **46 công cụ VI/EN**, giữ nguyên metadata/copy và engine của 42 công cụ cũ (40 thiết bị + U01/U02). Không thay kiến trúc hoặc dependency, không mở thêm Phase phần cứng; chưa commit/push/CI từ xa/SSH/deploy. Public vẫn Milestone 1 source `7e3dd0b` phía dưới.
 

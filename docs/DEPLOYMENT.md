@@ -1,6 +1,28 @@
 # Triển khai và vận hành
 
-## Tiện ích Milestone 2 — candidate local, chưa phát hành 19/11/2026
+## Tiện ích Milestone 2 đang phục vụ — 19/11/2026
+
+Báo cáo hoàn thiện và kiểm tra lại HTTP ngày **20/11/2026**; số liệu CI, Lighthouse và snapshot Docker/runtime bên dưới thuộc đợt phát hành **19/11/2026**. Kết luận và phân loại chi tiết: [Nghiệm thu Milestone 2](ACCEPTANCE-UTILITIES-MILESTONE-2.md).
+
+Source **142f807dbb87374452acb65a8be6e2052caa5367**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44492926836), [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44493548246) và [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44498282182). Giữ nguyên 42 công cụ trước (40 thiết bị + U01/U02), thêm U03–U06: **46 công cụ VI/EN**, **92 route công cụ**, sitemap **114 URL**. Mã ứng dụng, tests và scripts không đổi từ bản người dùng đã duyệt; các commit sau chỉ chuẩn hóa CI/tài liệu.
+
+Typecheck/lint/secret scan đạt, **494 unit/41 file**, production build **120 trang**; full E2E **434 đạt/6 native policy skip**, không fail/flaky/global error, 1.034.526,065 ms. Chromium/mobile mỗi 110 đạt; Firefox/WebKit mỗi 107 đạt/3 skip. Nhóm văn bản **32/32**, tiện ích số **24/24** sạch. Backend audio ảo qua smoke cả ba engine; không chứng nhận phần cứng thật hoặc Safari.
+
+Trước chuyển đủ **48 mẫu sạch/16 trang × 3**, median mobile **99–100**; sau chuyển đủ **48 mẫu sạch/16 trang × 3**, median **95–98**. Cả hai bộ có median Accessibility/Best Practices/SEO 100 trên mọi trang. Kiểm tra source/path/pageVerified/clean của từng mẫu; không chỉ dựa job success. Giữ toàn bộ 96 sample và median FCP/LCP/TBT/CLS/JS/font/ảnh trong [QA phát hành](qa/deployment-utilities-milestone2-2026-11-19.json). Không lấy mẫu Windows bị Kaspersky chèn hoặc dữ liệu M1 làm baseline tăng điểm M2.
+
+VPS current→`/opt/device-lab/releases/142f807`, image **device-lab:staging-142f807-20261119**, ID **sha256:d75f3fd8a673b27311c3e9f585b5a38a2c2ead7190d7379715e337628124ec10**. Archive Git tracked SHA256 **797d67bdf02804fa4489886396852ba0fefe52689cf52111455861bf004a7571**, không mang .env/secret/cache. Candidate thử network none/non-root/read-only, đủ 92 route/sitemap 114 trước/sau restart/stop-start, SIGTERM 143/không OOM/Error, Node không public. Chỉ sau gate CI/Lighthouse/candidate đạt mới chuyển ứng dụng. Runtime Node.js v24.22.3, healthy/nextjs/read-only, 768 MiB/256 PID/cap-drop ALL/no-new-privileges.
+
+Giữ `/opt/device-lab/releases/7e3dd0b`, image `device-lab:staging-7e3dd0b-20261119` và backup `/opt/device-lab/shared/nginx.conf.before-text-m2-20261119` để rollback. Nginx chỉ đổi release marker trong file hiện có rồi reload; .env ở host chỉ đổi RELEASE_TAG, không đổi giá trị khác. Không sửa DNS/proxy/routing/policy/quyền/Compose override, không prune/reboot hoặc chạy renewal mới. Chuyển thành công; nhánh rollback có sẵn nhưng không cố gây lỗi trên production để diễn tập.
+
+Public HTTP→HTTPS308, H1/canonical/release/policy và toàn bộ 92 route (84 cũ + 8 mới) đạt. **56/56 public smoke** trên Chromium/Firefox/WebKit/mobile, không fail/skip/flaky/global error; gồm VI/EN, chữ/số, ngôn ngữ văn bản độc lập UI, clipboard/IME fixture, theme/reflow/WCAG và EVKey/dd. Đây là subset chức năng Windows hiện có, không phải full privacy sạch trên public; full privacy đã xác minh riêng trong CI.
+
+Log Nginx từ app start 15 bản ghi rate-limit và 0 lỗi upstream, app tail 80 dòng 0 error; không nới rate limit; Certbot timer active. Origin TLS dùng xác minh certificate bình thường, không --insecure; origin app có CSP, proxy public vẫn bỏ header. Không nhận đã xác minh chế độ TLS proxy→origin trong bảng điều khiển. Phiên SSH kết thúc; proof/gates/runtime/source/sample ở [QA phát hành](qa/deployment-utilities-milestone2-2026-11-19.json).
+
+**Đã hoàn thành và xác minh:** phần mềm qua CI, Docker CI/candidate, public HTTP/UI, median mobile ≥90 trên bộ đại diện. **Đã triển khai nhưng chưa xác minh đầy đủ:** clipboard/bộ gõ/mobile/screen reader thật, rollback khi lỗi production chưa diễn tập cố ý. **Chưa hoàn thành:** 6 native policy skips, 2 moderate dev tooling glob/minimatch, CSP public còn bị proxy bỏ (0/92 route có header), TLS proxy→origin/field data. **Không thể kiểm chứng lượt này:** Safari thật/phần cứng/mọi phiên bản EVKey. Không đồng nhất WebKit automation với Safari thật, fixture/backend ảo với thiết bị thật. Người dùng quản lý proxy; không tự sửa. **Final Acceptance tổng thể vẫn mở.**
+
+Các phần dưới là lịch sử, không phải bản đang phục vụ.
+
+## Lịch sử trước phát hành: Milestone 2 candidate local, chưa phát hành 19/11/2026
 
 Đợt này chỉ chuẩn bị local để người dùng duyệt: bốn tiện ích văn bản U03–U06, tổng 46 công cụ. Preview production ở `http://127.0.0.1:3100/vi/utilities`; bind loopback, không mở Node ra mạng. Build cuối 120 trang, BUILD_ID `c-NDmO-s7fw5rZXNdGwtV`. HTTP smoke health +48 route VI/EN đạt; script dùng trong Docker CI đã thêm cả tám route văn bản mới và giữ phạm vi quyền thiết bị hiện có.
 

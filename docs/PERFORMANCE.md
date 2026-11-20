@@ -1,6 +1,37 @@
 # Hiệu năng và kết quả đo
 
-## Tiện ích Milestone 2 — candidate local 19/11/2026
+## Tiện ích Milestone 2 — đo sạch trước/sau chuyển 19/11/2026
+
+Báo cáo hoàn thiện và kiểm tra lại HTTP ngày **20/11/2026**; số liệu CI, Lighthouse và snapshot Docker/runtime bên dưới thuộc đợt phát hành **19/11/2026**. Kết luận và phân loại chi tiết: [Nghiệm thu Milestone 2](ACCEPTANCE-UTILITIES-MILESTONE-2.md).
+
+Source **142f807dbb87374452acb65a8be6e2052caa5367**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44492926836), [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44493548246) và [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44498282182). Giữ nguyên 42 công cụ trước (40 thiết bị + U01/U02), thêm U03–U06: **46 công cụ VI/EN**, **92 route công cụ**, sitemap **114 URL**. Mã ứng dụng, tests và scripts không đổi từ bản người dùng đã duyệt; các commit sau chỉ chuẩn hóa CI/tài liệu.
+
+Trước chuyển đủ **48 mẫu sạch/16 trang × 3**, median mobile **99–100**; sau chuyển đủ **48 mẫu sạch/16 trang × 3**, median **95–98**. Cả hai bộ có median Accessibility/Best Practices/SEO 100 trên mọi trang. Kiểm tra source/path/pageVerified/clean của từng mẫu; không chỉ dựa job success. Giữ toàn bộ 96 sample và median FCP/LCP/TBT/CLS/JS/font/ảnh trong [QA phát hành](qa/deployment-utilities-milestone2-2026-11-19.json). Không lấy mẫu Windows bị Kaspersky chèn hoặc dữ liệu M1 làm baseline tăng điểm M2.
+
+| Trang                               | Lab trước chuyển | Public | FCP public (ms) | LCP public (ms) | TBT public (ms) | CLS public |
+| ----------------------------------- | ---------------: | -----: | --------------: | --------------: | --------------: | ---------: |
+| `/vi`                               |              100 |     97 |         1092.17 |         1099.54 |          173.50 |    0.00000 |
+| `/en`                               |              100 |     95 |          957.67 |          957.67 |          227.50 |    0.00000 |
+| `/vi/keyboard/tester`               |              100 |     97 |          936.51 |          936.51 |          179.00 |    0.00000 |
+| `/en/audio/microphone`              |               99 |     97 |         1277.04 |         1277.04 |          182.00 |    0.00621 |
+| `/vi/camera/preview`                |               99 |     97 |         1188.26 |         1188.26 |          189.00 |    0.00038 |
+| `/en/gamepad/tester`                |               99 |     97 |         1241.42 |         1241.42 |          179.00 |    0.01839 |
+| `/vi/utilities/number-to-words`     |               99 |     97 |          939.88 |          939.88 |          185.50 |    0.00000 |
+| `/en/utilities/percentage`          |              100 |     98 |          989.61 |          989.61 |          163.00 |    0.00000 |
+| `/vi/utilities/word-counter`        |               99 |     98 |          936.76 |          936.76 |          152.50 |    0.00000 |
+| `/en/utilities/word-counter`        |              100 |     98 |          988.35 |          988.35 |          154.50 |    0.00000 |
+| `/vi/utilities/case-converter`      |              100 |     97 |          987.85 |          987.85 |          162.00 |    0.00000 |
+| `/en/utilities/case-converter`      |              100 |     98 |          995.75 |          995.75 |          157.00 |    0.00000 |
+| `/vi/utilities/remove-accents-slug` |               99 |     97 |          995.54 |          995.54 |          170.50 |    0.00000 |
+| `/en/utilities/remove-accents-slug` |              100 |     98 |          941.33 |          941.33 |          158.00 |    0.00000 |
+| `/vi/utilities/text-cleaner`        |               99 |     97 |          982.38 |          982.38 |          172.50 |    0.00000 |
+| `/en/utilities/text-cleaner`        |               99 |     97 |          992.49 |          992.49 |          163.00 |    0.00000 |
+
+Mỗi trang ba lượt Chromium/profile mới, extension tắt, mobile/throttling mô phỏng cùng cấu hình trong báo cáo. Public đo sau khi smoke kết thúc để tránh tải QA đồng thời. Hai bộ khác VM/origin/HTTP so với HTTPS proxy: không quy chênh lệch điểm/TBT cho code. Không bỏ công cụ/SEO/accessibility hoặc sửa UI đã duyệt để lấy điểm. Không coi Lighthouse lab là Core Web Vitals thực địa hoặc chứng nhận mọi thiết bị.
+
+FCP/LCP/TBT/CLS và byte JS/font/ảnh/document/CSS của mọi sample cùng execution/settings được giữ trong [QA phát hành](qa/deployment-utilities-milestone2-2026-11-19.json); không chỉ lấy sample cao nhất. Nguồn Windows Performance 73 trước đây bị injection và không đủ ba mẫu, giữ làm chẩn đoán, không dùng tính mức cải thiện. Mục tiêu median mobile ≥90 đạt trên 16 trang đại diện của release; field data và manual QA còn mở.
+
+## Lịch sử trước phát hành: Milestone 2 candidate local 19/11/2026
 
 Thêm bốn tiện ích văn bản, tổng 46 công cụ; chưa phát hành. Giữ dependency hiện có, font/ảnh/SEO/accessibility và 42 công cụ trước. Thuật toán chỉ xử lý khi bấm nút, giới hạn 50.000 UTF-16, không chạy segmentation lại trên từng lần gõ. Dùng `Intl.Segmenter` native, không tải polyfill hoặc thư viện xử lý văn bản.
 

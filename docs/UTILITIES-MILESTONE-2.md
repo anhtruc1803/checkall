@@ -1,6 +1,12 @@
 # Tiện ích Milestone 2 — văn bản
 
-Ngày 19/11/2026. Phạm vi: **local để người dùng duyệt**, chưa commit, push, chạy CI từ xa hoặc triển khai website. Public vẫn dùng Milestone 1. Tổng candidate **46 công cụ**: 40 kiểm tra thiết bị, hai tiện ích số và bốn tiện ích văn bản; không mở thêm Phase phần cứng.
+## Trạng thái phát hành
+
+Milestone 2 đã được duyệt và triển khai ngày **19/11/2026**, source `142f807`; báo cáo hoàn thiện ngày **20/11/2026**. Tổng **46 công cụ VI/EN**, giữ nguyên 42 công cụ trước. Đặc tả và quy tắc xử lý dưới đây không đổi sau duyệt.
+
+CI sạch đạt 494 unit/41 file, build 120 trang, 434 E2E đạt/6 native policy skip; nhóm văn bản 32/32. Public smoke 56/56. Lighthouse mobile: 48 mẫu trước chuyển, median 99–100; 48 mẫu public, median 95–98. Không gộp skip/manual vào phần đã xác minh.
+
+Xem [nghiệm thu](ACCEPTANCE-UTILITIES-MILESTONE-2.md) và [QA phát hành](qa/deployment-utilities-milestone2-2026-11-19.json) để biết source, scope browser, Docker và phần còn mở. Final Acceptance tổng thể chưa đóng. Không mở thêm Phase phần cứng hoặc milestone khác.
 
 | ID  | Công cụ                   | Route sau `/vi` hoặc `/en`       |
 | --- | ------------------------- | -------------------------------- |

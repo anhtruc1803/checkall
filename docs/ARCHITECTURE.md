@@ -1,5 +1,11 @@
 # Kiến trúc Device Lab
 
+## Tiện ích Milestone 2 đã phát hành — 19/11/2026
+
+Source `142f807`, 46 công cụ (40 thiết bị + 6 tiện ích), CI/Lighthouse/candidate/public đã xác minh theo [QA phát hành](qa/deployment-utilities-milestone2-2026-11-19.json). Không thay mã ứng dụng hoặc engine sau khi duyệt local; thay đổi triển khai chỉ ở CI/tài liệu. Giữ mô hình Registry/ToolRunner/next-intl/engine text tải động và input chỉ ở state. Các checkpoint dưới là lịch sử kiến trúc, không phải trạng thái phát hành hiện tại.
+
+## Checkpoint local trước phát hành — 19/11/2026
+
 Candidate local ngày 19/11/2026: tiện ích Milestone 2, **46 published** (40 thiết bị + 6 tiện ích), public vẫn Milestone 1 với 42. Bốn U03–U06 dùng một engine `text` tải động, hàm thuần Unicode và UI dùng lại EngineSurface/CopyResult/next-intl; không thêm dependency, API, capability hoặc permission. Chỉ xử lý sau nút bấm, input giữ riêng, giới hạn 50.000 UTF-16; không storage/upload/listener/timer/stream. Registry/search/SEO/sitemap tự dẫn xuất, 92 tool route VI/EN, sitemap 114. Hai fixture khóa metadata đầy đủ của 42 công cụ cũ. Không viết lại kiến trúc hoặc thay testing engine. Chi tiết [UTILITIES-MILESTONE-2.md](UTILITIES-MILESTONE-2.md). Các checkpoint dưới là lịch sử.
 
 Milestone hiện hành: Phase 2 Milestone 6 (05/11/2026), 40 published (21 Phase 1 + 19 Phase 2), không còn draft Phase 2. GamepadSession/DriftAccumulator và UI gamepad tải động riêng; chỉ đọc sau Start, poll RAF/UI 8 Hz, dữ liệu/trail có giới hạn, không haptics/storage/upload. Mapping chưa chuẩn yêu cầu cặp trục rõ ràng; drift là thống kê browser có cửa sổ nghỉ và điều kiện dữ liệu, không chẩn đoán phần cứng. Gamepad policy=self chỉ sáu URL và PolicyLink document navigation qua ranh giới này; camera/microphone giữ phạm vi riêng. Không viết lại engine cũ hoặc thêm dependency. Chi tiết PHASE2-MILESTONE6.md và QA JSON.

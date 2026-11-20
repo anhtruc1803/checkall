@@ -6,7 +6,7 @@ Phase 2 có nền tảng registry/capability/permission và tám công cụ Mile
 
 Nhánh tiện ích Milestone 1 bổ sung số/số tiền VND thành chữ và tính phần trăm, giữ nguyên 40 công cụ thiết bị: tổng 42 công cụ VI/EN. Đã được duyệt và triển khai trên [website](https://nguyenanhtruc.io.vn/vi/utilities) sau CI/Lighthouse sạch; xem [đặc tả tiện ích](docs/UTILITIES-MILESTONE-1.md) và kết quả/giới hạn nghiệm thu trong `docs/PROGRESS.md`.
 
-Candidate local Milestone 2 thêm đếm từ/ký tự, đổi hoa/thường, bỏ dấu/slug và làm sạch văn bản: **46 công cụ VI/EN**. Giữ nguyên 42 công cụ trước; chưa push hoặc triển khai bản này. Xem [đặc tả và giới hạn văn bản](docs/UTILITIES-MILESTONE-2.md), kết quả kiểm thử trong `docs/TESTING.md`.
+Tiện ích Milestone 2 bổ sung đếm từ/ký tự, đổi hoa/thường, bỏ dấu/slug và làm sạch văn bản: **46 công cụ VI/EN**, giữ nguyên 42 công cụ trước. Đã triển khai sau CI/Docker/Lighthouse sạch; xem [đặc tả](docs/UTILITIES-MILESTONE-2.md), [nghiệm thu ngày 20/11](docs/ACCEPTANCE-UTILITIES-MILESTONE-2.md), [bằng chứng phát hành](docs/qa/deployment-utilities-milestone2-2026-11-19.json) và các giới hạn trong docs/PROGRESS.md.
 
 ## Chạy phát triển
 
