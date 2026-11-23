@@ -120,12 +120,19 @@ async function audit(path, run) {
     const document = result.artifacts.MainDocumentContent;
     const finalUrl = new URL(lhr.finalDisplayedUrl ?? lhr.finalUrl);
     const expectedUrl = new URL(path, base);
+    const routeDepth = path.split('/').length - 1;
+    const contentMarker = [
+      'class="category-rail"',
+      'id="catalog-search"',
+      'class="tool-workspace"',
+    ][routeDepth - 1];
     if (
       typeof document !== 'string' ||
       !document.includes('id="main"') ||
       !document.includes('class="brand"') ||
       !document.includes(`lang="${path.split('/')[1]}"`) ||
-      !document.includes(/^\/(vi|en)$/.test(path) ? 'category-rail' : 'tool-workspace') ||
+      !contentMarker ||
+      !document.includes(contentMarker) ||
       finalUrl.origin !== expectedUrl.origin ||
       finalUrl.pathname !== expectedUrl.pathname
     )
