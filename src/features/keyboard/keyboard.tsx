@@ -9,6 +9,7 @@ import { useKeyboard } from './use-keyboard';
 import { isReleaseLetterCode, useKeyboardRelease } from './use-keyboard-release';
 import { useKeyboardDWarning } from './use-keyboard-d-warning';
 import { KeyboardEventLog } from './keyboard-event-log';
+import { KeyboardLatestEvent } from './keyboard-event-details';
 import './keyboard.css';
 export default function KeyboardTool({ toolId }: { toolId: string }) {
   return <KeyboardWorkspace key={toolId} toolId={toolId} />;
@@ -16,6 +17,7 @@ export default function KeyboardTool({ toolId }: { toolId: string }) {
 
 function KeyboardWorkspace({ toolId }: { toolId: string }) {
   const t = useTranslations();
+  const inspector = toolId === 'B05';
   const [releaseMode, setReleaseMode] = useState(false);
   const strict = useKeyboard({
     recordEvents: toolId === 'B03' || toolId === 'B05',
@@ -66,6 +68,121 @@ function KeyboardWorkspace({ toolId }: { toolId: string }) {
     (code) => !layoutKeys.some((key) => key.code === code),
   );
   const pressed = Object.values(counts).reduce((sum, value) => sum + value, 0);
+  const progress = (
+    <div className="keyboard-progress">
+      <label htmlFor="keyboard-layout-progress">
+        {t(releaseMode ? 'keyboardTools.release.progress' : 'keyboardTools.layoutProgress', {
+          tested: progressKeys.length - missing.length,
+          total: progressKeys.length,
+        })}
+      </label>
+      <progress
+        id="keyboard-layout-progress"
+        value={progressKeys.length - missing.length}
+        max={progressKeys.length}
+        data-layout-tested={progressKeys.length - missing.length}
+      />
+      <p className="small">
+        {t(releaseMode ? 'keyboardTools.release.scope' : 'keyboardTools.layoutNote')}
+      </p>
+      <details open={missingOpen} onToggle={(event) => setMissingOpen(event.currentTarget.open)}>
+        <summary>{t('keyboardTools.remaining', { count: missing.length })}</summary>
+        {missingOpen && (
+          <div className="key-list">
+            {missing.map((key) => (
+              <span className="key-tag" key={key.code}>
+                {key.code}
+              </span>
+            ))}
+          </div>
+        )}
+      </details>
+      {outside.length > 0 && (
+        <p className="small">
+          {t('keyboardTools.outsideLayout')}: {outside.join(' · ')}
+        </p>
+      )}
+    </div>
+  );
+  const capture = (
+    <div
+      ref={area}
+      className="keyboard-capture"
+      data-active={active}
+      data-mode={releaseMode ? 'evkey-keyup' : 'standard'}
+      tabIndex={0}
+      role="group"
+      aria-label={t('activate')}
+      onClick={() => {
+        if (!active) activate();
+      }}
+      onKeyDown={(event) => {
+        dWarning.onKey(event);
+        onKey(event);
+      }}
+      onKeyUp={(event) => {
+        dWarning.onKey(event);
+        onKey(event);
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) interrupt();
+      }}
+      onCompositionStart={() => {
+        dWarning.breakSequence();
+        onCompositionStart();
+      }}
+      onCompositionEnd={onCompositionEnd}
+    >
+      <p className="small keyboard-capture-status" role="status" data-active={active}>
+        {t(active ? 'captureActive' : 'captureHint')}
+      </p>
+      <KeyboardVisual
+        rows={rows}
+        layout={layout}
+        counts={counts}
+        held={held}
+        down={t('down')}
+        up={t('up')}
+        diagramLabel={t('keyboardTools.diagram', { layout })}
+        releaseMode={releaseMode}
+        releasedCodes={release.releasedCodes}
+        releaseReceivedLabel={t('keyboardTools.release.received')}
+        releaseMissingLabel={t('keyboardTools.release.missing')}
+        releaseExcludedLabel={t('keyboardTools.release.excluded')}
+      />
+      <div className="keyboard-legend" aria-label={t('keyboardTools.legend')}>
+        {releaseMode ? (
+          <>
+            <span data-key-state="untested">
+              <i aria-hidden="true" />
+              {t('keyboardTools.release.missing')}
+            </span>
+            <span data-key-state="keyup">
+              <i aria-hidden="true" />
+              {t('keyboardTools.release.legend')}
+            </span>
+          </>
+        ) : (
+          (['untested', 'tested', 'held'] as const).map((state) => (
+            <span key={state} data-key-state={state}>
+              <i aria-hidden="true" />
+              {t(`keyboardTools.keyState.${state}`)}
+            </span>
+          ))
+        )}
+      </div>
+      <p className="small keyboard-diagram-hint" id="keyboard-diagram-hint">
+        {t('keyboardTools.diagramHint')}
+      </p>
+    </div>
+  );
+  const captureIssue = inputIssue && (
+    <div className="keyboard-notice keyboard-input-issue" role="alert">
+      <strong>{t('keyboardTools.inputPaused')}</strong>
+      <p>{t(`keyboardTools.inputIssue.${inputIssue}`)}</p>
+      <p>{t('keyboardTools.inputRecovery')}</p>
+    </div>
+  );
   return (
     <EngineSurface>
       <div className="controls">
@@ -107,32 +224,34 @@ function KeyboardWorkspace({ toolId }: { toolId: string }) {
           </label>
         )}
       </div>
-      <aside className="keyboard-input-help" aria-label={t('keyboardTools.inputHelpTitle')}>
-        <strong>{t('keyboardTools.inputHelpTitle')}</strong>
-        <p className="small">
-          {t(releaseMode ? 'keyboardTools.release.help' : 'keyboardTools.inputHelp')}
-        </p>
-        {toolId === 'B01' && (
-          <div className="keyboard-release-settings">
-            <label className="keyboard-release-toggle">
-              <input
-                type="checkbox"
-                checked={releaseMode}
-                aria-describedby="keyboard-release-note"
-                onChange={(event) => {
-                  reset();
-                  setReleaseMode(event.target.checked);
-                }}
-              />
-              <span>{t('keyboardTools.release.toggle')}</span>
-            </label>
-            <p className="small" id="keyboard-release-note">
-              {t('keyboardTools.release.note')}
-            </p>
-            <p className="small keyboard-dd-note">{t('keyboardTools.doubleD.note')}</p>
-          </div>
-        )}
-      </aside>
+      {!inspector && (
+        <aside className="keyboard-input-help" aria-label={t('keyboardTools.inputHelpTitle')}>
+          <strong>{t('keyboardTools.inputHelpTitle')}</strong>
+          <p className="small">
+            {t(releaseMode ? 'keyboardTools.release.help' : 'keyboardTools.inputHelp')}
+          </p>
+          {toolId === 'B01' && (
+            <div className="keyboard-release-settings">
+              <label className="keyboard-release-toggle">
+                <input
+                  type="checkbox"
+                  checked={releaseMode}
+                  aria-describedby="keyboard-release-note"
+                  onChange={(event) => {
+                    reset();
+                    setReleaseMode(event.target.checked);
+                  }}
+                />
+                <span>{t('keyboardTools.release.toggle')}</span>
+              </label>
+              <p className="small" id="keyboard-release-note">
+                {t('keyboardTools.release.note')}
+              </p>
+              <p className="small keyboard-dd-note">{t('keyboardTools.doubleD.note')}</p>
+            </div>
+          )}
+        </aside>
+      )}
       {toolId === 'B01' && dWarning.observed && (
         <div className="keyboard-notice keyboard-dd-warning" role="status">
           <strong>{t('keyboardTools.doubleD.title')}</strong>
@@ -145,117 +264,19 @@ function KeyboardWorkspace({ toolId }: { toolId: string }) {
           </p>
         </div>
       )}
-      {inputIssue && (
-        <div className="keyboard-notice keyboard-input-issue" role="alert">
-          <strong>{t('keyboardTools.inputPaused')}</strong>
-          <p>{t(`keyboardTools.inputIssue.${inputIssue}`)}</p>
-          <p>{t('keyboardTools.inputRecovery')}</p>
+      {!inspector && captureIssue}
+      {inspector ? (
+        <div className="keyboard-inspector-grid">
+          <KeyboardLatestEvent event={lastEvent} />
+          {capture}
         </div>
+      ) : (
+        <>
+          {progress}
+          {capture}
+        </>
       )}
-      <div className="keyboard-progress">
-        <label htmlFor="keyboard-layout-progress">
-          {t(releaseMode ? 'keyboardTools.release.progress' : 'keyboardTools.layoutProgress', {
-            tested: progressKeys.length - missing.length,
-            total: progressKeys.length,
-          })}
-        </label>
-        <progress
-          id="keyboard-layout-progress"
-          value={progressKeys.length - missing.length}
-          max={progressKeys.length}
-          data-layout-tested={progressKeys.length - missing.length}
-        />
-        <p className="small">
-          {t(releaseMode ? 'keyboardTools.release.scope' : 'keyboardTools.layoutNote')}
-        </p>
-        <details open={missingOpen} onToggle={(event) => setMissingOpen(event.currentTarget.open)}>
-          <summary>{t('keyboardTools.remaining', { count: missing.length })}</summary>
-          {missingOpen && (
-            <div className="key-list">
-              {missing.map((key) => (
-                <span className="key-tag" key={key.code}>
-                  {key.code}
-                </span>
-              ))}
-            </div>
-          )}
-        </details>
-        {outside.length > 0 && (
-          <p className="small">
-            {t('keyboardTools.outsideLayout')}: {outside.join(' · ')}
-          </p>
-        )}
-      </div>
-      <div
-        ref={area}
-        className="keyboard-capture"
-        data-active={active}
-        data-mode={releaseMode ? 'evkey-keyup' : 'standard'}
-        tabIndex={0}
-        role="group"
-        aria-label={t('activate')}
-        onClick={() => {
-          if (!active) activate();
-        }}
-        onKeyDown={(event) => {
-          dWarning.onKey(event);
-          onKey(event);
-        }}
-        onKeyUp={(event) => {
-          dWarning.onKey(event);
-          onKey(event);
-        }}
-        onBlur={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget)) interrupt();
-        }}
-        onCompositionStart={() => {
-          dWarning.breakSequence();
-          onCompositionStart();
-        }}
-        onCompositionEnd={onCompositionEnd}
-      >
-        <p className="small keyboard-capture-status" role="status" data-active={active}>
-          {t(active ? 'captureActive' : 'captureHint')}
-        </p>
-        <KeyboardVisual
-          rows={rows}
-          layout={layout}
-          counts={counts}
-          held={held}
-          down={t('down')}
-          up={t('up')}
-          diagramLabel={t('keyboardTools.diagram', { layout })}
-          releaseMode={releaseMode}
-          releasedCodes={release.releasedCodes}
-          releaseReceivedLabel={t('keyboardTools.release.received')}
-          releaseMissingLabel={t('keyboardTools.release.missing')}
-          releaseExcludedLabel={t('keyboardTools.release.excluded')}
-        />
-        <div className="keyboard-legend" aria-label={t('keyboardTools.legend')}>
-          {releaseMode ? (
-            <>
-              <span data-key-state="untested">
-                <i aria-hidden="true" />
-                {t('keyboardTools.release.missing')}
-              </span>
-              <span data-key-state="keyup">
-                <i aria-hidden="true" />
-                {t('keyboardTools.release.legend')}
-              </span>
-            </>
-          ) : (
-            (['untested', 'tested', 'held'] as const).map((state) => (
-              <span key={state} data-key-state={state}>
-                <i aria-hidden="true" />
-                {t(`keyboardTools.keyState.${state}`)}
-              </span>
-            ))
-          )}
-        </div>
-        <p className="small keyboard-diagram-hint" id="keyboard-diagram-hint">
-          {t('keyboardTools.diagramHint')}
-        </p>
-      </div>
+      {inspector && captureIssue}
       <p className="small keyboard-local-note">{t('keyboardTools.localNote')}</p>
       {releaseMode && release.interference && (
         <p className="keyboard-notice" role="status">
@@ -273,6 +294,13 @@ function KeyboardWorkspace({ toolId }: { toolId: string }) {
         </p>
       )}
       {limitReached && <p className="keyboard-notice">{t('keyboardTools.codeLimit')}</p>}
+      {inspector && (
+        <>
+          <p className="small keyboard-inspector-tip">{t('keyboardTools.inspector.ddTip')}</p>
+          <KeyboardEventLog logs={logs} totalEvents={totalEvents} clear={clearLogs} inspector />
+          {progress}
+        </>
+      )}
       {releaseMode ? (
         <section
           className="keyboard-release-result"
@@ -325,41 +353,6 @@ function KeyboardWorkspace({ toolId }: { toolId: string }) {
                 ))
               : '—'}
           </div>
-        </section>
-      )}
-      {toolId === 'B05' && (
-        <section className="keyboard-latest">
-          <h2>{t('keyboardTools.latestEvent')}</h2>
-          <p className="small">{t('keyboardTools.flagsNote')}</p>
-          <dl className="results-grid">
-            {(
-              [
-                'key',
-                'code',
-                'type',
-                'location',
-                'repeat',
-                'isComposing',
-                'isTrusted',
-                'keyCode',
-                'capsLock',
-                'numLock',
-                'altGraph',
-              ] as const
-            ).map((field) => (
-              <Metric
-                key={field}
-                label={field}
-                value={
-                  lastEvent
-                    ? lastEvent[field] === ''
-                      ? '""'
-                      : String(lastEvent[field] ?? '—')
-                    : '—'
-                }
-              />
-            ))}
-          </dl>
         </section>
       )}
       {toolId === 'B03' && (
@@ -436,13 +429,8 @@ function KeyboardWorkspace({ toolId }: { toolId: string }) {
           </div>
         </>
       )}
-      {(toolId === 'B05' || toolId === 'B03') && (
-        <KeyboardEventLog
-          logs={logs}
-          totalEvents={totalEvents}
-          clear={clearLogs}
-          expanded={toolId === 'B05'}
-        />
+      {toolId === 'B03' && (
+        <KeyboardEventLog logs={logs} totalEvents={totalEvents} clear={clearLogs} />
       )}
     </EngineSurface>
   );

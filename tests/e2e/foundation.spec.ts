@@ -12,7 +12,22 @@ test('all 48 published tools are discoverable while unknown future routes stay p
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
     await expect(page.locator('.catalog-item')).toHaveCount(48);
-    await expect(page.locator('.desktop-nav a')).toHaveCount(9);
+    const previews = await page.locator('.catalog-item').evaluateAll((cards) =>
+      cards.map((card) => ({
+        id: card.getAttribute('data-tool-id'),
+        artwork: card
+          .querySelector('[data-tool-art][aria-hidden="true"]')
+          ?.getAttribute('data-tool-art'),
+        icon: card.querySelector('[data-tool-icon] svg[aria-hidden="true"]') !== null,
+      })),
+    );
+    expect(previews).toEqual(
+      tools
+        .filter((tool) => tool.status === 'published')
+        .map(({ id }) => ({ id, artwork: id, icon: true })),
+    );
+    await expect(page.locator('#device-nav a')).toHaveCount(8);
+    await expect(page.locator(`.primary-nav a[href="/${locale}/utilities"]`)).toBeVisible();
     for (const tool of drafts) {
       const route = `/${locale}/${tool.category}/${tool.slug}`;
       expect((await request.get(route)).status(), route).toBe(404);

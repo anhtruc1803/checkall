@@ -1,5 +1,39 @@
 # Tiến độ Device Lab
 
+## Minh họa 48 công cụ — bản local để duyệt, 23/11/2026
+
+Thêm icon và hình minh họa tĩnh theo chức năng cho 48 công cụ trong danh mục VI/EN và mục nổi bật. Ví dụ gồm dải màu, phím, tín hiệu và đầu vào/kết quả của tiện ích. Dùng chung `tool-card.tsx`, `tool-visual.tsx` và `tool-card.module.css`. Trang công cụ dùng icon tương ứng và hiện hình ở đầu trang trên màn hình đủ rộng. Nội dung chi tiết và metadata lấy từ Tool Registry. Hình dùng CSS và Lucide có sẵn. [Màn hình](http://127.0.0.1:3100/vi/screen) · [Tiện ích](http://127.0.0.1:3100/vi/utilities)
+
+`pnpm build` tạo 124 trang, `pnpm lint` và TypeScript đạt. Playwright đạt 20/20 trên Chromium, Firefox, WebKit và Chromium mobile, gồm kiểm tra 48 icon và hình trên danh mục VI/EN, tìm kiếm, reflow 320 px khi chữ 200% và axe ở hai theme. Smoke HTTP đạt 52 route, đối chiếu đủ 96 route công cụ có hình tương ứng. Ảnh kiểm tra lưu trong `artifacts/tool-visuals-review/`. Bản đang chạy local cổng 3100.
+
+## Danh mục Tiện ích — bản local để duyệt, 23/11/2026
+
+Tăng tên thẻ từ 13,6 lên 18 px và mô tả từ 11,2 lên 16 px. Thay hai hàng lọc trùng ngữ cảnh bằng một ô tìm kiếm và ba nhóm **Số và tiền**, **Văn bản**, **Đơn vị và ngày**. Mỗi thẻ dùng mô tả riêng từ Tool Registry. Ở viewport desktop 1440 × 900 px, mép trên thẻ đầu tiên chuyển từ 479 xuống 387 px tính từ đầu trang. Các file chính gồm route danh mục `page.tsx`, `utility-catalog.tsx`, `utility-catalog.module.css`, `catalog-search.tsx` và nhãn VI/EN.
+
+`pnpm build` tạo 124 trang. `pnpm lint`, `pnpm typecheck`, `pnpm test tests/search-index.test.ts` đạt, gồm 2/2 unit test tìm kiếm. Playwright đạt 20/20 trên Chromium, Firefox, WebKit và Chromium mobile, gồm reflow 320 px khi chữ 200% và axe ở hai theme. Smoke HTTP đạt healthcheck và 52 route. Đối chiếu đủ 48 công cụ, 96 route VI/EN và sitemap 118 URL. Bản duyệt chạy local. [VI](http://127.0.0.1:3100/vi/utilities) · [EN](http://127.0.0.1:3100/en/utilities)
+
+## Trang chủ và điều hướng — bản local để duyệt, 23/11/2026
+
+Trang chủ đưa tìm kiếm theo tên hoặc triệu chứng và sáu liên kết theo vấn đề lên đầu. Header tách **Kiểm tra thiết bị** và **Tiện ích**, dùng cùng bố cục điều hướng ở VI/EN và trên mobile. Hình minh họa và bảng thông tin thiết bị xuất hiện sau danh mục. Các file chính gồm `page.tsx` trang chủ, `header.tsx`, `home-tool-search.tsx`, `problem-chooser.tsx`, CSS Module và nhãn VI/EN. [Báo cáo và lệnh kiểm thử](HOME-NAVIGATION-UI.md)
+
+Build 124 trang, lint, typecheck và 576 unit test đạt. Smoke HTTP và đối chiếu đủ 96 route VI/EN xác nhận 48 công cụ. Trên cùng build, 48 kịch bản Playwright đã đạt qua hai lượt trên Chromium, Firefox, WebKit và Chromium mobile. Lượt chạy lại xác minh reflow và vùng bấm từ 44 px sau khi đổi cách đọc kích thước trong test. Bản duyệt chỉ chạy local cổng 3100. [VI](http://127.0.0.1:3100/vi) · [EN](http://127.0.0.1:3100/en)
+
+## Keyboard Event Inspector — bản local để duyệt, 23/11/2026
+
+Thẻ sự kiện gần nhất nằm cạnh sơ đồ bàn phím trên desktop và phía trên sơ đồ trên màn hình nhỏ. Nhật ký hiển thị loại sự kiện, `key`, `code` và thời điểm. Có thể mở chi tiết từng dòng, lọc theo phím hoặc loại sự kiện và sao chép JSON. Các file chính gồm `keyboard.tsx`, `keyboard-event-details.tsx`, `keyboard-event-log.tsx`, `keyboard.css` và nhãn VI/EN qua next-intl. [Báo cáo giao diện và kiểm thử](KEYBOARD-INSPECTOR-UI.md)
+
+Lượt người dùng gõ với EVKey ghi nhận cặp `KeyD` nhấn/thả, cặp `Backspace` nhấn/thả rồi `keydown` có `key=đ` và `code` rỗng. Inspector giữ năm dòng chẩn đoán, báo **Thiếu code** và engine dừng thu, hoàn tác thống kê của lượt này về 0. Lượt thử chỉ xác minh chuỗi đến lúc capture dừng trên cấu hình hiện tại.
+
+Lint, typecheck, build 124 trang, smoke HTTP và đối chiếu 96 route VI/EN cho 48 công cụ đạt. Unit chạy riêng đạt 575/575. Năm tệp Playwright bàn phím đạt 60/60, mỗi cấu hình Chromium, Firefox, WebKit và Chromium mobile đạt 15/15. Đã kiểm tra axe ở Dark/Light và reflow với chữ 200%. Lượt này chưa thử Safari thật hoặc đo lại Lighthouse. Bản hiện tại sẵn sàng để duyệt local, trạng thái website giữ nguyên. [VI](http://127.0.0.1:3100/vi/keyboard/events) · [EN](http://127.0.0.1:3100/en/keyboard/events)
+
+## Giao diện Workbench — bản local để duyệt, 23/11/2026
+
+Đã làm lại giao diện 48 công cụ VI/EN theo hướng bảng điều khiển kỹ thuật. Tiện ích có vùng nhập và kết quả riêng. Các trang có thanh chuyển công cụ trong nhóm, thông số dễ đọc hơn và chỉ dẫn ngay trong khung camera khi chưa mở. Thanh điều hướng giữ link đang focus nhìn thấy khi thu nhỏ cửa sổ. File chính gồm `design.md`, `tokens.css`, `workbench.css`, `tool-navigation.tsx`, template route công cụ và các component trình bày. [Báo cáo giao diện](UI-WORKBENCH.md)
+
+Bản cuối đạt lint, typecheck, quét secret, build 124 trang, HTTP đủ 96 route và 28/28 E2E liên quan trên bốn cấu hình. Bộ unit đạt 575/575. Lượt 488 E2E trước sửa focus có 454 đạt, 19 skip và 15 failure ghi nhận request Kaspersky ở các bài không upload. Lighthouse local dừng vì phát hiện script Kaspersky. Chưa có điểm sạch cho bản mới và Final Acceptance vẫn mở.
+
+Bản production để duyệt đang chạy local. Scope phát hành vẫn cần CI sạch, số đo Lighthouse trên Chromium sạch và QA thiết bị thật. [Đổi đơn vị local](http://127.0.0.1:3100/vi/utilities/unit-converter)
+
 ## Đã chuyển sang a.ap.vn — 23/11/2026
 
 Website chính: [VI](https://a.ap.vn/vi), [EN](https://a.ap.vn/en). Giữ nguyên **48 công cụ**, **96 route công cụ VI/EN**, sitemap **118 URL**. App/tests/dependencies không đổi so với Milestone 3; build lại với `SITE_URL=https://a.ap.vn`. Source **6c8252b3a53574cd9283101f0a95219fb3b85a41**. Xem [báo cáo chuyển tên miền](DOMAIN-MIGRATION.md), [QA JSON](qa/domain-migration-2026-11-23.json).

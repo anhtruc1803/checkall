@@ -125,6 +125,15 @@
   "toolsCount": "{count} tools",
   "heroTitle": "Test your device.\nKnow every detail.",
   "heroDescription": "{count} device testing tools and everyday calculators. Free, with nothing to install.",
+  "homeDiscovery": {
+    "title": "Device tests and everyday tools",
+    "navigation": "Main navigation",
+    "searchLabel": "Find a tool or describe a problem",
+    "searchExample": "Try keys keep repeating or unit converter…",
+    "clear": "Clear quick search",
+    "noResults": "No matching tools. Try a shorter term such as “keyboard” or “unit converter”.",
+    "browseAll": "Browse all {count} tools"
+  },
   "browse": "Explore tools",
   "privacyShort": "Runs on your device",
   "noAccount": "No account needed",
@@ -612,6 +621,15 @@
     "bestCombination": "Largest combination observed",
     "rolloverNote": "Keeps the largest combination until Reset. Received key counts do not certify NKRO/6KRO.",
     "latestEvent": "Latest event",
+    "inspector": {
+      "details": "Details",
+      "eventDetails": "Details for event {sequence}",
+      "timestamp": "Timestamp (ms)",
+      "empty": "Activate the test area and press a key to see the event here.",
+      "imeSignal": "Input method signal",
+      "missingCode": "Missing code",
+      "ddTip": "To check EVKey in Vietnamese Telex mode, press D once, then press dd. The input method may turn dd into đ or generate Backspace. If capture stops, review the last event and activate again."
+    },
     "flagsNote": "Browser-reported flags do not establish LED state or a hardware source. isTrusted does not certify physical input.",
     "chatterNote": "Auto-repeat is separate; totals persist until Reset. Threshold: 1–500 ms. A short gap does not prove a faulty switch.",
     "validPairs": "Valid release → press pairs",
@@ -683,6 +701,68 @@
     }
   },
   "utilities": "Utilities",
+  "toolPreviews": {
+    "exampleTen": "ten",
+    "A01": "Read screen dimensions reported by the browser.",
+    "A02": "Read viewport size and device pixel ratio.",
+    "A03": "Find the ratio between width and height.",
+    "A04": "Calculate pixel density from dimensions.",
+    "A05": "Estimate refresh rate from frame timing.",
+    "A06": "Cycle solid colors to spot dead pixels.",
+    "A07": "Use solid colors to spot stuck pixels.",
+    "A08": "Inspect backlight bleed on a dark screen.",
+    "A09": "Inspect color ramps and gradients.",
+    "A10": "Look for trails behind a moving object.",
+    "A11": "See where the screen detects touch.",
+    "B01": "See which keys reach the browser.",
+    "B02": "Check multiple keys held together.",
+    "B03": "Inspect unusually close repeated presses.",
+    "B04": "Measure from key press to release.",
+    "B05": "Inspect key, code and the event log.",
+    "C01": "Check each mouse button.",
+    "C02": "Measure the gap between two clicks.",
+    "C03": "Count clicks per second.",
+    "C04": "Check scroll direction and steps.",
+    "C05": "Estimate the rate of mouse events.",
+    "C06": "Trace the pointer’s path.",
+    "C07": "Click targets to check pointer accuracy.",
+    "D01": "Play a tone through speakers or headphones.",
+    "D02": "Listen to left and right channels separately.",
+    "D03": "See the microphone input level.",
+    "D04": "Play a tone at a chosen frequency.",
+    "D05": "View the audio frequency spectrum.",
+    "E01": "View a live feed from the webcam.",
+    "E02": "Read the camera stream resolution.",
+    "E03": "Count camera frames over time.",
+    "F01": "Check gamepad buttons and axes.",
+    "F02": "View analog stick position and travel.",
+    "F03": "Check stick offset at rest.",
+    "G01": "Read OS and display information.",
+    "G02": "Check which APIs the browser supports.",
+    "G03": "Read GPU information exposed by WebGL.",
+    "G04": "Check touch and pointer capabilities.",
+    "G05": "Check available browser storage types.",
+    "G06": "Try entering and exiting fullscreen.",
+    "U01": "Spell out a number or an amount.",
+    "U02": "Calculate ratios and percentage changes.",
+    "U03": "Count words, characters and lines.",
+    "U04": "Switch text between letter cases.",
+    "U05": "Remove accents or make a URL slug.",
+    "U06": "Clean up whitespace and duplicate lines.",
+    "U07": "Convert between units of the same type.",
+    "U08": "Count days between dates or shift a date."
+  },
+  "utilityCatalog": {
+    "intro": "Calculate percentages, work with text, convert units and count calendar days.",
+    "searchExample": "Try a percentage or word count…",
+    "noResults": "No matching utilities. Try a shorter term or clear the search to see all tools.",
+    "sections": {
+      "numbers": "Numbers and money",
+      "text": "Text",
+      "conversion": "Units and dates",
+      "other": "Other utilities"
+    }
+  },
   "toolGroups": {
     "label": "Tool groups",
     "device-tests": "Device tests",
@@ -848,5 +928,10 @@
       "days": "Enter up to 7 digits for whole days, optionally prefixed with + or -.",
       "dateRange": "The result is outside 0001-01-01 to 9999-12-31."
     }
+  },
+  "workbench": {
+    "awaitingResult": "Awaiting input",
+    "toolsInCategory": "Tools in this category",
+    "input": "Input and options"
   }
 }

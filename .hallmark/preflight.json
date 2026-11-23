@@ -1,1 +1,10 @@
-{"date":"2026-10-29","initialState":"empty","framework":"Next.js App Router","fonts":["Geist","Geist Mono"],"motion":"CSS microinteractions","palette":"dark blue; light mode"}
+{
+  "date": "2026-11-23",
+  "framework": "Next.js 16.4.6 App Router",
+  "fonts": ["Geist Variable", "Geist Mono Variable"],
+  "tokens": "tokens.css",
+  "motion": "CSS transform/opacity; reduced motion",
+  "palette": "existing blue, dark/light",
+  "scope": "tool pages and utilities; preserve all engines/permissions/routes",
+  "userDirection": "Bảng điều khiển kỹ thuật, rõ nét và có chiều sâu"
+}

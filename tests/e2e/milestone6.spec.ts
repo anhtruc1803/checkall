@@ -282,7 +282,7 @@ test('missing API, insecure context, policy denial and native read refusal have 
     await page.close();
   }
 });
-test('catalog, related, locale and mobile menus navigate documents across gamepad/camera/microphone policy', async ({
+test('catalog, related, locale and navigation menu navigate documents across gamepad/camera/microphone policy', async ({
   page,
 }) => {
   await page.goto('/en');
@@ -295,12 +295,8 @@ test('catalog, related, locale and mobile menus navigate documents across gamepa
     await expect(page).toHaveURL(new RegExp(`${path}$`));
   };
   const category = async (href: string) => {
-    const desktop = page.locator(`.desktop-nav a[href="${href}"]`);
-    if (await desktop.isVisible()) await desktop.click();
-    else {
-      await page.locator('.menu-toggle').click();
-      await page.locator(`#mobile-nav a[href="${href}"]`).click();
-    }
+    await page.locator('[aria-controls="device-nav"]').click();
+    await page.locator(`#device-nav a[href="${href}"]`).click();
   };
   await navigate(
     () => page.locator('.catalog-item[href="/en/gamepad/tester"]').click(),

@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
-import { ShieldCheck, ArrowRight, Check, Layers3 } from 'lucide-react';
+import { ShieldCheck, ArrowRight, Layers3 } from 'lucide-react';
 import PolicyLink from '@/components/navigation/policy-link';
 import { CategoryArt } from '@/components/tools/category-art';
 import { LabScene } from '@/components/tools/lab-scene';
@@ -8,6 +8,8 @@ import { ProblemChooser } from '@/components/tools/problem-chooser';
 import { DeviceOverview } from '@/components/tools/device-overview';
 import { ToolCard } from '@/components/tools/tool-card';
 import { Catalog } from '@/components/tools/catalog';
+import { HomeToolSearch } from '@/components/tools/home-tool-search';
+import styles from '@/components/tools/home-discovery.module.css';
 import { categories, publishedTools as tools, getToolSearchIndex } from '@/lib/tools/registry';
 import type { Locale } from '@/lib/i18n/routing';
 import { pageMetadata } from '@/lib/seo/metadata';
@@ -20,68 +22,21 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
+  const index = getToolSearchIndex(locale);
   return (
     <main id="main" className="home-page">
-      <section className="hero">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <span className="status-dot" />
-            {t('interface.eyebrow')}
-          </p>
-          <h1>
-            {t('heroTitle')
-              .split('\n')
-              .map((line, index) => (
-                <span key={line} className={index ? 'hero-accent' : undefined}>
-                  {line}
-                </span>
-              ))}
-          </h1>
-          <p className="hero-description">{t('heroDescription', { count: tools.length })}</p>
-          <div className="hero-actions">
-            <a href="#catalog" className="button button-primary">
-              {t('browse')}
-              <ArrowRight size={17} aria-hidden="true" />
-            </a>
-            <PolicyLink href={`/${locale}/screen/refresh-rate`} className="button button-outline">
-              {t('interface.quickTest')}
-              <ArrowRight size={16} aria-hidden="true" />
-            </PolicyLink>
-          </div>
-          <div className="hero-trust">
-            <span>
-              <ShieldCheck size={15} aria-hidden="true" />
-              {t('privacyShort')}
-            </span>
-            <span>
-              <Check size={15} aria-hidden="true" />
-              {t('noAccount')}
-            </span>
-          </div>
-          <dl className="lab-stats">
-            <div>
-              <dt>{t('interface.tools')}</dt>
-              <dd>{String(tools.length).padStart(2, '0')}</dd>
-            </div>
-            <div>
-              <dt>{t('interface.categories')}</dt>
-              <dd>{String(categories.length).padStart(2, '0')}</dd>
-            </div>
-            <div>
-              <dt>{t('interface.languages')}</dt>
-              <dd>
-                VI<span> / </span>EN
-              </dd>
-            </div>
-          </dl>
+      <div className={styles.discovery}>
+        <div className={styles.intro}>
+          <h1>{t('homeDiscovery.title')}</h1>
+          <p>{t('heroDescription', { count: tools.length })}</p>
+          <HomeToolSearch index={index} />
+          <a href="#catalog" className={`text-link ${styles.catalogLink}`}>
+            {t('homeDiscovery.browseAll', { count: tools.length })}
+            <ArrowRight size={16} aria-hidden="true" />
+          </a>
         </div>
-        <LabScene
-          label={t('interface.sceneAction')}
-          hint={t('interface.sceneHint')}
-          caption={t('interface.sceneCaption')}
-        />
-      </section>
-      <ProblemChooser locale={locale} />
+        <ProblemChooser locale={locale} />
+      </div>
       <nav className="category-rail" aria-label={t('interface.chooseDevice')}>
         {categories.map((category) => (
           <PolicyLink
@@ -98,13 +53,9 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           </PolicyLink>
         ))}
       </nav>
-      <div className="home-device-summary">
-        <DeviceOverview />
-      </div>
       <section className="section">
         <div className="section-head">
           <div>
-            <p className="eyebrow">02 / {t('interface.quickStart')}</p>
             <h2>{t('featured')}</h2>
             <p>{t('featuredDescription')}</p>
           </div>
@@ -121,8 +72,9 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
                 key={id}
                 tool={tool}
                 locale={locale}
-                categoryLabel={t(tool.category)}
-                classLabel={t(tool.classification)}
+                name={tool.copy[locale].name}
+                description={tool.copy[locale].description}
+                featured
               />
             );
           })}
@@ -131,7 +83,6 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       <section id="catalog" className="section catalog-section">
         <div className="section-head">
           <div>
-            <p className="eyebrow">03 / {t('interface.explore')}</p>
             <h2>{t('catalogTitle')}</h2>
             <p>{t('catalogDescription')}</p>
           </div>
@@ -140,8 +91,18 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             {t('toolsCount', { count: tools.length })}
           </span>
         </div>
-        <Catalog heroSearch index={getToolSearchIndex(locale)} />
+        <Catalog heroSearch index={index} />
       </section>
+      <div className={styles.context}>
+        <div className="home-device-summary">
+          <DeviceOverview />
+        </div>
+        <LabScene
+          label={t('interface.sceneAction')}
+          hint={t('interface.sceneHint')}
+          caption={t('interface.sceneCaption')}
+        />
+      </div>
       <section className="section">
         <h2>{t('howTitle')}</h2>
         <div className="guide">

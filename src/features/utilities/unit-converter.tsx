@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { EngineSurface } from '@/components/tools/engine-surface';
 import { formatDecimal, parseDecimal, type NumberFormat } from '@/lib/utilities/decimal';
 import { convertUnit, unitGroups, unitGroupIds, type UnitGroup } from '@/lib/utilities/units';
-import { CopyResult, InputFormat } from './shared';
+import { UtilityInput, CopyResult, InputFormat } from './shared';
 
 export default function UnitConverter() {
   const locale = useLocale() as NumberFormat,
@@ -27,98 +27,105 @@ export default function UnitConverter() {
   const output = result?.ok ? `${result.text} ${t(`units.${to}`)}` : '';
   return (
     <EngineSurface>
-      <div className="utility-tool">
-        <div className="utility-fields">
-          <label className="field">
-            <span id="unit-group-label">{t('group')}</span>
-            <select
-              aria-labelledby="unit-group-label"
-              value={group}
-              onChange={(e) => {
-                const next = e.target.value as UnitGroup;
-                setGroup(next);
-                setFrom(unitGroups[next][0].id);
-                setTo(unitGroups[next][1].id);
+      <div className="utility-tool utility-split">
+        <UtilityInput>
+          <div className="utility-fields">
+            <label className="field">
+              <span id="unit-group-label">{t('group')}</span>
+              <select
+                aria-labelledby="unit-group-label"
+                value={group}
+                onChange={(e) => {
+                  const next = e.target.value as UnitGroup;
+                  setGroup(next);
+                  setFrom(unitGroups[next][0].id);
+                  setTo(unitGroups[next][1].id);
+                }}
+              >
+                {unitGroupIds.map((id) => (
+                  <option key={id} value={id}>
+                    {t(`groups.${id}`)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <InputFormat value={format} onChange={setFormat} />
+            <label className="field">
+              <span id="unit-from-label">{t('from')}</span>
+              <select
+                aria-labelledby="unit-from-label"
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+              >
+                {unitGroups[group].map(({ id }) => (
+                  <option key={id} value={id}>
+                    {t(`units.${id}`)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="field">
+              <span id="unit-to-label">{t('to')}</span>
+              <select
+                aria-labelledby="unit-to-label"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+              >
+                {unitGroups[group].map(({ id }) => (
+                  <option key={id} value={id}>
+                    {t(`units.${id}`)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="field utility-wide" htmlFor="unit-value">
+              {t('value')}
+              <input
+                id="unit-value"
+                type="text"
+                inputMode="decimal"
+                autoComplete="off"
+                spellCheck={false}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                aria-invalid={Boolean(error)}
+                aria-describedby="unit-error unit-bounds"
+              />
+            </label>
+          </div>
+          <p id="unit-error" className="utility-error" role="status">
+            {error}
+          </p>
+          <div className="controls">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setFrom(to);
+                setTo(from);
               }}
             >
-              {unitGroupIds.map((id) => (
-                <option key={id} value={id}>
-                  {t(`groups.${id}`)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <InputFormat value={format} onChange={setFormat} />
-          <label className="field">
-            <span id="unit-from-label">{t('from')}</span>
-            <select
-              aria-labelledby="unit-from-label"
-              value={from}
-              onChange={(e) => setFrom(e.target.value)}
-            >
-              {unitGroups[group].map(({ id }) => (
-                <option key={id} value={id}>
-                  {t(`units.${id}`)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="field">
-            <span id="unit-to-label">{t('to')}</span>
-            <select
-              aria-labelledby="unit-to-label"
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-            >
-              {unitGroups[group].map(({ id }) => (
-                <option key={id} value={id}>
-                  {t(`units.${id}`)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="field utility-wide" htmlFor="unit-value">
-            {t('value')}
-            <input
-              id="unit-value"
-              type="text"
-              inputMode="decimal"
-              autoComplete="off"
-              spellCheck={false}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              aria-invalid={Boolean(error)}
-              aria-describedby="unit-error unit-bounds"
-            />
-          </label>
-        </div>
-        <p id="unit-error" className="utility-error" role="status">
-          {error}
-        </p>
-        <div className="controls">
-          <Button
-            variant="outline"
-            onClick={() => {
-              setFrom(to);
-              setTo(from);
-            }}
-          >
-            {t('swap')}
-          </Button>
-          <Button variant="ghost" onClick={() => setInput('')}>
-            {t('clear')}
-          </Button>
-        </div>
-        <p id="unit-bounds" className="small">
-          {t('bounds')}
-        </p>
-        <p className="small">{t(`hints.${group}`)}</p>
-        {parsed.ok && (
-          <p className="utility-preview">
-            {u('interpreted')}: {formatDecimal(parsed.value, format)} {t(`units.${from}`)}
+              {t('swap')}
+            </Button>
+            <Button variant="ghost" onClick={() => setInput('')}>
+              {t('clear')}
+            </Button>
+          </div>
+          <p id="unit-bounds" className="small">
+            {t('bounds')}
           </p>
-        )}
-        <div className="utility-result" role="region" aria-label={u('result')}>
+          <p className="small">{t(`hints.${group}`)}</p>
+          {parsed.ok && (
+            <p className="utility-preview">
+              {u('interpreted')}: {formatDecimal(parsed.value, format)} {t(`units.${from}`)}
+            </p>
+          )}
+        </UtilityInput>
+        <div
+          className="utility-result"
+          data-has-result={Boolean(output)}
+          role="region"
+          aria-label={u('result')}
+        >
           <h2>{u('result')}</h2>
           <p className="utility-output" aria-live="polite" aria-atomic="true">
             {output || t('empty')}

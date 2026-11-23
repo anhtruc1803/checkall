@@ -106,23 +106,31 @@ test('problem chooser stays accessible across themes, sizes and enlarged text', 
           await page.evaluate((value) => {
             document.documentElement.style.fontSize = value;
           }, fontSize);
-          const issues = await section.locator('article,h2,h3,p,a').evaluateAll((elements) =>
-            elements
-              .filter((element) => {
-                const rect = element.getBoundingClientRect();
-                return (
-                  rect.left < -1 ||
-                  rect.right > innerWidth + 1 ||
-                  element.scrollWidth > element.clientWidth + 1
-                );
-              })
-              .map((element) => element.tagName),
-          );
-          expect(issues, `${locale}/${theme}/${width}/${fontSize}`).toEqual([]);
-          for (const link of await section.getByRole('link').all()) {
-            const box = await link.boundingBox();
-            expect(box!.height).toBeGreaterThanOrEqual(44);
-          }
+          const { issues, linkHeights } = await section
+            .locator('article,h2,h3,p,a')
+            .evaluateAll((elements) => {
+              const measured = elements.map((element) => ({
+                element,
+                rect: element.getBoundingClientRect(),
+              }));
+              return {
+                issues: measured
+                  .filter(
+                    ({ element, rect }) =>
+                      rect.left < -1 ||
+                      rect.right > innerWidth + 1 ||
+                      element.scrollWidth > element.clientWidth + 1,
+                  )
+                  .map(({ element }) => element.tagName),
+                linkHeights: measured
+                  .filter(({ element }) => element.tagName === 'A')
+                  .map(({ rect }) => rect.height),
+              };
+            });
+          const scenario = `${locale}/${theme}/${width}/${fontSize}`;
+          expect(issues, scenario).toEqual([]);
+          expect(linkHeights, scenario).toHaveLength(6);
+          expect(Math.min(...linkHeights), scenario).toBeGreaterThanOrEqual(44);
         }
       }
     }

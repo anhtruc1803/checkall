@@ -1,0 +1,162 @@
+/* Hallmark · thiết kế theo design.md · tìm công cụ và chọn theo vấn đề */
+.discovery {
+  display: grid;
+  grid-template-columns: minmax(0, 1.23fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: start;
+  padding-block: clamp(24px, 5vw, 64px) 32px;
+}
+.intro {
+  min-width: 0;
+  padding-block: 8px;
+}
+.intro h1 {
+  max-width: 19ch;
+  font-size: clamp(2rem, 4.1vw, 3.75rem);
+  line-height: 1.09;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+.intro > p {
+  max-width: 52ch;
+  margin-top: 12px;
+  font-size: 0.94rem;
+}
+.search {
+  margin-top: 24px;
+}
+.search label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-inline: 14px 6px;
+  min-height: 56px;
+  border: 1px solid var(--color-control-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.searchBox:has(input:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+.searchBox > svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+.searchBox input {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 54px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+}
+.searchBox input::-webkit-search-cancel-button {
+  appearance: none;
+}
+.searchBox input::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+.searchBox button {
+  flex: 0 0 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--color-muted);
+}
+.results {
+  display: grid;
+  gap: 4px;
+  padding: 8px;
+  margin: 8px 0 0;
+  max-height: 16rem;
+  overflow-y: auto;
+  list-style: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+}
+.results a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 8px;
+  min-height: 44px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.results a:hover,
+.results a:focus-visible {
+  background: var(--color-accent-bg);
+}
+.results a:focus-visible {
+  outline-offset: -2px;
+}
+.results a small {
+  grid-column: 1;
+  color: var(--color-muted);
+}
+.results a svg {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: var(--color-accent);
+}
+.noResults {
+  padding: 6px 0;
+  font-size: 0.88rem;
+}
+.catalogLink {
+  min-height: 44px;
+  margin-top: 4px;
+  white-space: normal;
+}
+.catalogLink svg {
+  flex-shrink: 0;
+}
+.context {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+  align-items: start;
+  margin-block: var(--space-lg);
+}
+.context :global(.home-device-summary) {
+  min-width: 0;
+  margin-top: 0;
+}
+.context :global(.home-device-summary .device-list) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.context :global(.home-device-summary .device-row dt) {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 860px) {
+  .discovery,
+  .context {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .discovery {
+    gap: 12px;
+  }
+  .intro {
+    padding-block: 0;
+  }
+  .search {
+    margin-top: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .context :global(.home-device-summary .device-list) {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr));
+  }
+}

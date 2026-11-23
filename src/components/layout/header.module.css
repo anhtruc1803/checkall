@@ -1,0 +1,110 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.deviceMenu {
+  position: relative;
+  min-width: 0;
+}
+.navigation .navItem {
+  min-height: 44px;
+  padding-inline: 12px;
+  gap: 6px;
+  text-align: start;
+  line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.navItem > span {
+  min-width: 0;
+}
+.navItem > svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+.navItem[aria-expanded='true'],
+.navItem[data-current='true'],
+.navItem[aria-current='page'] {
+  color: var(--color-accent);
+  border-color: var(--color-control-border);
+  background: var(--color-accent-bg);
+}
+.deviceLinks {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-start: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.25rem), 1fr));
+  gap: 4px;
+  width: min(448px, calc(100vw - 48px));
+  max-height: 60vh;
+  overflow-y: auto;
+  margin: 0;
+  padding: 8px;
+  border: 1px solid var(--color-control-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-panel);
+  list-style: none;
+}
+.deviceLinks[hidden] {
+  display: none;
+}
+.deviceLinks a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.deviceLinks a svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+.deviceLinks a span {
+  min-width: 0;
+}
+.deviceLinks a:hover,
+.deviceLinks a:focus-visible,
+.deviceLinks a[aria-current='page'] {
+  color: var(--color-accent);
+  background: var(--color-accent-bg);
+}
+.deviceLinks a:focus-visible {
+  outline-offset: -2px;
+}
+@media (max-width: 860px) {
+  .header .navigation {
+    order: 1;
+    flex: 1 0 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+  }
+  .header :global(.brand) {
+    min-width: 0;
+    flex: 0 1 auto;
+    overflow-wrap: anywhere;
+  }
+  .header :global(.brand-mark) {
+    flex-shrink: 0;
+  }
+  .navigation .navItem {
+    width: 100%;
+    padding-inline: 8px;
+  }
+}
+@media (max-width: 380px) {
+  .navItem > svg:first-child {
+    display: none;
+  }
+}

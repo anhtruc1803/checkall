@@ -6,6 +6,10 @@ import { ChevronRight, ShieldCheck, ArrowRight } from 'lucide-react';
 import { publishedTools as tools, findTool, toolHref } from '@/lib/tools/registry';
 import type { Locale } from '@/lib/i18n/routing';
 import { pageMetadata } from '@/lib/seo/metadata';
+import { ToolArtwork, ToolIcon } from '@/components/tools/tool-visual';
+import { ToolNavigation } from '@/components/tools/tool-navigation';
+import cardStyles from '@/components/tools/tool-card.module.css';
+import '@/components/tools/workbench.css';
 type Params = { locale: Locale; category: string; slug: string };
 export function generateStaticParams() {
   return tools
@@ -51,7 +55,7 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
     ],
   };
   return (
-    <main id="main">
+    <main id="main" className="tool-page" data-category={category}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs).replace(/</g, '\\u003c') }}
@@ -64,19 +68,42 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
         <span>{copy.name}</span>
       </nav>
       <header className="tool-heading">
-        <h1>{copy.name}</h1>
-        <p>{copy.description}</p>
-        <div className="badges">
-          <span className="badge">{t(tool.classification)}</span>
-          <span className="badge muted">
-            <ShieldCheck size={13} />
-            {t('localOnly')}
-          </span>
-          {tool.permissions.length > 0 && (
-            <span className="badge muted">{t('permissionRequired')}</span>
-          )}
+        <span className="tool-category-icon" aria-hidden="true">
+          <ToolIcon id={tool.id} category={tool.category} size={28} />
+        </span>
+        <div className="tool-heading-copy">
+          <h1>{copy.name}</h1>
+          <p>{copy.description}</p>
+          <div className="badges">
+            <span className="badge">{t(tool.classification)}</span>
+            <span className="badge muted">
+              <ShieldCheck size={13} />
+              {t('localOnly')}
+            </span>
+            {tool.permissions.length > 0 && (
+              <span className="badge muted">{t('permissionRequired')}</span>
+            )}
+          </div>
+        </div>
+        <div className={cardStyles.headingArtwork}>
+          <ToolArtwork
+            id={tool.id}
+            category={tool.category}
+            wordExample={t('toolPreviews.exampleTen')}
+          />
         </div>
       </header>
+      <ToolNavigation
+        currentId={tool.id}
+        label={t('workbench.toolsInCategory')}
+        items={tools
+          .filter((item) => item.category === tool.category)
+          .map((item) => ({
+            id: item.id,
+            href: toolHref(item, locale),
+            name: item.copy[locale].name,
+          }))}
+      />
       <section className="tool-workspace" data-engine={tool.engine} aria-label={copy.name}>
         <ToolRunner
           key={tool.id}
@@ -111,6 +138,7 @@ export default async function ToolPage({ params }: { params: Promise<Params> }) 
                 <p key={id} style={{ marginTop: 14 }}>
                   <Link
                     className="text-link"
+                    prefetch={false}
                     style={{ whiteSpace: 'normal' }}
                     href={toolHref(related, locale)}
                   >

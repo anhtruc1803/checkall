@@ -100,6 +100,12 @@ test('IME 229 stops capture even without isComposing; later replacement events a
   );
   const row = page.locator('.keyboard-event-table tbody tr').first();
   await expect(row).toContainText('Backspace');
-  await expect(row).toContainText('229');
-  await expect(row.locator('td').nth(6)).toHaveText('false');
+  await row.getByRole('button', { name: 'Details for event 3', exact: true }).click();
+  const details = page.locator('.keyboard-event-expanded');
+  await expect(details.getByText('keyCode', { exact: true }).locator('..')).toHaveText(
+    'keyCode229',
+  );
+  await expect(details.getByText('isComposing', { exact: true }).locator('..')).toHaveText(
+    'isComposingfalse',
+  );
 });

@@ -15,7 +15,11 @@ export function normalizeSearch(value: string) {
     .replace(/[đĐ]/g, 'd')
     .toLowerCase();
 }
-export function searchToolIndex(index: ToolSearchEntry[], query: string, category?: Category) {
+export function searchToolIndex<Entry extends ToolSearchEntry>(
+  index: readonly Entry[],
+  query: string,
+  category?: Category,
+): Entry[] {
   const normalized = normalizeSearch(query.trim());
   return index.filter(
     (tool) => (!category || tool.category === category) && tool.searchText.includes(normalized),

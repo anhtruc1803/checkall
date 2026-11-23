@@ -1,40 +1,48 @@
-import Link from '@/components/navigation/policy-link';
-import { ArrowUpRight } from 'lucide-react';
-import { CategoryIcon } from './category-icon';
-import type { Tool } from '@/lib/tools/registry';
-import { toolHref } from '@/lib/tools/registry';
+import { ArrowRight } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import PolicyLink from '@/components/navigation/policy-link';
+import { toolHref } from '@/lib/tools/search';
+import type { Tool } from '@/lib/tools/types';
 import type { Locale } from '@/lib/i18n/routing';
+import { ToolArtwork, ToolIcon } from './tool-visual';
+import styles from './tool-card.module.css';
+
 export function ToolCard({
   tool,
+  name,
   locale,
-  categoryLabel,
-  classLabel,
+  description,
+  featured = false,
 }: {
-  tool: Tool;
+  tool: Pick<Tool, 'id' | 'category' | 'slug'>;
+  name: string;
   locale: Locale;
-  categoryLabel: string;
-  classLabel: string;
+  description: string;
+  featured?: boolean;
 }) {
+  const t = useTranslations('toolPreviews');
+  const summary = t.has(tool.id) ? t(tool.id) : description;
+
   return (
-    <article className="tool-card" data-category={tool.category}>
-      <div className="card-top">
-        <span className="tool-icon">
-          <CategoryIcon category={tool.category} size={26} />
+    <PolicyLink
+      href={toolHref(tool, locale)}
+      prefetch={false}
+      tabIndex={0}
+      className={`${styles.card} ${featured ? '' : 'catalog-item'}`}
+      data-category={tool.category}
+      data-tool-id={tool.id}
+    >
+      <ToolArtwork id={tool.id} category={tool.category} wordExample={t('exampleTen')} />
+      <div className={styles.cardBody}>
+        <span className={styles.icon} data-tool-icon={tool.id}>
+          <ToolIcon id={tool.id} category={tool.category} />
         </span>
-        <span className="card-category">{categoryLabel}</span>
+        <div className={styles.copy}>
+          <h3>{name}</h3>
+          <p>{summary}</p>
+        </div>
+        <ArrowRight className={styles.arrow} size={17} aria-hidden="true" />
       </div>
-      <h3>
-        <Link href={toolHref(tool, locale)} prefetch={false}>
-          {tool.copy[locale].name}
-        </Link>
-      </h3>
-      <p>{tool.copy[locale].description}</p>
-      <div className="card-bottom">
-        <span>{classLabel}</span>
-        <Link href={toolHref(tool, locale)} prefetch={false} aria-label={tool.copy[locale].name}>
-          <ArrowUpRight size={20} aria-hidden="true" />
-        </Link>
-      </div>
-    </article>
+    </PolicyLink>
   );
 }

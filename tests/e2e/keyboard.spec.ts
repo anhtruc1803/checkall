@@ -37,8 +37,21 @@ test('event inspector exposes repeat and location with bounded logs', async ({ p
   await page.keyboard.down('a');
   await page.keyboard.up('a');
   await expect(page.locator('tbody')).toContainText('KeyA');
-  await expect(page.locator('tbody')).toContainText('true');
   await page.keyboard.press('Tab');
   await expect(page.locator('.keyboard-capture')).toHaveAttribute('data-active', 'false');
   await expect(page.locator('[data-code=Tab]')).toHaveAttribute('data-tested', 'true');
+  await page.getByRole('button', { name: 'Details for event 2', exact: true }).click();
+  const details = page.locator('.keyboard-event-expanded');
+  await expect(
+    details
+      .locator('dt')
+      .filter({ hasText: /^repeat$/ })
+      .locator('..'),
+  ).toHaveText('repeattrue');
+  await expect(
+    details
+      .locator('dt')
+      .filter({ hasText: /^location$/ })
+      .locator('..'),
+  ).toHaveText('location0');
 });

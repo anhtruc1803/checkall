@@ -1,5 +1,6 @@
 'use client';
 import { useId, useState } from 'react';
+import { FileText } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { EngineSurface } from '@/components/tools/engine-surface';
 import { Button } from '@/components/ui/button';
@@ -23,6 +24,7 @@ import './text-tool.css';
 
 const tools = { U03: 'count', U04: 'case', U05: 'slug', U06: 'clean' } as const;
 export default function TextTool({ toolId }: { toolId: string }) {
+  const workspace = useTranslations('workbench');
   const t = useTranslations('textTools'),
     locale = useLocale() as Locale,
     id = useId();
@@ -50,8 +52,9 @@ export default function TextTool({ toolId }: { toolId: string }) {
   if (!kind) return <p role="status">{t('unavailable')}</p>;
   return (
     <EngineSurface>
-      <div className="utility-tool text-tool" data-text-tool={kind}>
+      <div className="utility-tool text-tool utility-split" data-text-tool={kind}>
         <form
+          className="utility-input-panel"
           noValidate
           onSubmit={(event) => {
             event.preventDefault();
@@ -211,57 +214,69 @@ export default function TextTool({ toolId }: { toolId: string }) {
             </Button>
           </div>
         </form>
-        <p role="status" aria-atomic="true" className="small">
-          {result ? t('ready') : t('pending')}
-        </p>
-        {result && 'counts' in result && (
-          <section aria-labelledby={`${id}-counts`}>
-            <h2 id={`${id}-counts`}>{t('result')}</h2>
-            {result.counts.characters === null && (
-              <p className="notice" role="status">
-                {t('segmenterUnavailable')}
-              </p>
-            )}
-            <dl className="results-grid">
-              {(['words', 'characters', 'charactersWithoutWhitespace', 'lines'] as const).map(
-                (key) => (
-                  <Metric key={key} label={t(`metrics.${key}`)} value={result.counts[key] ?? '—'} />
-                ),
+        <div className="text-result-panel" data-ready={Boolean(result)}>
+          {!result && (
+            <div className="text-empty-placeholder">
+              <FileText size={32} aria-hidden="true" />
+              <h2>{workspace('awaitingResult')}</h2>
+            </div>
+          )}
+          <p role="status" aria-atomic="true" className="small">
+            {result ? t('ready') : t('pending')}
+          </p>
+          {result && 'counts' in result && (
+            <section aria-labelledby={`${id}-counts`}>
+              <h2 id={`${id}-counts`}>{t('result')}</h2>
+              {result.counts.characters === null && (
+                <p className="notice" role="status">
+                  {t('segmenterUnavailable')}
+                </p>
               )}
-            </dl>
-            <details className="text-details">
-              <summary>{t('details')}</summary>
               <dl className="results-grid">
-                {(['paragraphs', 'codePoints', 'utf16Units', 'utf8Bytes'] as const).map((key) => (
-                  <Metric key={key} label={t(`metrics.${key}`)} value={result.counts[key]} />
-                ))}
+                {(['words', 'characters', 'charactersWithoutWhitespace', 'lines'] as const).map(
+                  (key) => (
+                    <Metric
+                      key={key}
+                      label={t(`metrics.${key}`)}
+                      value={result.counts[key] ?? '—'}
+                    />
+                  ),
+                )}
               </dl>
-              <p className="small">{t('countDefinitions')}</p>
-            </details>
-          </section>
-        )}
-        {output !== null && (
-          <section className="utility-result" aria-labelledby={`${id}-output-label`}>
-            <h2 id={`${id}-output-label`}>{t('result')}</h2>
-            <textarea
-              className="text-output"
-              aria-labelledby={`${id}-output-label`}
-              readOnly
-              rows={8}
-              value={output}
-              lang={language}
-              spellCheck={false}
-            />
-            <p className="small">
-              {output === ''
-                ? t('emptyResult')
-                : output === input
-                  ? t('unchanged')
-                  : t('originalKept')}
-            </p>
-            {output !== '' && <CopyResult key={output} value={output} />}
-          </section>
-        )}
+              <details className="text-details">
+                <summary>{t('details')}</summary>
+                <dl className="results-grid">
+                  {(['paragraphs', 'codePoints', 'utf16Units', 'utf8Bytes'] as const).map((key) => (
+                    <Metric key={key} label={t(`metrics.${key}`)} value={result.counts[key]} />
+                  ))}
+                </dl>
+                <p className="small">{t('countDefinitions')}</p>
+              </details>
+            </section>
+          )}
+          {output !== null && (
+            <section className="utility-result" aria-labelledby={`${id}-output-label`}>
+              <h2 id={`${id}-output-label`}>{t('result')}</h2>
+              <textarea
+                className="text-output"
+                aria-labelledby={`${id}-output-label`}
+                readOnly
+                rows={8}
+                value={output}
+                lang={language}
+                spellCheck={false}
+              />
+              <p className="small">
+                {output === ''
+                  ? t('emptyResult')
+                  : output === input
+                    ? t('unchanged')
+                    : t('originalKept')}
+              </p>
+              {output !== '' && <CopyResult key={output} value={output} />}
+            </section>
+          )}
+        </div>
         <p className="small">{t('privacy')}</p>
       </div>
     </EngineSurface>

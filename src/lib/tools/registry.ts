@@ -8,6 +8,7 @@ import { phase2Tools } from './phase2';
 import { utilityTools } from './utilities';
 import { textUtilityTools } from './text-utilities';
 import { conversionUtilityTools } from './conversion-utilities';
+import { problemShortcuts } from './problem-shortcuts';
 export { toolHref } from './search';
 export { getPublishedTools, getPublishedCategories } from './catalog';
 export type { Category, Engine, Tool, ToolCopy } from './types';
@@ -536,7 +537,16 @@ export function getToolSearchIndex(locale: Locale): ToolSearchEntry[] {
     classification: tool.classification,
     name: tool.copy[locale].name,
     searchText: normalizeSearch(
-      `${tool.copy.vi.name} ${tool.copy.en.name} ${tool.copy.vi.description} ${tool.copy.en.description} ${tool.id}`,
+      [
+        tool.copy.vi.name,
+        tool.copy.en.name,
+        tool.copy.vi.description,
+        tool.copy.en.description,
+        tool.id,
+        ...problemShortcuts.flatMap(({ toolIds, keywords }) =>
+          toolIds.some((id) => id === tool.id) ? [keywords] : [],
+        ),
+      ].join(' '),
     ),
   }));
 }

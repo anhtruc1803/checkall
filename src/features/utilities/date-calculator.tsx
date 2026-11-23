@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { EngineSurface } from '@/components/tools/engine-surface';
 import { daysBetween, addCalendarDays, parseCalendarDate } from '@/lib/utilities/dates';
-import { CopyResult } from './shared';
+import { UtilityInput, CopyResult } from './shared';
 
 export default function DateCalculator() {
   const t = useTranslations('dateTool'),
@@ -52,74 +52,81 @@ export default function DateCalculator() {
   );
   return (
     <EngineSurface>
-      <div className="utility-tool">
-        <label className="field">
-          <span id="date-mode-label">{t('mode')}</span>
-          <select
-            aria-labelledby="date-mode-label"
-            value={mode}
-            onChange={(e) => setMode(e.target.value as typeof mode)}
-          >
-            <option value="difference">{t('difference')}</option>
-            <option value="add">{t('add')}</option>
-          </select>
-        </label>
-        <div className="utility-fields">
-          {dateField(
-            'date-start',
-            start,
-            setStart,
-            startInvalid || Boolean(result && !result.ok && result.error === 'dateRange'),
-          )}
-          {mode === 'difference' ? (
-            dateField('date-end', end, setEnd, endInvalid)
-          ) : (
-            <label className="field" htmlFor="date-days">
-              {t('days')}
-              <input
-                id="date-days"
-                type="text"
-                inputMode="text"
-                autoComplete="off"
-                spellCheck={false}
-                value={days}
-                onChange={(e) => setDays(e.target.value)}
-                aria-invalid={daysInvalid}
-                aria-describedby="date-error date-hint"
-              />
-            </label>
-          )}
-        </div>
-        <p id="date-error" className="utility-error" role="status">
-          {error}
-        </p>
-        <div className="controls">
-          {mode === 'difference' && (
+      <div className="utility-tool utility-split">
+        <UtilityInput>
+          <label className="field">
+            <span id="date-mode-label">{t('mode')}</span>
+            <select
+              aria-labelledby="date-mode-label"
+              value={mode}
+              onChange={(e) => setMode(e.target.value as typeof mode)}
+            >
+              <option value="difference">{t('difference')}</option>
+              <option value="add">{t('add')}</option>
+            </select>
+          </label>
+          <div className="utility-fields">
+            {dateField(
+              'date-start',
+              start,
+              setStart,
+              startInvalid || Boolean(result && !result.ok && result.error === 'dateRange'),
+            )}
+            {mode === 'difference' ? (
+              dateField('date-end', end, setEnd, endInvalid)
+            ) : (
+              <label className="field" htmlFor="date-days">
+                {t('days')}
+                <input
+                  id="date-days"
+                  type="text"
+                  inputMode="text"
+                  autoComplete="off"
+                  spellCheck={false}
+                  value={days}
+                  onChange={(e) => setDays(e.target.value)}
+                  aria-invalid={daysInvalid}
+                  aria-describedby="date-error date-hint"
+                />
+              </label>
+            )}
+          </div>
+          <p id="date-error" className="utility-error" role="status">
+            {error}
+          </p>
+          <div className="controls">
+            {mode === 'difference' && (
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setStart(end);
+                  setEnd(start);
+                }}
+              >
+                {t('swap')}
+              </Button>
+            )}
             <Button
-              variant="outline"
+              variant="ghost"
               onClick={() => {
-                setStart(end);
-                setEnd(start);
+                setStart('');
+                setEnd('');
+                setDays('');
               }}
             >
-              {t('swap')}
+              {t('clear')}
             </Button>
-          )}
-          <Button
-            variant="ghost"
-            onClick={() => {
-              setStart('');
-              setEnd('');
-              setDays('');
-            }}
-          >
-            {t('clear')}
-          </Button>
-        </div>
-        <p id="date-hint" className="small">
-          {t(mode === 'difference' ? 'differenceHint' : 'addHint')}
-        </p>
-        <div className="utility-result" role="region" aria-label={u('result')}>
+          </div>
+          <p id="date-hint" className="small">
+            {t(mode === 'difference' ? 'differenceHint' : 'addHint')}
+          </p>
+        </UtilityInput>
+        <div
+          className="utility-result"
+          data-has-result={Boolean(output)}
+          role="region"
+          aria-label={u('result')}
+        >
           <h2>{u('result')}</h2>
           <p className="utility-output" aria-live="polite" aria-atomic="true">
             {output || u('enterValues')}

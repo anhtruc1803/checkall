@@ -19,3 +19,24 @@ it('derives a localized index for all 48 published tools without methodology or 
     expect(searchToolIndex(index, 'ĐỘ PHÂN GIẢI')[0].id).toBe('A01');
   }
 });
+
+it('finds the same diagnostic tools by Vietnamese and English symptom text', () => {
+  const index = getToolSearchIndex('vi');
+  for (const [queries, expected] of [
+    [
+      ['man hinh bi giat', 'screen feels choppy'],
+      ['A05', 'A10'],
+    ],
+    [
+      ['phím bị lặp', 'keys keep repeating'],
+      ['B01', 'B03'],
+    ],
+    [
+      ['mic khong hoat dong', 'microphone is not working'],
+      ['D03', 'D05'],
+    ],
+  ]) {
+    for (const query of queries)
+      expect(searchToolIndex(index, query).map(({ id }) => id)).toEqual(expected);
+  }
+});

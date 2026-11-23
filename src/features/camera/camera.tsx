@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { EngineSurface } from '@/components/tools/engine-surface';
 import { Metric, Status } from '@/components/tools/measurement-ui';
 import { CameraSession } from '@/lib/camera/camera-session';
+import { CameraOff } from 'lucide-react';
 
 export default function Camera({ toolId }: { toolId: string }) {
   const t = useTranslations('cameraTools'),
@@ -70,8 +71,15 @@ export default function Camera({ toolId }: { toolId: string }) {
       )}
       <figure className="camera-preview">
         <figcaption>{t('preview')}</figcaption>
-        <video ref={video} muted playsInline aria-label={t('preview')} />
-        {!active && <p className="notice">{t('noData')}</p>}
+        <div className="camera-stage">
+          <video ref={video} muted playsInline aria-label={t('preview')} />
+          {!active && (
+            <div className="camera-empty">
+              <CameraOff aria-hidden="true" />
+              <p>{t('noData')}</p>
+            </div>
+          )}
+        </div>
       </figure>
       <dl className="results-grid">
         <Metric label={t('videoSize')} value={size(snapshot.width, snapshot.height)} unit="px" />

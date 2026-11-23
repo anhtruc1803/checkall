@@ -50,6 +50,16 @@
   --radius-lg: 24px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 160ms;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --color-workbench-inset: oklch(17% 0.018 258);
+  --color-workbench-raised: oklch(24% 0.025 258);
+  --color-workbench-edge: oklch(37% 0.035 258);
+  --color-result-surface: oklch(20% 0.035 258);
+  --color-result-edge: oklch(43% 0.07 258);
+  --color-accent-ink: var(--color-bg);
+  --text-workspace-result: clamp(1.6rem, 3vw, 2.8rem);
+  --text-workspace-metric: clamp(1.3rem, 2.2vw, 1.9rem);
   --background: var(--color-bg);
   --foreground: var(--color-ink);
   --primary: var(--color-primary);
@@ -58,6 +68,11 @@
   --ring: var(--color-focus);
 }
 :root[data-theme='light'] {
+  --color-workbench-inset: oklch(98% 0.006 258);
+  --color-workbench-raised: oklch(95% 0.012 258);
+  --color-workbench-edge: oklch(82% 0.025 258);
+  --color-result-surface: oklch(97% 0.015 258);
+  --color-result-edge: oklch(78% 0.07 258);
   --color-bg: #f4f7fb;
   --color-surface: #ffffff;
   --color-raised: #e9eff8;

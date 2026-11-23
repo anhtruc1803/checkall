@@ -1,0 +1,108 @@
+/* Hallmark · thiết kế theo design.md · danh mục theo nhóm công việc */
+.page:global(.section) {
+  padding-block: clamp(24px, 4vw, 48px) var(--space-xl);
+}
+.head > p {
+  margin-top: 8px;
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 12px 24px;
+  padding-block: var(--space-lg);
+}
+.search {
+  flex: 1 1 23rem;
+  max-width: 42rem;
+  min-width: 0;
+}
+.search label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.search :global(.searchbox) {
+  gap: 10px;
+  margin: 0;
+  padding: 4px 8px 4px 14px;
+  border-color: var(--color-control-border);
+}
+.search input {
+  font-size: 1rem;
+  padding: 0;
+}
+.search input::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+.count {
+  align-self: flex-end;
+  padding-bottom: 8px;
+  font-size: 1rem;
+}
+.empty {
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+}
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 11.5rem) minmax(0, 1fr);
+  gap: 16px clamp(16px, 3vw, 40px);
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--color-rule);
+}
+.sectionTitle {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 5px;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+.sectionTitle svg {
+  margin-top: 1px;
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.list li {
+  display: flex;
+  min-width: 0;
+}
+@media (max-width: 880px) {
+  .section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search {
+    flex: 0 0 auto;
+  }
+  .count {
+    align-self: start;
+    padding: 0;
+  }
+  .list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

@@ -212,13 +212,9 @@ test('document navigation updates camera, locale, microphone and restrictive pol
   };
   const camera = 'camera=(self), microphone=(), geolocation=(), gamepad=()';
   const category = async (href: string) => {
-    const desktop = page.locator(`.desktop-nav a[href="${href}"]`);
-    if (await desktop.isVisible()) await desktop.click();
-    else {
-      await page.locator('.menu-toggle').click();
-      await expect(page.locator('#mobile-nav')).toBeVisible();
-      await page.locator(`#mobile-nav a[href="${href}"]`).click();
-    }
+    await page.locator('[aria-controls="device-nav"]').click();
+    await expect(page.locator('#device-nav')).toBeVisible();
+    await page.locator(`#device-nav a[href="${href}"]`).click();
   };
   await navigate(
     () => page.locator('.catalog-item[href="/en/camera/preview"]').click(),

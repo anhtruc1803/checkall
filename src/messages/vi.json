@@ -125,6 +125,15 @@
   "toolsCount": "{count} công cụ",
   "heroTitle": "Kiểm tra thiết bị.\nHiểu từng chi tiết.",
   "heroDescription": "{count} công cụ kiểm tra thiết bị và tiện ích tính toán hằng ngày. Miễn phí, không cần cài đặt.",
+  "homeDiscovery": {
+    "title": "Kiểm tra thiết bị và dùng tiện ích",
+    "navigation": "Điều hướng chính",
+    "searchLabel": "Tìm công cụ hoặc mô tả vấn đề",
+    "searchExample": "Thử tìm phím bị lặp, đổi đơn vị…",
+    "clear": "Xóa tìm kiếm nhanh",
+    "noResults": "Chưa tìm thấy công cụ. Thử từ khóa ngắn hơn như “bàn phím” hoặc “đổi đơn vị”.",
+    "browseAll": "Xem tất cả {count} công cụ"
+  },
   "browse": "Khám phá công cụ",
   "privacyShort": "Chạy trên thiết bị của bạn",
   "noAccount": "Không cần tài khoản",
@@ -612,6 +621,15 @@
     "bestCombination": "Tổ hợp lớn nhất đã quan sát",
     "rolloverNote": "Giữ tổ hợp lớn nhất đến khi Đặt lại. Số phím nhận được không chứng nhận NKRO/6KRO.",
     "latestEvent": "Sự kiện gần nhất",
+    "inspector": {
+      "details": "Chi tiết",
+      "eventDetails": "Chi tiết sự kiện {sequence}",
+      "timestamp": "Thời điểm (ms)",
+      "empty": "Kích hoạt vùng thử rồi bấm một phím để xem sự kiện tại đây.",
+      "imeSignal": "Tín hiệu bộ gõ",
+      "missingCode": "Thiếu code",
+      "ddTip": "Thử EVKey V + Telex: bấm D một lần, sau đó bấm dd. Bộ gõ có thể đổi dd thành đ hoặc tạo Backspace. Nếu lượt thu dừng, xem sự kiện cuối rồi kích hoạt lại."
+    },
     "flagsNote": "Các cờ do browser báo, không xác nhận đèn LED hoặc nguồn phần cứng. isTrusted không phải chứng nhận thao tác vật lý.",
     "chatterNote": "Tách auto-repeat; thống kê đến khi Đặt lại. Ngưỡng 1–500 ms. Khoảng nhấn ngắn chưa chứng minh switch hỏng.",
     "validPairs": "Cặp thả → nhấn hợp lệ",
@@ -683,6 +701,68 @@
     }
   },
   "utilities": "Tiện ích",
+  "toolPreviews": {
+    "exampleTen": "mười",
+    "A01": "Xem kích thước màn hình theo trình duyệt.",
+    "A02": "Xem kích thước cửa sổ và DPR.",
+    "A03": "Tính tỷ lệ từ chiều rộng và chiều cao.",
+    "A04": "Tính mật độ điểm ảnh theo kích thước.",
+    "A05": "Ước tính nhịp làm mới từ khung hình.",
+    "A06": "Đổi màu nền để tìm điểm ảnh chết.",
+    "A07": "Dùng màu đơn để tìm điểm ảnh kẹt.",
+    "A08": "Dùng nền tối để quan sát hở sáng.",
+    "A09": "Xem dải màu và chuyển sắc.",
+    "A10": "Quan sát bóng mờ khi vật thể di chuyển.",
+    "A11": "Xem các điểm chạm trên màn hình.",
+    "B01": "Xem phím nào được trình duyệt nhận.",
+    "B02": "Thử giữ nhiều phím cùng lúc.",
+    "B03": "Kiểm tra các lần nhấn lặp sát nhau.",
+    "B04": "Đo từ lúc nhấn đến lúc thả.",
+    "B05": "Đọc key, code và nhật ký sự kiện.",
+    "C01": "Kiểm tra từng nút chuột.",
+    "C02": "Đo khoảng cách giữa hai lần nhấp.",
+    "C03": "Đếm số lần nhấp mỗi giây.",
+    "C04": "Thử hướng và bước cuộn.",
+    "C05": "Ước tính tần suất sự kiện chuột.",
+    "C06": "Theo dõi đường đi của con trỏ.",
+    "C07": "Bấm mục tiêu để thử độ chính xác.",
+    "D01": "Phát âm thử qua loa hoặc tai nghe.",
+    "D02": "Nghe riêng kênh trái và phải.",
+    "D03": "Xem mức tín hiệu microphone.",
+    "D04": "Phát âm ở tần số đã chọn.",
+    "D05": "Quan sát phổ tần của âm thanh.",
+    "E01": "Xem hình ảnh trực tiếp từ webcam.",
+    "E02": "Xem độ phân giải luồng camera.",
+    "E03": "Đếm khung hình camera theo thời gian.",
+    "F01": "Xem các nút và trục tay cầm.",
+    "F02": "Xem vị trí và hành trình cần analog.",
+    "F03": "Xem độ lệch khi thả cần analog.",
+    "G01": "Xem hệ điều hành và thông tin hiển thị.",
+    "G02": "Xem trình duyệt hỗ trợ API nào.",
+    "G03": "Xem thông tin GPU do WebGL báo.",
+    "G04": "Xem khả năng cảm ứng và con trỏ.",
+    "G05": "Kiểm tra các loại lưu trữ trình duyệt.",
+    "G06": "Thử vào và thoát toàn màn hình.",
+    "U01": "Viết số hoặc số tiền bằng chữ.",
+    "U02": "Tính tỷ lệ, tăng giảm và mức thay đổi.",
+    "U03": "Đếm từ, ký tự và dòng.",
+    "U04": "Đổi chữ hoa, chữ thường và kiểu viết.",
+    "U05": "Bỏ dấu hoặc tạo slug từ văn bản.",
+    "U06": "Dọn khoảng trắng và dòng trùng.",
+    "U07": "Đổi giữa các đơn vị cùng loại.",
+    "U08": "Tính khoảng cách hoặc cộng trừ ngày."
+  },
+  "utilityCatalog": {
+    "intro": "Tính toán, xử lý văn bản, đổi đơn vị và tính ngày.",
+    "searchExample": "Thử tìm tính phần trăm hoặc đếm từ…",
+    "noResults": "Không có tiện ích phù hợp. Thử từ khóa ngắn hơn hoặc xóa tìm kiếm để xem tất cả.",
+    "sections": {
+      "numbers": "Số và tiền",
+      "text": "Văn bản",
+      "conversion": "Đơn vị và ngày",
+      "other": "Tiện ích khác"
+    }
+  },
   "toolGroups": {
     "label": "Nhóm công cụ",
     "device-tests": "Kiểm tra thiết bị",
@@ -848,5 +928,10 @@
       "days": "Nhập số ngày nguyên, tối đa 7 chữ số, có thể có dấu + hoặc − (gõ -).",
       "dateRange": "Kết quả vượt phạm vi ngày 0001-01-01 đến 9999-12-31."
     }
+  },
+  "workbench": {
+    "awaitingResult": "Chưa có kết quả",
+    "toolsInCategory": "Công cụ trong nhóm",
+    "input": "Nhập và tùy chọn"
   }
 }
