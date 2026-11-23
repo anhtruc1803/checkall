@@ -1,5 +1,15 @@
 # Kiểm thử
 
+## Kiểm thử chuyển tên miền a.ap.vn — 23/11/2026
+
+Source **6c8252b3a53574cd9283101f0a95219fb3b85a41** giữ nguyên app/tests/dependencies của Milestone 3. Local typecheck/lint/secret scan và575 unit/43 file đạt. [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/45101107988) đạt build 124, **466 E2E đạt/6 native policy skip**, 0 fail/flaky/global error; Chromium/mobile mỗi118 đạt, Firefox/WebKit mỗi115 đạt/3 skip. Docker CI health/Nginx/52 route trước/sau restart/stop-start và shutdown143 đạt. Candidate VPS cô lập đạt 96 route, sitemap 118, canonical/hreflang/policy/CSP trước/sau restart và Node private.
+
+Public lần đầu83/84, một Chromium503; chạy riêng tái hiện 1 fail/3 pass, tách static vẫn1 fail/3 pass. Sau tách cả RSC và static khỏi bucket điều hướng: bài lỗi **4/4 đạt**, full smoke cuối **84/84 đạt**, mỗi cấu hình21, 0 fail/skip/flaky/global error. Giữ timeout/assertion/test. Public smoke là subset chức năng Windows; full privacy/no-upload lấy từ CI Linux. Mobile là Chromium giả lập iPhone13; WebKit/backend ảo không xác nhận Safari/phần cứng thật.
+
+HTTP public đạt 96 route mới/96 redirect cũ, 48 card, sitemap 118, canonical/hreflang/robots/health và CSP 96/96. TLS/redirect/ACME kiểm tra riêng origin và 3 proxy IP. HTTP proxy mới 301, origin/tên miền cũ308, giữ path/query. Đã xem ảnh VI 375px và EN 1200px, không tràn ngang. Các bài WCAG bao gồm cả VI/EN Dark/Light, 320px và chữ200%, EVKey/dd.
+
+Audit production0 advisory, toàn bộ2 moderate dev tooling glob/minimatch. Còn503 tài nguyên phụ trong Lighthouse chưa rõ nguồn. Chưa xác minh sáu native policy, Safari/phần cứng, clipboard/bộ gõ/mobile thật, screen reader, TLS proxy→origin trong dashboard, renewal dài hạn/rollback khi lỗi và field data. **Final Acceptance tổng thể vẫn mở.** Xem [báo cáo](DOMAIN-MIGRATION.md), [QA JSON](qa/domain-migration-2026-11-23.json); các mục dưới là lịch sử.
+
 ## Tiện ích Milestone 3 đã triển khai — 20/11/2026
 
 Source **890aa52d9af73d1d36fd96b79d941adcb20296ed**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44663888110), [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44663904488) và [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44668621145). Đã triển khai **U07 Đổi đơn vị** và **U08 Tính ngày** sau khi người dùng duyệt local: **48 công cụ VI/EN**, giữ nguyên metadata/route/engine/copy của **46 công cụ trước**; **96 route công cụ**, sitemap **118 URL**. Không sửa mã ứng dụng/tests/scripts sau bản đã duyệt; không thêm dependency hoặc viết lại kiến trúc.

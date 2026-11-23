@@ -1,5 +1,13 @@
 # Hiệu năng và kết quả đo
 
+## Tên miền mới a.ap.vn — 23/11/2026
+
+Source **6c8252b3a53574cd9283101f0a95219fb3b85a41**, giữ nguyên 48 công cụ và mã ứng dụng. [Trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/45101257370): 60 mẫu sạch/20 trang ×3, median mobile **98–100**. [Public mới](https://github.com/anhtruc1803/checkall/actions/runs/45105593936): 60 mẫu sạch/20 trang ×3, median **97–99**. Tất cả mẫu đối chiếu đúng source/path/pageVerified, không có external script/injection. Chromium mới mỗi lượt, extension tắt; đo public sau khi smoke kết thúc.
+
+Bộ trước là production loopback CI, bộ sau là HTTPS qua proxy; khác điều kiện mạng, không quy chênh lệch cho code. Median Accessibility/SEO 100, Best Practices 96–100. Có13/60 mẫu ghi nhận 503 favicon/prefetch; origin log không có Nginx error sau cấu hình cuối, kiểm tra lại Windows nhận 200 nhưng chưa xác minh nguồn 503. Không loại các mẫu này. FCP/LCP/TBT/CLS, JS/font/ảnh transferSize từng mẫu và median theo trang nằm trong [QA JSON](qa/domain-migration-2026-11-23.json), bảng đọc nhanh ở [báo cáo tên miền](DOMAIN-MIGRATION.md). Không lấy số liệu tên miền cũ làm kết quả mới; chưa có field Core Web Vitals.
+
+Đã sửa 503 khi chuyển nhanh VI/EN do static/RSC dùng chung bucket trang: giữ điều hướng 20 r/s, burst 60, tách RSC và static mỗi 100 r/s, burst 200. Bài tái hiện4/4 và toàn bộ public 84/84 đạt sau sửa; giữ failure 83/84 ban đầu trong QA. Không đổi nội dung SEO/accessibility, engine hoặc giảm assertion. Final Acceptance tổng thể vẫn mở; các mục dưới là lịch sử.
+
 ## Tiện ích Milestone 3 đã triển khai — 20/11/2026
 
 Trước chuyển đủ **60 mẫu sạch/20 trang × 3**, median mobile **98–100**; sau chuyển đủ **60 mẫu sạch/20 trang × 3**, median **96–99**. Median Accessibility/Best Practices/SEO 100 trên mọi trang ở cả hai bộ. Đối chiếu source/path/pageVerified/clean của từng mẫu; đủ 120 mẫu, FCP/LCP/TBT/CLS và byte JS/font/ảnh trong [QA phát hành](qa/deployment-utilities-milestone3-2026-11-20.json). Không lấy điểm Windows 76 có injection làm baseline hoặc nhận chênh lệch lab/public là thay đổi do code.

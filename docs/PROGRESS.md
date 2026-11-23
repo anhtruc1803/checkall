@@ -1,8 +1,18 @@
 # Tiến độ Device Lab
 
-## Đang chuyển tên miền sang a.ap.vn — 23/11/2026
+## Đã chuyển sang a.ap.vn — 23/11/2026
 
-Người dùng đã cấu hình DNS qua proxy. Cả ba proxy IP chuyển đúng token ACME về VPS; chứng chỉ `a.ap.vn` đã cấp thành công, hết hạn 21/02/2027. Đang chuẩn bị image với SITE_URL mới và các gate kiểm thử; chưa xác nhận production chuyển xong. Giữ nguyên 48 công cụ VI/EN, app/tests/dependencies của Milestone 3. Xem [quy trình chuyển tên miền](DOMAIN-MIGRATION.md). Những báo cáo phía dưới ghi tên miền cũ là bằng chứng lịch sử, không phải kết quả trên tên miền mới.
+Website chính: [VI](https://a.ap.vn/vi), [EN](https://a.ap.vn/en). Giữ nguyên **48 công cụ**, **96 route công cụ VI/EN**, sitemap **118 URL**. App/tests/dependencies không đổi so với Milestone 3; build lại với `SITE_URL=https://a.ap.vn`. Source **6c8252b3a53574cd9283101f0a95219fb3b85a41**. Xem [báo cáo chuyển tên miền](DOMAIN-MIGRATION.md), [QA JSON](qa/domain-migration-2026-11-23.json).
+
+[CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/45101107988) đạt typecheck/lint/secret scan, **575 unit/43 file**, build **124 trang**, **466 E2E đạt/6 native policy skip**, 0 fail/flaky/global error. Docker CI/candidate đạt health/VI/EN/restart/shutdown và Node private. **84/84 public UI smoke** trên Chromium/Firefox/WebKit/mobile đạt; đây là subset chức năng Windows. Full privacy/no-upload lấy từ CI Linux. [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/45101257370) có 60 mẫu sạch/20 trang ×3, median **98–100**; [Lighthouse public mới](https://github.com/anhtruc1803/checkall/actions/runs/45105593936) có 60 mẫu sạch, median mobile **97–99**. Bộ lab và public khác điều kiện mạng, không quy chênh lệch cho thay đổi code.
+
+Đủ 96 route public đạt H1/canonical/hreflang/policy, sitemap/robots/health dùng tên miền mới, CSP **96/96**. Đủ 96 redirect từ tên miền cũ trả **308**, giữ đường dẫn/query. HTTP tên miền mới được proxy chuyển lên HTTPS bằng **301**; origin vẫn **308**. Đã xác minh TLS/correct release tại origin và cả ba proxy IP. Không sửa DNS/dashboard proxy. Các kết quả tên miền cũ bên dưới là lịch sử.
+
+Chứng chỉ origin `a.ap.vn` đến **21/02/2027**, giữ chứng chỉ cũ cho HTTPS redirect. ACME sau chuyển đạt cả hai hostname ×3 proxy IP; timer Certbot active, chưa chạy renewal dry-run. Runtime healthy/non-root/read-only, Node không publish; giữ release/image cũ và backup để rollback. Phiên SSH đã đóng.
+
+**Đã hoàn thành và xác minh:** tên miền/HTTPS/SEO/redirect, CI/Docker, public UI và Lighthouse mobile ≥90. **Đã triển khai nhưng chưa xác minh đầy đủ:** clipboard/bộ gõ/quyền trên thiết bị thật, renewal dài hạn và rollback khi production lỗi. **Chưa hoàn thành:** xác minh nguồn 503 tài nguyên phụ trong Lighthouse, sáu native policy skip, hai moderate dev tooling glob/minimatch, field Core Web Vitals. **Không thể kiểm chứng lượt này:** Safari/phần cứng thật và chế độ TLS proxy→origin trong dashboard. Audit mới: production 0 advisory, toàn bộ 2 moderate dev tooling. **Final Acceptance tổng thể vẫn mở.**
+
+localStorage/theme/lịch sử và quyền thuộc từng origin; dữ liệu ở tên miền cũ không tự chuyển, browser có thể hỏi lại quyền camera/microphone. Tiếp theo: sử dụng tên miền mới, theo dõi vận hành và hoàn tất manual QA/bảo mật còn mở. Các mục dưới giữ bằng chứng lịch sử.
 
 ## Tiện ích Milestone 3 đã triển khai — 20/11/2026
 

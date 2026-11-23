@@ -1,8 +1,14 @@
 # Triển khai và vận hành
 
-## Đang chuyển tên miền sang a.ap.vn — 23/11/2026
+## Đã chuyển sang a.ap.vn — 23/11/2026
 
-Người dùng đã cấu hình DNS qua proxy. Cả ba proxy IP chuyển đúng token ACME về VPS; chứng chỉ `a.ap.vn` đã cấp thành công, hết hạn 21/02/2027. Đang chuẩn bị image với SITE_URL mới và các gate kiểm thử; chưa xác nhận production chuyển xong. Giữ nguyên 48 công cụ VI/EN, app/tests/dependencies của Milestone 3. Xem [quy trình chuyển tên miền](DOMAIN-MIGRATION.md). Những báo cáo phía dưới ghi tên miền cũ là bằng chứng lịch sử, không phải kết quả trên tên miền mới.
+Website [VI](https://a.ap.vn/vi)/[EN](https://a.ap.vn/en), 48 công cụ, source **6c8252b3a53574cd9283101f0a95219fb3b85a41**. Build image với SITE_URL mới; canonical/hreflang/sitemap 118/robots và96 route public đạt. Chỉ đổi SITE_URL/RELEASE_TAG trong env quyền 600. Image **device-lab:domain-a-ap-6c8252b-20261123**, ID **sha256:23dac97dd884317964b8fd46df7ab0c04d7511709425c4dd6d790675a0900dba**, current→`/opt/device-lab/releases/domain-a-ap-6c8252b`. Giữ release/image `890aa52` và backup Nginx để rollback; không prune/reboot.
+
+Nginx old host 308→`https://a.ap.vn$request_uri`, giữ chứng chỉ cũ và ACME. Proxy mới tự HTTP→HTTPS301; origin 308. Chứng chỉ a.ap.vn đến 21/02/2027; origin và 3 proxy IP TLS/release/redirect đạt, ACME cả 2 hostname ×3 IP đạt sau chuyển, token QA đã dọn; timer active, chưa chạy renewal dry-run. Không sửa DNS/dashboard proxy, chưa xác minh chế độ TLS proxy→origin trong dashboard. CSP public96/96 có header.
+
+Template `deploy/nginx.a.ap.vn.conf.template` khớp cấu hình VPS sau thay đúng marker SHA bảy ký tự. Đã nginx -t/reload giữ inode bind mount; locations/Compose override giữ nguyên. Sửa lỗi503 đã tái hiện bằng cách tách bucket điều hướng 20 r/s, burst 60, RSC và static mỗi 100 r/s, burst 200; không bỏ giới hạn hoặc giảm test. Full smoke cuối84/84 đạt. Runtime healthy/nextjs/read-only, Node không publish, 768 MiB/256 PID/cap-drop ALL/no-new-privileges. SSH đã đóng.
+
+Gate CI 466/6 skip, Docker/candidate và Lighthouse public median 97–99 đạt; xem [báo cáo](DOMAIN-MIGRATION.md), [QA JSON](qa/domain-migration-2026-11-23.json) để đọc log snapshot, các lượt lỗi và các mục manual còn mở. localStorage/lịch sử/quyền không tự chuyển origin. **Final Acceptance tổng thể vẫn mở.** Các mục dưới giữ bằng chứng lịch sử.
 
 ## Tiện ích Milestone 3 đã triển khai — 20/11/2026
 

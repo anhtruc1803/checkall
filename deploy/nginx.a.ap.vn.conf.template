@@ -1,0 +1,127 @@
+events { worker_connections 1024; }
+http {
+  include /etc/nginx/mime.types;
+  server_tokens off;
+  resolver 127.0.0.11 valid=10s ipv6=off;
+  gzip on;
+  gzip_vary on;
+  gzip_types text/css application/javascript application/json image/svg+xml;
+  set_real_ip_from 103.56.163.10;
+  set_real_ip_from 103.166.183.10;
+  set_real_ip_from 103.216.118.10;
+  real_ip_header X-Forwarded-For;
+  real_ip_recursive on;
+  geo $realip_remote_addr $trusted_edge {
+    default 0;
+    103.56.163.10 1;
+    103.166.183.10 1;
+    103.216.118.10 1;
+  }
+  map "$trusted_edge:$http_x_forwarded_proto" $public_scheme {
+    default $scheme;
+    "1:https" https;
+    "1:http" http;
+  }
+  log_format staging '$remote_addr via=$realip_remote_addr $host "$request" $status scheme=$public_scheme';
+  access_log /var/log/nginx/access.log staging;
+  map $http_rsc $navigation_limit_key {
+    default $binary_remote_addr;
+    "1" "";
+  }
+  map $http_rsc $rsc_limit_key {
+    default "";
+    "1" $binary_remote_addr;
+  }
+  limit_req_zone $navigation_limit_key zone=navigation:10m rate=20r/s;
+  limit_req_zone $rsc_limit_key zone=rsc:10m rate=100r/s;
+  limit_req_zone $binary_remote_addr zone=asset:10m rate=100r/s;
+  add_header X-Device-Lab-Release __RELEASE_SHORT__ always;
+  server {
+    listen 80 default_server;
+    server_name nguyenanhtruc.io.vn;
+    client_max_body_size 1m;
+    location ^~ /.well-known/acme-challenge/ { root /var/www/acme; default_type text/plain; }
+    location ~ (^|/)\. { return 404; }
+    location / { return 308 https://a.ap.vn$request_uri; }
+  }
+  server {
+    listen 443 ssl;
+    server_name nguyenanhtruc.io.vn;
+    ssl_certificate /etc/letsencrypt/live/nguyenanhtruc.io.vn/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/nguyenanhtruc.io.vn/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_session_cache shared:TLS:10m;
+    client_max_body_size 1m;
+    location ^~ /.well-known/acme-challenge/ { root /var/www/acme; default_type text/plain; }
+    location ~ (^|/)\. { return 404; }
+    location / { return 308 https://a.ap.vn$request_uri; }
+  }
+  server {
+    listen 80;
+    server_name a.ap.vn;
+    client_max_body_size 1m;
+    location ^~ /.well-known/acme-challenge/ { root /var/www/acme; default_type text/plain; }
+    location ~ (^|/)\. { return 404; }
+    location ^~ /_next/static/ {
+      if ($public_scheme != https) { return 308 https://a.ap.vn$request_uri; }
+      limit_req zone=asset burst=200 nodelay;
+      set $device_lab http://app:3000;
+      proxy_pass $device_lab;
+      proxy_http_version 1.1;
+      proxy_set_header Host a.ap.vn;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $public_scheme;
+      proxy_read_timeout 60s;
+    }
+    location / {
+      if ($public_scheme != https) { return 308 https://a.ap.vn$request_uri; }
+      limit_req zone=navigation burst=60 nodelay;
+      limit_req zone=rsc burst=200 nodelay;
+      set $device_lab http://app:3000;
+      proxy_pass $device_lab;
+      proxy_http_version 1.1;
+      proxy_set_header Host a.ap.vn;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $public_scheme;
+      proxy_read_timeout 60s;
+    }
+  }
+  server {
+    listen 443 ssl;
+    server_name a.ap.vn;
+    ssl_certificate /etc/letsencrypt/live/a.ap.vn/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/a.ap.vn/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_session_cache shared:TLS:10m;
+    client_max_body_size 1m;
+    location ^~ /.well-known/acme-challenge/ { root /var/www/acme; default_type text/plain; }
+    location ~ (^|/)\. { return 404; }
+    location ^~ /_next/static/ {
+      if ($public_scheme != https) { return 308 https://a.ap.vn$request_uri; }
+      limit_req zone=asset burst=200 nodelay;
+      set $device_lab http://app:3000;
+      proxy_pass $device_lab;
+      proxy_http_version 1.1;
+      proxy_set_header Host a.ap.vn;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $public_scheme;
+      proxy_read_timeout 60s;
+    }
+    location / {
+      if ($public_scheme != https) { return 308 https://a.ap.vn$request_uri; }
+      limit_req zone=navigation burst=60 nodelay;
+      limit_req zone=rsc burst=200 nodelay;
+      set $device_lab http://app:3000;
+      proxy_pass $device_lab;
+      proxy_http_version 1.1;
+      proxy_set_header Host a.ap.vn;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $public_scheme;
+      proxy_read_timeout 60s;
+    }
+  }
+}

@@ -1,10 +1,12 @@
 # Device Lab
 
+Website chính: [a.ap.vn](https://a.ap.vn/vi), hỗ trợ [English](https://a.ap.vn/en). Giữ nguyên 48 công cụ; tên miền cũ chuyển hướng sang tên miền mới. Xem [báo cáo chuyển tên miền](docs/DOMAIN-MIGRATION.md).
+
 Nền tảng kiểm tra thiết bị cục bộ trên trình duyệt, song ngữ Việt/Anh. Phase 1 có 21 công cụ: 11 màn hình, 5 bàn phím và 5 chuột. Không tài khoản, database hoặc upload sự kiện thiết bị.
 
 Phase 2 có nền tảng registry/capability/permission và tám công cụ Milestone 2: thiết bị/browser/GPU, touch/pointer, storage, fullscreen và mouse movement/accuracy. Milestone 3 bổ sung Speaker Test, Stereo Channel Test và Frequency Generator. Milestone 4 bổ sung Microphone Test và Audio Spectrum với quyền và cleanup riêng. Milestone 5 bổ sung Webcam Preview, Camera Resolution và Camera FPS, chỉ capture video sau Start. Milestone 6 bổ sung Gamepad Tester, Analog Stick Test và Stick Drift Test với dữ liệu browser thật, mapping rõ ràng và cleanup. Tổng cộng 40 công cụ thiết bị (21 Phase 1 + 19 Phase 2). Xem [nền tảng](docs/PHASE2-FOUNDATION.md) và [Milestone 2](docs/PHASE2-MILESTONE2.md) và [Milestone 3](docs/PHASE2-MILESTONE3.md), [Milestone 4](docs/PHASE2-MILESTONE4.md), [Milestone 5](docs/PHASE2-MILESTONE5.md), [Milestone 6](docs/PHASE2-MILESTONE6.md).
 
-Nhánh tiện ích Milestone 1 bổ sung số/số tiền VND thành chữ và tính phần trăm, giữ nguyên 40 công cụ thiết bị: tổng 42 công cụ VI/EN. Đã được duyệt và triển khai trên [website](https://nguyenanhtruc.io.vn/vi/utilities) sau CI/Lighthouse sạch; xem [đặc tả tiện ích](docs/UTILITIES-MILESTONE-1.md) và kết quả/giới hạn nghiệm thu trong `docs/PROGRESS.md`.
+Nhánh tiện ích Milestone 1 bổ sung số/số tiền VND thành chữ và tính phần trăm, giữ nguyên 40 công cụ thiết bị: tổng 42 công cụ VI/EN. Đã được duyệt và triển khai trên [website](https://a.ap.vn/vi/utilities) sau CI/Lighthouse sạch; xem [đặc tả tiện ích](docs/UTILITIES-MILESTONE-1.md) và kết quả/giới hạn nghiệm thu trong `docs/PROGRESS.md`.
 
 Tiện ích Milestone 2 bổ sung đếm từ/ký tự, đổi hoa/thường, bỏ dấu/slug và làm sạch văn bản: **46 công cụ VI/EN**, giữ nguyên 42 công cụ trước. Đã triển khai sau CI/Docker/Lighthouse sạch; xem [đặc tả](docs/UTILITIES-MILESTONE-2.md), [nghiệm thu ngày 20/11](docs/ACCEPTANCE-UTILITIES-MILESTONE-2.md), [bằng chứng phát hành](docs/qa/deployment-utilities-milestone2-2026-11-19.json) và các giới hạn trong docs/PROGRESS.md.
 
