@@ -1,5 +1,11 @@
 # Tiến độ Device Lab
 
+## Giao diện 48 công cụ đã phát hành lên a.ap.vn — 23/11/2026
+
+Bản `5c5cc2c` đưa giao diện Workbench, trang chủ mới, nhóm Tiện ích và icon cùng hình minh họa lên 48 công cụ. Đã đối chiếu đủ 96 route VI/EN, sitemap 118 URL và 24/24 lượt smoke trên website public với đúng mã release. [Màn hình](https://a.ap.vn/vi/screen) · [Tiện ích](https://a.ap.vn/vi/utilities)
+
+CI Linux đạt 576 unit và 510 E2E với sáu ca native policy được skip theo khả năng browser. Đã sửa bước cuộn vùng đo vào viewport cho bài kiểm tra Polling Rate. Bản Docker ứng viên đạt cả restart và shutdown. Lighthouse mobile trước chuyển đạt median 98–100 trên sáu trang, ba lượt sạch mỗi trang. [Chi tiết triển khai](DEPLOYMENT.md) · [CI](https://github.com/anhtruc1803/checkall/actions/runs/45138631487) · [Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45134272393)
+
 ## Minh họa 48 công cụ — bản local để duyệt, 23/11/2026
 
 Thêm icon và hình minh họa tĩnh theo chức năng cho 48 công cụ trong danh mục VI/EN và mục nổi bật. Ví dụ gồm dải màu, phím, tín hiệu và đầu vào/kết quả của tiện ích. Dùng chung `tool-card.tsx`, `tool-visual.tsx` và `tool-card.module.css`. Trang công cụ dùng icon tương ứng và hiện hình ở đầu trang trên màn hình đủ rộng. Nội dung chi tiết và metadata lấy từ Tool Registry. Hình dùng CSS và Lucide có sẵn. [Màn hình](http://127.0.0.1:3100/vi/screen) · [Tiện ích](http://127.0.0.1:3100/vi/utilities)

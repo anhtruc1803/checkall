@@ -1,5 +1,17 @@
 # Triển khai và vận hành
 
+## Phát hành giao diện 48 công cụ — 23/11/2026
+
+Website đang phục vụ source ứng dụng `5c5cc2ce37dd97ff467b4c3d62e799900e87bfaf`. Bản này gồm trang chủ, điều hướng, Workbench, Keyboard Event Inspector, danh mục Tiện ích và hình minh họa 48 công cụ. Archive từ `git archive` có SHA256 `7482aa3708ee61c91fe14fb9df6180ca7103fcfd50a16678c85cfaf0c03a5eb`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/5c5cc2ce37dd97ff467b4c3d62e799900e87bfaf)
+
+CI trên `ca618e4` kiểm tra cùng mã ứng dụng. Typecheck, lint, quét secret, 576 unit, 124 trang build và Docker smoke đạt. E2E có 510 bài đạt, 6 skip do native policy, 0 fail và 0 flaky. Lượt trước có một ca Polling Rate đưa chuột xuống dưới viewport mobile. `ca618e4` cuộn vùng đo vào viewport trước thao tác và giữ nguyên kiểm tra đo, cảnh báo và Reset. Lượt chạy lại local của ca này đạt 12/12. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45138631487)
+
+Lighthouse mobile trước chuyển đo 36 mẫu sạch trên CI, gồm hai bản × sáu trang × ba lượt. Median trước → sau lần lượt là `/vi` 99 → 98, `/en` 100 → 98, `/vi/screen` 100 → 100, `/en/utilities` 100 → 100, `/vi/keyboard/events` 100 → 100 và `/en/camera/preview` 99 → 99. `9cea69d` bổ sung xác minh marker trang danh mục sau khi lượt đầu dừng ở route đó. [Bằng chứng Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45134272393)
+
+VPS chuyển `/opt/device-lab/current` sang `releases/visual-5c5cc2c`, image `device-lab:visual-5c5cc2c-20261123`, ID `sha256:799a8e75be874fafd2a715c814a11f5b8bbaa7906abd8ac3b80395aac0147835`. Ứng viên chạy network none, healthy, non-root, read-only, thử restart và shutdown SIGTERM exit 143. Runtime live healthy, giới hạn 768 MiB và 256 PID, Node không publish. Nginx reload sau khi cập nhật marker release và giữ inode bind mount. Image và release trước cùng `shared/nginx.conf.before-visual-5c5cc2c` được giữ để khôi phục. DNS và proxy do người dùng quản lý.
+
+Origin đã xác minh 48 công cụ, hình minh họa trên 96 route VI/EN, canonical, hreflang, CSP, Permissions Policy và sitemap 118 URL. Public đạt 24/24 lượt trình duyệt có header release mới trên Chromium, Firefox, WebKit và Chromium mobile. Trước chuyển, một probe HTTP raw gặp trang Bot Detection còn Chromium mở được website. Snapshot sau smoke ghi nhận 0 lỗi Nginx và 0 lỗi app. [Trang chủ](https://a.ap.vn/vi) · [Màn hình](https://a.ap.vn/vi/screen)
+
 ## Đã chuyển sang a.ap.vn — 23/11/2026
 
 Website [VI](https://a.ap.vn/vi)/[EN](https://a.ap.vn/en), 48 công cụ, source **6c8252b3a53574cd9283101f0a95219fb3b85a41**. Build image với SITE_URL mới; canonical/hreflang/sitemap 118/robots và96 route public đạt. Chỉ đổi SITE_URL/RELEASE_TAG trong env quyền 600. Image **device-lab:domain-a-ap-6c8252b-20261123**, ID **sha256:23dac97dd884317964b8fd46df7ab0c04d7511709425c4dd6d790675a0900dba**, current→`/opt/device-lab/releases/domain-a-ap-6c8252b`. Giữ release/image `890aa52` và backup Nginx để rollback; không prune/reboot.
