@@ -59,7 +59,9 @@ test('pointer sampling reports browser-observed rate and can reset', async ({ pa
   await expect(page.locator('.tool-workspace [aria-busy]')).toHaveAttribute('aria-busy', 'false');
   await page.getByLabel('Duration', { exact: true }).selectOption('20');
   await page.getByRole('button', { name: 'Start', exact: true }).click();
-  const box = await page.getByTestId('mouse-area').boundingBox();
+  const area = page.getByTestId('mouse-area');
+  await area.scrollIntoViewIfNeeded();
+  const box = await area.boundingBox();
   if (!box) throw new Error('missing region');
   for (let i = 0; i < 35; i++) {
     await page.mouse.move(box.x + 30 + (i % 10) * 20, box.y + 40 + (i % 4) * 20);
