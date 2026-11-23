@@ -61,11 +61,14 @@ async function measure(directory, label) {
 }
 if (process.env.PERFORMANCE_PUBLIC === 'true') {
   const source = process.env.PERFORMANCE_PUBLIC_REF;
+  const origin = process.env.PERFORMANCE_PUBLIC_ORIGIN || 'https://a.ap.vn';
+  if (!['https://nguyenanhtruc.io.vn', 'https://a.ap.vn'].includes(origin))
+    throw new Error('Use an explicitly authorized public origin.');
   if (!/^[0-9a-f]{40}$/.test(source ?? '')) throw new Error('Expected deployed commit SHA.');
-  const response = await fetch('https://nguyenanhtruc.io.vn/vi');
+  const response = await fetch(`${origin}/vi`);
   if (!response.ok || response.headers.get('x-device-lab-release') !== source.slice(0, 7))
     throw new Error('Public release does not match the requested commit.');
-  await audit('https://nguyenanhtruc.io.vn', 'ui-public', source);
+  await audit(origin, 'ui-public', source);
 } else {
   await measure('app-before', 'ui-before');
   if (process.env.PERFORMANCE_AFTER === 'true') await measure('app-after', 'ui-after');

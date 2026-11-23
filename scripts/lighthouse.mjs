@@ -28,7 +28,8 @@ if (
 )
   throw new Error('Use a plain HTTP(S) origin without credentials or URL parameters.');
 const localOrigin = ['localhost', '127.0.0.1', '[::1]'].includes(base.hostname);
-if (!localOrigin && base.origin !== 'https://nguyenanhtruc.io.vn')
+const authorizedOrigins = ['https://nguyenanhtruc.io.vn', 'https://a.ap.vn'];
+if (!localOrigin && !authorizedOrigins.includes(base.origin))
   throw new Error('Audit only local QA or the authorized staging origin.');
 if (!/^[a-z0-9-]+$/.test(values.label)) throw new Error('Invalid audit label.');
 const repetitions = Number(values.runs);

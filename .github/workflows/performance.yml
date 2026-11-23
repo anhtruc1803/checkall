@@ -13,6 +13,13 @@ on:
         description: Chỉ đo staging HTTPS; after_ref phải đúng commit đang phục vụ
         type: boolean
         default: false
+      public_origin:
+        description: Tên miền public được phép đo
+        type: choice
+        options:
+          - https://a.ap.vn
+          - https://nguyenanhtruc.io.vn
+        default: https://a.ap.vn
       paths:
         description: Route VI/EN cần đo, phân cách bằng dấu phẩy (để trống dùng sáu trang mặc định)
         required: false
@@ -27,6 +34,7 @@ jobs:
       PERFORMANCE_AFTER: ${{ inputs.after_ref != '' }}
       PERFORMANCE_PUBLIC: ${{ inputs.public_only }}
       PERFORMANCE_PUBLIC_REF: ${{ inputs.after_ref }}
+      PERFORMANCE_PUBLIC_ORIGIN: ${{ inputs.public_origin }}
       PERFORMANCE_PATHS: ${{ inputs.paths }}
     steps:
       - uses: actions/checkout@v4

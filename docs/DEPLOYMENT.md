@@ -1,5 +1,9 @@
 # Triển khai và vận hành
 
+## Đang chuyển tên miền sang a.ap.vn — 23/11/2026
+
+Người dùng đã cấu hình DNS qua proxy. Cả ba proxy IP chuyển đúng token ACME về VPS; chứng chỉ `a.ap.vn` đã cấp thành công, hết hạn 21/02/2027. Đang chuẩn bị image với SITE_URL mới và các gate kiểm thử; chưa xác nhận production chuyển xong. Giữ nguyên 48 công cụ VI/EN, app/tests/dependencies của Milestone 3. Xem [quy trình chuyển tên miền](DOMAIN-MIGRATION.md). Những báo cáo phía dưới ghi tên miền cũ là bằng chứng lịch sử, không phải kết quả trên tên miền mới.
+
 ## Tiện ích Milestone 3 đã triển khai — 20/11/2026
 
 Source **890aa52d9af73d1d36fd96b79d941adcb20296ed**, [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/44663888110), [Lighthouse trước chuyển](https://github.com/anhtruc1803/checkall/actions/runs/44663904488) và [Lighthouse public](https://github.com/anhtruc1803/checkall/actions/runs/44668621145). Đã triển khai **U07 Đổi đơn vị** và **U08 Tính ngày** sau khi người dùng duyệt local: **48 công cụ VI/EN**, giữ nguyên metadata/route/engine/copy của **46 công cụ trước**; **96 route công cụ**, sitemap **118 URL**. Không sửa mã ứng dụng/tests/scripts sau bản đã duyệt; không thêm dependency hoặc viết lại kiến trúc.
