@@ -1,5 +1,13 @@
 # Tiến độ Device Lab
 
+## Đã phát hành Tốc độ gõ tiếng Việt — 25/11/2026
+
+Bản `b4f21ae` đã chạy trên a.ap.vn. Công cụ B06 có bài 60 giây, hai bài luyện tự do và phân tích lỗi dấu, với giao diện VI/EN. Đã xác minh đủ 48 công cụ trước đó cùng B06, tổng 49 công cụ và 98 route công cụ. [Bản tiếng Việt](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Bản tiếng Anh](https://a.ap.vn/en/keyboard/vietnamese-typing)
+
+CI Linux đạt typecheck, lint, quét secret, 580 unit test, build 126 trang và Docker smoke. Playwright có 522 bài đạt, 6 ca native permission được bỏ qua do runtime Firefox/WebKit thiếu hỗ trợ kiểm tra policy, 0 lỗi và 0 flaky. Riêng công cụ B06 đạt 12/12 trên Chromium, Firefox, WebKit và Chromium mobile, gồm mô phỏng EVKey, thời lượng 60 giây và axe sáng/tối. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45536762126)
+
+Trước khi chuyển website, Lighthouse mobile đo 24 lượt sạch, ba lượt cho mỗi trang. Median Performance đạt 99–100 trên tám trang, riêng B06 đạt 100 ở cả VI và EN. Sau chuyển, 24/24 lượt smoke trên website đạt. [Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45536782352) · [Chi tiết triển khai](DEPLOYMENT.md)
+
 ## Tốc độ gõ tiếng Việt — bản local để duyệt, 25/11/2026
 
 Thêm B06 vào nhóm Bàn phím, đưa tổng số lên 49 công cụ trên bản local. Bài 60 giây bắt đầu khi có chữ đầu tiên đã nhận vào ô nhập. Luyện tự do có **Luyện dấu tiếng Việt** mặc định và **Gõ văn bản hằng ngày**. Bấm **Kết thúc** để chấm. Cả hai chế độ dùng đoạn mẫu tiếng Việt trên giao diện VI/EN. File chính gồm `src/features/typing/typing.tsx`, `src/lib/typing/score.ts`, `src/lib/typing/lessons.ts`, `src/lib/tools/typing-tool.ts` và nhãn next-intl. [VI](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing) · [EN](http://127.0.0.1:3100/en/keyboard/vietnamese-typing)

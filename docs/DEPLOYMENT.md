@@ -1,8 +1,25 @@
 # Triển khai và vận hành
 
+## Phát hành Tốc độ gõ tiếng Việt — 25/11/2026
+
+Ứng dụng trên a.ap.vn đang phục vụ commit `b4f21ae81709062d252f77f223d8a8e12584b634`. Bản này có 49 công cụ, gồm 48 công cụ đã phát hành và B06 với VI/EN. Archive từ Git có SHA256 `abcbcddff9c4f1c39805d70d144ebf25a0c4be8b2a6f52329fb68e7bf69377b5`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/b4f21ae81709062d252f77f223d8a8e12584b634)
+
+CI Linux trên đúng commit đạt typecheck, lint, quét secret, 580 unit test trên 44 file, build 126 trang, 522 E2E và Docker smoke. Sáu E2E được bỏ qua do Firefox/WebKit thiếu khả năng kiểm tra native Permissions Policy cho microphone, camera và gamepad. B06 đạt 12/12, gồm bộ đếm, mô phỏng EVKey, màn hình 320 px với chữ 200% và axe ở cả hai theme. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45536762126)
+
+Lighthouse mobile trên ứng viên Linux hoàn tất trước khi chuyển website, với Chromium profile mới cho mỗi lượt và ba mẫu sạch cho mỗi trang. Median Performance lần lượt đạt 100 cho `/vi`, 99 cho `/en`, 100 cho `/vi/keyboard`, 100 cho `/en/utilities`, 100 cho `/vi/keyboard/events` và 99 cho `/en/camera/preview`. Danh mục Bàn phím đạt Accessibility 98 do cấu trúc heading chuyển từ H1 xuống H3, cũng quan sát được trên bản public `5c5cc2c` trước khi chuyển. [Lighthouse và báo cáo từng lượt](https://github.com/anhtruc1803/checkall/actions/runs/45536782352)
+
+| B06 | Performance | Accessibility | FCP / LCP | TBT | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| VI | 100 | 100 | 1.064 ms | 57 ms | 0,00025 |
+| EN | 100 | 100 | 1.061 ms | 55 ms | 0,00050 |
+
+Trên VPS, ứng viên Docker chạy cô lập, healthy, user `nextjs`, read-only và không publish cổng Node. Restart và SIGTERM đạt, exit 143. Release live trỏ tới `/opt/device-lab/releases/typing-b4f21ae`, image `device-lab:typing-b4f21ae-20261125` với ID `sha256:d1f021ba9a315a46bf2ed8f7525d61497b86860a246b8b720470965986a07527`. Giữ bản `visual-5c5cc2c` và `shared/nginx.conf.before-typing-b4f21ae` để khôi phục. Nginx qua kiểm tra cấu hình và reload với marker mới.
+
+Origin đạt 98 route công cụ, gồm 96 route cũ và hai route B06, có đúng tiêu đề, canonical, hreflang, CSP và Permissions Policy. Website public trả mã release đúng cho 24/24 lượt smoke trên Chromium, Firefox, WebKit và Chromium mobile. Đã kiểm tra danh sách 49 công cụ ở hai trang chủ, luồng luyện tự do VI/EN, health và sitemap 120 URL. Snapshot sau smoke có 0 lỗi app, 0 lỗi Nginx và Certbot timer active. Kiểm tra EVKey trong đợt phát hành dùng mô phỏng trên trình duyệt. [Trang VI](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Trang EN](https://a.ap.vn/en/keyboard/vietnamese-typing)
+
 ## Phát hành giao diện 48 công cụ — 23/11/2026
 
-Website đang phục vụ source ứng dụng `5c5cc2ce37dd97ff467b4c3d62e799900e87bfaf`. Bản này gồm trang chủ, điều hướng, Workbench, Keyboard Event Inspector, danh mục Tiện ích và hình minh họa 48 công cụ. Archive từ `git archive` có SHA256 `7482aa3708ee61c91fe14fb9df6180ca7103fcfd50a16678c85cfaf0c03a5eb`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/5c5cc2ce37dd97ff467b4c3d62e799900e87bfaf)
+Website đã phục vụ source ứng dụng `5c5cc2ce37dd97ff467b4c3d62e799900e87bfaf` trước đợt phát hành B06. Bản này gồm trang chủ, điều hướng, Workbench, Keyboard Event Inspector, danh mục Tiện ích và hình minh họa 48 công cụ. Archive từ `git archive` có SHA256 `7482aa3708ee61c91fe14fb9df6180ca7103fcfd50a16678c85cfaf0c03a5eb`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/5c5cc2ce37dd97ff467b4c3d62e799900e87bfaf)
 
 CI trên `ca618e4` kiểm tra cùng mã ứng dụng. Typecheck, lint, quét secret, 576 unit, 124 trang build và Docker smoke đạt. E2E có 510 bài đạt, 6 skip do native policy, 0 fail và 0 flaky. Lượt trước có một ca Polling Rate đưa chuột xuống dưới viewport mobile. `ca618e4` cuộn vùng đo vào viewport trước thao tác và giữ nguyên kiểm tra đo, cảnh báo và Reset. Lượt chạy lại local của ca này đạt 12/12. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45138631487)
 
