@@ -1,5 +1,13 @@
 # Tiến độ Device Lab
 
+## Đã phát hành Lộ trình luyện gõ tiếng Việt — 25/11/2026
+
+Bản `844cf4c` đưa chín bài luyện Dễ, Vừa và Khó, bàn phím hướng dẫn 10 ngón và biểu đồ WPM, độ chính xác lên a.ap.vn. Đã xác minh 49 công cụ và đủ 98 route công cụ VI/EN trên origin. [Bản tiếng Việt](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Bản tiếng Anh](https://a.ap.vn/en/keyboard/vietnamese-typing)
+
+CI Linux đạt typecheck, lint, quét secret, build 126 trang và Docker smoke. Có 583 unit test và 530 E2E đạt, gồm 20/20 ca B06. Sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45543164579)
+
+Trước khi chuyển, Lighthouse mobile đo 24 lượt sạch trên hai bản, bốn trang mỗi bản và ba lượt mỗi trang. Bản mới đạt median Performance 100 trên bốn trang. Sau chuyển, 24/24 lượt smoke public xác minh mã release, danh mục và luồng luyện gõ, gồm lưu tóm tắt, đổi VI/EN và tải lại để xem lịch sử. [Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45543182395) · [Chi tiết triển khai](DEPLOYMENT.md)
+
 ## Lộ trình luyện gõ tiếng Việt — bản local để duyệt, 25/11/2026
 
 B06 có chín bài luyện chia đều theo ba mức Dễ, Vừa và Khó. Giữ hai bài cũ trong lộ trình và thêm bài Hàng phím cơ sở cho người mới. Chế độ 60 giây có một đoạn mẫu cố định cho mỗi mức, trong đó mức Vừa dùng đoạn mẫu của bản đã phát hành. Nút Bài tiếp theo chuyển bài và trả focus về ô gõ.

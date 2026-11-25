@@ -1,8 +1,27 @@
 # Triển khai và vận hành
 
+## Phát hành Lộ trình luyện gõ tiếng Việt — 25/11/2026
+
+a.ap.vn đang phục vụ commit `844cf4c49c1e8b48232bd2176a1558bb577d9513` với 49 công cụ VI/EN. B06 có chín bài luyện theo ba mức, sơ đồ QWERTY chỉ ngón và lịch sử WPM, độ chính xác qua các lượt 60 giây. Tóm tắt kết quả được lưu cục bộ theo thao tác của người dùng. Archive Git có SHA256 `89cd37da01a8ed0679b0d0830f065a8fefa6e9539b2db05aacbd92e680b444a0`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/844cf4c49c1e8b48232bd2176a1558bb577d9513)
+
+CI Linux trên đúng commit đạt typecheck, lint, quét secret, build 126 trang, 583 unit test, 530 E2E và Docker smoke. Sáu ca kiểm tra native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. Nhóm B06 có 20/20 ca đạt trên Chromium, Firefox, WebKit và Chromium mobile, gồm mô phỏng EVKey, lựa chọn bài, kiểm tra axe, lưu và xóa lịch sử. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45543164579)
+
+Trước khi chuyển website, Lighthouse mobile dùng Chromium profile mới cho từng lượt, đo 24 lượt sạch trên hai commit, bốn trang mỗi commit, ba lượt mỗi trang. Median Performance ở `/vi` tăng từ 99 lên 100, ba trang còn lại giữ 100. Median Accessibility, Best Practices và SEO đạt 100 ở cả bốn trang trên bản mới. [Lighthouse và số liệu từng lượt](https://github.com/anhtruc1803/checkall/actions/runs/45543182395)
+
+| Trang luyện gõ | Performance trước → sau | LCP trước → sau | TBT trước → sau | CLS sau |
+| --- | ---: | ---: | ---: | ---: |
+| VI | 100 → 100 | 1.061 → 1.060 ms | 47 → 51 ms | 0,00025 |
+| EN | 100 → 100 | 1.062 → 1.061 ms | 51 → 51 ms | 0,00050 |
+
+Median JavaScript trên mỗi trang luyện gõ tăng từ 214.617 lên 219.885 byte, CSS tăng từ 21.224 lên 22.331 byte và font giữ 80.003 byte.
+
+Ứng viên Docker trên VPS chạy cô lập, healthy, non-root, read-only và không publish cổng Node. Ứng viên qua restart và shutdown SIGTERM với exit 143. Release live trỏ tới `/opt/device-lab/releases/typing-course-844cf4c` với image `device-lab:typing-course-844cf4c-20261125`, ID `sha256:12a0eec1e5506529b996585f8bd5419fa74cc6e8d55876e967e2a26932cd6231`. Giữ bản `typing-b4f21ae` và `shared/nginx.conf.before-typing-course-844cf4c` để khôi phục. Cấu hình Nginx qua kiểm tra cú pháp và reload.
+
+Sau chuyển, origin xác minh 98 trang công cụ VI/EN. Kiểm tra public xác minh sitemap 120 URL, healthcheck, CSP và Permissions Policy trên hai trang B06. Cả 24 lượt smoke trên Chromium, Firefox, WebKit và Chromium mobile đều đạt. Các lượt B06 kiểm tra đủ chín bài, gợi ý ngón, lưu tự nguyện, đổi VI/EN, đổi biểu đồ và tải lại lịch sử. Snapshot sau smoke có 0 lỗi app, 0 lỗi Nginx và Certbot timer active. [Trang VI](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Trang EN](https://a.ap.vn/en/keyboard/vietnamese-typing)
+
 ## Phát hành Tốc độ gõ tiếng Việt — 25/11/2026
 
-Ứng dụng trên a.ap.vn đang phục vụ commit `b4f21ae81709062d252f77f223d8a8e12584b634`. Bản này có 49 công cụ, gồm 48 công cụ đã phát hành và B06 với VI/EN. Archive từ Git có SHA256 `abcbcddff9c4f1c39805d70d144ebf25a0c4be8b2a6f52329fb68e7bf69377b5`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/b4f21ae81709062d252f77f223d8a8e12584b634)
+Ứng dụng trên a.ap.vn đã phục vụ commit `b4f21ae81709062d252f77f223d8a8e12584b634` trước đợt phát hành Lộ trình luyện gõ. Bản này có 49 công cụ, gồm 48 công cụ đã phát hành và B06 với VI/EN. Archive từ Git có SHA256 `abcbcddff9c4f1c39805d70d144ebf25a0c4be8b2a6f52329fb68e7bf69377b5`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/b4f21ae81709062d252f77f223d8a8e12584b634)
 
 CI Linux trên đúng commit đạt typecheck, lint, quét secret, 580 unit test trên 44 file, build 126 trang, 522 E2E và Docker smoke. Sáu E2E được bỏ qua do Firefox/WebKit thiếu khả năng kiểm tra native Permissions Policy cho microphone, camera và gamepad. B06 đạt 12/12, gồm bộ đếm, mô phỏng EVKey, màn hình 320 px với chữ 200% và axe ở cả hai theme. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45536762126)
 
