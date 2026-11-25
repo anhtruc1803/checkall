@@ -11,7 +11,9 @@ import {
   Keyboard,
   NotebookPen,
   RotateCcw,
+  Rows3,
   Save,
+  SpellCheck,
   Sprout,
   Timer,
 } from 'lucide-react';
@@ -20,12 +22,16 @@ import { Button } from '@/components/ui/button';
 import { useHydrated } from '@/hooks/use-hydrated';
 import { usePreference } from '@/hooks/use-preference';
 import { saveSummary, writePreference } from '@/lib/storage/preferences';
+import { accentTopics, mostFrequentAccent, type AccentCounts } from '@/lib/typing/accents';
 import { typingDifficulties, type TypingDifficulty } from '@/lib/typing/difficulty';
 import {
+  practiceGroups,
   practiceLessons,
   timedPassages,
   typingDurationMs,
   typingLessons,
+  type PracticeGroup,
+  type PracticeLesson,
   type TypingLesson,
 } from '@/lib/typing/lessons';
 import { scoreTyping, typingCharacters, typingErrorTypes } from '@/lib/typing/score';
@@ -37,6 +43,7 @@ type Mode = 'timed' | 'practice';
 type CharacterState = 'correct' | 'different' | 'next' | 'pending';
 
 const levelIcons = { easy: Sprout, medium: Gauge, hard: Flame };
+const groupIcons = { rows: Rows3, text: NotebookPen, accents: SpellCheck };
 
 function newSession() {
   return { start: null as number | null, committed: '', composing: false, finishedAt: '' };
@@ -76,15 +83,22 @@ export default function VietnameseTyping() {
   const [blocked, setBlocked] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveMessage, setSaveMessage] = useState<'saved' | 'storageError' | ''>('');
+  const [accentTotals, setAccentTotals] = useState<AccentCounts>({});
   const input = useRef<HTMLTextAreaElement>(null);
   const promptArea = useRef<HTMLDivElement>(null);
+  const guide = useRef<HTMLDetailsElement>(null);
   const session = useRef(newSession());
-  const difficulty = mode === 'timed' ? timedLevel : practiceLessons[lesson].difficulty;
-  const prompt = mode === 'timed' ? timedPassages[timedLevel] : practiceLessons[lesson].passage;
+  const selected: PracticeLesson = practiceLessons[lesson];
+  const practiceRow = mode === 'practice' && selected.group === 'rows' ? selected.row : undefined;
+  const difficulty =
+    mode === 'timed' ? timedLevel : selected.group === 'text' ? selected.difficulty : undefined;
+  const prompt = mode === 'timed' ? timedPassages[timedLevel] : selected.passage;
   const entered = useMemo(() => typingCharacters(text), [text]);
   const expected = useMemo(() => typingCharacters(prompt), [prompt]);
   const runs = useMemo(() => promptRuns(expected, entered, !!result), [expected, entered, result]);
-  const nextLesson = typingLessons[typingLessons.indexOf(lesson) + 1];
+  const groupLessons = typingLessons.filter((key) => practiceLessons[key].group === selected.group);
+  const nextLesson = groupLessons[groupLessons.indexOf(lesson) + 1];
+  const recommendation = mostFrequentAccent(accentTotals);
   const remaining = typingDurationMs - elapsed;
   const seconds = mode === 'timed' ? Math.ceil(remaining / 1000) : Math.floor(elapsed / 1000);
   const timer = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
@@ -97,9 +111,20 @@ export default function VietnameseTyping() {
       current.finishedAt = new Date().toISOString();
       if (input.current) input.current.value = current.committed;
       setElapsed(duration);
-      setResult(scoreTyping(prompt, current.committed, duration));
+      const score = scoreTyping(prompt, current.committed, duration);
+      setResult(score);
+      if (!practiceRow && Object.keys(score.accentErrors).length) {
+        setAccentTotals((previous) => {
+          const totals = { ...previous };
+          for (const topic of accentTopics) {
+            const errors = score.accentErrors[topic];
+            if (errors) totals[topic] = (totals[topic] ?? 0) + errors;
+          }
+          return totals;
+        });
+      }
     },
-    [mode, prompt],
+    [mode, practiceRow, prompt],
   );
 
   useEffect(() => {
@@ -156,13 +181,34 @@ export default function VietnameseTyping() {
     setSaveMessage('');
   }
 
+  function openLesson(next: TypingLesson, focus = false) {
+    reset();
+    setMode('practice');
+    setLesson(next);
+    if (guide.current) guide.current.open = practiceLessons[next].group === 'rows';
+    if (focus) input.current?.focus();
+  }
+
+  function chooseGroup(group: PracticeGroup) {
+    if (group === selected.group) return;
+    const first =
+      group === 'accents' && recommendation
+        ? recommendation.topic
+        : typingLessons.find((key) => practiceLessons[key].group === group);
+    if (first) openLesson(first);
+  }
+
   function chooseDifficulty(next: TypingDifficulty) {
     if (next === difficulty) return;
-    reset();
-    if (mode === 'timed') setTimedLevel(next);
-    else {
-      const first = typingLessons.find((key) => practiceLessons[key].difficulty === next);
-      if (first) setLesson(first);
+    if (mode === 'timed') {
+      reset();
+      setTimedLevel(next);
+    } else {
+      const first = groupLessons.find((key) => {
+        const candidate: PracticeLesson = practiceLessons[key];
+        return candidate.group === 'text' && candidate.difficulty === next;
+      });
+      if (first) openLesson(first);
     }
   }
 
@@ -204,8 +250,12 @@ export default function VietnameseTyping() {
               aria-pressed={mode === option}
               onClick={() => {
                 if (option === mode) return;
-                reset();
-                setMode(option);
+                if (option === 'practice') openLesson(lesson);
+                else {
+                  reset();
+                  setMode(option);
+                  if (guide.current) guide.current.open = false;
+                }
               }}
             >
               {option === 'timed' ? (
@@ -217,39 +267,59 @@ export default function VietnameseTyping() {
             </Button>
           ))}
         </div>
-        <div className={styles.levels} role="group" aria-label={t('difficulty')}>
-          {typingDifficulties.map((level) => {
-            const Icon = levelIcons[level];
-            return (
-              <Button
-                key={level}
-                variant="outline"
-                data-level={level}
-                aria-pressed={level === difficulty}
-                onClick={() => chooseDifficulty(level)}
-              >
-                <Icon aria-hidden="true" />
-                <span>
-                  <strong>{t(`levels.${level}.name`)}</strong>
-                  <span className={styles.levelNote}>{t(`levels.${level}.note`)}</span>
-                </span>
-              </Button>
-            );
-          })}
-        </div>
+        {mode === 'practice' && (
+          <div className={styles.modes} role="group" aria-label={t('practiceGroup')}>
+            {practiceGroups.map((group) => {
+              const Icon = groupIcons[group];
+              return (
+                <Button
+                  key={group}
+                  variant="outline"
+                  aria-pressed={selected.group === group}
+                  onClick={() => chooseGroup(group)}
+                >
+                  <Icon aria-hidden="true" />
+                  {t(`practiceGroups.${group}`)}
+                </Button>
+              );
+            })}
+          </div>
+        )}
+        {difficulty && (
+          <div className={styles.levels} role="group" aria-label={t('difficulty')}>
+            {typingDifficulties.map((level) => {
+              const Icon = levelIcons[level];
+              return (
+                <Button
+                  key={level}
+                  variant="outline"
+                  data-level={level}
+                  aria-pressed={level === difficulty}
+                  onClick={() => chooseDifficulty(level)}
+                >
+                  <Icon aria-hidden="true" />
+                  <span>
+                    <strong>{t(`levels.${level}.name`)}</strong>
+                    <span className={styles.levelNote}>{t(`levels.${level}.note`)}</span>
+                  </span>
+                </Button>
+              );
+            })}
+          </div>
+        )}
         {mode === 'practice' && (
           <div className={styles.lesson}>
             <label htmlFor="typing-lesson">{t('lesson')}</label>
             <select
               id="typing-lesson"
               value={lesson}
-              onChange={(event) => {
-                reset();
-                setLesson(event.target.value as TypingLesson);
-              }}
+              onChange={(event) => openLesson(event.target.value as TypingLesson)}
             >
-              {typingLessons
-                .filter((key) => practiceLessons[key].difficulty === difficulty)
+              {groupLessons
+                .filter((key) => {
+                  const option: PracticeLesson = practiceLessons[key];
+                  return option.group !== 'text' || option.difficulty === difficulty;
+                })
                 .map((key) => (
                   <option key={key} value={key}>
                     {t(`lessons.${key}`)}
@@ -281,13 +351,13 @@ export default function VietnameseTyping() {
         <section className={styles.exercise} aria-labelledby="typing-prompt-label">
           <h2 id="typing-prompt-label" className={styles.label}>
             <AlignLeft aria-hidden="true" />
-            {t('prompt')}
+            {t(practiceRow ? 'rowPrompt' : 'prompt')}
           </h2>
           <div className={styles.promptFrame}>
             <div
               ref={promptArea}
               className={styles.prompt}
-              lang="vi"
+              lang={practiceRow ? 'en' : 'vi'}
               tabIndex={0}
               role="region"
               aria-labelledby="typing-prompt-label"
@@ -333,7 +403,7 @@ export default function VietnameseTyping() {
             />
           </label>
           <p className="small" id="typing-input-help">
-            {t(mode === 'timed' ? 'timedHelp' : 'practiceHelp')}
+            {t(mode === 'timed' ? 'timedHelp' : practiceRow ? 'rowHelp' : 'practiceHelp')}
           </p>
           {blocked && (
             <p className="notice" role="status">
@@ -360,7 +430,11 @@ export default function VietnameseTyping() {
           </Button>
         </div>
       </div>
-      <TypingGuide character={result ? undefined : expected[entered.length]} />
+      <TypingGuide
+        guideRef={guide}
+        row={practiceRow}
+        character={result ? undefined : expected[entered.length]}
+      />
       <p className="sr-only" role="status">
         {result ? t('done') : ''}
       </p>
@@ -388,6 +462,23 @@ export default function VietnameseTyping() {
             ))}
           </dl>
           <p className="small">{t('scoreNote')}</p>
+          {recommendation && !practiceRow && (
+            <div className={styles.recommendation}>
+              <div>
+                <h3>{t('recommendation.title')}</h3>
+                <p className="small">
+                  {t('recommendation.detail', {
+                    topic: t(`lessons.${recommendation.topic}`),
+                    count: recommendation.count,
+                  })}
+                </p>
+              </div>
+              <Button variant="outline" onClick={() => openLesson(recommendation.topic, true)}>
+                <SpellCheck aria-hidden="true" />
+                {t('recommendation.start')}
+              </Button>
+            </div>
+          )}
           {mode === 'timed' && (
             <div className={styles.saveBar}>
               <label className="checkbox-label">
@@ -413,14 +504,7 @@ export default function VietnameseTyping() {
           )}
           {mode === 'practice' && nextLesson && (
             <div className={styles.nextLesson}>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  reset();
-                  setLesson(nextLesson);
-                  input.current?.focus();
-                }}
-              >
+              <Button variant="outline" onClick={() => openLesson(nextLesson, true)}>
                 {t('nextLesson')}
                 <ArrowRight aria-hidden="true" />
               </Button>

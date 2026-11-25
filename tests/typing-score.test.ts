@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { mostFrequentAccent } from '@/lib/typing/accents';
 import { scoreTyping } from '@/lib/typing/score';
 
 describe('Vietnamese typing score', () => {
@@ -17,6 +18,7 @@ describe('Vietnamese typing score', () => {
       correct: 4,
       entered: 9,
       errors: { tone: 1, vowel: 1, letterD: 3, spacing: 0, other: 0 },
+      accentErrors: { toneRisingHeavy: 1, vowelE: 1 },
     });
   });
 
@@ -39,6 +41,20 @@ describe('Vietnamese typing score', () => {
       accuracy: 0,
       cpm: 0,
       wpm: 0,
+      accentErrors: {},
     });
+  });
+
+  it('counts only aligned accent substitutions in the final text and recommends a real topic', () => {
+    const first = scoreTyping('Hải hỏi Thủy', 'Hãi hõi', 60_000);
+    expect(first.accentErrors).toEqual({ toneQuestionTilde: 2 });
+    expect(scoreTyping('Lan', 'Làn', 60_000).accentErrors).toEqual({ toneLevelFalling: 1 });
+    expect(scoreTyping('cô', 'co', 60_000).accentErrors).toEqual({ vowelO: 1 });
+    expect(scoreTyping('đúng', 'dúng', 60_000).accentErrors).toEqual({});
+    expect(mostFrequentAccent({ ...first.accentErrors, vowelO: 1 })).toEqual({
+      topic: 'toneQuestionTilde',
+      count: 2,
+    });
+    expect(mostFrequentAccent({})).toBeNull();
   });
 });

@@ -1,7 +1,8 @@
+import { accentTopic, toneMarks, type AccentCounts } from './accents';
+
 export const typingErrorTypes = ['tone', 'vowel', 'letterD', 'spacing', 'other'] as const;
 type TypingErrorType = (typeof typingErrorTypes)[number];
 
-const toneMarks = /[\u0300\u0301\u0303\u0309\u0323]/gu;
 const combiningMarks = /\p{Mark}/gu;
 
 export function typingCharacters(text: string): string[] {
@@ -53,6 +54,7 @@ export function scoreTyping(prompt: string, text: string, elapsedMs: number) {
   }
 
   const errors = { tone: 0, vowel: 0, letterD: 0, spacing: 0, other: 0 };
+  const accentErrors: AccentCounts = {};
   let correct = 0;
   let i = entered.length;
   let j = end;
@@ -66,7 +68,14 @@ export function scoreTyping(prompt: string, text: string, elapsedMs: number) {
       distance[cell] === distance[cell - width - 1] + Number(actual !== target)
     ) {
       if (actual === target) correct++;
-      else errors[classifyError(target, actual)]++;
+      else {
+        const kind = classifyError(target, actual);
+        errors[kind]++;
+        if (kind === 'tone' || kind === 'vowel') {
+          const topic = accentTopic(target, kind);
+          if (topic) accentErrors[topic] = (accentErrors[topic] ?? 0) + 1;
+        }
+      }
       i--;
       j--;
     } else if (j > 0 && distance[cell] === distance[cell - 1] + 1) {
@@ -86,5 +95,6 @@ export function scoreTyping(prompt: string, text: string, elapsedMs: number) {
     cpm: minutes > 0 ? correct / minutes : 0,
     wpm: minutes > 0 ? correct / (5 * minutes) : 0,
     errors,
+    accentErrors,
   };
 }

@@ -306,12 +306,21 @@
     gap: 20px;
   }
 }
-.keyHint,
-.fingers {
+.keyHint {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 6px 10px;
+}
+.shiftHint {
+  color: var(--color-muted);
+  font-size: var(--text-small);
+}
+.rowHint {
+  display: grid;
+  gap: 3px;
+  padding-inline-start: 10px;
+  border-inline-start: 2px solid var(--color-accent);
 }
 .keyHint kbd {
   padding: 3px 8px;
@@ -334,6 +343,11 @@
   display: flex;
   justify-content: center;
   gap: 3px;
+}
+.keyRow[data-practice-row='true'] {
+  outline: 1px solid var(--color-accent);
+  outline-offset: 1px;
+  border-radius: var(--radius-sm);
 }
 .key {
   display: grid;
@@ -378,19 +392,105 @@
 .guide [data-finger='5'] {
   --finger-color: var(--color-muted);
 }
-.fingers {
-  list-style: none;
+.hands {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 35rem);
 }
-.fingers li {
-  padding: 2px 6px;
-  border-inline-start: 2px solid var(--finger-color);
+.hand {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-workbench-inset);
+  color: var(--color-ink);
   font-size: var(--text-small);
+  text-align: center;
+}
+.handShape {
+  position: relative;
+  width: min(100%, 7.5rem);
+  aspect-ratio: 1.18;
+}
+.hand[data-hand='right'] .handShape {
+  transform: scaleX(-1);
+}
+.palm {
+  position: absolute;
+  inset: 43% 23% 8% 15%;
+  border: 1px solid var(--color-control-border);
+  border-radius: 30% 36% 38% 42%;
+  background: linear-gradient(155deg, var(--color-workbench-raised), var(--color-surface));
+}
+.handFinger {
+  position: absolute;
+  left: var(--position);
+  top: var(--start);
+  width: 14%;
+  height: var(--length);
+  transform: rotate(var(--angle));
+  transform-origin: center 85%;
+  border: 1px solid color-mix(in srgb, var(--finger-color) 45%, var(--color-control-border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--finger-color) 15%, var(--color-workbench-raised));
+}
+.handFinger[data-digit='pinky'] {
+  --position: 15%;
+  --start: 25%;
+  --length: 32%;
+  --angle: -15deg;
+}
+.handFinger[data-digit='ring'] {
+  --position: 27%;
+  --start: 10%;
+  --length: 48%;
+  --angle: -7deg;
+}
+.handFinger[data-digit='middle'] {
+  --position: 40%;
+  --start: 3%;
+  --length: 55%;
+  --angle: 0deg;
+}
+.handFinger[data-digit='index'] {
+  --position: 53%;
+  --start: 11%;
+  --length: 48%;
+  --angle: 8deg;
+}
+.handFinger[data-digit='thumb'] {
+  --position: 68%;
+  --start: 38%;
+  --length: 36%;
+  --angle: 34deg;
+}
+.handFinger[data-highlight='key'] {
+  z-index: 1;
+  border: 2px solid var(--color-ink);
+  background: color-mix(in srgb, var(--finger-color) 65%, var(--color-surface));
+}
+.handFinger[data-highlight='key']::after {
+  position: absolute;
+  inset: 18% 24% auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-ink);
+  content: '';
+}
+.handFinger[data-highlight='shift'] {
+  z-index: 1;
+  border: 2px dashed var(--color-ink);
+  background: color-mix(in srgb, var(--finger-color) 42%, var(--color-surface));
 }
 .nextLesson {
   display: flex;
   justify-content: flex-end;
 }
 .saveBar,
+.recommendation,
 .history {
   padding: 14px;
   border: 1px solid var(--color-result-edge);
@@ -398,12 +498,20 @@
   background: var(--color-result-surface);
 }
 .saveBar,
+.recommendation,
 .historyHeader,
 .historyTools {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px 14px;
+}
+.recommendation {
+  justify-content: space-between;
+  background: color-mix(in srgb, var(--color-violet) 9%, var(--color-result-surface));
+}
+.recommendation h3 {
+  margin: 0 0 4px;
 }
 .saveBar label {
   min-width: 0;

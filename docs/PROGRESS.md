@@ -14,6 +14,24 @@ Thêm C08 vào nhóm Chuột, đưa tổng số lên 50 công cụ và 100 route
 
 File chính gồm `src/features/mouse/reaction.tsx`, `reaction.module.css`, `src/lib/tools/mouse-reaction-tool.ts`, nhãn VI/EN và `tests/e2e/mouse-reaction.spec.ts`. Build local tạo 128 trang, smoke HTTP đạt healthcheck và 56 route. 22 unit test liên quan và 12/12 E2E C08 đạt trên Chromium, Firefox, WebKit và Chromium mobile, gồm nhấp sớm, giữ nút qua tín hiệu, trung vị, tạm dừng và axe hai theme. Đã sửa phần xuống dòng ở viewport 320 px với chữ 200% và kiểm tra lại.
 
+## Luyện theo lỗi dấu và hàng phím — bản local để duyệt, 25/11/2026
+
+B06 có 31 bài luyện. Nhóm Văn bản gồm 18 bài, sáu bài mỗi mức Dễ, Vừa và Khó, với các chủ đề sinh hoạt, thư từ, đi lại và công việc. Nhóm Hàng phím gồm sáu bài cho hàng cơ sở, hàng trên, hàng dưới, hàng số và bài phối hợp. Sơ đồ QWERTY tự mở khi chọn bài hàng phím, đánh dấu hàng đang luyện và chỉ phím cùng ngón kế tiếp. Nút Bài tiếp theo chuyển sang bài kế tiếp trong cùng nhóm.
+
+Nhóm Lỗi dấu có bảy bài cho dấu hỏi/ngã, sắc/nặng, ngang/huyền và bốn nhóm nguyên âm biến thể. Sau lượt 60 giây hoặc lượt luyện văn bản, công cụ đếm các lỗi dấu còn trong văn bản cuối lượt dựa trên căn chỉnh với đoạn mẫu. Gợi ý lấy nhóm có nhiều lỗi nhất trong phiên mở trang và chuyển thẳng đến bài tương ứng. Các số đếm dùng bộ nhớ của trang, được làm mới khi tải lại. Lịch sử lưu tự nguyện của bài 60 giây vẫn chứa điểm tóm tắt WPM và độ chính xác.
+
+File chính gồm `src/features/typing/typing.tsx`, `typing-guide.tsx`, `typing.module.css` trong cùng thư mục, `src/lib/typing/{lessons,accents,score,keyboard-guide}.ts` và nhãn VI/EN. [Mở VI](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing) · [Mở EN](http://127.0.0.1:3100/en/keyboard/vietnamese-typing)
+
+`pnpm build` tạo 126 trang, `pnpm typecheck` và `pnpm lint` đạt. `pnpm test --maxWorkers=2` đạt 585/585 trên 45 file. `pnpm exec playwright test --config artifacts/typing-drills-playwright.config.ts vietnamese-typing.spec.ts --workers=2` đạt 24/24 trên Chromium, Firefox, WebKit và Chromium mobile. Đã kiểm tra các bài trong cả ba nhóm, chuyển bài, gợi ý tích lũy, lịch sử opt-in, reflow 320 px với chữ 200% và axe ở hai giao diện. `node scripts/smoke-http.mjs http://127.0.0.1:3100` đạt healthcheck và 54 route.
+
+Ảnh bản duyệt ở `artifacts/typing-drills-review/`. Ảnh gợi ý dùng lỗi từ lượt gõ kiểm thử. Luồng EVKey trong lượt này được kiểm tra bằng mô phỏng trên trình duyệt. Bản local chạy ở loopback để người dùng duyệt.
+
+### Mô phỏng bàn tay trong hướng dẫn 10 ngón
+
+Thêm sơ đồ hai bàn tay dưới QWERTY trong `typing-guide.tsx` và `typing.module.css`. Phím kế tiếp và ngón gõ dùng chung ánh xạ. Ngón gõ có dấu chấm, ngón út giữ Shift có viền nét đứt. Ô phím cách hiển thị hai ngón cái để người luyện chọn một. Nhãn ngón hiện bằng chữ trên giao diện VI/EN. Ảnh desktop và mobile ở `artifacts/typing-hands-review/`.
+
+`pnpm build` tạo 126 trang, `pnpm typecheck` và `pnpm lint` đạt. `pnpm test tests/typing-score.test.ts tests/typing-lessons.test.ts tests/i18n.test.ts --maxWorkers=2` đạt 11/11. `pnpm exec playwright test --config artifacts/typing-hands-playwright.config.ts vietnamese-typing.spec.ts --workers=2` đạt 24/24 trên Chromium, Firefox, WebKit và Chromium mobile, gồm đổi ngón trái/phải, phím cách, phím Shift và reflow 320 px với chữ 200%. `node scripts/smoke-http.mjs http://127.0.0.1:3100` đạt healthcheck và 54 route. Bản VI/EN đang chạy local để duyệt.
+
 ## Đã phát hành Lộ trình luyện gõ tiếng Việt — 25/11/2026
 
 Bản `844cf4c` đưa chín bài luyện Dễ, Vừa và Khó, bàn phím hướng dẫn 10 ngón và biểu đồ WPM, độ chính xác lên a.ap.vn. Đã xác minh 49 công cụ và đủ 98 route công cụ VI/EN trên origin. [Bản tiếng Việt](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Bản tiếng Anh](https://a.ap.vn/en/keyboard/vietnamese-typing)

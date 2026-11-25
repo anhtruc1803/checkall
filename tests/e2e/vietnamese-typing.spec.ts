@@ -1,5 +1,8 @@
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { accentTopics } from '../../src/lib/typing/accents';
+import { typingDifficulties } from '../../src/lib/typing/difficulty';
+import { practiceLessons, typingLessons } from '../../src/lib/typing/lessons';
 import en from '../../src/messages/en.json';
 import vi from '../../src/messages/vi.json';
 
@@ -64,11 +67,7 @@ test('free practice scores the final text after an EVKey-style rewrite and repor
   await page.getByRole('button', { name: vi.typing.practice }).click();
   const lesson = page.getByLabel(vi.typing.lesson, { exact: true });
   await expect(lesson).toHaveValue('homeRow');
-  await expect(lesson.locator('option')).toHaveText([
-    vi.typing.lessons.homeRow,
-    vi.typing.lessons.accents,
-    vi.typing.lessons.shortNote,
-  ]);
+  await page.getByRole('button', { name: vi.typing.practiceGroups.text, exact: true }).click();
   await page.locator('button[data-level="medium"]').click();
   await lesson.selectOption('everyday');
   const prefix = 'Trước khi gửi thư, mình ';
@@ -102,11 +101,7 @@ test('typing controls and results reflow with 200% text in both themes', async (
   await page.getByRole('button', { name: en.typing.practice }).click();
   const lesson = page.getByLabel(en.typing.lesson, { exact: true });
   await expect(lesson).toHaveValue('homeRow');
-  await expect(lesson.locator('option')).toHaveText([
-    en.typing.lessons.homeRow,
-    en.typing.lessons.accents,
-    en.typing.lessons.shortNote,
-  ]);
+  await page.getByRole('button', { name: en.typing.practiceGroups.text, exact: true }).click();
   await lesson.selectOption('accents');
   await page.getByText(en.typing.guide.title, { exact: true }).click();
   await page.getByRole('textbox', { name: en.typing.input }).fill('Buổi sáng');
@@ -120,7 +115,7 @@ test('typing controls and results reflow with 200% text in both themes', async (
     }, theme);
     const overflow = await page
       .locator(
-        `${workspace} button, ${workspace} textarea, ${workspace} select, ${workspace} dd, ${workspace} summary, ${workspace} [data-key]`,
+        `${workspace} button, ${workspace} textarea, ${workspace} select, ${workspace} dd, ${workspace} summary, ${workspace} [data-key], ${workspace} [data-hand]`,
       )
       .evaluateAll((items) =>
         items
@@ -146,35 +141,111 @@ test('typing controls and results reflow with 200% text in both themes', async (
   }
 });
 
-test('all nine lessons are selectable and the guide follows the sample on the home row', async ({
+test('all 31 lessons are selectable and the guide highlights the active QWERTY row', async ({
   page,
 }) => {
   await page.goto('/vi/keyboard/vietnamese-typing');
   await page.getByRole('button', { name: vi.typing.practice }).click();
   const selector = page.getByLabel(vi.typing.lesson, { exact: true });
-  for (const [level, labels] of [
-    ['easy', [vi.typing.lessons.homeRow, vi.typing.lessons.accents, vi.typing.lessons.shortNote]],
-    ['medium', [vi.typing.lessons.everyday, vi.typing.lessons.market, vi.typing.lessons.weekend]],
-    ['hard', [vi.typing.lessons.schedule, vi.typing.lessons.weather, vi.typing.lessons.receipt]],
-  ] as const) {
-    await page.locator(`button[data-level="${level}"]`).click();
-    await expect(selector.locator('option')).toHaveText([...labels]);
-  }
-  await page.locator('button[data-level="easy"]').click();
   const input = page.getByRole('textbox', { name: vi.typing.input });
-  await page.getByText(vi.typing.guide.title, { exact: true }).click();
   const guide = page.locator('details').filter({ hasText: vi.typing.guide.title });
+  const rowLessons = [
+    'homeRow',
+    'homeReach',
+    'upperRow',
+    'lowerRow',
+    'numberRow',
+    'mixedRows',
+  ] as const;
+  await expect(selector.locator('option')).toHaveText(
+    rowLessons.map((key) => vi.typing.lessons[key]),
+  );
+  await expect(guide).toHaveAttribute('open', '');
+  await expect(page.getByRole('heading', { name: vi.typing.rowPrompt })).toBeVisible();
   await expect(guide.locator('[data-home="true"]')).toHaveText(['F', 'J']);
   await expect(guide.locator('[data-next-key="true"]')).toHaveText('A');
+  await expect(guide.locator('[data-hand] [data-finger]')).toHaveCount(10);
+  await expect(guide.locator('[data-hand="left"] [data-digit="pinky"]')).toHaveAttribute(
+    'data-highlight',
+    'key',
+  );
+  await input.fill('asdf');
+  await expect(guide.locator('[data-digit="thumb"][data-highlight="key"]')).toHaveCount(2);
   await input.fill('asdf ');
   await expect(guide.locator('[data-next-key="true"]')).toHaveText('J');
   await expect(guide.locator('kbd')).toHaveText('J');
+  await expect(guide.locator('[data-hand="right"] [data-digit="index"]')).toHaveAttribute(
+    'data-highlight',
+    'key',
+  );
   await page.getByRole('button', { name: vi.typing.finish }).click();
+  await expect(guide.locator('[data-highlight]')).toHaveCount(0);
   await expect(page.getByRole('button', { name: vi.typing.history.save })).toHaveCount(0);
   await page.getByRole('button', { name: vi.typing.nextLesson }).click();
-  await expect(selector).toHaveValue('accents');
+  await expect(selector).toHaveValue('homeReach');
   await expect(input).toBeFocused();
   await expect(input).toHaveValue('');
+  for (const key of rowLessons.slice(2, -1)) {
+    await selector.selectOption(key);
+    await expect(guide.locator(`[data-key-row="${practiceLessons[key].row}"]`)).toHaveAttribute(
+      'data-practice-row',
+      'true',
+    );
+  }
+  await selector.selectOption('mixedRows');
+  await expect(guide.locator('[data-practice-row="true"]')).toHaveCount(4);
+  await page.getByRole('button', { name: vi.typing.practiceGroups.text, exact: true }).click();
+  await page.getByText(vi.typing.guide.title, { exact: true }).click();
+  await expect(guide.locator('kbd')).toHaveText('Shift + B');
+  await expect(guide.locator('[data-hand="left"] [data-digit="index"]')).toHaveAttribute(
+    'data-highlight',
+    'key',
+  );
+  await expect(guide.locator('[data-hand="right"] [data-digit="pinky"]')).toHaveAttribute(
+    'data-highlight',
+    'shift',
+  );
+  for (const level of typingDifficulties) {
+    const labels = typingLessons
+      .filter((key) => {
+        const lesson = practiceLessons[key];
+        return lesson.group === 'text' && lesson.difficulty === level;
+      })
+      .map((key) => vi.typing.lessons[key]);
+    await page.locator(`button[data-level="${level}"]`).click();
+    await expect(selector.locator('option')).toHaveText(labels);
+  }
+  await page.getByRole('button', { name: vi.typing.practiceGroups.accents, exact: true }).click();
+  await expect(selector.locator('option')).toHaveText(
+    accentTopics.map((key) => vi.typing.lessons[key]),
+  );
+});
+
+test('recommends a targeted accent drill across finished attempts using only session data', async ({
+  page,
+}) => {
+  await page.clock.install();
+  await page.goto('/en/keyboard/vietnamese-typing');
+  const input = page.getByRole('textbox', { name: en.typing.input });
+  const suggestion = page.getByRole('button', { name: en.typing.recommendation.start });
+  await input.fill('Buỗi');
+  await expect(page.locator(workspace)).toHaveAttribute('data-typing-state', 'active');
+  await page.clock.fastForward(61_000);
+  await expect(page.getByText(/Hook and tilde tones.*1 mistake in this session/)).toBeVisible();
+  await suggestion.click();
+  await expect(page.getByLabel(en.typing.lesson)).toHaveValue('toneQuestionTilde');
+  await expect(input).toBeFocused();
+  await expect(input).toHaveValue('');
+  await input.fill('Hãi hõi');
+  await page.getByRole('button', { name: en.typing.finish }).click();
+  await expect(page.getByText(/Hook and tilde tones.*3 mistakes in this session/)).toBeVisible();
+  await expect(page.locator('[data-typing-error="tone"]')).toHaveText('2');
+  expect(await page.evaluate(() => localStorage.getItem('device-lab:summaries'))).toBeNull();
+  await page.reload();
+  await expect(suggestion).toHaveCount(0);
+  await page.getByRole('button', { name: en.typing.practice }).click();
+  await page.getByRole('button', { name: en.typing.practiceGroups.accents, exact: true }).click();
+  await expect(page.getByLabel(en.typing.lesson).locator('option')).toHaveCount(7);
 });
 
 test('60-second history saves only on opt-in and click, follows difficulty, and clears with local data', async ({
