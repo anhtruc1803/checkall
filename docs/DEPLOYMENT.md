@@ -1,8 +1,25 @@
 # Triển khai và vận hành
 
+## Phát hành Kiểm tra phản xạ nhấp chuột — 25/11/2026
+
+a.ap.vn đang phục vụ commit `65d6eea64bd5fad163b87ff9d5d800d3d2dd65f7` với 50 công cụ VI/EN. C08 cung cấp bài phản xạ năm lượt hợp lệ, đếm nhấp sớm, tạm dừng khi mất focus và xử lý dữ liệu trong trang. Archive Git có SHA256 `6344feebc605c31d38e86da8dd101fc1381da28a85177bc399dc90f902f45759`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/65d6eea64bd5fad163b87ff9d5d800d3d2dd65f7)
+
+CI Linux trên đúng commit đạt typecheck, lint, quét secret, 583 unit test, build 128 trang, 542 E2E và Docker smoke. Sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. C08 đạt 12/12 trên Chromium, Firefox, WebKit và Chromium mobile. Đã kiểm tra đủ năm lượt, nhấp sớm và giữ nút qua tín hiệu, tạm dừng, trung vị, bố cục 320 px với chữ 200% và axe sáng/tối. Kiểm thử thời gian sử dụng đồng hồ mô phỏng của Playwright. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45564171370)
+
+Lighthouse mobile đo trước chuyển với 12 lượt Chromium sạch, ba lượt mỗi trang. Trang chủ VI và danh mục Chuột VI đạt median Performance 100. Danh mục Chuột đạt Accessibility 98 do thứ tự heading H1 xuống H3, cấu trúc đã xuất hiện ở bản public trước. [Lighthouse và số liệu từng lượt](https://github.com/anhtruc1803/checkall/actions/runs/45564205951)
+
+| Trang phản xạ | Performance | Accessibility | FCP / LCP | TBT | CLS |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| VI | 99 | 100 | 1.061 ms | 110 ms | 0,00104 |
+| EN | 99 | 100 | 1.060 ms | 107 ms | 0,00135 |
+
+Ứng viên Docker trên VPS chạy cô lập và đạt health, restart và shutdown SIGTERM exit 143. Release live trỏ tới `/opt/device-lab/releases/mouse-reaction-65d6eea`, image `device-lab:mouse-reaction-65d6eea-20261125`, ID `sha256:d220f1e2228f6899ba6fac233369047f3e4f35bd5c3da42969df85ae94d456e7`. Bản hiện tại chạy healthy, non-root, read-only và Node chỉ dùng mạng nội bộ. Giữ release `typing-course-844cf4c` và `shared/nginx.conf.before-mouse-reaction-65d6eea` để khôi phục. Nginx kiểm tra cú pháp và reload thành công.
+
+Origin xác minh 100 trang công cụ VI/EN, gồm 98 trang trước đó. Public xác minh health, sitemap 122 URL, CSP và Permissions Policy trên C08. 24/24 lượt smoke public đạt và trả đúng mã release, gồm danh mục 50 công cụ và luồng phản xạ VI/EN trên bốn cấu hình trình duyệt. Snapshot sau smoke có 0 lỗi ứng dụng, 0 lỗi Nginx và Certbot timer active. [Trang VI](https://a.ap.vn/vi/mouse/reaction) · [Trang EN](https://a.ap.vn/en/mouse/reaction)
+
 ## Phát hành Lộ trình luyện gõ tiếng Việt — 25/11/2026
 
-a.ap.vn đang phục vụ commit `844cf4c49c1e8b48232bd2176a1558bb577d9513` với 49 công cụ VI/EN. B06 có chín bài luyện theo ba mức, sơ đồ QWERTY chỉ ngón và lịch sử WPM, độ chính xác qua các lượt 60 giây. Tóm tắt kết quả được lưu cục bộ theo thao tác của người dùng. Archive Git có SHA256 `89cd37da01a8ed0679b0d0830f065a8fefa6e9539b2db05aacbd92e680b444a0`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/844cf4c49c1e8b48232bd2176a1558bb577d9513)
+a.ap.vn đã phục vụ commit `844cf4c49c1e8b48232bd2176a1558bb577d9513` với 49 công cụ VI/EN trước khi phát hành C08. B06 có chín bài luyện theo ba mức, sơ đồ QWERTY chỉ ngón và lịch sử WPM, độ chính xác qua các lượt 60 giây. Tóm tắt kết quả được lưu cục bộ theo thao tác của người dùng. Archive Git có SHA256 `89cd37da01a8ed0679b0d0830f065a8fefa6e9539b2db05aacbd92e680b444a0`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/844cf4c49c1e8b48232bd2176a1558bb577d9513)
 
 CI Linux trên đúng commit đạt typecheck, lint, quét secret, build 126 trang, 583 unit test, 530 E2E và Docker smoke. Sáu ca kiểm tra native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. Nhóm B06 có 20/20 ca đạt trên Chromium, Firefox, WebKit và Chromium mobile, gồm mô phỏng EVKey, lựa chọn bài, kiểm tra axe, lưu và xóa lịch sử. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45543164579)
 

@@ -1,5 +1,13 @@
 # Tiến độ Device Lab
 
+## Đã phát hành Kiểm tra phản xạ nhấp chuột — 25/11/2026
+
+Bản `65d6eea` đang chạy trên a.ap.vn. C08 mở bài năm lượt hợp lệ, đo phản xạ theo ms, hiển thị trung vị, lượt nhanh nhất, từng lượt và số lần nhấp sớm. Đã xác minh 50 công cụ với 100 route công cụ VI/EN. [Mở VI](https://a.ap.vn/vi/mouse/reaction) · [Mở EN](https://a.ap.vn/en/mouse/reaction)
+
+CI Linux đạt typecheck, lint, quét secret, 583 unit test, build 128 trang và Docker smoke. E2E có 542 bài đạt, gồm 12/12 ca C08. Sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. Sau khi chuyển, 24/24 lượt smoke public đạt, gồm bài năm lượt và chơi lại trên cả hai ngôn ngữ. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45564171370)
+
+Lighthouse mobile trước chuyển đo 12 lượt sạch, ba lượt trên mỗi trang. Hai trang C08 đạt median Performance 99 và Accessibility 100. Bản phát hành lấy từ worktree riêng, còn bản luyện gõ đang duyệt nằm ở workspace local ban đầu. [Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45564205951) · [Chi tiết triển khai](DEPLOYMENT.md)
+
 ## Kiểm tra phản xạ nhấp chuột — bản ứng viên, 25/11/2026
 
 Thêm C08 vào nhóm Chuột, đưa tổng số lên 50 công cụ và 100 route VI/EN. Vùng thử cố định, đổi màu và chữ khi có tín hiệu sau khoảng chờ ngẫu nhiên 1,5–4 giây. Bài gồm năm lượt hợp lệ và hiển thị trung vị, lượt nhanh nhất, từng thời gian và số lần nhấp sớm. Nhấn giữ nút từ trước tín hiệu rồi mới thả vẫn tính là nhấp sớm. Lượt đang dở được tạm dừng khi mất focus hoặc ẩn tab. Kết quả dùng đồng hồ của trình duyệt và tồn tại trong trang đang mở.
