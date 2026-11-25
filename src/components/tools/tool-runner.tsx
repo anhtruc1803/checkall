@@ -22,6 +22,7 @@ const StorageCapabilities = dynamic(() => import('@/features/browser/storage'));
 const FullscreenTest = dynamic(() => import('@/features/browser/fullscreen'));
 const MouseMovement = dynamic(() => import('@/features/mouse/movement'));
 const MouseAccuracy = dynamic(() => import('@/features/mouse/accuracy'));
+const MouseReaction = dynamic(() => import('@/features/mouse/reaction'));
 const AudioOutput = dynamic(() => import('@/features/audio/output'));
 const AudioInput = dynamic(() => import('@/features/audio/input'));
 const Camera = dynamic(() => import('@/features/camera/camera'));
@@ -54,6 +55,7 @@ const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   fullscreen: () => <FullscreenTest />,
   'mouse-movement': () => <MouseMovement />,
   'mouse-accuracy': () => <MouseAccuracy />,
+  'mouse-reaction': () => <MouseReaction />,
   'audio-output': (id) => <AudioOutput toolId={id} />,
   microphone: (id) => <AudioInput toolId={id} />,
   'audio-spectrum': (id) => <AudioInput toolId={id} />,

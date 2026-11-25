@@ -113,10 +113,10 @@ it('filters the two registry groups while retaining access to all original 40 to
   await waitFor(() =>
     expect(screen.getByRole('button', { name: 'Everyday utilities 8' })).toBeEnabled(),
   );
-  expect(document.querySelectorAll('.catalog-item')).toHaveLength(49);
+  expect(document.querySelectorAll('.catalog-item')).toHaveLength(50);
   fireEvent.click(screen.getByRole('button', { name: 'Everyday utilities 8' }));
   expect(document.querySelectorAll('.catalog-item')).toHaveLength(8);
-  fireEvent.click(screen.getByRole('button', { name: 'Device tests 41' }));
-  expect(document.querySelectorAll('.catalog-item')).toHaveLength(41);
+  fireEvent.click(screen.getByRole('button', { name: 'Device tests 42' }));
+  expect(document.querySelectorAll('.catalog-item')).toHaveLength(42);
   expect(screen.getByRole('link', { name: /Vietnamese typing speed/ })).toBeInTheDocument();
 });

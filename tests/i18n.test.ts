@@ -28,9 +28,9 @@ it('keeps complete translation key parity', () => {
   for (const value of [...Object.values(vietnamese), ...Object.values(english)])
     expect(value.trim().length).toBeGreaterThan(0);
 });
-it('publishes only the 120 real localized routes in sitemap with alternates', () => {
+it('publishes only the 122 real localized routes in sitemap with alternates', () => {
   const entries = sitemap();
-  expect(entries).toHaveLength(120);
+  expect(entries).toHaveLength(122);
   expect(
     entries.every((entry) => entry.alternates?.languages?.vi && entry.alternates?.languages?.en),
   ).toBe(true);

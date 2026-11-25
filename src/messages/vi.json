@@ -780,6 +780,36 @@
     },
     "scoreNote": "Điểm dựa trên văn bản cuối lượt, kể cả khoảng trắng và dấu câu. WPM quy đổi theo 5 ký tự."
   },
+  "mouseReaction": {
+    "stages": {
+      "ready": "Bắt đầu",
+      "waiting": "Chờ tín hiệu…",
+      "signal": "Nhấp ngay!",
+      "early": "Nhấp quá sớm",
+      "interrupted": "Lượt đã tạm dừng",
+      "next": "Lượt tiếp theo",
+      "complete": "Chơi lại"
+    },
+    "details": {
+      "ready": "Nhấp ngay trong vùng này rồi giữ con trỏ ở đây.",
+      "waiting": "Nhấp khi thấy chữ Nhấp ngay!",
+      "signal": "Dùng nút chính của chuột.",
+      "early": "Thử lại lượt này",
+      "interrupted": "Thử lại lượt này",
+      "next": "Nhấp để bắt đầu lượt kế tiếp.",
+      "complete": "Đã hoàn thành 5 lượt hợp lệ."
+    },
+    "progress": "Lượt hợp lệ {valid}/{total}",
+    "earlyCount": "Nhấp sớm {count}",
+    "mouseRequired": "Dùng nút chính của chuột để ghi nhận phản xạ.",
+    "lastTime": "Lượt vừa rồi {time} ms",
+    "results": "Kết quả phản xạ",
+    "median": "Thời gian trung vị",
+    "fastest": "Lượt nhanh nhất",
+    "earlyMetric": "Số lần nhấp sớm",
+    "roundTimes": "Thời gian từng lượt",
+    "round": "Lượt {index}"
+  },
   "toolPreviews": {
     "B06": "Luyện dấu và đo tốc độ gõ tiếng Việt.",
     "exampleTen": "mười",
@@ -806,6 +836,7 @@
     "C05": "Ước tính tần suất sự kiện chuột.",
     "C06": "Theo dõi đường đi của con trỏ.",
     "C07": "Bấm mục tiêu để thử độ chính xác.",
+    "C08": "Nhấp khi có tín hiệu và xem thời gian phản xạ.",
     "D01": "Phát âm thử qua loa hoặc tai nghe.",
     "D02": "Nghe riêng kênh trái và phải.",
     "D03": "Xem mức tín hiệu microphone.",

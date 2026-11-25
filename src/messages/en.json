@@ -780,6 +780,36 @@
     },
     "scoreNote": "Scores use the final text, including spaces and punctuation. Equivalent WPM uses five characters per word."
   },
+  "mouseReaction": {
+    "stages": {
+      "ready": "Start",
+      "waiting": "Wait for the signal…",
+      "signal": "Click now!",
+      "early": "Too soon",
+      "interrupted": "Round paused",
+      "next": "Next round",
+      "complete": "Play again"
+    },
+    "details": {
+      "ready": "Click in this area and keep the pointer here.",
+      "waiting": "Click when you see Click now!",
+      "signal": "Use the primary mouse button.",
+      "early": "Retry this round",
+      "interrupted": "Retry this round",
+      "next": "Click to start the next round.",
+      "complete": "You completed five valid rounds."
+    },
+    "progress": "Valid rounds {valid}/{total}",
+    "earlyCount": "Early clicks {count}",
+    "mouseRequired": "Use the primary mouse button to record your reaction.",
+    "lastTime": "Last round {time} ms",
+    "results": "Reaction results",
+    "median": "Median reaction time",
+    "fastest": "Fastest round",
+    "earlyMetric": "Early clicks",
+    "roundTimes": "Times by round",
+    "round": "Round {index}"
+  },
   "toolPreviews": {
     "B06": "Practise Vietnamese accents and measure typing speed.",
     "exampleTen": "ten",
@@ -806,6 +836,7 @@
     "C05": "Estimate the rate of mouse events.",
     "C06": "Trace the pointer’s path.",
     "C07": "Click targets to check pointer accuracy.",
+    "C08": "Click at the signal and see your reaction time.",
     "D01": "Play a tone through speakers or headphones.",
     "D02": "Listen to left and right channels separately.",
     "D03": "See the microphone input level.",

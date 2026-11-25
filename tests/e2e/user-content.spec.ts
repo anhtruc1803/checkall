@@ -4,11 +4,11 @@ import { publishedTools } from '../../src/lib/tools/registry';
 import vi from '../../src/messages/vi.json';
 import en from '../../src/messages/en.json';
 
-test('all 49 tools retain localized guidance and SEO without duplicated FAQ or implementation prose', async ({
+test('all 50 tools retain localized guidance and SEO without duplicated FAQ or implementation prose', async ({
   page,
 }) => {
   test.setTimeout(240000);
-  expect(publishedTools).toHaveLength(49);
+  expect(publishedTools).toHaveLength(50);
   for (const locale of ['vi', 'en'] as const) {
     const messages = locale === 'vi' ? vi : en;
     for (const tool of publishedTools) {

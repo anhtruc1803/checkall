@@ -10,6 +10,7 @@ import { textUtilityTools } from './text-utilities';
 import { conversionUtilityTools } from './conversion-utilities';
 import { problemShortcuts } from './problem-shortcuts';
 import { typingTool } from './typing-tool';
+import { mouseReactionTool } from './mouse-reaction-tool';
 export { toolHref } from './search';
 export { getPublishedTools, getPublishedCategories } from './catalog';
 export type { Category, Engine, Tool, ToolCopy } from './types';
@@ -526,6 +527,7 @@ export const tools: Tool[] = [
   ...textUtilityTools,
   ...conversionUtilityTools,
   typingTool,
+  mouseReactionTool,
 ];
 validateToolRegistry(tools);
 export const publishedTools = getPublishedTools(tools);

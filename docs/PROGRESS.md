@@ -1,5 +1,11 @@
 # Tiến độ Device Lab
 
+## Kiểm tra phản xạ nhấp chuột — bản ứng viên, 25/11/2026
+
+Thêm C08 vào nhóm Chuột, đưa tổng số lên 50 công cụ và 100 route VI/EN. Vùng thử cố định, đổi màu và chữ khi có tín hiệu sau khoảng chờ ngẫu nhiên 1,5–4 giây. Bài gồm năm lượt hợp lệ và hiển thị trung vị, lượt nhanh nhất, từng thời gian và số lần nhấp sớm. Nhấn giữ nút từ trước tín hiệu rồi mới thả vẫn tính là nhấp sớm. Lượt đang dở được tạm dừng khi mất focus hoặc ẩn tab. Kết quả dùng đồng hồ của trình duyệt và tồn tại trong trang đang mở.
+
+File chính gồm `src/features/mouse/reaction.tsx`, `reaction.module.css`, `src/lib/tools/mouse-reaction-tool.ts`, nhãn VI/EN và `tests/e2e/mouse-reaction.spec.ts`. Build local tạo 128 trang, smoke HTTP đạt healthcheck và 56 route. 22 unit test liên quan và 12/12 E2E C08 đạt trên Chromium, Firefox, WebKit và Chromium mobile, gồm nhấp sớm, giữ nút qua tín hiệu, trung vị, tạm dừng và axe hai theme. Đã sửa phần xuống dòng ở viewport 320 px với chữ 200% và kiểm tra lại.
+
 ## Đã phát hành Lộ trình luyện gõ tiếng Việt — 25/11/2026
 
 Bản `844cf4c` đưa chín bài luyện Dễ, Vừa và Khó, bàn phím hướng dẫn 10 ngón và biểu đồ WPM, độ chính xác lên a.ap.vn. Đã xác minh 49 công cụ và đủ 98 route công cụ VI/EN trên origin. [Bản tiếng Việt](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Bản tiếng Anh](https://a.ap.vn/en/keyboard/vietnamese-typing)

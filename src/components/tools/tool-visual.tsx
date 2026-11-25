@@ -48,6 +48,7 @@ import {
   Trash2,
   Volume2,
   Waves,
+  Zap,
   Cpu,
 } from 'lucide-react';
 import { CategoryIcon } from './category-icon';
@@ -81,6 +82,7 @@ export const toolVisuals: Readonly<Record<string, ToolVisual>> = {
   C05: [Gauge, 'Hz'],
   C06: [Route, 'x · y'],
   C07: [Crosshair, '⊙'],
+  C08: [Zap, 'ms'],
   D01: [Volume2, '♪'],
   D02: [Columns2, 'L · R'],
   D03: [Mic, '▂ ▅ ▇'],

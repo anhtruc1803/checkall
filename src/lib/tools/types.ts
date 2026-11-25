@@ -31,6 +31,7 @@ export const implementedEngines = [
   'fullscreen',
   'mouse-movement',
   'mouse-accuracy',
+  'mouse-reaction',
   'audio-output',
   'microphone',
   'audio-spectrum',

@@ -10,6 +10,7 @@ for (const locale of ['vi', 'en'])
     '/keyboard/tester',
     '/keyboard/vietnamese-typing',
     '/mouse/buttons',
+    '/mouse/reaction',
     '/device/information',
     '/browser/storage',
     '/audio/speaker',
@@ -50,5 +51,5 @@ for (const locale of ['vi', 'en'])
     assert.match(html, /<main/);
   }
 console.log(
-  'HTTP smoke passed: health + 54 VI/EN routes, including utilities and scoped camera/microphone/gamepad policy.',
+  'HTTP smoke passed: health + 56 VI/EN routes, including utilities and scoped camera/microphone/gamepad policy.',
 );
