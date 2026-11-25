@@ -1,20 +1,45 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState, type SyntheticEvent } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type SyntheticEvent } from 'react';
 import { useFormatter, useTranslations } from 'next-intl';
-import { AlignLeft, Check, Keyboard, NotebookPen, RotateCcw, Timer } from 'lucide-react';
+import {
+  AlignLeft,
+  ArrowRight,
+  Check,
+  Flame,
+  Gauge,
+  Keyboard,
+  NotebookPen,
+  RotateCcw,
+  Save,
+  Sprout,
+  Timer,
+} from 'lucide-react';
 import { Metric } from '@/components/tools/measurement-ui';
 import { Button } from '@/components/ui/button';
-import { practicePassages, timedPassage, typingDurationMs } from '@/lib/typing/lessons';
+import { useHydrated } from '@/hooks/use-hydrated';
+import { usePreference } from '@/hooks/use-preference';
+import { saveSummary, writePreference } from '@/lib/storage/preferences';
+import { typingDifficulties, type TypingDifficulty } from '@/lib/typing/difficulty';
+import {
+  practiceLessons,
+  timedPassages,
+  typingDurationMs,
+  typingLessons,
+  type TypingLesson,
+} from '@/lib/typing/lessons';
 import { scoreTyping, typingCharacters, typingErrorTypes } from '@/lib/typing/score';
+import { TypingGuide } from './typing-guide';
+import { TypingHistory } from './typing-history';
 import styles from './typing.module.css';
 
 type Mode = 'timed' | 'practice';
-type Lesson = keyof typeof practicePassages;
 type CharacterState = 'correct' | 'different' | 'next' | 'pending';
 
+const levelIcons = { easy: Sprout, medium: Gauge, hard: Flame };
+
 function newSession() {
-  return { start: null as number | null, committed: '', composing: false, finished: false };
+  return { start: null as number | null, committed: '', composing: false, finishedAt: '' };
 }
 
 function promptRuns(expected: string[], entered: string[], finished: boolean) {
@@ -37,20 +62,29 @@ function promptRuns(expected: string[], entered: string[], finished: boolean) {
 
 export default function VietnameseTyping() {
   const t = useTranslations('typing');
+  const common = useTranslations();
   const format = useFormatter();
+  const ready = useHydrated();
+  const saveEnabled = usePreference('save', false);
   const [mode, setMode] = useState<Mode>('timed');
-  const [lesson, setLesson] = useState<Lesson>('accents');
+  const [lesson, setLesson] = useState<TypingLesson>('homeRow');
+  const [timedLevel, setTimedLevel] = useState<TypingDifficulty>('medium');
   const [text, setText] = useState('');
   const [started, setStarted] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [result, setResult] = useState<ReturnType<typeof scoreTyping> | null>(null);
   const [blocked, setBlocked] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<'saved' | 'storageError' | ''>('');
   const input = useRef<HTMLTextAreaElement>(null);
   const promptArea = useRef<HTMLDivElement>(null);
   const session = useRef(newSession());
-  const prompt = mode === 'timed' ? timedPassage : practicePassages[lesson];
-  const entered = typingCharacters(text);
-  const expected = typingCharacters(prompt);
+  const difficulty = mode === 'timed' ? timedLevel : practiceLessons[lesson].difficulty;
+  const prompt = mode === 'timed' ? timedPassages[timedLevel] : practiceLessons[lesson].passage;
+  const entered = useMemo(() => typingCharacters(text), [text]);
+  const expected = useMemo(() => typingCharacters(prompt), [prompt]);
+  const runs = useMemo(() => promptRuns(expected, entered, !!result), [expected, entered, result]);
+  const nextLesson = typingLessons[typingLessons.indexOf(lesson) + 1];
   const remaining = typingDurationMs - elapsed;
   const seconds = mode === 'timed' ? Math.ceil(remaining / 1000) : Math.floor(elapsed / 1000);
   const timer = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
@@ -58,9 +92,9 @@ export default function VietnameseTyping() {
   const finish = useCallback(
     (now: number) => {
       const current = session.current;
-      if (current.start === null || current.finished) return;
+      if (current.start === null || current.finishedAt) return;
       const duration = mode === 'timed' ? typingDurationMs : now - current.start;
-      current.finished = true;
+      current.finishedAt = new Date().toISOString();
       if (input.current) input.current.value = current.committed;
       setElapsed(duration);
       setResult(scoreTyping(prompt, current.committed, duration));
@@ -72,7 +106,7 @@ export default function VietnameseTyping() {
     if (!started || result) return;
     const interval = window.setInterval(() => {
       const start = session.current.start;
-      if (start === null || session.current.finished) return;
+      if (start === null || session.current.finishedAt) return;
       const now = performance.now();
       const duration = now - start;
       if (mode === 'timed' && duration >= typingDurationMs) finish(now);
@@ -93,7 +127,7 @@ export default function VietnameseTyping() {
 
   function commit(value: string) {
     const current = session.current;
-    if (current.finished) return;
+    if (current.finishedAt) return;
     const now = performance.now();
     if (current.start === null) {
       if (!value) return;
@@ -118,6 +152,31 @@ export default function VietnameseTyping() {
     setStarted(false);
     setBlocked(false);
     setResult(null);
+    setSaved(false);
+    setSaveMessage('');
+  }
+
+  function chooseDifficulty(next: TypingDifficulty) {
+    if (next === difficulty) return;
+    reset();
+    if (mode === 'timed') setTimedLevel(next);
+    else {
+      const first = typingLessons.find((key) => practiceLessons[key].difficulty === next);
+      if (first) setLesson(first);
+    }
+  }
+
+  function saveAttempt() {
+    const time = session.current.finishedAt;
+    if (!result || !time || saved || mode !== 'timed') return;
+    const success = saveSummary({
+      toolId: 'B06',
+      time,
+      value: `${result.wpm.toFixed(1)} WPM · ${result.accuracy.toFixed(1)}%`,
+      typing: { difficulty: timedLevel, wpm: result.wpm, accuracy: result.accuracy },
+    });
+    setSaved(success);
+    setSaveMessage(success ? 'saved' : 'storageError');
   }
 
   function guardPaste(event: SyntheticEvent) {
@@ -158,6 +217,26 @@ export default function VietnameseTyping() {
             </Button>
           ))}
         </div>
+        <div className={styles.levels} role="group" aria-label={t('difficulty')}>
+          {typingDifficulties.map((level) => {
+            const Icon = levelIcons[level];
+            return (
+              <Button
+                key={level}
+                variant="outline"
+                data-level={level}
+                aria-pressed={level === difficulty}
+                onClick={() => chooseDifficulty(level)}
+              >
+                <Icon aria-hidden="true" />
+                <span>
+                  <strong>{t(`levels.${level}.name`)}</strong>
+                  <span className={styles.levelNote}>{t(`levels.${level}.note`)}</span>
+                </span>
+              </Button>
+            );
+          })}
+        </div>
         {mode === 'practice' && (
           <div className={styles.lesson}>
             <label htmlFor="typing-lesson">{t('lesson')}</label>
@@ -166,14 +245,16 @@ export default function VietnameseTyping() {
               value={lesson}
               onChange={(event) => {
                 reset();
-                setLesson(event.target.value as Lesson);
+                setLesson(event.target.value as TypingLesson);
               }}
             >
-              {(Object.keys(practicePassages) as Lesson[]).map((key) => (
-                <option key={key} value={key}>
-                  {t(`lessons.${key}`)}
-                </option>
-              ))}
+              {typingLessons
+                .filter((key) => practiceLessons[key].difficulty === difficulty)
+                .map((key) => (
+                  <option key={key} value={key}>
+                    {t(`lessons.${key}`)}
+                  </option>
+                ))}
             </select>
           </div>
         )}
@@ -213,7 +294,7 @@ export default function VietnameseTyping() {
             >
               <span className="sr-only">{prompt}</span>
               <span aria-hidden="true">
-                {promptRuns(expected, entered, !!result).map((run) => (
+                {runs.map((run) => (
                   <span key={run.index} data-character={run.state}>
                     {run.text}
                   </span>
@@ -235,7 +316,7 @@ export default function VietnameseTyping() {
               autoCorrect="off"
               spellCheck={false}
               maxLength={prompt.length * 2}
-              readOnly={!!result}
+              readOnly={!ready || !!result}
               onCompositionStart={() => {
                 session.current.composing = true;
               }}
@@ -279,6 +360,7 @@ export default function VietnameseTyping() {
           </Button>
         </div>
       </div>
+      <TypingGuide character={result ? undefined : expected[entered.length]} />
       <p className="sr-only" role="status">
         {result ? t('done') : ''}
       </p>
@@ -306,8 +388,47 @@ export default function VietnameseTyping() {
             ))}
           </dl>
           <p className="small">{t('scoreNote')}</p>
+          {mode === 'timed' && (
+            <div className={styles.saveBar}>
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  checked={saveEnabled}
+                  onChange={(event) => {
+                    setSaveMessage(
+                      writePreference('save', event.target.checked) ? '' : 'storageError',
+                    );
+                  }}
+                />
+                {t('history.allow')}
+              </label>
+              <Button variant="outline" disabled={!saveEnabled || saved} onClick={saveAttempt}>
+                {saved ? <Check aria-hidden="true" /> : <Save aria-hidden="true" />}
+                {saved ? t('history.saved') : t('history.save')}
+              </Button>
+              <span role="status" className={saveMessage === 'storageError' ? 'small' : 'sr-only'}>
+                {saveMessage ? common(saveMessage) : ''}
+              </span>
+            </div>
+          )}
+          {mode === 'practice' && nextLesson && (
+            <div className={styles.nextLesson}>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  reset();
+                  setLesson(nextLesson);
+                  input.current?.focus();
+                }}
+              >
+                {t('nextLesson')}
+                <ArrowRight aria-hidden="true" />
+              </Button>
+            </div>
+          )}
         </section>
       )}
+      <TypingHistory level={timedLevel} />
     </div>
   );
 }

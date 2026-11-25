@@ -1,5 +1,19 @@
 # Tiến độ Device Lab
 
+## Lộ trình luyện gõ tiếng Việt — bản local để duyệt, 25/11/2026
+
+B06 có chín bài luyện chia đều theo ba mức Dễ, Vừa và Khó. Giữ hai bài cũ trong lộ trình và thêm bài Hàng phím cơ sở cho người mới. Chế độ 60 giây có một đoạn mẫu cố định cho mỗi mức, trong đó mức Vừa dùng đoạn mẫu của bản đã phát hành. Nút Bài tiếp theo chuyển bài và trả focus về ô gõ.
+
+Hướng dẫn 10 ngón dùng sơ đồ QWERTY, đánh dấu F và J, làm nổi bật phím gốc của ký tự mẫu kế tiếp và nêu tên ngón. Dấu tiếng Việt tiếp tục được xử lý qua văn bản đã nhận từ bộ gõ. Ô nhập chỉ mở sau khi trình xử lý phía trình duyệt sẵn sàng.
+
+Lịch sử dùng kho tóm tắt cục bộ của Device Lab. Người dùng bật quyền lưu và bấm Lưu kết quả sau lượt 60 giây. Bản ghi chứa thời điểm kết thúc, độ khó, WPM và độ chính xác. Biểu đồ lọc theo độ khó, có chế độ WPM hoặc độ chính xác và hiển thị chênh lệch với lượt trước. Danh sách đưa lượt mới nhất lên đầu. Giới hạn 30 bản tóm tắt dùng chung với các công cụ khác. Nút xóa dữ liệu trong Quyền riêng tư dọn lịch sử này.
+
+File chính gồm `src/features/typing/typing.tsx`, `typing-guide.tsx`, `typing-history.tsx`, `typing.module.css` trong cùng thư mục, `src/lib/typing/`, `src/lib/storage/preferences.ts` và nhãn next-intl VI/EN. [Bản tiếng Việt](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing) · [Bản tiếng Anh](http://127.0.0.1:3100/en/keyboard/vietnamese-typing)
+
+`pnpm build` tạo 126 trang. `pnpm lint` và `pnpm typecheck` đạt. `pnpm test --maxWorkers=2` đạt 583/583 trên 45 file khi chạy riêng. Lượt chạy song song với build có một bài Key Chatter vượt timeout 5 giây. `pnpm exec playwright test --config artifacts/typing-course-playwright.config.ts vietnamese-typing.spec.ts --workers=2` đạt 20/20 trên Chromium, Firefox, WebKit và Chromium mobile. Các ca kiểm tra đồng hồ, mô phỏng EVKey, chín bài luyện, đổi mức, lưu tự nguyện, biểu đồ, tải lại, xóa dữ liệu, axe và bố cục 320 px với chữ 200%. `node scripts/smoke-http.mjs http://127.0.0.1:3100` đạt healthcheck và 54 route.
+
+Đã xem ảnh desktop tối và mobile sáng. Ảnh biểu đồ dùng kết quả từ các lượt gõ tự động trong phiên kiểm thử và lưu ở `artifacts/typing-course-review/`. Lượt này kiểm tra bộ gõ bằng mô phỏng. Bản đang chạy ở loopback để người dùng duyệt bố cục và nội dung bài luyện.
+
 ## Đã phát hành Tốc độ gõ tiếng Việt — 25/11/2026
 
 Bản `b4f21ae` đã chạy trên a.ap.vn. Công cụ B06 có bài 60 giây, hai bài luyện tự do và phân tích lỗi dấu, với giao diện VI/EN. Đã xác minh đủ 48 công cụ trước đó cùng B06, tổng 49 công cụ và 98 route công cụ. [Bản tiếng Việt](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Bản tiếng Anh](https://a.ap.vn/en/keyboard/vietnamese-typing)

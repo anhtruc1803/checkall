@@ -708,9 +708,53 @@
     "remaining": "Còn lại",
     "elapsed": "Thời gian luyện",
     "lesson": "Bài luyện",
+    "nextLesson": "Bài tiếp theo",
+    "difficulty": "Độ khó",
+    "levels": {
+      "easy": { "name": "Dễ", "note": "Câu ngắn, từ quen thuộc" },
+      "medium": { "name": "Vừa", "note": "Dấu tiếng Việt và câu dài hơn" },
+      "hard": { "name": "Khó", "note": "Dấu dễ nhầm, số và ký hiệu" }
+    },
     "lessons": {
+      "homeRow": "Hàng phím cơ sở",
       "accents": "Luyện dấu tiếng Việt",
-      "everyday": "Gõ văn bản hằng ngày"
+      "shortNote": "Lời nhắn ngắn",
+      "everyday": "Gõ văn bản hằng ngày",
+      "market": "Buổi sáng ở chợ",
+      "weekend": "Hẹn cuối tuần",
+      "schedule": "Lịch làm việc",
+      "weather": "Đường qua đồi",
+      "receipt": "Phiếu kiểm đếm"
+    },
+    "guide": {
+      "title": "Hướng dẫn gõ 10 ngón",
+      "home": "Đặt tay trái lên A, S, D, F và tay phải lên J, K, L, dấu chấm phẩy. Hai ngón trỏ đặt ở F và J, ngón cái gõ phím cách.",
+      "next": "Ký tự mẫu {character}",
+      "space": "Phím cách",
+      "ime": "Sơ đồ QWERTY chỉ phím gốc của ký tự mẫu. Với chữ có dấu và chữ đ, dùng bộ gõ tiếng Việt để nhập đủ ký tự.",
+      "fingers": {
+        "1": "Út trái",
+        "2": "Áp út trái",
+        "3": "Giữa trái",
+        "4": "Trỏ trái",
+        "5": "Hai ngón cái",
+        "6": "Trỏ phải",
+        "7": "Giữa phải",
+        "8": "Áp út phải",
+        "9": "Út phải"
+      }
+    },
+    "history": {
+      "title": "Tiến bộ qua các lượt 60 giây",
+      "level": "Độ khó của lịch sử",
+      "metric": "Chỉ số trên biểu đồ",
+      "empty": "Lưu một kết quả 60 giây ở mức này để bắt đầu theo dõi tiến bộ.",
+      "allow": "Cho phép lưu bản tóm tắt trên trình duyệt",
+      "save": "Lưu kết quả",
+      "saved": "Đã lưu kết quả",
+      "attempt": "Lượt {index}",
+      "change": "{delta} {unit} so với lượt trước",
+      "points": "điểm %"
     },
     "prompt": "Đoạn mẫu tiếng Việt",
     "input": "Ô gõ tiếng Việt",

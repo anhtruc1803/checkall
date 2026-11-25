@@ -1,9 +1,17 @@
 import { z } from 'zod/mini';
+import { typingDifficulties } from '@/lib/typing/difficulty';
 export const STORAGE_PREFIX = 'device-lab:';
 const summarySchema = z.object({
   toolId: z.string().check(z.maxLength(10)),
   time: z.string().check(z.maxLength(64)),
   value: z.string().check(z.maxLength(500)),
+  typing: z.optional(
+    z.object({
+      difficulty: z.enum(typingDifficulties),
+      wpm: z.number().check(z.minimum(0)),
+      accuracy: z.number().check(z.minimum(0), z.maximum(100)),
+    }),
+  ),
 });
 const schemas: Record<string, z.ZodMiniType> = {
   theme: z.enum(['dark', 'light']),
@@ -24,11 +32,7 @@ export function parsePreference<T>(key: string, raw: string, fallback: T): T {
     return fallback;
   }
 }
-export interface SavedSummary {
-  toolId: string;
-  time: string;
-  value: string;
-}
+export type SavedSummary = z.infer<typeof summarySchema>;
 export function readPreference<T>(key: string, fallback: T): T {
   try {
     const value = localStorage.getItem(STORAGE_PREFIX + key);

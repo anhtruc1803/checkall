@@ -708,9 +708,53 @@
     "remaining": "Time left",
     "elapsed": "Practice time",
     "lesson": "Practice lesson",
+    "nextLesson": "Next lesson",
+    "difficulty": "Difficulty",
+    "levels": {
+      "easy": { "name": "Easy", "note": "Short sentences, familiar words" },
+      "medium": { "name": "Medium", "note": "Vietnamese accents and longer sentences" },
+      "hard": { "name": "Hard", "note": "Tricky accents, numbers and symbols" }
+    },
     "lessons": {
+      "homeRow": "Home row",
       "accents": "Practise Vietnamese accents",
-      "everyday": "Everyday writing"
+      "shortNote": "A short note",
+      "everyday": "Everyday writing",
+      "market": "Morning at the market",
+      "weekend": "Weekend plans",
+      "schedule": "Work schedule",
+      "weather": "A walk over the hill",
+      "receipt": "Inventory slip"
+    },
+    "guide": {
+      "title": "Touch typing guide",
+      "home": "Rest your left hand on A, S, D, F and your right hand on J, K, L, and the semicolon. Keep your index fingers on F and J and use either thumb for Space.",
+      "next": "Sample character {character}",
+      "space": "Space",
+      "ime": "The QWERTY diagram shows the base key for the sample character. Use your Vietnamese input method to enter accents and the letter đ.",
+      "fingers": {
+        "1": "Left pinky",
+        "2": "Left ring",
+        "3": "Left middle",
+        "4": "Left index",
+        "5": "Both thumbs",
+        "6": "Right index",
+        "7": "Right middle",
+        "8": "Right ring",
+        "9": "Right pinky"
+      }
+    },
+    "history": {
+      "title": "60-second test progress",
+      "level": "History difficulty",
+      "metric": "Chart metric",
+      "empty": "Save a 60-second result at this difficulty to start tracking progress.",
+      "allow": "Allow summaries to be saved in this browser",
+      "save": "Save result",
+      "saved": "Result saved",
+      "attempt": "Attempt {index}",
+      "change": "{delta} {unit} from the previous attempt",
+      "points": "percentage points"
     },
     "prompt": "Vietnamese sample",
     "input": "Vietnamese typing area",
