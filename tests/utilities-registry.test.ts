@@ -4,7 +4,7 @@ import { publishedTools, searchTools, findTool } from '@/lib/tools/registry';
 import { getToolGroup, getPublishedGroups } from '@/lib/tools/groups';
 
 it('preserves all 40 original published IDs, routes and engine/capability metadata', () => {
-  const original = publishedTools.filter((tool) => getToolGroup(tool.category) === 'device-tests');
+  const original = publishedTools.filter((tool) => tool.phase === 1 || tool.phase === 2);
   expect(original).toHaveLength(40);
   expect(original.map((tool) => tool.id).sort()).toEqual([
     ...Array.from({ length: 11 }, (_, i) => `A${String(i + 1).padStart(2, '0')}`),

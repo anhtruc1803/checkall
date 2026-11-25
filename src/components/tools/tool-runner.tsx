@@ -12,6 +12,7 @@ const Patterns = dynamic(() => import('@/features/screen/patterns'));
 const Motion = dynamic(() => import('@/features/screen/motion'));
 const Touch = dynamic(() => import('@/features/screen/touch'));
 const KeyboardTool = dynamic(() => import('@/features/keyboard/keyboard'));
+const VietnameseTyping = dynamic(() => import('@/features/typing/typing'));
 const MouseTool = dynamic(() => import('@/features/mouse/mouse'));
 const DeviceInformation = dynamic(() => import('@/features/device/information'));
 const BrowserCompatibility = dynamic(() => import('@/features/browser/compatibility'));
@@ -43,6 +44,7 @@ const engineRenderers: Record<ImplementedEngine, (id: string) => ReactNode> = {
   motion: () => <Motion />,
   touch: () => <Touch />,
   keyboard: (id) => <KeyboardTool toolId={id} />,
+  'vietnamese-typing': () => <VietnameseTyping />,
   mouse: (id) => <MouseTool toolId={id} />,
   'device-info': () => <DeviceInformation />,
   'browser-info': () => <BrowserCompatibility />,

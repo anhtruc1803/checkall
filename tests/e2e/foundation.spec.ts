@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { tools } from '../../src/lib/tools/registry';
 
-test('all 48 published tools are discoverable while unknown future routes stay private', async ({
+test('all 49 published tools are discoverable while unknown future routes stay private', async ({
   page,
   request,
 }) => {
@@ -11,7 +11,7 @@ test('all 48 published tools are discoverable while unknown future routes stay p
   const sitemap = await (await request.get('/sitemap.xml')).text();
   for (const locale of ['vi', 'en']) {
     await page.goto(`/${locale}`);
-    await expect(page.locator('.catalog-item')).toHaveCount(48);
+    await expect(page.locator('.catalog-item')).toHaveCount(49);
     const previews = await page.locator('.catalog-item').evaluateAll((cards) =>
       cards.map((card) => ({
         id: card.getAttribute('data-tool-id'),

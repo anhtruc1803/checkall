@@ -1,5 +1,23 @@
 # Tiến độ Device Lab
 
+## Tốc độ gõ tiếng Việt — bản local để duyệt, 25/11/2026
+
+Thêm B06 vào nhóm Bàn phím, đưa tổng số lên 49 công cụ trên bản local. Bài 60 giây bắt đầu khi có chữ đầu tiên đã nhận vào ô nhập. Luyện tự do có **Luyện dấu tiếng Việt** mặc định và **Gõ văn bản hằng ngày**. Bấm **Kết thúc** để chấm. Cả hai chế độ dùng đoạn mẫu tiếng Việt trên giao diện VI/EN. File chính gồm `src/features/typing/typing.tsx`, `src/lib/typing/score.ts`, `src/lib/typing/lessons.ts`, `src/lib/tools/typing-tool.ts` và nhãn next-intl. [VI](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing) · [EN](http://127.0.0.1:3100/en/keyboard/vietnamese-typing)
+
+Điểm tính từ văn bản cuối lượt sau chuẩn hóa NFC. Độ chính xác lấy số ký tự khớp chia cho số ký tự khớp cộng số lỗi trong phần đã gõ. Khi căn chỉnh hai văn bản, bỏ phần mẫu chưa gõ ở cuối và phân loại lỗi mỗi vị trí vào dấu thanh, dấu chữ, `d/đ`, khoảng trắng hoặc lỗi khác. WPM quy đổi từ ký tự đúng/phút theo 5 ký tự. Văn bản và kết quả ở bộ nhớ của trang. Bài 60 giây chặn dán và kéo thả trong ô gõ.
+
+`pnpm build` tạo 126 trang. `pnpm lint`, `pnpm typecheck`, `pnpm test --maxWorkers=2` đạt, gồm 580/580 unit test. Playwright đạt 24/24 trên Chromium, Firefox, WebKit và Chromium mobile. Các ca gồm bộ đếm 60 giây, chờ IME hoàn tất, mô phỏng `d → Backspace → đ`, chấm lỗi dấu, reflow 320 px với chữ 200% và axe ở hai theme. Lượt Chromium dùng thời gian thật quan sát kết thúc sau 60,508 giây tính từ lúc gửi đầu vào qua Playwright. Smoke HTTP đạt healthcheck và 54 route. Đã đối chiếu đủ 98 route công cụ VI/EN và sitemap 120 URL.
+
+Lượt gõ tay nội bộ với EVKey V + Telex trên câu kiểm tra riêng cho kết quả `dd` thành `đ`, một ký tự đúng và 0 lỗi `d/đ`. Đã bỏ câu kiểm tra riêng khỏi danh sách bài luyện VI/EN. Ca hồi quy Playwright mô phỏng `d → Backspace → đ` tại từ `đọc` trong bài **Gõ văn bản hằng ngày**. Sau khi chỉnh danh sách, build, lint, 7/7 unit test chấm điểm và i18n, 12/12 Playwright và smoke HTTP đều đạt. Bản dành cho duyệt local.
+
+### Tinh gọn giao diện gõ tiếng Việt
+
+Gộp nút chọn chế độ và chọn bài luyện trên cùng hàng khi đủ chỗ. Đặt đoạn mẫu ngay trên ô gõ, đồng hồ và nút thao tác ở cột bên cạnh trên desktop. Trên mobile, đồng hồ nằm trên vùng gõ và nút thao tác nằm bên dưới. Thêm thanh thời gian cho bài 60 giây, biểu tượng cạnh nhãn và làm nổi bật nhóm lỗi có phát sinh. Giữ hai bài luyện VI/EN cùng cách tính điểm và xử lý IME. File chính gồm `src/features/typing/typing.tsx`, `src/features/typing/typing.module.css`, hai bộ nhãn và `tests/e2e/vietnamese-typing.spec.ts`.
+
+`pnpm build` tạo 126 trang. `pnpm lint`, `pnpm typecheck` và `pnpm test tests/typing-score.test.ts tests/i18n.test.ts --maxWorkers=2` đạt, gồm 7/7 unit test. `pnpm exec playwright test --config artifacts/typing-layout-playwright.config.ts vietnamese-typing.spec.ts --workers=2` đạt 12/12 trên Chromium, Firefox, WebKit và Chromium mobile. Phép thử 320 px ở cỡ chữ 200% đã đạt sau khi sửa chiều rộng tối thiểu của lưới. Các ca bao gồm axe Light/Dark, thanh thời gian 60 giây và luồng EVKey mô phỏng. `node scripts/smoke-http.mjs http://127.0.0.1:3100` đạt healthcheck và 54 route.
+
+Ở viewport 1440 × 900, vùng thao tác giảm từ 550 xuống 414 px. Đã xem ảnh desktop tối và mobile sáng, kiểm tra đoạn mẫu tự cuộn theo ký tự và cuộn về đầu khi làm lại. Ảnh bản duyệt ở `artifacts/typing-layout-review/`. Lượt này kiểm tra EVKey qua mô phỏng. Preview VI/EN chạy local để duyệt.
+
 ## Giao diện 48 công cụ đã phát hành lên a.ap.vn — 23/11/2026
 
 Bản `5c5cc2c` đưa giao diện Workbench, trang chủ mới, nhóm Tiện ích và icon cùng hình minh họa lên 48 công cụ. Đã đối chiếu đủ 96 route VI/EN, sitemap 118 URL và 24/24 lượt smoke trên website public với đúng mã release. [Màn hình](https://a.ap.vn/vi/screen) · [Tiện ích](https://a.ap.vn/vi/utilities)

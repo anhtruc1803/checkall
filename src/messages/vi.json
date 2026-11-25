@@ -701,7 +701,43 @@
     }
   },
   "utilities": "Tiện ích",
+  "typing": {
+    "mode": "Chế độ gõ",
+    "timed": "Test 60 giây",
+    "practice": "Luyện tự do",
+    "remaining": "Còn lại",
+    "elapsed": "Thời gian luyện",
+    "lesson": "Bài luyện",
+    "lessons": {
+      "accents": "Luyện dấu tiếng Việt",
+      "everyday": "Gõ văn bản hằng ngày"
+    },
+    "prompt": "Đoạn mẫu tiếng Việt",
+    "input": "Ô gõ tiếng Việt",
+    "timedHelp": "Đồng hồ chạy từ ký tự đầu tiên và tự dừng sau 60 giây.",
+    "practiceHelp": "Bấm Kết thúc để xem độ chính xác và lỗi dấu.",
+    "pasteBlocked": "Hãy gõ trực tiếp trong ô để đo tốc độ.",
+    "finish": "Kết thúc",
+    "reset": "Làm lại",
+    "done": "Đã có kết quả gõ.",
+    "result": "Kết quả lượt gõ",
+    "cpm": "Ký tự đúng/phút",
+    "wpm": "WPM quy đổi",
+    "accuracy": "Độ chính xác",
+    "correct": "Ký tự đúng",
+    "entered": "Ký tự đã nhập",
+    "errorAnalysis": "Phân tích lỗi",
+    "errors": {
+      "tone": "Dấu thanh",
+      "vowel": "Dấu chữ",
+      "letterD": "Nhầm d/đ",
+      "spacing": "Khoảng trắng",
+      "other": "Lỗi khác"
+    },
+    "scoreNote": "Điểm dựa trên văn bản cuối lượt, kể cả khoảng trắng và dấu câu. WPM quy đổi theo 5 ký tự."
+  },
   "toolPreviews": {
+    "B06": "Luyện dấu và đo tốc độ gõ tiếng Việt.",
     "exampleTen": "mười",
     "A01": "Xem kích thước màn hình theo trình duyệt.",
     "A02": "Xem kích thước cửa sổ và DPR.",

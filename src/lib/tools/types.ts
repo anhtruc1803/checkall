@@ -41,6 +41,7 @@ export const implementedEngines = [
   'text',
   'unit-converter',
   'date-calculator',
+  'vietnamese-typing',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {
@@ -58,7 +59,7 @@ export interface Tool {
   id: string;
   slug: string;
   category: Category;
-  // Utilities belong to a separate roadmap from device testing.
+  // Independent tools can be published outside the device testing phases.
   phase: 1 | 2 | 3 | null;
   status: 'published' | 'draft';
   icon: Category;

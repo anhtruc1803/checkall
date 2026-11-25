@@ -9,6 +9,7 @@ import { utilityTools } from './utilities';
 import { textUtilityTools } from './text-utilities';
 import { conversionUtilityTools } from './conversion-utilities';
 import { problemShortcuts } from './problem-shortcuts';
+import { typingTool } from './typing-tool';
 export { toolHref } from './search';
 export { getPublishedTools, getPublishedCategories } from './catalog';
 export type { Category, Engine, Tool, ToolCopy } from './types';
@@ -524,6 +525,7 @@ export const tools: Tool[] = [
   ...utilityTools,
   ...textUtilityTools,
   ...conversionUtilityTools,
+  typingTool,
 ];
 validateToolRegistry(tools);
 export const publishedTools = getPublishedTools(tools);

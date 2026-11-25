@@ -701,7 +701,43 @@
     }
   },
   "utilities": "Utilities",
+  "typing": {
+    "mode": "Typing mode",
+    "timed": "60-second test",
+    "practice": "Free practice",
+    "remaining": "Time left",
+    "elapsed": "Practice time",
+    "lesson": "Practice lesson",
+    "lessons": {
+      "accents": "Practise Vietnamese accents",
+      "everyday": "Everyday writing"
+    },
+    "prompt": "Vietnamese sample",
+    "input": "Vietnamese typing area",
+    "timedHelp": "The first character starts the 60-second countdown.",
+    "practiceHelp": "Select Finish to see your accuracy and accent errors.",
+    "pasteBlocked": "Type directly in the field to measure your speed.",
+    "finish": "Finish",
+    "reset": "Start over",
+    "done": "Your typing results are ready.",
+    "result": "Typing results",
+    "cpm": "Correct characters/minute",
+    "wpm": "Equivalent WPM",
+    "accuracy": "Accuracy",
+    "correct": "Correct characters",
+    "entered": "Typed characters",
+    "errorAnalysis": "Error analysis",
+    "errors": {
+      "tone": "Tone marks",
+      "vowel": "Vowel marks",
+      "letterD": "d/đ confusion",
+      "spacing": "Spacing",
+      "other": "Other errors"
+    },
+    "scoreNote": "Scores use the final text, including spaces and punctuation. Equivalent WPM uses five characters per word."
+  },
   "toolPreviews": {
+    "B06": "Practise Vietnamese accents and measure typing speed.",
     "exampleTen": "ten",
     "A01": "Read screen dimensions reported by the browser.",
     "A02": "Read viewport size and device pixel ratio.",
