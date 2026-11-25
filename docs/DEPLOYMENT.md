@@ -1,8 +1,27 @@
 # Triển khai và vận hành
 
+## Phát hành 31 bài luyện gõ và hướng dẫn hai bàn tay — 25/11/2026
+
+a.ap.vn đang phục vụ commit `09f2bd546ea686bc187c2e0d06bc8a7005c14190` từ `main`, với 50 công cụ VI/EN. Archive Git có SHA256 `67147639ed06f20d91c06dd3f0c8c108f965a96be8722ec9eb8b0913e82559e0`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/09f2bd546ea686bc187c2e0d06bc8a7005c14190)
+
+Bản ghép tạo 128 trang, đạt 36/36 E2E local cho hai công cụ trên Chromium, Firefox, WebKit và Chromium mobile. Test xác minh đủ 31 bài, ngón gõ, khuyến nghị lỗi dấu, lịch sử lưu theo thao tác, mô phỏng bộ gõ, nhấp sớm, trung vị và tạm dừng. Kiểm tra accessibility dùng axe ở hai theme và reflow ở viewport 320 px với chữ 200%. Trước lúc chuyển, CI Linux đạt typecheck, lint, quét secret, 585 unit test trên 45 file, build và Docker smoke. Bộ E2E toàn site hoàn tất sau khi chuyển với 546 ca đạt, gồm 24 ca B06 và 12 ca C08. Sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45580508013)
+
+Lighthouse so sánh `65d6eea` với `09f2bd5` trên Linux, tổng 24 lượt gồm ba lượt mobile cho mỗi trang trên mỗi bản. Mỗi lượt dùng profile Chromium mới, có xác minh trang và không có script bên ngoài. Median Accessibility, Best Practices và SEO đều đạt 100 trên bốn trang ở cả hai bản. [JSON và báo cáo Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45580566712)
+
+| Trang | Performance trước → sau | FCP và LCP sau (ms) | TBT trước → sau (ms) | CLS sau | JavaScript trước → sau (byte) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Luyện gõ VI | 100 → 100 | 1.063 | 52 → 57 | 0,00025 | 220.217 → 224.344 |
+| Luyện gõ EN | 100 → 100 | 1.061 | 51,5 → 52 | 0,00050 | 220.217 → 224.344 |
+| Phản xạ VI | 99 → 99 | 1.061 | 107 → 106 | 0,00104 | 213.279 → 213.292 |
+| Phản xạ EN | 99 → 99 | 1.060 | 103 → 102 | 0,00135 | 213.279 → 213.292 |
+
+Ứng viên Docker trên VPS chạy cô lập và vượt qua healthcheck, restart và shutdown SIGTERM với exit 143. Release live trỏ đến `/opt/device-lab/releases/typing-drills-09f2bd5`, image `device-lab:typing-drills-09f2bd5-20261125`, ID `sha256:163aaed82d912cd3ca6835e44f311eb78378ffb3fb121e292900feeb10f06ca1`. Container healthy, chạy user `nextjs`, read-only, giới hạn 768 MiB và 256 PID. Cổng Node chỉ dùng mạng nội bộ. Nginx đổi marker và reload qua kiểm tra cấu hình. Giữ release `mouse-reaction-65d6eea` và `shared/nginx.conf.before-typing-drills-09f2bd5` để khôi phục.
+
+Origin đạt 100 trang công cụ với canonical, hreflang, CSP và Permissions Policy. Public đạt healthcheck, sitemap 122 URL và kiểm tra các header trên bốn trang B06/C08. Cả 24 lượt smoke public trả mã `09f2bd5`, xác minh danh sách 50 công cụ, hướng dẫn hai bàn tay, đủ 31 bài, gợi ý lỗi dấu và bài phản xạ năm lượt trên cả hai ngôn ngữ. Sau smoke ghi nhận 0 lỗi ứng dụng, 0 lỗi Nginx và Certbot timer active. [Luyện gõ VI](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Luyện gõ EN](https://a.ap.vn/en/keyboard/vietnamese-typing) · [Phản xạ VI](https://a.ap.vn/vi/mouse/reaction) · [Phản xạ EN](https://a.ap.vn/en/mouse/reaction)
+
 ## Phát hành Kiểm tra phản xạ nhấp chuột — 25/11/2026
 
-a.ap.vn đang phục vụ commit `65d6eea64bd5fad163b87ff9d5d800d3d2dd65f7` với 50 công cụ VI/EN. C08 cung cấp bài phản xạ năm lượt hợp lệ, đếm nhấp sớm, tạm dừng khi mất focus và xử lý dữ liệu trong trang. Archive Git có SHA256 `6344feebc605c31d38e86da8dd101fc1381da28a85177bc399dc90f902f45759`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/65d6eea64bd5fad163b87ff9d5d800d3d2dd65f7)
+a.ap.vn đã phục vụ commit `65d6eea64bd5fad163b87ff9d5d800d3d2dd65f7` trước khi phát hành bản 31 bài luyện gõ. C08 cung cấp bài phản xạ năm lượt hợp lệ, đếm nhấp sớm, tạm dừng khi mất focus và xử lý dữ liệu trong trang. Archive Git có SHA256 `6344feebc605c31d38e86da8dd101fc1381da28a85177bc399dc90f902f45759`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/65d6eea64bd5fad163b87ff9d5d800d3d2dd65f7)
 
 CI Linux trên đúng commit đạt typecheck, lint, quét secret, 583 unit test, build 128 trang, 542 E2E và Docker smoke. Sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. C08 đạt 12/12 trên Chromium, Firefox, WebKit và Chromium mobile. Đã kiểm tra đủ năm lượt, nhấp sớm và giữ nút qua tín hiệu, tạm dừng, trung vị, bố cục 320 px với chữ 200% và axe sáng/tối. Kiểm thử thời gian sử dụng đồng hồ mô phỏng của Playwright. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45564171370)
 
@@ -13,7 +32,7 @@ Lighthouse mobile đo trước chuyển với 12 lượt Chromium sạch, ba lư
 | VI | 99 | 100 | 1.061 ms | 110 ms | 0,00104 |
 | EN | 99 | 100 | 1.060 ms | 107 ms | 0,00135 |
 
-Ứng viên Docker trên VPS chạy cô lập và đạt health, restart và shutdown SIGTERM exit 143. Release live trỏ tới `/opt/device-lab/releases/mouse-reaction-65d6eea`, image `device-lab:mouse-reaction-65d6eea-20261125`, ID `sha256:d220f1e2228f6899ba6fac233369047f3e4f35bd5c3da42969df85ae94d456e7`. Bản hiện tại chạy healthy, non-root, read-only và Node chỉ dùng mạng nội bộ. Giữ release `typing-course-844cf4c` và `shared/nginx.conf.before-mouse-reaction-65d6eea` để khôi phục. Nginx kiểm tra cú pháp và reload thành công.
+Ứng viên Docker trên VPS chạy cô lập và đạt health, restart và shutdown SIGTERM exit 143. Khi chuyển, release trỏ tới `/opt/device-lab/releases/mouse-reaction-65d6eea`, image `device-lab:mouse-reaction-65d6eea-20261125`, ID `sha256:d220f1e2228f6899ba6fac233369047f3e4f35bd5c3da42969df85ae94d456e7`. Container healthy, non-root, read-only và Node chỉ dùng mạng nội bộ. Giữ release `typing-course-844cf4c` và `shared/nginx.conf.before-mouse-reaction-65d6eea` để khôi phục. Nginx kiểm tra cú pháp và reload thành công.
 
 Origin xác minh 100 trang công cụ VI/EN, gồm 98 trang trước đó. Public xác minh health, sitemap 122 URL, CSP và Permissions Policy trên C08. 24/24 lượt smoke public đạt và trả đúng mã release, gồm danh mục 50 công cụ và luồng phản xạ VI/EN trên bốn cấu hình trình duyệt. Snapshot sau smoke có 0 lỗi ứng dụng, 0 lỗi Nginx và Certbot timer active. [Trang VI](https://a.ap.vn/vi/mouse/reaction) · [Trang EN](https://a.ap.vn/en/mouse/reaction)
 

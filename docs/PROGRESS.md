@@ -1,8 +1,18 @@
 # Tiến độ Device Lab
 
+## Đã phát hành 31 bài luyện gõ và hướng dẫn hai bàn tay — 25/11/2026
+
+Bản `09f2bd5` đã tích hợp vào `main` và chạy trên a.ap.vn. B06 có 18 bài văn bản, sáu bài theo hàng phím và bảy bài luyện lỗi dấu. Sơ đồ QWERTY và hai bàn tay chỉ phím, ngón gõ và ngón giữ Shift. Sau lượt gõ, trang có thể gợi ý bài luyện theo lỗi dấu trong phiên. Danh mục giữ đủ 50 công cụ, gồm C08 với năm lượt phản xạ nhấp chuột. [Luyện gõ VI](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Luyện gõ EN](https://a.ap.vn/en/keyboard/vietnamese-typing) · [Phản xạ chuột](https://a.ap.vn/vi/mouse/reaction)
+
+Các thay đổi chính nằm ở `src/features/typing/`, `src/lib/typing/`, `src/messages/{vi,en}.json` và các test luyện gõ. `pnpm typecheck`, `pnpm lint`, `pnpm build` và 20 unit test liên quan đều đạt trên bản ghép. Build tạo 128 trang. Playwright local đạt 36/36 E2E cho B06 và C08 trên Chromium, Firefox, WebKit và Chromium mobile. Smoke HTTP local đạt healthcheck và 56 route. Worktree phản xạ cũ được chuyển ra cạnh repository vì TypeScript quét test trong thư mục đó khi build `main`.
+
+GitHub Actions đạt typecheck, lint, quét secret, 585 unit test, build và Docker smoke. Bộ E2E toàn site hoàn tất sau khi chuyển, với 546 ca đạt và sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. Lighthouse mobile giữ median Performance 100 cho B06 và 99 cho C08 ở cả VI và EN, từ 24 lượt đo trên hai commit. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45580508013) · [Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45580566712)
+
+Sau chuyển, origin xác minh đủ 100 trang công cụ VI/EN và website đạt 24/24 lượt kiểm tra trình duyệt. Docker healthy, healthcheck và sitemap 122 URL đạt, chưa ghi nhận lỗi ứng dụng hoặc Nginx tại thời điểm kiểm tra. Đợt tích hợp kiểm tra EVKey bằng mô phỏng trong trình duyệt. [Chi tiết triển khai](DEPLOYMENT.md)
+
 ## Đã phát hành Kiểm tra phản xạ nhấp chuột — 25/11/2026
 
-Bản `65d6eea` đang chạy trên a.ap.vn. C08 mở bài năm lượt hợp lệ, đo phản xạ theo ms, hiển thị trung vị, lượt nhanh nhất, từng lượt và số lần nhấp sớm. Đã xác minh 50 công cụ với 100 route công cụ VI/EN. [Mở VI](https://a.ap.vn/vi/mouse/reaction) · [Mở EN](https://a.ap.vn/en/mouse/reaction)
+Bản `65d6eea` đã đưa C08 lên a.ap.vn. C08 mở bài năm lượt hợp lệ, đo phản xạ theo ms, hiển thị trung vị, lượt nhanh nhất, từng lượt và số lần nhấp sớm. Đã xác minh 50 công cụ với 100 route công cụ VI/EN. [Mở VI](https://a.ap.vn/vi/mouse/reaction) · [Mở EN](https://a.ap.vn/en/mouse/reaction)
 
 CI Linux đạt typecheck, lint, quét secret, 583 unit test, build 128 trang và Docker smoke. E2E có 542 bài đạt, gồm 12/12 ca C08. Sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. Sau khi chuyển, 24/24 lượt smoke public đạt, gồm bài năm lượt và chơi lại trên cả hai ngôn ngữ. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45564171370)
 
