@@ -58,7 +58,7 @@ jobs:
           assert source.count(go) >= 1
           source = source.replace(go, "  if (process.env.CAMERA_DIAGNOSTIC_VARIANT === 'candidate-tall-viewport')\n    await page.setViewportSize({ width: 1280, height: 1100 });\n" + go, 1)
           assertion = "  await expect(page.locator('.status')).toHaveAttribute('data-state', 'running');"
-          assert source.count(assertion) == 1
+          assert source.count(assertion) >= 1
           source = source.replace(assertion, """  try {
               await expect(page.locator('.status')).toHaveAttribute('data-state', 'running');
             } finally {
@@ -73,7 +73,7 @@ jobs:
                   tracks: window.__cameraProbe.tracks.map((track) => track.readyState),
                 };
               })));
-            }""")
+            }""", 1)
           file.write_text(source, encoding='utf-8')
           PY
           pnpm exec playwright test --project webkit tests/e2e/milestone5.spec.ts --grep 'native virtual camera' --workers=1 --repeat-each=2
