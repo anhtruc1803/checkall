@@ -76,7 +76,7 @@ jobs:
             }""", 1)
           file.write_text(source, encoding='utf-8')
           PY
-          pnpm exec playwright test --project webkit tests/e2e/milestone5.spec.ts --grep 'native virtual camera' --workers=1 --repeat-each=2
+          pnpm exec playwright test tests/e2e/milestone5.spec.ts --project=webkit --grep 'native virtual camera' --workers=1 --repeat-each=2
       - uses: actions/upload-artifact@v4
         if: always()
         with:
