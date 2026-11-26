@@ -1,5 +1,15 @@
 # Tiến độ Device Lab
 
+## Đã phát hành 52 công cụ — 26/11/2026
+
+a.ap.vn đã chuyển sang `5e2d205`, gồm giao diện dễ đọc hơn, Tạo mã QR, Nén và đổi kích thước ảnh và chế độ Thi gõ tiếng Việt có bảng xếp hạng tại máy. Origin xác minh đủ 52 công cụ và 104 trang VI/EN. [Tạo mã QR](https://a.ap.vn/vi/utilities/qr-code) · [Xử lý ảnh](https://a.ap.vn/vi/utilities/image-resizer) · [Thi gõ](https://a.ap.vn/vi/keyboard/vietnamese-typing?challenge=morning-v1)
+
+Hai lượt CI đầu phát hiện camera ảo WebKit bị kẹt ở bước chuẩn bị. Đối chiếu trên Linux cho thấy vùng video của bản mới nằm dưới khung nhìn 720 px và WebKit chưa có khung hình, dù track đã hoạt động. `src/features/camera/camera.tsx` đưa vùng video vào tầm nhìn khi người dùng bấm Bắt đầu và video nằm hoàn toàn phía dưới khung nhìn. Bản sửa đạt 2/2 lượt đối chiếu với kích thước ban đầu. [Chẩn đoán Linux](https://github.com/anhtruc1803/checkall/actions/runs/45756180085) · [Kiểm tra bản sửa](https://github.com/anhtruc1803/checkall/actions/runs/45756487260)
+
+Trước khi chuyển, CI Linux đạt typecheck, lint, quét secret, 589 unit test, build 132 trang, 574 E2E và Docker smoke. Sáu ca kiểm tra native Permissions Policy được bỏ qua theo khả năng Firefox/WebKit. Lighthouse đo 60 lượt sạch trên commit phát hành, median 99–100 ở 12 trang, bốn trang QR và xử lý ảnh đều đạt 99. [CI](https://github.com/anhtruc1803/checkall/actions/runs/45756396732) · [Đo so sánh](https://github.com/anhtruc1803/checkall/actions/runs/45756556846) · [Đo tiện ích mới](https://github.com/anhtruc1803/checkall/actions/runs/45756556881)
+
+Sau khi chuyển, kiểm thử trực tiếp trên a.ap.vn đạt 24/24 ca cho QR, xử lý ảnh và Thi gõ trên Chromium, Firefox, WebKit và Chromium mobile. Container healthy, Node chỉ có cổng nội bộ, log Nginx và ứng dụng ghi nhận 0 lỗi trong lượt kiểm tra. Camera đã được xác minh bằng thiết bị ảo trên CI. Việc kiểm tra camera vật lý trên Safari chưa nằm trong phạm vi đợt này. [Chi tiết triển khai](DEPLOYMENT.md)
+
 ## Tạo mã QR và xử lý ảnh — bản local để duyệt, 26/11/2026
 
 Thêm hai tiện ích U09 và U10 vào nhóm **QR và hình ảnh** trong danh mục VI/EN. Bản local có đủ 50 công cụ trước đó, hai tiện ích mới và chế độ thi gõ trong B06. Đã xác minh 52 công cụ với 104 trang VI/EN và sitemap 126 URL.

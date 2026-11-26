@@ -1,8 +1,40 @@
 # Triển khai và vận hành
 
+## Phát hành 52 công cụ và Thi gõ tiếng Việt — 26/11/2026
+
+a.ap.vn phục vụ commit `5e2d20543b7b71fd22532b9a41625e26d9ae6799` từ `main`. Bản này gồm U09 Tạo mã QR, U10 Nén và đổi kích thước ảnh, B06 Thi gõ 60 giây có thứ hạng theo đề, lưu theo thao tác và tải ảnh kết quả, cùng lần chỉnh cỡ chữ và menu. Archive từ Git có SHA256 `2d77a1383df160e4bcc258a6ab68a59bd68878f8a6b5bd78a8683ce9e887483d`. [Commit phát hành](https://github.com/anhtruc1803/checkall/commit/5e2d20543b7b71fd22532b9a41625e26d9ae6799)
+
+CI Linux trên đúng commit đạt 589 unit test trên 47 file, build 132 trang, 574 E2E và Docker smoke. Các ca gồm 16 QR và xử lý ảnh, 8 thi gõ, 28 luyện gõ và 12 phản xạ chuột trên Chromium, Firefox, WebKit và Chromium mobile. Sáu ca native Permissions Policy được bỏ qua theo khả năng Firefox/WebKit. [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/45756396732)
+
+Hai lượt CI trên `df2dad0` dừng ở cùng ca camera ảo WebKit. Đối chiếu tại khung nhìn 720 px cho thấy video bắt đầu tại y=697 px ở bản cũ và y=723 px ở bản mới. Trong ca lỗi, track đã hoạt động và được gắn vào video nhưng `readyState` vẫn bằng 0. Bản `df2dad0` đạt 2/2 lượt khi video nằm trong khung nhìn cao 1.100 px. Commit `5e2d205` đưa vùng video đang ở ngoài khung nhìn vào màn hình khi bấm Bắt đầu. Ở cùng khung 720 px, video bắt đầu tại y=360 px, `readyState` bằng 3 và đạt 2/2 lượt kiểm tra riêng trước khi CI toàn bộ đạt. [Đối chiếu WebKit](https://github.com/anhtruc1803/checkall/actions/runs/45756180085) · [Chạy lại trên bản sửa](https://github.com/anhtruc1803/checkall/actions/runs/45756487260)
+
+Trước khi chuyển website, Lighthouse mobile đo 60 mẫu hợp lệ trên Linux. Có tám trang đo trên cả `09f2bd5` và `5e2d205`, thêm bốn trang mới trên `5e2d205`. Mỗi trang trên mỗi bản có ba mẫu với profile Chromium mới. Median Accessibility, Best Practices và SEO đạt 100 trên 12 trang bản phát hành. [So sánh hai bản](https://github.com/anhtruc1803/checkall/actions/runs/45756556846) · [Báo cáo tiện ích mới](https://github.com/anhtruc1803/checkall/actions/runs/45756556881)
+
+| Trang | Performance VI trước → sau | Performance EN trước → sau |
+| --- | ---: | ---: |
+| Trang chủ | 100 → 99 | 100 → 100 |
+| Tiện ích | 100 → 100 | 100 → 100 |
+| Tốc độ gõ tiếng Việt | 100 → 100 | 100 → 100 |
+| Webcam Preview | 99 → 99 | 99 → 99 |
+
+| Trang mới | Performance | FCP và LCP (ms) | TBT (ms) | CLS | JavaScript (byte) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Tạo mã QR VI | 99 | 1.063 | 128 | 0,00047 | 212.803 |
+| Tạo mã QR EN | 99 | 1.063 | 110 | 0,00086 | 212.803 |
+| Xử lý ảnh VI | 99 | 1.062 | 111 | 0,00047 | 213.848 |
+| Xử lý ảnh EN | 99 | 1.061 | 102 | 0,02005 | 213.848 |
+
+Ứng viên Docker chạy cô lập, vượt qua healthcheck, restart và shutdown SIGTERM với exit 143. Sau chuyển, `/opt/device-lab/current` trỏ đến `releases/media-tools-5e2d205`, image `device-lab:media-tools-5e2d205-20261126`, ID `sha256:95cb6ed81d37bfaae802b9a003c6df848a30fab88d2f0e36ea90a6c0be530fd1`. Container healthy và dùng cổng Node nội bộ. Nginx kiểm tra cấu hình và reload marker `5e2d205`. Giữ release `typing-drills-09f2bd5` và `shared/nginx.conf.before-media-tools-5e2d205` để khôi phục.
+
+Origin đã xác minh đủ 104 trang công cụ VI/EN, canonical, hreflang, CSP và Permissions Policy. Public xác minh healthcheck, sitemap 126 URL, danh mục 52 công cụ và mã release trên 12 trang đại diện. [QR VI](https://a.ap.vn/vi/utilities/qr-code) · [QR EN](https://a.ap.vn/en/utilities/qr-code) · [Xử lý ảnh VI](https://a.ap.vn/vi/utilities/image-resizer) · [Xử lý ảnh EN](https://a.ap.vn/en/utilities/image-resizer) · [Thi gõ VI](https://a.ap.vn/vi/keyboard/vietnamese-typing?challenge=morning-v1) · [Thi gõ EN](https://a.ap.vn/en/keyboard/vietnamese-typing?challenge=morning-v1)
+
+Playwright chạy trực tiếp trên a.ap.vn với Chromium, Firefox, WebKit và Chromium mobile, đạt 24/24 ca trong 119 giây. Bộ kiểm thử giải mã độc lập ảnh QR tải về, kiểm tra đổi kích thước giữ tỷ lệ và số byte thực, xuất PNG/JPEG và khả năng WebP. Ca Thi gõ xác minh lượt 60 giây, lưu theo thao tác, xếp hạng theo đề và tải hai định dạng ảnh kết quả. Các ca giao diện kiểm tra reflow và axe trong cả hai theme. WebKit dùng Playwright. Camera ảo được kiểm tra trên CI và camera vật lý trên Safari chưa được kiểm tra trong đợt này.
+
+Kiểm tra VPS sau lượt E2E xác nhận container healthy, user `nextjs`, filesystem chỉ đọc, giới hạn 768 MiB và 256 tiến trình, không có cổng Node public và không ghi nhận OOM. Nginx kiểm tra cấu hình thành công, log Nginx và ứng dụng ghi nhận 0 lỗi trong lượt kiểm tra, timer Certbot đang hoạt động.
+
 ## Phát hành 31 bài luyện gõ và hướng dẫn hai bàn tay — 25/11/2026
 
-a.ap.vn đang phục vụ commit `09f2bd546ea686bc187c2e0d06bc8a7005c14190` từ `main`, với 50 công cụ VI/EN. Archive Git có SHA256 `67147639ed06f20d91c06dd3f0c8c108f965a96be8722ec9eb8b0913e82559e0`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/09f2bd546ea686bc187c2e0d06bc8a7005c14190)
+a.ap.vn đã phục vụ commit `09f2bd546ea686bc187c2e0d06bc8a7005c14190` với 50 công cụ VI/EN trước đợt phát hành 52 công cụ. Archive Git có SHA256 `67147639ed06f20d91c06dd3f0c8c108f965a96be8722ec9eb8b0913e82559e0`. [Commit ứng dụng](https://github.com/anhtruc1803/checkall/commit/09f2bd546ea686bc187c2e0d06bc8a7005c14190)
 
 Bản ghép tạo 128 trang, đạt 36/36 E2E local cho hai công cụ trên Chromium, Firefox, WebKit và Chromium mobile. Test xác minh đủ 31 bài, ngón gõ, khuyến nghị lỗi dấu, lịch sử lưu theo thao tác, mô phỏng bộ gõ, nhấp sớm, trung vị và tạm dừng. Kiểm tra accessibility dùng axe ở hai theme và reflow ở viewport 320 px với chữ 200%. Trước lúc chuyển, CI Linux đạt typecheck, lint, quét secret, 585 unit test trên 45 file, build và Docker smoke. Bộ E2E toàn site hoàn tất sau khi chuyển với 546 ca đạt, gồm 24 ca B06 và 12 ca C08. Sáu ca native Permissions Policy được bỏ qua theo khả năng của Firefox/WebKit. [CI Linux](https://github.com/anhtruc1803/checkall/actions/runs/45580508013)
 
