@@ -28,7 +28,14 @@ export default function Camera({ toolId }: { toolId: string }) {
         <Button
           disabled={active || snapshot.pending}
           onClick={() => {
-            if (video.current) void session.start(video.current);
+            const preview = video.current;
+            if (!preview) return;
+            const height = window.innerHeight;
+            const top = preview.getBoundingClientRect().top;
+            if (top >= height) {
+              window.scrollBy({ top: top - height / 2, behavior: 'instant' });
+            }
+            void session.start(preview);
           }}
         >
           {common('start')}
