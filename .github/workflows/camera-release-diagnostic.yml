@@ -1,0 +1,86 @@
+name: Chẩn đoán Webcam Preview trên WebKit
+on:
+  push:
+    branches: ['codex/media-camera-qa']
+permissions:
+  contents: read
+jobs:
+  camera:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.1-noble@sha256:2f05f8a734509a7b3f26a912639488ee08f58a7b292d14d62271bcff9038768f
+      options: --init --ipc=host
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - variant: baseline
+            ref: 09f2bd546ea686bc187c2e0d06bc8a7005c14190
+          - variant: candidate
+            ref: df2dad06b4ae106fa22eecc546afba9c9f1d6f41
+          - variant: candidate-tall-viewport
+            ref: df2dad06b4ae106fa22eecc546afba9c9f1d6f41
+    env:
+      HOME: /root
+      HOSTNAME: 127.0.0.1
+      PORT: 3000
+      CAMERA_DIAGNOSTIC_VARIANT: ${{ matrix.variant }}
+      PULSE_SERVER: unix:/tmp/device-lab-pulse/pulse/native
+      PULSE_COOKIE: /home/pwuser/.config/pulse/cookie
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.ref }}
+          persist-credentials: false
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable && corepack prepare pnpm@11.25.0 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Chuẩn bị môi trường media giống CI
+        run: |
+          apt-get update
+          apt-get install --no-install-recommends -y pulseaudio pulseaudio-utils
+          install -d -m 700 -o pwuser -g pwuser /tmp/device-lab-pulse
+          runuser -u pwuser -- env -u PULSE_SERVER -u PULSE_COOKIE HOME=/home/pwuser XDG_RUNTIME_DIR=/tmp/device-lab-pulse pulseaudio --start --exit-idle-time=-1
+          pactl load-module module-null-sink sink_name=device_lab_qa rate=48000 channels=2 channel_map=front-left,front-right
+          pactl set-default-sink device_lab_qa
+      - run: pnpm build
+      - name: So sánh trạng thái media và vị trí video
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          file = Path('tests/e2e/milestone5.spec.ts')
+          source = file.read_text(encoding='utf-8')
+          go = "  await page.goto('/en');\n  await nativeCamera(page);"
+          assert source.count(go) >= 1
+          source = source.replace(go, "  if (process.env.CAMERA_DIAGNOSTIC_VARIANT === 'candidate-tall-viewport')\n    await page.setViewportSize({ width: 1280, height: 1100 });\n" + go, 1)
+          assertion = "  await expect(page.locator('.status')).toHaveAttribute('data-state', 'running');"
+          assert source.count(assertion) == 1
+          source = source.replace(assertion, """  try {
+              await expect(page.locator('.status')).toHaveAttribute('data-state', 'running');
+            } finally {
+              console.log('CAMERA_STATE', JSON.stringify(await page.evaluate(() => {
+                const video = document.querySelector('video')!;
+                const bounds = video.getBoundingClientRect();
+                return {
+                  path: location.pathname, viewportHeight: innerHeight, scrollY,
+                  videoTop: bounds.top, videoBottom: bounds.bottom, paused: video.paused,
+                  ready: video.readyState, attached: !!video.srcObject,
+                  calls: window.__cameraProbe.calls,
+                  tracks: window.__cameraProbe.tracks.map((track) => track.readyState),
+                };
+              })));
+            }""")
+          file.write_text(source, encoding='utf-8')
+          PY
+          pnpm exec playwright test --project webkit tests/e2e/milestone5.spec.ts --grep 'native virtual camera' --workers=1 --repeat-each=2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: camera-${{ matrix.variant }}
+          path: |
+            artifacts/playwright/
+            test-results/

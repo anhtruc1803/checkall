@@ -1,6 +1,7 @@
 name: Kiểm tra và đóng gói
 on:
   push:
+    branches-ignore: ['codex/media-camera-qa']
   pull_request:
 permissions:
   contents: read
