@@ -111,11 +111,11 @@ it('does not store or upload numeric input, even when history opt-in exists, and
 it('filters the two registry groups while retaining access to all original 40 tools', async () => {
   mount(<Catalog index={getToolSearchIndex('en')} />);
   await waitFor(() =>
-    expect(screen.getByRole('button', { name: 'Everyday utilities 8' })).toBeEnabled(),
+    expect(screen.getByRole('button', { name: 'Everyday utilities 10' })).toBeEnabled(),
   );
-  expect(document.querySelectorAll('.catalog-item')).toHaveLength(50);
-  fireEvent.click(screen.getByRole('button', { name: 'Everyday utilities 8' }));
-  expect(document.querySelectorAll('.catalog-item')).toHaveLength(8);
+  expect(document.querySelectorAll('.catalog-item')).toHaveLength(52);
+  fireEvent.click(screen.getByRole('button', { name: 'Everyday utilities 10' }));
+  expect(document.querySelectorAll('.catalog-item')).toHaveLength(10);
   fireEvent.click(screen.getByRole('button', { name: 'Device tests 42' }));
   expect(document.querySelectorAll('.catalog-item')).toHaveLength(42);
   expect(screen.getByRole('link', { name: /Vietnamese typing speed/ })).toBeInTheDocument();

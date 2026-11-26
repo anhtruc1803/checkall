@@ -21,7 +21,7 @@
 .intro > p {
   max-width: 52ch;
   margin-top: 12px;
-  font-size: 0.94rem;
+  font-size: var(--text-body);
 }
 .search {
   margin-top: 24px;
@@ -29,7 +29,7 @@
 .search label {
   display: block;
   margin-bottom: 7px;
-  font-size: 0.9rem;
+  font-size: var(--text-control);
   font-weight: 600;
 }
 .searchBox {
@@ -104,6 +104,7 @@
 }
 .results a small {
   grid-column: 1;
+  font-size: var(--text-small);
   color: var(--color-muted);
 }
 .results a svg {
@@ -113,7 +114,7 @@
 }
 .noResults {
   padding: 6px 0;
-  font-size: 0.88rem;
+  font-size: var(--text-small);
 }
 .catalogLink {
   min-height: 44px;

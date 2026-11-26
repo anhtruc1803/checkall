@@ -1,6 +1,14 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState, type SyntheticEvent } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type SyntheticEvent,
+} from 'react';
 import { useFormatter, useTranslations } from 'next-intl';
 import {
   AlignLeft,
@@ -16,13 +24,15 @@ import {
   SpellCheck,
   Sprout,
   Timer,
+  Trophy,
 } from 'lucide-react';
-import { Metric } from '@/components/tools/measurement-ui';
+import { CopyButton, Metric } from '@/components/tools/measurement-ui';
 import { Button } from '@/components/ui/button';
 import { useHydrated } from '@/hooks/use-hydrated';
 import { usePreference } from '@/hooks/use-preference';
 import { saveSummary, writePreference } from '@/lib/storage/preferences';
 import { accentTopics, mostFrequentAccent, type AccentCounts } from '@/lib/typing/accents';
+import { typingChallengeIds, type TypingChallengeId } from '@/lib/typing/competition';
 import { typingDifficulties, type TypingDifficulty } from '@/lib/typing/difficulty';
 import {
   practiceGroups,
@@ -35,15 +45,38 @@ import {
   type TypingLesson,
 } from '@/lib/typing/lessons';
 import { scoreTyping, typingCharacters, typingErrorTypes } from '@/lib/typing/score';
+import { TypingCompetition } from './typing-competition';
 import { TypingGuide } from './typing-guide';
 import { TypingHistory } from './typing-history';
+import competitionStyles from './competition.module.css';
 import styles from './typing.module.css';
 
-type Mode = 'timed' | 'practice';
+type Mode = 'timed' | 'practice' | 'competition';
 type CharacterState = 'correct' | 'different' | 'next' | 'pending';
+type TypingResult = ReturnType<typeof scoreTyping> & { time: string };
 
 const levelIcons = { easy: Sprout, medium: Gauge, hard: Flame };
 const groupIcons = { rows: Rows3, text: NotebookPen, accents: SpellCheck };
+const modeIcons = { timed: Timer, practice: NotebookPen, competition: Trophy };
+// The versioned challenge IDs identify the exact passage used for ranking and shared links.
+const challengePassages = {
+  'morning-v1': timedPassages.medium,
+  'riverside-v1': timedPassages.hard,
+};
+
+function subscribeToChallengeLink(callback: () => void) {
+  window.addEventListener('popstate', callback);
+  return () => window.removeEventListener('popstate', callback);
+}
+
+function challengeFromUrl() {
+  const value = new URLSearchParams(window.location.search).get('challenge');
+  return typingChallengeIds.find((challenge) => challenge === value) ?? null;
+}
+
+function noLinkedChallenge() {
+  return null;
+}
 
 function newSession() {
   return { start: null as number | null, committed: '', composing: false, finishedAt: '' };
@@ -68,31 +101,52 @@ function promptRuns(expected: string[], entered: string[], finished: boolean) {
 }
 
 export default function VietnameseTyping() {
+  const linkedChallenge = useSyncExternalStore(
+    subscribeToChallengeLink,
+    challengeFromUrl,
+    noLinkedChallenge,
+  );
+  return <TypingSession key={linkedChallenge ?? 'default'} linkedChallenge={linkedChallenge} />;
+}
+
+function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId | null }) {
   const t = useTranslations('typing');
   const common = useTranslations();
   const format = useFormatter();
   const ready = useHydrated();
   const saveEnabled = usePreference('save', false);
-  const [mode, setMode] = useState<Mode>('timed');
+  const [modeOverride, setMode] = useState<Mode | null>(null);
+  const mode = modeOverride ?? (linkedChallenge ? 'competition' : 'timed');
+  const isTimed = mode !== 'practice';
+  const [challengeOverride, setChallenge] = useState<TypingChallengeId | null>(null);
+  const challenge = challengeOverride ?? linkedChallenge ?? typingChallengeIds[0];
   const [lesson, setLesson] = useState<TypingLesson>('homeRow');
   const [timedLevel, setTimedLevel] = useState<TypingDifficulty>('medium');
   const [text, setText] = useState('');
   const [started, setStarted] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [result, setResult] = useState<ReturnType<typeof scoreTyping> | null>(null);
+  const [result, setResult] = useState<TypingResult | null>(null);
   const [blocked, setBlocked] = useState(false);
   const [saved, setSaved] = useState(false);
   const [saveMessage, setSaveMessage] = useState<'saved' | 'storageError' | ''>('');
   const [accentTotals, setAccentTotals] = useState<AccentCounts>({});
   const input = useRef<HTMLTextAreaElement>(null);
   const promptArea = useRef<HTMLDivElement>(null);
-  const guide = useRef<HTMLDetailsElement>(null);
   const session = useRef(newSession());
   const selected: PracticeLesson = practiceLessons[lesson];
   const practiceRow = mode === 'practice' && selected.group === 'rows' ? selected.row : undefined;
   const difficulty =
-    mode === 'timed' ? timedLevel : selected.group === 'text' ? selected.difficulty : undefined;
-  const prompt = mode === 'timed' ? timedPassages[timedLevel] : selected.passage;
+    mode === 'timed'
+      ? timedLevel
+      : mode === 'practice' && selected.group === 'text'
+        ? selected.difficulty
+        : undefined;
+  const prompt =
+    mode === 'competition'
+      ? challengePassages[challenge]
+      : mode === 'timed'
+        ? timedPassages[timedLevel]
+        : selected.passage;
   const entered = useMemo(() => typingCharacters(text), [text]);
   const expected = useMemo(() => typingCharacters(prompt), [prompt]);
   const runs = useMemo(() => promptRuns(expected, entered, !!result), [expected, entered, result]);
@@ -100,20 +154,20 @@ export default function VietnameseTyping() {
   const nextLesson = groupLessons[groupLessons.indexOf(lesson) + 1];
   const recommendation = mostFrequentAccent(accentTotals);
   const remaining = typingDurationMs - elapsed;
-  const seconds = mode === 'timed' ? Math.ceil(remaining / 1000) : Math.floor(elapsed / 1000);
+  const seconds = isTimed ? Math.ceil(remaining / 1000) : Math.floor(elapsed / 1000);
   const timer = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 
   const finish = useCallback(
     (now: number) => {
       const current = session.current;
       if (current.start === null || current.finishedAt) return;
-      const duration = mode === 'timed' ? typingDurationMs : now - current.start;
+      const duration = isTimed ? typingDurationMs : now - current.start;
       current.finishedAt = new Date().toISOString();
       if (input.current) input.current.value = current.committed;
       setElapsed(duration);
       const score = scoreTyping(prompt, current.committed, duration);
-      setResult(score);
-      if (!practiceRow && Object.keys(score.accentErrors).length) {
+      setResult({ ...score, time: current.finishedAt });
+      if (mode !== 'competition' && !practiceRow && Object.keys(score.accentErrors).length) {
         setAccentTotals((previous) => {
           const totals = { ...previous };
           for (const topic of accentTopics) {
@@ -124,7 +178,7 @@ export default function VietnameseTyping() {
         });
       }
     },
-    [mode, practiceRow, prompt],
+    [isTimed, mode, practiceRow, prompt],
   );
 
   useEffect(() => {
@@ -134,11 +188,11 @@ export default function VietnameseTyping() {
       if (start === null || session.current.finishedAt) return;
       const now = performance.now();
       const duration = now - start;
-      if (mode === 'timed' && duration >= typingDurationMs) finish(now);
+      if (isTimed && duration >= typingDurationMs) finish(now);
       else setElapsed(duration);
     }, 125);
     return () => window.clearInterval(interval);
-  }, [mode, started, result, finish]);
+  }, [isTimed, started, result, finish]);
 
   useEffect(() => {
     const area = promptArea.current;
@@ -159,7 +213,7 @@ export default function VietnameseTyping() {
       current.start = now;
       setStarted(true);
     }
-    if (mode === 'timed' && now - current.start >= typingDurationMs) {
+    if (isTimed && now - current.start >= typingDurationMs) {
       finish(now);
       return;
     }
@@ -185,7 +239,6 @@ export default function VietnameseTyping() {
     reset();
     setMode('practice');
     setLesson(next);
-    if (guide.current) guide.current.open = practiceLessons[next].group === 'rows';
     if (focus) input.current?.focus();
   }
 
@@ -226,7 +279,7 @@ export default function VietnameseTyping() {
   }
 
   function guardPaste(event: SyntheticEvent) {
-    if (mode === 'timed') {
+    if (isTimed) {
       event.preventDefault();
       setBlocked(true);
     }
@@ -243,30 +296,56 @@ export default function VietnameseTyping() {
     >
       <div className={styles.toolbar}>
         <div className={styles.modes} role="group" aria-label={t('mode')}>
-          {(['timed', 'practice'] as const).map((option) => (
-            <Button
-              key={option}
-              variant="outline"
-              aria-pressed={mode === option}
-              onClick={() => {
-                if (option === mode) return;
-                if (option === 'practice') openLesson(lesson);
-                else {
-                  reset();
-                  setMode(option);
-                  if (guide.current) guide.current.open = false;
-                }
-              }}
-            >
-              {option === 'timed' ? (
-                <Timer aria-hidden="true" />
-              ) : (
-                <NotebookPen aria-hidden="true" />
-              )}
-              {t(option)}
-            </Button>
-          ))}
+          {(['timed', 'practice', 'competition'] as const).map((option) => {
+            const Icon = modeIcons[option];
+            return (
+              <Button
+                key={option}
+                variant="outline"
+                aria-pressed={mode === option}
+                onClick={() => {
+                  if (option === mode) return;
+                  if (option === 'practice') openLesson(lesson);
+                  else {
+                    reset();
+                    setMode(option);
+                  }
+                }}
+              >
+                <Icon aria-hidden="true" />
+                {option === 'competition' ? t('competition.mode') : t(option)}
+              </Button>
+            );
+          })}
         </div>
+        {mode === 'competition' && (
+          <div className={competitionStyles.settings}>
+            <div className={competitionStyles.field}>
+              <label htmlFor="typing-challenge">{t('competition.challenge')}</label>
+              <select
+                id="typing-challenge"
+                value={challenge}
+                onChange={(event) => {
+                  reset();
+                  setChallenge(event.target.value as TypingChallengeId);
+                }}
+              >
+                {typingChallengeIds.map((id) => (
+                  <option key={id} value={id}>
+                    {t(`competition.challenges.${id}`)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {ready && (
+              <CopyButton
+                label={t('competition.copyLink')}
+                value={`${window.location.origin}${window.location.pathname}?challenge=${challenge}`}
+              />
+            )}
+            <p>{t('competition.rules')}</p>
+          </div>
+        )}
         {mode === 'practice' && (
           <div className={styles.modes} role="group" aria-label={t('practiceGroup')}>
             {practiceGroups.map((group) => {
@@ -333,12 +412,12 @@ export default function VietnameseTyping() {
         <div className={styles.timer}>
           <span className={styles.timerLabel}>
             <Timer aria-hidden="true" />
-            {t(mode === 'timed' ? 'remaining' : 'elapsed')}
+            {t(isTimed ? 'remaining' : 'elapsed')}
           </span>
           <span className={styles.time} data-testid="typing-timer">
             {timer}
           </span>
-          {mode === 'timed' && (
+          {isTimed && (
             <progress
               className={styles.progress}
               aria-hidden="true"
@@ -403,7 +482,7 @@ export default function VietnameseTyping() {
             />
           </label>
           <p className="small" id="typing-input-help">
-            {t(mode === 'timed' ? 'timedHelp' : practiceRow ? 'rowHelp' : 'practiceHelp')}
+            {t(isTimed ? 'timedHelp' : practiceRow ? 'rowHelp' : 'practiceHelp')}
           </p>
           {blocked && (
             <p className="notice" role="status">
@@ -430,11 +509,9 @@ export default function VietnameseTyping() {
           </Button>
         </div>
       </div>
-      <TypingGuide
-        guideRef={guide}
-        row={practiceRow}
-        character={result ? undefined : expected[entered.length]}
-      />
+      <div hidden={mode === 'competition'}>
+        <TypingGuide row={practiceRow} character={result ? undefined : expected[entered.length]} />
+      </div>
       <p className="sr-only" role="status">
         {result ? t('done') : ''}
       </p>
@@ -442,7 +519,7 @@ export default function VietnameseTyping() {
         <section className={styles.results} aria-labelledby="typing-result-label">
           <h2 id="typing-result-label">{t('result')}</h2>
           <dl className={styles.metrics}>
-            {mode === 'timed' && (
+            {isTimed && (
               <>
                 <Metric label={t('cpm')} value={number(result.cpm)} />
                 <Metric label={t('wpm')} value={number(result.wpm)} />
@@ -462,7 +539,7 @@ export default function VietnameseTyping() {
             ))}
           </dl>
           <p className="small">{t('scoreNote')}</p>
-          {recommendation && !practiceRow && (
+          {mode !== 'competition' && recommendation && !practiceRow && (
             <div className={styles.recommendation}>
               <div>
                 <h3>{t('recommendation.title')}</h3>
@@ -512,7 +589,21 @@ export default function VietnameseTyping() {
           )}
         </section>
       )}
-      <TypingHistory level={timedLevel} />
+      {mode === 'competition' ? (
+        <TypingCompetition
+          key={`${challenge}:${result?.time ?? ''}`}
+          challenge={challenge}
+          score={
+            result && {
+              time: result.time,
+              correct: result.correct,
+              accuracy: result.accuracy,
+            }
+          }
+        />
+      ) : (
+        <TypingHistory level={timedLevel} />
+      )}
     </div>
   );
 }

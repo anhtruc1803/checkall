@@ -8,6 +8,7 @@ import { phase2Tools } from './phase2';
 import { utilityTools } from './utilities';
 import { textUtilityTools } from './text-utilities';
 import { conversionUtilityTools } from './conversion-utilities';
+import { mediaUtilityTools } from './media-utilities';
 import { problemShortcuts } from './problem-shortcuts';
 import { typingTool } from './typing-tool';
 import { mouseReactionTool } from './mouse-reaction-tool';
@@ -528,6 +529,7 @@ export const tools: Tool[] = [
   ...conversionUtilityTools,
   typingTool,
   mouseReactionTool,
+  ...mediaUtilityTools,
 ];
 validateToolRegistry(tools);
 export const publishedTools = getPublishedTools(tools);

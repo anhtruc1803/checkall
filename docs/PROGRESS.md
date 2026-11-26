@@ -1,5 +1,49 @@
 # Tiến độ Device Lab
 
+## Tạo mã QR và xử lý ảnh — bản local để duyệt, 26/11/2026
+
+Thêm hai tiện ích U09 và U10 vào nhóm **QR và hình ảnh** trong danh mục VI/EN. Bản local có đủ 50 công cụ trước đó, hai tiện ích mới và chế độ thi gõ trong B06. Đã xác minh 52 công cụ với 104 trang VI/EN và sitemap 126 URL.
+
+U09 nhận link hoặc văn bản tối đa 1.000 byte UTF-8 và giữ nguyên nội dung khi mã hóa. Thư viện `qr` được tải khi bấm tạo. Canvas vẽ mã đen trắng, có viền trống bốn mô-đun, rồi xuất PNG. Có xem trước và tải xuống tại chỗ. [Thư viện mã hóa QR](https://github.com/paulmillr/qr)
+
+U10 đọc một tệp JPEG, PNG hoặc WebP tối đa 20 MiB và 24 megapixel, giữ tỷ lệ khi đổi chiều rộng và giới hạn ảnh xuất 4.096 px mỗi cạnh. JPEG và WebP có điều chỉnh chất lượng. Chọn định dạng theo khả năng xuất thật của trình duyệt. JPEG tô trắng phần trong suốt, còn tệp xuất từ ảnh động là ảnh tĩnh. So sánh số byte thật của tệp gốc và tệp xuất. Canvas, xem trước và tải tệp đều chạy trong trình duyệt. [Đặc tả Canvas](https://html.spec.whatwg.org/multipage/canvas.html#dom-canvas-toblob)
+
+File chính gồm `src/features/utilities/{qr-code,image-resizer,local-image}.tsx`, `media-tools.module.css` trong cùng thư mục, `src/lib/utilities/image-resize.ts`, Registry `src/lib/tools/media-utilities.ts` và nhãn VI/EN. Ảnh kiểm thử ở `artifacts/media-utilities-review/`. Trên Chromium, ảnh thẻ kết quả mẫu 1200 × 630 px và 601,6 KiB xuất thành JPEG 640 × 336 px và 19,7 KiB ở chất lượng 80%.
+
+Build tạo 132 trang với `pnpm build`. `pnpm typecheck`, `pnpm lint` và `pnpm audit --prod --json` đạt, báo cáo audit không có lỗ hổng đã công bố. `node scripts/smoke-http.mjs http://127.0.0.1:3100` đạt healthcheck và 60 route, còn `shell.spec.ts` kiểm tra 104 trang công cụ.
+
+Unit test liên quan đạt 33/33. `pnpm exec playwright test --config artifacts/media-utilities-final-playwright.config.ts media-utilities.spec.ts typing-competition.spec.ts vietnamese-typing.spec.ts utility-catalog.spec.ts --workers=2` đạt 60/60 trên Chromium, Firefox, WebKit và Chromium mobile. Đã tạo và tải QR, xử lý và tải ảnh khi offline, giải mã PNG bằng `jsQR`, kiểm tra chữ tiếng Việt và khoảng trắng, kích thước, kênh alpha, chữ 200% ở 320 px, axe ở hai theme và hồi quy chế độ thi gõ. Cùng ảnh JPEG 640 × 336 px trên Chromium, chất lượng 80% tạo 20.190 byte và chất lượng 10% tạo 6.477 byte. [Thư viện dùng để kiểm tra giải mã](https://github.com/cozmo/jsQR)
+
+Lượt kiểm tra mạng ban đầu ghi nhận lưu lượng do Kaspersky chèn. Lượt cuối tải mã ứng dụng trước rồi ngắt mạng trong phiên Playwright để kiểm chứng xử lý và tải tệp. Ca QR chạy lại riêng đạt 4/4, xác minh URL xem trước được thu hồi khi sửa nội dung.
+
+[Tạo mã QR VI](http://127.0.0.1:3100/vi/utilities/qr-code) · [Tạo mã QR EN](http://127.0.0.1:3100/en/utilities/qr-code) · [Xử lý ảnh VI](http://127.0.0.1:3100/vi/utilities/image-resizer) · [Xử lý ảnh EN](http://127.0.0.1:3100/en/utilities/image-resizer)
+
+## Thi gõ tiếng Việt và bảng xếp hạng — bản local để duyệt, 26/11/2026
+
+Thêm chế độ thi 60 giây vào công cụ B06. Có hai đề cố định với link mở đúng đề trên VI/EN. Đồng hồ chạy từ văn bản đầu tiên đã được bộ gõ xác nhận. Trong lúc thi, người dùng có thể sửa lỗi. Ô gõ chặn dán và kéo thả. Điểm dùng bộ tính hiện có dựa trên số ký tự đúng, độ chính xác và lỗi trong văn bản cuối lượt.
+
+Xếp hạng từng lượt đã lưu cho cùng đề trong trình duyệt. Thứ tự dùng WPM trước, rồi độ chính xác làm tròn đến một chữ số thập phân. Hai lượt có cùng điểm đồng hạng. Bản tóm tắt gồm đề, biệt danh tùy nhập, thời điểm, ký tự đúng và độ chính xác. Chỉ lưu sau khi bật tùy chọn và bấm Lưu lượt thi. Giới hạn 30 bản tóm tắt dùng chung với lịch sử hiện có. Khi thi từ nhiều máy, người dự thi có thể gửi ảnh để người tổ chức tổng hợp thủ công.
+
+Tải ảnh ngay từ kết quả hoặc từ bảng xếp hạng. PNG ngang có kích thước 1200 × 630 và PNG vuông có kích thước 1080 × 1080. Hình có tên đề, biệt danh, thời điểm và điểm số. Canvas dựng PNG tại thiết bị. File chính nằm ở `src/features/typing/typing.tsx`, `typing-competition.tsx`, `competition-image.ts`, `competition.module.css`, `src/lib/typing/competition.ts`, `src/lib/storage/preferences.ts` và nhãn VI/EN.
+
+`pnpm build` tạo 128 trang. `pnpm typecheck` và `pnpm lint` đạt. Sáu nhóm unit test liên quan đạt 25/25, gồm xếp hạng, đồng hạng, kiểm tra schema và tương thích lịch sử. Smoke HTTP đạt healthcheck và 56 route, probe đầy đủ xác minh 50 công cụ cùng 100 trang VI/EN. Ảnh từ lượt kiểm thử tự động lưu tại `artifacts/typing-competition-review/`.
+
+`pnpm exec playwright test --config artifacts/typing-competition-playwright.config.ts typing-competition.spec.ts vietnamese-typing.spec.ts mouse-reaction.spec.ts --workers=2` đạt 48/48 trên Chromium, Firefox, WebKit và Chromium mobile. Ca thi gõ kiểm tra mô phỏng bộ gõ, mốc 60 giây, chặn dán, chỉ lưu theo thao tác, xếp hạng cùng đề, tải lại điểm, chữ 200% ở 320 px, axe hai theme và kích thước PNG thực tế ở cả hai khổ. [Thi gõ VI](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing?challenge=morning-v1) · [Thi gõ EN](http://127.0.0.1:3100/en/keyboard/vietnamese-typing?challenge=morning-v1)
+
+## Tinh chỉnh cỡ chữ, menu và hướng dẫn gõ — bản local để duyệt, 26/11/2026
+
+Trang Tốc độ gõ tiếng Việt mở sẵn hướng dẫn 10 ngón với sơ đồ QWERTY và hai bàn tay. Toàn bộ tiêu đề có thể bấm hoặc dùng bàn phím để thu gọn. Lựa chọn mở/đóng được giữ khi đổi bài và chế độ trong cùng trang. Đoạn mẫu và ô gõ dùng 20 px ở cỡ mặc định, phần chỉ phím và ngón kế tiếp có nền riêng để dễ đọc.
+
+Giao diện dùng chữ nội dung 17 px, nút và thanh menu 16 px, chữ phụ thường dùng 15 px ở cỡ mặc định. Cập nhật trang chủ, thẻ danh mục, gợi ý theo vấn đề, thanh điều hướng chính và Workbench. Mục hiện tại có nền xanh và chữ đậm ở hai theme. Thanh công cụ xuống hàng trên desktop khi thiếu chỗ và cuộn ngang trong vùng riêng trên mobile, có giữ mục hiện tại trong tầm nhìn. Các file chính gồm `tokens.css`, `src/app/{globals,interface}.css`, `src/components/layout/header.module.css`, `src/components/tools/workbench.css` và `src/features/typing/`.
+
+`pnpm build` tạo 128 trang, `pnpm typecheck` và `pnpm lint` đạt. `node scripts/smoke-http.mjs http://127.0.0.1:3100` đạt healthcheck và 56 route VI/EN. Probe riêng xác minh đủ 50 công cụ, 100 trang VI/EN, mục đang chọn trên từng trang và sitemap 122 URL. Đã xem bản chụp desktop và mobile, kiểm tra 9 nhóm menu với VI/EN ở hai theme.
+
+`pnpm test --maxWorkers=2` có 584/585 ca đạt. Ca Key Chatter vượt timeout 5 giây khi chạy cùng Playwright và đạt khi chạy lại riêng với `pnpm test tests/keyboard.test.tsx --maxWorkers=1 -t 'retains chatter totals beyond 200 events'`.
+
+Playwright đạt 100/100 ca trên Chromium, Firefox, WebKit và Chromium mobile với `pnpm exec playwright test --config artifacts/ui-readability-playwright.config.ts vietnamese-typing.spec.ts mouse-reaction.spec.ts interface.spec.ts workbench.spec.ts utility-catalog.spec.ts problem-chooser.spec.ts --workers=2`. Kiểm tra gồm thao tác bàn phím, reflow 320 px với chữ 200%, kiểm tra axe hai theme, đủ 31 bài và hồi quy bài phản xạ. Ảnh bản duyệt ở `artifacts/ui-readability-review/`.
+
+Bản production local đang mở để duyệt. [Trang chủ](http://127.0.0.1:3100/vi) · [Luyện gõ VI](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing) · [Luyện gõ EN](http://127.0.0.1:3100/en/keyboard/vietnamese-typing) · [Menu Bàn phím](http://127.0.0.1:3100/vi/keyboard/hold)
+
 ## Đã phát hành 31 bài luyện gõ và hướng dẫn hai bàn tay — 25/11/2026
 
 Bản `09f2bd5` đã tích hợp vào `main` và chạy trên a.ap.vn. B06 có 18 bài văn bản, sáu bài theo hàng phím và bảy bài luyện lỗi dấu. Sơ đồ QWERTY và hai bàn tay chỉ phím, ngón gõ và ngón giữ Shift. Sau lượt gõ, trang có thể gợi ý bài luyện theo lỗi dấu trong phiên. Danh mục giữ đủ 50 công cụ, gồm C08 với năm lượt phản xạ nhấp chuột. [Luyện gõ VI](https://a.ap.vn/vi/keyboard/vietnamese-typing) · [Luyện gõ EN](https://a.ap.vn/en/keyboard/vietnamese-typing) · [Phản xạ chuột](https://a.ap.vn/vi/mouse/reaction)

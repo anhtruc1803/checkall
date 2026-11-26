@@ -14,6 +14,8 @@
   --color-control-border: #637896;
   --color-accent: #8ab4ff;
   --color-accent-bg: #192f50;
+  --color-nav-active: var(--color-accent);
+  --color-nav-active-ink: var(--color-bg);
   --color-primary: #2b60d8;
   --color-violet: #c4adff;
   --color-teal: #74d9c4;
@@ -43,8 +45,9 @@
   --space-3xl: 72px;
   --text-display: clamp(2.2rem, 4.3vw, 3.8rem);
   --text-title: clamp(1.8rem, 3vw, 2.6rem);
-  --text-body: 1rem;
-  --text-small: 0.875rem;
+  --text-body: 1.0625rem;
+  --text-control: 1rem;
+  --text-small: 0.9375rem;
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -82,6 +85,8 @@
   --color-rule: oklch(85% 0.018 255);
   --color-accent: oklch(47% 0.18 258);
   --color-accent-bg: oklch(94% 0.025 255);
+  --color-nav-active: var(--color-accent);
+  --color-nav-active-ink: var(--color-surface);
   --color-success: oklch(40% 0.11 155);
   --color-warning: oklch(44% 0.09 70);
   --color-danger: oklch(47% 0.17 25);

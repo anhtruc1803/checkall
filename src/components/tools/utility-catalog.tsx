@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { ArrowLeftRight, Calculator, LayoutGrid, TextCursorInput } from 'lucide-react';
+import { ArrowLeftRight, Calculator, Image, LayoutGrid, TextCursorInput } from 'lucide-react';
 import type { Locale } from '@/lib/i18n/routing';
 import { utilitySectionOrder, type UtilitySection } from '@/lib/tools/groups';
 import { searchToolIndex, type ToolSearchEntry } from '@/lib/tools/search';
@@ -19,6 +19,7 @@ const sectionIcons = {
   numbers: Calculator,
   text: TextCursorInput,
   conversion: ArrowLeftRight,
+  media: Image,
   other: LayoutGrid,
 };
 

@@ -26,8 +26,8 @@
   margin-top: 1px;
   color: var(--color-muted);
   font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.13em;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   font-weight: 400;
 }
 .header-actions .button {
@@ -318,7 +318,7 @@ select,
   align-items: center;
   gap: 9px;
   color: var(--color-muted);
-  font: 0.75rem var(--font-mono);
+  font: var(--text-small) var(--font-mono);
 }
 .catalog-toolbar {
   display: flex;
@@ -357,7 +357,7 @@ select,
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: var(--text-small);
   color: var(--color-muted);
 }
 .filters {
@@ -371,9 +371,13 @@ select,
   gap: 8px;
   border: 1px solid var(--color-rule);
   min-height: 44px;
+  max-width: 100%;
   padding: 9px 13px;
   background: var(--color-surface);
-  font-size: 0.8rem;
+  font-size: var(--text-control);
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
   transition: border-color var(--dur-fast);
 }
 .filter:hover {
@@ -381,15 +385,17 @@ select,
 }
 .filter[aria-pressed='true'] {
   border-color: var(--color-accent);
+  font-weight: 650;
 }
 .filter-count {
+  flex-shrink: 0;
   border-radius: 5px;
   padding-inline: 5px;
   background: var(--color-raised);
-  font: 0.65rem/1.6 var(--font-mono);
+  font: 0.75rem/1.6 var(--font-mono);
 }
 .catalog-result-count {
-  font: 0.7rem var(--font-mono);
+  font-size: var(--text-small);
   margin-block: 0 14px;
   color: var(--color-muted);
 }
@@ -423,11 +429,11 @@ select,
   min-width: 0;
 }
 .catalog-item h3 {
-  font-size: 0.85rem;
+  font-size: 1.125rem;
 }
 .catalog-item p {
   line-height: 1.5;
-  font-size: 0.7rem;
+  font-size: var(--text-small);
 }
 .guide {
   gap: 24px;
@@ -673,7 +679,6 @@ select,
   .category-shortcut {
     padding: 8px;
     gap: 8px;
-    font-size: 0.7rem;
   }
   .category-count {
     font-size: 0.6rem;
@@ -704,7 +709,7 @@ select,
     font-size: 1rem;
   }
   .featured-grid .tool-card > p {
-    font-size: 0.8rem;
+    font-size: var(--text-small);
   }
   .featured-grid .card-bottom {
     grid-row: auto;
@@ -725,7 +730,6 @@ select,
     gap: 8px;
   }
   .filter {
-    font-size: 0.75rem;
     padding: 8px 10px;
     gap: 6px;
   }
@@ -936,6 +940,9 @@ select,
   background: var(--color-surface);
   border: 1px solid var(--color-rule);
   padding: 18px 8px 14px;
+  font-size: var(--text-control);
+  line-height: 1.35;
+  font-weight: 600;
   overflow-wrap: anywhere;
 }
 .category-shortcut:hover,
@@ -1010,7 +1017,7 @@ select,
 }
 .home-device-summary .device-local-note {
   margin-top: 20px;
-  font-size: 0.7rem;
+  font-size: var(--text-small);
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .category-art {

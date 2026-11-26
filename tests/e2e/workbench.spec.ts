@@ -10,7 +10,7 @@ test('workbench category navigation keeps the selected tool and resets private u
     const m = locale === 'vi' ? vi : en;
     await page.goto(`/${locale}/utilities/unit-converter`);
     const navigation = page.getByRole('navigation', { name: m.workbench.toolsInCategory });
-    await expect(navigation.getByRole('link')).toHaveCount(8);
+    await expect(navigation.getByRole('link')).toHaveCount(10);
     await expect(navigation.locator('[aria-current="page"]')).toHaveAttribute(
       'href',
       `/${locale}/utilities/unit-converter`,

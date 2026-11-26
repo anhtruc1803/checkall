@@ -1,0 +1,125 @@
+.settings {
+  display: flex;
+  flex: 1 1 23rem;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 8px 12px;
+  min-width: 0;
+}
+.settings p {
+  flex-basis: 100%;
+  font-size: var(--text-small);
+}
+.panel {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+  padding: clamp(12px, 2vw, 24px);
+  border: 1px solid var(--color-result-edge);
+  border-radius: var(--radius-md);
+  background: var(--color-result-surface);
+}
+.boardHeader,
+.actions,
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+.boardHeader {
+  justify-content: space-between;
+  align-items: end;
+}
+.boardHeader > div {
+  min-width: 0;
+}
+.boardHeader h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.25rem;
+}
+.boardHeader h2 svg {
+  color: var(--color-accent);
+}
+.boardHeader p {
+  margin-top: 4px;
+  font-size: var(--text-small);
+}
+.field {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  max-width: 100%;
+  font-weight: 600;
+}
+.field input,
+.field select {
+  min-height: 44px;
+  background: var(--color-surface);
+  font-weight: 450;
+}
+.actions {
+  align-items: end;
+  padding-block: 12px;
+  border-block: 1px solid var(--color-workbench-edge);
+}
+.actions > label:not(.field) {
+  min-height: 44px;
+}
+.actions > .field {
+  flex: 1 1 14rem;
+}
+.ranking {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.entry {
+  display: grid;
+  grid-template-columns: minmax(3rem, auto) minmax(8rem, 1fr) minmax(8rem, auto) auto;
+  align-items: center;
+  gap: 8px 14px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+.rank {
+  font: 650 var(--text-control) / 1.4 var(--font-mono);
+  color: var(--color-accent);
+}
+.identity,
+.entryScore {
+  display: grid;
+  min-width: 0;
+}
+.identity time,
+.entryScore span,
+.empty {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+@media (max-width: 46rem) {
+  .entry {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .identity {
+    grid-column: 1 / -1;
+  }
+  .entryScore {
+    grid-column: 1;
+  }
+}
+@media (max-width: 24rem) {
+  .entry {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .entry button {
+    justify-self: start;
+  }
+}

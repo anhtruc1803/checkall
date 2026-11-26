@@ -1,6 +1,13 @@
 import { z } from 'zod/mini';
+import { typingChallengeIds } from '@/lib/typing/competition';
 import { typingDifficulties } from '@/lib/typing/difficulty';
 export const STORAGE_PREFIX = 'device-lab:';
+const typingCompetitionSchema = z.object({
+  challenge: z.enum(typingChallengeIds),
+  nickname: z.string().check(z.maxLength(32)),
+  correct: z.int().check(z.minimum(0)),
+  accuracy: z.number().check(z.minimum(0), z.maximum(100)),
+});
 const summarySchema = z.object({
   toolId: z.string().check(z.maxLength(10)),
   time: z.string().check(z.maxLength(64)),
@@ -12,6 +19,7 @@ const summarySchema = z.object({
       accuracy: z.number().check(z.minimum(0), z.maximum(100)),
     }),
   ),
+  competition: z.optional(typingCompetitionSchema),
 });
 const schemas: Record<string, z.ZodMiniType> = {
   theme: z.enum(['dark', 'light']),
@@ -33,6 +41,7 @@ export function parsePreference<T>(key: string, raw: string, fallback: T): T {
   }
 }
 export type SavedSummary = z.infer<typeof summarySchema>;
+export type TypingCompetitionScore = z.infer<typeof typingCompetitionSchema>;
 export function readPreference<T>(key: string, fallback: T): T {
   try {
     const value = localStorage.getItem(STORAGE_PREFIX + key);

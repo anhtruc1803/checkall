@@ -127,7 +127,7 @@ export function SaveResult({ toolId, value }: { toolId: string; value: string | 
     </div>
   );
 }
-export function CopyButton({ value }: { value: string }) {
+export function CopyButton({ value, label }: { value: string; label?: string }) {
   const t = useTranslations(),
     [message, setMessage] = useState('');
   return (
@@ -144,7 +144,7 @@ export function CopyButton({ value }: { value: string }) {
           }
         }}
       >
-        {t('copy')}
+        {label ?? t('copy')}
       </Button>
       <span role="status" className="small">
         {message}

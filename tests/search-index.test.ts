@@ -1,10 +1,10 @@
 import { it, expect } from 'vitest';
 import { getToolSearchIndex, tools, searchTools } from '@/lib/tools/registry';
 import { searchToolIndex } from '@/lib/tools/search';
-it('derives a localized index for all 50 published tools without methodology or draft metadata', () => {
+it('derives a localized index for all 52 published tools without methodology or draft metadata', () => {
   for (const locale of ['vi', 'en'] as const) {
     const index = getToolSearchIndex(locale);
-    expect(index).toHaveLength(50);
+    expect(index).toHaveLength(52);
     expect(
       index.filter((entry) => tools.find((tool) => tool.id === entry.id)?.phase === 1),
     ).toHaveLength(21);

@@ -705,6 +705,33 @@
     "mode": "Chế độ gõ",
     "timed": "Test 60 giây",
     "practice": "Luyện tự do",
+    "competition": {
+      "mode": "Thi gõ tiếng Việt",
+      "challenge": "Đề thi",
+      "challenges": {
+        "morning-v1": "Buổi sáng trong ngõ",
+        "riverside-v1": "Khảo sát ven sông"
+      },
+      "copyLink": "Sao chép link đề",
+      "rules": "Gõ trong 60 giây. Có thể sửa lỗi và gõ bằng EVKey hoặc UniKey. Ô thi chặn dán và kéo thả văn bản.",
+      "ranking": "Bảng xếp hạng",
+      "rankingScope": "Các lượt đã lưu cho đề này trong trình duyệt. Xếp theo WPM, sau đó theo độ chính xác. Bằng cả hai chỉ số thì đồng hạng.",
+      "empty": "Chưa có lượt thi nào được lưu cho đề này.",
+      "rank": "Hạng {rank}",
+      "nickname": "Biệt danh (không bắt buộc)",
+      "anonymous": "Ẩn danh",
+      "save": "Lưu lượt thi",
+      "saved": "Đã lưu lượt thi",
+      "layout": "Khổ ảnh",
+      "landscape": "Ngang · 1200 × 630",
+      "square": "Vuông · 1080 × 1080",
+      "download": "Tải ảnh kết quả",
+      "downloadAttempt": "Tải ảnh kết quả của {nickname}",
+      "png": "Tải PNG",
+      "imageError": "Chưa tạo được ảnh PNG. Hãy thử tải lại.",
+      "accuracyValue": "Chính xác {value}%",
+      "cardChallenge": "{challenge} · 60 giây"
+    },
     "remaining": "Còn lại",
     "elapsed": "Thời gian luyện",
     "lesson": "Bài luyện",
@@ -906,7 +933,9 @@
     "U05": "Bỏ dấu hoặc tạo slug từ văn bản.",
     "U06": "Dọn khoảng trắng và dòng trùng.",
     "U07": "Đổi giữa các đơn vị cùng loại.",
-    "U08": "Tính khoảng cách hoặc cộng trừ ngày."
+    "U08": "Tính khoảng cách hoặc cộng trừ ngày.",
+    "U09": "Tạo mã QR từ link hoặc văn bản, tải PNG.",
+    "U10": "Đổi chiều rộng, giữ tỷ lệ và so sánh dung lượng ảnh."
   },
   "utilityCatalog": {
     "intro": "Tính toán, xử lý văn bản, đổi đơn vị và tính ngày.",
@@ -916,7 +945,52 @@
       "numbers": "Số và tiền",
       "text": "Văn bản",
       "conversion": "Đơn vị và ngày",
+      "media": "QR và hình ảnh",
       "other": "Tiện ích khác"
+    }
+  },
+  "mediaTools": {
+    "preview": "Xem trước",
+    "qr": {
+      "input": "Link hoặc văn bản",
+      "placeholder": "Ví dụ https://example.com hoặc nội dung tiếng Việt",
+      "bytes": "{count, number} / {max, number} byte UTF-8",
+      "tooLong": "Nội dung vượt giới hạn {max, number} byte UTF-8.",
+      "create": "Tạo mã QR",
+      "creating": "Đang tạo mã QR…",
+      "empty": "Nhập nội dung rồi bấm Tạo mã QR để xem ảnh.",
+      "alt": "Mã QR của nội dung đã nhập",
+      "download": "Tải mã QR PNG",
+      "error": "Chưa tạo được mã QR. Hãy thử lại."
+    },
+    "image": {
+      "file": "Chọn ảnh",
+      "fileHint": "JPEG, PNG hoặc WebP. Tối đa 20 MiB và 24 megapixel.",
+      "width": "Chiều rộng xuất (px)",
+      "widthHint": "Chiều cao tự tính theo tỷ lệ ảnh gốc. Tối đa {max, number} px mỗi cạnh.",
+      "format": "Định dạng xuất",
+      "quality": "Chất lượng nén",
+      "jpegHint": "Phần trong suốt được tô trắng khi xuất JPEG.",
+      "source": "Ảnh gốc",
+      "output": "Ảnh xuất",
+      "process": "Xử lý ảnh",
+      "reading": "Đang đọc ảnh…",
+      "processing": "Đang xử lý ảnh…",
+      "empty": "Chọn ảnh và bấm Xử lý ảnh để xem kết quả.",
+      "alt": "Ảnh đã xử lý",
+      "download": "Tải ảnh đã xử lý",
+      "smaller": "Giảm {percent, number}% dung lượng",
+      "larger": "Tăng {percent, number}% dung lượng",
+      "same": "Dung lượng bằng ảnh gốc",
+      "errors": {
+        "type": "Hãy chọn tệp JPEG, PNG hoặc WebP hợp lệ.",
+        "size": "Tệp ảnh phải có dữ liệu và nhỏ hơn hoặc bằng 20 MiB.",
+        "dimensions": "Ảnh nguồn vượt giới hạn 24 megapixel.",
+        "decode": "Trình duyệt không đọc được ảnh này.",
+        "width": "Nhập chiều rộng nguyên từ 1 đến {max, number} px phù hợp với tỷ lệ ảnh.",
+        "unsupportedFormat": "Trình duyệt không hỗ trợ xuất định dạng này. Hãy thử JPEG hoặc PNG.",
+        "encode": "Chưa xử lý được ảnh. Hãy thử kích thước nhỏ hơn."
+      }
     }
   },
   "toolGroups": {

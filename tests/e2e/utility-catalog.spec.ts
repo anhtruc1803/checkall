@@ -13,12 +13,13 @@ test('utilities are grouped and searchable in both languages', async ({ page }) 
     const cards = catalog.locator('.catalog-item');
     await expect(input).toBeEnabled();
     await expect(catalog.locator('.filters')).toHaveCount(0);
-    await expect(cards).toHaveCount(8);
+    await expect(cards).toHaveCount(10);
 
     for (const [group, count] of [
       ['numbers', 2],
       ['text', 4],
       ['conversion', 2],
+      ['media', 2],
     ] as const) {
       const section = catalog.getByRole('region', {
         name: messages.utilityCatalog.sections[group],
@@ -42,7 +43,7 @@ test('utilities are grouped and searchable in both languages', async ({ page }) 
     await clear.focus();
     await page.keyboard.press('Enter');
     await expect(input).toBeFocused();
-    await expect(cards).toHaveCount(8);
+    await expect(cards).toHaveCount(10);
 
     await input.fill(locale === 'vi' ? 'doi don vi' : 'unit converter');
     await expect(cards).toHaveCount(1);

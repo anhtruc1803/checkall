@@ -17,9 +17,9 @@ import sitemap from '@/app/sitemap';
 
 describe('Phase 2 publication boundary', () => {
   it('keeps 21 Phase 1 tools and publishes all 19 Phase 2 tools with implemented engines', () => {
-    expect(tools).toHaveLength(50);
-    expect(new Set(tools.map((tool) => tool.id)).size).toBe(50);
-    expect(publishedTools).toHaveLength(50);
+    expect(tools).toHaveLength(52);
+    expect(new Set(tools.map((tool) => tool.id)).size).toBe(52);
+    expect(publishedTools).toHaveLength(52);
     expect(publishedTools.filter((tool) => tool.phase === 1)).toHaveLength(21);
     expect(
       publishedTools

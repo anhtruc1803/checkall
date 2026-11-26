@@ -43,6 +43,8 @@ export const implementedEngines = [
   'unit-converter',
   'date-calculator',
   'vietnamese-typing',
+  'qr-code',
+  'image-resizer',
 ] as const;
 export type ImplementedEngine = (typeof implementedEngines)[number];
 export function isImplementedEngine(engine: Engine): engine is ImplementedEngine {

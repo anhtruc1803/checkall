@@ -38,9 +38,10 @@
   flex: none;
 }
 .modes button[aria-pressed='true'] {
-  border-color: var(--color-result-edge);
-  background: var(--color-accent-bg);
-  color: var(--color-accent);
+  border-color: var(--color-nav-active);
+  background: var(--color-nav-active);
+  color: var(--color-nav-active-ink);
+  font-weight: 700;
 }
 .levels {
   display: grid;
@@ -119,12 +120,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 1rem;
+  font-size: var(--text-body);
   font-weight: 650;
   line-height: 1.4;
 }
 .timerLabel {
-  font-size: 0.875rem;
+  font-size: var(--text-control);
 }
 .timerLabel svg,
 .label svg {
@@ -174,7 +175,7 @@
 .inputField textarea {
   min-width: 0;
   width: 100%;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   line-height: 1.65;
   overflow-wrap: anywhere;
 }
@@ -269,21 +270,56 @@
 }
 .guide {
   min-width: 0;
-  border: 1px solid var(--color-rule);
+  border: 1px solid var(--color-workbench-edge);
   border-radius: var(--radius-md);
   background: var(--color-workbench-inset);
 }
 .guide summary {
-  min-height: 44px;
-  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 10px var(--space-md);
   cursor: pointer;
-  font-weight: 600;
+  list-style: none;
+  border-radius: inherit;
+  font-size: 1.125rem;
+  font-weight: 675;
 }
-.guide summary svg {
-  display: inline;
-  margin-inline: 6px 8px;
-  vertical-align: -0.12em;
+.guide summary::-webkit-details-marker {
+  display: none;
+}
+.guide[open] summary {
+  border-start-start-radius: inherit;
+  border-start-end-radius: inherit;
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+.guide summary:hover,
+.guide summary:focus-visible {
+  background: var(--color-workbench-raised);
+}
+.guideIcon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-bg);
   color: var(--color-accent);
+}
+.guideTitle {
+  min-width: 0;
+  line-height: 1.35;
+}
+.guideChevron {
+  margin-inline-start: auto;
+  color: var(--color-accent);
+  transform: rotate(-90deg);
+}
+.guide[open] .guideChevron {
+  transform: none;
 }
 .guideBody,
 .guideCopy,
@@ -295,7 +331,10 @@
 }
 .guideBody {
   align-items: start;
-  padding: 0 14px 14px;
+  padding: var(--space-md);
+}
+.guideCopy p {
+  margin: 0;
 }
 .guideKeys {
   justify-items: center;
@@ -311,6 +350,10 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 6px 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-result-edge);
+  border-radius: var(--radius-sm);
+  background: var(--color-result-surface);
 }
 .shiftHint {
   color: var(--color-muted);

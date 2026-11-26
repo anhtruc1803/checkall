@@ -94,6 +94,29 @@ test('free practice scores the final text after an EVKey-style rewrite and repor
   await expect(page.getByRole('heading', { name: vi.typing.result })).toHaveCount(0);
 });
 
+test('the hand guide opens by default and follows the user’s toggle across modes in VI and EN', async ({
+  page,
+}) => {
+  for (const [locale, messages] of [['vi', vi], ['en', en]] as const) {
+    await page.goto(`/${locale}/keyboard/vietnamese-typing`);
+    await expect(page.getByRole('textbox', { name: messages.typing.input })).toBeEditable();
+    const summary = page.locator('summary').filter({ hasText: messages.typing.guide.title });
+    const guide = page.locator('details').filter({ has: summary });
+    const leftHand = guide.locator('[data-hand="left"]');
+    await expect(guide).toHaveAttribute('open', '');
+    await expect(leftHand).toBeVisible();
+    await summary.focus();
+    await page.keyboard.press('Enter');
+    await expect(leftHand).toBeHidden();
+    await page.getByRole('button', { name: messages.typing.practice, exact: true }).click();
+    await expect(leftHand).toBeHidden();
+    await summary.click();
+    await expect(leftHand).toBeVisible();
+    await page.getByRole('button', { name: messages.typing.timed, exact: true }).click();
+    await expect(leftHand).toBeVisible();
+  }
+});
+
 test('typing controls and results reflow with 200% text in both themes', async ({ page }) => {
   test.setTimeout(60000);
   await page.setViewportSize({ width: 320, height: 720 });
@@ -103,7 +126,6 @@ test('typing controls and results reflow with 200% text in both themes', async (
   await expect(lesson).toHaveValue('homeRow');
   await page.getByRole('button', { name: en.typing.practiceGroups.text, exact: true }).click();
   await lesson.selectOption('accents');
-  await page.getByText(en.typing.guide.title, { exact: true }).click();
   await page.getByRole('textbox', { name: en.typing.input }).fill('Buổi sáng');
   await page.getByRole('button', { name: en.typing.finish }).click();
   await page.evaluate(() => {
@@ -195,7 +217,6 @@ test('all 31 lessons are selectable and the guide highlights the active QWERTY r
   await selector.selectOption('mixedRows');
   await expect(guide.locator('[data-practice-row="true"]')).toHaveCount(4);
   await page.getByRole('button', { name: vi.typing.practiceGroups.text, exact: true }).click();
-  await page.getByText(vi.typing.guide.title, { exact: true }).click();
   await expect(guide.locator('kbd')).toHaveText('Shift + B');
   await expect(guide.locator('[data-hand="left"] [data-digit="index"]')).toHaveAttribute(
     'data-highlight',

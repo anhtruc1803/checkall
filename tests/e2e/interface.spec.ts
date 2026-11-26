@@ -124,7 +124,7 @@ test('main navigation separates devices and utilities and supports keyboard dism
   await utilities.click();
   await expect(page).toHaveURL(/\/vi\/utilities$/);
   await expect(utilities).toHaveAttribute('aria-current', 'page');
-  await expect(page.locator('.catalog-item')).toHaveCount(8);
+  await expect(page.locator('.catalog-item')).toHaveCount(10);
   await page.getByRole('link', { name: `EN — ${vi.language}` }).click();
   await expect(page).toHaveURL(/\/en\/utilities$/);
   await expect(

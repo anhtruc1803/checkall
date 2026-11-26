@@ -13,7 +13,7 @@ export function getPublishedGroups(
   );
 }
 
-export const utilitySectionOrder = ['numbers', 'text', 'conversion', 'other'] as const;
+export const utilitySectionOrder = ['numbers', 'text', 'conversion', 'media', 'other'] as const;
 export type UtilitySection = (typeof utilitySectionOrder)[number];
 
 const utilityEngineSections: Partial<Record<Engine, UtilitySection>> = {
@@ -22,6 +22,8 @@ const utilityEngineSections: Partial<Record<Engine, UtilitySection>> = {
   text: 'text',
   'unit-converter': 'conversion',
   'date-calculator': 'conversion',
+  'qr-code': 'media',
+  'image-resizer': 'media',
 };
 
 export function getUtilitySection(engine: Engine): UtilitySection {

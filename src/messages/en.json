@@ -705,6 +705,33 @@
     "mode": "Typing mode",
     "timed": "60-second test",
     "practice": "Free practice",
+    "competition": {
+      "mode": "Vietnamese typing contest",
+      "challenge": "Challenge",
+      "challenges": {
+        "morning-v1": "Morning in the lane",
+        "riverside-v1": "Riverside survey"
+      },
+      "copyLink": "Copy challenge link",
+      "rules": "Type for 60 seconds. Corrections and Vietnamese input methods are allowed. Pasting and dropping text are blocked.",
+      "ranking": "Leaderboard",
+      "rankingScope": "Saved attempts for this challenge in this browser. Ranked by WPM, then accuracy. Identical scores share a rank.",
+      "empty": "No saved attempts for this challenge yet.",
+      "rank": "Rank {rank}",
+      "nickname": "Nickname (optional)",
+      "anonymous": "Anonymous",
+      "save": "Save attempt",
+      "saved": "Attempt saved",
+      "layout": "Image format",
+      "landscape": "Landscape · 1200 × 630",
+      "square": "Square · 1080 × 1080",
+      "download": "Download result image",
+      "downloadAttempt": "Download result image for {nickname}",
+      "png": "Download PNG",
+      "imageError": "The PNG could not be created. Try downloading it again.",
+      "accuracyValue": "{value}% accurate",
+      "cardChallenge": "{challenge} · 60 seconds"
+    },
     "remaining": "Time left",
     "elapsed": "Practice time",
     "lesson": "Practice lesson",
@@ -906,7 +933,9 @@
     "U05": "Remove accents or make a URL slug.",
     "U06": "Clean up whitespace and duplicate lines.",
     "U07": "Convert between units of the same type.",
-    "U08": "Count days between dates or shift a date."
+    "U08": "Count days between dates or shift a date.",
+    "U09": "Turn a link or text into a downloadable QR PNG.",
+    "U10": "Resize proportionally and compare image file sizes."
   },
   "utilityCatalog": {
     "intro": "Calculate percentages, work with text, convert units and count calendar days.",
@@ -916,7 +945,52 @@
       "numbers": "Numbers and money",
       "text": "Text",
       "conversion": "Units and dates",
+      "media": "QR and images",
       "other": "Other utilities"
+    }
+  },
+  "mediaTools": {
+    "preview": "Preview",
+    "qr": {
+      "input": "Link or text",
+      "placeholder": "For example, https://example.com or Vietnamese text",
+      "bytes": "{count, number} / {max, number} UTF-8 bytes",
+      "tooLong": "The content exceeds {max, number} UTF-8 bytes.",
+      "create": "Generate QR code",
+      "creating": "Generating QR code…",
+      "empty": "Enter content and generate a QR code to see it here.",
+      "alt": "QR code for the entered content",
+      "download": "Download QR PNG",
+      "error": "The QR code could not be generated. Try again."
+    },
+    "image": {
+      "file": "Choose image",
+      "fileHint": "JPEG, PNG or WebP. Up to 20 MiB and 24 megapixels.",
+      "width": "Output width (px)",
+      "widthHint": "The height follows the original aspect ratio. Up to {max, number} px per side.",
+      "format": "Output format",
+      "quality": "Compression quality",
+      "jpegHint": "JPEG export fills transparent areas with white.",
+      "source": "Original image",
+      "output": "Exported image",
+      "process": "Process image",
+      "reading": "Reading image…",
+      "processing": "Processing image…",
+      "empty": "Choose and process an image to see the result here.",
+      "alt": "Processed image",
+      "download": "Download processed image",
+      "smaller": "{percent, number}% smaller",
+      "larger": "{percent, number}% larger",
+      "same": "Same file size as the original",
+      "errors": {
+        "type": "Choose a valid JPEG, PNG or WebP file.",
+        "size": "The image must contain data and be 20 MiB or smaller.",
+        "dimensions": "The source exceeds the 24-megapixel limit.",
+        "decode": "Your browser could not read this image.",
+        "width": "Enter a whole width from 1 to {max, number} px for this aspect ratio.",
+        "unsupportedFormat": "Your browser cannot export this format. Try JPEG or PNG.",
+        "encode": "The image could not be processed. Try a smaller size."
+      }
     }
   },
   "toolGroups": {

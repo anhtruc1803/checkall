@@ -43,7 +43,7 @@ it('preserves all four Milestone 2 text tool definitions including localized cop
     baseline,
   );
 });
-it('registers eight calculators on the independent utility roadmap without permission or storage capabilities', () => {
+it('registers ten utilities on the independent roadmap without permission or storage capabilities', () => {
   expect(getPublishedGroups(publishedTools)).toEqual(['device-tests', 'utilities']);
   const utilities = publishedTools.filter((tool) => getToolGroup(tool.category) === 'utilities');
   expect(utilities.map((tool) => tool.id)).toEqual([
@@ -55,6 +55,8 @@ it('registers eight calculators on the independent utility roadmap without permi
     'U06',
     'U07',
     'U08',
+    'U09',
+    'U10',
   ]);
   for (const tool of utilities) {
     expect(tool.phase).toBeNull();
@@ -66,5 +68,7 @@ it('registers eight calculators on the independent utility roadmap without permi
   }
   expect(searchTools('số tiền').map((tool) => tool.id)).toContain('U01');
   expect(searchTools('percentage').map((tool) => tool.id)).toContain('U02');
+  expect(searchTools('tao ma qr').map((tool) => tool.id)).toContain('U09');
+  expect(searchTools('image resizer').map((tool) => tool.id)).toContain('U10');
   expect(getPublishedGroups([{ category: 'utilities', status: 'draft' }])).toEqual([]);
 });

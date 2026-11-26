@@ -27,6 +27,7 @@ import {
   Grid2X2,
   Hand,
   Hourglass,
+  Image,
   Keyboard,
   ListFilter,
   Pilcrow,
@@ -39,6 +40,7 @@ import {
   Palette,
   PanelsTopLeft,
   Percent,
+  QrCode,
   Ratio,
   ScanLine,
   Scan,
@@ -108,6 +110,8 @@ export const toolVisuals: Readonly<Record<string, ToolVisual>> = {
   U06: [Trash2, 'a   b', 'a b'],
   U07: [Ruler, '2 m', '200 cm'],
   U08: [CalendarDays, '01/06', '03/06'],
+  U09: [QrCode, 'QR · PNG'],
+  U10: [Image, '1600 px', '800 px'],
 };
 
 export function ToolIcon({

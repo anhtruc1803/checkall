@@ -2,21 +2,22 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 4px;
-  border: 1px solid var(--color-rule);
+  padding: 5px;
+  border: 1px solid var(--color-workbench-edge);
   border-radius: var(--radius-md);
-  background: var(--color-surface);
+  background: var(--color-workbench-inset);
 }
 .deviceMenu {
   position: relative;
   min-width: 0;
 }
 .navigation .navItem {
-  min-height: 44px;
-  padding-inline: 12px;
-  gap: 6px;
+  min-height: 46px;
+  padding-inline: 14px;
+  gap: 8px;
   text-align: start;
   line-height: 1.2;
+  font-weight: 630;
   white-space: normal;
   overflow-wrap: anywhere;
 }
@@ -27,12 +28,21 @@
   flex-shrink: 0;
   color: var(--color-accent);
 }
-.navItem[aria-expanded='true'],
-.navItem[data-current='true'],
-.navItem[aria-current='page'] {
+.navigation .navItem[aria-expanded='true'] {
   color: var(--color-accent);
   border-color: var(--color-control-border);
   background: var(--color-accent-bg);
+}
+.navigation .navItem[data-current='true'],
+.navigation .navItem[aria-current='page'] {
+  color: var(--color-nav-active-ink);
+  border-color: var(--color-nav-active);
+  background: var(--color-nav-active);
+  font-weight: 700;
+}
+.navItem[data-current='true'] > svg,
+.navItem[aria-current='page'] > svg {
+  color: inherit;
 }
 .deviceLinks {
   position: absolute;
@@ -63,7 +73,8 @@
   min-height: 44px;
   padding: 6px 8px;
   border-radius: var(--radius-sm);
-  font-size: 0.85rem;
+  font-size: var(--text-control);
+  line-height: 1.35;
   white-space: normal;
   overflow-wrap: anywhere;
 }
@@ -75,10 +86,17 @@
   min-width: 0;
 }
 .deviceLinks a:hover,
-.deviceLinks a:focus-visible,
-.deviceLinks a[aria-current='page'] {
+.deviceLinks a:focus-visible {
   color: var(--color-accent);
   background: var(--color-accent-bg);
+}
+.deviceLinks a[aria-current='page'] {
+  color: var(--color-nav-active-ink);
+  background: var(--color-nav-active);
+  font-weight: 700;
+}
+.deviceLinks a[aria-current='page'] svg {
+  color: inherit;
 }
 .deviceLinks a:focus-visible {
   outline-offset: -2px;

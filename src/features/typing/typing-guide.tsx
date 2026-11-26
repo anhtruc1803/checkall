@@ -1,6 +1,5 @@
-import { Hand } from 'lucide-react';
+import { ChevronDown, Hand } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import type { Ref } from 'react';
 import { keyboardRows, typingKeyHint, type PracticeKeyRow } from '@/lib/typing/keyboard-guide';
 import styles from './typing.module.css';
 
@@ -10,11 +9,9 @@ const fingerPositions = ['pinky', 'ring', 'middle', 'index', 'thumb'] as const;
 export function TypingGuide({
   character,
   row,
-  guideRef,
 }: {
   character: string | undefined;
   row: PracticeKeyRow | undefined;
-  guideRef: Ref<HTMLDetailsElement>;
 }) {
   const t = useTranslations('typing.guide');
   const hint = typingKeyHint(character);
@@ -24,10 +21,13 @@ export function TypingGuide({
   }
 
   return (
-    <details className={styles.guide} ref={guideRef}>
+    <details className={styles.guide} open>
       <summary>
-        <Hand aria-hidden="true" />
-        {t('title')}
+        <span className={styles.guideIcon}>
+          <Hand aria-hidden="true" />
+        </span>
+        <span className={styles.guideTitle}>{t('title')}</span>
+        <ChevronDown className={styles.guideChevron} aria-hidden="true" />
       </summary>
       <div className={styles.guideBody}>
         <div className={styles.guideCopy}>
