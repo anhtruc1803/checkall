@@ -15,12 +15,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - variant: baseline
-            ref: 09f2bd546ea686bc187c2e0d06bc8a7005c14190
-          - variant: candidate
-            ref: df2dad06b4ae106fa22eecc546afba9c9f1d6f41
-          - variant: candidate-tall-viewport
-            ref: df2dad06b4ae106fa22eecc546afba9c9f1d6f41
+          - variant: fixed
+            ref: 5e2d20543b7b71fd22532b9a41625e26d9ae6799
     env:
       HOME: /root
       HOSTNAME: 127.0.0.1
