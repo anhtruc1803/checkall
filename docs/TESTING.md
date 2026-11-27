@@ -1,5 +1,32 @@
 # Kiểm thử
 
+## Bảng xếp hạng Thi gõ công khai — local, 26/11/2026
+
+### Cấu hình chạy local
+
+Dùng Node.js 24 của dự án và cấu hình `TYPING_LEADERBOARD_DB` là đường dẫn tuyệt đối đến file SQLite trong một thư mục có quyền ghi. Đặt `TYPING_LEADERBOARD_ADMIN_KEY` thành mã ngẫu nhiên ít nhất 32 ký tự. Khi thiếu cấu hình, tính năng công khai tắt và Thi gõ tại máy vẫn hoạt động. Với `pnpm start`, truyền các biến qua môi trường khi chạy bản standalone. Bản duyệt nghe tại `127.0.0.1:3100`, sử dụng file SQLite và mã thử trong `artifacts/typing-leaderboard-preview/`. Git bỏ qua thư mục này. Bảng của đề **Buổi sáng trong ngõ** có một lượt kiểm thử chạy qua giao diện đủ 60 giây để thử thao tác ẩn.
+
+1. Mở link đề VI rồi bấm **Bắt đầu lượt công khai**. Gõ một phần bài và chờ hết 60 giây. Nhập biệt danh, tải PNG nếu cần, sau đó bấm **Gửi kết quả công khai**.
+2. Mở link EN của cùng đề trong một phiên duyệt khác. Bấm **Refresh leaderboard** và kiểm tra thấy lượt vừa gửi. Đổi sang đề khác để đối chiếu.
+3. Mở [trang quản trị VI](http://127.0.0.1:3100/vi/admin/typing-leaderboard) hoặc [trang quản trị EN](http://127.0.0.1:3100/en/admin/typing-leaderboard). Nhập mã local, chọn đề, bấm **Ẩn kết quả** và xác nhận. Làm mới bảng công khai ở phiên kia để kiểm tra kết quả đã ẩn. Bấm **Đăng xuất** khi xong.
+
+### Kiểm tra dữ liệu và giới hạn
+
+Yêu cầu bắt đầu chỉ gửi mã đề và nhận vé ký số có hiệu lực 30 phút. Mỗi vé dùng một lần, đúng đề và đủ 60 giây theo đồng hồ máy chủ. Gửi điểm chỉ nhận tóm tắt và biệt danh. SQLite từ chối lượt gửi trùng và giới hạn tổng cộng 120 lượt gửi trong 60 giây. Cache API tắt để lượt ẩn biến mất khi người xem làm mới.
+
+Trang công khai không có mục hay link quản trị. Truy cập trực tiếp đường dẫn riêng khi chưa có phiên hợp lệ chỉ hiển thị biểu mẫu đăng nhập. Trang riêng đặt `noindex` và nằm ngoài sitemap. Máy chủ kiểm tra mã để cấp cookie phiên ký số cho 2 giờ, dùng `HttpOnly`, `SameSite=Strict` và `Secure` qua HTTPS. API ẩn kiểm tra lại chữ ký và thời hạn của phiên ở mỗi yêu cầu. Nút Đăng xuất xóa cookie trong trình duyệt.
+
+Máy chủ kiểm tra phạm vi điểm và thời gian của vé. Điểm được tính trong trình duyệt nên bảng hạng phù hợp với cuộc thi có người điều phối. Đợt này kiểm tra bản local. Khi chuẩn bị phát hành, cần kiểm tra cấu hình volume SQLite, quyền ghi cho user `nextjs` và đường dẫn qua Nginx sau khi người dùng duyệt.
+
+### Kết quả chạy
+
+- `pnpm build`, `pnpm typecheck`, `pnpm lint` và `node scripts/scan-secrets.mjs` đạt. Build chạy với Node.js 24.11.1, có hai API động và giữ đủ 104 trang công cụ VI/EN. HTTP smoke `node scripts/smoke-http.mjs http://127.0.0.1:3100` đạt healthcheck và 60 route.
+- Trước khi tách quản trị, `pnpm exec playwright test typing-public-ranking.spec.ts typing-competition.spec.ts vietnamese-typing.spec.ts utility-catalog.spec.ts shell.spec.ts --workers=3` đạt 60/60, mỗi cấu hình 15 ca trên Chromium, Firefox, WebKit và Chromium mobile. Bộ này kiểm tra lượt 60 giây, nội dung gửi, tách đề, hai kích thước PNG, 31 bài luyện và 104 URL công cụ.
+- Trước khi tách quản trị, `pnpm test --maxWorkers 3` đạt 597/597 ca unit và tích hợp trên 48 file khi chạy riêng sau E2E. Khi chạy song song với E2E, ca Key Chatter xử lý hơn 200 sự kiện chạm timeout 5 giây. Giữ nguyên ca kiểm thử và timeout khi chạy lại.
+- Lượt standalone đầu từ chối yêu cầu cùng nguồn vì `request.url` dùng địa chỉ nội bộ. Bản sửa so sánh với HTTP `Host` và giao thức do proxy chuyển tiếp. Kiểm thử lại xác minh cả yêu cầu đúng nguồn và yêu cầu khác nguồn.
+- Sau khi tách quản trị, `pnpm exec vitest run tests/typing-leaderboard.test.ts` đạt 9/9. Đã kiểm tra cookie hết hạn, sai chữ ký, thuộc tính `Secure` khi qua HTTPS, ẩn yêu cầu có phiên hợp lệ và trả 401 khi thiếu phiên.
+- `pnpm exec playwright test typing-public-ranking.spec.ts typing-competition.spec.ts shell.spec.ts --workers=4` đạt 24/24 sau khi tách quản trị, mỗi cấu hình 6 ca. Kiểm tra không có mục quản trị trên trang công khai, phiên sai chỉ hiện form, đăng nhập và đổi đề, cookie `HttpOnly` và `SameSite=Strict`, ẩn rồi đồng bộ sang phiên xem, đăng xuất, axe hai theme ở 320 px và chữ 200%, hai khổ PNG và 104 URL công cụ. WebKit qua Playwright xác minh thuộc tính `SameSite` từ header HTTP vì dữ liệu cookie do trình điều khiển trả về ghi `None`. Nhãn chọn đề dùng `htmlFor` và ID tường minh sau khi lượt đầu không định vị được bằng nhãn.
+
 ## Kiểm thử chuyển tên miền a.ap.vn — 23/11/2026
 
 Source **6c8252b3a53574cd9283101f0a95219fb3b85a41** giữ nguyên app/tests/dependencies của Milestone 3. Local typecheck/lint/secret scan và575 unit/43 file đạt. [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/45101107988) đạt build 124, **466 E2E đạt/6 native policy skip**, 0 fail/flaky/global error; Chromium/mobile mỗi118 đạt, Firefox/WebKit mỗi115 đạt/3 skip. Docker CI health/Nginx/52 route trước/sau restart/stop-start và shutdown143 đạt. Candidate VPS cô lập đạt 96 route, sitemap 118, canonical/hreflang/policy/CSP trước/sau restart và Node private.

@@ -10,6 +10,24 @@
   flex-basis: 100%;
   font-size: var(--text-small);
 }
+.publicStart,
+.publicSubmit {
+  display: flex;
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  min-width: 0;
+}
+.publicStart p,
+.publicSubmit p {
+  flex: 1 1 16rem;
+  margin: 0;
+}
+.publicSubmit {
+  padding-top: 12px;
+  border-top: 1px solid var(--color-workbench-edge);
+}
 .panel {
   display: grid;
   gap: 12px;
@@ -97,6 +115,30 @@
 .entryScore {
   display: grid;
   min-width: 0;
+  overflow-wrap: anywhere;
+}
+.boardBody {
+  display: grid;
+  gap: 8px;
+}
+.boardBody > p:empty {
+  display: none;
+}
+.adminPage {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.adminLogin {
+  max-width: 32rem;
+  justify-items: start;
+}
+.adminLogin .field {
+  width: 100%;
+}
+.adminControls {
+  justify-content: space-between;
+  align-items: end;
 }
 .identity time,
 .entryScore span,

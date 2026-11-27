@@ -1,5 +1,17 @@
 # Tiến độ Device Lab
 
+## Bảng xếp hạng Thi gõ công khai — bản local để duyệt, 26/11/2026
+
+Hai đề `morning-v1` và `riverside-v1` có bảng xếp hạng riêng, đọc được trên VI/EN mà không cần đăng nhập. Xếp theo WPM rồi độ chính xác, có đồng hạng và 25 kết quả mỗi trang. Người thi bấm **Bắt đầu lượt công khai** trước khi gõ. Sau 60 giây, nhập biệt danh rồi bấm **Gửi kết quả công khai**. Lượt đã lưu trên máy và hai khổ ảnh PNG vẫn dùng được.
+
+Quản trị nằm ở trang riêng `/vi/admin/typing-leaderboard` và `/en/admin/typing-leaderboard`. Trang công khai bỏ mục và liên kết quản trị. Máy chủ chỉ dựng bảng quản trị khi phiên đăng nhập hợp lệ. Admin xác nhận trước khi ẩn. Lượt đã ẩn vẫn có trong SQLite và thứ hạng được tính lại cho các lượt còn hiển thị. Sự kiện bàn phím, chuột và nội dung gõ được xử lý trên thiết bị. Máy chủ ghi đề, biệt danh, số ký tự đúng, độ chính xác và thời điểm gửi khi người thi bấm gửi.
+
+File chính gồm `src/features/typing/{typing,typing-competition,typing-public-ranking,typing-admin}.tsx`, trang riêng trong `src/app/[locale]/admin/typing-leaderboard`, hai Route Handler trong `src/app/api/typing/leaderboard`, lớp lưu trữ và xác thực trong `src/lib/typing/server/`, nhãn VI/EN, `tests/typing-leaderboard.test.ts` và `tests/e2e/typing-public-ranking.spec.ts`. Bản local giữ đủ 52 công cụ.
+
+Bản đầu đạt 597/597 ca unit và tích hợp cùng 60/60 ca E2E. Sau khi tách quản trị, build, typecheck, lint, quét secret, 9/9 ca API và SQLite và 24/24 ca E2E liên quan đều đạt. Bốn cấu hình Playwright xác minh bảng công khai, trang quản trị yêu cầu đăng nhập, ẩn kết quả, đăng xuất, tải hai khổ PNG và giữ đủ 104 trang công cụ. Bản review có một lượt kiểm thử để thử thao tác ẩn. Môi trường triển khai và volume SQLite sẽ được kiểm tra khi người dùng duyệt phát hành.
+
+[Mở đề Buổi sáng trong ngõ, VI](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing?challenge=morning-v1) · [Mở cùng đề, EN](http://127.0.0.1:3100/en/keyboard/vietnamese-typing?challenge=morning-v1) · [Cách cấu hình và thử](TESTING.md#bảng-xếp-hạng-thi-gõ-công-khai--local-26112026)
+
 ## Đã phát hành 52 công cụ — 26/11/2026
 
 a.ap.vn đã chuyển sang `5e2d205`, gồm giao diện dễ đọc hơn, Tạo mã QR, Nén và đổi kích thước ảnh và chế độ Thi gõ tiếng Việt có bảng xếp hạng tại máy. Origin xác minh đủ 52 công cụ và 104 trang VI/EN. [Tạo mã QR](https://a.ap.vn/vi/utilities/qr-code) · [Xử lý ảnh](https://a.ap.vn/vi/utilities/image-resizer) · [Thi gõ](https://a.ap.vn/vi/keyboard/vietnamese-typing?challenge=morning-v1)

@@ -1,4 +1,14 @@
+import { randomBytes, randomUUID } from 'node:crypto';
+import { resolve } from 'node:path';
 import { defineConfig, devices } from '@playwright/test';
+
+const typingTestKey = (process.env.TYPING_LEADERBOARD_TEST_KEY ??= randomBytes(32).toString('hex'));
+const typingTestDb = (process.env.TYPING_LEADERBOARD_TEST_DB ??= resolve(
+  'artifacts',
+  'playwright',
+  `typing-${randomUUID()}.sqlite`,
+));
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -10,6 +20,10 @@ export default defineConfig({
     url: 'http://localhost:3000/api/health',
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
+    env: {
+      TYPING_LEADERBOARD_DB: typingTestDb,
+      TYPING_LEADERBOARD_ADMIN_KEY: typingTestKey,
+    },
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'], channel: 'chromium' } },

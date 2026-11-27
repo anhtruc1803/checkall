@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { Check, Download, Save, Trophy } from 'lucide-react';
+import { Check, Download, Save, Send, Trophy } from 'lucide-react';
 import { useFormatter, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { usePreference } from '@/hooks/use-preference';
@@ -10,7 +10,9 @@ import {
   type TypingCompetitionScore,
 } from '@/lib/storage/preferences';
 import { rankTypingAttempts, type TypingChallengeId } from '@/lib/typing/competition';
+import type { LeaderboardError } from '@/lib/typing/leaderboard';
 import type { ImageLayout } from './competition-image';
+import { postTypingLeaderboard } from './leaderboard-client';
 import styles from './competition.module.css';
 
 type Attempt = TypingCompetitionScore & { time: string };
@@ -19,9 +21,15 @@ type CurrentScore = Pick<Attempt, 'time' | 'correct' | 'accuracy'>;
 export const TypingCompetition = memo(function TypingCompetition({
   challenge,
   score,
+  ticket,
+  publicEnabled,
+  onPublished,
 }: {
   challenge: TypingChallengeId;
   score: CurrentScore | null;
+  ticket?: string;
+  publicEnabled: boolean;
+  onPublished: () => void;
 }) {
   const t = useTranslations('typing');
   const common = useTranslations();
@@ -33,6 +41,9 @@ export const TypingCompetition = memo(function TypingCompetition({
   const [saveError, setSaveError] = useState(false);
   const [layout, setLayout] = useState<ImageLayout>('landscape');
   const [exportStatus, setExportStatus] = useState<'idle' | 'working' | 'error'>('idle');
+  const [publishStatus, setPublishStatus] = useState<
+    LeaderboardError | 'working' | 'published' | null
+  >(null);
   const current = score && {
     ...score,
     challenge,
@@ -40,6 +51,7 @@ export const TypingCompetition = memo(function TypingCompetition({
     accuracy: Math.round(score.accuracy * 10) / 10,
   };
   const saved = current !== null && current.time === savedTime;
+  const published = publishStatus === 'published' || publishStatus === 'alreadySubmitted';
   const ranking = rankTypingAttempts(
     summaries.flatMap(({ toolId, competition, time }) =>
       toolId === 'B06' && competition?.challenge === challenge && Number.isFinite(Date.parse(time))
@@ -96,6 +108,22 @@ export const TypingCompetition = memo(function TypingCompetition({
     if (success) setSavedTime(time);
   }
 
+  async function publishCurrent() {
+    if (!current || !ticket || !current.nickname || published || publishStatus === 'working')
+      return;
+    setPublishStatus('working');
+    const result = await postTypingLeaderboard({
+      action: 'submit',
+      challenge,
+      ticket,
+      nickname: current.nickname,
+      correct: current.correct,
+      accuracy: current.accuracy,
+    });
+    setPublishStatus(result.error ?? 'published');
+    if (!result.error || result.error === 'alreadySubmitted') onPublished();
+  }
+
   return (
     <section className={styles.panel} aria-labelledby="typing-ranking-label">
       <div className={styles.boardHeader}>
@@ -128,7 +156,7 @@ export const TypingCompetition = memo(function TypingCompetition({
               type="text"
               maxLength={32}
               value={nickname}
-              disabled={saved}
+              disabled={published || publishStatus === 'working' || (saved && !ticket)}
               placeholder={t('competition.anonymous')}
               autoComplete="off"
               onChange={(event) => setNickname(event.target.value)}
@@ -156,6 +184,36 @@ export const TypingCompetition = memo(function TypingCompetition({
               {t('competition.download')}
             </Button>
           </div>
+          {publicEnabled && (
+            <div className={styles.publicSubmit}>
+              {ticket && current.correct > 0 && (
+                <Button
+                  disabled={!current.nickname || published || publishStatus === 'working'}
+                  onClick={() => void publishCurrent()}
+                  aria-describedby="typing-publish-help"
+                >
+                  {published ? <Check aria-hidden="true" /> : <Send aria-hidden="true" />}
+                  {t(published ? 'competition.public.published' : 'competition.public.publish')}
+                </Button>
+              )}
+              <p id="typing-publish-help" className="small">
+                {t(
+                  !ticket
+                    ? 'competition.public.privateAttempt'
+                    : current.correct === 0
+                      ? 'competition.public.zeroScore'
+                      : 'competition.public.publishHelp',
+                )}
+              </p>
+              <p role="status" className={publishStatus ? 'small' : 'sr-only'}>
+                {publishStatus === 'working' || publishStatus === 'published'
+                  ? t(`competition.public.${publishStatus}`)
+                  : publishStatus
+                    ? t(`competition.public.errors.${publishStatus}`)
+                    : ''}
+              </p>
+            </div>
+          )}
         </div>
       )}
       <p className={saveError || exportStatus === 'error' ? 'small' : 'sr-only'} role="status">

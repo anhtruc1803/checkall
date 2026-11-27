@@ -9,9 +9,13 @@ services:
     environment:
       NODE_ENV: production
       SITE_URL: ${SITE_URL:-http://localhost}
+      TYPING_LEADERBOARD_DB: ${TYPING_LEADERBOARD_DB:-/var/lib/device-lab/typing-leaderboard.sqlite}
+      TYPING_LEADERBOARD_ADMIN_KEY: ${TYPING_LEADERBOARD_ADMIN_KEY:-}
     expose:
       - '3000'
     read_only: true
+    volumes:
+      - typing-leaderboard:/var/lib/device-lab
     tmpfs:
       - /tmp
       - /app/.next/cache:uid=1001,gid=1001
@@ -35,3 +39,5 @@ services:
       - web
 networks:
   web:
+volumes:
+  typing-leaderboard:

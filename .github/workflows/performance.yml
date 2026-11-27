@@ -23,6 +23,10 @@ on:
       paths:
         description: Route VI/EN cần đo, phân cách bằng dấu phẩy (để trống dùng sáu trang mặc định)
         required: false
+      typing_leaderboard:
+        description: Bật bảng hạng công khai cho ứng viên local khi đo chế độ Thi gõ
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -36,6 +40,7 @@ jobs:
       PERFORMANCE_PUBLIC_REF: ${{ inputs.after_ref }}
       PERFORMANCE_PUBLIC_ORIGIN: ${{ inputs.public_origin }}
       PERFORMANCE_PATHS: ${{ inputs.paths }}
+      PERFORMANCE_TYPING_LEADERBOARD: ${{ inputs.typing_leaderboard }}
     steps:
       - uses: actions/checkout@v4
         with:

@@ -45,7 +45,10 @@ if (base.protocol === 'https:' && localOrigin) {
     .digest('base64');
 }
 const paths = values.paths.split(',');
-if (!paths.length || paths.some((path) => !/^\/(vi|en)(\/[a-z0-9-]+)*$/.test(path)))
+const contentPath = /^\/(vi|en)(\/[a-z0-9-]+)*$/;
+const competitionPath =
+  /^\/(vi|en)\/keyboard\/vietnamese-typing\?challenge=(morning-v1|riverside-v1)$/;
+if (!paths.length || paths.some((path) => !contentPath.test(path) && !competitionPath.test(path)))
   throw new Error('Use explicit VI/EN content paths.');
 if (new Set(paths).size !== paths.length) throw new Error('Duplicate audit paths.');
 function median(numbers) {
@@ -62,7 +65,7 @@ async function freePort() {
   return address.port;
 }
 async function audit(path, run) {
-  const slug = `${path.slice(1).replaceAll('/', '-')}-${run}`;
+  const slug = `${path.slice(1).replace(/[/?=]/g, '-')}-${run}`;
   const profile = await mkdtemp(join(tmpdir(), 'device-lab-lighthouse-'));
   const port = await freePort();
   const args = [
@@ -134,9 +137,27 @@ async function audit(path, run) {
       !contentMarker ||
       !document.includes(contentMarker) ||
       finalUrl.origin !== expectedUrl.origin ||
-      finalUrl.pathname !== expectedUrl.pathname
+      finalUrl.pathname !== expectedUrl.pathname ||
+      finalUrl.search !== expectedUrl.search
     )
       throw new Error('Audit did not load the expected Device Lab content.');
+    const leaderboardVerified =
+      process.env.EXPECT_TYPING_LEADERBOARD === 'true' && competitionPath.test(path);
+    if (leaderboardVerified) {
+      const expected = expectedUrl.searchParams.get('challenge');
+      if (
+        !network.some((item) => {
+          const url = new URL(item.url);
+          return (
+            url.origin === base.origin &&
+            url.pathname === '/api/typing/leaderboard' &&
+            url.searchParams.get('challenge') === expected &&
+            item.statusCode === 200
+          );
+        })
+      )
+        throw new Error('The contest page did not load its public leaderboard.');
+    }
     const externalScripts = network
       .filter((item) => item.resourceType === 'Script' && new URL(item.url).origin !== base.origin)
       .map((item) => new URL(item.url).origin);
@@ -151,6 +172,7 @@ async function audit(path, run) {
       path,
       run,
       pageVerified: true,
+      leaderboardVerified,
       lighthouseVersion: lhr.lighthouseVersion,
       clean,
       externalScripts: [...new Set(externalScripts)],

@@ -32,6 +32,7 @@ import { useHydrated } from '@/hooks/use-hydrated';
 import { usePreference } from '@/hooks/use-preference';
 import { saveSummary, writePreference } from '@/lib/storage/preferences';
 import { accentTopics, mostFrequentAccent, type AccentCounts } from '@/lib/typing/accents';
+import { challengePassages } from '@/lib/typing/challenge-passages';
 import { typingChallengeIds, type TypingChallengeId } from '@/lib/typing/competition';
 import { typingDifficulties, type TypingDifficulty } from '@/lib/typing/difficulty';
 import {
@@ -45,9 +46,11 @@ import {
   type TypingLesson,
 } from '@/lib/typing/lessons';
 import { scoreTyping, typingCharacters, typingErrorTypes } from '@/lib/typing/score';
+import { postTypingLeaderboard, useTypingLeaderboard } from './leaderboard-client';
 import { TypingCompetition } from './typing-competition';
 import { TypingGuide } from './typing-guide';
 import { TypingHistory } from './typing-history';
+import { TypingPublicRanking } from './typing-public-ranking';
 import competitionStyles from './competition.module.css';
 import styles from './typing.module.css';
 
@@ -58,12 +61,6 @@ type TypingResult = ReturnType<typeof scoreTyping> & { time: string };
 const levelIcons = { easy: Sprout, medium: Gauge, hard: Flame };
 const groupIcons = { rows: Rows3, text: NotebookPen, accents: SpellCheck };
 const modeIcons = { timed: Timer, practice: NotebookPen, competition: Trophy };
-// The versioned challenge IDs identify the exact passage used for ranking and shared links.
-const challengePassages = {
-  'morning-v1': timedPassages.medium,
-  'riverside-v1': timedPassages.hard,
-};
-
 function subscribeToChallengeLink(callback: () => void) {
   window.addEventListener('popstate', callback);
   return () => window.removeEventListener('popstate', callback);
@@ -120,6 +117,10 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
   const isTimed = mode !== 'practice';
   const [challengeOverride, setChallenge] = useState<TypingChallengeId | null>(null);
   const challenge = challengeOverride ?? linkedChallenge ?? typingChallengeIds[0];
+  const leaderboard = useTypingLeaderboard(challenge, mode === 'competition');
+  const [publicStart, setPublicStart] = useState<'idle' | 'pending' | 'error' | 'ready'>('idle');
+  const [ticket, setTicket] = useState<string>();
+  const ticketRequest = useRef<AbortController | null>(null);
   const [lesson, setLesson] = useState<TypingLesson>('homeRow');
   const [timedLevel, setTimedLevel] = useState<TypingDifficulty>('medium');
   const [text, setText] = useState('');
@@ -194,6 +195,8 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
     return () => window.clearInterval(interval);
   }, [isTimed, started, result, finish]);
 
+  useEffect(() => () => ticketRequest.current?.abort(), []);
+
   useEffect(() => {
     const area = promptArea.current;
     const next = area?.querySelector('[data-character="next"]');
@@ -206,7 +209,7 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
 
   function commit(value: string) {
     const current = session.current;
-    if (current.finishedAt) return;
+    if (current.finishedAt || ticketRequest.current) return;
     const now = performance.now();
     if (current.start === null) {
       if (!value) return;
@@ -223,6 +226,10 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
   }
 
   function reset() {
+    ticketRequest.current?.abort();
+    ticketRequest.current = null;
+    setPublicStart('idle');
+    setTicket(undefined);
     session.current = newSession();
     if (input.current) input.current.value = '';
     if (promptArea.current) promptArea.current.scrollTop = 0;
@@ -233,6 +240,26 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
     setResult(null);
     setSaved(false);
     setSaveMessage('');
+  }
+
+  async function startPublicAttempt() {
+    if (session.current.start !== null || ticketRequest.current || ticket) return;
+    const controller = new AbortController();
+    ticketRequest.current = controller;
+    setPublicStart('pending');
+    const attempt = await postTypingLeaderboard<{ ticket: string }>(
+      { action: 'start', challenge },
+      { signal: controller.signal },
+    );
+    if (controller.signal.aborted) return;
+    ticketRequest.current = null;
+    if (attempt.error) {
+      setPublicStart('error');
+      return;
+    }
+    setTicket(attempt.data.ticket);
+    setPublicStart('ready');
+    input.current?.focus();
   }
 
   function openLesson(next: TypingLesson, focus = false) {
@@ -344,6 +371,22 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
               />
             )}
             <p>{t('competition.rules')}</p>
+            {leaderboard.board?.enabled && !started && (
+              <div className={competitionStyles.publicStart}>
+                <Button
+                  disabled={publicStart === 'pending' || !!ticket}
+                  onClick={() => void startPublicAttempt()}
+                >
+                  {ticket ? <Check aria-hidden="true" /> : <Trophy aria-hidden="true" />}
+                  {t(ticket ? 'competition.public.ready' : 'competition.public.start')}
+                </Button>
+                <p role="status">
+                  {t(
+                    `competition.public.${publicStart === 'idle' ? 'startHelp' : publicStart === 'error' ? 'errors.unavailable' : publicStart === 'pending' ? 'working' : 'readyHelp'}`,
+                  )}
+                </p>
+              </div>
+            )}
           </div>
         )}
         {mode === 'practice' && (
@@ -465,7 +508,7 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
               autoCorrect="off"
               spellCheck={false}
               maxLength={prompt.length * 2}
-              readOnly={!ready || !!result}
+              readOnly={!ready || !!result || publicStart === 'pending'}
               onCompositionStart={() => {
                 session.current.composing = true;
               }}
@@ -590,17 +633,23 @@ function TypingSession({ linkedChallenge }: { linkedChallenge: TypingChallengeId
         </section>
       )}
       {mode === 'competition' ? (
-        <TypingCompetition
-          key={`${challenge}:${result?.time ?? ''}`}
-          challenge={challenge}
-          score={
-            result && {
-              time: result.time,
-              correct: result.correct,
-              accuracy: result.accuracy,
+        <>
+          {!result && <TypingPublicRanking challenge={challenge} leaderboard={leaderboard} />}
+          <TypingCompetition
+            key={`${challenge}:${result?.time ?? ''}`}
+            challenge={challenge}
+            ticket={ticket}
+            publicEnabled={leaderboard.board?.enabled === true}
+            onPublished={() => {
+              leaderboard.changePage(1);
+              leaderboard.refresh();
+            }}
+            score={
+              result && { time: result.time, correct: result.correct, accuracy: result.accuracy }
             }
-          }
-        />
+          />
+          {result && <TypingPublicRanking challenge={challenge} leaderboard={leaderboard} />}
+        </>
       ) : (
         <TypingHistory level={timedLevel} />
       )}
