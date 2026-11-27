@@ -1,5 +1,11 @@
 # Tiến độ Device Lab
 
+## Đã phát hành bảng xếp hạng Thi gõ công khai — 27/11/2026
+
+a.ap.vn đã chuyển sang `2c28b1f`. Hai đề có bảng hạng VI/EN, điểm chỉ lên bảng sau khi người thi bấm gửi, tải được hai khổ PNG. Trang quản trị nằm riêng, mở bằng mã production và không xuất hiện trong điều hướng công khai hay sitemap. Đã xác minh đủ 52 công cụ và 104 trang công cụ. [Thi gõ VI](https://a.ap.vn/vi/keyboard/vietnamese-typing?challenge=morning-v1) · [Thi gõ EN](https://a.ap.vn/en/keyboard/vietnamese-typing?challenge=morning-v1)
+
+CI sạch đạt 598 unit và tích hợp, 578 E2E và Docker smoke. Lighthouse mobile đo 36 lượt trước khi chuyển. Median bốn trang đề thi đạt 90, hai trang chủ đạt 98–99. Bài kiểm tra HTTPS sau khi chuyển xác minh một lượt thi 60 giây, xem điểm ở phiên riêng, tải cả hai ảnh, đăng nhập quản trị, ẩn lượt thử và đăng xuất. SQLite dùng volume bền vững, kiểm tra toàn vẹn đạt. Log ứng dụng và Nginx ghi 0 lỗi trong lượt kiểm tra. [Chi tiết triển khai](DEPLOYMENT.md#bảng-xếp-hạng-thi-gõ-công-khai--27112026)
+
 ## Bảng xếp hạng Thi gõ công khai — bản local để duyệt, 26/11/2026
 
 Hai đề `morning-v1` và `riverside-v1` có bảng xếp hạng riêng, đọc được trên VI/EN mà không cần đăng nhập. Xếp theo WPM rồi độ chính xác, có đồng hạng và 25 kết quả mỗi trang. Người thi bấm **Bắt đầu lượt công khai** trước khi gõ. Sau 60 giây, nhập biệt danh rồi bấm **Gửi kết quả công khai**. Lượt đã lưu trên máy và hai khổ ảnh PNG vẫn dùng được.
@@ -8,7 +14,7 @@ Quản trị nằm ở trang riêng `/vi/admin/typing-leaderboard` và `/en/admi
 
 File chính gồm `src/features/typing/{typing,typing-competition,typing-public-ranking,typing-admin}.tsx`, trang riêng trong `src/app/[locale]/admin/typing-leaderboard`, hai Route Handler trong `src/app/api/typing/leaderboard`, lớp lưu trữ và xác thực trong `src/lib/typing/server/`, nhãn VI/EN, `tests/typing-leaderboard.test.ts` và `tests/e2e/typing-public-ranking.spec.ts`. Bản local giữ đủ 52 công cụ.
 
-Bản đầu đạt 597/597 ca unit và tích hợp cùng 60/60 ca E2E. Sau khi tách quản trị, build, typecheck, lint, quét secret, 9/9 ca API và SQLite và 24/24 ca E2E liên quan đều đạt. Bốn cấu hình Playwright xác minh bảng công khai, trang quản trị yêu cầu đăng nhập, ẩn kết quả, đăng xuất, tải hai khổ PNG và giữ đủ 104 trang công cụ. Bản review có một lượt kiểm thử để thử thao tác ẩn. Môi trường triển khai và volume SQLite sẽ được kiểm tra khi người dùng duyệt phát hành.
+Bản đầu đạt 597/597 ca unit và tích hợp cùng 60/60 ca E2E. Sau khi tách quản trị, build, typecheck, lint, quét secret, 9/9 ca API và SQLite và 24/24 ca E2E liên quan đều đạt. Bốn cấu hình Playwright xác minh bảng công khai, trang quản trị yêu cầu đăng nhập, ẩn kết quả, đăng xuất, tải hai khổ PNG và giữ đủ 104 trang công cụ. Bản review có một lượt kiểm thử để thử thao tác ẩn trên máy.
 
 [Mở đề Buổi sáng trong ngõ, VI](http://127.0.0.1:3100/vi/keyboard/vietnamese-typing?challenge=morning-v1) · [Mở cùng đề, EN](http://127.0.0.1:3100/en/keyboard/vietnamese-typing?challenge=morning-v1) · [Cách cấu hình và thử](TESTING.md#bảng-xếp-hạng-thi-gõ-công-khai--local-26112026)
 

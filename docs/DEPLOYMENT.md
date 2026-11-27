@@ -1,8 +1,32 @@
 # Triển khai và vận hành
 
+## Bảng xếp hạng Thi gõ công khai — 27/11/2026
+
+a.ap.vn phục vụ commit `2c28b1f036ccd351a795a89ac7216362cd20ab1c` từ `main`. Cả hai đề `morning-v1` và `riverside-v1` có bảng hạng VI/EN cho người xem. Trang quản trị riêng cần mã do máy chủ xác thực, sử dụng phiên ký số 2 giờ và có quyền ẩn kết quả. Bản phát hành giữ đủ 52 công cụ và tải ảnh kết quả 1200 × 630, 1080 × 1080. [Commit phát hành](https://github.com/anhtruc1803/checkall/commit/2c28b1f036ccd351a795a89ac7216362cd20ab1c)
+
+CI Linux trên đúng commit đạt typecheck, lint, quét secret, 598 unit và tích hợp trên 48 file, build 136 mục và 578 E2E. Sáu ca Permissions Policy kiểm tra theo khả năng native của Firefox và WebKit được bỏ qua. Bốn ca bảng hạng công khai đạt trên Chromium, Firefox, WebKit và Chromium mobile. WebKit được chạy bằng Playwright. [Kết quả CI sạch và Docker](https://github.com/anhtruc1803/checkall/actions/runs/45921564867)
+
+Trước khi chuyển website, Lighthouse mobile đo 36 lượt trên runner Linux. Mỗi bản đo sáu trang, ba lượt với profile Chromium mới trên mỗi trang. Bốn trang đề thi của ứng viên đều gọi thành công API bảng hạng có SQLite. Median Accessibility, Best Practices và SEO đạt 100 trên sáu trang công khai của ứng viên. [HTML và JSON Lighthouse](https://github.com/anhtruc1803/checkall/actions/runs/45921565883)
+
+| Trang | Performance VI trước → sau | Performance EN trước → sau | LCP VI sau | LCP EN sau |
+| --- | ---: | ---: | ---: | ---: |
+| Trang chủ | 98 → 99 | 98 → 98 | 1.213 ms | 1.212 ms |
+| Buổi sáng trong ngõ | 91 → 90 | 91 → 90 | 3.565 ms | 3.540 ms |
+| Khảo sát ven sông | 91 → 90 | 91 → 90 | 3.566 ms | 3.550 ms |
+
+Median FCP của bốn trang đề thi là 1.061–1.062 ms, TBT 74–99 ms và CLS 0,0009–0,002. JavaScript truyền 229.221 byte trên mỗi trang đề thi, tăng 2.324 byte so với đường dẫn tương ứng của bản trước. Median LCP của bốn trang tăng từ 3.375–3.428 ms lên 3.540–3.566 ms. Chrome chạy ba lượt mới cho từng trang và kiểm tra URL gồm mã đề.
+
+Archive Git có SHA256 `844ec59b32ca7ca9e31fa917a5dee8d05476bcb527b2ac664f2cfc6baaeaa80c`. Image `device-lab:typing-public-2c28b1f-20261127` có ID `sha256:2ddd194d41e99d36faf8a10dc7da6628214fe3d9eac11d365a7cd0eb2eeb8a5e`. CI Docker và ứng viên VPS cô lập chứng minh điểm vẫn có sau restart và trạng thái ẩn còn sau thay container. Ứng viên dùng dữ liệu và mã thử riêng. Production bắt đầu với volume `device-lab_typing-leaderboard` tại `/var/lib/device-lab`. Quản trị dùng mã mới trong `.env` quyền `600` trên VPS. Người vận hành giữ volume khi thay container hoặc khôi phục bản trước.
+
+Nginx nạp mã release `2c28b1f` và origin HTTPS xác minh bảng hạng của cả hai đề, trang đăng nhập VI/EN, `no-store`, cookie `Secure`, `HttpOnly`, `SameSite=Strict` và đăng xuất. Origin cũng xác minh 104 trang công cụ, sitemap 126 URL và Node chỉ dùng cổng nội bộ. Đường dẫn `/opt/device-lab/current` trỏ đến `releases/typing-public-2c28b1f`. Giữ bản `media-tools-5e2d205` và cấu hình `shared/nginx.conf.before-typing-public-2c28b1f` để khôi phục.
+
+Chromium kiểm tra trực tiếp a.ap.vn, xác minh healthcheck, cả hai danh mục, sitemap 126 URL và mã release, canonical, hreflang, CSP và Permissions Policy trên 12 trang đại diện. Luồng thi gõ chạy đủ 60 giây, tải hai file PNG đúng kích thước, xem điểm qua phiên EN riêng, đăng nhập trang quản trị, ẩn lượt kiểm thử và đăng xuất. Phiên đã đăng nhập được kiểm tra cùng phiên khách độc lập. Lượt kiểm thử đã ẩn khỏi bảng công khai. [Đề thi VI](https://a.ap.vn/vi/keyboard/vietnamese-typing?challenge=morning-v1) · [Đề thi EN](https://a.ap.vn/en/keyboard/vietnamese-typing?challenge=morning-v1)
+
+Sau kiểm thử public, `PRAGMA quick_check` trả `ok`. Container healthy, user `nextjs`, filesystem chỉ đọc ngoài volume và các thư mục tạm, giới hạn 768 MiB và 256 tiến trình, cổng Node nội bộ và không ghi nhận OOM. Log Nginx và ứng dụng ghi nhận 0 lỗi trong lượt kiểm tra, timer Certbot hoạt động.
+
 ## Phát hành 52 công cụ và Thi gõ tiếng Việt — 26/11/2026
 
-a.ap.vn phục vụ commit `5e2d20543b7b71fd22532b9a41625e26d9ae6799` từ `main`. Bản này gồm U09 Tạo mã QR, U10 Nén và đổi kích thước ảnh, B06 Thi gõ 60 giây có thứ hạng theo đề, lưu theo thao tác và tải ảnh kết quả, cùng lần chỉnh cỡ chữ và menu. Archive từ Git có SHA256 `2d77a1383df160e4bcc258a6ab68a59bd68878f8a6b5bd78a8683ce9e887483d`. [Commit phát hành](https://github.com/anhtruc1803/checkall/commit/5e2d20543b7b71fd22532b9a41625e26d9ae6799)
+a.ap.vn đã phục vụ commit `5e2d20543b7b71fd22532b9a41625e26d9ae6799` từ `main` trước khi mở bảng hạng công khai. Bản này gồm U09 Tạo mã QR, U10 Nén và đổi kích thước ảnh, B06 Thi gõ 60 giây có thứ hạng theo đề, lưu theo thao tác và tải ảnh kết quả, cùng lần chỉnh cỡ chữ và menu. Archive từ Git có SHA256 `2d77a1383df160e4bcc258a6ab68a59bd68878f8a6b5bd78a8683ce9e887483d`. [Commit phát hành](https://github.com/anhtruc1803/checkall/commit/5e2d20543b7b71fd22532b9a41625e26d9ae6799)
 
 CI Linux trên đúng commit đạt 589 unit test trên 47 file, build 132 trang, 574 E2E và Docker smoke. Các ca gồm 16 QR và xử lý ảnh, 8 thi gõ, 28 luyện gõ và 12 phản xạ chuột trên Chromium, Firefox, WebKit và Chromium mobile. Sáu ca native Permissions Policy được bỏ qua theo khả năng Firefox/WebKit. [CI sạch](https://github.com/anhtruc1803/checkall/actions/runs/45756396732)
 
